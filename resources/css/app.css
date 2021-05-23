@@ -100,9 +100,6 @@
 .left-menu-item {
     @apply flex items-center p-2 font-semibold cursor-pointer;
 }
-.left-menu-sub-item {
-    @apply flex flex-row py-1 items-center justify-between text-gray-300 cursor-pointer bg-opacity-10 hover:bg-gray-200 hover:bg-opacity-40 hover:text-white hover:font-bold;
-}
 
 /*Content Card*/
 

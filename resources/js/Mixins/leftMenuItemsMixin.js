@@ -7,7 +7,7 @@ export const leftMenuItemsMixin = {
                     icon: "tv",
                     link: "",
                     linkType: "route",
-                    type: "standard",
+                    type: "dropdown",
                     activeKey: ["examples"],
                     items: [
                         {
@@ -89,7 +89,7 @@ export const leftMenuItemsMixin = {
                     icon: "plug",
                     link: "",
                     linkType: "route",
-                    type: "standard",
+                    type: "dropdown",
                     activeKey: ["buttons"],
                     items: [
                         {
@@ -211,7 +211,7 @@ export const leftMenuItemsMixin = {
                     icon: "window-maximize",
                     link: "",
                     linkType: "route",
-                    type: "standard",
+                    type: "dropdown",
                     activeKey: ["content-boxes"],
                     items: [
                         {
@@ -225,7 +225,7 @@ export const leftMenuItemsMixin = {
                         {
                             label: "Grid",
                             icon: "grip-horizontal",
-                            link: "grid",
+                            link: "layout-grid",
                             linkType: "route",
                             type: "standard",
                             activeKey: ["sections"]
@@ -233,7 +233,7 @@ export const leftMenuItemsMixin = {
                         {
                             label: "Content Boxes",
                             icon: "window-restore",
-                            link: "sections",
+                            link: "layout-content-box",
                             linkType: "route",
                             type: "standard",
                             activeKey: ["sections"]
@@ -241,7 +241,7 @@ export const leftMenuItemsMixin = {
                         {
                             label: "Statistic Widgets",
                             icon: "chart-bar",
-                            link: "statistic-widgets",
+                            link: "layout-statistic-widget",
                             linkType: "route",
                             type: "standard",
                             activeKey: ["statistic-widgets"],
@@ -253,7 +253,7 @@ export const leftMenuItemsMixin = {
                     icon: "edit",
                     link: "",
                     linkType: "route",
-                    type: "standard",
+                    type: "dropdown",
                     activeKey: ["forms"],
                     items: [
                         {
@@ -267,7 +267,7 @@ export const leftMenuItemsMixin = {
                         {
                             label: "Input Group",
                             icon: "",
-                            link: "input-group",
+                            link: "form-input-group",
                             linkType: "route",
                             type: "standard",
                             activeKey: ["input-group"],
@@ -275,7 +275,7 @@ export const leftMenuItemsMixin = {
                         {
                             label: "Simple Fields",
                             icon: "",
-                            link: "form-simple-fields",
+                            link: "form-simple-field",
                             linkType: "route",
                             type: "standard",
                             activeKey: ["form-simple-input-fields"],
@@ -283,7 +283,7 @@ export const leftMenuItemsMixin = {
                         {
                             label: "Repeatable Fields",
                             icon: "retweet",
-                            link: "repeatable-field",
+                            link: "form-repeatable-field",
                             linkType: "route",
                             type: "standard",
                             activeKey: ["repeatable-input-field"],
@@ -291,7 +291,7 @@ export const leftMenuItemsMixin = {
                         {
                             label: "Date/Time Fields",
                             icon: "clock",
-                            link: "date-field",
+                            link: "form-date-field",
                             linkType: "route",
                             type: "standard",
                             activeKey: ["date-input-field"],
@@ -299,7 +299,7 @@ export const leftMenuItemsMixin = {
                         {
                             label: "Select Input",
                             icon: "",
-                            link: "select-input-field",
+                            link: "form-select-input",
                             linkType: "route",
                             type: "standard",
                             activeKey: ["select-input-field"],
@@ -307,7 +307,7 @@ export const leftMenuItemsMixin = {
                         {
                             label: "Tags Input",
                             icon: "tags",
-                            link: "tag-input-field",
+                            link: "form-tag-input",
                             linkType: "route",
                             type: "standard",
                             activeKey: ["tag-input-field"],

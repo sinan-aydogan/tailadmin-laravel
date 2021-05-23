@@ -14,6 +14,7 @@
                     class="flex flex-col px-2 py-1"
                 >
                     <left-menu-item
+                        :key="index"
                         :item="item"
                         :showingLeftMenu="showingLeftMenu"
                         @showLeftMenuEmit="showingLeftMenu = 'true'"
@@ -372,7 +373,7 @@
                         <a
                             href="https://laraquality.dev/"
                             class="text-blue-600 hover:underline"
-                        >TailAdmin v-beta.0.0.1</a
+                        >TailAdmin Laravel v-beta.0.0.1</a
                         >
                         <span>by</span>
                         <a
@@ -381,7 +382,7 @@
                         >Sinan AYDOĞAN</a
                         >
                         <a
-                            href="https://github.com/sinan-aydogan/LaraQuality-i"
+                            href="https://github.com/sinan-aydogan/tailadmin-laravel"
                             class="flex items-center text-blue-600 hover:underline"
                             target="_blank"
                         >
