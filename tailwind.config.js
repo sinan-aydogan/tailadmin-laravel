@@ -19,6 +19,8 @@ module.exports = {
     variants: {
         extend: {
             opacity: ['disabled'],
+            textColor: ['hover'],
+            fontWeight: ['hover', 'active' ,'focus']
         },
     },
 
