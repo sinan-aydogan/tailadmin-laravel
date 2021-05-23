@@ -9,8 +9,8 @@
         align === 'right' && 'flex-row-reverse']"
             @click="showPanel = !showPanel">
             <div
-                :class="['flex items-center gap-2 w-full',align === 'left' && 'justify-start',align === 'center' && 'justify-center',align === 'right' && 'flex-row-reverse']">
-                <slot name="title"></slot>
+                :class="['flex items-center gap-2 w-full whitespace-nowrap',align === 'left' && 'justify-start',align === 'center' && 'justify-center',align === 'right' && 'flex-row-reverse']">
+                <slot name="title"/>
             </div>
             <div :class="[
           color !== 'black'  ? 'text-'+color+'-800' : 'text-gray-300 bg-'+color,
@@ -20,7 +20,7 @@
             </div>
         </div>
         <!--Content-->
-        <div v-if="showPanel" :class="['p-4 bg-'+color+'-50']">
+        <div v-if="showPanel" :class="['p-4  whitespace-nowrap bg-'+color+'-50']">
             <slot name="content"></slot>
         </div>
     </div>
@@ -32,12 +32,10 @@ export default {
     props: {
         color: {
             type: String,
-            required: true,
             default: 'gray'
         },
         align: {
             type: String,
-            required: true,
             default: 'left'
         }
     },
@@ -50,7 +48,6 @@ export default {
 </script>
 
 <style scoped>
-
 .collapsible-border .collapsible-sub-border:not(:last-child) {
 }
 </style>
