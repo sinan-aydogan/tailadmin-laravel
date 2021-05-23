@@ -1,6 +1,11 @@
 <template>
     <button
-        :class="['flex justify-center items-center whitespace-nowrap text-white border px-3 py-2 gap-1',buttonStyle, radiusStyle]"
+        :type="type"
+        :class="[
+            'flex justify-center items-center whitespace-nowrap text-white border px-3 py-2 gap-1 focus:ring-2 focus:outline-none',
+            buttonStyle,
+            radiusStyle
+            ]"
         :onclick="'window.location.href=\''+link+'\''">
         <slot></slot>
     </button>
@@ -18,6 +23,10 @@ export default {
         link: {
             type: String,
             default: '#'
+        },
+        type: {
+            type: String,
+            default: 'submit'
         }
     },
     computed: {
@@ -32,11 +41,13 @@ export default {
             }
             /*Button Size Style*/
             if (this.size === 'full') {
-                sizeStyle = 'w-full text-center ';
+                sizeStyle = 'h-12 w-full text-center ';
             } else if (this.size === 'xl') {
-                sizeStyle = 'text-xl font-bold'
+                sizeStyle = 'h-14 text-xl font-bold'
             } else if (this.size === 'sm') {
-                sizeStyle = 'text-sm min-w-min min-h-min'
+                sizeStyle = 'h-8 text-sm min-w-min min-h-min'
+            } else {
+                sizeStyle = 'h-10'
             }
             return colorStyle + ' ' + sizeStyle;
         },
