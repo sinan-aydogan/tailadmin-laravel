@@ -2,11 +2,11 @@
   <div class="max-w-min" v-click-outside="outside">
     <div
         @click="showContent = !showContent"
-        :class="colorStyle.trigger">
+        :class="['whitespace-normal',colorStyle.trigger]">
       <slot name="title"></slot>
       <font-awesome-icon icon="angle-down"/>
     </div>
-    <div v-if="showContent" :class="colorStyle.childContent">
+    <div v-if="showContent" :class="['whitespace-normal',colorStyle.childContent]">
       <slot></slot>
     </div>
   </div>
@@ -70,11 +70,13 @@ export default {
   created(){
     if(this.color === 'white'){
       this.colorStyle.trigger = 'relative flex flex-row justify-between border rounded-md p-2 items-center gap-2 cursor-pointer'
+        this.colorStyle.childContent = 'absolute border rounded-md -mt-5 overflow-hidden bg-white'
     }else if(this.color === 'black'){
-      this.colorStyle.trigger = 'relative flex flex-row justify-between border rounded-md p-2 items-center gap-2 cursor-pointer'
+      this.colorStyle.trigger = 'relative flex flex-row justify-between border rounded-md bg-black text-white p-2 items-center gap-2 cursor-pointer'
+        this.colorStyle.childContent = 'absolute border rounded-md -mt-5 overflow-hidden bg-black text-white'
     }else{
-      this.colorStyle.trigger = 'relative bg-'+this.color+'-500 text-red-100 flex flex-row justify-between border rounded-md p-2 items-center gap-2 cursor-pointer',
-          this.colorStyle.childContent = 'absolute border rounded-md mt-1 overflow-hidden bg-'+this.color+'-200'
+      this.colorStyle.trigger = 'relative bg-'+this.color+'-500 text-'+this.color+'-50 flex flex-row justify-between border rounded-md p-2 items-center gap-2 cursor-pointer',
+          this.colorStyle.childContent = 'absolute border rounded-md -mt-5 overflow-hidden bg-'+this.color+'-200'
     }
   }
 }
