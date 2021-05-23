@@ -1,18 +1,22 @@
 <template>
-    <div :class="[team === true ? '-ml-4 overflow-hidden' : 'relative']">
+    <div :class="[team === true ? '-ml-4 overflow-hidden' : 'relative flex']">
         <img :class="[radiusStyle, sizeStyle, team === true ? 'border-2 border-white border-opacity-50' : '']"
              :src="avatarURL">
-        <span v-if="indicator"
-              :class=" ['absolute items-center justify-center font-semibold text-xs text-white w-1/3 h-1/3 flex rounded-full',indicatorStyle]">
-      <span v-if="size > 2">{{ indicator.label }}</span>
-    </span>
+        <span
+            v-if="indicator"
+            :class="[
+                'absolute flex justify-center items-center w-1/3 h-1/3 rounded-full text-white font-semibold',
+                size<7 ? 'text-xs' : 'text-normal',
+                indicatorStyle
+                ]">
+            <span v-text="size>2 ? indicator.label : null"/>
+        </span>
     </div>
 </template>
 
 <script>
 import {radiusSizeMixin} from "@/Mixins/radiusSizeMixin";
 import {avatarStyleMixin} from "@/Mixins/avatarStyleMixin";
-import {resolveComponent, resolveTransitionHooks} from "vue";
 
 export default {
     mixins: [radiusSizeMixin, avatarStyleMixin],
@@ -20,7 +24,6 @@ export default {
         link: {
             type: String,
             require: false,
-            default: 'test'
         },
         team: {
             type: Boolean,
@@ -30,9 +33,13 @@ export default {
     name: "Avatar",
     computed: {
         avatarURL() {
-            if (this.link.default) {
-                return 'img/samples/' + this.link.default.substr(8)
+            let imgSrc;
+            if (!this.link) {
+                imgSrc = '/img/samples/dummyAvatar.svg'
+            } else {
+                imgSrc = this.link
             }
+            return imgSrc
         }
     }
 };
