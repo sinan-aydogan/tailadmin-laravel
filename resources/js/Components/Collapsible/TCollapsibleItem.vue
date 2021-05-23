@@ -9,7 +9,7 @@
         align === 'right' && 'flex-row-reverse']"
             @click="showPanel = !showPanel">
             <div
-                :class="['flex items-center gap-2 w-full whitespace-nowrap',align === 'left' && 'justify-start',align === 'center' && 'justify-center',align === 'right' && 'flex-row-reverse']">
+                :class="['flex items-center gap-2 w-full whitespace-normal',align === 'left' && 'justify-start',align === 'center' && 'justify-center',align === 'right' && 'flex-row-reverse']">
                 <slot name="title"/>
             </div>
             <div :class="[
@@ -20,7 +20,7 @@
             </div>
         </div>
         <!--Content-->
-        <div v-if="showPanel" :class="['p-4  whitespace-nowrap bg-'+color+'-50']">
+        <div v-if="showPanel" :class="['p-4 whitespace-normal bg-'+color+'-50']">
             <slot name="content"></slot>
         </div>
     </div>

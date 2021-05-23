@@ -115,7 +115,7 @@
                         Radius size "5"
                     </template>
                     <template #content>
-                        <t-collapsible radius="5">
+                        <t-collapsible :radius="5">
                             <!--First Item-->
                             <t-collapsible-item color="red">
                                 <template #title>
@@ -168,7 +168,7 @@
                         Radius size "7"
                     </template>
                     <template #content>
-                        <t-collapsible radius="7">
+                        <t-collapsible :radius="7">
                             <!--Default Item-->
                             <t-collapsible-item color="black">
                                 <template #title>
