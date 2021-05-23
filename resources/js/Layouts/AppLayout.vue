@@ -346,9 +346,7 @@
                         </header>
                         <!--Page Action Buttons-->
                         <div v-if="actionButtons === true" class="page-action-buttons">
-                            <!-- <slot name="action-buttons"></slot> -->
-                            <Button color="green" size="full" radius="3" link="sdsds">+Create New Item</Button>
-                            <Button color="red" size="full" radius="3">Delete</Button>
+                            <slot name="action-buttons"></slot>
                         </div>
                     </div>
                     <!--Content-->
