@@ -14,7 +14,7 @@
                     description="This information is subject to personal data protection law.">
                     <!-- Name -->
                     <t-input-group label="Name" labelFor="name" class="col-span-12 md:col-span-6">
-                        <t-input-text id="name"  v-model="form.name"/>
+                        <t-input-text id="name"  v-model="form.name" placeholder="Business mail address"/>
                     </t-input-group>
                     <!-- Tax ID -->
                     <t-input-group label="Tax ID" labelFor="tax_id" class="col-span-12 md:col-span-6">
@@ -31,13 +31,13 @@
                     <!-- Status -->
                     <t-input-group label="Status" labelFor="status" class="col-span-12 md:col-span-6">
                         <t-input-dropdown v-model="form.status" :clear-button="true">
-                            <t-inpu-dropdown-item value="0"><font-awesome-icon icon="check" class="text-green-500 mr-2"/>Active</t-inpu-dropdown-item>
-                            <t-inpu-dropdown-item value="1"><font-awesome-icon icon="minus-circle" class="text-red-500 mr-2"/>Passive</t-inpu-dropdown-item>
+                            <t-input-dropdown-item value="0"><font-awesome-icon icon="check" class="text-green-500 mr-2"/>Active</t-input-dropdown-item>
+                            <t-input-dropdown-item value="1"><font-awesome-icon icon="minus-circle" class="text-red-500 mr-2"/>Passive</t-input-dropdown-item>
                         </t-input-dropdown>
                     </t-input-group>
                     <!-- Address -->
                     <t-input-group label="Address" labelFor="address" class="col-span-12">
-                        <Textarea id="address" v-model="form.address" rows="3" cols="30" />
+                        <t-input-text-area id="address" v-model="form.address" :rows="3" :clear-button="true" :counter="true" placeholder="Full address"/>
                     </t-input-group>
                 </t-form-section>
             </t-form-content>
@@ -53,10 +53,11 @@ import TFormContent from "@/Components/Form/TFormContent";
 import TInputGroup from "@/Components/Form/TInputGroup";
 import TInputText from "@/Components/Form/Inputs/TInputText";
 import TInputDropdown from "@/Components/Form/Inputs/TInputDropdown";
-import TInpuDropdownItem from "@/Components/Form/Inputs/TInputDropdownItem";
+import TInputDropdownItem from "@/Components/Form/Inputs/TInputDropdownItem";
+import TInputTextArea from "@/Components/Form/Inputs/TInputTextArea";
 export default {
     name: "FormStructure",
-    components: {AppLayout,TButton,TFormSection,TFormContent,TInputGroup,TInputText,TInputDropdown,TInpuDropdownItem},
+    components: {AppLayout,TButton,TFormSection,TFormContent,TInputGroup,TInputText,TInputDropdown,TInputDropdownItem,TInputTextArea},
     data() {
         return {
             loading: false,
