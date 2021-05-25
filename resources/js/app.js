@@ -39,12 +39,14 @@ import {
     faCheck, faMinusCircle
 } from '@fortawesome/free-solid-svg-icons'
 library.add(faRocket,faDotCircle,faWindowRestore,faEdit,faCalendarAlt,faEnvelope,faTasks,faWindowMaximize,faChartBar,faChevronDown,faCode,faAngleDown,faAngleUp,faChartBar,faLayerGroup,faGripHorizontal,faAngleLeft,faClock,faRetweet,faTags,faTv,faPlug,faTable,faShoppingBag,faLiraSign,faTrash,faPlusCircle,faAngleDoubleRight,faCheck,faMinusCircle)
-
 Vue.component('font-awesome-icon', FontAwesomeIcon)
+
 
 Vue.mixin({ methods: { route } });
 Vue.use(InertiaPlugin);
 Vue.use(PortalVue);
+
+Vue.config.productionTip = false
 
 
 const app = document.getElementById('app');

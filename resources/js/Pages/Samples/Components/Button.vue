@@ -22,11 +22,8 @@
                         </div>
                     </template>
                     <template #secondContent>
-                        <pre v-highlightjs="sampleCodes.code1" class="w-full">
-                            <code class="html">
-                            </code>
-                        </pre>
-                        <span class="border bg-gray-100 p-2 flex my-2">
+                      <ssh-pre copy-button="true" class="w-full" style="margin-top: 10px; padding: 10px" language="html" label="Code">{{sampleCodes.code1}}</ssh-pre>
+                      <span class="border bg-gray-100 p-2 flex my-2">
             You can add a attribute which "color" for button color.
             <em class="ml-2"> Color variations: <b>red, blue, indigo, yellow, green, gray, black, white</b></em>
           </span>
@@ -108,10 +105,7 @@
                         </div>
                     </template>
                     <template #secondContent>
-                        <pre v-highlightjs="sampleCodes.code2" class="whitespace-pre-wrap">
-                            <code class="html">
-                            </code>
-                        </pre>
+                      <ssh-pre copy-button="true" class="w-full" style="margin-top: 10px; padding: 10px" language="html" label="Code">{{sampleCodes.code2}}</ssh-pre>
                     </template>
                 </t-contentCard>
                 <!--With radius : Code 3-->
@@ -128,10 +122,8 @@
                         </div>
                     </template>
                     <template #secondContent>
-                        <pre v-highlightjs="sampleCodes.code3" class="w-full">
-                            <code class="html">
-                            </code>
-                        </pre>
+                      <ssh-pre copy-button="true" class="w-full" style="margin-top: 10px; padding: 10px" language="html" label="Code">{{sampleCodes.code3}}</ssh-pre>
+
                     </template>
                 </t-contentCard>
                 <!--With Size : Code 4-->
@@ -147,10 +139,7 @@
                         </div>
                     </template>
                     <template #secondContent>
-                        <pre v-highlightjs="sampleCodes.code4" class="w-full">
-                            <code class="html">
-                            </code>
-                        </pre>
+                      <ssh-pre copy-button="true" class="w-full" style="margin-top: 10px; padding: 10px" language="html" label="Code">{{sampleCodes.code4}}</ssh-pre>
                     </template>
                 </t-contentCard>
             </grid-section>
@@ -163,10 +152,12 @@ import AppLayout from "@/Layouts/AppLayout";
 import GridSection from "@/Layouts/GridSection";
 import TContentCard from "@/Components/Card/TContentCard";
 import TButton from "@/Components/Button/TButton";
+import SshPre from 'simple-syntax-highlighter'
+import 'simple-syntax-highlighter/dist/sshpre.css'
 
 export default {
     name: "Button",
-    components: {AppLayout, GridSection, TContentCard, TButton},
+    components: {AppLayout, GridSection, TContentCard, TButton,SshPre},
     data() {
         return {
             sampleCodes: {
