@@ -65,6 +65,25 @@
                         </div>
                     </template>
                 </t-content-card>
+              <!--With Collapsible-->
+              <t-content-card width="2">
+                <template #title>
+                  With Icon and Value Option
+                </template>
+                <template #content>
+                  <div class="flex flex-wrap gap-4">
+                    <t-badge :radius="1" color="indigo" :collapsible="true"><font-awesome-icon icon="info" slot="icon"/>Number</t-badge>
+                    <t-badge :radius="2" color="red" :collapsible="true"><font-awesome-icon icon="info" slot="icon"/>Currency</t-badge>
+                    <t-badge :radius="3" color="pink" :collapsible="true"><font-awesome-icon icon="info" slot="icon"/>Double</t-badge>
+                    <t-badge :radius="4" color="yellow" :collapsible="true" value="15 pcs."><font-awesome-icon icon="info" slot="icon"/>Count</t-badge>
+                    <t-badge :radius="5" color="purple" :collapsible="true" value="03.09.2025"><font-awesome-icon icon="info" slot="icon"/>Date</t-badge>
+                    <t-badge :radius="6" color="white" :collapsible="true" value="®"><font-awesome-icon icon="info" slot="icon"/>Special Char.</t-badge>
+                    <t-badge :radius="7" color="black" :collapsible="true" value="Plus"><font-awesome-icon icon="info" slot="icon"/>String</t-badge>
+                    <t-badge :radius="8" color="red" :collapsible="true" value="+25%"><font-awesome-icon icon="info" slot="icon"/>Percent</t-badge>
+                    <t-badge :radius="8" color="blue" :collapsible="true" value="-15px"><font-awesome-icon icon="info" slot="icon"/>Mathematical Signs</t-badge>
+                  </div>
+                </template>
+              </t-content-card>
             </grid-section>
         </template>
     </app-layout>
