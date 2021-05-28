@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="flex min-w-12">
         <form @submit.prevent="$emit('submitted')" :enctype="enctype">
             <!--Form Body-->
             <div class="mt-5 md:mt-0 md:col-span-2 bg-white shadow sm:rounded-md">

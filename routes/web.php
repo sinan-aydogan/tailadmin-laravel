@@ -66,7 +66,9 @@ Route::middleware(['auth:sanctum', 'verified'])->prefix('admin')->group(function
     Route::get('form-simple-field',function (){return Inertia::render('Samples/FormElements/SimpleField');})->name('form-simple-field');
     Route::get('form-repeatable-field',function (){return Inertia::render('Samples/FormElements/RepeatableField');})->name('form-repeatable-field');
     Route::get('form-date-field',function (){return Inertia::render('Samples/FormElements/DateField');})->name('form-date-field');
-    Route::get('form-select-input',function (){return Inertia::render('Samples/FormElements/SelectInput');})->name('form-select-input');
+    Route::get('form-select-input',function (){return Inertia::render('Samples/FormElements/SelectInput',[
+        'users' => \App\Models\User::all()
+    ]);})->name('form-select-input');
     Route::get('form-tag-input',function (){return Inertia::render('Samples/FormElements/TagInput');})->name('form-tag-input');
     Route::get('form-validation',function (){return Inertia::render('Samples/FormElements/Validation');})->name('form-validation');
 });
