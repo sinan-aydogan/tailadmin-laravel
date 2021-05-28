@@ -1,8 +1,8 @@
 <template>
-    <div class="flex min-w-12">
+    <div class="flex min-w-full">
         <form @submit.prevent="$emit('submitted')" :enctype="enctype">
             <!--Form Body-->
-            <div class="mt-5 md:mt-0 md:col-span-2 bg-white shadow sm:rounded-md">
+            <div class="flex flex-col mt-5 md:mt-0 md:col-span-2 bg-white shadow sm:rounded-md w-full">
                     <slot></slot>
                 <!--Submit Button-->
                 <div class="flex col-span-12 justify-end space-x-2 mr-4 py-4">
