@@ -1,9 +1,9 @@
 <template>
-  <div class="relative" v-click-outside="outside">
+  <div class="relative select-none" v-click-outside="outside">
     <!--Clear Button-->
     <span v-if="clearButton && selectedID"
           class="absolute flex top-2 right-2 border w-6 h-6 items-center justify-center rounded-lg hover:bg-red-500 hover:text-white cursor-pointer"
-          @click="selectedID = null;search = ''">x</span>
+          @click="selectedID = null;search = '';$emit('input','')">x</span>
     <div class="form-input h-10 flex items-center cursor-pointer">
       <slot></slot>
       <!--Placeholder Text-->
@@ -74,7 +74,7 @@ export default {
 
       }
     }
-  },
+  },}
   data() {
     return {
       search: '',
@@ -86,11 +86,7 @@ export default {
     }
   },
   created() {
-    let uid =0;
     this.options = this.$children;
-    this.options.forEach(function (item) {
-      item.tid = 5
-    });
     if(this.search === ''){
       this.searchList = this.options
     }
@@ -111,7 +107,7 @@ export default {
     },
     search() {
       if (this.search !== '') {
-        this.searchList = this.options.filter(option => option.$el.innerHTML.toLowerCase().indexOf(this.search) > -1)
+        this.searchList = this.options.filter(option => option.$el.innerHTML.toLowerCase().replace(/[^a-zA-Z ]/g, "").indexOf(this.search.toLowerCase().replace(/[^a-zA-Z ]/g, "")) > -1)
       } else {
         this.searchList = this.options
       }
