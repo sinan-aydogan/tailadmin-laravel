@@ -3,7 +3,7 @@
     <!--Clear Button-->
     <span v-if="clearButton && selectedID"
           class="absolute flex top-2 right-2 border w-6 h-6 items-center justify-center rounded-lg hover:bg-red-500 hover:text-white cursor-pointer"
-          @click="selectedID = null;search = '';$emit('input','')">x</span>
+          @click="selectedID = null;search = '';$emit('input',null)">x</span>
     <div class="form-input h-10 flex items-center cursor-pointer">
       <slot></slot>
       <!--Placeholder Text-->
