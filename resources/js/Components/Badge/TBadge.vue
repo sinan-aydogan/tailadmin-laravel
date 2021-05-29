@@ -1,8 +1,8 @@
 <template>
-  <div :class="['flex px-2 h-8 py-1 items-center max-w-min max-h-min whitespace-nowrap gap-2 select-none',collapsible && 'cursor-pointer',colorStyle,radiusStyle]" @click="toggle">
+  <div :class="['flex px-2 h-8 py-1 items-center justify-center max-w-min max-h-min whitespace-nowrap gap-2 select-none',collapsible && 'cursor-pointer',colorStyle,radiusStyle]" @click="toggle">
     <slot name="icon"  @click="toggle"></slot>
     <transition name="fade">
-      <div v-if="showTitle || !collapsible" class="flex justify-between items-center gap-1 overflow-hidden">
+      <div v-if="showTitle || !collapsible" class="flex justify-between items-center gap-1 overflow-hidden text-sm">
         <slot></slot>
         <span v-if="value" class="flex px-1 my-1 text-xs items-center justify-center border rounded-full">{{value}}</span>
       </div>
@@ -41,10 +41,18 @@ export default {
         {key:'yellow', badgeStyle:'bg-yellow-500 text-white'},
         {key:'indigo', badgeStyle:'bg-indigo-500 text-white'},
         {key:'purple', badgeStyle:'bg-purple-500 text-white'},
-        {key:'pink', badgeStyle:'bg-pink-500 text-white flex'},
-        {key:'white', badgeStyle:'bg-white border text-gray-700 flex'},
-        {key:'gray', badgeStyle:'bg-gray-500 text-gray-700 flex'},
-        {key:'black', badgeStyle:'bg-black text-white flex'},
+        {key:'pink', badgeStyle:'bg-pink-500 text-white'},
+        {key:'white', badgeStyle:'bg-white border text-gray-700'},
+        {key:'gray', badgeStyle:'bg-gray-500 text-gray-700'},
+        {key:'black', badgeStyle:'bg-black text-white'},
+        {key:'light-red', badgeStyle:'bg-red-50 border border-red-500 text-red-600'},
+        {key:'light-blue', badgeStyle:'bg-blue-50 border border-blue-500 text-blue-600'},
+        {key:'light-green', badgeStyle:'bg-green-50 border border-green-500 text-green-600'},
+        {key:'light-yellow', badgeStyle:'bg-yellow-50 border border-yellow-500 text-yellow-600'},
+        {key:'light-indigo', badgeStyle:'bg-indigo-50 border border-indigo-500 text-indigo-600'},
+        {key:'light-purple', badgeStyle:'bg-purple-50 border border-purple-500 text-purple-600'},
+        {key:'light-pink', badgeStyle:'bg-pink-50 border border-pink-500 text-pink-600'},
+        {key:'light-gray', badgeStyle:'bg-gray-50 border border-gray-500 text-gray-600'},
       ]
     }
   },
