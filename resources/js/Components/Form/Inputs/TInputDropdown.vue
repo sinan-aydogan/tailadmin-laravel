@@ -7,13 +7,13 @@
     <div class="form-input h-10 flex items-center cursor-pointer">
       <slot></slot>
       <!--Placeholder Text-->
-      <span @click="showOptions = !showOptions" v-if="selectedID === null" aria-disabled="true"
-            class="w-full p-2 hover:font-semibold">{{ placeHolder ? placeHolder : 'Select' }}
+      <span @click="changeShowOptions" v-if="selectedID === null" aria-disabled="true"
+            :class="['w-full p-2 hover:font-semibold',disabled && 'text-gray-300']">{{ placeHolder ? placeHolder : 'Select' }}
       </span>
       <!--Selected Option-->
-      <div @click="showOptions = !showOptions" v-if="selectedID !== null" class="w-full">
-        <span v-if="selectedOption.$el.innerHTML" v-html="selectedOption.$el.innerHTML"/>
-        <span v-else v-html="selectedOption.label"/>
+      <div @click="changeShowOptions" v-if="selectedID !== null" class="w-full">
+        <span v-if="selectedOption.componentInstance.$el.innerHTML" v-html="selectedOption.componentInstance.$el.innerHTML"/>
+        <span v-else v-html="selectedOption.componentInstance.label"/>
       </div>
       <!--Options Container-->
       <div v-if="showOptions"
@@ -24,9 +24,9 @@
         </div>
         <!--Options List-->
         <div v-if="index<9" v-for="(item,index) in searchList" :key="index" class="hover:bg-gray-200 p-2 cursor-pointer"
-             @click="selectedID = item._uid; $emit('input', item.value); showOptions = !showOptions;select()">
-          <span v-if="item.$el.innerHTML" v-html="item.$el.innerHTML"/>
-          <span v-else v-html="item.label"/>
+             @click="$emit('input', item.componentInstance.value); showOptions = !showOptions; select(index)">
+          <span v-if="item.componentInstance.$el.innerHTML" v-html="item.componentInstance.$el.innerHTML"/>
+          <span v-else v-html="item.componentInstance.label"/>
         </div>
         <div v-if="searchList.length>10" class="hidden lg:block text-xs text-center p-2 text-blue-500">Sonuç listesi çok uzun, lütfen arama
           yapınız
@@ -42,7 +42,7 @@ import TInputText from "@/Components/Form/Inputs/TInputText";
 export default {
   name: "TInputDropdown",
   components: {TInputText},
-  props: ['value', 'placeHolder', 'searchPlaceHolder', 'clearButton'],
+  props: ['value', 'placeHolder', 'searchPlaceHolder', 'clearButton', 'disabled'],
   directives: {
     'click-outside': {
       bind: function(el, binding, vNode) {
@@ -74,7 +74,7 @@ export default {
 
       }
     }
-  },}
+  },
   data() {
     return {
       search: '',
@@ -86,19 +86,34 @@ export default {
     }
   },
   created() {
-    this.options = this.$children;
+    this.options = this.$slots.default;
     if(this.search === ''){
-      this.searchList = this.options
+      let list;
+      list = this.options;
+      list.forEach(item=>{
+        if(item.tag !== undefined){
+          this.searchList = [...this.searchList, item]
+        }
+      })
+      this.options = this.searchList
     }
   },
   methods:{
     outside(){
       this.showOptions = false
     },
-    select(){
+    select(index){
       let options = [...this.options];
-      let selected = options.filter(item => item._uid === this.selectedID)
+      this.selectedID = options[index].componentInstance._uid;
+      let selected = options.filter(item => item.componentInstance._uid === this.selectedID)
       this.selectedOption = selected[0];
+    },
+    changeShowOptions(){
+      if(this.disabled){
+        this.showOptions = false
+      }else {
+        this.showOptions = !this.showOptions
+      }
     }
   },
   watch: {
@@ -107,7 +122,7 @@ export default {
     },
     search() {
       if (this.search !== '') {
-        this.searchList = this.options.filter(option => option.$el.innerHTML.toLowerCase().replace(/[^a-zA-Z ]/g, "").indexOf(this.search.toLowerCase().replace(/[^a-zA-Z ]/g, "")) > -1)
+        this.searchList = this.options.filter(option => option.componentInstance.$el.innerHTML.toLowerCase().replace(/[^a-zA-Z ]/g, "").indexOf(this.search.toLowerCase().replace(/[^a-zA-Z ]/g, "")) > -1)
       } else {
         this.searchList = this.options
       }

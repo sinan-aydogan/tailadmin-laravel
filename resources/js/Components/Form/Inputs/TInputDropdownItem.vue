@@ -13,9 +13,6 @@ export default {
         return {
         }
     },
-    created() {
-        console.log(this._uid)
-    },
     methods: {
         selectedOption(){
             this.$root.$data.selectedID= 5

@@ -44,21 +44,14 @@
           </t-input-group>
           <!-- Status -->
           <t-input-group label="Status" labelFor="status" class="col-span-12 md:col-span-6">
-            <t-input-dropdown v-model="form.status" :clear-button="true">
-              <t-input-dropdown-item value="0">
-                <font-awesome-icon icon="check" class="text-green-500 mr-2"/>
-                Active
-              </t-input-dropdown-item>
-              <t-input-dropdown-item value="1">
-                <font-awesome-icon icon="minus-circle" class="text-red-500 mr-2"/>
-                Passive
-              </t-input-dropdown-item>
-            </t-input-dropdown>
+              <t-input-dropdown :clear-button="true" place-holder="Select" search-place-holder="Search...">
+                <t-input-dropdown-item value="1"><font-awesome-icon icon="check" class="text-green-500 mr-2"/>Active</t-input-dropdown-item>
+                <t-input-dropdown-item value="2"><font-awesome-icon icon="minus-circle" class="text-red-500 mr-2"/>Passive</t-input-dropdown-item>
+              </t-input-dropdown>
           </t-input-group>
           <!-- Address -->
           <t-input-group label="Address" labelFor="address" class="col-span-12">
-            <t-input-text-area id="address" v-model="form.address" :rows="3" :clear-button="true" :counter="true"
-                               placeholder="Full address"/>
+            <t-input-text-area id="address" v-model="form.address" :rows="3" :clear-button="true" :counter="true" placeholder="Full address"/>
           </t-input-group>
         </t-form-section>
       </t-form-content>
