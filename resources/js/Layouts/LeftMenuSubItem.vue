@@ -1,6 +1,6 @@
 <template>
     <!-- Item Container-->
-    <div v-show="showingLeftMenu">
+    <div v-show="showingLeftMenu === 'true'">
         <inertia-link
             :href="
             item.link != null ?

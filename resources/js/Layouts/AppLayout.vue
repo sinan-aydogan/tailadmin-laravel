@@ -1,13 +1,13 @@
 <template>
-    <div>
+    <div class="overflow-hidden">
         <jet-banner/>
-
         <div class="flex h-screen bg-gray-100">
             <!--Left Area / Left Menu -->
+          <transition name="app-left-menu">
             <left-menu
                 :showingLeftMenu="showingLeftMenu"
                 v-if="hiddenLeftMenu === 'false'"
-                class="bg-gray-800">
+                class="bg-gray-800 relative">
                 <div
                     v-for="(item, index) in menuList"
                     :key="index"
@@ -21,8 +21,10 @@
                     ></left-menu-item>
                 </div>
             </left-menu>
+
+          </transition>
             <!--Main Area-->
-            <div class="main-area">
+            <div class="main-area relative">
                 <!--Top Menu-->
                 <div class="top-menu">
                     <!--Left Menu Trigger-->
@@ -492,5 +494,30 @@ export default {
         }
         this.leftMenuStorage();
     },
+  watch:{
+    windowWidth(){
+      if (this.windowWidth < 1024) {
+        this.hiddenLeftMenu = 'true';
+        this.showingLeftMenu = 'false';
+      }else{
+        this.hiddenLeftMenu = 'false';
+      }
+    }
+  }
 }
 </script>
+<style>
+.app-left-menu-enter-active, .app-left-menu-leave-active {
+  transition: all .75s;
+}
+
+.app-left-menu-enter, .app-left-menu-leave-to {
+  opacity: 0;
+  max-width: 0;
+}
+
+.app-left-menu-enter-to, .app-left-menu-leave {
+  opacity: 1;
+  max-width: 250px;
+}
+</style>

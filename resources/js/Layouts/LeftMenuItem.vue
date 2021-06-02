@@ -16,20 +16,25 @@
                 <font-awesome-icon v-if="item.icon" :icon="item.icon"/>
             </div>
             <!-- Label -->
-            <div
-                v-if="showingLeftMenu === 'true'"
-                :class="['w-full',item.icon ? 'ml-3':'']">
+          <transition  name="left-menu">
+            <div class="w-full flex flex-row items-center" v-if="showingLeftMenu === 'true'">
+              <div
+
+                  :class="['w-full',item.icon ? 'ml-3':'']">
                 {{ item.label }}
+              </div>
+
+              <!--Indicator Icon-->
+              <font-awesome-icon
+                  v-if="item.items && !showingSubMenu && showingLeftMenu === 'true'"
+                  class="mr-1"
+                  icon="angle-down"/>
+              <font-awesome-icon
+                  v-if="item.items && showingSubMenu && showingLeftMenu === 'true'"
+                  class="mr-1"
+                  icon="angle-left"/>
             </div>
-            <!--Indicator Icon-->
-            <font-awesome-icon
-                v-if="item.items && !showingSubMenu && showingLeftMenu === 'true'"
-                class="mr-1"
-                icon="angle-down"/>
-            <font-awesome-icon
-                v-if="item.items && showingSubMenu && showingLeftMenu === 'true'"
-                class="mr-1"
-                icon="angle-left"/>
+          </transition>
         </div>
         <!-- Root Item-->
         <inertia-link
@@ -56,12 +61,13 @@
                 <font-awesome-icon v-if="item.icon" :icon="item.icon"/>
             </div>
             <!-- Label -->
+          <transition name="left-menu">
             <div
                 v-if="showingLeftMenu === 'true'"
                 :class="['w-full',item.icon ? 'ml-3':'']">
                 {{ item.label }}
             </div>
-
+          </transition>
         </inertia-link>
 
         <!-- Sub Item -->
@@ -121,6 +127,7 @@ export default {
 </script>
 
 <style>
+/*Sub Menu Opening Effect*/
 .fade-enter-active, .fade-leave-active{
   transition: all .75s;
 }
@@ -131,5 +138,19 @@ export default {
 .fade-enter-to, .fade-leave {
   opacity: 1;
   max-height: 700px;
+}
+/*Left Menu Minize Effect*/
+.left-menu-enter-active, .left-menu-leave-active {
+  transition: ease-in-out all .75s;
+}
+
+.left-menu-enter, .left-menu-leave-to {
+  opacity: 0;
+  max-width: 0;
+}
+
+.left-menu-enter-to, .left-menu-leave {
+  opacity: 1;
+  max-width: 500px;
 }
 </style>

@@ -98,7 +98,7 @@
     @apply flex items-center justify-center h-20 px-4 bg-blue-600;
 }
 .left-menu-item {
-    @apply flex items-center p-2 font-semibold cursor-pointer;
+    @apply flex items-center p-2 font-semibold cursor-pointer whitespace-nowrap overflow-hidden transition-all duration-700 ease-in-out;
 }
 
 /*Content Card*/
