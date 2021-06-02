@@ -1,7 +1,6 @@
 <template>
     <div
-        class="p-4"
-        :class="[colorValue,widthValue,radiusStyle,{'border-2' : border},'relative']">
+        :class="[colorValue,widthValue,radiusStyle,{'border-2' : border},'relative p-4 shadow']">
         <!--Card Title-->
         <div :class="['font-bold text-xl',$slots.hasOwnProperty('subTitle') ? '' : 'pb-2']">
             <slot name="title"></slot>
@@ -18,7 +17,7 @@
             @click="showSecondContent = ! showSecondContent">
             <font-awesome-icon icon="code"/>
         </div>
-        <div class="flex flex-wrap whitespace-pre-wrap">
+        <div class="flex flex-wrap whitespace-pre-wrap w-full">
             <!--Card Main Content-->
             <slot v-if="!showSecondContent" name="content"></slot>
             <!--Card Second Content-->
