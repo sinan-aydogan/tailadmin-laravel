@@ -96,10 +96,14 @@ export default {
     },
     computed: {
         classes() {
-            return this.active
-                ? 'flex items-center py-3 bg-blue-500 text-white hover:text-gray-100 hover:bg-gray-700 border-b-2 border-indigo-400 font-bold leading-5 focus:outline-none focus:border-indigo-700 transition duration-150 ease-in-out'
-                : 'flex border-b border-gray-600 bg-gray-700 items-center py-3 text-gray-300 hover:text-gray-700 hover:bg-gray-200 focus:text-gray-400 focus:bg-gray-700 transition duration-150 ease-in-out shadow-xl'
-        }
+          let style;
+          if(route().current(this.item.link)){
+            style = 'bg-white bg-opacity-10 text-white font-semibold border border-opacity-70 border-blue-500'
+          }else{
+            style = 'text-gray-300 bg-opacity-10 hover:bg-gray-200 hover:bg-opacity-40 hover:text-white hover:font-bold'
+          }
+          return style
+            }
     },
     methods: {
         searchActive(){
@@ -107,12 +111,10 @@ export default {
                 for(let child of this.item.items){
                     if(route().current(child.link)){
                         return true;
-                        console.log('Aktif öğe'+this.item.link)
                     }
                 }
             }
             return false
-            console.log('aktif yok')
         },
     }
 }
