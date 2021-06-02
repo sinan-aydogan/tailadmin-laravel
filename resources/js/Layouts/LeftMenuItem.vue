@@ -50,7 +50,7 @@
                 'justify-start': showingLeftMenu === 'true',
                 'justify-center': showingLeftMenu === 'false',
                 'bg-white text-gray-700 rounded-md': showingSubMenu,
-                'text-white hover:text-gray-700 hover:bg-gray-100 rounded-md': !showingSubMenu,
+                'text-white hover:text-gray-700 hover:bg-gray-100 rounded-md ': !showingSubMenu,
                 }]">
             <div>
                 <font-awesome-icon v-if="item.icon" :icon="item.icon"/>
@@ -100,7 +100,7 @@ export default {
           if(route().current(this.item.link)){
             style = 'bg-white bg-opacity-10 text-white font-semibold border border-opacity-70 border-blue-500'
           }else{
-            style = 'text-gray-300 bg-opacity-10 hover:bg-gray-200 hover:bg-opacity-40 hover:text-white hover:font-bold'
+            style = 'text-gray-300 bg-opacity-10 hover:bg-gray-200  hover:text-white'
           }
           return style
             }
@@ -121,17 +121,15 @@ export default {
 </script>
 
 <style>
-.fade-enter-active, .fade-leave-active {
-    transition: all 1s;
+.fade-enter-active, .fade-leave-active{
+  transition: all .75s;
 }
-
-.fade-enter-from, .fade-leave-to {
-    opacity: 0;
-    max-height: 0px;
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+  max-height: 0;
 }
-
-.fade-leave-from, .fade-enter-to {
-    opacity: 1;
-    max-height: 700px;
+.fade-enter-to, .fade-leave {
+  opacity: 1;
+  max-height: 700px;
 }
 </style>
