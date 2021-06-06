@@ -1,7 +1,7 @@
 <template>
   <transition name="fade">
     <div v-if="showAlertBox"
-         :class="[alertBoxStyle,colorStyle,radiusStyle,border && 'border', position ? directionStyle : 'relative w-full']">
+         :class="[alertBoxStyle,colors[color].alertStyle,radiusStyle,border && 'border', position ? positions[position].positionStyle : 'relative w-full']">
       <span class="flex px-1 items-center justify-start gap-2">
         <slot name="icon"></slot>
         <span class="flex flex-wrap items-center whitespace-normal">
@@ -44,47 +44,57 @@ export default {
   data() {
     return {
       showAlertBox: true,
-      directionStyles: [
-        {key: 'lb', class: 'fixed left-4 bottom-4'},
-        {key: 'rb', class: 'fixed right-4 bottom-4'},
-        {key: 'lt', class: 'fixed left-4 top-4'},
-        {key: 'rt', class: 'fixed right-4 top-4'},
-      ],
+      colors: {
+        'red': {
+          alertStyle: "bg-red-200 border-red-500 text-red-700 shadow-sm"
+        },
+        'blue': {
+          alertStyle: "bg-blue-200 border-blue-500 text-blue-700 shadow-sm"
+        },
+        'green': {
+          alertStyle: "bg-green-200 border-green-500 text-green-700 shadow-sm"
+        },
+        'yellow': {
+          alertStyle: "bg-yellow-200 border-yellow-500 text-yellow-700 shadow-sm"
+        },
+        'indigo': {
+          alertStyle: "bg-indigo-200 border-indigo-500 text-indigo-700 shadow-sm"
+        },
+        'purple': {
+          alertStyle: "bg-purple-200 border-purple-500 text-purple-700 shadow-sm"
+        },
+        'pink': {
+          alertStyle: "bg-pink-200 border-pink-500 text-pink-700 shadow-sm"
+        },
+        'white': {
+          alertStyle: "bg-white border-gray-300 shadow-sm"
+        },
+        'gray': {
+          alertStyle: "bg-gray-200 border-gray-500 text-gray-700 shadow-sm"
+        },
+        'black': {
+          alertStyle: "bg-gray-700 border-black text-gray-200 shadow-sm"
+        },
+      },
+      positions: {
+        'lb': {
+          positionStyle: 'fixed left-4 bottom-4'
+        },
+        'rb': {
+          positionStyle: 'fixed right-4 bottom-4'
+        },
+        'lt': {
+          positionStyle: 'fixed left-4 top-4'
+        },
+        'rt': {
+          positionStyle: 'fixed right-4 top-4'
+        },
+        '': {
+          positionStyle: 'relative w-full'
+        }
+      },
       alertBoxStyle: 'flex flex-row justify-between items-center shadow p-4 min-h-max',
       alertBoxCloseIconStyle: 'flex items-center justify-center w-5 h-5 rounded-full text-' + this.color + '-500 font-bold border-' + this.color + '-500 hover:bg-red-700 hover:text-white hover:bg-opacity-90 cursor-pointer'
-    }
-  },
-  computed: {
-    colorStyle() {
-      if (this.color === 'red') {
-        return 'bg-red-200 border-red-500 text-red-700';
-      } else if (this.color === 'blue') {
-        return 'bg-blue-200 border-blue-500 text-blue-700';
-      } else if (this.color === 'indigo') {
-        return 'bg-indigo-200 border-indigo-500 text-indigo-700';
-      } else if (this.color === 'yellow') {
-        return 'bg-yellow-200 border-yellow-500 text-yellow-700';
-      } else if (this.color === 'green') {
-        return 'bg-green-200 border-green-500 text-green-700';
-      } else if (this.color === 'gray') {
-        return 'bg-gray-200 border-gray-500 text-gray-700';
-      } else if (this.color === 'black') {
-        return 'bg-gray-700 border-black text-gray-200';
-      } else {
-        return 'bg-white'
-      }
-    },
-    directionStyle() {
-      let i, directionStyle;
-      if (this.position) {
-        for (i = 0; i < this.directionStyles.length; i++) {
-          if (this.position === this.directionStyles[i].key) {
-            directionStyle = this.directionStyles[i].class;
-          }
-        }
-
-      }
-      return directionStyle
     }
   },
   created() {
