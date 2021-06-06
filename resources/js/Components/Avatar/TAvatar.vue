@@ -1,15 +1,16 @@
 <template>
     <div :class="[team === true ? '-ml-4 overflow-hidden' : 'relative flex']">
-        <img :class="[radiusStyle, sizeStyle, team === true ? 'border-2 border-white border-opacity-50' : '']"
+        <img :class="[radiusStyle, sizes[size], team === true ? 'border-2 border-white border-opacity-50' : '']"
              :src="avatarURL">
         <span
             v-if="indicator"
             :class="[
                 'absolute flex justify-center items-center w-1/3 h-1/3 rounded-full text-white font-semibold',
                 size<7 ? 'text-xs' : 'text-normal',
-                indicatorStyle
+                positions[indicator.position].positionStyle,
+                'bg-'+indicator.color+'-500'
                 ]">
-            <span v-text="size>2 ? indicator.label : null"/>
+            <span v-text="size>3 ? indicator.label : null"/>
         </span>
     </div>
 </template>
@@ -21,7 +22,7 @@ import {avatarStyleMixin} from "@/Mixins/avatarStyleMixin";
 export default {
     mixins: [radiusSizeMixin, avatarStyleMixin],
     props: {
-        link: {
+        src: {
             type: String,
             require: false,
         },
@@ -34,10 +35,10 @@ export default {
     computed: {
         avatarURL() {
             let imgSrc;
-            if (!this.link) {
+            if (!this.src) {
                 imgSrc = '/img/samples/dummyAvatar.svg'
             } else {
-                imgSrc = this.link
+                imgSrc = this.src
             }
             return imgSrc
         }
