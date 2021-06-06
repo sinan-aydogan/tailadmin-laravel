@@ -29,32 +29,34 @@ Route::middleware(['auth:sanctum', 'verified'])->prefix('admin')->group(function
         return Inertia::render('Dashboard');
     })->name('dashboard');
     //Example Pages
-    Route::get('lock',function (){return Inertia::render('Samples/Example/Lock');})->name('lock');
-    Route::get('profile',function (){return Inertia::render('Samples/Example/Profile');})->name('profile');
-    Route::get('pricing',function (){return Inertia::render('Samples/Example/Pricing');})->name('pricing');
-    Route::get('project-management-app',function (){return Inertia::render('Samples/Example/ProjectApp');})->name('project-management-app');
-    Route::get('todo-app',function (){return Inertia::render('Samples/Example/TodoApp');})->name('todo-app');
-    Route::get('email-app',function (){return Inertia::render('Samples/Example/EmailApp');})->name('email-app');
-    Route::get('chat-app',function (){return Inertia::render('Samples/Example/ChatApp');})->name('chat-app');
+    Route::get('login-app',function (){return Inertia::render('Samples/Examples/Login');})->name('login-app');
+    Route::get('register-app',function (){return Inertia::render('Samples/Examples/Register');})->name('register-app');
+    Route::get('lock',function (){return Inertia::render('Samples/Examples/Lock');})->name('lock');
+    Route::get('profile',function (){return Inertia::render('Samples/Examples/Profile');})->name('profile');
+    Route::get('pricing',function (){return Inertia::render('Samples/Examples/Pricing');})->name('pricing');
+    Route::get('project-management-app',function (){return Inertia::render('Samples/Examples/ProjectApp');})->name('project-management-app');
+    Route::get('todo-app',function (){return Inertia::render('Samples/Examples/TodoApp');})->name('todo-app');
+    Route::get('email-app',function (){return Inertia::render('Samples/Examples/EmailApp');})->name('email-app');
+    Route::get('chat-app',function (){return Inertia::render('Samples/Examples/ChatApp');})->name('chat-app');
     //Component Pages
-    Route::get('avatar',function (){return Inertia::render('Samples/Components/Avatar');})->name('avatar');
     Route::get('alert',function (){return Inertia::render('Samples/Components/Alert');})->name('alert');
+    Route::get('avatar',function (){return Inertia::render('Samples/Components/Avatar');})->name('avatar');
     Route::get('badge',function (){return Inertia::render('Samples/Components/Badge');})->name('badge');
     Route::get('breadcrumb',function (){return Inertia::render('Samples/Components/Breadcrumb');})->name('breadcrumb');
     Route::get('button',function (){return Inertia::render('Samples/Components/Button');})->name('button');
+    Route::get('chart',function (){return Inertia::render('Samples/Components/Chart');})->name('chart');
     Route::get('collapsible',function (){return Inertia::render('Samples/Components/Collapsible');})->name('collapsible');
-    Route::get('tab',function (){return Inertia::render('Samples/Components/Tab');})->name('tab');
     Route::get('dropdown',function (){return Inertia::render('Samples/Components/Dropdown');})->name('dropdown');
     Route::get('list',function (){return Inertia::render('Samples/Components/List');})->name('list');
     Route::get('modal',function (){return Inertia::render('Samples/Components/Modal');})->name('modal');
     Route::get('pagination',function (){return Inertia::render('Samples/Components/Paginate');})->name('pagination');
     Route::get('popover',function (){return Inertia::render('Samples/Components/Popover');})->name('popover');
     Route::get('progress',function (){return Inertia::render('Samples/Components/Progress');})->name('progress');
-    Route::get('tooltip',function (){return Inertia::render('Samples/Components/Tooltip');})->name('tooltip');
+    Route::get('tab',function (){return Inertia::render('Samples/Components/Tab');})->name('tab');
     Route::get('table',function (){return Inertia::render('Samples/Components/Table',[
         'users' => \App\Models\User::all()
     ]);})->name('table');
-    Route::get('chart',function (){return Inertia::render('Samples/Components/Chart');})->name('chart');
+    Route::get('tooltip',function (){return Inertia::render('Samples/Components/Tooltip');})->name('tooltip');
     // Layout Pages
     Route::get('layout-structure',function (){return Inertia::render('Samples/Layouts/LayoutStructure');})->name('layout-structure');
     Route::get('layout-grid',function (){return Inertia::render('Samples/Layouts/Grid');})->name('layout-grid');

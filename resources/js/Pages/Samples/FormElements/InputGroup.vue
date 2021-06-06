@@ -10,7 +10,7 @@
             With Label
           </template>
           <template #content>
-            <t-input-group label="Text Label" label-for="name">
+            <t-input-group label="Text Label" label-for="name1">
               <t-input-text id="name1" placeholder="I'm a placeholder text"/>
             </t-input-group>
           </template>
@@ -21,7 +21,7 @@
             With Sub Label
           </template>
           <template #content>
-            <t-input-group label="Text Label" label-for="name" sub-label="Cash only">
+            <t-input-group label="Text Label" label-for="name2" sub-label="Cash only">
               <t-input-text id="name2" placeholder="I'm a placeholder text"/>
             </t-input-group>
           </template>
@@ -32,7 +32,7 @@
             With Colorful Sub Label
           </template>
           <template #content>
-            <t-input-group label="Text Label" label-for="name" sub-label="Cash only" sub-label-color="green">
+            <t-input-group label="Text Label" label-for="name3" sub-label="Cash only" sub-label-color="green">
               <t-input-text id="name3" placeholder="I'm a placeholder text"/>
             </t-input-group>
           </template>
@@ -43,17 +43,18 @@
             With Error Message
           </template>
           <template #content>
-            <t-input-group label="Text Label" label-for="name" sub-label="Cash only" sub-label-color="yellow" error="Please enter numerical value">
+            <t-input-group label="Text Label" label-for="name4" sub-label="Cash only" sub-label-color="yellow"
+                           error="Please enter numerical value">
               <t-input-text id="name4" placeholder="I'm a placeholder text" value="Hi, I'm a prefilled text"/>
             </t-input-group>
           </template>
         </content-card>
       </grid-section>
-      <ssh-pre copy-button="true" language="html" label="Code">{{sampleCode.html}}</ssh-pre>
-      <ssh-pre copy-button="true" language="js" label="JS">{{sampleCode.js}}</ssh-pre>
-      <t-table :header="sampleCode.table.header" :content="sampleCode.table.content" color="blue" class="mt-5">
-
-      </t-table>
+      <!--Sample Codes-->
+      <ssh-pre copy-button="true" language="html" label="Code">{{ sampleCode.html }}</ssh-pre>
+      <ssh-pre copy-button="true" language="js" label="JS">{{ sampleCode.js }}</ssh-pre>
+      <!--Variables Table-->
+      <t-table :header="sampleCode.table.header" :content="sampleCode.table.content" color="blue" class="mt-5"/>
     </template>
   </app-layout>
 </template>
@@ -64,16 +65,16 @@ import ContentCard from "@/Components/Card/TContentCard";
 import TInputGroup from "@/Components/Form/TInputGroup";
 import TInputText from "@/Components/Form/Inputs/TInputText";
 import GridSection from "@/Layouts/GridSection";
+import TTable from "@/Components/Table/TTable";
 import SshPre from 'simple-syntax-highlighter'
 import 'simple-syntax-highlighter/dist/sshpre.css'
-import TTable from "@/Components/Table/TTable";
 
 export default {
   name: "InputGroup",
-  components: {TTable, SshPre,GridSection, TInputText, TInputGroup, ContentCard, AppLayout},
-  data(){
-    return{
-      sampleCode : {
+  components: {AppLayout, ContentCard, GridSection, SshPre, TTable, TInputGroup, TInputText},
+  data() {
+    return {
+      sampleCode: {
         html:
             '<t-input-group label="Text Label" label-for="name4" sub-label="Cash only" sub-label-color="yellow" error="Please enter numerical value">\n' +
             '    <t-input-text id="name4" placeholder="I\'m a placeholder text" value="Hi, I\'m a prefilled text"/>\n' +
@@ -84,20 +85,32 @@ export default {
             '\n' +
             'export default {\n' +
             '  name: "InputGroup",\n' +
-            '  components: {SshPre,GridSection, TInputText, TInputGroup, ContentCard, AppLayout},\n'+
+            '  components: {SshPre,GridSection, TInputText, TInputGroup, ContentCard, AppLayout},\n' +
             '  }',
         table: {
-          header : [
-            {key:'variable', label: 'Variable'},
-            {key:'type', label: 'Value Type'},
-            {key:'action', label: 'Action'},
+          header: [
+            {key: 'variable', label: 'Variable'},
+            {key: 'type', label: 'Value Type'},
+            {key: 'details', label: 'Details'},
           ],
           content: [
-            {variable:'label', type:'String', action:'Your input label'},
-            {variable:'label-for', type:'String', action:'Label identity indicator, you should enter input\'s id'},
-            {variable:'sub-label', type:'String', action:'If you want to show a second and small label, you can use'},
-            {variable:'sub-label-color', type:'<b>Options:</b> red, blue, green, yellow, indigo, pink, gray', action:'You can change sub label color'},
-            {variable:'error', type:'String', action:'Every time it\'s text color is red, If It has a value, it shows'}
+            {variable: 'label', type: 'String', details: 'Your input label'},
+            {variable: 'label-for', type: 'String', details: 'Label identity indicator, you should enter input\'s id'},
+            {
+              variable: 'sub-label',
+              type: 'String',
+              details: 'If you want to show a second and small label, you can use'
+            },
+            {
+              variable: 'sub-label-color',
+              type: 'String',
+              details: 'You can change sub label color <br><b>Options:</b> red, blue, green, yellow, indigo, pink, gray'
+            },
+            {
+              variable: 'error',
+              type: 'String',
+              details: 'Every time it\'s text color is red, If It has a value, it shows'
+            }
           ]
         }
       }

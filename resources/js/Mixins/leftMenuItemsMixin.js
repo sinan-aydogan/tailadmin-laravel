@@ -13,7 +13,7 @@ export const leftMenuItemsMixin = {
                         {
                             label: "Login",
                             icon: "",
-                            link: "login",
+                            link: "login-app",
                             linkType: "route",
                             type: "standard",
                             activeKey: ["login"],
@@ -21,7 +21,7 @@ export const leftMenuItemsMixin = {
                         {
                             label: "Register",
                             icon: "",
-                            link: "register",
+                            link: "register-app",
                             linkType: "route",
                             type: "standard",
                             activeKey: ["register"],
@@ -93,20 +93,20 @@ export const leftMenuItemsMixin = {
                     activeKey: ["buttons"],
                     items: [
                         {
-                            label: "Avatar",
-                            icon: "",
-                            link: "avatar",
-                            linkType: "route",
-                            type: "standard",
-                            activeKey: ["avatar"],
-                        },
-                        {
                             label: "Alerts",
                             icon: "",
                             link: "alert",
                             linkType: "route",
                             type: "standard",
                             activeKey: ["alert"],
+                        },
+                        {
+                            label: "Avatar",
+                            icon: "",
+                            link: "avatar",
+                            linkType: "route",
+                            type: "standard",
+                            activeKey: ["avatar"],
                         },
                         {
                             label: "Badge",
@@ -133,20 +133,20 @@ export const leftMenuItemsMixin = {
                             activeKey: ["button"],
                         },
                         {
+                            label: "Chart",
+                            icon: "chart-bar",
+                            link: "chart",
+                            linkType: "route",
+                            type: "standard",
+                            activeKey: ["chart"],
+                        },
+                        {
                             label: "Collapsible",
                             icon: "",
                             link: "collapsible",
                             linkType: "route",
                             type: "standard",
                             activeKey: ["collapsible"],
-                        },
-                        {
-                            label: "Tabs",
-                            icon: "",
-                            link: "tab",
-                            linkType: "route",
-                            type: "standard",
-                            activeKey: ["tab"],
                         },
                         {
                             label: "Dropdowns",
@@ -195,6 +195,22 @@ export const leftMenuItemsMixin = {
                             linkType: "route",
                             type: "standard",
                             activeKey: ["progress"],
+                        },
+                        {
+                            label: "Tabs",
+                            icon: "",
+                            link: "tab",
+                            linkType: "route",
+                            type: "standard",
+                            activeKey: ["tab"],
+                        },
+                        {
+                            label: "Tables",
+                            icon: "table",
+                            link: "table",
+                            linkType: "route",
+                            type: "standard",
+                            activeKey: ["table"],
                         },
                         {
                             label: "Tooltips",
@@ -321,22 +337,6 @@ export const leftMenuItemsMixin = {
                             activeKey: ["form-validation"],
                         },
                     ]
-                },
-                {
-                    label: "Tables",
-                    icon: "table",
-                    link: "table",
-                    linkType: "route",
-                    type: "standard",
-                    activeKey: ["table"],
-                },
-                {
-                    label: "Charts",
-                    icon: "chart-bar",
-                    link: "chart",
-                    linkType: "route",
-                    type: "standard",
-                    activeKey: ["charts"],
                 },
             ],
         }
