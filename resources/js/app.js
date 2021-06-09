@@ -8,6 +8,7 @@ import PortalVue from 'portal-vue';
 // Fontawesome
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import {faCss3, faJs, faVuejs} from "@fortawesome/free-brands-svg-icons";
 import {
     faRocket,
     faDotCircle,
@@ -38,7 +39,7 @@ import {
     faAngleDoubleRight,
     faCheck, faMinusCircle, faInfo
 } from '@fortawesome/free-solid-svg-icons'
-library.add(faRocket,faDotCircle,faWindowRestore,faEdit, faInfo,faCalendarAlt,faEnvelope,faTasks,faWindowMaximize,faChartBar,faChevronDown,faCode,faAngleDown,faAngleUp,faChartBar,faLayerGroup,faGripHorizontal,faAngleLeft,faClock,faRetweet,faTags,faTv,faPlug,faTable,faShoppingBag,faLiraSign,faTrash,faPlusCircle,faAngleDoubleRight,faCheck,faMinusCircle)
+library.add(faRocket,faDotCircle,faWindowRestore,faEdit,faJs,faCss3,faInfo,faCalendarAlt,faVuejs,faEnvelope,faTasks,faWindowMaximize,faChartBar,faChevronDown,faCode,faAngleDown,faAngleUp,faChartBar,faLayerGroup,faGripHorizontal,faAngleLeft,faClock,faRetweet,faTags,faTv,faPlug,faTable,faShoppingBag,faLiraSign,faTrash,faPlusCircle,faAngleDoubleRight,faCheck,faMinusCircle)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 

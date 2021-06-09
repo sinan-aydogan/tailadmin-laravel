@@ -13,6 +13,9 @@ module.exports = {
             fontFamily: {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
             },
+            fontSize: {
+                '2xs': '.65rem',
+            }
         },
         minWidth: {
             '0': '0',
@@ -31,7 +34,9 @@ module.exports = {
         extend: {
             opacity: ['disabled'],
             textColor: ['hover'],
-            fontWeight: ['hover', 'active' ,'focus']
+            fontWeight: ['hover', 'active' ,'focus'],
+            borderWidth: ['first','last','hover'],
+            borderRadius: ['first','last']
         },
     },
 
