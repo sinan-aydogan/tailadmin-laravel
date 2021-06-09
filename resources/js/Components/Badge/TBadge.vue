@@ -1,7 +1,7 @@
 <template>
     <div
         :class="[
-            'flex px-2 h-8 py-1 items-center justify-center max-w-min max-h-min whitespace-nowrap gap-2 select-none',
+            'flex px-1 py-0.5 items-center justify-center max-w-min max-h-min whitespace-nowrap gap-2 select-none',
             collapsible && 'cursor-pointer',
             colors[color].badgeStyle,
             radiusStyle
@@ -12,12 +12,12 @@
         <transition name="fade">
             <div
                 v-if="showTitle || !collapsible"
-                class="flex justify-between items-center gap-1 overflow-hidden text-sm"
+                class="flex justify-between items-center gap-1 overflow-hidden text-xs"
             >
                 <slot></slot>
                 <div
                     v-if="value"
-                    class="flex px-1 my-1 text-xs items-center justify-center border rounded-full"
+                    class="flex px-1 my-1 text-2xs items-center justify-center border rounded-full"
                     >{{ value }}</div
                 >
             </div>
