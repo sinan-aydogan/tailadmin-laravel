@@ -1,7 +1,7 @@
 <template>
   <button
       :class="[
-            'flex justify-center items-center whitespace-nowrap text-white border p-2 gap-1 focus:ring-2 focus:outline-none',
+            'flex justify-center items-center whitespace-nowrap text-white font-semibold border p-2 gap-1 focus:ring-2 focus:outline-none',
             colors[color].buttonStyle,
             size ? sizes[size].sizeStyle : 'h-10',
             radiusStyle

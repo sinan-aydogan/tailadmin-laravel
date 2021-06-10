@@ -102,7 +102,6 @@
 }
 
 /*Content Card*/
-
 .content-card-show-button {
     @apply absolute top-4 right-4 text-gray-600 hover:bg-gray-500 hover:text-white w-7 h-7 flex items-center justify-center rounded-full cursor-pointer
 }
@@ -110,4 +109,37 @@
 /*Form*/
 .form-input {
     @apply flex w-full px-2 border border-gray-300 focus:border-indigo-300 focus:outline-none focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm placeholder-gray-300
+}
+/*Modal*/
+/*Modal Container*/
+.modal-container {
+    @apply fixed inset-0 flex h-screen w-screen overflow-hidden justify-center items-center bg-gray-500 bg-opacity-80 z-10
+}
+/*Modal Box*/
+.modal-box {
+    @apply relative shadow-xl flex flex-col min-w-28
+}
+/*Modal-Close Button*/
+.modal-close-button {
+    @apply absolute flex -right-2 -top-2 hover:bg-red-300 border hover:border-red-500 hover:text-red-500 rounded-md h-5 w-5 items-center justify-center bg-red-500 text-white border-white cursor-pointer select-none active:bg-red-600 active:text-white
+}
+/*Modal Header*/
+.modal-header {
+    @apply text-xl font-semibold p-4  whitespace-normal
+}
+/*Modal Footer Container*/
+.modal-footer-container {
+    @apply grid grid-cols-3 grid-rows-1 gap-2 w-full p-4  whitespace-normal
+}
+/*Modal Footer Left Area*/
+.modal-footer-left {
+    @apply inline-flex gap-2 justify-start
+}
+/*Modal Footer Center Area*/
+.modal-footer-center {
+    @apply inline-flex gap-2 justify-center
+}
+/*Modal Footer Left Area*/
+.modal-footer-right {
+    @apply inline-flex gap-2 justify-end
 }

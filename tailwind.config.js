@@ -23,6 +23,11 @@ module.exports = {
             '6': '1.5rem',
             '12': '3.0rem',
             '18': '4.5rem',
+            '20': '10rem',
+            '22': '15rem',
+            '24': '20rem',
+            '26': '25rem',
+            '28': '30rem',
             '1/4': '25%',
             '1/2': '50%',
             '3/4': '75%',
@@ -33,7 +38,8 @@ module.exports = {
     variants: {
         extend: {
             opacity: ['disabled'],
-            textColor: ['hover'],
+            textColor: ['hover','active'],
+            backgroundColor : ['active'],
             fontWeight: ['hover', 'active' ,'focus'],
             borderWidth: ['first','last','hover'],
             borderRadius: ['first','last']
