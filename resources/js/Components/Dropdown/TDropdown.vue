@@ -6,7 +6,7 @@
       <slot name="title"></slot>
       <font-awesome-icon icon="angle-down"/>
     </div>
-    <div v-if="showContent" :class="['whitespace-normal',colorStyle.childContent]">
+    <div v-if="showContent" :class="['whitespace-normal z-10',colorStyle.childContent]">
       <slot></slot>
     </div>
   </div>
