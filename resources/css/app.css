@@ -143,3 +143,17 @@
 .modal-footer-right {
     @apply inline-flex gap-2 justify-end
 }
+
+/*Pagination*/
+/*Pagination Container*/
+.pagination-container {
+    @apply inline-flex items-center justify-center gap-2
+}
+/*Pagination Item*/
+.pagination-item {
+    @apply flex items-center justify-center w-8 h-8 cursor-pointer font-semibold select-none flex-shrink-0
+}
+/*Left Right Navigation Arrows*/
+.pagination-arrow {
+    @apply flex flex-shrink-0 items-center justify-center w-8 h-8 cursor-pointer font-semibold bg-opacity-0 hover:bg-opacity-10 select-none
+}
