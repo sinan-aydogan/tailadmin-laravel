@@ -19,7 +19,7 @@
                     <slot name="header"/>
                 </div>
                 <!--Content-->
-                <div class="my-6 px-4 whitespace-normal">
+                <div class="my-6 px-4 gap-y-2 whitespace-normal">
                     <slot name="content"/>
                 </div>
                 <!--Footer-->
@@ -58,6 +58,27 @@ export default {
             default: 'white'
         }
     },
+    computed: {
+        modalStyle(){
+            /*Color Styles*/
+            /*Solid*/
+            if (!this.color.includes('-') && this.color !== 'black' && this.color !== 'white') {
+                return 'bg-' + this.color + '-500 text-white';
+            } else if (this.color === 'black') {
+                return 'bg-black text-white'
+            } else if (this.color === 'white') {
+                return 'bg-white border border-gray-300 text-gray-700'
+            }
+            /*Light*/
+            if (this.color.includes('light')) {
+                return 'bg-' + this.color.split('-')[1] + '-50 border border-' + this.color.split('-')[1] + '-500 text-' + this.color.split('-')[1] + '-600';
+            }
+            /*Gradient*/
+            if (this.color.includes('gradient')) {
+                return 'bg-gradient-to-r from-' + this.color.split('-')[1] + '-500 to-' + this.color.split('-')[3] + '-700 text-white';
+            }
+        }
+    },
     created() {
         /*Close with Escape Key*/
         const closeOnEscape = (e) => {
@@ -70,30 +91,8 @@ export default {
         this.$once('hook:destroyed', () => {
             document.removeEventListener('keydown', closeOnEscape)
         })
-
-        document.addEventListener('keydown', closeOnEscape)
-        /*Gradient Color Generator*/
-        if (this.color.includes('gradient')) {
-            this.modalStyle = 'bg-gradient-to-r from-' + this.color.split('-')[1] + '-500 to-' + this.color.split('-')[3] + '-700 text-white';
-        }
-        /*Light Color Generator*/
-        if (this.color.includes('light')) {
-            this.modalStyle = 'bg-'+ this.color.split('-')[1] +'-50 border border-'+ this.color.split('-')[1] +'-500 text-'+ this.color.split('-')[1] +'-600';
-        }
-        /*Simple Color Generator*/
-        if (!this.color.includes('-') && this.color !== 'black' && this.color !== 'white') {
-            this.modalStyle = 'bg-'+ this.color +'-500 text-white';
-        } else if(this.color === 'black'){
-            this.modalStyle = 'bg-black text-white'
-        } else if(this.color === 'white'){
-            this.modalStyle = 'bg-white border border-gray-300 text-gray-700'
-        }
+        document.addEventListener('keydown', closeOnEscape);
     },
-    data() {
-        return {
-            modalStyle: null,
-        }
-    }
 }
 </script>
 
