@@ -17,7 +17,7 @@
             @click="showSecondContent = ! showSecondContent">
             <font-awesome-icon icon="code"/>
         </div>
-        <div class="flex flex-wrap whitespace-pre-wrap w-full">
+        <div class="flex flex-wrap whitespace-normal w-full">
             <!--Card Main Content-->
             <slot v-if="!showSecondContent" name="content"></slot>
             <!--Card Second Content-->
