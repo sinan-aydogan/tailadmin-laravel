@@ -4,30 +4,17 @@
         <template #subHeader>Content items, shopping lists or todo list</template>
         <template #default>
             <!-- Color Selector -->
-            <ul class="flex justify-center gap-2 m-4">
-                <li
-                    v-for="(item,itemKey,index) in colors"
-                    :class="[
-                    'p-2 w-5 h-5 rounded-full items-center flex justify-center cursor-pointer',
-                    item.selectStyle
-                ]"
-                    @click="listColor=itemKey"
-                    :key="index"
-                >
-                    <div v-if="listColor===itemKey"
-                         :class="['flex-shrink-0 w-2 h-2 rounded-full z-10',itemKey !== 'white' ? 'bg-white' : 'bg-gray-500']"></div>
-                </li>
-            </ul>
+            <t-component-color-selector @selected-color="selectedColor = $event"/>
             <grid-section col="3" gap="4">
                 <!--Simple-->
-                <t-list :radius="3" :color="listColor">
+                <t-list :radius="3" :color="selectedColor">
                     <t-list-item>Cheery</t-list-item>
                     <t-list-item>Banana</t-list-item>
                     <t-list-item>Strawberry</t-list-item>
                     <t-list-item>Lemon</t-list-item>
                 </t-list>
                 <!--With Title-->
-                <t-list :radius="3" :color="listColor">
+                <t-list :radius="3" :color="selectedColor">
                     <t-list-item>
                         <template #title>Name:</template>
                         <template #default>Sinan Aydoğan</template>
@@ -46,7 +33,7 @@
                     </t-list-item>
                 </t-list>
                 <!--With Icon-->
-                <t-list :radius="3" :color="listColor">
+                <t-list :radius="3" :color="selectedColor">
                     <t-list-item>
                         <template #icon>
                             <font-awesome-icon :icon="['fab','vuejs']"/>
@@ -73,7 +60,7 @@
                     </t-list-item>
                 </t-list>
                 <!--With Avatar-->
-                <t-list :radius="3" :color="listColor">
+                <t-list :radius="3" :color="selectedColor">
                     <t-list-item>
                         <template #icon>
                             <t-avatar src="https://i.pravatar.cc/150?u=1" :radius="8" size="2"></t-avatar>
@@ -100,7 +87,7 @@
                     </t-list-item>
                 </t-list>
                 <!--With SecondContent -->
-                <t-list :radius="3" :color="listColor">
+                <t-list :radius="3" :color="selectedColor">
                     <t-list-item>
                         <template #default>
                             Users
@@ -142,6 +129,7 @@ import TListItem from "@/Components/List/TListItem";
 import TBadge from "@/Components/Badge/TBadge";
 import TButton from "@/Components/Button/TButton";
 import TAvatar from "@/Components/Avatar/TAvatar";
+import TComponentColorSelector from "@/Components/Misc/TComponentColorSelector";
 /*Codehighlighter*/
 import SshPre from 'simple-syntax-highlighter'
 import 'simple-syntax-highlighter/dist/sshpre.css'
@@ -149,66 +137,10 @@ import GridSection from "@/Layouts/GridSection";
 
 export default {
     name: "List",
-    components: {GridSection, TListItem, TList, AppLayout, SshPre, TTable, TBadge, TButton, TAvatar},
+    components: {GridSection, TListItem, TList, AppLayout, SshPre, TTable, TBadge, TButton, TAvatar, TComponentColorSelector},
     data() {
         return {
-            listColor: 'gray',
-            colors: {
-                'red': {
-                    selectStyle: 'bg-red-500'
-                },
-                'blue': {
-                    selectStyle: 'bg-blue-500'
-                },
-                'green': {
-                    selectStyle: 'bg-green-500'
-                },
-                'yellow': {
-                    selectStyle: 'bg-yellow-500'
-                },
-                'indigo': {
-                    selectStyle: 'bg-indigo-500'
-                },
-                'purple': {
-                    selectStyle: 'bg-purple-500'
-                },
-                'pink': {
-                    selectStyle: 'bg-pink-500'
-                },
-                'gray': {
-                    selectStyle: 'bg-gray-500'
-                },
-                'white': {
-                    selectStyle: 'bg-white border border-gray-200'
-                },
-                'black': {
-                    selectStyle: 'bg-black'
-                },
-                'light-red': {
-                    selectStyle: 'bg-red-200 border border-red-500'
-                },
-                'light-blue': {
-                    selectStyle: 'bg-blue-200 border border-blue-500'
-                },
-                'light-green': {
-                    selectStyle: 'bg-green-200 border border-green-500'
-                },
-                'light-yellow': {
-                    selectStyle: 'bg-yellow-200 border border-yellow-500'
-                },
-                'light-indigo': {
-                    selectStyle: 'bg-indigo-200 border border-indigo-500'
-                },
-                'light-pink': {
-                    selectStyle: 'bg-pink-200 border border-pink-500'
-                },
-                'light-purple': {
-                    selectStyle: 'bg-purple-200 border border-purple-500'
-                },
-                'light-gray': {
-                    selectStyle: 'bg-gray-200 border border-gray-500'
-                }
-            },
+            selectedColor: 'white',
             sampleCode: {
                 html:
                     '<t-list :radius="3" color="blue">\n' +

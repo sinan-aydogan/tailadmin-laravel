@@ -10,7 +10,7 @@ export default {
     props: {
         color: {
             type: String,
-            default: 'gray'
+            default: 'white'
         },
         radius: {
             required: false,
