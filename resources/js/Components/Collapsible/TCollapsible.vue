@@ -26,5 +26,4 @@ export default {
 .collapsible-border:last-child {
     border-bottom: 0 solid #9CA3AF;
 }
-
 </style>
