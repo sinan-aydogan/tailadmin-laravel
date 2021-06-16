@@ -4,7 +4,7 @@
 
 <script>
 export default {
-    name: "InputText",
+    name: "TInputText",
     props: ['value','id', 'placeholder']
 }
 </script>

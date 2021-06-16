@@ -16,7 +16,7 @@
 import {radiusSizeMixin} from "@/Mixins/radiusSizeMixin";
 
 export default {
-  name: "Button",
+  name: "TButton",
   mixins: [radiusSizeMixin],
   props: {
     color: {
