@@ -4,7 +4,7 @@
     <template #subHeader>Simple and casual pops</template>
     <template #default>
         <grid-section col="2" gap="4">
-            <content-card width="1">
+            <t-content-card width="1">
                 <template #title>Popover Title and Position</template>
                 <template #subTitle>Left, Top, Right and Bottom Positions</template>
                 <template #content>
@@ -31,8 +31,8 @@
                         </t-popover>
                     </div>
                 </template>
-            </content-card>
-            <content-card width="1">
+            </t-content-card>
+            <t-content-card width="1">
                 <template #title>Popover without Title</template>
                 <template #subTitle>Left, Top, Right and Bottom Positions</template>
                 <template #content>
@@ -55,7 +55,7 @@
                         </t-popover>
                     </div>
                 </template>
-            </content-card>
+            </t-content-card>
         </grid-section>
         <!--Sample Codes-->
         <ssh-pre :copy-button="true" label="Code" language="html">{{ sampleCode.html }}</ssh-pre>
@@ -78,11 +78,10 @@ import TPopover from "@/Components/Popover/TPopover";
 /*Codehighlighter*/
 import "simple-syntax-highlighter/dist/sshpre.css";
 import SshPre from "simple-syntax-highlighter";
-import ContentCard from "@/Components/Card/TContentCard";
 
 export default {
   name: "Popover",
-  components: {ContentCard, AppLayout, SshPre,GridSection,TButton,TContentCard,TTable,TPopover},
+  components: {AppLayout, SshPre,GridSection,TButton,TContentCard,TTable,TPopover},
   data() {
     return {
       sampleCode: {
