@@ -52,6 +52,10 @@ export default {
         tabStyle: {
             required: false,
             default: 1
+        },
+        active: {
+            type: Number,
+            default: 1
         }
     },
     data() {
@@ -75,7 +79,7 @@ export default {
         this.tabs = this.$children
     },
     mounted() {
-        this.selectedTab(0)
+        this.selectedTab(this.active-1)
     },
     methods: {
         selectedTab(ID) {
