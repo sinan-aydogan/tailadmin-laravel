@@ -136,11 +136,6 @@ export default {
               variable: 'color',
               type: 'String',
               details: 'You can change dropdown color<br><b>Options:</b> red,blue,green,yellow,indigo,pink,purple,gray,black,white'
-            },
-            {
-              variable: 'error',
-              type: 'String',
-              details: 'Every time it\'s text color is red, If It has a value, it shows'
             }
           ]
         }
