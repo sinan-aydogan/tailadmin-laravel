@@ -3,7 +3,7 @@
         <!--Main Content-->
         <div
             :class="[
-                $slots.mainContent[0].text.length>0 && 'border-b-2 border-dotted inline-flex whitespace-normal cursor-pointer rounded-md hover:text-blue-500 hover:border-blue-500'
+                typeof $slots.mainContent[0].text !== 'undefined' ? 'border-b-2 border-dotted inline-flex whitespace-normal cursor-pointer rounded-md hover:text-blue-500 hover:border-blue-500' :'whitespace-normal'
                 ]"
             @mouseenter="show = true"
             @mouseleave="show = false"
@@ -72,7 +72,7 @@ export default {
         }
     },
     mounted() {
-        console.log(this.$slots.mainContent[0].text)
+        console.log(this.$slots.mainContent[0])
     }
 }
 </script>
