@@ -1,7 +1,13 @@
 <template>
     <div class="pagination-container">
         <div
-            :class="['pagination-arrow',radiusStyle,arrowStyle]"
+            :disabled="range>activePage"
+            :class="[
+                'pagination-arrow',
+                radiusStyle,
+                arrowStyle,
+                range>=activePage && 'opacity-10'
+                ]"
             @click="previousPage"
         >
             <t-chevron-left/>
@@ -14,12 +20,18 @@
                 activePage === item ? activePaginateStyle : paginateStyle,
                 radiusStyle
                 ]"
-            @click="activePage = item">
+            @click="activePage = item; $emit('active', item)">
             {{ item }}
 
         </div>
         <div
-            :class="['pagination-arrow',radiusStyle,arrowStyle]"
+            :disabled="activePage===total"
+            :class="[
+                'pagination-arrow',
+                radiusStyle,
+                arrowStyle,
+                activePage===total && 'opacity-10'
+                ]"
             @click="nextPage"
         >
             <t-chevron-right/>
@@ -30,8 +42,8 @@
 <script>
 import {radiusSizeMixin} from "@/Mixins/radiusSizeMixin";
 /*Icons*/
-import TChevronLeft from "@/Components/Icon/TChevronLeft";
-import TChevronRight from "@/Components/Icon/TChevronRight";
+import TChevronLeft from "@/Components/Icon/TChevronLeftIcon";
+import TChevronRight from "@/Components/Icon/TChevronRightIcon";
 
 export default {
     name: "TPaginate",
@@ -65,11 +77,13 @@ export default {
         nextPage() {
             if (this.total > this.activePage) {
                 this.activePage++;
+                this.$emit('active', this.activePage)
             }
         },
         previousPage() {
             if (this.activePage > 1) {
                 this.activePage--;
+                this.$emit('active', this.activePage)
             }
         }
     },
