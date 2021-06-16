@@ -1,67 +1,90 @@
 <template>
-  <app-layout>
-    <template #header>Tooltips</template>
-    <template #subHeader>Smart and fast infos in the line</template>
-    <template #default>
-
-      <ssh-pre copy-button="true" language="html" label="Code">{{sampleCode.html}}</ssh-pre>
-      <ssh-pre copy-button="true" language="js" label="JS">{{sampleCode.js}}</ssh-pre>
-    </template>
-  </app-layout>
+    <app-layout>
+        <template #header>Tooltips</template>
+        <template #subHeader>Smart and fast infos in the line</template>
+        <template #default>
+            <grid-section col="1" gap="4">
+                <t-content-card width="1">
+                    <template #title>Simple</template>
+                    <template #subTitle>Left, Top, Right and Bottom Positions</template>
+                    <template #content>
+                        <div class="flex flex-wrap gap-8">
+                            <t-tooltip position="top">
+                                <template #mainContent>Hover me!</template>
+                                <template #secondContent>Hello, I'm at the top</template>
+                            </t-tooltip>
+                            <t-tooltip position="bottom">
+                                <template #mainContent>Hover me!</template>
+                                <template #secondContent>Hello, I'm at the bottom</template>
+                            </t-tooltip>
+                            <t-tooltip position="left">
+                                <template #mainContent>Hover me!</template>
+                                <template #secondContent>Hello, I'm at the left</template>
+                            </t-tooltip>
+                            <t-tooltip position="right">
+                                <template #mainContent>Hover me!</template>
+                                <template #secondContent>Hello, I'm at the right</template>
+                            </t-tooltip>
+                        </div>
+                    </template>
+                </t-content-card>
+            </grid-section>
+            <!--Sample Codes-->
+            <ssh-pre copy-button="true" label="Code" language="html">{{ sampleCode.html }}</ssh-pre>
+            <ssh-pre copy-button="true" label="JS" language="js">{{ sampleCode.js }}</ssh-pre>
+            <!--Variables Table-->
+            <t-table :content="sampleCode.table.content" :header="sampleCode.table.header" class="mt-5" color="blue"/>
+        </template>
+    </app-layout>
 </template>
 
 <script>
+/*Layout*/
 import AppLayout from "@/Layouts/AppLayout";
-import SshPre from 'simple-syntax-highlighter'
-import 'simple-syntax-highlighter/dist/sshpre.css'
+/*Component*/
+import GridSection from "@/Layouts/GridSection";
+import TContentCard from "@/Components/Card/TContentCard";
+import TTable from "@/Components/Table/TTable";
+import TTooltip from "@/Components/Tooltip/TTooltip";
+/*Codehighlighter*/
+import SshPre from "simple-syntax-highlighter";
+import "simple-syntax-highlighter/dist/sshpre.css";
 
 export default {
-  name: "Tooltip",
-  components: {AppLayout, SshPre},
-  data() {
-    return {
-      sampleCode: {
-        html:
-            '<t-input-group label="Text Label" label-for="name4" sub-label="Cash only" sub-label-color="yellow" error="Please enter numerical value">\n' +
-            '    <t-input-text id="name4" placeholder="I\'m a placeholder text" value="Hi, I\'m a prefilled text"/>\n' +
-            '</t-input-group>',
-        js:
-            'import TInputGroup from "@/Components/Form/TInputGroup";\n' +
-            'import TInputText from "@/Components/Form/Inputs/TInputText";\n' +
-            '\n' +
-            'export default {\n' +
-            '  name: "InputGroup",\n' +
-            '  components: {SshPre,GridSection, TInputText, TInputGroup, ContentCard, AppLayout},\n' +
-            '  }',
-        table: {
-          header: [
-            {key: 'variable', label: 'Variable'},
-            {key: 'type', label: 'Value Type'},
-            {key: 'details', label: 'Details'},
-          ],
-          content: [
-            {variable: 'label', type: 'String', details: 'Your input label'},
-            {variable: 'label-for', type: 'String', details: 'Label identity indicator, you should enter input\'s id'},
-            {
-              variable: 'sub-label',
-              type: 'String',
-              details: 'If you want to show a second and small label, you can use'
-            },
-            {
-              variable: 'sub-label-color',
-              type: 'String',
-              details: 'You can change sub label color <br><b>Options:</b> red, blue, green, yellow, indigo, pink, gray'
-            },
-            {
-              variable: 'error',
-              type: 'String',
-              details: 'Every time it\'s text color is red, If It has a value, it shows'
+    name: "Tooltip",
+    components: {AppLayout, SshPre, GridSection, TContentCard, TTable, TTooltip},
+    data() {
+        return {
+            sampleCode: {
+                html:
+                    '<t-tooltip position="right">\n' +
+                    '    <template #mainContent>Click me!</template>\n' +
+                    '    <template #secondContent>Hello, I\'m at the right</template>\n' +
+                    '</t-tooltip>',
+                js:
+                    'import TTooltip from "@/Components/Popover/TTooltip";\n' +
+                    '\n' +
+                    'export default {\n' +
+                    '  name: "Tooltip",\n' +
+                    '  components: {TTooltip},\n' +
+                    '  }',
+                table: {
+                    header: [
+                        {key: 'variable', label: 'Variable'},
+                        {key: 'type', label: 'Value Type'},
+                        {key: 'details', label: 'Details'},
+                    ],
+                    content: [
+                        {
+                            variable: 'position',
+                            type: 'String',
+                            details: '<b>Options:</b> left, right, bottom and top'
+                        }
+                    ]
+                }
             }
-          ]
         }
-      }
     }
-  }
 }
 </script>
 
