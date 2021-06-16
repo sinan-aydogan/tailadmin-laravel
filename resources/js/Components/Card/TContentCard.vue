@@ -30,7 +30,7 @@
 import {radiusSizeMixin} from "@/Mixins/radiusSizeMixin";
 
 export default {
-    name: "ContentCard",
+    name: "TContentCard",
     props: ['color', 'width', 'line', 'radius', 'border'],
     mixins: [radiusSizeMixin],
     data() {
