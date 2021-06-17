@@ -406,7 +406,7 @@ import LeftMenu from "@/Layouts/LeftMenu";
 import LeftMenuItem from "@/Layouts/LeftMenuItem";
 import {leftMenuItemsMixin} from "@/Mixins/leftMenuItemsMixin";
 import {windowSizeMixin} from "@/Mixins/windowSizeMixin";
-import TGithubIcon from "@/Components/Icon/TGitHub"
+import TGithubIcon from "@/Components/Icon/TGitHubIcon"
 import TButton from "@/Components/Button/TButton";
 import TAlert from "@/Components/Alert/TAlert";
 
