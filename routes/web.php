@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LockAuthController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -30,8 +31,21 @@ Route::middleware(['auth:sanctum', 'verified'])->prefix('admin')->group(function
     })->name('dashboard');
     //Example Pages
     Route::get('login-app',function (){return Inertia::render('Samples/Examples/Login');})->name('login-app');
+        Route::get('login-app-1',function (){return Inertia::render('Samples/Examples/Auth/Login1');})->name('login-app-1');
+        Route::get('login-app-2',function (){return Inertia::render('Samples/Examples/Auth/Login2');})->name('login-app-2');
+        Route::get('login-app-3',function (){return Inertia::render('Samples/Examples/Auth/Login3');})->name('login-app-3');
     Route::get('register-app',function (){return Inertia::render('Samples/Examples/Register');})->name('register-app');
-    Route::get('lock',function (){return Inertia::render('Samples/Examples/Lock');})->name('lock');
+        Route::get('register-app-1',function (){return Inertia::render('Samples/Examples/Auth/Register1');})->name('register-app-1');
+        Route::get('register-app-2',function (){return Inertia::render('Samples/Examples/Auth/Register2');})->name('register-app-2');
+        Route::get('register-app-3',function (){return Inertia::render('Samples/Examples/Auth/Register3');})->name('register-app-3');
+    Route::get('forgot-password-app',function (){return Inertia::render('Samples/Examples/ForgotPassword');})->name('forgot-password-app');
+        Route::get('forgot-password-app-1',function (){return Inertia::render('Samples/Examples/Auth/ForgotPassword1');})->name('forgot-password-app-1');
+        Route::get('forgot-password-app-2',function (){return Inertia::render('Samples/Examples/Auth/ForgotPassword2');})->name('forgot-password-app-2');
+        Route::get('forgot-password-app-3',function (){return Inertia::render('Samples/Examples/Auth/ForgotPassword3');})->name('forgot-password-app-3');
+    Route::get('lock-app',function (){return Inertia::render('Samples/Examples/Lock');})->name('lock-app');
+        Route::get('lock-app-1',function (){return Inertia::render('Samples/Examples/Auth/Lock1');})->name('lock-app-1');
+        Route::get('lock-app-2',function (){return Inertia::render('Samples/Examples/Auth/Lock2');})->name('lock-app-2');
+        Route::get('lock-app-3',function (){return Inertia::render('Samples/Examples/Auth/Lock3');})->name('lock-app-3');
     Route::get('profile',function (){return Inertia::render('Samples/Examples/Profile');})->name('profile');
     Route::get('pricing',function (){return Inertia::render('Samples/Examples/Pricing');})->name('pricing');
     Route::get('project-management-app',function (){return Inertia::render('Samples/Examples/ProjectApp');})->name('project-management-app');
@@ -67,6 +81,7 @@ Route::middleware(['auth:sanctum', 'verified'])->prefix('admin')->group(function
     Route::get('form-input-group',function (){return Inertia::render('Samples/FormElements/InputGroup');})->name('form-input-group');
     Route::get('form-simple-field',function (){return Inertia::render('Samples/FormElements/SimpleField');})->name('form-simple-field');
     Route::get('form-repeatable-field',function (){return Inertia::render('Samples/FormElements/RepeatableField');})->name('form-repeatable-field');
+    Route::get('form-inline-repeatable-field',function (){return Inertia::render('Samples/FormElements/InlineRepeatableField');})->name('form-inline-repeatable-field');
     Route::get('form-date-field',function (){return Inertia::render('Samples/FormElements/DateField');})->name('form-date-field');
     Route::get('form-select-input',function (){return Inertia::render('Samples/FormElements/SelectInput',[
         'users' => \App\Models\User::all()
