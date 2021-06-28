@@ -25,7 +25,7 @@
             <ssh-pre :copy-button="true" label="Code" language="html">{{ sampleCode.html }}</ssh-pre>
             <ssh-pre :copy-button="true" label="JS" language="js">{{ sampleCode.js }}</ssh-pre>
             <!--Variables Table-->
-            <t-table :content="sampleCode.table.content" :header="sampleCode.table.header" class="mt-5" color="blue"/>
+            <t-table :content="sampleCode.table.content" :header="sampleCode.table.header" class="mt-5" color="blue" :searchable="['variable','details']"/>
         </template>
     </app-layout>
 </template>
@@ -51,14 +51,19 @@ export default {
             selectedColor: 'gray',
             sampleCode: {
                 html:
-                    '<t-paginate :range="3" :active="3" :total="17" :radius="3" color="white"/>',
+                    '<t-paginate :range="3" :active="3" :total="17" :radius="3" color="white" @active="activePage = $event"/>',
                 js:
                     'import TPaginate from "@/Components/Paginate/TPaginate";\n' +
                     '\n' +
                     'export default {\n' +
-                    '  name: "Paginate",\n' +
-                    '  components: {TPaginate},\n' +
-                    '  }',
+                    '    name: "Paginate",\n' +
+                    '    components: {TPaginate},\n' +
+                    '    data(){\n' +
+                    '       return {\n' +
+                    '           activePage: null\n' +
+                    '       }\n' +
+                    '   }\n'+
+                    '}',
                 table: {
                     header: [
                         {key: 'variable', label: 'Variable'},
@@ -90,6 +95,11 @@ export default {
                             variable: ":radius",
                             type: "Number",
                             details: "<b>Options:</b> none, 1, 2, 3, 4, 5, 6, 7, 8"
+                        },
+                        {
+                            variable: '@active="activePage = $event"',
+                            type: "Event",
+                            details: "This is relation for your content with the pagination"
                         },
                     ]
                 }

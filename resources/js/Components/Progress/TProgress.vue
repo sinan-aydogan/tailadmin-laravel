@@ -66,7 +66,7 @@ export default {
             }
             let fn = setInterval(()=>{
                 vm.counterValue++
-            },280)
+            },200)
             return vm.counterValue
         }
     },
@@ -79,7 +79,7 @@ export default {
                 this.value = 100
             }
             event.style.width = this.value+'%'
-            event.style.transition = `all 2s linear`
+            event.style.transition = `all 1s linear`
         }
     },
 }

@@ -32,7 +32,7 @@ export default {
             if(route().current(this.item.link)){
                 style = 'bg-white bg-opacity-70 text-gray-700 font-semibold border-b-4 border-opacity-70 border-blue-500'
             }else{
-                style = 'text-gray-300 bg-opacity-10 hover:bg-gray-200 hover:bg-opacity-40 hover:text-white hover:font-bold'
+                style = 'text-gray-300 bg-opacity-10 hover:bg-gray-200 hover:bg-opacity-40 hover:text-white'
             }
             return style
         }

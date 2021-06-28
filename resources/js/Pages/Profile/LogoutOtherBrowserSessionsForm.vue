@@ -1,28 +1,38 @@
 <template>
-    <jet-action-section>
-        <template #title>
-            Browser Sessions
+    <t-form-content :reset-button="false" :submit-button="false">
+        <template #status>
+            <t-button v-if="form.recentlySuccessful" :radius="3" color="gray" disabled="disabled">
+                <t-check-icon class="w-5 h-5"/>
+                Done
+            </t-button>
         </template>
-
-        <template #description>
-            Manage and logout your active sessions on other browsers and devices.
-        </template>
-
-        <template #content>
-            <div class="max-w-xl text-sm text-gray-600">
-                If necessary, you may logout of all of your other browser sessions across all of your devices. Some of your recent sessions are listed below; however, this list may not be exhaustive. If you feel your account has been compromised, you should also update your password.
+        <t-form-section
+            description="Manage and logout your active sessions on other browsers and devices."
+            title="Browser Sessions">
+            <!--Info Box-->
+            <div class="col-span-full text-sm text-gray-600">
+                If necessary, you may logout of all of your other browser sessions across all of your devices. Some of
+                your recent sessions are listed below; however, this list may not be exhaustive. If you feel your
+                account has been compromised, you should also update your password.
             </div>
 
             <!-- Other Browser Sessions -->
-            <div class="mt-5 space-y-6" v-if="sessions.length > 0">
-                <div class="flex items-center" v-for="(session, i) in sessions" :key="i">
+            <div v-if="sessions.length > 0" class="mt-5 col-span-full space-y-6">
+                <div v-for="(session, i) in sessions" :key="i" class="flex items-center">
                     <div>
-                        <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" class="w-8 h-8 text-gray-500" v-if="session.agent.is_desktop">
-                            <path d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        <svg v-if="session.agent.is_desktop" class="w-8 h-8 text-gray-500" fill="none" stroke="currentColor"
+                             stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                             viewBox="0 0 24 24">
+                            <path
+                                d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                         </svg>
 
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-gray-500" v-else>
-                            <path d="M0 0h24v24H0z" stroke="none"></path><rect x="7" y="4" width="10" height="16" rx="1"></rect><path d="M11 5h2M12 17v.01"></path>
+                        <svg v-else class="w-8 h-8 text-gray-500" fill="none"
+                             stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                             viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M0 0h24v24H0z" stroke="none"></path>
+                            <rect height="16" rx="1" width="10" x="7" y="4"></rect>
+                            <path d="M11 5h2M12 17v.01"></path>
                         </svg>
                     </div>
 
@@ -35,110 +45,130 @@
                             <div class="text-xs text-gray-500">
                                 {{ session.ip_address }},
 
-                                <span class="text-green-500 font-semibold" v-if="session.is_current_device">This device</span>
+                                <span v-if="session.is_current_device"
+                                      class="text-green-500 font-semibold">This device</span>
                                 <span v-else>Last active {{ session.last_active }}</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <div class="flex items-center mt-5">
-                <jet-button @click.native="confirmLogout">
-                    Logout Other Browser Sessions
-                </jet-button>
-
-                <jet-action-message :on="form.recentlySuccessful" class="ml-3">
-                    Done.
-                </jet-action-message>
-            </div>
-
             <!-- Logout Other Devices Confirmation Modal -->
-            <jet-dialog-modal :show="confirmingLogout" @close="closeModal">
-                <template #title>
+            <t-modal :radius="3" :show="confirmingLogout" @close="closeModal">
+                <template #header>
                     Logout Other Browser Sessions
                 </template>
-
                 <template #content>
-                    Please enter your password to confirm you would like to logout of your other browser sessions across all of your devices.
-
-                    <div class="mt-4">
-                        <jet-input type="password" class="mt-1 block w-3/4" placeholder="Password"
-                                    ref="password"
-                                    v-model="form.password"
-                                    @keyup.enter.native="logoutOtherBrowserSessions" />
-
-                        <jet-input-error :message="form.errors.password" class="mt-2" />
-                    </div>
+                    Please enter your password to confirm you would like to logout of your other browser sessions across
+                    all of your devices.
+                    <t-input-group :error="form.errors.password">
+                        <t-input-text
+                            :radius="3"
+                            ref="password"
+                            v-model="form.password"
+                            class="mt-1 block w-3/4"
+                            placeholder="Password"
+                            type="password"
+                            @keyup.enter.native="logoutOtherBrowserSessions"
+                        />
+                    </t-input-group>
                 </template>
-
-                <template #footer>
-                    <jet-secondary-button @click.native="closeModal">
-                        Nevermind
-                    </jet-secondary-button>
-
-                    <jet-button class="ml-2" @click.native="logoutOtherBrowserSessions" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                <template #footer-left>
+                    <t-button :radius="3" color="white" @click.native="closeModal">
+                        Cancel
+                    </t-button>
+                </template>
+                <template #footer-right>
+                    <t-button :class="{ 'opacity-25': form.processing }" :disabled="form.processing" :radius="3"
+                              color="yellow" @click.native="logoutOtherBrowserSessions">
                         Logout Other Browser Sessions
-                    </jet-button>
+                    </t-button>
                 </template>
-            </jet-dialog-modal>
-        </template>
-    </jet-action-section>
+            </t-modal>
+        </t-form-section>
+        <!--Buttons-->
+        <div class="flex flex-warp p-4 justify-end">
+            <div class="flex flex-wrap">
+                <!--Regenerate Button for Recovery Codes-->
+                <t-button :radius="3" class="mr-3" color="yellow"
+                          @click.native="confirmLogout">
+                    <t-log-out-icon class="w-5 h-5"/>
+                    Logout Other Browser Sessions
+                </t-button>
+            </div>
+        </div>
+    </t-form-content>
 </template>
 
 <script>
-    import JetActionMessage from '@/Jetstream/ActionMessage'
-    import JetActionSection from '@/Jetstream/ActionSection'
-    import JetButton from '@/Jetstream/Button'
-    import JetDialogModal from '@/Jetstream/DialogModal'
-    import JetInput from '@/Jetstream/Input'
-    import JetInputError from '@/Jetstream/InputError'
-    import JetSecondaryButton from '@/Jetstream/SecondaryButton'
+import JetActionMessage from '@/Jetstream/ActionMessage'
+import JetActionSection from '@/Jetstream/ActionSection'
+import JetButton from '@/Jetstream/Button'
+import JetDialogModal from '@/Jetstream/DialogModal'
+import JetInput from '@/Jetstream/Input'
+import JetInputError from '@/Jetstream/InputError'
+import JetSecondaryButton from '@/Jetstream/SecondaryButton'
+import TFormContent from "@/Components/Form/TFormContent";
+import TFormSection from "@/Components/Form/TFormSection";
+import TButton from "@/Components/Button/TButton";
+import TCheckIcon from "@/Components/Icon/TCheckIcon";
+import TLogOutIcon from "@/Components/Icon/TLogOutIcon";
+import TModal from "@/Components/Modal/TModal";
+import TInputGroup from "@/Components/Form/TInputGroup";
+import TInputText from "@/Components/Form/Inputs/TInputText";
 
-    export default {
-        props: ['sessions'],
+export default {
+    props: ['sessions'],
 
-        components: {
-            JetActionMessage,
-            JetActionSection,
-            JetButton,
-            JetDialogModal,
-            JetInput,
-            JetInputError,
-            JetSecondaryButton,
+    components: {
+        TInputText,
+        TInputGroup,
+        TModal,
+        TLogOutIcon,
+        TCheckIcon,
+        TButton,
+        TFormSection,
+        TFormContent,
+        JetActionMessage,
+        JetActionSection,
+        JetButton,
+        JetDialogModal,
+        JetInput,
+        JetInputError,
+        JetSecondaryButton,
+    },
+
+    data() {
+        return {
+            confirmingLogout: false,
+
+            form: this.$inertia.form({
+                password: '',
+            })
+        }
+    },
+
+    methods: {
+        confirmLogout() {
+            this.confirmingLogout = true
+
+            setTimeout(() => this.$refs.password.focus(), 250)
         },
 
-        data() {
-            return {
-                confirmingLogout: false,
-
-                form: this.$inertia.form({
-                    password: '',
-                })
-            }
+        logoutOtherBrowserSessions() {
+            this.form.delete(route('other-browser-sessions.destroy'), {
+                preserveScroll: true,
+                onSuccess: () => this.closeModal(),
+                onError: () => this.$refs.password.focus(),
+                onFinish: () => this.form.reset(),
+            })
         },
 
-        methods: {
-            confirmLogout() {
-                this.confirmingLogout = true
+        closeModal() {
+            this.confirmingLogout = false
 
-                setTimeout(() => this.$refs.password.focus(), 250)
-            },
-
-            logoutOtherBrowserSessions() {
-                this.form.delete(route('other-browser-sessions.destroy'), {
-                    preserveScroll: true,
-                    onSuccess: () => this.closeModal(),
-                    onError: () => this.$refs.password.focus(),
-                    onFinish: () => this.form.reset(),
-                })
-            },
-
-            closeModal() {
-                this.confirmingLogout = false
-
-                this.form.reset()
-            },
+            this.form.reset()
         },
-    }
+    },
+}
 </script>

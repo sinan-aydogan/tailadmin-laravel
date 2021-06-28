@@ -17,15 +17,16 @@
 import {radiusSizeMixin} from "@/Mixins/radiusSizeMixin";
 
 export default {
-  name: "Alert",
+  name: "TAlert",
   mixins: [radiusSizeMixin],
   props: {
     color: {
-      required: false
+      required: false,
+        default: 'red'
     },
     border: {
       type: Boolean,
-      required: false
+        default: false
     },
     closeable: {
       type: Boolean,

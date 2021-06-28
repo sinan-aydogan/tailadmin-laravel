@@ -117,7 +117,7 @@
                     <template #content>
                         <t-collapsible :radius="5">
                             <!--First Item-->
-                            <t-collapsible-item color="red">
+                            <t-collapsible-item color="white">
                                 <template #title>
                                     <font-awesome-icon icon="shopping-bag"/>
                                     Red
@@ -127,7 +127,7 @@
                                 </template>
                             </t-collapsible-item>
                             <!--Second Item-->
-                            <t-collapsible-item color="blue">
+                            <t-collapsible-item color="white">
                                 <template #title>
                                     <font-awesome-icon icon="tv"/>
                                     Blue
@@ -137,7 +137,7 @@
                                 </template>
                             </t-collapsible-item>
                             <!--Third Item-->
-                            <t-collapsible-item color="yellow">
+                            <t-collapsible-item color="white">
                                 <template #title>
                                     <font-awesome-icon icon="tasks"/>
                                     Yellow
@@ -147,7 +147,7 @@
                                 </template>
                             </t-collapsible-item>
                             <!--Fourth Item-->
-                            <t-collapsible-item color="purple">
+                            <t-collapsible-item color="white">
                                 <template #title>
                                     <font-awesome-icon icon="envelope"/>
                                     Purple
@@ -217,7 +217,7 @@
             <ssh-pre :copy-button="true" label="Code" language="html">{{ sampleCode.html }}</ssh-pre>
             <ssh-pre :copy-button="true" label="JS" language="js">{{ sampleCode.js }}</ssh-pre>
             <!--Variables Table-->
-            <t-table :content="sampleCode.table.content" :header="sampleCode.table.header" class="mt-5" color="blue"/>
+            <t-table :content="sampleCode.table.content" :header="sampleCode.table.header" class="mt-5" color="blue" :searchable="['variable','details']"/>
         </template>
     </app-layout>
 </template>

@@ -98,7 +98,7 @@
     @apply flex items-center justify-center h-20 px-4 bg-blue-600;
 }
 .left-menu-item {
-    @apply flex items-center p-2 font-semibold cursor-pointer whitespace-nowrap overflow-hidden transition-all duration-700 ease-in-out;
+    @apply flex items-center p-2 font-semibold cursor-pointer whitespace-nowrap select-none overflow-hidden transition-all duration-700 ease-in-out;
 }
 
 /*Content Card*/
@@ -108,7 +108,7 @@
 
 /*Form*/
 .form-input {
-    @apply flex w-full px-2 border border-gray-300 focus:border-indigo-300 focus:outline-none focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm placeholder-gray-300
+    @apply flex w-full px-2 border border-gray-300 focus:border-indigo-300 focus:outline-none focus:ring focus:ring-indigo-200 focus:ring-opacity-50 shadow-sm placeholder-gray-300 text-gray-500
 }
 /*Modal*/
 /*Modal Container*/
@@ -117,11 +117,11 @@
 }
 /*Modal Box*/
 .modal-box {
-    @apply relative shadow-xl flex flex-col min-w-28
+    @apply relative shadow-xl flex flex-col min-w-28 max-w-2xl
 }
 /*Modal-Close Button*/
 .modal-close-button {
-    @apply absolute flex -right-2 -top-2 hover:bg-red-300 border hover:border-red-500 hover:text-red-500 rounded-md h-5 w-5 items-center justify-center bg-red-500 text-white border-white cursor-pointer select-none active:bg-red-600 active:text-white
+    @apply absolute flex right-2 top-2 border hover:border-red-500 hover:text-red-500 rounded-md h-8 w-8 items-center justify-center bg-gray-100 text-gray-500 font-semibold border-gray-300 cursor-pointer select-none active:bg-red-600 active:text-white
 }
 /*Modal Header*/
 .modal-header {

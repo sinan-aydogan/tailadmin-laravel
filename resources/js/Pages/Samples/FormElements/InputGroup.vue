@@ -51,10 +51,10 @@
         </content-card>
       </grid-section>
       <!--Sample Codes-->
-      <ssh-pre copy-button="true" language="html" label="Code">{{ sampleCode.html }}</ssh-pre>
-      <ssh-pre copy-button="true" language="js" label="JS">{{ sampleCode.js }}</ssh-pre>
+      <ssh-pre :copy-button="true" language="html" label="Code">{{ sampleCode.html }}</ssh-pre>
+      <ssh-pre :copy-button="true" language="js" label="JS">{{ sampleCode.js }}</ssh-pre>
       <!--Variables Table-->
-      <t-table :header="sampleCode.table.header" :content="sampleCode.table.content" color="blue" class="mt-5"/>
+      <t-table :header="sampleCode.table.header" :content="sampleCode.table.content" color="blue" class="mt-5" :searchable="['variable','details']"/>
     </template>
   </app-layout>
 </template>

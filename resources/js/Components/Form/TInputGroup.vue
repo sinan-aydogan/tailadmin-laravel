@@ -1,12 +1,12 @@
 <template>
-  <div class="flex flex-col w-full">
+  <div class="flex flex-col">
     <!--Label-->
     <label :for="labelFor" class="block font-medium text-sm text-gray-700 whitespace-normal">
             <span v-if="label">
               {{ label }}
               <span v-if="subLabel" :class="'text-'+subLabelColor+'-500 text-xs italic'">{{ subLabel }}</span>
             </span>
-      <span v-else><slot #label></slot></span>
+      <span v-if="!label && $slots.label"><slot #label></slot></span>
     </label>
     <!--Input Content-->
     <slot></slot>

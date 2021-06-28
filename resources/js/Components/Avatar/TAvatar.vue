@@ -20,6 +20,7 @@ import {radiusSizeMixin} from "@/Mixins/radiusSizeMixin";
 import {avatarStyleMixin} from "@/Mixins/avatarStyleMixin";
 
 export default {
+    name: "TAvatar",
     mixins: [radiusSizeMixin, avatarStyleMixin],
     props: {
         src: {
@@ -31,7 +32,6 @@ export default {
             require: false
         }
     },
-    name: "Avatar",
     computed: {
         avatarURL() {
             let imgSrc;

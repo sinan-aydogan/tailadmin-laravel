@@ -22,6 +22,6 @@
 
 <script>
 export default {
-    name: "Logo"
+    name: "TLogo"
 }
 </script>

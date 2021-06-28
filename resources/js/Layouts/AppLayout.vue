@@ -75,7 +75,7 @@
                                             {{ $page.props.user.name }}
                                         </span>
                                         <span class="staff-title">
-                                            Super Admin
+                                            {{ $page.props.user.title }}
                                         </span>
                                     </div>
                                     <!--User Photo-->

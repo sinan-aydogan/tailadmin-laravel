@@ -1,4 +1,5 @@
 <template>
+    <!--TODO: THE EFFECT ADDED-->
     <div class="relative select-none" v-click-outside="outside">
         <!--Main Content-->
         <div

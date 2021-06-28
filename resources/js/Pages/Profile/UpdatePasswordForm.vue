@@ -1,43 +1,52 @@
 <template>
-    <jet-form-section @submitted="updatePassword">
-        <template #title>
-            Update Password
+    <t-form-content :disabled="form.processing" @submitted="updatePassword">
+        <template #status>
+            <t-button v-if="form.recentlySuccessful" :radius="3" color="gray" disabled="disabled">
+                <t-check-icon class="w-5 h-5"/>
+                Saved
+            </t-button>
         </template>
+            <t-form-section
+                description="Ensure your account is using a long, random password to stay secure."
+                title="Update Password">
+                    <!-- Current Password -->
+                    <t-input-group class="col-span-12" :error="form.errors.current_password" label="Current Password" label-for="current_password">
+                        <t-input-text
+                            id="current_password"
+                            v-model="form.current_password"
+                            :radius="3"
+                            ref="current_password"
+                            autocomplete="current-password"
+                            type="password"
+                        />
+                    </t-input-group>
 
-        <template #description>
-            Ensure your account is using a long, random password to stay secure.
-        </template>
+                    <!-- New Password -->
+                    <t-input-group class="col-span-12 md:col-span-6" :error="form.errors.password" label="New Password" label-for="password">
+                        <t-input-text
+                            id="password"
+                            v-model="form.password"
+                            :radius="3"
+                            ref="password"
+                            autocomplete="new-password"
+                            type="password"
+                        />
+                    </t-input-group>
 
-        <template #form>
-            <div class="col-span-6 sm:col-span-4">
-                <jet-label for="current_password" value="Current Password" />
-                <jet-input id="current_password" type="password" class="mt-1 block w-full" v-model="form.current_password" ref="current_password" autocomplete="current-password" />
-                <jet-input-error :message="form.errors.current_password" class="mt-2" />
-            </div>
+                    <!-- Confirm New Password -->
+                    <t-input-group class="col-span-12 md:col-span-6" :error="form.errors.password_confirmation" label="Confirm New Password" label-for="password_confirmation">
+                        <t-input-text
+                            id="password_confirmation"
+                            v-model="form.password_confirmation"
+                            :radius="3"
+                            ref="password_confirmation"
+                            autocomplete="new-password"
+                            type="password"
+                        />
+                    </t-input-group>
 
-            <div class="col-span-6 sm:col-span-4">
-                <jet-label for="password" value="New Password" />
-                <jet-input id="password" type="password" class="mt-1 block w-full" v-model="form.password" ref="password" autocomplete="new-password" />
-                <jet-input-error :message="form.errors.password" class="mt-2" />
-            </div>
-
-            <div class="col-span-6 sm:col-span-4">
-                <jet-label for="password_confirmation" value="Confirm Password" />
-                <jet-input id="password_confirmation" type="password" class="mt-1 block w-full" v-model="form.password_confirmation" autocomplete="new-password" />
-                <jet-input-error :message="form.errors.password_confirmation" class="mt-2" />
-            </div>
-        </template>
-
-        <template #actions>
-            <jet-action-message :on="form.recentlySuccessful" class="mr-3">
-                Saved.
-            </jet-action-message>
-
-            <jet-button :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                Save
-            </jet-button>
-        </template>
-    </jet-form-section>
+            </t-form-section>
+    </t-form-content>
 </template>
 
 <script>
@@ -47,9 +56,21 @@
     import JetInput from '@/Jetstream/Input'
     import JetInputError from '@/Jetstream/InputError'
     import JetLabel from '@/Jetstream/Label'
+    import TFormContent from "@/Components/Form/TFormContent";
+    import TButton from "@/Components/Button/TButton";
+    import TCheckIcon from "@/Components/Icon/TCheckIcon";
+    import TFormSection from "@/Components/Form/TFormSection";
+    import TInputGroup from "@/Components/Form/TInputGroup";
+    import TInputText from "@/Components/Form/Inputs/TInputText";
 
     export default {
         components: {
+            TInputText,
+            TInputGroup,
+            TFormSection,
+            TCheckIcon,
+            TButton,
+            TFormContent,
             JetActionMessage,
             JetButton,
             JetFormSection,

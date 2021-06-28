@@ -30,10 +30,10 @@
                     </t-input-group>
                     <!-- Status -->
                     <t-input-group label="Status" labelFor="status" class="col-span-12 md:col-span-6">
-                        <t-input-dropdown v-model="form.status" :clear-button="true">
-                            <t-input-dropdown-item value="0"><font-awesome-icon icon="check" class="text-green-500 mr-2"/>Active</t-input-dropdown-item>
-                            <t-input-dropdown-item value="1"><font-awesome-icon icon="minus-circle" class="text-red-500 mr-2"/>Passive</t-input-dropdown-item>
-                        </t-input-dropdown>
+                        <t-input-select v-model="form.status" :clear-button="true">
+                            <t-input-select-item value="0"><font-awesome-icon icon="check" class="text-green-500 mr-2"/>Active</t-input-select-item>
+                            <t-input-select-item value="1"><font-awesome-icon icon="minus-circle" class="text-red-500 mr-2"/>Passive</t-input-select-item>
+                        </t-input-select>
                     </t-input-group>
                     <!-- Address -->
                     <t-input-group label="Address" labelFor="address" class="col-span-12">
@@ -41,8 +41,8 @@
                     </t-input-group>
                 </t-form-section>
             </t-form-content>
-          <ssh-pre copy-button="true" language="html" label="Code">{{sampleCode.html}}</ssh-pre>
-          <ssh-pre copy-button="true" language="js" label="JS">{{sampleCode.js}}</ssh-pre>
+          <ssh-pre :copy-button="true" language="html" label="Code">{{sampleCode.html}}</ssh-pre>
+          <ssh-pre :copy-button="true" language="js" label="JS">{{sampleCode.js}}</ssh-pre>
         </template>
     </app-layout>
 </template>
@@ -54,14 +54,17 @@ import TFormSection from "@/Components/Form/TFormSection";
 import TFormContent from "@/Components/Form/TFormContent";
 import TInputGroup from "@/Components/Form/TInputGroup";
 import TInputText from "@/Components/Form/Inputs/TInputText";
-import TInputDropdown from "@/Components/Form/Inputs/TInputDropdown";
-import TInputDropdownItem from "@/Components/Form/Inputs/TInputDropdownItem";
 import TInputTextArea from "@/Components/Form/Inputs/TInputTextArea";
 import SshPre from 'simple-syntax-highlighter'
 import 'simple-syntax-highlighter/dist/sshpre.css'
+import TInputSelect from "@/Components/Form/Inputs/TInputSelect";
+import TInputSelectItem from "@/Components/Form/Inputs/TInputSelectItem";
 export default {
     name: "FormStructure",
-    components: {AppLayout,TButton,TFormSection,TFormContent,TInputGroup,TInputText,TInputDropdown,TInputDropdownItem,TInputTextArea,SshPre},
+    components: {
+        TInputSelectItem,
+        TInputSelect,
+        AppLayout,TButton,TFormSection,TFormContent,TInputGroup,TInputText,TInputTextArea,SshPre},
     data() {
         return {
             loading: false,

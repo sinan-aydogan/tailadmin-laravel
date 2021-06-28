@@ -88,10 +88,11 @@
                         </div>
                     </template>
                 </t-content-card>
+                <!--Toaster Alert-->
                 <t-content-card width="3">
                     <template #title>Toaster Alert</template>
                     <template #content>
-                        <div class="flex flex-row gap-4">
+                        <div class="flex flex-wrap gap-4">
                             <component
                                 :is="'t-alert'"
                                 v-if="toasterPosition"
@@ -123,7 +124,7 @@
             <ssh-pre :copy-button="true" label="Code" language="html">{{ sampleCode.html }}</ssh-pre>
             <ssh-pre :copy-button="true" label="JS" language="js">{{ sampleCode.js }}</ssh-pre>
             <!--Variables Table-->
-            <t-table :content="sampleCode.table.content" :header="sampleCode.table.header" class="mt-5" color="blue"/>
+            <t-table :content="sampleCode.table.content" :header="sampleCode.table.header" class="mt-5" color="blue" :searchable="['variable','details']"/>
         </template>
     </app-layout>
 </template>

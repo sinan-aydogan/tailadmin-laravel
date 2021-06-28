@@ -12,7 +12,7 @@
         <!--Section Content-->
         <div class="mt-5 md:mt-0 md:col-span-2 border rounded-md shadow m-4">
             <div class="px-4 py-5 sm:p-6">
-                <div class="grid grid-cols-12 gap-4">
+                <div class="grid grid-cols-12 gap-2">
                     <slot></slot>
                 </div>
             </div>

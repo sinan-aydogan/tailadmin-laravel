@@ -3,6 +3,7 @@ export const radiusSizeMixin = {
         radius: {
             type: Number,
             require: false,
+            default: 3
         }
     },
     data() {

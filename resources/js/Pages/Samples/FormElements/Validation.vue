@@ -4,8 +4,8 @@
     <template #subHeader>Require, length and a few things</template>
     <template #default>
 
-      <ssh-pre copy-button="true" language="html" label="Code">{{sampleCode.html}}</ssh-pre>
-      <ssh-pre copy-button="true" language="js" label="JS">{{sampleCode.js}}</ssh-pre>
+      <ssh-pre :copy-button="true" language="html" label="Code">{{sampleCode.html}}</ssh-pre>
+      <ssh-pre :copy-button="true" language="js" label="JS">{{sampleCode.js}}</ssh-pre>
     </template>
   </app-layout>
 </template>

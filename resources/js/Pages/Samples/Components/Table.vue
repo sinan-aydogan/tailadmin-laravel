@@ -14,41 +14,61 @@
         <ul class="flex justify-center">
           <li class="bg-red-500 p-2 w-full h-10 items-center flex justify-center cursor-pointer"
               @click="tableColor='red'">
-            <div v-if="tableColor=='red'" :class="selectorInnerStyle">Red</div>
+            <div v-if="tableColor==='red'" :class="selectorInnerStyle">Red</div>
           </li>
           <li class="bg-blue-500 p-2 w-full h-10 items-center flex justify-center cursor-pointer"
               @click="tableColor='blue'">
-            <div v-if="tableColor=='blue'" :class="selectorInnerStyle">Blue</div>
+            <div v-if="tableColor==='blue'" :class="selectorInnerStyle">Blue</div>
           </li>
           <li class="bg-indigo-500 p-2 w-full h-10 items-center flex justify-center cursor-pointer"
               @click="tableColor='indigo'">
-            <div v-if="tableColor=='indigo'" :class="selectorInnerStyle">Indigo</div>
+            <div v-if="tableColor==='indigo'" :class="selectorInnerStyle">Indigo</div>
           </li>
           <li class="bg-yellow-500 p-2 w-full h-10 items-center flex justify-center cursor-pointer"
               @click="tableColor='yellow'">
-            <div v-if="tableColor=='yellow'" :class="selectorInnerStyle">Yellow</div>
+            <div v-if="tableColor==='yellow'" :class="selectorInnerStyle">Yellow</div>
           </li>
           <li :class="{'bg-gray-600' : tableColor === 'black'}"
               class="bg-black p-2 w-full h-10 items-center flex justify-center cursor-pointer"
               @click="tableColor='black'">
-            <div v-if="tableColor=='black'" :class="selectorInnerStyle">Black</div>
+            <div v-if="tableColor==='black'" :class="selectorInnerStyle">Black</div>
           </li>
           <li class="bg-gray-500 p-2 w-full h-10 items-center flex justify-center cursor-pointer"
               @click="tableColor='gray'">
-            <div v-if="tableColor=='gray'" :class="selectorInnerStyle">Gray</div>
+            <div v-if="tableColor==='gray'" :class="selectorInnerStyle">Gray</div>
           </li>
         </ul>
       </div>
-      <t-table :color="tableColor" :content="users" :header="header">
+      <t-table :color="tableColor" :content="users" :header="header" :searchable="['name','email']" :pagination="true">
+          <template #search>
+              <grid-section col="12" gap="2">
+                  <!--Name-->
+                  <t-input-group label="Name" class="col-span-12 md:col-span-6">
+                      <t-input-text/>
+                  </t-input-group>
+                  <!--Email-->
+                  <t-input-group label="Email" class="col-span-12 md:col-span-6">
+                      <t-input-text/>
+                  </t-input-group>
+              </grid-section>
+          </template>
+          <template #right>
+              <t-button :link="route('form-structure')" :radius="8">
+                  <t-user-circle-icon class="w-6 h-6"/>
+                  Add New User
+              </t-button>
+          </template>
         <template #photo="{props}">
           <div class="flex justify-center">
             <t-avatar :link="props.photo" :radius="8" :size="3"/>
           </div>
         </template>
       </t-table>
-
-      <ssh-pre copy-button="true" language="html" label="Code">{{sampleCode.html}}</ssh-pre>
-      <ssh-pre copy-button="true" language="js" label="JS">{{sampleCode.js}}</ssh-pre>
+        <!--Sample Codes-->
+        <ssh-pre :copy-button="true" label="Code" language="html">{{ sampleCode.html }}</ssh-pre>
+        <ssh-pre :copy-button="true" label="JS" language="js">{{ sampleCode.js }}</ssh-pre>
+        <!--Variables Table-->
+        <t-table :content="sampleCode.table.content" :header="sampleCode.table.header" class="mt-5" color="blue" :searchable="['variable','details']"/>
     </template>
   </app-layout>
 </template>
@@ -59,15 +79,24 @@ import TTable from "@/Components/Table/TTable";
 import TAvatar from "@/Components/Avatar/TAvatar";
 import SshPre from 'simple-syntax-highlighter'
 import 'simple-syntax-highlighter/dist/sshpre.css'
+import TInputGroup from "@/Components/Form/TInputGroup";
+import TInputText from "@/Components/Form/Inputs/TInputText";
+import GridSection from "@/Layouts/GridSection";
+import TButton from "@/Components/Button/TButton";
+import TUserCircleIcon from "@/Components/Icon/TUserCircleIcon";
 
 export default {
   name: "Table",
-  components: {AppLayout, TTable, TAvatar,SshPre},
+  components: {TUserCircleIcon, TButton, GridSection, TInputText, TInputGroup, AppLayout, TTable, TAvatar,SshPre},
   props: ['users'],
   data() {
     return {
       tableColor: 'blue',
-      header: ['name', 'email'],
+      header: [
+          {label: 'Id', key: 'id', align: 'left'},
+          {label: 'Name', key: 'name', align: 'left'},
+          {label: 'Email', key: 'email', align: 'left'}
+      ],
       sampleCode: {
         html:
             '<t-input-group label="Text Label" label-for="name4" sub-label="Cash only" sub-label-color="yellow" error="Please enter numerical value">\n' +

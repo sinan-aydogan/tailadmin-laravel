@@ -1,6 +1,6 @@
 <template>
     <div
-        :class="[colorValue,widthValue,radiusStyle,{'border-2' : border},'relative p-4 shadow']">
+        :class="[colorValue,widthValue,radiusStyle, border && 'border','relative p-4 shadow-sm']">
         <!--Card Title-->
         <div :class="['font-bold text-xl',$slots.hasOwnProperty('subTitle') ? '' : 'pb-2']">
             <slot name="title"></slot>
@@ -31,7 +31,24 @@ import {radiusSizeMixin} from "@/Mixins/radiusSizeMixin";
 
 export default {
     name: "TContentCard",
-    props: ['color', 'width', 'line', 'radius', 'border'],
+    props: {
+        color: {
+            type: String,
+            default: 'white'
+        },
+        width: {
+            type: Number,
+            default: 1
+        },
+        line: {
+            type: Boolean,
+            default: false
+        },
+        border: {
+            type: Boolean,
+            default: false
+        },
+    },
     mixins: [radiusSizeMixin],
     data() {
         return {
@@ -40,22 +57,22 @@ export default {
     },
     computed: {
         colorValue() {
-            if (this.color === 'red') {
-                return 'bg-red-200 border-red-500';
-            } else if (this.color === 'blue') {
-                return 'bg-blue-200 border-blue-500';
-            } else if (this.color === 'indigo') {
-                return 'bg-indigo-200 border-indigo-500';
-            } else if (this.color === 'yellow') {
-                return 'bg-yellow-200 border-yellow-500';
-            } else if (this.color === 'green') {
-                return 'bg-green-200 border-green-500';
-            } else if (this.color === 'gray') {
-                return 'bg-gray-200 border-gray-500';
+            /*Color Styles*/
+            /*Solid*/
+            if (!this.color.includes('-') && this.color !== 'black' && this.color !== 'white') {
+                return 'bg-' + this.color + '-500 text-white';
             } else if (this.color === 'black') {
-                return 'bg-gray-700 border-black text-gray-200';
-            } else {
-                return 'bg-white'
+                return 'bg-gray-700 border-black text-gray-200'
+            } else if (this.color === 'white') {
+                return 'bg-white border-gray-300 text-gray-700'
+            }
+            /*Light*/
+            if (this.color.includes('light')) {
+                return 'bg-' + this.color.split('-')[1] + '-50 border border-' + this.color.split('-')[1] + '-500 text-' + this.color.split('-')[1] + '-600';
+            }
+            /*Gradient*/
+            if (this.color.includes('gradient')) {
+                return 'bg-gradient-to-r from-' + this.color.split('-')[1] + '-500 to-' + this.color.split('-')[3] + '-700 text-white';
             }
         },
         widthValue() {

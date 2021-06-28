@@ -1,5 +1,5 @@
 <script>
-import { Polar } from 'vue-chartjs'
+import { PolarArea } from 'vue-chartjs'
 
 export default {
   name : 'PolarChart',

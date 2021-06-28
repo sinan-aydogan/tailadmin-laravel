@@ -3,7 +3,7 @@
     <template #header>Breadcrumb</template>
     <template #subHeader>2 Different breadcrumbs style (32 variations)</template>
     <template #default>
-      <grid-section col="1" gap="8">
+      <grid-section class="hidden md:block" col="1" gap="8">
         <!--Style 1 without Subcontent-->
         <t-breadcrumb :breadcrumbStyle="1" :breadcrumbs="breadcrumbs1"/>
         <!--Style 1 with Subcontent-->
@@ -56,11 +56,12 @@
           </template>
         </t-breadcrumb>
       </grid-section>
+        <t-alert class="block md:hidden" color="red">The breakcrumb component works only on the large screens. If you want to see how ist works, you should use a large screen bigger than 728px</t-alert>
       <!--Sample Codes-->
       <ssh-pre :copy-button="true" label="Code" language="html">{{ sampleCode.html }}</ssh-pre>
       <ssh-pre :copy-button="true" label="JS" language="js">{{ sampleCode.js }}</ssh-pre>
       <!--Variables Table-->
-      <t-table :content="sampleCode.table.content" :header="sampleCode.table.header" class="mt-5" color="blue"/>
+      <t-table :content="sampleCode.table.content" :header="sampleCode.table.header" class="mt-5" color="blue" :searchable="['variable','details']"/>
     </template>
   </app-layout>
 </template>
@@ -77,10 +78,11 @@ import TTable from "@/Components/Table/TTable";
 /*Codehighlighter*/
 import SshPre from 'simple-syntax-highlighter'
 import 'simple-syntax-highlighter/dist/sshpre.css'
+import TAlert from "@/Components/Alert/TAlert";
 
 export default {
   name: "Breadcrumb",
-  components: {AppLayout, GridSection, SshPre, TBreadcrumb, TButton, TContentCard,TTable},
+  components: {TAlert, AppLayout, GridSection, SshPre, TBreadcrumb, TButton, TContentCard,TTable},
   data() {
     return {
       breadcrumbs1: [

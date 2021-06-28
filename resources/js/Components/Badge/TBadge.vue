@@ -12,7 +12,7 @@
         <transition name="fade">
             <div
                 v-if="showTitle || !collapsible"
-                class="flex justify-between items-center gap-1 overflow-hidden text-xs"
+                class="flex px-1 justify-between items-center gap-1 overflow-hidden text-xs"
             >
                 <slot></slot>
                 <div
@@ -29,7 +29,7 @@
 import { radiusSizeMixin } from "@/Mixins/radiusSizeMixin";
 
 export default {
-    name: "Badge",
+    name: "TBadge",
     mixins: [radiusSizeMixin],
     props: {
         color: {

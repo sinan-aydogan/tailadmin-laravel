@@ -8,9 +8,9 @@
                 <div class="relative inline-flex items-center min-w-24">
                     <t-search-icon class="absolute left-2 w-5 h-5 text-gray-300 overflow-hidden"/>
                     <!--Search Box-->
-                    <input class="pl-8 w-full border-2 border-gray-300 rounded-full" placeholder="Simple Search" type="text">
+                    <input v-model="search" @change="filteredContent" class="pl-8 w-full border-2 border-gray-300 rounded-full" placeholder="Simple Search" type="text">
                     <!--PagedItem Count Selector-->
-                    <div @click="showPagedItemChooser = !showPagedItemChooser" class="absolute right-11 bg-gray-200 h-9 items-center justify-center flex w-8 cursor-pointer select-none hover:bg-blue-500 hover:text-white" title="Paginated item count">
+                    <div v-if="pagination" @click="showPagedItemChooser = !showPagedItemChooser" class="absolute right-11 bg-gray-200 h-9 items-center justify-center flex w-8 cursor-pointer select-none hover:bg-blue-500 hover:text-white" title="Paginated item count">
                         {{ pagedItem }}
                     </div>
                     <div v-if="showPagedItemChooser" class="absolute right-10 top-11 bg-white border rounded-md overflow-hidden">
@@ -52,7 +52,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-if="content.length === 0">
+                <tr v-if="paginatedContent.length === 0">
                     <td :class="noContentStyle" :colspan="header.length">
                         <div class="noContentStyle">
                             <font-awesome-icon icon="info-circle"/>
@@ -73,8 +73,8 @@
                 </tbody>
             </table>
         </div>
-        <div v-if="content.length>pagedItem" class="flex py-4 justify-center">
-            <t-paginate :range="5" :total="Math.floor(content.length/pagedItem)" @active="page = $event"/>
+        <div v-if="filteredContent.length > pagedItem" class="flex py-4 justify-center">
+            <t-paginate :range="5" :total="Math.ceil(filteredContent.length/pagedItem)" @active="page = $event"/>
         </div>
     </div>
 </template>
@@ -85,17 +85,17 @@ import {faInfoCircle} from '@fortawesome/free-solid-svg-icons'
 import TSearchCircle from "@/Components/Icon/TSearchCircleIcon";
 import TInputGroup from "@/Components/Form/TInputGroup";
 import InputText from "@/Components/Form/Inputs/TInputText";
-import TInputDropdown from "@/Components/Form/Inputs/TInputDropdown";
-import TInputDropdownItem from "@/Components/Form/Inputs/TInputDropdownItem";
+import TInputDropdown from "@/Components/Form/Inputs/TInputSelect";
+import TInputDropdownItem from "@/Components/Form/Inputs/TInputSelectItem";
 import TCollection from "@/Components/Icon/TCollectionIcon";
 import TPaginate from "@/Components/Paginate/TPaginate";
 import TAdjustments from "@/Components/Icon/TAdjustmentsIcon";
-import TSearchIcon from "@/Components/Icon/TSearchIconIcon";
+import TSearchIcon from "@/Components/Icon/TSearchIcon";
 
 library.add(faInfoCircle)
 
 export default {
-    name: "Table",
+    name: "TTable",
     components: {
         TSearchIcon,
         TAdjustments,
@@ -110,13 +110,21 @@ export default {
         color: {
             type: String,
             default: 'white'
+        },
+        pagination: {
+            type: Boolean,
+            default: false
+        },
+        searchable: {
+            type: Array
         }
     },
     data() {
         return {
+            search: '',
             showSearch: false,
             showPagedItemChooser: false,
-            pagedItem: 5,
+            pagedItem: this.pagination ? 5 : 10,
             page:1
         }
     },
@@ -144,8 +152,26 @@ export default {
             return noContentStyle
         },
         paginatedContent() {
-            let content = [...this.content]
+            let content = [...this.finalContent]
             return content.slice((this.page-1)*this.pagedItem, this.pagedItem * this.page)
+        },
+        filteredContent() {
+            return this.content.filter((item)=>{
+                let query;
+                for(let i=0; this.searchable.length>i; i++){
+                    query = item[this.searchable[i]].toLowerCase().includes(this.search.toLowerCase()) || query
+
+                }
+
+                return query
+            })
+        },
+        finalContent() {
+            if(this.searchable.length>0 && this.searchable){
+                return this.filteredContent
+            }else{
+                return this.content
+            }
         }
     }
 }

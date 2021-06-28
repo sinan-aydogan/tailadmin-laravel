@@ -25,24 +25,31 @@ export const leftMenuItemsMixin = {
                             linkType: "route",
                             type: "standard",
                             activeKey: ["register"],
+                        },{
+                            label: "Forgot Password",
+                            icon: "",
+                            link: "forgot-password-app",
+                            linkType: "route",
+                            type: "standard",
+                            activeKey: ["forgot-password-app"],
                         },
                         {
                             label: "Lock",
                             icon: "",
-                            link: "lock",
+                            link: "lock-app",
                             linkType: "route",
                             type: "standard",
-                            activeKey: ["lock"],
+                            activeKey: ["lock-app"],
                         },
                         {
                             label: "Profile",
                             icon: "",
-                            link: "profile",
+                            link: "profile.show",
                             linkType: "route",
                             type: "standard",
                             activeKey: ["profile"],
                         },
-                        {
+                        /*{
                             label: "Pricing",
                             icon: "",
                             link: "pricing",
@@ -81,7 +88,7 @@ export const leftMenuItemsMixin = {
                             linkType: "route",
                             type: "standard",
                             activeKey: ["chat-app"],
-                        }
+                        }*/
                     ]
                 },
                 {
@@ -132,14 +139,14 @@ export const leftMenuItemsMixin = {
                             type: "standard",
                             activeKey: ["button"],
                         },
-                        {
+                       /* {
                             label: "Chart",
                             icon: "chart-bar",
                             link: "chart",
                             linkType: "route",
                             type: "standard",
                             activeKey: ["chart"],
-                        },
+                        },*/
                         {
                             label: "Collapsible",
                             icon: "",
@@ -303,6 +310,14 @@ export const leftMenuItemsMixin = {
                             linkType: "route",
                             type: "standard",
                             activeKey: ["repeatable-input-field"],
+                        },
+                        {
+                            label: "Inline Repeat. Fields",
+                            icon: "retweet",
+                            link: "form-inline-repeatable-field",
+                            linkType: "route",
+                            type: "standard",
+                            activeKey: ["inline-repeatable-input-field"],
                         },
                         {
                             label: "Date/Time Fields",
