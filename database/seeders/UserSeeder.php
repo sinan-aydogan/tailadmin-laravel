@@ -18,6 +18,7 @@ class UserSeeder extends Seeder
         /*Admin*/
         tap(User::create([
             'name' => 'Super Admin',
+            'title' => 'Hero',
             'email' => 'admin@example.com',
             'password' => bcrypt('admin'),
         ]), function (User $user) {
