@@ -144,6 +144,14 @@
     @apply inline-flex gap-2 justify-end
 }
 
+/*Alert Box*/
+.alert-box {
+    @apply flex flex-shrink-0 items-center justify-between shadow p-4 gap-2 relative w-full max-h-min
+}
+.alert-close {
+    @apply text-white hover:text-red-500 cursor-pointer
+}
+
 /*Pagination*/
 /*Pagination Container*/
 .pagination-container {

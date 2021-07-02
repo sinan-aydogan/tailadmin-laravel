@@ -7,8 +7,8 @@
 
         </template>
         <template #default>
-            <grid-section col="2" gap="4">
-                <t-content-card width="1">
+            <grid-section :col="2" :gap="4">
+                <t-content-card :width="1">
                     <!--Simple-->
                     <template #title>
                         Simple
@@ -58,7 +58,7 @@
                     </template>
                 </t-content-card>
                 <!--Colorful-->
-                <t-content-card width="1">
+                <t-content-card :width="1">
                     <template #title>
                         Colorful
                     </template>
@@ -107,7 +107,7 @@
                     </template>
                 </t-content-card>
                 <!--Icons-->
-                <t-content-card width="1">
+                <t-content-card :width="1">
                     <template #title>
                         With Icon
                     </template>
@@ -160,7 +160,7 @@
                     </template>
                 </t-content-card>
                 <!--Align-->
-                <t-content-card width="1">
+                <t-content-card :width="1">
                     <template #title>
                         With Title Align
                     </template>

@@ -351,8 +351,11 @@
                             <slot name="action-buttons"></slot>
                         </div>
                     </div>
+                    <!--Breadcrumb-->
+                    <slot name="breadcrumb"></slot>
                     <!--Content-->
                     <main class="flex flex-col">
+                        <!--Flash Messages-->
                         <div v-if="$page.props.flash.message" class="alert">
                           <t-alert
                             :color="$page.props.flash.message.type"
@@ -367,6 +370,12 @@
                     <!-- Modal Portal -->
                     <portal-target name="modal" multiple>
                     </portal-target>
+                    <!--Toastr Notifications-->
+                    <div>
+                        <t-toastr v-if="$page.props.flash.toastr">
+
+                        </t-toastr>
+                    </div>
                     <footer
                         class="flex items-center justify-end space-x-1 font-semibold text-right text-gray-500"
                     >
@@ -409,9 +418,11 @@ import {windowSizeMixin} from "@/Mixins/windowSizeMixin";
 import TGithubIcon from "@/Components/Icon/TGitHubIcon"
 import TButton from "@/Components/Button/TButton";
 import TAlert from "@/Components/Alert/TAlert";
+import TToastr from "@/Components/Toastr/TToastr";
 
 export default {
     components: {
+        TToastr,
         LeftMenuItem,
         LeftMenu,
         JetApplicationMark,

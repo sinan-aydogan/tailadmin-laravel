@@ -17,17 +17,22 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
+    return Inertia::render([
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
-    ]);
+    ], 'Dashboard');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->prefix('admin')->group(function (){
+Route::middleware(['auth:sanctum', 'verified'])->group(function (){
     Route::get('/', function () {
-        return Inertia::render('Dashboard');
+        return Inertia::render('Dashboard',[
+            'canLogin' => Route::has('login'),
+            'canRegister' => Route::has('register'),
+            'laravelVersion' => Application::VERSION,
+            'phpVersion' => PHP_VERSION,
+        ]);
     })->name('dashboard');
     //Example Pages
     Route::get('login-app',function (){return Inertia::render('Samples/Examples/Login');})->name('login-app');
@@ -70,6 +75,7 @@ Route::middleware(['auth:sanctum', 'verified'])->prefix('admin')->group(function
     Route::get('table',function (){return Inertia::render('Samples/Components/Table',[
         'users' => \App\Models\User::all()
     ]);})->name('table');
+    Route::get('toastr',function (){return Inertia::render('Samples/Components/Toastr');})->name('toastr');
     Route::get('tooltip',function (){return Inertia::render('Samples/Components/Tooltip');})->name('tooltip');
     // Layout Pages
     Route::get('layout-structure',function (){return Inertia::render('Samples/Layouts/LayoutStructure');})->name('layout-structure');

@@ -4,7 +4,7 @@
             description="Add additional security to your account using two factor authentication."
             title="Two Factor Authentication">
             <!--Two Factor Authentication Status-->
-            <t-alert :border="true" :color="twoFactorEnabled ? 'green' : 'yellow'" class="col-span-12" radius="3">
+            <t-alert :border="true" :color="twoFactorEnabled ? 'green' : 'yellow'" class="col-span-12" :radius="3">
                 <div class="inline-flex items-center gap-4" v-if="twoFactorEnabled">
                     <t-check-circle-solid-icon class="w-10 h-10"/>
                     You have enabled two factor authentication.

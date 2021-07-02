@@ -7,9 +7,9 @@
       Useful badges like tags (648 Variations)
     </template>
     <template #default>
-      <grid-section col="2" gap="4">
+      <grid-section :col="2" :gap="4">
         <!--With Color-->
-        <t-content-card width="2">
+        <t-content-card :width="2">
           <template #title>Badge Colors</template>
           <template #subTitle>18 different colors</template>
           <template #content>
@@ -19,7 +19,7 @@
           </template>
         </t-content-card>
         <!--With Radius-->
-        <t-content-card width="2">
+        <t-content-card :width="2">
           <template #title>Badge Radius</template>
           <template #subTitle>9 different radius sizes</template>
           <template #content>
@@ -30,7 +30,7 @@
           </template>
         </t-content-card>
         <!--With Value-->
-        <t-content-card width="2">
+        <t-content-card :width="2">
           <template #title>Badge Values</template>
           <template #content>
             <div class="flex flex-wrap gap-4">
@@ -47,7 +47,7 @@
           </template>
         </t-content-card>
         <!--With Collapsible-->
-        <t-content-card width="2">
+        <t-content-card :width="2">
           <template #title>Collapsible Badges</template>
           <template #subTitle>Click them</template>
           <template #content>

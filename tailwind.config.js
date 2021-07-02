@@ -32,6 +32,29 @@ module.exports = {
             '1/2': '50%',
             '3/4': '75%',
             'full': '100%',
+            'screen': '100vw',
+            'min': 'min-content',
+            'max': 'max-content'
+        },
+        minHeight: {
+            '0': '0px',
+            '1/4': '25%',
+            '1/2': '50%',
+            '3/4': '75%',
+            'full': '100%',
+            'screen': '100vh',
+            'min': 'min-content',
+            'max': 'max-content'
+        },
+        maxHeight: {
+            '0': '0',
+            '1/4': '25%',
+            '1/2': '50%',
+            '3/4': '75%',
+            'full': '100%',
+            'screen': '100vh',
+            'min': 'min-content',
+            'max': 'max-content',
         }
     },
 

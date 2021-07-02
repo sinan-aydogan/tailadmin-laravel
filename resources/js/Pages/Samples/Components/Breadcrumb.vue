@@ -3,7 +3,7 @@
     <template #header>Breadcrumb</template>
     <template #subHeader>2 Different breadcrumbs style (32 variations)</template>
     <template #default>
-      <grid-section class="hidden md:block" col="1" gap="8">
+      <grid-section class="hidden md:block" :col="1" :gap="8">
         <!--Style 1 without Subcontent-->
         <t-breadcrumb :breadcrumbStyle="1" :breadcrumbs="breadcrumbs1"/>
         <!--Style 1 with Subcontent-->

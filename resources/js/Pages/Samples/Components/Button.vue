@@ -3,24 +3,24 @@
     <template #header>Buttons</template>
     <template #subHeader>For all use (1.296 variations)</template>
     <template #default>
-      <grid-section col="2" gap="2">
+      <grid-section :col="2" :gap="2">
         <!--With Color-->
-        <t-contentCard width="2">
+        <t-contentCard :width="2">
           <template #title>Button Colors</template>
           <template #subTitle>18 different colors</template>
           <template #content>
-            <t-button v-for="i in colors" :key="i" :color="i" class="m-1">Button</t-button>
+            <t-button v-for="i in colors" :key="i+'-color'" :color="i" class="m-1">Button</t-button>
           </template>
         </t-contentCard>
         <!--With Radius-->
-        <t-contentCard width="2">
+        <t-contentCard :width="2">
           <template #title>Button Radius</template>
           <template #subTitle>9 different radius sizes</template>
           <template #content>
             <div class="flex-grow-0 flex-row">
               <div class="flex flex-wrap">
                 <t-button color="red" class="m-1">Button</t-button>
-                <t-button v-for="i in 8" :key="i" :radius="i" :color="colors[i]" class="m-1">Button</t-button>
+                <t-button v-for="i in 8" :key="i+'-radius'" :radius="i" :color="colors[i]" class="m-1">Button</t-button>
                 <t-button color="red" class="m-1">
                   <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                        xmlns="http://www.w3.org/2000/svg">
@@ -29,7 +29,7 @@
                         stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
                   </svg>
                 </t-button>
-                <t-button v-for="i in 8" :key="i" :radius="i" :color="colors[i]" class="m-1">
+                <t-button v-for="i in 8" :key="i+'-radius-with-icon'" :radius="i" :color="colors[i]" class="m-1">
                   <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                        xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -42,7 +42,7 @@
           </template>
         </t-contentCard>
         <!--With Icon-->
-        <t-contentCard width="1">
+        <t-contentCard :width="1">
           <template #title>Button Icons</template>
           <template #content>
             <div class="flex flex-wrap gap-2">
@@ -116,7 +116,7 @@
           </template>
         </t-contentCard>
         <!--With Size : Code 4-->
-        <t-contentCard width="1">
+        <t-contentCard :width="1">
           <template #title>
             With size
           </template>

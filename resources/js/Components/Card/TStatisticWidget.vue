@@ -1,6 +1,6 @@
 <template>
     <!--Widget Main Container-->
-    <t-content-card :color="color" :radius="radius" :width="width" border="true">
+    <t-content-card :color="color" :radius="radius" :width="width" :border="true">
         <template #content>
             <!--Widget Content-->
             <div class="flex flex-between h-full w-full">
@@ -55,7 +55,7 @@
 import TContentCard from "@/Components/Card/TContentCard";
 
 export default {
-    name: "TStaticWidget",
+    name: "TStatisticWidget",
     components: {
         TContentCard,
         'bar-chart': () => import('@/Components/Chart/TBarChart'),

@@ -3,7 +3,7 @@
         <!--Main Content-->
         <div
             :class="[
-                typeof $slots.mainContent[0].text !== 'undefined' ? 'border-b-2 border-dotted inline-flex whitespace-normal cursor-pointer rounded-md hover:text-blue-500 hover:border-blue-500' :'whitespace-normal'
+                typeof $slots.mainContent[0].text !== 'undefined' ? 'border-b-2 border-dotted inline-flex whitespace-normal cursor-pointer' :'whitespace-normal'
                 ]"
             @mouseenter="show = true"
             @mouseleave="show = false"
@@ -25,7 +25,7 @@
                 ]"></div>
             <!--Content-->
             <div :class="[
-                'bg-white px-2 py-1 whitespace-normal z-50 border rounded-md',
+                'bg-white text-gray-700 px-2 py-1 whitespace-normal z-50 border rounded-md',
                 ]">
                 <slot name="secondContent"></slot>
             </div>

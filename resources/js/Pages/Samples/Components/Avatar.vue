@@ -3,9 +3,9 @@
     <template #header>Avatars</template>
     <template #subHeader>User avatars and team members avatar group (4.608 variations)</template>
     <template #default>
-      <grid-section col="2" gap="2">
+      <grid-section :col="2" :gap="2">
         <!--Avatar Radius Card-->
-        <t-content-card width="1">
+        <t-content-card :width="1">
           <template #title>Avatar Radius</template>
           <template #subTitle> 9 different radius sizes</template>
           <template #content>
@@ -16,7 +16,7 @@
           </template>
         </t-content-card>
         <!--Avatar Group-->
-        <t-content-card width="1">
+        <t-content-card :width="1">
           <template #title>Avatar Group - Team Members</template>
           <template #subTitle>Best for lists of project members</template>
           <template #content>
@@ -33,7 +33,7 @@
           </template>
         </t-content-card>
         <!--Avatar Sizes Card-->
-        <t-content-card width="1">
+        <t-content-card :width="1">
           <template #title>Avatar Sizes</template>
           <template #subTitle>8 different sizes</template>
           <template #content>
@@ -48,7 +48,7 @@
           </template>
         </t-content-card>
         <!--Avatar Indicator Card-->
-        <t-content-card width="1">
+        <t-content-card :width="1">
           <template #title> Avatar Indicator</template>
           <template #subTitle> 8 different colors and 4 different positions</template>
           <template #content>

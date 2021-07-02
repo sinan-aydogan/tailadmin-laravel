@@ -23,7 +23,7 @@
                     color="green"
                     diff-direction="up"
                     diff-value="8"
-                    radius="5"
+                    :radius="5"
                     widget-value="30"
                     :width="1">
                     <template #title>
@@ -37,7 +37,7 @@
                     color="red"
                     diff-direction="up"
                     diff-value="8%"
-                    radius="5"
+                    :radius="5"
                     widget-value="12.254,05 TL"
                     :width="1">
                     <template #title>

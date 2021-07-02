@@ -36,10 +36,10 @@
                                 <t-input-text
                                     id="email"
                                     v-model="form.email"
+                                    :radius="3"
                                     autofocus
                                     required
                                     type="email"
-                                    :radius="3"
                                 />
                             </t-input-group>
                         </div>
@@ -49,15 +49,15 @@
                                 <t-input-text
                                     id="password"
                                     v-model="form.password"
+                                    :radius="3"
                                     autocomplete="current-password"
                                     required
                                     type="password"
-                                    :radius="3"
                                 />
                             </t-input-group>
                         </div>
-                        <!--Password Confirm-->
-                        <div class="block mt-4">
+                        <div class="flex justify-between mt-4">
+                            <!--Remember Me-->
                             <label class="flex items-center">
                                 <input
                                     v-model="form.remember"
@@ -66,9 +66,6 @@
                                 />
                                 <span class="ml-2 text-sm text-gray-600">Remember me</span>
                             </label>
-                        </div>
-                        <!--Submit Area-->
-                        <div class="flex items-center justify-end mt-4">
                             <!--Forgot Password-->
                             <inertia-link
                                 v-if="canResetPassword"
@@ -77,9 +74,23 @@
                             >
                                 Forgot your password?
                             </inertia-link>
+                        </div>
+                        <!--Submit Area-->
+                        <div class="flex items-center justify-between mt-4">
+                            <!--Register Button-->
+                            <t-button
+                                v-if="registerButton"
+                                :class="{ 'opacity-25': form.processing }"
+                                :color="registerButtonColor"
+                                :radius="3"
+                                :link="route('register')"
+                            >
+                                Register
+                            </t-button>
+
                             <!--Submit Button-->
                             <t-button :class="{ 'opacity-25': form.processing }"
-                                      :color="buttonColor"
+                                      :color="loginButtonColor"
                                       :disabled="form.processing"
                                       :radius="3" class="ml-4"
                             >
@@ -126,7 +137,11 @@ export default {
             type: String,
             default: 'gradient-red-to-pink'
         },
-        buttonColor: {
+        registerButtonColor: {
+            type: String,
+            default: 'white'
+        },
+        loginButtonColor: {
             type: String,
             default: 'green'
         },
@@ -137,6 +152,10 @@ export default {
         bgImage: {
             type: String
         },
+        registerButton: {
+            type: Boolean,
+            default: true
+        }
     },
 
     data() {

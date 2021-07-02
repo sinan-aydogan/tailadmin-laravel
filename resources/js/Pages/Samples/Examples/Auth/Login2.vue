@@ -3,7 +3,7 @@
         color="gray"
         bg-color="gradient-gray-to"
         :radius="5"
-        button-color="light-gray"
+        login-button-color="light-gray"
         :canResetPassword="canResetPassword"
         :status="status"
     >

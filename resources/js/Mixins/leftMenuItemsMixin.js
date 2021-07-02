@@ -220,6 +220,14 @@ export const leftMenuItemsMixin = {
                             activeKey: ["table"],
                         },
                         {
+                            label: "Toastr",
+                            icon: "",
+                            link: "toastr",
+                            linkType: "route",
+                            type: "standard",
+                            activeKey: ["toastr"],
+                        },
+                        {
                             label: "Tooltips",
                             icon: "",
                             link: "tooltip",

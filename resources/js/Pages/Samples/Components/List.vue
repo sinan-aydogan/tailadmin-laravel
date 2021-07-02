@@ -63,25 +63,25 @@
                 <t-list :radius="3" :color="selectedColor">
                     <t-list-item>
                         <template #icon>
-                            <t-avatar src="https://i.pravatar.cc/150?u=1" :radius="8" size="2"></t-avatar>
+                            <t-avatar src="https://i.pravatar.cc/150?u=1" :radius="8" :size="2"></t-avatar>
                         </template>
                         <template #default>Sinem Aydoğan</template>
                     </t-list-item>
                     <t-list-item>
                         <template #icon>
-                            <t-avatar src="https://i.pravatar.cc/150?u=2" :radius="8" size="2"></t-avatar>
+                            <t-avatar src="https://i.pravatar.cc/150?u=2" :radius="8" :size="2"></t-avatar>
                         </template>
                         <template #default>Zuhal Taşçı</template>
                     </t-list-item>
                     <t-list-item>
                         <template #icon>
-                            <t-avatar src="https://i.pravatar.cc/150?u=3" :radius="8" size="2"></t-avatar>
+                            <t-avatar src="https://i.pravatar.cc/150?u=3" :radius="8" :size="2"></t-avatar>
                         </template>
                         <template #default>Ayşe Gürel</template>
                     </t-list-item>
                     <t-list-item>
                         <template #icon>
-                            <t-avatar src="https://i.pravatar.cc/150?u=4" :radius="8" size="2"></t-avatar>
+                            <t-avatar src="https://i.pravatar.cc/150?u=4" :radius="8" :size="2"></t-avatar>
                         </template>
                         <template #default>Günel Deren</template>
                     </t-list-item>

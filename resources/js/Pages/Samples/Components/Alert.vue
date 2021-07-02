@@ -3,55 +3,64 @@
         <template #header>Alerts</template>
         <template #subHeader>Notifications and alert boxes (2.880 variations)</template>
         <template #default>
-            <grid-section col="3" gap="4">
+            <grid-section :col="3" :gap="4">
                 <!--With Color-->
-                <t-content-card width="3">
+                <t-content-card :width="3">
                     <template #title>Alert Box Colors</template>
-                    <template #subTitle>10 different colors</template>
-                    <template #content>
-                        <div class="grid grid-cols-1 gap-4 lg:grid-cols-3">
-                            <t-alert v-for="(i,index) in colors" :key="index" :color="i" :radius="3">
-                                <font-awesome-icon slot="icon" icon="check" size="lg"/>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            </t-alert>
-                        </div>
+                    <template #subTitle>
                     </template>
-                </t-content-card>
-                <!--With Radius-->
-                <t-content-card width="3">
-                    <template #title>Alert Box Radius</template>
-                    <template #subTitle>9 different radius sizes</template>
                     <template #content>
-                        <div class="grid grid-cols-1 gap-4 lg:grid-cols-3">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+                            <!--Red-Deleted-->
                             <t-alert color="red">
-                                <font-awesome-icon slot="icon" icon="info-circle" size="lg"/>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                <t-trash-icon slot="icon" class="w-6 h-6"/>
+                                The user deleted successfully,click me
                             </t-alert>
-                            <t-alert v-for="(i,index) in 8" :key="index" :color="colors[i]" :radius="i">
-                                <font-awesome-icon slot="icon" icon="info-circle" size="lg"/>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            <!--Blue-Info-->
+                            <t-alert color="blue">
+                                <t-information-circle-icon slot="icon" class="w-6 h-6"/>
+                                The all of changes overwrite to themself
                             </t-alert>
-                        </div>
-                    </template>
-                </t-content-card>
-                <!--With Border-->
-                <t-content-card width="3">
-                    <template #title>Alert Box Border</template>
-                    <template #content>
-                        <div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
-                            <t-alert :border="true" color="red">
-                                <font-awesome-icon slot="icon" icon="check" size="lg"/>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            <!--Green-Added-->
+                            <t-alert color="green">
+                                <t-check-circle-solid-icon slot="icon" class="w-7 h-7"/>
+                                The post added successfully
                             </t-alert>
-                            <t-alert color="red">
-                                <font-awesome-icon slot="icon" icon="check" size="lg"/>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            <!--Indigo-Reconnect-->
+                            <t-alert color="indigo">
+                                <t-refresh-icon slot="icon" class="w-6 h-6"/>
+                                You entered a new configuration, the settings will refresh 24hr after
+                            </t-alert>
+                            <!--Pink-Attempt-->
+                            <t-alert color="pink">
+                                Please, confirm user name and repeat the registration attempt
+                            </t-alert>
+                            <!--Purple-Blocked-->
+                            <t-alert color="purple">
+                                <t-ban-icon slot="icon" class="w-6 h-6"/>
+                                Your account was blocked, please connect with IT
+                            </t-alert>
+                           <!-- &lt;!&ndash;Red-Deleted&ndash;&gt;
+                            <t-alert color="gray">
+                                <t-trash-icon slot="icon" class="w-6 h-6"/>
+                                The user deleted successfully,click me
+                            </t-alert>
+                            &lt;!&ndash;Red-Deleted&ndash;&gt;
+                            <t-alert color="black">
+                                <t-trash-icon slot="icon" class="w-6 h-6"/>
+                                The user deleted successfully,click me
+                            </t-alert>-->
+                            <!--White-->
+                            <t-alert :radius="3" color="white">
+                                <t-avatar slot="icon" :radius="8" :size="3" src="https://i.pravatar.cc/300"/>
+                                The new user is successfully added.
+                                <br/><b>User:</b> Hamdi KAYA
                             </t-alert>
                         </div>
                     </template>
                 </t-content-card>
                 <!--With Close Button-->
-                <t-content-card width="3">
+                <t-content-card :width="3">
                     <template #title>Alert Box Close Button</template>
                     <template #content>
                         <div class="grid grid-cols-1 gap-4 lg:grid-cols-3">
@@ -64,21 +73,23 @@
                     </template>
                 </t-content-card>
                 <!--With Timer-->
-                <t-content-card width="3">
+                <t-content-card :width="3">
                     <template #title>Alert Box Timer</template>
                     <template #subTitle>Timer for close</template>
                     <template #content>
                         <div class="grid grid-cols-1 gap-4 lg:grid-cols-3">
-                            <t-alert :radius="5" :timer="4000" color="gray">
+                            <t-alert id="test" :radius="5" :timer="4000" color="gray">
                                 Closer timer activated, alert box. (<b>Time:</b>4 seconds)
                             </t-alert>
                             <component
                                 :is="'t-alert'"
-                                v-if="newAlert"
+                                v-if="newAlertID>0"
+                                id="alertTimer"
                                 :key="newAlertID"
                                 :radius="5"
-                                :timer="3000"
+                                :timer="4000"
                                 color="gray"
+                                @destroy="$event === 'alertTimer' ? active = false : active = true"
                             >
                                 Closer timer activated, alert box. (<b>Time:</b>4 seconds)
                             </component>
@@ -88,43 +99,14 @@
                         </div>
                     </template>
                 </t-content-card>
-                <!--Toaster Alert-->
-                <t-content-card width="3">
-                    <template #title>Toaster Alert</template>
-                    <template #content>
-                        <div class="flex flex-wrap gap-4">
-                            <component
-                                :is="'t-alert'"
-                                v-if="toasterPosition"
-                                :key="newToasterID"
-                                :closeable="true"
-                                :position="toasterPosition"
-                                :radius="5"
-                                color="indigo"
-                            >
-                                Hi, I'm a toaster notification
-                            </component>
-                            <t-button :radius="8" color="green" @click.native="toasterPosition= 'lt'; toastAlert;">
-                                Left-Top
-                            </t-button>
-                            <t-button :radius="8" color="green" @click.native="toasterPosition= 'lb'; toastAlert;">
-                                Left-Bottom
-                            </t-button>
-                            <t-button :radius="8" color="blue" @click.native="toasterPosition= 'rt'; toastAlert;">
-                                Right-Top
-                            </t-button>
-                            <t-button :radius="8" color="blue" @click.native="toasterPosition= 'rb'; toastAlert;">
-                                Right-Bottom
-                            </t-button>
-                        </div>
-                    </template>
-                </t-content-card>
             </grid-section>
             <!--Sample Codes-->
             <ssh-pre :copy-button="true" label="Code" language="html">{{ sampleCode.html }}</ssh-pre>
             <ssh-pre :copy-button="true" label="JS" language="js">{{ sampleCode.js }}</ssh-pre>
             <!--Variables Table-->
-            <t-table :content="sampleCode.table.content" :header="sampleCode.table.header" class="mt-5" color="blue" :searchable="['variable','details']"/>
+            <t-table :content="sampleCode.table.content" :header="sampleCode.table.header"
+                     :searchable="['variable','details']" class="mt-5"
+                     color="blue"/>
         </template>
     </app-layout>
 </template>
@@ -141,10 +123,30 @@ import TTable from "@/Components/Table/TTable";
 /*Codehighlighter*/
 import "simple-syntax-highlighter/dist/sshpre.css";
 import SshPre from "simple-syntax-highlighter";
+import TComponentColorSelector from "@/Components/Misc/TComponentColorSelector";
+import TUserCircleIcon from "@/Components/Icon/TUserCircleIcon";
+import TAvatar from "@/Components/Avatar/TAvatar";
+import TCheckCircleSolidIcon from "@/Components/Icon/TCheckCircleSolidIcon";
+import TTrashIcon from "@/Components/Icon/TTrashIcon";
+import TChevronLeftIcon from "@/Components/Icon/TChevronLeftIcon";
+import TRefreshIcon from "@/Components/Icon/TRefreshIcon";
+import TTooltip from "@/Components/Tooltip/TTooltip";
+import TInformationCircleIcon from "@/Components/Icon/TInformationCircleIcon";
+import TBanIcon from "@/Components/Icon/TBanIcon";
 
 export default {
     name: "Alert",
     components: {
+        TBanIcon,
+        TInformationCircleIcon,
+        TTooltip,
+        TRefreshIcon,
+        TChevronLeftIcon,
+        TTrashIcon,
+        TCheckCircleSolidIcon,
+        TAvatar,
+        TUserCircleIcon,
+        TComponentColorSelector,
         AppLayout,
         GridSection,
         SshPre,
@@ -155,20 +157,21 @@ export default {
     },
     data() {
         return {
-            newAlert: false,
-            newAlertID: 1,
+            active: false,
+            newAlertID: 0,
+            selectedColor: 'red',
             colors: ['red', 'blue', 'green', 'yellow', 'indigo', 'pink', 'purple', 'gray', 'black', 'white'],
             toasterPosition: null,
             newToasterID: 1,
             sampleCode: {
                 html:
-                    '<t-alert color="indigo" :border="true" :closeable="true" :radius="5" :timer="500" position="rb">\n' +
+                    '<t-alert color="indigo" :closeable="true" :radius="5" :timer="500">\n' +
                     "    <b>Colorful toaster / notification</b>\n" +
                     "</t-alert>",
                 js:
                     'import TAlert from "@/Components/Alert/TAlert";";\n\n' +
                     "export default {\n" +
-                    '  name: "Notification",\n' +
+                    '  name: "Alert",\n' +
                     "  components: {TAlert},\n" +
                     "  }",
                 table: {
@@ -198,11 +201,6 @@ export default {
                             details: "<b>Options:</b> none, 1, 2, 3, 4, 5, 6, 7, 8"
                         },
                         {
-                            variable: ":border",
-                            type: "Boolean",
-                            details: "Show with a border"
-                        },
-                        {
                             variable: ":closeable",
                             type: "Boolean",
                             details: "Show a close button on the top right"
@@ -225,8 +223,10 @@ export default {
     },
     methods: {
         addAlertBox() {
-            this.newAlert = true;
-            this.newAlertID++;
+            if (this.active === false) {
+                this.newAlertID++;
+                this.active = true
+            }
         },
         toastAlert() {
             this.newToasterID++;
