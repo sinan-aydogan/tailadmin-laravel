@@ -4,7 +4,7 @@
         <!--Main Content-->
         <div
             :class="[
-                $slots.mainContent[0].text.length>0 && 'border-b-2 border-dotted inline-flex whitespace-normal cursor-pointer rounded-md hover:text-blue-500 hover:border-blue-500'
+                $slots.mainContent[0].text.length>0 && 'border-b-2 border-dotted inline-flex whitespace-normal cursor-pointer'
                 ]"
             @click="show = !show"
         >
@@ -111,9 +111,6 @@ export default {
             this.show = false
         }
     },
-    mounted() {
-        console.log(this.$slots.mainContent[0].text)
-    }
 }
 </script>
 
