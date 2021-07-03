@@ -8,7 +8,9 @@
         ]"
         @click="toggle"
     >
-        <slot name="icon" @click="toggle"></slot>
+        <div class="px-2" v-if="$slots.icon">
+            <slot name="icon" @click="toggle"></slot>
+        </div>
         <transition name="fade">
             <div
                 v-if="showTitle || !collapsible"
