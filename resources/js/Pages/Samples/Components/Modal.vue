@@ -3,8 +3,8 @@
         <template #header>Modals</template>
         <template #subHeader>Pretty and sweet windows</template>
         <template #default>
-            <grid-section col="3" gap="4">
-                <t-content-card width="2">
+            <grid-section :col="3" :gap="4">
+                <t-content-card :width="2">
                     <template #title>Click to the buttons for show modal windows</template>
                     <template #subTitle>10 solid, 8 light and limitless gradient color options with radius</template>
                     <template #content>
@@ -106,7 +106,7 @@
                         </div>
                     </template>
                 </t-content-card>
-                <t-content-card width="1">
+                <t-content-card :width="1">
                     <template #title>Tips</template>
                     <template #content>
                         <t-list color="white" :radius="3">

@@ -3,17 +3,17 @@
         <template #header>Paginate</template>
         <template #subHeader>Tables, lists and all of lists</template>
         <template #default>
-            <grid-section col="1">
-                <content-card width="1">
+            <grid-section :col="1">
+                <content-card :width="1">
                     <template #title>The color, the radius, the active you want</template>
                     <template #subTitle>18 colors and 8 radius options, custom range and custom active page</template>
                     <template #content>
                         <div class="flex justify-center w-full">
                             <t-component-color-selector @selected-color="selectedColor = $event"/>
                         </div>
-                        <div class="flex justify-around w-full gap-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 w-full gap-4">
                             <!--Color Selector-->
-                            <t-paginate :active="2" :color="selectedColor" :range="2" :total="17"/>
+                            <t-paginate v-model="activePage" :color="selectedColor" :range="2" :total="17"/>
                             <t-paginate :active="3" :color="selectedColor" :radius="3" :range="3" :total="17"/>
                             <t-paginate :active="4" :color="selectedColor" :radius="5" :range="4" :total="17"/>
                             <t-paginate :active="5" :color="selectedColor" :radius="8" :range="5" :total="17"/>
@@ -48,10 +48,11 @@ export default {
     components: {ContentCard, GridSection, AppLayout, SshPre, TTable, TPaginate, TComponentColorSelector},
     data() {
         return {
+            activePage:2,
             selectedColor: 'gray',
             sampleCode: {
                 html:
-                    '<t-paginate :range="3" :active="3" :total="17" :radius="3" color="white" @active="activePage = $event"/>',
+                    '<t-paginate :range="3" :active="3" :total="17" :radius="3" color="white" v-model="activePage"/>',
                 js:
                     'import TPaginate from "@/Components/Paginate/TPaginate";\n' +
                     '\n' +
@@ -97,9 +98,9 @@ export default {
                             details: "<b>Options:</b> none, 1, 2, 3, 4, 5, 6, 7, 8"
                         },
                         {
-                            variable: '@active="activePage = $event"',
+                            variable: '<span class="whitespace-nowrap">v-model="active"</span>',
                             type: "Event",
-                            details: "This is relation for your content with the pagination"
+                            details: "You can get active page number from the pagination component. You should create a state named 'active'. The v-model will linked the state"
                         },
                     ]
                 }

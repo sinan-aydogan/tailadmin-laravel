@@ -8,7 +8,7 @@
     </template>
     <template #default>
       <grid-section col="1" gap="4">
-        <t-content-card width="1">
+        <t-content-card :width="1">
           <template #title>Simple</template>
           <template #subTitle>Link (Blank, Internal, External and Route) and Icons</template>
           <template #content>

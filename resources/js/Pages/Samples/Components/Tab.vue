@@ -9,7 +9,7 @@
         <template #default>
             <grid-section col="2" gap="4">
                 <!--Simple-->
-                <t-content-card width="1">
+                <t-content-card :width="1">
                     <template #title>
                         Simple Tabs
                     </template>
@@ -47,7 +47,7 @@
                     </template>
                 </t-content-card>
                 <!--With Color-->
-                <t-content-card width="1">
+                <t-content-card :width="1">
                     <template #title>With color</template>
                     <template #subTitle>
                         10 different colors
@@ -157,7 +157,7 @@
                     </template>
                 </t-content-card>
                 <!--With Radius and Style 1-->
-                <t-content-card width="1">
+                <t-content-card :width="1">
                     <template #title>With radius and Style 1</template>
                     <template #subTitle>
                         9 different radius sizes
@@ -240,7 +240,7 @@
                     </template>
                 </t-content-card>
                 <!--With Color and Style 2-->
-                <t-content-card width="1">
+                <t-content-card :width="1">
                     <template #title>
                         With color, active and Style 2
                     </template>
