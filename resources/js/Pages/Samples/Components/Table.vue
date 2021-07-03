@@ -1,76 +1,54 @@
 <template>
-  <app-layout>
-    <!--Header-->
-    <template #header>
-      Tables
-    </template>
-    <!--Subheader-->
-    <template #subHeader>
-      Customizable tables
-    </template>
-    <!--Content-->
-    <template #default>
-      <div class="my-2 border rounded-md overflow-hidden">
-        <ul class="flex justify-center">
-          <li class="bg-red-500 p-2 w-full h-10 items-center flex justify-center cursor-pointer"
-              @click="tableColor='red'">
-            <div v-if="tableColor==='red'" :class="selectorInnerStyle">Red</div>
-          </li>
-          <li class="bg-blue-500 p-2 w-full h-10 items-center flex justify-center cursor-pointer"
-              @click="tableColor='blue'">
-            <div v-if="tableColor==='blue'" :class="selectorInnerStyle">Blue</div>
-          </li>
-          <li class="bg-indigo-500 p-2 w-full h-10 items-center flex justify-center cursor-pointer"
-              @click="tableColor='indigo'">
-            <div v-if="tableColor==='indigo'" :class="selectorInnerStyle">Indigo</div>
-          </li>
-          <li class="bg-yellow-500 p-2 w-full h-10 items-center flex justify-center cursor-pointer"
-              @click="tableColor='yellow'">
-            <div v-if="tableColor==='yellow'" :class="selectorInnerStyle">Yellow</div>
-          </li>
-          <li :class="{'bg-gray-600' : tableColor === 'black'}"
-              class="bg-black p-2 w-full h-10 items-center flex justify-center cursor-pointer"
-              @click="tableColor='black'">
-            <div v-if="tableColor==='black'" :class="selectorInnerStyle">Black</div>
-          </li>
-          <li class="bg-gray-500 p-2 w-full h-10 items-center flex justify-center cursor-pointer"
-              @click="tableColor='gray'">
-            <div v-if="tableColor==='gray'" :class="selectorInnerStyle">Gray</div>
-          </li>
-        </ul>
-      </div>
-      <t-table :color="tableColor" :content="users" :header="header" :searchable="['name','email']" :pagination="true">
-          <template #search>
-              <grid-section col="12" gap="2">
-                  <!--Name-->
-                  <t-input-group label="Name" class="col-span-12 md:col-span-6">
-                      <t-input-text/>
-                  </t-input-group>
-                  <!--Email-->
-                  <t-input-group label="Email" class="col-span-12 md:col-span-6">
-                      <t-input-text/>
-                  </t-input-group>
-              </grid-section>
-          </template>
-          <template #right>
-              <t-button :link="route('form-structure')" :radius="8">
-                  <t-user-circle-icon class="w-6 h-6"/>
-                  Add New User
-              </t-button>
-          </template>
-        <template #photo="{props}">
-          <div class="flex justify-center">
-            <t-avatar :link="props.photo" :radius="8" :size="3"/>
-          </div>
+    <app-layout>
+        <!--Header-->
+        <template #header>
+            Tables
         </template>
-      </t-table>
-        <!--Sample Codes-->
-        <ssh-pre :copy-button="true" label="Code" language="html">{{ sampleCode.html }}</ssh-pre>
-        <ssh-pre :copy-button="true" label="JS" language="js">{{ sampleCode.js }}</ssh-pre>
-        <!--Variables Table-->
-        <t-table :content="sampleCode.table.content" :header="sampleCode.table.header" class="mt-5" color="blue" :searchable="['variable','details']"/>
-    </template>
-  </app-layout>
+        <!--Subheader-->
+        <template #subHeader>
+            Customizable tables
+        </template>
+        <!--Content-->
+        <template #default>
+            <t-component-color-selector @selected-color="tableColor = $event"/>
+
+            <t-table :color="tableColor" :content="users" :header="header" :pagination="true"
+                     :searchable="['name','email']">
+                <template #search>
+                    <grid-section col="12" gap="2">
+                        <!--Name-->
+                        <t-input-group class="col-span-12 md:col-span-6" label="Name">
+                            <t-input-text/>
+                        </t-input-group>
+                        <!--Email-->
+                        <t-input-group class="col-span-12 md:col-span-6" label="Email">
+                            <t-input-text/>
+                        </t-input-group>
+                    </grid-section>
+                </template>
+                <template #right>
+                    <t-button :link="route('form-structure')" :radius="8">
+                        <t-user-circle-icon class="w-6 h-6"/>
+                        Add New User
+                    </t-button>
+                </template>
+                <template #photo="{props}">
+                        <t-avatar :link="props.photo" :radius="8" :size="3"/>
+                </template>
+            </t-table>
+            <!--Sample Codes-->
+            <ssh-pre :copy-button="true" label="Code" language="html">{{ sampleCode.html }}</ssh-pre>
+            <ssh-pre :copy-button="true" label="JS" language="js">{{ sampleCode.js }}</ssh-pre>
+            <!--Variables Table-->
+            <t-table
+                :content="sampleCode.table.content"
+                :header="sampleCode.table.header"
+                :searchable="['variable','details']"
+                class="mt-5"
+                color="blue"
+            />
+        </template>
+    </app-layout>
 </template>
 
 <script>
@@ -84,66 +62,148 @@ import TInputText from "@/Components/Form/Inputs/TInputText";
 import GridSection from "@/Layouts/GridSection";
 import TButton from "@/Components/Button/TButton";
 import TUserCircleIcon from "@/Components/Icon/TUserCircleIcon";
+import TComponentColorSelector from "@/Components/Misc/TComponentColorSelector";
 
 export default {
-  name: "Table",
-  components: {TUserCircleIcon, TButton, GridSection, TInputText, TInputGroup, AppLayout, TTable, TAvatar,SshPre},
-  props: ['users'],
-  data() {
-    return {
-      tableColor: 'blue',
-      header: [
-          {label: 'Id', key: 'id', align: 'left'},
-          {label: 'Name', key: 'name', align: 'left'},
-          {label: 'Email', key: 'email', align: 'left'}
-      ],
-      sampleCode: {
-        html:
-            '<t-input-group label="Text Label" label-for="name4" sub-label="Cash only" sub-label-color="yellow" error="Please enter numerical value">\n' +
-            '    <t-input-text id="name4" placeholder="I\'m a placeholder text" value="Hi, I\'m a prefilled text"/>\n' +
-            '</t-input-group>',
-        js:
-            'import TInputGroup from "@/Components/Form/TInputGroup";\n' +
-            'import TInputText from "@/Components/Form/Inputs/TInputText";\n' +
-            '\n' +
-            'export default {\n' +
-            '  name: "InputGroup",\n' +
-            '  components: {SshPre,GridSection, TInputText, TInputGroup, ContentCard, AppLayout},\n' +
-            '  }',
-        table: {
-          header: [
-            {key: 'variable', label: 'Variable'},
-            {key: 'type', label: 'Value Type'},
-            {key: 'details', label: 'Details'},
-          ],
-          content: [
-            {variable: 'label', type: 'String', details: 'Your input label'},
-            {variable: 'label-for', type: 'String', details: 'Label identity indicator, you should enter input\'s id'},
-            {
-              variable: 'sub-label',
-              type: 'String',
-              details: 'If you want to show a second and small label, you can use'
-            },
-            {
-              variable: 'sub-label-color',
-              type: 'String',
-              details: 'You can change sub label color <br><b>Options:</b> red, blue, green, yellow, indigo, pink, gray'
-            },
-            {
-              variable: 'error',
-              type: 'String',
-              details: 'Every time it\'s text color is red, If It has a value, it shows'
+    name: "Table",
+    components: {
+        TComponentColorSelector,
+        TUserCircleIcon, TButton, GridSection, TInputText, TInputGroup, AppLayout, TTable, TAvatar, SshPre},
+    props: ['users'],
+    data() {
+        return {
+            tableColor: 'blue',
+            header: [
+                {label: 'Avatar', key: 'photo', align: 'center', width: '5'},
+                {label: 'Name', key: 'name', align: 'left'},
+                {label: 'Email', key: 'email', align: 'left'}
+            ],
+            sampleCode: {
+                html:
+                    '<t-table\n' +
+                    '    :content="content"\n' +
+                    '    :header="header"\n' +
+                    '    :searchable="[\'name\',\'email\']"\n' +
+                    '    color="blue"\n' +
+                    '    pagination-color="blue"\n' +
+                    '    :radius="3"\n' +
+                    '    :border="true"\n' +
+                    '    :zebra="true"\n' +
+                    '    :shadow="true"\n' +
+                    '>\n' +
+                    '     <!--If you wanto to show a advanced search fileds and button, you shoul use this template area-->\n' +
+                    '     <template #search>\n' +
+                    '         <grid-section col="12" gap="2">\n' +
+                    '             <!--Name-->\n' +
+                    '             <t-input-group class="col-span-12 md:col-span-6" label="Name">\n' +
+                    '                 <t-input-text/>\n' +
+                    '             </t-input-group>\n' +
+                    '             <!--Email-->\n' +
+                    '             <t-input-group class="col-span-12 md:col-span-6" label="Email">\n' +
+                    '                 <t-input-text/>\n' +
+                    '             </t-input-group>\n' +
+                    '         </grid-section>\n' +
+                    '    </template>\n' +
+                    '    <!--If you want to show somethings like that the button at the right, you should this template area-->\n' +
+                    '    <template #right>\n' +
+                    '        <t-button :link="route(\'form-structure\')" :radius="8">\n' +
+                    '            <t-user-circle-icon class="w-6 h-6"/>\n' +
+                    '            Add New User\n' +
+                    '        </t-button>\n' +
+                    '    </template>\n' +
+                    '    <!--If you want to customized content, you should this ScopeSlot template. You can change the photo with your filed\'s key name. You can use for more than fields-->\n' +
+                    '    <template #photo="{props}">\n' +
+                    '        <t-avatar :link="props.photo" :radius="8" :size="3"/>\n' +
+                    '    </template>' +
+                    '</t-table>',
+                js:
+                    'import TTable from "@/Components/Table/TTable";\n' +
+                    '\n' +
+                    'export default {\n' +
+                    '  name: "Table",\n' +
+                    '  components: {TTable},\n' +
+                    '  },\n' +
+                    '  data(){\n' +
+                    '    return {\n' +
+                    '      header: [\n' +
+                    '               /* key: You want to field\'s key of write to screen */\n' +
+                    '               /* label: It showing at the header area */\n' +
+                    '               /* position: Content align */\n' +
+                    '               /* width: Content width, if it is blank, it will be auto width */\n' +
+                    '              {key: \'photo\', label: \'Avatar\', position: \'center\', width: \'5\'},\n' +
+                    '              {key: \'name\', label: \'Name\', position: \'left\'},\n' +
+                    '              {key: \'email\', label: \'Email\', position: \'left\'},\n' +
+                    '              ],\n' +
+                    '     content: [\n' +
+                    '               /*id,name,email and status are a key. The status do not write to screen because it\'s not defined in the header. */\n' +
+                    '              {id: 1, name: \'Hamdi KAYA\', email: \'hamdi@tailadmin.dev\', photo: \'img/x2.jpg\'},\n' +
+                    '              {id: 2, name: \'Emre HAS\', email: \'emre@tailadmin.dev\', photo: \'img/x4.jpg\'},\n' +
+                    '              {id: 3, name: \'Zuhal TAŞÇI\', email: \'zuhal@tailadmin.dev\', photo: \'img/x1.jpg\'},\n' +
+                    '              ],\n' +
+                    '     }\n' +
+                    '   }',
+                table: {
+                    header: [
+                        {key: 'variable', label: 'Variable'},
+                        {key: 'type', label: 'Value Type'},
+                        {key: 'details', label: 'Details'},
+                    ],
+                    content: [
+                        {
+                            variable: ':content',
+                            type: 'Array',
+                            details: 'You should define array your content.'
+                        },
+                        {
+                            variable: ':header',
+                            type: 'Array',
+                            details: 'You should define array your content header.'
+                        },
+                        {
+                            variable: ':searchable',
+                            type: 'Array',
+                            details: 'It\'s you want to search in which the fields. You should write the field\'s key names. If it\'s blank, the search area will be hidden'
+                        },
+                        {
+                            variable: "color",
+                            type: "String",
+                            details: "Your table color theme.<br><b>Options Simple:</b> red, blue, green, yellow, indigo, pink, purple, gray, black, white,<br><b>Options Light:</b> light-red, light-blue, light-green, light-yellow, light-indigo, light-pink, light-purple, light-gray"
+                        },
+                        {
+                            variable: "pagination-color",
+                            type: "String",
+                            details: "Your table\'s pagination color theme. If you want to set different color than the table color, you can use it. If you didn't use it, the pagination color will be the table color<br><b>Options Simple:</b> red, blue, green, yellow, indigo, pink, purple, gray, black, white,<br><b>Options Light:</b> light-red, light-blue, light-green, light-yellow, light-indigo, light-pink, light-purple, light-gray"
+                        },
+                        {
+                            variable: ":radius",
+                            type: "Number",
+                            details: "<b>Options:</b> none, 1, 2, 3, 4, 5, 6, 7, 8. <b>Default:</b> 3"
+                        },
+                        {
+                            variable: ":border",
+                            type: "Number",
+                            details: "If you want to show a border between rows. <b>Options:</b> true, false. <b>Default:</b> true"
+                        },
+                        {
+                            variable: ":zebra",
+                            type: "Number",
+                            details: "If you want the table looks like zebra. <b>Options:</b> true, false. <b>Default:</b> true"
+                        },
+                        {
+                            variable: ":shadow",
+                            type: "Number",
+                            details: "If you want to show the show around the table <b>Options:</b> true, false. <b>Default:</b> true"
+                        },
+                    ]
+                }
             }
-          ]
         }
-      }
+    },
+    computed: {
+        selectorInnerStyle() {
+            return 'flex-shrink-0 w-full text-center bg-opacity-50 px-2 py-1 bg-white rounded-full font-semibold z-10'
+        }
     }
-  },
-  computed: {
-    selectorInnerStyle() {
-      return 'flex-shrink-0 w-full text-center bg-opacity-50 px-2 py-1 bg-white rounded-full font-semibold z-10'
-    }
-  }
 }
 </script>
 

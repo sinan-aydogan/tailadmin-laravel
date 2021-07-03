@@ -1,34 +1,47 @@
 <template>
-    <div>
+    <div class="w-full">
         <!--Top Bar-->
-        <div class="flex flex-col">
+        <div
+            v-if="$slots.search || searchable.length>0 || $slots.right"
+            class="flex flex-col">
             <!--Main Area-->
-            <div class="flex w-full justify-between my-2">
+            <div
+                class="flex flex-col md:flex-row justify-between my-2 gap-2 md:gap-0">
                 <!--Left Area-->
-                <div class="relative inline-flex items-center min-w-24">
+                <div v-if="searchable.length>0" class="relative inline-flex items-center min-w-24  select-none">
                     <t-search-icon class="absolute left-2 w-5 h-5 text-gray-300 overflow-hidden"/>
                     <!--Search Box-->
-                    <input v-model="search" @change="filteredContent" class="pl-8 w-full border-2 border-gray-300 rounded-full" placeholder="Simple Search" type="text">
+                    <input v-model="search"
+                           class="pl-8 w-full border-2 border-gray-300 rounded-full"
+                           placeholder="Simple Search"
+                           type="text"
+                           @change="filteredContent">
                     <!--PagedItem Count Selector-->
-                    <div v-if="pagination" @click="showPagedItemChooser = !showPagedItemChooser" class="absolute right-11 bg-gray-200 h-9 items-center justify-center flex w-8 cursor-pointer select-none hover:bg-blue-500 hover:text-white" title="Paginated item count">
+                    <div v-if="pagination"
+                         class="absolute right-11 bg-gray-200 h-9 items-center justify-center flex w-8 cursor-pointer hover:bg-blue-500 hover:text-white"
+                         title="Paginated item count"
+                         @click="showPagedItemChooser = !showPagedItemChooser">
                         {{ pagedItem }}
                     </div>
-                    <div v-if="showPagedItemChooser" class="absolute right-10 top-11 bg-white border rounded-md overflow-hidden">
+                    <div v-if="showPagedItemChooser"
+                         class="absolute right-10 top-11 bg-white border rounded-md overflow-hidden">
                         <ul>
-                            <li @click="pagedItem = i*5; showPagedItemChooser=false" v-for="i in 5" class="text-center bg-white hover:bg-gray-200 cursor-pointer px-2">{{ i*5 }}</li>
+                            <li v-for="i in 5" class="text-center bg-white hover:bg-gray-200 cursor-pointer px-2"
+                                @click="pagedItem = i*5; showPagedItemChooser=false">{{ i * 5 }}
+                            </li>
                         </ul>
                     </div>
 
                     <!--Advanced Search Trigger-->
                     <div
                         v-if="$slots.search"
-                        @click="showSearch = !showSearch"
-                        class="absolute right-1 px-2 flex cursor-pointer bg-gray-200 hover:bg-blue-500 hover:text-white items-center rounded-r-full h-9 w-9">
-                        <t-adjustments  class="w-5 h-5"/>
+                        class="absolute right-1 px-2 flex cursor-pointer bg-gray-200 hover:bg-blue-500 hover:text-white items-center rounded-r-full h-9 w-9"
+                        @click="showSearch = !showSearch">
+                        <t-adjustments class="w-5 h-5"/>
                     </div>
                 </div>
                 <!--Right Area-->
-                <div class="inline-flex items-center gap-2">
+                <div v-if="$slots.right" class="inline-flex justify-center md:justify-end items-center gap-2">
                     <slot name="right"/>
                 </div>
             </div>
@@ -42,16 +55,37 @@
             </transition>
         </div>
         <!--Table-->
-        <div class="rounded-md overflow-hidden shadow-lg">
+        <div :class="[
+            'overflow-x-auto scrollbar scrollbar-thin',
+            shadow && 'shadow-md',
+            this.color.includes('light') && 'border border-' + this.color.split('-')[1] + '-500',
+            radiusStyle,
+            scrollStyle
+            ]">
             <table class="w-full">
+                <!--Header-->
                 <thead>
+                <!--Header Row-->
                 <tr :class="headerStyle">
-                    <th v-for="(item,index) in header" :key="index"
-                        :class="['p-2',item.align ? 'text-'+item.align : 'text-left']">{{ item.label }}
+                    <!--Header Cell-->
+                    <th
+                        v-for="(item,index) in header"
+                        :key="index"
+                        :style="{width: item.width ? item.width+'%' : 'auto'}"
+                    >
+                        <div :class="[
+                            'flex px-4 py-2',
+                            item.align === 'right' ? 'justify-end' :
+                            item.align === 'center' ? 'justify-center' :
+                            'justify-start'
+                            ]">
+                            {{ item.label }}
+                        </div>
                     </th>
                 </tr>
                 </thead>
-                <tbody>
+                <!--Content-->
+                <tbody class="bg-white">
                 <tr v-if="paginatedContent.length === 0">
                     <td :class="noContentStyle" :colspan="header.length">
                         <div class="noContentStyle">
@@ -60,21 +94,45 @@
                         </div>
                     </td>
                 </tr>
+                <!--Content Row-->
                 <tr
                     v-for="(item,index) in paginatedContent"
                     :key="index"
-                    :class="['hover:bg-'+color+'-200',index%2 === 0 ? 'bg-white' : 'bg-'+color+'-100']">
-                    <td v-for="i in header.length" :key="i"
-                        :class="['p-4',header[i-1].align ? 'text-'+header[i-1].align : 'text-left']">
-                        <span v-if="!$scopedSlots[header[i-1].key]" v-html="item[header[i-1].key]"></span>
-                        <slot v-else :name="header[i-1].key" :props="item"></slot>
+                    :class="[
+                        'transition duration-300 ease-in-out',
+                        contentStyle,
+                        zebra && index%2 === 0 ? 'bg-opacity-0' : 'bg-opacity-10',
+                        paginatedContent.length > index+1 && border && 'border-b'
+                        ]">
+                    <!--Content Cell-->
+                    <td v-for="i in header.length" :key="i" class="whitespace-nowrap">
+                        <div :class="[
+                            'flex px-4 py-2',
+                            header[i-1].align === 'right' ? 'justify-end' :
+                            header[i-1].align === 'center' ? 'justify-center' :
+                            'justify-start'
+                        ]">
+                            <!--SlotScope Content-->
+                            <span
+                                v-if="!$scopedSlots[header[i-1].key]"
+                                v-html="item[header[i-1].key]"
+                            />
+                            <!--Simple Content-->
+                            <slot
+                                v-else
+                                :name="header[i-1].key"
+                                :props="item"
+                            />
+
+                        </div>
                     </td>
                 </tr>
                 </tbody>
             </table>
         </div>
         <div v-if="filteredContent.length > pagedItem" class="flex py-4 justify-center">
-            <t-paginate :range="5" :total="Math.ceil(filteredContent.length/pagedItem)" @active="page = $event"/>
+            <t-paginate v-model="page" :color="paginationStyle" :range="5"
+                        :total="Math.ceil(filteredContent.length/pagedItem)"/>
         </div>
     </div>
 </template>
@@ -91,6 +149,7 @@ import TCollection from "@/Components/Icon/TCollectionIcon";
 import TPaginate from "@/Components/Paginate/TPaginate";
 import TAdjustments from "@/Components/Icon/TAdjustmentsIcon";
 import TSearchIcon from "@/Components/Icon/TSearchIcon";
+import {radiusSizeMixin} from "@/Mixins/radiusSizeMixin";
 
 library.add(faInfoCircle)
 
@@ -99,7 +158,9 @@ export default {
     components: {
         TSearchIcon,
         TAdjustments,
-        TPaginate, TCollection, TInputDropdownItem, TInputDropdown, InputText, TInputGroup, TSearchCircle},
+        TPaginate, TCollection, TInputDropdownItem, TInputDropdown, InputText, TInputGroup, TSearchCircle
+    },
+    mixins: [radiusSizeMixin],
     props: {
         header: {
             type: Array
@@ -111,12 +172,28 @@ export default {
             type: String,
             default: 'white'
         },
+        paginationColor: {
+            type: String,
+        },
         pagination: {
             type: Boolean,
             default: false
         },
         searchable: {
-            type: Array
+            type: Array,
+            default: []
+        },
+        zebra: {
+            type: Boolean,
+            default: true
+        },
+        border: {
+            type: Boolean,
+            default: true
+        },
+        shadow: {
+            type: Boolean,
+            default: true
         }
     },
     data() {
@@ -125,20 +202,73 @@ export default {
             showSearch: false,
             showPagedItemChooser: false,
             pagedItem: this.pagination ? 5 : 10,
-            page:1
+            page: 1
         }
     },
     computed: {
         headerStyle() {
-            let headerStyle;
-            if (this.color === 'white') {
-                headerStyle = 'bg-white'
+            /*Color Styles*/
+            /*Solid*/
+            if (!this.color.includes('-') && this.color !== 'black' && this.color !== 'white') {
+                return 'bg-' + this.color + '-500 bg-opacity-95 text-white';
             } else if (this.color === 'black') {
-                headerStyle = 'bg-black text-white'
-            } else {
-                headerStyle = 'bg-' + this.color + '-200'
+                return 'bg-black text-white'
+            } else if (this.color === 'white') {
+                return 'bg-white border-b-2'
             }
-            return headerStyle
+            /*Light*/
+            if (this.color.includes('light')) {
+                return 'bg-' + this.color.split('-')[1] + '-50 text-' + this.color.split('-')[1] + '-600 border-'+this.color.split('-')[1]+'-500 border-b-2';
+            }
+            /*Gradient*/
+            if (this.color.includes('gradient')) {
+                return 'bg-gradient-to-r from-' + this.color.split('-')[1] + '-500 to-' + this.color.split('-')[3] + '-700 text-white';
+            }
+        },
+        contentStyle() {
+            /*Color Styles*/
+            /*Solid*/
+            if (!this.color.includes('-') && this.color !== 'black' && this.color !== 'white') {
+                return 'bg-' + this.color + '-500 hover:bg-' + this.color + '-300 border-' + this.color + '-200';
+            } else if (this.color === 'black') {
+                return 'bg-black hover:bg-gray-900 hover:text-white'
+            } else if (this.color === 'white') {
+                return 'bg-white border-gray-200 hover:bg-gray-200'
+            }
+            /*Light*/
+            if (this.color.includes('light')) {
+                return 'bg-' + this.color.split('-')[1] + '-200 hover:bg-' + this.color.split('-')[1] + '-300 border-' + this.color.split('-')[1] + '-300 text-' + this.color.split('-')[1] + '-600';
+            }
+            /*Gradient*/
+            if (this.color.includes('gradient')) {
+                return 'bg-gradient-to-r from-' + this.color.split('-')[1] + '-500 to-' + this.color.split('-')[3] + '-700 text-white';
+            }
+        },
+        scrollStyle() {
+            /*Color Styles*/
+            /*Solid*/
+            if (!this.color.includes('-') && this.color !== 'black' && this.color !== 'white') {
+                return 'scrollbar-thumb-' + this.color + '-500 scrollbar-track-' + this.color + '-300';
+            } else if (this.color === 'black') {
+                return 'scrollbar-thumb-gray-700 scrollbar-track-gray-300';
+            } else if (this.color === 'white') {
+                return 'scrollbar-thumb-gray-500 scrollbar-track-gray-300';
+            }
+            /*Light*/
+            if (this.color.includes('light')) {
+                return 'scrollbar-thumb-' + this.color.split('-')[1] + '-500 scrollbar-track-' + this.color.split('-')[1] + '-300';
+            }
+            /*Gradient*/
+            if (this.color.includes('gradient')) {
+                return 'scrollbar-thumb-' + this.color.split('-')[1] + '-500 scrollbar-track-' + this.color.split('-')[1] + '-300';
+            }
+        },
+        paginationStyle() {
+            if (this.color && !this.paginationColor) {
+                return this.color
+            } else {
+                return this.paginationColor
+            }
         },
         noContentStyle() {
             let noContentStyle;
@@ -153,12 +283,12 @@ export default {
         },
         paginatedContent() {
             let content = [...this.finalContent]
-            return content.slice((this.page-1)*this.pagedItem, this.pagedItem * this.page)
+            return content.slice((this.page - 1) * this.pagedItem, this.pagedItem * this.page)
         },
         filteredContent() {
-            return this.content.filter((item)=>{
+            return this.content.filter((item) => {
                 let query;
-                for(let i=0; this.searchable.length>i; i++){
+                for (let i = 0; this.searchable.length > i; i++) {
                     query = item[this.searchable[i]].toLowerCase().includes(this.search.toLowerCase()) || query
 
                 }
@@ -167,9 +297,9 @@ export default {
             })
         },
         finalContent() {
-            if(this.searchable.length>0 && this.searchable){
+            if (this.searchable.length > 0 && this.searchable) {
                 return this.filteredContent
-            }else{
+            } else {
                 return this.content
             }
         }

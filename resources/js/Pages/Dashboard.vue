@@ -129,15 +129,21 @@
                             </t-list>
                         </template>
                     </t-content-card>
-                    <!--Table-->
-                    <t-table class="col-span-2" :content="tableContent" :header="tableHeader" :searchable="['name']" color="gray" se>
-                        <template #status="{props}">
-                            <div class="flex justify-center">
-                                <t-progress :value="props.status" color="red"/>
-                            </div>
+                    <t-content-card :width="2">
+                        <template #title>
+                            Active Projects
                         </template>
-
-                    </t-table>
+                        <template #content>
+                            <!--Table-->
+                            <t-table :content="tableContent" :header="tableHeader" color="white" :radius="0" :shadow="false">
+                                <template #status="{props}">
+                                    <div class="flex justify-center">
+                                        <t-progress :value="props.status" color="red"/>
+                                    </div>
+                                </template>
+                            </t-table>
+                        </template>
+                    </t-content-card>
                 </grid-section>
                 <!--Alerts-->
                 <grid-section :col="3" :gap="4">
