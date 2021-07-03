@@ -3,13 +3,14 @@
         <template #header>Progress Bars</template>
         <template #subHeader>Loading, graphical indicator and more than</template>
         <template #default>
-            <grid-section col="1">
-                <t-content-card width="1">
+            <grid-section :col="1">
+                <t-content-card :width="1">
                     <template #title>Simple and colorful</template>
                     <template #subTitle>8 different color and 5 different height</template>
                     <template #content>
                         <div class="flex flex-col w-full gap-4">
-                            <t-progress :height="1" :value="5" title="Performance"/>
+                            <input class="form-input rounded-md" type="number" v-model="counter"/>
+                            <t-progress :height="1" :value="Number(counter)" title="Performance"/>
                             <t-progress :height="2" :value="25" color="red" title="Claim"/>
                             <t-progress :height="3" :value="50" color="yellow" title="Cost"/>
                             <t-progress :height="4" :value="75" color="blue" title="Man Hour"/>
@@ -44,6 +45,7 @@ export default {
     components: {TProgress, TContentCard, GridSection, AppLayout, SshPre, TTable},
     data() {
         return {
+            counter:5,
             sampleCode: {
                 html:
                     '<t-progress title="Man Hour" :value="75" color="blue" :height="4"/>',
@@ -81,7 +83,14 @@ export default {
                             variable: ":height",
                             type: "Number",
                             details: "It's line height <br><b>Options:</b> 1,2,3,4,5. <b>Default:</b> 3"
-                        }
+                        },
+
+                        {
+                            variable: ":timer",
+                            type: "Number",
+                            details:
+                                "It is animation'\s duration. This value is millisecond. <b>Default:</b> 20"
+                        },
                     ]
                 }
             }
