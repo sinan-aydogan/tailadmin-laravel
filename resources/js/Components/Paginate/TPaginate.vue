@@ -20,7 +20,7 @@
                 activePage === item ? activePaginateStyle : paginateStyle,
                 radiusStyle
                 ]"
-            @click="activePage = item; $emit('active', item)">
+            @click="activePage = item; $emit('input', item)">
             {{ item }}
 
         </div>
@@ -52,6 +52,9 @@ export default {
             type: Number,
             default: 1
         },
+        value: {
+            type: Number,
+        },
         total: {
             type: Number,
         },
@@ -70,20 +73,20 @@ export default {
     },
     data() {
         return {
-            activePage: this.active,
+            activePage: this.value ? this.value : this.active,
         }
     },
     methods: {
         nextPage() {
             if (this.total > this.activePage) {
                 this.activePage++;
-                this.$emit('active', this.activePage)
+                this.$emit('input', this.activePage)
             }
         },
         previousPage() {
             if (this.activePage > 1) {
                 this.activePage--;
-                this.$emit('active', this.activePage)
+                this.$emit('input', this.activePage)
             }
         }
     },

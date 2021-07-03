@@ -155,7 +155,7 @@
 /*Pagination*/
 /*Pagination Container*/
 .pagination-container {
-    @apply inline-flex items-center justify-center gap-2
+    @apply inline-flex items-center justify-center gap-2 flex-shrink-0
 }
 /*Pagination Item*/
 .pagination-item {
