@@ -218,7 +218,7 @@ export const leftMenuItemsMixin = {
                             linkType: "route",
                             type: "standard",
                             activeKey: ["table"],
-                        },
+                        },/* TODO: Toaster Feature
                         {
                             label: "Toastr",
                             icon: "",
@@ -226,7 +226,7 @@ export const leftMenuItemsMixin = {
                             linkType: "route",
                             type: "standard",
                             activeKey: ["toastr"],
-                        },
+                        },*/
                         {
                             label: "Tooltips",
                             icon: "",
@@ -302,7 +302,7 @@ export const leftMenuItemsMixin = {
                             linkType: "route",
                             type: "standard",
                             activeKey: ["input-group"],
-                        },
+                        },/*
                         {
                             label: "Simple Fields",
                             icon: "",
@@ -310,7 +310,7 @@ export const leftMenuItemsMixin = {
                             linkType: "route",
                             type: "standard",
                             activeKey: ["form-simple-input-fields"],
-                        },
+                        },*/
                         {
                             label: "Repeatable Fields",
                             icon: "retweet",
@@ -342,7 +342,7 @@ export const leftMenuItemsMixin = {
                             linkType: "route",
                             type: "standard",
                             activeKey: ["select-input-field"],
-                        },
+                        },/* TODO: Tag Input Feature
                         {
                             label: "Tags Input",
                             icon: "tags",
@@ -350,7 +350,8 @@ export const leftMenuItemsMixin = {
                             linkType: "route",
                             type: "standard",
                             activeKey: ["tag-input-field"],
-                        },
+                        },*/
+                        /* TODO: Validation Feature
                         {
                             label: "Validation",
                             icon: "",
@@ -358,7 +359,7 @@ export const leftMenuItemsMixin = {
                             linkType: "route",
                             type: "standard",
                             activeKey: ["form-validation"],
-                        },
+                        },*/
                     ]
                 },
             ],
