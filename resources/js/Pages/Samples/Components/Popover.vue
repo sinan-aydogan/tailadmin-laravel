@@ -3,8 +3,8 @@
     <template #header>Popovers</template>
     <template #subHeader>Simple and casual pops</template>
     <template #default>
-        <grid-section col="2" gap="4">
-            <t-content-card width="1">
+        <grid-section :col="2" :gap="4">
+            <t-content-card :width="1">
                 <template #title>Popover Title and Position</template>
                 <template #subTitle>Left, Top, Right and Bottom Positions</template>
                 <template #content>
@@ -32,7 +32,7 @@
                     </div>
                 </template>
             </t-content-card>
-            <t-content-card width="1">
+            <t-content-card :width="1">
                 <template #title>Popover without Title</template>
                 <template #subTitle>Left, Top, Right and Bottom Positions</template>
                 <template #content>
