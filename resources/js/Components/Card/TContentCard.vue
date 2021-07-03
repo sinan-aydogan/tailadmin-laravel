@@ -6,7 +6,7 @@
             <slot name="title"></slot>
         </div>
         <!--Card Subtitle-->
-        <div class="text-sm pb-2">
+        <div class="text-sm pb-2" v-if="$slots.subTitle">
             <slot name="subTitle"></slot>
         </div>
         <!--Separator-->
