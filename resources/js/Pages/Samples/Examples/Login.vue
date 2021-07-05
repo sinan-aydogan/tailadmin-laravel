@@ -53,9 +53,11 @@ export default {
                     '         :radius="5"\n' +
                     '         bg-color="pink"\n' +
                     '         bg-image="/img/samples/bgFakurianDesign-nY14Fs8pxT8-unsplash.jpg"\n' +
-                    '         button-color="pink"\n' +
+                    '         login-button-color="pink"\n' +
+                    '         register-button-color="pink"\n' +
                     '        :canResetPassword="canResetPassword"\n' +
                     '        :status="status"\n' +
+                    '        :register-button="false"\n' +
                     '>\n' +
                     '    <!--Logo-->\n' +
                     '    <template #logo>\n' +
@@ -118,9 +120,14 @@ export default {
                             details: "<b>Notice:</b> You should use either bg-color or bg-image. You can use initial or external image links"
                         },
                         {
-                            variable: "button-color",
+                            variable: "login-button-color",
                             type: "String",
                             details: "Your submit button\'s color theme.<br><b>Options Simple:</b> red, blue, green, yellow, indigo, pink, purple, gray, black, white,<br><b>Options Light:</b> light-red, light-blue, light-green, light-yellow, light-indigo, light-pink, light-purple, light-gray"
+                        },
+                        {
+                            variable: "register-button-color",
+                            type: "String",
+                            details: "Your register button\'s color theme.<br><b>Options Simple:</b> red, blue, green, yellow, indigo, pink, purple, gray, black, white,<br><b>Options Light:</b> light-red, light-blue, light-green, light-yellow, light-indigo, light-pink, light-purple, light-gray"
                         },
                         {
                             variable: ":canResetPassword",
@@ -131,6 +138,11 @@ export default {
                             variable: ":status",
                             type: "String",
                             details: "If you want to feedback, you can use this prop. It'll showing in the greeting area."
+                        },
+                        {
+                            variable: ":register-button",
+                            type: "Boolean",
+                            details: "If you want to show a register button on the login form, you can use this prop.<br><b>Options:</b> true, false. <b>Default:</b> true"
                         },
                     ]
                 }
