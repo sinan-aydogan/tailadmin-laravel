@@ -218,7 +218,7 @@ export const leftMenuItemsMixin = {
                             linkType: "route",
                             type: "standard",
                             activeKey: ["table"],
-                        },/* TODO: Toaster Feature
+                        },/* TODO: Toastr Feature
                         {
                             label: "Toastr",
                             icon: "",
@@ -302,7 +302,7 @@ export const leftMenuItemsMixin = {
                             linkType: "route",
                             type: "standard",
                             activeKey: ["input-group"],
-                        },/*
+                        },
                         {
                             label: "Simple Fields",
                             icon: "",
@@ -310,7 +310,7 @@ export const leftMenuItemsMixin = {
                             linkType: "route",
                             type: "standard",
                             activeKey: ["form-simple-input-fields"],
-                        },*/
+                        },
                         {
                             label: "Repeatable Fields",
                             icon: "retweet",
