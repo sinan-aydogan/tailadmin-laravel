@@ -5,28 +5,33 @@
     <template #default>
       <grid-section :col="2" :gap="2">
         <!--Avatar Radius Card-->
-        <t-content-card :width="1">
+        <t-content-card :width="1" color="gradient-gray-to-gray">
           <template #title>Avatar Radius</template>
           <template #subTitle> 9 different radius sizes</template>
           <template #content>
-            <div class="flex flex-row gap-4">
-              <t-avatar/>
-              <t-avatar v-for="i in 8" :key="i" :radius="i"/>
+            <div class="flex flex-wrap gap-4">
+              <t-avatar :radius="0" src="https://i.pravatar.cc/300?img=0"/>
+              <t-avatar
+                  v-for="i in 8"
+                  :key="i"
+                  :radius="i"
+                  :src="'https://i.pravatar.cc/300?img='+i"
+              />
             </div>
           </template>
         </t-content-card>
         <!--Avatar Group-->
         <t-content-card :width="1">
           <template #title>Avatar Group - Team Members</template>
-          <template #subTitle>Best for lists of project members</template>
+          <template #subTitle>Best for lists of project members. The avatars gets from <a href="https://pravatar.cc/" target="_blank">https://pravatar.cc/</a></template>
           <template #content>
-            <div class="flex flex-row gap-4">
+            <div class="flex flex-wrap gap-4">
               <t-avatar-group>
                 <t-avatar
                     v-for="i in 8"
                     :radius="8"
-                    :team="true"
                     :key="i"
+                    :src="'https://i.pravatar.cc/300?img='+i"
                 />
               </t-avatar-group>
             </div>
@@ -37,12 +42,13 @@
           <template #title>Avatar Sizes</template>
           <template #subTitle>8 different sizes</template>
           <template #content>
-            <div class="flex flex-row items-end gap-x-2">
+            <div class="flex flex-wrap items-end gap-4">
               <t-avatar
                   v-for="i in 8"
                   :radius="3"
                   :size="i"
                   :key="i"
+                  :src="'https://i.pravatar.cc/300?img='+i"
               />
             </div>
           </template>
@@ -52,7 +58,7 @@
           <template #title> Avatar Indicator</template>
           <template #subTitle> 8 different colors and 4 different positions</template>
           <template #content>
-            <div class="flex flex-row items-end gap-2">
+            <div class="flex flex-wrap items-end gap-4">
               <t-avatar
                   :radius="1"
                   :size="1"
@@ -70,6 +76,7 @@
                     label: 2,
                     position: 'lt'
                   }"
+                  src="https://i.pravatar.cc/300?img=0"
               />
               <t-avatar
                   :radius="3"
@@ -78,6 +85,7 @@
                     color: 'green',
                     position: 'rb'
                   }"
+                  src="https://i.pravatar.cc/300?img=1"
               />
               <t-avatar
                   :radius="4"
@@ -87,6 +95,7 @@
                     label: 14,
                     position: 'lb'
                   }"
+                  src="https://i.pravatar.cc/300?img=2"
               />
               <t-avatar
                   :radius="5"
@@ -96,6 +105,7 @@
                     label: 7,
                     position: 'rt'
                   }"
+                  src="https://i.pravatar.cc/300?img=3"
               />
               <t-avatar
                   :radius="6"
@@ -105,6 +115,7 @@
                     label: 85,
                     position: 'rt'
                   }"
+                  src="https://i.pravatar.cc/300?img=4"
               />
               <t-avatar
                   :radius="7"
@@ -114,6 +125,7 @@
                     label: 12,
                     position: 'lb'
                   }"
+                  src="https://i.pravatar.cc/300?img=5"
               />
               <t-avatar
                   :radius="8"
@@ -123,6 +135,7 @@
                     label: 2,
                     position: 'rb'
                   }"
+                  src="https://i.pravatar.cc/300?img=6"
               />
             </div>
           </template>
@@ -168,9 +181,9 @@ export default {
               '<t-avatar src="/img/samples/dummyAvatar.svg" :size="5" :radius="8" :indicator="{color: \'blue\', label: \'5\', position: \'lb\'}" />\n\n' +
               '<!--For Avatar Group-->\n\n' +
               '<t-avatar-group>\n' +
-              '    <t-avatar src="/img/samples/dummyAvatar.svg" :size="5" :radius="8" :team="true"/>\n' +
-              '    <t-avatar src="/img/samples/dummyAvatar.svg" :size="5" :radius="8" :team="true"/>\n' +
-              '    <t-avatar src="/img/samples/dummyAvatar.svg" :size="5" :radius="8" :team="true"/>\n' +
+              '    <t-avatar src="/img/samples/dummyAvatar.svg" :size="5" :radius="8"/>\n' +
+              '    <t-avatar src="/img/samples/dummyAvatar.svg" :size="5" :radius="8"/>\n' +
+              '    <t-avatar src="/img/samples/dummyAvatar.svg" :size="5" :radius="8"/>\n' +
               '</t-avatar-group>',
         js:
             'import TAvatar from "@/Components/Avatar/TAvatar";\n' +
@@ -209,11 +222,6 @@ export default {
               variable: ":radius",
               type: "Number",
               details: "<b>Options:</b> none, 1, 2, 3, 4, 5, 6, 7, 8"
-            },
-            {
-              variable: ":team",
-              type: "Boolean",
-              details: "Only for avatar lists in t-avatar component not t-avatar-group.<br><b>Options:</b> true"
             },
             {
               variable: ":indicator=\"{color:' ',label:' ',position:' '}\"",
