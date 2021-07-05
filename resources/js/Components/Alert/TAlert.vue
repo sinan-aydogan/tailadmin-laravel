@@ -14,10 +14,10 @@
                 <slot name="icon"></slot>
             </div>
             <!--Alert Content-->
-            <div class="flex flex-grow flex-shrink-0 whitespace-normal">
-                <span>
-                    <slot></slot>
-                </span>
+            <div class="flex flex-wrap flex-grow whitespace-normal">
+              <span>
+                <slot></slot>
+              </span>
             </div>
             <!--Close Icon-->
             <span v-if="closeable" class="alert-close" @click="close">

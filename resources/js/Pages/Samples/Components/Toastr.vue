@@ -13,7 +13,7 @@
                     </t-input-group>
                     <t-input-group label-for="timer" label="Timer" class="col-span-12 md:col-span-6">
                         <t-input-select>
-                            <t-input-select-item v-for="item in colorOptions">
+                            <t-input-select-item v-for="item in colorOptions" :key="item.key">
 
                             </t-input-select-item>
                         </t-input-select>

@@ -114,7 +114,7 @@ export default {
                     '    <!--If you want to customized content, you should this ScopeSlot template. You can change the photo with your filed\'s key name. You can use for more than fields-->\n' +
                     '    <template #photo="{props}">\n' +
                     '        <t-avatar :link="props.photo" :radius="8" :size="3"/>\n' +
-                    '    </template>' +
+                    '    </template>\n' +
                     '</t-table>',
                 js:
                     'import TTable from "@/Components/Table/TTable";\n' +

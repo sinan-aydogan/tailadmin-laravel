@@ -39,7 +39,7 @@ export default {
             type: Number,
             default: 3
         },
-        timer: {
+        speed: {
             type: Number,
             default: 20
         }
@@ -71,7 +71,7 @@ export default {
                     }else{
                         vm.counterValue++
                     }
-                },vm.timer)
+                },vm.speed)
             },
             immediate: true,
         }

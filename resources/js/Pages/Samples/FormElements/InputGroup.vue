@@ -5,7 +5,7 @@
     </template>
     <template #default>
       <grid-section col="4" gap="2">
-        <content-card radius="3" width="1">
+        <content-card :radius="3" :width="1">
           <template #title>
             With Label
           </template>
@@ -16,7 +16,7 @@
           </template>
         </content-card>
 
-        <content-card radius="3" width="1">
+        <content-card :radius="3" :width="1">
           <template #title>
             With Sub Label
           </template>
@@ -27,7 +27,7 @@
           </template>
         </content-card>
 
-        <content-card radius="3" width="1">
+        <content-card :radius="3" :width="1">
           <template #title>
             With Colorful Sub Label
           </template>
@@ -38,7 +38,7 @@
           </template>
         </content-card>
 
-        <content-card radius="3" width="1">
+        <content-card :radius="3" :width="1">
           <template #title>
             With Error Message
           </template>
@@ -77,7 +77,7 @@ export default {
       sampleCode: {
         html:
             '<t-input-group label="Text Label" label-for="name4" sub-label="Cash only" sub-label-color="yellow" error="Please enter numerical value">\n' +
-            '    <t-input-text id="name4" placeholder="I\'m a placeholder text" value="Hi, I\'m a prefilled text"/>\n' +
+            '    <t-input-text id="name" placeholder="I\'m a placeholder text" value="Hi, I\'m a prefilled text" type="text"/>\n' +
             '</t-input-group>',
         js:
             'import TInputGroup from "@/Components/Form/TInputGroup";\n' +
@@ -110,6 +110,11 @@ export default {
               variable: 'error',
               type: 'String',
               details: 'Every time it\'s text color is red, If It has a value, it shows'
+            },
+            {
+              variable: 'type',
+              type: 'String',
+              details: '<b>Default:</b> text<br> <b>Options:</b> <a target="_blank" href="https://www.w3schools.com/tags/tag_input.asp">Type List</a> '
             }
           ]
         }

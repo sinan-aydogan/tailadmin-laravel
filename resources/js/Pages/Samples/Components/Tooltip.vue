@@ -3,8 +3,8 @@
         <template #header>Tooltips</template>
         <template #subHeader>Smart and fast infos in the line</template>
         <template #default>
-            <grid-section col="1" gap="4">
-                <t-content-card width="1">
+            <grid-section :col="1" :gap="4">
+                <t-content-card :width="1">
                     <template #title>Simple</template>
                     <template #subTitle>Left, Top, Right and Bottom Positions</template>
                     <template #content>

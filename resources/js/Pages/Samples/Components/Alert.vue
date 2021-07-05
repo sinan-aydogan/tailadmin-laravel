@@ -10,7 +10,7 @@
                     <template #subTitle>
                     </template>
                     <template #content>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 w-full">
                             <!--Red-Deleted-->
                             <t-alert color="red">
                                 <t-trash-icon slot="icon" class="w-6 h-6"/>

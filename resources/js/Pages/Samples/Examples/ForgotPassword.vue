@@ -1,7 +1,7 @@
 <template>
     <app-layout>
         <template #header>Forgot Password Screen</template>
-        <template #subHeader></template>
+        <template #subHeader>You should make to changes in the Resources/Js/Pages/Auth/ForgotPassword.vue</template>
         <template #default>
             <grid-section col="3" gap="4">
                 <!--Demo 1-->

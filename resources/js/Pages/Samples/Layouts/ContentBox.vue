@@ -148,19 +148,19 @@
 
                         </div>
                         <ul class="flex w-full justify-center gap-2 mt-4">
-                            <li :class="cardWidth == 1 ? 'bg-green-400 text-white border-green-500 font-semibold' : 'bg-white border-gray-400'"
+                            <li :class="cardWidth === 1 ? 'bg-green-400 text-white border-green-500 font-semibold' : 'bg-white border-gray-400'"
                                 class="border p-2 w-7 h-7 rounded-full items-center flex justify-center cursor-pointer"
-                                @click="cardWidth='1'">
+                                @click="cardWidth=1">
                                 1
                             </li>
-                            <li :class="cardWidth == 2 ? 'bg-green-400 text-white border-green-500 font-semibold' : 'bg-white border-gray-400'"
+                            <li :class="cardWidth === 2 ? 'bg-green-400 text-white border-green-500 font-semibold' : 'bg-white border-gray-400'"
                                 class="border bp-2 w-7 h-7 rounded-full items-center flex justify-center cursor-pointer"
-                                @click="cardWidth='2'">
+                                @click="cardWidth=2">
                                 2
                             </li>
-                            <li :class="cardWidth == 3 ? 'bg-green-400 text-white border-green-500 font-semibold' : 'bg-white border-gray-400'"
+                            <li :class="cardWidth === 3 ? 'bg-green-400 text-white border-green-500 font-semibold' : 'bg-white border-gray-400'"
                                 class="border bg-p-2 w-7 h-7 rounded-full items-center flex justify-center cursor-pointer"
-                                @click="cardWidth='3'">
+                                @click="cardWidth=3">
                                 3
                             </li>
                         </ul>
@@ -194,6 +194,7 @@ export default {
             cardWidth: 3,
             sampleCode: {
                 html:
+                    '<!--You prefer use to this component in the grid component-->\n' +
                     '<t-content-card\n' +
                     '    :color="gradient-purple-to-pink"\n' +
                     '    :radius="3"\n' +
@@ -222,7 +223,7 @@ export default {
                     header: [
                         {key: 'variable', label: 'Variable'},
                         {key: 'type', label: 'Value Type'},
-                        {key: 'details', label: 'Details'},
+                        {key: 'details', label: 'Details', width:60},
                     ],
                     content: [
                         {variable: 'show', type: 'Boolean', details: 'You should define a variable in the data and connect to this data'},
@@ -241,17 +242,17 @@ export default {
                         {
                             variable: ":line",
                             type: "Number",
-                            details: "If you want to separate the header and the content area with a line, You can use to this variable<b>Options:</b> true, false<b> Default:</b> false"
+                            details: "If you want to separate the header and the content area with a line, You can use to this variable<br><b>Options:</b> true, false<b> Default:</b> false"
                         },
                         {
                             variable: ":border",
                             type: "Number",
-                            details: "If you want to show a border around of the content box, You can use to this variable<b>Options:</b> true, false<b> Default:</b> false"
+                            details: "If you want to show a border around of the content box, You can use to this variable<br><b>Options:</b> true, false<b> Default:</b> false"
                         },
                         {
                             variable: ":width",
                             type: "Number",
-                            details: "The width of the content box. <b>Options:</b> From 1 to maximum of column size. Example If you use to grid component, you can give to maximum value that col size of the grid. If you don'\ use the grid component, your content area 12 columns and you can give the value from 1 to 12"
+                            details: "The width of the content box. <br><b>Options:</b> From 1 to maximum of column size. Example If you use to grid component, you can give to maximum value that col size of the grid. If you don'\ use the grid component, your content area 12 columns and you can give the value from 1 to 12"
                         },
 
                     ]

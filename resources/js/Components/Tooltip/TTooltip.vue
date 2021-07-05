@@ -70,9 +70,6 @@ export default {
         outside() {
             this.show = false
         }
-    },
-    mounted() {
-        console.log(this.$slots.mainContent[0])
     }
 }
 </script>

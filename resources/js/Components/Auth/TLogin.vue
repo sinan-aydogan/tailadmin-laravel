@@ -84,6 +84,7 @@
                                 :color="registerButtonColor"
                                 :radius="3"
                                 :link="route('register')"
+                                type="button"
                             >
                                 Register
                             </t-button>

@@ -75,7 +75,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function (){
     Route::get('table',function (){return Inertia::render('Samples/Components/Table',[
         'users' => \App\Models\User::all()
     ]);})->name('table');
-    Route::get('toastr',function (){return Inertia::render('Samples/Components/Toastr');})->name('toastr');
+
+    /*TODO: Toastr Feature
+    Route::get('toastr',function (){return Inertia::render('Samples/Components/Toastr');})->name('toastr');*/
     Route::get('tooltip',function (){return Inertia::render('Samples/Components/Tooltip');})->name('tooltip');
     // Layout Pages
     Route::get('layout-structure',function (){return Inertia::render('Samples/Layouts/LayoutStructure');})->name('layout-structure');

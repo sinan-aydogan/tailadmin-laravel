@@ -138,7 +138,7 @@
                             <t-table :content="tableContent" :header="tableHeader" color="white" :radius="0" :shadow="false">
                                 <template #status="{props}">
                                     <div class="flex justify-center">
-                                        <t-progress :value="props.status" color="red"/>
+                                        <t-progress :value="props.status" color="green"/>
                                     </div>
                                 </template>
                             </t-table>

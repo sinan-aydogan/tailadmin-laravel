@@ -2,12 +2,12 @@ require('./bootstrap');
 
 // Import modules...
 import Vue from 'vue';
-import { App as InertiaApp, plugin as InertiaPlugin } from '@inertiajs/inertia-vue';
+import {App as InertiaApp, plugin as InertiaPlugin} from '@inertiajs/inertia-vue';
 import PortalVue from 'portal-vue';
 
 // Fontawesome
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import {library} from '@fortawesome/fontawesome-svg-core'
+import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome'
 import {faCss3, faJs, faVuejs} from "@fortawesome/free-brands-svg-icons";
 import {
     faRocket,
@@ -39,11 +39,12 @@ import {
     faAngleDoubleRight,
     faCheck, faMinusCircle, faInfo, faSave
 } from '@fortawesome/free-solid-svg-icons'
-library.add(faRocket,faDotCircle,faWindowRestore,faSave,faEdit,faJs,faCss3,faInfo,faCalendarAlt,faVuejs,faEnvelope,faTasks,faWindowMaximize,faChartBar,faChevronDown,faCode,faAngleDown,faAngleUp,faChartBar,faLayerGroup,faGripHorizontal,faAngleLeft,faClock,faRetweet,faTags,faTv,faPlug,faTable,faShoppingBag,faLiraSign,faTrash,faPlusCircle,faAngleDoubleRight,faCheck,faMinusCircle)
+
+library.add(faRocket, faDotCircle, faWindowRestore, faSave, faEdit, faJs, faCss3, faInfo, faCalendarAlt, faVuejs, faEnvelope, faTasks, faWindowMaximize, faChartBar, faChevronDown, faCode, faAngleDown, faAngleUp, faChartBar, faLayerGroup, faGripHorizontal, faAngleLeft, faClock, faRetweet, faTags, faTv, faPlug, faTable, faShoppingBag, faLiraSign, faTrash, faPlusCircle, faAngleDoubleRight, faCheck, faMinusCircle)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 
-Vue.mixin({ methods: { route } });
+Vue.mixin({methods: {route}});
 Vue.use(InertiaPlugin);
 Vue.use(PortalVue);
 

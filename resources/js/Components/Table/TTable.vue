@@ -105,7 +105,7 @@
                         paginatedContent.length > index+1 && border && 'border-b'
                         ]">
                     <!--Content Cell-->
-                    <td v-for="i in header.length" :key="i" class="whitespace-nowrap">
+                    <td v-for="i in header.length" :key="i" class="whitespace-normal">
                         <div :class="[
                             'flex px-4 py-2',
                             header[i-1].align === 'right' ? 'justify-end' :
@@ -181,7 +181,7 @@ export default {
         },
         searchable: {
             type: Array,
-            default: []
+            default: Array
         },
         zebra: {
             type: Boolean,
