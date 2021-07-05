@@ -2,7 +2,13 @@
     <div>
         <!--Dropdown Item-->
         <div v-if="item.type === 'dropdown'"
-             @click="showingSubMenu = !showingSubMenu ; $emit('showLeftMenuEmit')"
+             @click="
+             showingLeftMenu === 'false' ?
+             $emit('showLeftMenuEmit') :
+             showingSubMenu = !showingSubMenu ;
+             showingLeftMenu === 'false' &&
+             showingSubMenu === false ? showingSubMenu = true :''
+             "
              :class="[
                 'left-menu-item',{
                 'justify-start': showingLeftMenu === 'true',
