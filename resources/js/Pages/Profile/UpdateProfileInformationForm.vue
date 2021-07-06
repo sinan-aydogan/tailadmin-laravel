@@ -179,7 +179,6 @@ export default {
 
             reader.readAsDataURL(this.$refs.photo.files[0]);
 
-            console.log(this.$refs.photo.value)
         },
 
         deletePhoto() {
