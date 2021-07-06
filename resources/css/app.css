@@ -110,6 +110,13 @@
 .form-input {
     @apply flex w-full px-2 border border-gray-300 focus:border-indigo-300 focus:outline-none focus:ring focus:ring-indigo-200 focus:ring-opacity-50 shadow-sm placeholder-gray-300 text-gray-500
 }
+.file-input-close-icon {
+    @apply w-5 h-5 bg-gray-200 hover:bg-red-500 hover:text-white
+}
+.file-input-close-button {
+    @apply px-2 outline-none focus:outline-none
+}
+
 /*Modal*/
 /*Modal Container*/
 .modal-container {
