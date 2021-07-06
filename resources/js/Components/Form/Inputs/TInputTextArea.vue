@@ -2,7 +2,7 @@
   <div class="relative">
     <t-x-circle-icon
         v-if="clearButton && value"
-        @click.native="value = null"
+        @click.native="$emit('input', null)"
         class="absolute rounded-full -top-3 -right-3 w-6 h-6 bg-white hover:bg-red-500 text-red-500 hover:text-white cursor-pointer"
     />
     <textarea
@@ -16,8 +16,8 @@
     />
     <span
         class="absolute bg-white bg-opacity-70 bottom-3 right-2 float-right text-xs border px-1 py-0.5 rounded-full min-w-6 text-center bg-white-500"
-        v-if="counter && value">
-      {{value.length}}
+        v-show="counter && value !== null">
+      {{textLength}}
     </span>
   </div>
 </template>
@@ -50,7 +50,17 @@ export default {
     counter: {
       type: Boolean
     }
-  }
+  },
+    data(){
+      return {
+          textLength:null
+      }
+    },
+    watch: {
+      value(){
+          this.textLength = this.value.length
+      }
+    }
 }
 </script>
 
