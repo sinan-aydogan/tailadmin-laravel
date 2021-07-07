@@ -380,9 +380,9 @@
                         class="flex items-center justify-end space-x-1 font-semibold text-right text-gray-500"
                     >
                         <a
-                            href="https://laraquality.dev/"
+                            href="https://tailadmin.dev/"
                             class="text-blue-600 hover:underline"
-                        >TailAdmin Laravel v-beta.0.0.1</a
+                        >TailAdmin v.1.0.1</a
                         >
                         <span>by</span>
                         <a
