@@ -1,7 +1,7 @@
 <template>
     <app-layout>
-        <template #header></template>
-        <template #subHeader></template>
+        <template #header>Content Box</template>
+        <template #subHeader>Content Card Component</template>
         <template #default>
             <grid-section :col="3" :gap="4">
                 <!--Without Title : Code 1-->
@@ -10,9 +10,7 @@
                         Without Title and With Border <br>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
                         dapibus metus enim. In vestibulum sit amet felis vitae ornare. Sed
-                        posuere, mauris et dapibus tincidunt, turpis risus lacinia dolor,
-                        sit amet ornare odio orci nec ipsum. Maecenas molestie ornare
-                        molestie.
+                        posuere, mauris et dapibus tincidunt.
                     </template>
                 </t-content-card>
                 <!--With Title : Code 2-->
@@ -23,9 +21,7 @@
                     <template #content>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
                         dapibus metus enim. In vestibulum sit amet felis vitae ornare. Sed
-                        posuere, mauris et dapibus tincidunt, turpis risus lacinia dolor,
-                        sit amet ornare odio orci nec ipsum. Maecenas molestie ornare
-                        molestie.
+                        posuere, mauris et dapibus tincidunt.
                     </template>
                 </t-content-card>
                 <!--With Title and Subtitle : Code 3-->
@@ -39,9 +35,7 @@
                     <template #content>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
                         dapibus metus enim. In vestibulum sit amet felis vitae ornare. Sed
-                        posuere, mauris et dapibus tincidunt, turpis risus lacinia dolor,
-                        sit amet ornare odio orci nec ipsum. Maecenas molestie ornare
-                        molestie.
+                        posuere, mauris et dapibus tincidunt.
                     </template>
                 </t-content-card>
                 <!--With separator : Code 4-->
@@ -52,9 +46,7 @@
                     <template #content>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
                         dapibus metus enim. In vestibulum sit amet felis vitae ornare. Sed
-                        posuere, mauris et dapibus tincidunt, turpis risus lacinia dolor,
-                        sit amet ornare odio orci nec ipsum. Maecenas molestie ornare
-                        molestie.
+                        posuere, mauris et dapibus tincidunt.
                     </template>
                 </t-content-card>
                 <!--With Radius and : Code 5-->
@@ -68,9 +60,7 @@
                     <template #content>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
                         dapibus metus enim. In vestibulum sit amet felis vitae ornare. Sed
-                        posuere, mauris et dapibus tincidunt, turpis risus lacinia dolor,
-                        sit amet ornare odio orci nec ipsum. Maecenas molestie ornare
-                        molestie.
+                        posuere, mauris et dapibus tincidunt.
                         <ul class="flex w-full justify-center gap-2 mt-4 text-gray-500">
                             <li :class="cardRadius === 0 ? 'bg-green-400 border-green-700 text-white font-bold' : 'bg-white border-gray-400'"
                                 class="border-4 w-10 h-10 p-2 items-center flex justify-center cursor-pointer"
@@ -122,9 +112,7 @@
                     <template #content>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
                         dapibus metus enim. In vestibulum sit amet felis vitae ornare. Sed
-                        posuere, mauris et dapibus tincidunt, turpis risus lacinia dolor,
-                        sit amet ornare odio orci nec ipsum. Maecenas molestie ornare
-                        molestie.
+                        posuere, mauris et dapibus tincidunt.
                         <div class="flex justify-center w-full mt-6">
                             <t-component-color-selector @selected-color="selectedColor = $event"/>
                         </div>
@@ -141,9 +129,7 @@
                     <template #content>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
                         dapibus metus enim. In vestibulum sit amet felis vitae ornare. Sed
-                        posuere, mauris et dapibus tincidunt, turpis risus lacinia dolor,
-                        sit amet ornare odio orci nec ipsum. Maecenas molestie ornare
-                        molestie.
+                        posuere, mauris et dapibus tincidunt.
                         <div class="text-lg font-bold text-center">
 
                         </div>
