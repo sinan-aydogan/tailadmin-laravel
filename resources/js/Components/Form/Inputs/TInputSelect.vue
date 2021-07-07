@@ -39,9 +39,7 @@
                     <div v-if="item.componentInstance.$el.innerHTML" v-html="item.componentInstance.$el.innerHTML"/>
                     <div v-else v-html="item.componentInstance.label"/>
                 </div>
-                <div v-if="searchList.length>10" class="hidden lg:block text-xs text-center p-2 text-blue-500">Sonuç
-                    listesi çok uzun, lütfen arama
-                    yapınız
+                <div v-if="searchList.length>10" class="hidden lg:block text-xs text-center p-2 text-blue-500">The results are too many, please search...
                 </div>
             </div>
         </div>
