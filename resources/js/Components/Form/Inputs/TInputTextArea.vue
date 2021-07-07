@@ -13,10 +13,11 @@
         :value="value"
         @input="$emit('input', $event.target.value)"
         ref="input"
+        :disabled="disabled"
     />
     <span
         class="absolute bg-white bg-opacity-70 bottom-3 right-2 float-right text-xs border px-1 py-0.5 rounded-full min-w-6 text-center bg-white-500"
-        v-show="counter && value !== null">
+        v-show="counter && value">
       {{textLength}}
     </span>
   </div>
@@ -45,10 +46,15 @@ export default {
       type: String
     },
     clearButton: {
-      type: Boolean
+      type: Boolean,
+      default: false
     },
     counter: {
-      type: Boolean
+      type: Boolean,
+      default: false
+    },
+    disabled: {
+      default:false
     }
   },
     data(){
@@ -58,7 +64,7 @@ export default {
     },
     watch: {
       value(){
-          this.textLength = this.value.length
+        if(this.value) this.textLength = this.value.length
       }
     }
 }
