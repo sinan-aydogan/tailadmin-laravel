@@ -96,9 +96,19 @@ export default {
     computed: {
         diffClass() {
             if (this.diffDirection === 'up') {
+              if(this.color === 'green'){
+                return 'text-green-700 border bg-green-100 px-3 py-1 rounded-md bg-opacity-70';
+              }else{
                 return 'text-white bg-green-500 px-3 py-1 rounded-md bg-opacity-70';
+
+              }
+
             } else if (this.diffDirection === 'down') {
+              if(this.color === 'red'){
+                return 'text-red-700 border bg-red-100 px-3 py-1 rounded-md bg-opacity-70'
+              }else{
                 return 'text-white bg-red-500 px-3 py-1 rounded-md bg-opacity-70'
+              }
             } else {
                 return 'text-gray-600 bg-white px-3 py-1 rounded-md bg-opacity-70 font-semibold'
             }
