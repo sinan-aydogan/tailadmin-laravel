@@ -1,6 +1,6 @@
 <template>
     <div
-        :class="[colorValue,widthValue,radiusStyle, border && 'border','relative p-4 shadow-sm']">
+        :class="[colorValue,widthValue,radiusStyle, border && 'border','relative p-4 shadow-sm w-full overflow-hidden']">
         <!--Card Title-->
         <div :class="['font-bold text-xl',$slots.hasOwnProperty('subTitle') ? '' : 'pb-2']">
             <slot name="title"></slot>
