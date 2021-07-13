@@ -10,16 +10,6 @@
             'flex flex-col items-center justify-center shadow border-none overflow-hidden z-10',
             radiusStyle
             ]">
-                <!--Header
-                <div :class="[
-                'flex flex-col w-full',
-                lockStyle
-                ]">
-                    &lt;!&ndash;Logo&ndash;&gt;
-                    <div class="inline-flex px-32 py-4">
-                        <slot name="logo"/>
-                    </div>
-                </div>-->
                 <form @submit.prevent="submit">
                     <!--Form-->
                     <div :class="['flex flex-col gap-4 p-8 pt-16',lockStyle, radiusStyle]">
@@ -27,7 +17,7 @@
 
                         <!--Name-->
                         <div class="text-xl text-center font-semibold">
-                            Sinan AYDOĞAN
+                          {{ $page.props.user.name }}
                         </div>
                         <!--Password-->
                         <t-input-group :radius="5" class="relative" label-for="password">
