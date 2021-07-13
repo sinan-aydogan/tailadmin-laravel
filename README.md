@@ -1,10 +1,11 @@
-## TailAdmin Inertia
-It's a dashboard theme with Laravel, Inertia and Vue.
+TailAdmin Inertia
+======
+![alt text](https://tailadmin.dev/demo/01_tailadmin.jpg "TailAdmin")
 
-### Partners and Sponsors
-If you want to support us, you can send a mail to us via [sinan@sinanaydogan.com.tr](mailto:sinan@sinanaydogan.com.tr)
+It's a dashboard theme/UI-Starter Kit with Laravel, Inertia and Vue (JetStream).
 
-## Setup Directions
+Setup Directions
+------
 1. ```npm install```
 2. ```composer install```
 3. Change ENV file name from .env.example to .env
@@ -13,17 +14,19 @@ If you want to support us, you can send a mail to us via [sinan@sinanaydogan.com
 6. ```php artisan key:generate```
 7. ```php artisan serve```
 8. ```npm run hot```
-9. ```Goto: http://localhost:8000```
+9. ```Goto: http://localhost:8000 or your APP_URL (in the .ENV)```
 
-## Admin Login Infos
-- **Email:** *admin@example.com*
+Admin Login Infos
+------
+- **Email:** *admin@tailadmin.com*
 - **Password:** *admin*
 
 Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+---
+License
+------
+The TailAdmin is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
 ### Major External Sources
 
@@ -34,3 +37,13 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 ### Minor External Sources
 
 Please see package.json
+
+---
+### Partners and Sponsors
+>If you want to support us, you can send a mail to us via [admin@tailadmin.dev](mailto:admin@tailadmin.dev)
+
+---
+###Screenshots
+![alt text](https://tailadmin.dev/demo/menu-demo.gif "Menu System") 
+
+![alt text](https://tailadmin.dev/demo/main-demo.gif "Main Demo") 
