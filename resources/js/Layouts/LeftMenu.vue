@@ -4,11 +4,13 @@
     <div class="left-menu-logo">
       <inertia-link
           :href="route('dashboard')">
-        <div class="flex items-center h-20">
-          <t-logo class="w-10 h-10 text-white"/>
-          <transition name="left-menu">
-            <span class="mx-2 text-3xl text-white" v-if="showingLeftMenu === 'true'">TailAdmin</span>
-          </transition>
+        <div class="flex justify-center items-center h-20 gap-1">
+          <div class="flex justify-between h-10 overflow-hidden mx-4">
+            <t-logo class="w-10 h-10 text-white"/>
+            <transition name="left-menu">
+              <div class="flex text-3xl text-white h-10 items-center" v-if="showingLeftMenu === 'true'">TailAdmin</div>
+            </transition>
+          </div>
         </div>
       </inertia-link>
     </div>

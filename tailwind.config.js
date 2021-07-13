@@ -66,6 +66,7 @@ module.exports = {
             fontWeight: ['hover', 'active' ,'focus'],
             borderWidth: ['first','last','hover'],
             borderRadius: ['first','last'],
+            padding: ['focus'],
             zIndex: ['hover'],
         },
     },
