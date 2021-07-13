@@ -92,8 +92,13 @@ export default {
       sampleCode: {
         html:
             '<t-dropdown color="red">\n' +
+            '    <!--If you want to the dropdown looking like a button-->\n'+
             '    <template #title>\n' +
             '      Title\n' +
+            '    </template>\n' +
+            '    <!--Or For what you want to use whatever-->\n'+
+            '    <template #trigger>\n' +
+            '      <t-avatar :src="avatar.jpg"/>\n' +
             '    </template>\n' +
             '    <!--Route links, you must define links in the web.php-->\n'+
             '    <t-dropdown-item :link="route(\'alert\')">\n' +

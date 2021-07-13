@@ -20,7 +20,7 @@
 
 <script>
 export default {
-    name: "DropdownItem",
+    name: "TDropdownItem",
     props: {
         link: {
             type: String
