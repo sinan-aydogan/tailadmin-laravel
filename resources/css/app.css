@@ -6,42 +6,45 @@
 
 /*Main Area*/
 .main-area{
-    @apply flex-grow overflow-y-auto text-gray-800;
+    @apply relative flex-grow overflow-y-auto text-gray-800;
 }
 
 
 /*Content Area -> Top Menu*/
 .main-area .top-menu {
-    @apply flex items-center h-20 px-6 bg-white sm:px-10;
+    @apply flex justify-between justify-items-stretch items-center h-20 px-6 bg-white sm:px-10 gap-4;
 }
 .top-menu .trigger {
-    @apply mr-8 cursor-pointer;
+    @apply flex relative justify-center items-center cursor-pointer w-8 h-8;
+}
+.top-menu .trigger-bordered {
+    @apply -ml-10 border-l-0 border rounded-r-md bg-gradient-to-r from-blue-600 to-blue-700 p-2 text-white;
 }
 /*Top Menu -> Search Box*/
+.top-menu .search-box-container {
+    @apply flex flex-grow;
+}
 .top-menu .search-box {
-    @apply relative w-full max-w-md sm:-ml-2 hidden lg:block ;
+    @apply relative justify-self-start sm:-ml-2 hidden md:flex;
 }
 .search-box input {
-    @apply w-full py-2 pl-10 pr-4 placeholder-gray-400 border rounded-full overflow-hidden focus:bg-green-50 focus:outline-none;
+    @apply w-full py-2 pl-10 pr-4 placeholder-gray-400 border rounded-full overflow-hidden focus:outline-none;
 }
 /*Top Menu -> User Menu*/
 .top-menu .user-menu {
-    @apply flex items-center flex-shrink-0 ml-auto;
+    @apply flex items-center space-x-2;
 }
 .user-menu .trigger-button {
-    @apply relative inline-flex items-center p-2 rounded-lg hover:bg-gray-100 focus:bg-blue-100 focus:outline-none;
+    @apply relative inline-flex items-center px-2 focus:outline-none;
 }
 .trigger-button .staff-info {
-    @apply hidden md:flex md:flex-col md:items-end md:leading-tight;
+    @apply hidden pt-1 md:flex md:flex-col items-center md:leading-tight;
 }
 .staff-info .staff-name {
-    @apply font-semibold;
+    @apply flex justify-end w-full font-semibold whitespace-nowrap ;
 }
 .staff-info .staff-title {
-    @apply text-sm text-gray-600;
-}
-.trigger-button .staff-photo {
-    @apply w-12 h-12 ml-2 mr-2 overflow-hidden bg-gray-100 rounded-full sm:ml-3;
+    @apply flex justify-end w-full text-sm text-gray-600 whitespace-nowrap ;
 }
 .staff-photo .trigger-button {
     @apply flex text-sm transition duration-150 ease-in-out border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300;
@@ -53,19 +56,19 @@
     @apply block px-4 py-2 text-xs text-gray-400
 }
 .user-menu .dropdown-list-container{
-    @apply py-2;
+    @apply bg-white shadow mt-2 rounded-md overflow-hidden;
 }
 .user-menu .dropdown-item {
     @apply block px-4 py-2 text-sm text-gray-500 font-bold text-left hover:bg-gray-200 w-full
 }
 .top-menu .action-section {
-    @apply flex pl-3 ml-3 -mr-4 space-x-1 border-l;
+    @apply flex p-1 gap-2;
 }
 .action-section .trigger-button {
-    @apply relative p-2 text-gray-400 rounded-full hover:bg-gray-100 hover:text-gray-600 focus:bg-gray-100 focus:text-gray-600;
+    @apply relative p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-600 focus:bg-gray-100 rounded-full focus:text-gray-600 focus:border-gray-300 focus:outline-none;
 }
-.action-section .logout-button {
-    @apply relative flex flex-row p-2 text-white bg-red-500 rounded-full hover:bg-gray-100 hover:text-gray-600 focus:bg-gray-100 focus:text-gray-600;
+.user-menu .logout-button {
+    @apply flex w-full px-4 py-1 mb-2 hover:bg-red-500 hover:text-white inline-flex h-full gap-2 text-red-500 items-center focus:outline-none;
 }
 
 
@@ -95,7 +98,7 @@
 
 /*Left Menu Item*/
 .left-menu-logo {
-    @apply flex items-center justify-center h-20 px-4 bg-blue-600;
+    @apply flex items-center justify-center h-20 bg-blue-600;
 }
 .left-menu-item {
     @apply flex items-center p-2 font-semibold cursor-pointer whitespace-nowrap select-none overflow-hidden transition-all duration-700 ease-in-out;
@@ -171,4 +174,48 @@
 /*Left Right Navigation Arrows*/
 .pagination-arrow {
     @apply flex flex-shrink-0 items-center justify-center w-8 h-8 cursor-pointer font-semibold bg-opacity-0 hover:bg-opacity-10 select-none
+}
+
+/*Table*/
+/*Table Container*/
+.table-container {
+    @apply w-full
+}
+/*Table Top Bar*/
+.table-top{
+    @apply flex flex-col
+}
+/*Table Top Bar Container*/
+.table-top-container{
+    @apply flex flex-col md:flex-row justify-between my-2 gap-2 md:gap-0
+}
+/*Table Top Bar Left*/
+.table-top-left{
+    @apply relative inline-flex items-center min-w-24 select-none
+}
+/*Table Top Bar Search Icon*/
+.table-top-search-icon{
+    @apply absolute left-2 w-5 h-5 text-gray-300 overflow-hidden
+}
+/*Table Top Bar Main Search Input*/
+.table-top ,#search, input{
+    @apply pl-8 w-full border-2 border-gray-300 rounded-full
+}
+/*Table Top Bar Pagination Container*/
+.table-top-pagination{
+    @apply absolute right-11 bg-gray-200 h-9 items-center justify-center flex w-8 cursor-pointer hover:bg-blue-500 hover:text-white
+}
+/*Table Top Bar Pagination List Container*/
+.table-top-pagination-ul{
+    @apply absolute right-10 top-11 bg-white border rounded-md overflow-hidden
+}
+/*Table Top Bar Pagination List Item*/
+.table-top-pagination-li{
+    @apply text-center bg-white hover:bg-gray-200 cursor-pointer px-2
+}
+.table-top-right{
+    @apply inline-flex justify-center md:justify-end items-center gap-2
+}
+.table-advanced-search-area{
+    @apply p-2 mb-4 bg-white border rounded-lg
 }
