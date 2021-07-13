@@ -12,52 +12,54 @@
           <template #title>Simple</template>
           <template #subTitle>Link (Blank, Internal, External and Route) and Icons</template>
           <template #content>
-            <div class="flex flex-wrap gap-4">
-              <!--Simple Dropdown 1-->
-              <t-dropdown color="red">
-                <template #title>
-                  Title
-                </template>
-                <t-dropdown-item :link="route('alert')">
+            <div class="h-10">
+              <div class="fixed flex flex-wrap gap-4">
+                <!--Simple Dropdown 1-->
+                <t-dropdown color="red">
+                  <template #title>
+                    Title
+                  </template>
+                  <t-dropdown-item :link="route('alert')">
                     <font-awesome-icon icon="info" slot="icon"/>
                     Alert Component
-                </t-dropdown-item>
-                <t-dropdown-item :link="route('badge')">
+                  </t-dropdown-item>
+                  <t-dropdown-item :link="route('badge')">
                     <font-awesome-icon icon="dot-circle" slot="icon"/>
                     Badge Component
-                </t-dropdown-item>
-                <t-dropdown-item :link="route('list')">
+                  </t-dropdown-item>
+                  <t-dropdown-item :link="route('list')">
                     <font-awesome-icon icon="layer-group" slot="icon"/>
                     List Component
-                </t-dropdown-item>
-              </t-dropdown>
-              <!--Indigo-->
-              <t-dropdown color="indigo">
-                <template #title>
-                  Title
-                </template>
-                <t-dropdown-item>Menu 1</t-dropdown-item>
-                <t-dropdown-item>Menu 2</t-dropdown-item>
-                <t-dropdown-item>Menu 3</t-dropdown-item>
-              </t-dropdown>
-              <!--White-->
-              <t-dropdown>
-                <template #title>
-                  Title
-                </template>
-                <t-dropdown-item>Menu 1</t-dropdown-item>
-                <t-dropdown-item>Menu 2</t-dropdown-item>
-                <t-dropdown-item>Menu 3</t-dropdown-item>
-              </t-dropdown>
-              <!--Black-->
-              <t-dropdown color="black">
-                <template #title>
-                  Title
-                </template>
-                <t-dropdown-item>Menu 1</t-dropdown-item>
-                <t-dropdown-item>Menu 2</t-dropdown-item>
-                <t-dropdown-item>Menu 3</t-dropdown-item>
-              </t-dropdown>
+                  </t-dropdown-item>
+                </t-dropdown>
+                <!--Indigo-->
+                <t-dropdown color="indigo">
+                  <template #title>
+                    Title
+                  </template>
+                  <t-dropdown-item>Menu 1</t-dropdown-item>
+                  <t-dropdown-item>Menu 2</t-dropdown-item>
+                  <t-dropdown-item>Menu 3</t-dropdown-item>
+                </t-dropdown>
+                <!--White-->
+                <t-dropdown>
+                  <template #title>
+                    Title
+                  </template>
+                  <t-dropdown-item>Menu 1</t-dropdown-item>
+                  <t-dropdown-item>Menu 2</t-dropdown-item>
+                  <t-dropdown-item>Menu 3</t-dropdown-item>
+                </t-dropdown>
+                <!--Black-->
+                <t-dropdown color="black">
+                  <template #title>
+                    Title
+                  </template>
+                  <t-dropdown-item>Menu 1</t-dropdown-item>
+                  <t-dropdown-item>Menu 2</t-dropdown-item>
+                  <t-dropdown-item>Menu 3</t-dropdown-item>
+                </t-dropdown>
+              </div>
             </div>
           </template>
         </t-content-card>
