@@ -107,21 +107,17 @@ export default {
 
 .fade-enter {
     opacity: 0;
-    max-width: 0;
 }
 
 .fade-enter-to {
     opacity: 1;
-    max-width: 100%;
 }
 
 .fade-leave {
     opacity: 1;
-    max-width: 100%;
 }
 
 .fade-leave-to {
     opacity: 0;
-    max-width: 0;
 }
 </style>
