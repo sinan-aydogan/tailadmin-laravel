@@ -16,8 +16,9 @@ Setup Directions
 8. ```npm run hot```
 9. ```Goto: http://localhost:8000 or your APP_URL (in the .ENV)```
 
-Admin Login Infos
+Admin Login Infos / Demo Account
 ------
+- **Demo:** *[https://tailadmin.dev](https://tailadmin.dev)*
 - **Email:** *admin@tailadmin.com*
 - **Password:** *admin*
 
@@ -44,6 +45,9 @@ Please see package.json
 
 ---
 ###Screenshots
+
 ![alt text](https://tailadmin.dev/demo/menu-demo.gif "Menu System") 
 
-![alt text](https://tailadmin.dev/demo/main-demo.gif "Main Demo") 
+Main Demo Gif
+
+[https://tailadmin.dev/demo/main-demo.gif](https://tailadmin.dev/demo/main-demo.gif) 
