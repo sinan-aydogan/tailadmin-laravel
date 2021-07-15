@@ -94,6 +94,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function (){
     Route::get('form-select-input',function (){return Inertia::render('Samples/FormElements/SelectInput',[
         'users' => \App\Models\User::all()
     ]);})->name('form-select-input');
+    Route::get('form-multi-select-input',function (){return Inertia::render('Samples/FormElements/MultiSelectInput',[
+        'users' => \App\Models\User::all()
+    ]);})->name('form-multi-select-input');
     Route::get('form-tag-input',function (){return Inertia::render('Samples/FormElements/TagInput');})->name('form-tag-input');
     Route::get('form-validation',function (){return Inertia::render('Samples/FormElements/Validation');})->name('form-validation');
 });

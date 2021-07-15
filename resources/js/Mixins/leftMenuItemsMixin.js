@@ -342,6 +342,14 @@ export const leftMenuItemsMixin = {
                             linkType: "route",
                             type: "standard",
                             activeKey: ["select-input-field"],
+                        },
+                        {
+                            label: "Multi Select Input",
+                            icon: "",
+                            link: "form-multi-select-input",
+                            linkType: "route",
+                            type: "standard",
+                            activeKey: ["multi-select-input-field"],
                         },/* TODO: Tag Input Feature
                         {
                             label: "Tags Input",
