@@ -1,6 +1,6 @@
 TailAdmin Inertia
 ======
-![alt text](https://tailadmin.dev/demo/01_tailadmin.jpg "TailAdmin")
+![alt text](https://cdn.tailadmin.dev/demo-sources/01_tailadmin.jpg "TailAdmin")
 
 It's a dashboard theme/UI-Starter Kit with Laravel, Inertia and Vue (JetStream).
 
@@ -46,8 +46,8 @@ Please see package.json
 ---
 ###Screenshots
 
-![alt text](https://tailadmin.dev/demo/menu-demo.gif "Menu System") 
+![Menu Demo](https://cdn.tailadmin.dev/demo-sources/menu-demo.gif "Menu System") 
 
-Main Demo Gif
+###Main Demo Video
 
-[https://tailadmin.dev/demo/main-demo.gif](https://tailadmin.dev/demo/main-demo.gif) 
+[![TailAdmin Main Demo Video](https://cdn.tailadmin.dev/demo-sources/tailadmin-youtube-main-demo.png)](https://www.youtube.com/watch?v=B_8os9zoLZw)
