@@ -1,83 +1,178 @@
 <template>
-    <ul class="flex justify-center gap-2 pb-6">
+  <div>
+    <div v-if="inputStyle === 'checkbox'">
+      <ul class="flex flex-wrap justify-center gap-2 p-2 bg-white border  bg-opacity-60 border-opacity-60 rounded-lg laptop:rounded-full items-center">
         <li
             v-for="(item,itemKey,index) in colors"
+            :key="index"
             :class="[
-                    'p-2 w-5 h-5 rounded-full items-center flex justify-center cursor-pointer',
+                    'w-5 h-5 rounded-full items-center flex justify-center flex-shrink-0 cursor-pointer',
                     item.style
                 ]"
-            @click="selectedColor=itemKey; $emit('selected-color',itemKey)"
-            :key="index"
+            @click="selectedColor=itemKey"
         >
-            <div v-if="selectedColor===itemKey"
-                 :class="['flex-shrink-0 w-2 h-2 rounded-full z-10',itemKey !== 'white' ? 'bg-white' : 'bg-gray-500']"></div>
+          <t-check-icon
+              v-if="selectedColor===itemKey"
+              :class="[
+                  'w-5 h-5',
+                  itemKey === 'solid-white' || itemKey.includes('light') ? 'text-gray-600' : 'text-white'
+                  ]"
+          />
         </li>
-    </ul>
+      </ul>
+    </div>
+    <div v-if="inputStyle === 'select'" class="flex flex-col gap-4 justify-center items-start">
+      <div class="flex flex-wrap gap-4 items-center">
+        <!--Color Type-->
+        <t-input-select v-model="selectedType" place-holder="Color Type">
+          <t-input-select-item :disabled="true">Select a Color Type</t-input-select-item>
+          <t-input-select-item value="solid">Solid Color Type</t-input-select-item>
+          <t-input-select-item value="light">Light Color Type</t-input-select-item>
+          <t-input-select-item value="gradient">Gradient Color Type</t-input-select-item>
+        </t-input-select>
+        <!--Solid Colors-->
+        <t-input-select v-show="selectedType === 'solid'" v-model="selectedSolidColors" place-holder="Solid Colors">
+          <t-input-select-item :disabled="true">Select a Color</t-input-select-item>
+          <t-input-select-item v-for="(item,index) in mainColors" :key="index" :value="item">Solid: {{ item }}
+          </t-input-select-item>
+        </t-input-select>
+        <!--Light Colors-->
+        <t-input-select v-show="selectedType === 'light'" v-model="selectedLightColors" place-holder="Light Colors">
+          <t-input-select-item :disabled="true">Select a Color</t-input-select-item>
+          <t-input-select-item v-for="(item,index) in mainColors" :key="index" :value="item">Light: {{ item }}
+          </t-input-select-item>
+        </t-input-select>
+        <!--Gradient First Color-->
+        <t-input-select v-show="selectedType === 'gradient'" v-model="selectedGradientFirstColors"
+                        place-holder="First Gradient Colors">
+          <t-input-select-item :disabled="true">Select a Color</t-input-select-item>
+          <t-input-select-item v-for="(item,index) in mainColors" :key="index" :value="item">First: {{ item }}
+          </t-input-select-item>
+        </t-input-select>
+        <!--Gradient Second Color-->
+        <t-input-select v-show="selectedType === 'gradient'" v-model="selectedGradientSecondColors"
+                        place-holder="Second Gradient Colors">
+          <t-input-select-item :disabled="true">Select a Color</t-input-select-item>
+          <t-input-select-item v-for="(item,index) in mainColors" :key="index" :value="item">Second: {{ item }}
+          </t-input-select-item>
+        </t-input-select>
+      </div>
+      <div class="inline-flex gap-2">
+        Color Code:
+        <t-badge color="white">color="{{ calculatedColor }}"</t-badge>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
+import TCheckIcon from "@/Components/Icon/TCheckIcon";
+import TInputSelect from "@/Components/Form/Inputs/TInputSelect";
+import TInputSelectItem from "@/Components/Form/Inputs/TInputSelectItem";
+import TBadge from "@/Components/Badge/TBadge";
+
 export default {
-    name: "TComponentColorSelector",
-    data() {
-        return {
-            colors: {
-                'red': {
-                    style: 'bg-red-500'
-                },
-                'blue': {
-                    style: 'bg-blue-500'
-                },
-                'green': {
-                    style: 'bg-green-500'
-                },
-                'yellow': {
-                    style: 'bg-yellow-500'
-                },
-                'indigo': {
-                    style: 'bg-indigo-500'
-                },
-                'purple': {
-                    style: 'bg-purple-500'
-                },
-                'pink': {
-                    style: 'bg-pink-500'
-                },
-                'gray': {
-                    style: 'bg-gray-500'
-                },
-                'white': {
-                    style: 'bg-white border border-gray-200'
-                },
-                'black': {
-                    style: 'bg-black'
-                },
-                'light-red': {
-                    style: 'bg-red-200 border border-red-500'
-                },
-                'light-blue': {
-                    style: 'bg-blue-200 border border-blue-500'
-                },
-                'light-green': {
-                    style: 'bg-green-200 border border-green-500'
-                },
-                'light-yellow': {
-                    style: 'bg-yellow-200 border border-yellow-500'
-                },
-                'light-indigo': {
-                    style: 'bg-indigo-200 border border-indigo-500'
-                },
-                'light-pink': {
-                    style: 'bg-pink-200 border border-pink-500'
-                },
-                'light-purple': {
-                    style: 'bg-purple-200 border border-purple-500'
-                },
-                'light-gray': {
-                    style: 'bg-gray-200 border border-gray-500'
-                }
-            },
-            selectedColor: 'white',
-        }
+  name: "TComponentColorSelector",
+  components: {TBadge, TInputSelectItem, TInputSelect, TCheckIcon},
+  props: {
+    inputStyle: {
+      type: String,
+      default: 'checkbox'
     }
+  },
+  data() {
+    return {
+      colors: {
+        'solid-red': {
+          style: 'bg-red-500'
+        },
+        'solid-blue': {
+          style: 'bg-blue-500'
+        },
+        'solid-green': {
+          style: 'bg-green-500'
+        },
+        'solid-yellow': {
+          style: 'bg-yellow-500'
+        },
+        'solid-indigo': {
+          style: 'bg-indigo-500'
+        },
+        'solid-purple': {
+          style: 'bg-purple-500'
+        },
+        'solid-pink': {
+          style: 'bg-pink-500'
+        },
+        'solid-gray': {
+          style: 'bg-gray-500'
+        },
+        'solid-white': {
+          style: 'bg-white border border-gray-200'
+        },
+        'solid-black': {
+          style: 'bg-black'
+        },
+        'light-red': {
+          style: 'bg-red-200 border border-red-500'
+        },
+        'light-blue': {
+          style: 'bg-blue-200 border border-blue-500'
+        },
+        'light-green': {
+          style: 'bg-green-200 border border-green-500'
+        },
+        'light-yellow': {
+          style: 'bg-yellow-200 border border-yellow-500'
+        },
+        'light-indigo': {
+          style: 'bg-indigo-200 border border-indigo-500'
+        },
+        'light-pink': {
+          style: 'bg-pink-200 border border-pink-500'
+        },
+        'light-purple': {
+          style: 'bg-purple-200 border border-purple-500'
+        },
+        'light-gray': {
+          style: 'bg-gray-200 border border-gray-500'
+        }
+      },
+      mainColors: [
+        'Red',
+        'Blue',
+        'Green',
+        'Yellow',
+        'Indigo',
+        'Pink',
+        'Purple',
+        'Gray',
+        'Black',
+        'White'
+      ],
+      selectedColor: this.calculatedColor,
+      selectedSolidColors: '',
+      selectedLightColors: '',
+      selectedGradientFirstColors: 'purple',
+      selectedGradientSecondColors: 'red',
+      selectedType: ''
+    }
+  },
+  computed: {
+    calculatedColor() {
+      if (this.selectedType === 'solid') {
+        return 'solid-' + this.selectedSolidColors.toLowerCase()
+      } else if (this.selectedType === 'light') {
+        return 'light-' + this.selectedLightColors.toLowerCase()
+      } else {
+        return 'gradient-' + this.selectedGradientFirstColors.toLowerCase() + '-to-' + this.selectedGradientSecondColors.toLowerCase()
+      }
+    }
+  },
+  watch: {
+    calculatedColor() {
+      this.$emit('selected-color', this.calculatedColor)
+    }
+  }
 }
 </script>
