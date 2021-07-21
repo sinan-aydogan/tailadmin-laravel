@@ -55,7 +55,13 @@ module.exports = {
                 'min': 'min-content',
                 'max': 'max-content',
             }
-        }
+        },
+        screens: {
+            'desktop': '1280px',
+            'laptop': '1024px',
+            'tablet': '768px',
+            'phone' : '425px',
+        },
     },
 
     variants: {
