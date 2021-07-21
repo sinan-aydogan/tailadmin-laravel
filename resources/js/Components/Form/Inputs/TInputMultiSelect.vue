@@ -1,9 +1,5 @@
 <template>
   <div v-click-outside="outside" class="relative select-none min-w-3">
-    <!--Clear Button-->
-    <span v-if="clearButton && selectedID"
-          class="absolute flex top-2 right-2 border w-6 h-6 items-center justify-center rounded-lg hover:bg-red-500 hover:text-white cursor-pointer"
-          @click="selectedID = [];selectedOption = [];searchText = '';$emit('input',null)">x</span>
     <div :class="['form-input bg-white min-h-10 flex items-center cursor-pointer',radiusStyle]">
       <slot></slot>
       <!--Placeholder Text-->
@@ -29,6 +25,20 @@
         <div v-for="(item,index) in selectedOption" v-else :key="index">
           <t-badge v-html="item.componentInstance.label"/>
         </div>
+      </div>
+      <!--Clear Button-->
+      <div v-if="clearButton && selectedID.length>0"
+           @click="selectedID = [];selectedOption = [];searchText = '';$emit('input',null)">
+        <t-x-circle-icon class="w-6 h-6 rounded-full hover:bg-red-500 hover:text-white cursor-pointer"/>
+      </div>
+      <!--DropDown Icon-->
+      <div @click="changeShowOptions">
+        <t-chevron-down-icon
+            :class="[
+                'w-6 h-6 transform duration-300',
+                showOptions ? 'rotate-90' : 'rotate-0'
+                ]"
+        />
       </div>
       <!--Options Container-->
       <div v-if="showOptions"
@@ -68,10 +78,12 @@ import TInputText from "@/Components/Form/Inputs/TInputText";
 import {radiusSizeMixin} from "@/Mixins/radiusSizeMixin";
 import TBadge from "@/Components/Badge/TBadge";
 import TCheckCircleSolidIcon from "@/Components/Icon/TCheckCircleSolidIcon";
+import TXCircleIcon from "@/Components/Icon/TXCircleIcon";
+import TChevronDownIcon from "@/Components/Icon/TChevronDownIcon";
 
 export default {
   name: "TInputMultiSelect",
-  components: {TCheckCircleSolidIcon, TBadge, TInputText},
+  components: {TChevronDownIcon, TXCircleIcon, TCheckCircleSolidIcon, TBadge, TInputText},
   props: ['value', 'placeHolder', 'searchPlaceHolder', 'clearButton', 'disabled', 'search', 'align'],
   mixins: [radiusSizeMixin],
   directives: {
