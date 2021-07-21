@@ -166,6 +166,27 @@
     @apply hover:text-red-500 cursor-pointer
 }
 
+/*Avatar*/
+/*Avatar Container*/
+.avatar-container {
+    @apply relative z-0
+}
+/*Avatar Group Container*/
+.avatar-container-group {
+    @apply -ml-4  hover:z-10
+}
+.avatar-group-container {
+    @apply inline-flex flex-row-reverse ml-4
+}
+/*Avatar Group Item's Border Style*/
+.avatar-group-image {
+    @apply border-2 border-white border-opacity-75
+}
+/*Avatar Indicator*/
+.avatar-indicator {
+    @apply absolute flex flex-shrink-0 justify-center items-center w-1/3 h-1/3 rounded-full font-semibold
+}
+
 /*Pagination*/
 /*Pagination Container*/
 .pagination-container {

@@ -144,7 +144,7 @@
                   <t-avatar
                       :alt="$page.props.user.name"
                       :indicator="{
-                          color:'green',
+                          color:'solid-green',
                           label : '',
                           position: 'rb'
                         }"

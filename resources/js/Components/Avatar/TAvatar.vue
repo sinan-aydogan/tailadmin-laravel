@@ -1,14 +1,21 @@
 <template>
-    <div :class="[$parent.$vnode.tag.includes('TAvatarGroup') && '-ml-4 hover:absolute hover:z-10' ,'relative z-0',sizes[size]]">
-        <img :class="[radiusStyle, sizes[size], $parent.$vnode.tag.includes('TAvatarGroup') ? 'border-2 border-white border-opacity-75' : '']"
+    <div :class="[
+        'avatar-container',
+        $parent.$vnode.tag.includes('TAvatarGroup') && 'avatar-container-group' ,
+        sizeStyles[size]
+        ]">
+        <img :class="[
+            radiusStyle,
+            sizeStyles[size],
+            $parent.$vnode.tag.includes('TAvatarGroup') ? 'avatar-group-image' : ''
+            ]"
              :src="avatarURL">
         <div
             v-if="indicator"
             :class="[
-                'absolute flex flex-shrink-0 justify-center items-center w-1/3 h-1/3 rounded-full text-white font-semibold',
+                'avatar-indicator',
                 size<7 ? 'text-xs' : 'text-normal',
-                positions[indicator.position].positionStyle,
-                'bg-'+indicator.color+'-500'
+                calculatedIndicatorStyle
                 ]">
             <div v-text="size>3 ? indicator.label : null"/>
         </div>
@@ -16,12 +23,11 @@
 </template>
 
 <script>
-import {radiusSizeMixin} from "@/Mixins/radiusSizeMixin";
 import {avatarStyleMixin} from "@/Mixins/avatarStyleMixin";
 
 export default {
     name: "TAvatar",
-    mixins: [radiusSizeMixin, avatarStyleMixin],
+    mixins: [ avatarStyleMixin],
     props: {
         src: {
             type: String,

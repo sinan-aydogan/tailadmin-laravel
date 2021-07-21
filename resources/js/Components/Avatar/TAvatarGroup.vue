@@ -1,5 +1,5 @@
 <template>
-    <div class="inline-flex flex-row-reverse ml-4">
+    <div class="avatar-group-container">
         <slot/>
     </div>
 </template>

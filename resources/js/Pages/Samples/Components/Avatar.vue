@@ -63,7 +63,7 @@
                   :radius="1"
                   :size="1"
                   :indicator="{
-                    color: 'red',
+                    color: 'solid-red',
                     label: 2,
                     position: 'lb'
                   }"
@@ -72,7 +72,7 @@
                   :radius="2"
                   :size="2"
                   :indicator="{
-                    color: 'blue',
+                    color: 'solid*blue',
                     label: 2,
                     position: 'lt'
                   }"
@@ -82,7 +82,7 @@
                   :radius="3"
                   :size="3"
                   :indicator="{
-                    color: 'green',
+                    color: 'solid-green',
                     position: 'rb'
                   }"
                   src="https://i.pravatar.cc/300?img=1"
@@ -91,7 +91,7 @@
                   :radius="4"
                   :size="4"
                   :indicator="{
-                    color: 'yellow',
+                    color: 'solid-yellow',
                     label: 14,
                     position: 'lb'
                   }"
@@ -101,7 +101,7 @@
                   :radius="5"
                   :size="5"
                   :indicator="{
-                    color: 'indigo',
+                    color: 'solid-indigo',
                     label: 7,
                     position: 'rt'
                   }"
@@ -111,7 +111,7 @@
                   :radius="6"
                   :size="6"
                   :indicator="{
-                    color: 'pink',
+                    color: 'solid-pink',
                     label: 85,
                     position: 'rt'
                   }"
@@ -121,7 +121,7 @@
                   :radius="7"
                   :size="7"
                   :indicator="{
-                    color: 'purple',
+                    color: 'light-purple',
                     label: 12,
                     position: 'lb'
                   }"
@@ -131,7 +131,7 @@
                   :radius="8"
                   :size="8"
                   :indicator="{
-                    color: 'gray',
+                    color: 'gradient-red-to-pink',
                     label: 2,
                     position: 'rb'
                   }"
