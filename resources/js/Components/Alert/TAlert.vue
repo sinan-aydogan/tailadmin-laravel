@@ -5,8 +5,7 @@
             v-if="showAlertBox"
             :class="[
                 'alert-box',
-                alertStyle,
-                radiusStyle
+                calculatedAlertStyle
                 ]"
         >
             <!--Alert Icon-->
@@ -28,20 +27,16 @@
 </template>
 
 <script>
-import {radiusSizeMixin} from "@/Mixins/radiusSizeMixin";
+import {alertStyleMixin} from "@/Mixins/Styles/alertStyleMixin";
 import TXCircleIcon from "@/Components/Icon/TXCircleIcon";
 
 export default {
     name: "TAlert",
     components: {TXCircleIcon},
-    mixins: [radiusSizeMixin],
+    mixins: [alertStyleMixin],
     props: {
         id: {
             type: String
-        },
-        color: {
-            required: false,
-            default: 'red'
         },
         closeable: {
             type: Boolean,
@@ -50,10 +45,6 @@ export default {
         },
         timer: {
             type: Number,
-            required: false
-        },
-        position: {
-            type: String,
             required: false
         }
     },
@@ -76,27 +67,6 @@ export default {
             this.$emit('destroy', this.id)
         }
     },
-    computed: {
-        alertStyle() {
-            /*Color Styles*/
-            /*Solid*/
-            if (!this.color.includes('-') && this.color !== 'black' && this.color !== 'white') {
-                return 'bg-' + this.color + '-500 bg-opacity-95 text-white';
-            } else if (this.color === 'black') {
-                return 'bg-black text-white'
-            } else if (this.color === 'white') {
-                return 'bg-white border border-gray-300 text-gray-700'
-            }
-            /*Light*/
-            if (this.color.includes('light')) {
-                return 'bg-' + this.color.split('-')[1] + '-50 border border-' + this.color.split('-')[1] + '-500 text-' + this.color.split('-')[1] + '-600';
-            }
-            /*Gradient*/
-            if (this.color.includes('gradient')) {
-                return 'bg-gradient-to-r from-' + this.color.split('-')[1] + '-500 to-' + this.color.split('-')[3] + '-700 text-white';
-            }
-        }
-    }
 }
 </script>
 

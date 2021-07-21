@@ -6,13 +6,12 @@
 
 /*Main Area*/
 .main-area{
-    @apply relative flex-grow overflow-y-auto text-gray-800;
+    @apply relative flex flex-col flex-grow justify-between min-h-screen w-full overflow-y-auto text-gray-800;
 }
-
 
 /*Content Area -> Top Menu*/
 .main-area .top-menu {
-    @apply flex justify-between justify-items-stretch items-center h-20 px-6 bg-white sm:px-10 gap-4;
+    @apply flex justify-between justify-items-stretch items-center py-2 px-6 bg-white phone:px-10 gap-4;
 }
 .top-menu .trigger {
     @apply flex relative justify-center items-center cursor-pointer w-8 h-8;
@@ -25,7 +24,7 @@
     @apply flex flex-grow;
 }
 .top-menu .search-box {
-    @apply relative justify-self-start sm:-ml-2 hidden md:flex;
+    @apply relative justify-self-start phone:-ml-2 hidden tablet:flex;
 }
 .search-box input {
     @apply w-full py-2 pl-10 pr-4 placeholder-gray-400 border rounded-full overflow-hidden focus:outline-none;
@@ -38,7 +37,7 @@
     @apply relative inline-flex items-center px-2 focus:outline-none;
 }
 .trigger-button .staff-info {
-    @apply hidden pt-1 md:flex md:flex-col items-center md:leading-tight;
+    @apply hidden pt-1 tablet:flex tablet:flex-col items-center tablet:leading-tight;
 }
 .staff-info .staff-name {
     @apply flex justify-end w-full font-semibold whitespace-nowrap ;
@@ -59,7 +58,7 @@
     @apply bg-white shadow mt-2 rounded-md overflow-hidden;
 }
 .user-menu .dropdown-item {
-    @apply block px-4 py-2 text-sm text-gray-500 font-bold text-left hover:bg-gray-200 w-full
+    @apply block px-4 py-2 text-sm text-gray-500 font-semibold text-left hover:bg-gray-200 w-full
 }
 .top-menu .action-section {
     @apply flex p-1 gap-2;
@@ -68,27 +67,27 @@
     @apply relative p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-600 focus:bg-gray-100 rounded-full focus:text-gray-600 focus:border-gray-300 focus:outline-none;
 }
 .user-menu .logout-button {
-    @apply flex w-full px-4 py-1 mb-2 hover:bg-red-500 hover:text-white inline-flex h-full gap-2 text-red-500 items-center focus:outline-none;
+    @apply flex w-full px-4 py-2 hover:bg-red-500 hover:text-white inline-flex h-full gap-2 text-red-500 items-center focus:outline-none font-semibold;
 }
 
 
 /*Main Area -> Content Container*/
 .main-area .content-container {
-    @apply p-6 space-y-6 sm:p-10;
+    @apply flex flex-col flex-grow p-6 space-y-6 phone:p-10;
 }
 /*Content Container -> Content Header*/
 .content-container .container-header {
-    @apply flex flex-col lg:justify-between items-center space-y-6 md:space-y-0 md:flex-row;
+    @apply flex flex-col laptop:justify-between items-center space-y-6 tablet:space-y-0 tablet:flex-row;
 }
 /*Content Header -> Page Header*/
 .container-header .page-header {
     @apply mr-6 flex flex-col flex-grow;
 }
 .page-header .page-title{
-    @apply mb-2 text-2xl lg:text-4xl font-semibold;
+    @apply mb-2 text-2xl laptop:text-4xl font-semibold;
 }
 .page-header .page-subtitle{
-    @apply hidden lg:block text-gray-600 ml-0.5 text-2xl font-semibold;
+    @apply hidden tablet:block tablet:text-xl text-gray-600 ml-0.5 text-2xl font-semibold;
 }
 .container-header .page-action-buttons {
     @apply flex flex-row items-center gap-1;
@@ -98,7 +97,7 @@
 
 /*Left Menu Item*/
 .left-menu-logo {
-    @apply flex items-center justify-center h-20 bg-blue-600;
+    @apply flex items-center justify-center h-16 bg-blue-600;
 }
 .left-menu-item {
     @apply flex items-center p-2 font-semibold cursor-pointer whitespace-nowrap select-none overflow-hidden transition-all duration-700 ease-in-out;
@@ -118,6 +117,11 @@
 }
 .file-input-close-button {
     @apply px-2 outline-none focus:outline-none
+}
+
+/*Footer*/
+.footer{
+    @apply flex items-center mx-10 py-2 justify-end space-x-1 text-sm font-semibold text-right text-gray-500
 }
 
 /*Modal*/
@@ -156,10 +160,10 @@
 
 /*Alert Box*/
 .alert-box {
-    @apply flex flex-shrink-0 items-center justify-between shadow p-4 gap-2 relative w-full max-h-min
+    @apply flex flex-shrink-0 items-center justify-between shadow p-4 gap-2 relative w-full max-h-min place-self-start bg-opacity-95
 }
 .alert-close {
-    @apply text-white hover:text-red-500 cursor-pointer
+    @apply hover:text-red-500 cursor-pointer
 }
 
 /*Pagination*/
@@ -187,7 +191,7 @@
 }
 /*Table Top Bar Container*/
 .table-top-container{
-    @apply flex flex-col md:flex-row justify-between my-2 gap-2 md:gap-0
+    @apply flex flex-col tablet:flex-row justify-between my-2 gap-2 tablet:gap-0
 }
 /*Table Top Bar Left*/
 .table-top-left{
@@ -214,8 +218,19 @@
     @apply text-center bg-white hover:bg-gray-200 cursor-pointer px-2
 }
 .table-top-right{
-    @apply inline-flex justify-center md:justify-end items-center gap-2
+    @apply inline-flex justify-center tablet:justify-end items-center gap-2
 }
 .table-advanced-search-area{
     @apply p-2 mb-4 bg-white border rounded-lg
+}
+
+/*Initial Vertical Menu*/
+.ivm {
+    @apply flex flex-col tablet:flex-row items-center max-h-min w-full px-2 py-2 overflow-hidden
+}
+.ivm-container {
+    @apply flex flex-col tablet:flex-row w-full gap-2
+}
+.ivm-item {
+    @apply bg-opacity-0 hover:bg-opacity-100 items-center justify-center px-3 py-2 gap-2 whitespace-nowrap h-full w-full tablet:max-w-min font-bold cursor-pointer transition duration-300 ease-in-out
 }
