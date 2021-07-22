@@ -209,6 +209,35 @@
     @apply flex px-1 text-2xs items-center justify-center border rounded-full
 }
 
+/*Breadcrumb*/
+/*Breadcrumb Style 1*/
+.breadcrumb-1{
+    @apply hidden tablet:flex flex-wrap items-center justify-between p-2 border-2 rounded-md h-14 w-full bg-white bg-opacity-80
+}
+/*Breadcrumb Style 2*/
+.breadcrumb-2{
+    @apply hidden tablet:flex flex-wrap items-center justify-between gap-1 bg-opacity-50 border-b-4 border-gray-300
+}
+/*Breadcrumb Container*/
+.breadcrumb-container {
+    @apply flex flex-row gap-1
+}
+/*Breadcrumb Item*/
+.breadcrumb-item-1 {
+    @apply flex items-center justify-center gap-2
+}
+/*Breadcrumb Item*/
+.breadcrumb-item-2 {
+    @apply flex items-center justify-center p-2 border-b-4 -mb-1
+}
+/*Breadcrumb Active Item*/
+.breadcrumb-item-active{
+    @apply border-2 px-2 py-1 rounded-full font-bold
+}
+/*Breadcrumb Subcontent*/
+.breadcrumb-sub-content{
+    @apply text-2xl text-gray-700
+}
 /*Pagination*/
 /*Pagination Container*/
 .pagination-container {

@@ -1,19 +1,22 @@
 <template>
   <app-layout>
     <template #header>Breadcrumb</template>
-    <template #subHeader>2 Different breadcrumbs style (32 variations)</template>
+    <template #subHeader>2 Different breadcrumbs style</template>
     <template #default>
-      <grid-section class="hidden md:block" :col="1" :gap="8">
+      <grid-section class="hidden tablet:block" :col="1" :gap="8">
+        <h3>
+          <b>Style 1</b>
+        </h3>
         <!--Style 1 without Subcontent-->
         <t-breadcrumb :breadcrumbStyle="1" :breadcrumbs="breadcrumbs1"/>
         <!--Style 1 with Subcontent-->
-        <t-breadcrumb :breadcrumbStyle="1" :breadcrumbs="breadcrumbs2">
+        <t-breadcrumb :breadcrumbStyle="1" :breadcrumbs="breadcrumbs2" position="right">
           <template #subContent>
             Alternative Title
           </template>
         </t-breadcrumb>
         <!--Style 1 with Subcontent-->
-        <t-breadcrumb :breadcrumbStyle="1" :breadcrumbs="breadcrumbs3">
+        <t-breadcrumb :breadcrumbStyle="1" :breadcrumbs="breadcrumbs3" position="right">
           <template #subContent>
             <t-button color="green" size="sm">
               <font-awesome-icon icon="plus-circle"/>
@@ -21,33 +24,19 @@
             </t-button>
           </template>
         </t-breadcrumb>
+        <h3>
+          <b>Style 2</b>
+        </h3>
         <!--Style 2 without Subcontent on the left-->
         <t-breadcrumb :breadcrumbStyle="2" :breadcrumbs="breadcrumbs4" position="left"/>
         <!--Style 2 with Subcontent on the left-->
-        <t-breadcrumb :breadcrumbStyle="2" :breadcrumbs="breadcrumbs5" position="left">
+        <t-breadcrumb :breadcrumbStyle="2" :breadcrumbs="breadcrumbs5" position="right">
           <template #subContent>
             Alternative Title
           </template>
         </t-breadcrumb>
         <!--Style 2 with Subcontent on the left-->
-        <t-breadcrumb :breadcrumbStyle="2" :breadcrumbs="breadcrumbs6" position="left">
-          <template #subContent>
-            <t-button color="green" size="sm">
-              <font-awesome-icon icon="plus-circle"/>
-              Add Button
-            </t-button>
-          </template>
-        </t-breadcrumb>
-        <!--Style 2 without Subcontent on the right-->
-        <t-breadcrumb :breadcrumbStyle="2" :breadcrumbs="breadcrumbs7" position="right"/>
-        <!--Style 2 with Subcontent on the left-->
-        <t-breadcrumb :breadcrumbStyle="2" :breadcrumbs="breadcrumbs8" position="right">
-          <template #subContent>
-            Alternative Title
-          </template>
-        </t-breadcrumb>
-        <!--Style 2 with Subcontent on the left-->
-        <t-breadcrumb :breadcrumbStyle="2" :breadcrumbs="breadcrumbs1" position="right">
+        <t-breadcrumb :breadcrumbStyle="2" :breadcrumbs="breadcrumbs6" position="right">
           <template #subContent>
             <t-button color="green" size="sm">
               <font-awesome-icon icon="plus-circle"/>
@@ -56,7 +45,7 @@
           </template>
         </t-breadcrumb>
       </grid-section>
-        <t-alert class="block md:hidden" color="red">The breakcrumb component works only on the large screens. If you want to see how ist works, you should use a large screen bigger than 728px</t-alert>
+        <t-alert class="block tablet:hidden" color="solid-red">The breakcrumb component works only on the large screens. If you want to see how ist works, you should use a large screen bigger than 728px</t-alert>
       <!--Sample Codes-->
       <ssh-pre :copy-button="true" label="Code" language="html">{{ sampleCode.html }}</ssh-pre>
       <ssh-pre :copy-button="true" label="JS" language="js">{{ sampleCode.js }}</ssh-pre>
@@ -88,42 +77,32 @@ export default {
       breadcrumbs1: [
         {label: 'Home', link: '/', active: false},
         {label: 'Departments', link: '/department', active: false},
-        {label: 'New Department', link: '', active: true, activeColor: 'red'}
+        {label: 'New Department', link: '', active: true, activeColor: 'solid-red'}
       ],
       breadcrumbs2: [
         {label: 'Home', link: '/', active: false},
         {label: 'Departments', link: '/department', active: false},
-        {label: 'New Department', link: '', active: true, activeColor: 'blue'}
+        {label: 'New Department', link: '', active: true, activeColor: 'solid-blue'}
       ],
       breadcrumbs3: [
         {label: 'Home', link: '/', active: false},
         {label: 'Departments', link: '/department', active: false},
-        {label: 'New Department', link: '', active: true, activeColor: 'green'}
+        {label: 'New Department', link: '', active: true, activeColor: 'solid-green'}
       ],
       breadcrumbs4: [
         {label: 'Home', link: '/', active: false},
         {label: 'Departments', link: '/department', active: false},
-        {label: 'New Department', link: '', active: true, activeColor: 'yellow'}
+        {label: 'New Department', link: '', active: true, activeColor: 'solid-yellow'}
       ],
       breadcrumbs5: [
         {label: 'Home', link: '/', active: false},
         {label: 'Departments', link: '/department', active: false},
-        {label: 'New Department', link: '', active: true, activeColor: 'indigo'}
+        {label: 'New Department', link: '', active: true, activeColor: 'solid-indigo'}
       ],
       breadcrumbs6: [
         {label: 'Home', link: '/', active: false},
         {label: 'Departments', link: '/department', active: false},
-        {label: 'New Department', link: '', active: true, activeColor: 'pink'}
-      ],
-      breadcrumbs7: [
-        {label: 'Home', link: '/', active: false},
-        {label: 'Departments', link: '/department', active: false},
-        {label: 'New Department', link: '', active: true, activeColor: 'purple'}
-      ],
-      breadcrumbs8: [
-        {label: 'Home', link: '/', active: false},
-        {label: 'Departments', link: '/department', active: false},
-        {label: 'New Department', link: '', active: true, activeColor: 'gray'}
+        {label: 'New Department', link: '', active: true, activeColor: 'solid-pink'}
       ],
       sampleCode: {
         html:
@@ -149,7 +128,7 @@ export default {
             '        breadcrumbs: [\n' +
             '          {label: \'Home\', link: \'/\', active: false},\n' +
             '          {label: \'Departments\', link: \'/department\', active: false},\n' +
-            '          {label: \'New Department\', link: \'\', active: true, activeColor: \'red\'}\n' +
+            '          {label: \'New Department\', link: \'\', active: true, activeColor: \'solid-red\'}\n' +
             '        ]\n'+
             '      }\n'+
             '  },',
@@ -185,13 +164,13 @@ export default {
               details: "The source of the breadcrumbs list"
             },
             {
-              variable: "Breadcrumbs data object <br><em>breadcrumbs: [<br>&nbsp;&nbsp;&nbsp;&nbsp;{label:' ',link:' ',active:' ',activeColor:' '}</em><br>]",
+              variable: "Breadcrumbs data object <br><em>breadcrumbs: [<br>&nbsp;&nbsp;&nbsp;&nbsp;{<br>label:' ',<br>link:' ',<br>active:' ',<br>activeColor:' '<br>}</em><br>]",
               type: "Object in Array",
               details:"This object have must 4 sub items: label, link, active and activeColor<br>" +
                   "<b>Label Options:</b> everything you want <br>" +
                   "<b>Link Options:</b> everything you want, Ex.: route('user.index'), http://example.com/users etc. <br>" +
                   "<b>Active Options:</b> true, false <br>" +
-                  "<b>Active Color Options:</b> red,blue,green,yellow,indigo,pink,purple,gray <br>"
+                  "<b>Active Color Options:</b> solid-red, solid-blue, solid-green, solid-yellow, solid-indigo, solid-pink, solid-purple, solid-gray <br> <b>Default:</b> solid-blue"
             }
           ]
         }
