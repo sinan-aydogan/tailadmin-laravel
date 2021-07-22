@@ -1,7 +1,7 @@
 <template>
   <app-layout>
     <template #header>Avatars</template>
-    <template #subHeader>User avatars and team members avatar group (4.608 variations)</template>
+    <template #subHeader>User avatars and team members avatar group</template>
     <template #default>
       <grid-section :col="2" :gap="2">
         <!--Avatar Radius Card-->
@@ -178,7 +178,7 @@ export default {
     return {
       sampleCode: {
         html:
-              '<t-avatar src="/img/samples/dummyAvatar.svg" :size="5" :radius="8" :indicator="{color: \'blue\', label: \'5\', position: \'lb\'}" />\n\n' +
+              '<t-avatar src="/img/samples/dummyAvatar.svg" :size="5" :radius="8" :indicator="{color: \'gradient-red-to-pink\', gradient-direction: \'r\', label: \'5\', position: \'lb\'}" />\n\n' +
               '<!--For Avatar Group-->\n\n' +
               '<t-avatar-group>\n' +
               '    <t-avatar src="/img/samples/dummyAvatar.svg" :size="5" :radius="8"/>\n' +
@@ -196,7 +196,8 @@ export default {
           header: [
             {
               key: "variable",
-              label: "Variable"
+              label: "Variable",
+              width: 15
             },
             {
               key: "type",
@@ -224,12 +225,16 @@ export default {
               details: "<b>Options:</b> none, 1, 2, 3, 4, 5, 6, 7, 8"
             },
             {
-              variable: ":indicator=\"{color:' ',label:' ',position:' '}\"",
+              variable: ":indicator=\"{<br>&nbsp&nbsp&nbsp&nbsp color:&nbsp' ',<br>&nbsp&nbsp&nbsp&nbsp gradient-direction:&nbsp' ',<br>&nbsp&nbsp&nbsp&nbsp label:&nbsp' ',<br>&nbsp&nbsp&nbsp&nbsp position:&nbsp' '<br>}\"",
               type: "Object",
               details:"This object have must 3 sub items: color, label and position<br>" +
-                      "<b>Color Options:</b> red,blue,green,yellow,indigo,pink,purple,gray <br>" +
+                      "<b>Color Options Solid:</b> solid-red, solid-blue, solid-green, solid-yellow, solid-indigo, solid-pink, solid-purple, solid-gray, solid-black, solid-white,<br>" +
+                  "<b>Color Options Light:</b> light-red, light-blue, light-green, light-yellow, light-indigo, light-pink, light-purple, light-gray<br>" +
+                  "<b>Color Options Gradient:</b> gradient-red-to-pink. Red is first color and Pink is second color. You change red end pink with red, blue, green, yellow, indigo, pink, purple and gray)<br>" +
+                  "<b>Color Options Gradient Direction:</b> If you use to the gradient color, you can select gradient's direction. <br><b>Gradient Direction Options:</b> r, l, b, t, tl, bl, tr, br " +
+                  "<b>Default:</b> r (Means: l: left, r: right, b: bottom, t: top)<br>" +
                       "<b>Label Options:</b> everything you want <br>" +
-                      "<b>Position Options:</b> lb, rb, lt, rt <small>(Means: l:left,r:right,b:bottom,t:top)</small>"
+                      "<b>Label Position Options:</b> lb, rb, lt, rt <small>(Means: l:left,r:right,b:bottom,t:top)</small>"
             }
           ]
         }
