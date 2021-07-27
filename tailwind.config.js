@@ -1,12 +1,15 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
-    purge: [
-        './vendor/laravel/jetstream/**/*.blade.php',
-        './storage/framework/views/*.php',
-        './resources/views/**/*.blade.php',
-        './resources/js/**/*.vue',
-    ],
+    purge: {
+        content: [
+            './vendor/laravel/jetstream/**/*.blade.php',
+            './storage/framework/views/*.php',
+            './resources/views/**/*.blade.php',
+            './resources/js/**/*.vue',
+            './resources/js/**/*.js'
+        ],
+    },
 
     theme: {
         extend: {
@@ -57,25 +60,26 @@ module.exports = {
             }
         },
         screens: {
-            'desktop': '1280px',
-            'laptop': '1024px',
-            'tablet': '768px',
-            'phone' : '425px',
+            'phone': '425',
+            'tablet': {'min': '426px'},
+            'laptop': {'min': '769px'},
+            'desktop': {'min': '1025px'},
         },
     },
 
     variants: {
         extend: {
             opacity: ['disabled'],
-            textColor: ['hover','active'],
-            backgroundColor : ['active'],
-            fontWeight: ['hover', 'active' ,'focus'],
-            borderWidth: ['first','last','hover'],
-            borderRadius: ['first','last'],
+            textColor: ['hover', 'active'],
+            backgroundColor: ['active'],
+            fontWeight: ['hover', 'active', 'focus'],
+            borderWidth: ['first', 'last', 'hover'],
+            borderRadius: ['first', 'last'],
             padding: ['focus'],
             zIndex: ['hover'],
+            brightness: ['hover', 'focus'],
         },
     },
 
-    plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography'),require('tailwind-scrollbar')],
+    plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography'), require('tailwind-scrollbar')],
 };
