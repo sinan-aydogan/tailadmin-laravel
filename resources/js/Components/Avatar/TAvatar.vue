@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import {avatarStyleMixin} from "@/Mixins/avatarStyleMixin";
+import {avatarStyleMixin} from "@/Mixins/Styles/avatarStyleMixin";
 
 export default {
     name: "TAvatar",
