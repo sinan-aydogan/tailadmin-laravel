@@ -2,14 +2,22 @@
   <div v-click-outside="outside" class="relative max-w-min select-none">
     <div
         v-if="$slots.title"
-        :class="['whitespace-normal font-semibold',triggerStyle]"
+        :class="[
+            'dropdown',
+            calculatedTriggerStyle
+            ]"
         @click="showContent = !showContent"
     >
       <slot name="title"/>
-      <font-awesome-icon icon="angle-down"/>
-
+      <t-chevron-down-icon
+          :class="[
+                'w-5 h-5 transform duration-300',
+                showContent ? 'rotate-90' : 'rotate-0'
+                ]"
+      />
     </div>
     <div
+        class="cursor-pointer"
         v-if="$slots.trigger"
         @click="showContent = !showContent"
     >
@@ -43,8 +51,12 @@
 </template>
 
 <script>
+import {dropdownStyleMixin} from "@/Mixins/Styles/dropdownStyleMixin";
+import TChevronDownIcon from "@/Components/Icon/TChevronDownIcon";
 export default {
   name: "TDropdown",
+  components: {TChevronDownIcon},
+  mixins: [dropdownStyleMixin],
   directives: {
     'click-outside': {
       bind: function (el, binding, vNode) {
@@ -79,16 +91,6 @@ export default {
       }
     }
   },
-  props: {
-    color: {
-      type: String,
-      default: 'white'
-    },
-    align: {
-      type: String,
-      default: 'left'
-    }
-  },
   data() {
     return {
       showContent: false,
@@ -98,41 +100,6 @@ export default {
     outside() {
       this.showContent = false
     }
-  },
-  computed: {
-    /*Color Styles*/
-    triggerStyle() {
-      if (this.color === 'white') {
-        return 'relative flex flex-row justify-between hover:bg-gray-200 hover:border-gray-500 border rounded-md p-2 items-center gap-2 cursor-pointer'
-      } else if (this.color === 'black') {
-        return 'relative flex flex-row justify-between hover:bg-gray-600 hover:border-gray-500 border rounded-md bg-black text-white p-2 items-center gap-2 cursor-pointer'
-      } else {
-        return 'relative hover:bg-gray-600 bg-' + this.color + '-500 text-' + this.color + '-50 flex flex-row justify-between border rounded-md p-2 items-center gap-2 cursor-pointer'
-      }
-
-    },
-    childStyle() {
-      if (this.color === 'white') {
-        return 'absolute border rounded-md mt-1 overflow-hidden bg-white'
-      } else if (this.color === 'black') {
-        return 'absolute border rounded-md mt-1 overflow-hidden bg-black text-white'
-      } else {
-        return 'absolute border rounded-md mt-1 overflow-hidden bg-' + this.color + '-200'
-      }
-    },
-    alignStyle(){
-      if (this.align === 'left') {
-        return 'origin-top-left left-0'
-      } else if (this.align === 'right') {
-        return 'origin-top-right right-0'
-      } else {
-        return 'origin-top'
-      }
-    }
   }
 }
 </script>
-
-<style scoped>
-
-</style>
