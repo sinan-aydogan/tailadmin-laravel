@@ -32,16 +32,15 @@
         leave-to-class="transform opacity-0 scale-95">
       <div
           v-if="showContent && $slots.title"
-          :class="['flex flex-col whitespace-normal z-10 min-w-22',
-          childStyle,
-          alignStyle
+          :class="['dropdown-content',
+          calculatedContentStyle
           ]">
         <slot></slot>
       </div>
       <div
           v-if="showContent && $slots.trigger"
-          :class="['absolute flex flex-col whitespace-normal z-10 min-w-22',
-          alignStyle
+          :class="['absolute flex flex-col whitespace-normal z-10',
+          calculatedContentStyle
           ]"
       >
         <slot/>
