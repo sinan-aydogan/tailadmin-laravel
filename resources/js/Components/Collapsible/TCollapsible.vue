@@ -1,29 +1,14 @@
 <template>
-    <div :class="['flex flex-col w-full border border-gray-400 overflow-hidden',radiusStyle]">
+    <div :class="['collapsible',calculatedCollapsibleStyle]">
         <slot></slot>
     </div>
 </template>
 
 <script>
-import {radiusSizeMixin} from "@/Mixins/radiusSizeMixin";
+import {collapsibleStyleMixin} from "@/Mixins/Styles/collapsibleStyleMixin";
 
 export default {
     name: "Collapsible",
-    mixins: [radiusSizeMixin]
+    mixins: [collapsibleStyleMixin]
 }
 </script>
-
-<style>
-/*
-.collapsible-border:first-child{
-  border-radius: 12px 12px 0 0;
-  border-top: 1px solid #9CA3AF;
-}*/
-.collapsible-border {
-    border-bottom: 1px solid #9CA3AF;
-}
-
-.collapsible-border:last-child {
-    border-bottom: 0 solid #9CA3AF;
-}
-</style>
