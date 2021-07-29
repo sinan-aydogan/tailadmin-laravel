@@ -12,15 +12,15 @@ export const bgColorStyles = {
     data(){
         return {
             solidColors: {
-                'solid-red': 'bg-red-500 text-gray-100',
-                'solid-blue': 'bg-blue-500 text-gray-100',
-                'solid-green': 'bg-green-500 text-gray-100',
-                'solid-yellow': 'bg-yellow-500 text-gray-100',
-                'solid-indigo': 'bg-indigo-500 text-gray-100',
-                'solid-pink': 'bg-pink-500 text-gray-100',
-                'solid-purple': 'bg-purple-500 text-gray-100',
-                'solid-gray': 'bg-gray-500 text-gray-100',
-                'solid-black': 'bg-black text-gray-300',
+                'solid-red': 'bg-red-500 border-red-500',
+                'solid-blue': 'bg-blue-500 border-blue-500',
+                'solid-green': 'bg-green-500 border-green-500',
+                'solid-yellow': 'bg-yellow-500 border-yellow-500',
+                'solid-indigo': 'bg-indigo-500 border-indigo-500',
+                'solid-pink': 'bg-pink-500 border-pink-500',
+                'solid-purple': 'bg-purple-500 border-purple-500',
+                'solid-gray': 'bg-gray-500 border-gray-500',
+                'solid-black': 'bg-black border-black',
                 'solid-white': 'bg-white border border-gray-300'
             },
             lightColors: {
@@ -50,7 +50,7 @@ export const bgColorStyles = {
                 yellow: 'from-yellow-500',
                 indigo: 'from-indigo-500',
                 pink: 'from-pink-500',
-                purple: 'from-purple-500',
+                purple: 'from-purple-500 to-pink-700 text-gray-100',
                 gray: 'from-gray-500',
                 black: 'from-black',
                 white: 'from-white'
@@ -76,7 +76,7 @@ export const bgColorStyles = {
                 'solid-pink': 'text-gray-100',
                 'solid-purple': 'text-gray-100',
                 'solid-gray': 'text-gray-100',
-                'solid-black': 'text-gray-100',
+                'solid-black': 'text-gray-300',
                 'solid-white': 'text-gray-700'
             },
             lightTextColors: {
@@ -90,7 +90,31 @@ export const bgColorStyles = {
                 'light-gray': 'text-gray-700',
                 'light-black': 'text-gray-700',
                 'light-white': 'text-gray-700'
-            }
+            },
+            solidHoverColors: {
+                'solid-red': 'hover:bg-red-100 hover:text-red-700',
+                'solid-blue': 'hover:bg-blue-100 hover:text-blue-700',
+                'solid-green': 'hover:bg-green-100 hover:text-green-700',
+                'solid-yellow': 'hover:bg-yellow-100 hover:text-yellow-700',
+                'solid-indigo': 'hover:bg-indigo-100 hover:text-indigo-700',
+                'solid-pink': 'hover:bg-pink-100 hover:text-pink-700',
+                'solid-purple': 'hover:bg-purple-100 hover:text-purple-700',
+                'solid-gray': 'hover:bg-gray-100 hover:text-gray-700',
+                'solid-black': 'hover:bg-gray-500',
+                'solid-white': 'hover:bg-gray-100 border border-gray-300'
+            },
+            lightHoverColors: {
+                'light-red': 'hover:bg-red-50 hover:text-red-700',
+                'light-blue': 'hover:bg-blue-50 hover:text-blue-700',
+                'light-green': 'hover:bg-green-50 hover:text-green-700',
+                'light-yellow': 'hover:bg-yellow-50 hover:text-yellow-700',
+                'light-indigo': 'hover:bg-indigo-50 hover:text-indigo-700',
+                'light-pink': 'hover:bg-pink-50 hover:text-pink-700',
+                'light-purple': 'hover:bg-purple-50 hover:text-purple-700',
+                'light-gray': 'hover:bg-gray-50 hover:text-gray-700',
+                'light-black': 'hover:bg-gray-500',
+                'light-white': 'hover:bg-gray-100 border border-gray-300'
+            },
         }
     },
     computed: {
@@ -108,6 +132,18 @@ export const bgColorStyles = {
                     this.gradientSecondColors[this.color.split('-')[3]]
             }
         },
+        bgHoverColorStyle(){
+            if(this.color.includes('solid')){
+                /*Solid Colors*/
+                return this.solidHoverColors[this.color]
+            }else if(this.color.includes('light')){
+                /*Light Colors*/
+                return this.lightHoverColors[this.color]
+            }else if(this.color.includes('gradient')){
+                /*Gradient Colors*/
+                return 'filter hover:brightness-125'
+            }
+        },
         textColorStyle(){
             if(this.color.includes('solid')){
                 /*Solid Colors*/
@@ -116,7 +152,7 @@ export const bgColorStyles = {
                 /*Light Colors*/
                 return this.lightTextColors[this.color]
             }else if(this.color.includes('gradient')){
-                return this.solidTextColors[this.color]
+                return this.solidTextColors['solid-'+this.color.split('-')[1]]
             }
         }
     }
