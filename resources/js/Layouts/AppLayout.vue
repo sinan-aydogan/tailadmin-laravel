@@ -27,7 +27,7 @@
         <!--Top Menu-->
         <div :class="[
             'top-menu',
-            deviceType === 'tablet' | deviceType === 'phone'  ? 'w-screen' : 'w-full'
+            deviceType === 'tablet' || deviceType === 'phone'  ? 'w-screen' : 'w-full'
             ]">
           <!--Left Menu Trigger-->
           <transition-group :class="[
@@ -48,12 +48,12 @@
             <t-hamburger-menu-trigger-icon
                 v-if="showingLeftMenu === 'false'"
                 key="false"
-                :class="['absolute',deviceType === 'laptop' | deviceType === 'desktop' ? 'w-6' : 'w-8']"
+                :class="['absolute',deviceType === 'laptop' || deviceType === 'desktop' ? 'w-4' : 'w-8']"
             />
             <t-x-icon
                 v-if="showingLeftMenu === 'true'"
                 key="true"
-                :class="['absolute',deviceType === 'laptop' | deviceType === 'desktop' ? 'w-6' : 'w-8']"
+                :class="['absolute',deviceType === 'laptop' || deviceType === 'desktop' ? 'w-4' : 'w-8']"
             />
           </transition-group>
           <!--Search Box-->
@@ -111,25 +111,25 @@
                       Pending Works
                     </div>
                     <!--To-Do-->
-                    <button class="dropdown-item" href="test">2 To-Do's</button>
+                    <button class="dropdown-item">2 To-Do's</button>
                     <!--Calibration-->
-                    <button class="dropdown-item" href="test">5 Calibration Task's</button>
+                    <button class="dropdown-item">5 Calibration Task's</button>
                     <!--Messages-->
                     <div class="border-t border-gray-100"></div>
-                    <button class="dropdown-item" href="test">9 Messages</button>
+                    <button class="dropdown-item">9 Messages</button>
                   </div>
                 </template>
               </t-dropdown>
             </div>
             <!--User Menu-->
             <t-dropdown
-                align="right"
-                @click.native="showingNavigationDropdown = !showingNavigationDropdown">
+                align="right">
               <template #trigger>
                 <!--If The user has a avatar-->
                 <button
                     v-if="$page.props.jetstream.managesProfilePhotos"
                     class="trigger-button tablet:gap-2"
+                    @click="hamburgerMenuTrigger"
                 >
                   <!--User Info-->
                   <span class="staff-info">
@@ -169,25 +169,25 @@
                 </span>
               </template>
               <template #default>
-                <div v-show="deviceType !== 'phone' && showingNavigationDropdown" class="dropdown-list-container">
+                <div v-show="deviceType !== 'phone'" class="dropdown-list-container">
                   <!-- Account Management -->
                   <div class="dropdown-header">
                     Manage Account
                   </div>
 
                   <!--Profile-->
-                  <div class="dropdown-item">
-                    <inertia-link :href="route('profile.show')">
+                  <inertia-link :href="route('profile.show')">
+                    <div class="dropdown-item">
                       Profile
-                    </inertia-link>
-                  </div>
+                    </div>
+                  </inertia-link>
 
                   <!--API Tokens-->
-                  <div class="dropdown-item" v-if="$page.props.jetstream.hasApiFeatures">
-                    <inertia-link :href="route('api-tokens.index')">
+                  <inertia-link v-if="$page.props.jetstream.hasApiFeatures" :href="route('api-tokens.index')">
+                    <div class="dropdown-item">
                       Profile
-                    </inertia-link>
-                  </div>
+                    </div>
+                  </inertia-link>
 
                   <!-- Team Management -->
                   <div class="border-t border-gray-100"></div>
@@ -197,18 +197,18 @@
                     </div>
 
                     <!-- Team Settings -->
-                    <div class="dropdown-item">
-                      <inertia-link :href="route('teams.show', $page.props.user.current_team)">
+                    <inertia-link :href="route('teams.show', $page.props.user.current_team)">
+                      <div class="dropdown-item">
                         Team Settings
-                      </inertia-link>
-                    </div>
+                      </div>
+                    </inertia-link>
 
                     <!--Create New Team-->
-                    <div class="dropdown-item" v-if="$page.props.jetstream.canCreateTeams">
-                      <inertia-link :href="route('teams.create')">
+                    <inertia-link v-if="$page.props.jetstream.canCreateTeams" :href="route('teams.create')">
+                      <div class="dropdown-item">
                         Create New Team
-                      </inertia-link>
-                    </div>
+                      </div>
+                    </inertia-link>
 
                     <!-- Team Switcher -->
                     <div class="border-t border-gray-100"></div>
@@ -219,13 +219,13 @@
                     <template v-for="team in $page.props.user.all_teams">
                       <form :key="team.id" @submit.prevent="switchToTeam(team)">
                         <button class="dropdown-item">
-                          <div class="flex items-center">
+                          <span class="flex items-center">
                             <t-check-circle-icon
-                                v-if="team.id == $page.props.user.current_team_id"
+                                v-if="team.id === $page.props.user.current_team_id"
                                 class="mr-2 h-5 w-5 text-green-400"
                             />
                             {{ team.name }}
-                          </div>
+                          </span>
 
                         </button>
                       </form>
@@ -316,7 +316,7 @@
                   <form :key="team.id" @submit.prevent="switchToTeam(team)">
                     <jet-responsive-nav-link as="button">
                       <div class="flex items-center">
-                        <svg v-if="team.id == $page.props.user.current_team_id"
+                        <svg v-if="team.id === $page.props.user.current_team_id"
                              class="mr-2 h-5 w-5 text-green-400" fill="none"
                              stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                              stroke-width="2" viewBox="0 0 24 24">
@@ -334,7 +334,7 @@
         <!--Content-->
         <div :class="[
             'content-container',
-            deviceType === 'tablet' | deviceType === 'phone'  ? 'w-screen' : 'w-full'
+            deviceType === 'tablet' || deviceType === 'phone'  ? 'w-screen' : 'w-full'
             ]">
           <!--Content Header-->
           <div class="container-header">
@@ -376,6 +376,7 @@
           <!--Toastr Notifications-->
           <div v-if="$page.props.flash.toastr">
             <t-toastr
+                :key="$page.props.flash.toastr.content"
                 :closeable="true"
                 :color="$page.props.flash.toastr.type"
                 :position="$page.props.flash.toastr.position"
@@ -404,7 +405,8 @@
               href="https://github.com/sinan-aydogan/tailadmin-laravel"
               target="_blank"
           >
-            <t-github-icon class="w-5 h-5 -mt-1"/> {{deviceType}}
+            <t-github-icon class="w-5 h-5 -mt-1"/>
+            {{ deviceType }}
           </a>
         </footer>
       </div>
@@ -476,7 +478,7 @@ export default {
     },
 
     leftMenuTrigger() {
-      if (this.deviceType === 'tablet' | this.deviceType === 'phone') {
+      if (this.deviceType === 'tablet' || this.deviceType === 'phone') {
         if (this.hiddenLeftMenu === 'true') {
           this.hiddenLeftMenu = 'false';
           this.showingLeftMenu = 'true';
@@ -493,6 +495,11 @@ export default {
         this.hiddenLeftMenu = 'false';
       }
       this.leftMenuStorage();
+    },
+    hamburgerMenuTrigger() {
+      if (this.deviceType === 'phone') {
+        this.showingNavigationDropdown = !this.showingNavigationDropdown
+      }
     },
     leftMenuStorage() {
       localStorage.setItem('showingLeftMenu', this.showingLeftMenu)
@@ -520,7 +527,7 @@ export default {
   },
   watch: {
     deviceType() {
-      if (this.deviceType === 'tablet' | this.deviceType === 'phone') {
+      if (this.deviceType === 'tablet' || this.deviceType === 'phone') {
         this.hiddenLeftMenu = 'true';
         this.showingLeftMenu = 'false';
       } else {
