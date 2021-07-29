@@ -18,7 +18,7 @@
         <!--Style 1 with Subcontent-->
         <t-breadcrumb :breadcrumbStyle="1" :breadcrumbs="breadcrumbs3" position="right">
           <template #subContent>
-            <t-button color="green" size="sm">
+            <t-button color="solid-green" size="sm">
               <font-awesome-icon icon="plus-circle"/>
               Add Button
             </t-button>
@@ -38,7 +38,7 @@
         <!--Style 2 with Subcontent on the left-->
         <t-breadcrumb :breadcrumbStyle="2" :breadcrumbs="breadcrumbs6" position="right">
           <template #subContent>
-            <t-button color="green" size="sm">
+            <t-button color="solid-green" size="sm">
               <font-awesome-icon icon="plus-circle"/>
               Add Button
             </t-button>
@@ -50,7 +50,18 @@
       <ssh-pre :copy-button="true" label="Code" language="html">{{ sampleCode.html }}</ssh-pre>
       <ssh-pre :copy-button="true" label="JS" language="js">{{ sampleCode.js }}</ssh-pre>
       <!--Variables Table-->
-      <t-table :content="sampleCode.table.content" :header="sampleCode.table.header" class="mt-5" color="blue" :searchable="['variable','details']"/>
+      <t-table
+          :content="sampleCode.table.content"
+          :header="sampleCode.table.header"
+          class="mt-5"
+          color="solid-blue"
+          :searchable="['variable','details']"
+      >
+        <template #details="{props}">
+              <span class="whitespace-nowrap tablet:whitespace-normal" v-html="props.details">
+              </span>
+        </template>
+      </t-table>
     </template>
   </app-layout>
 </template>
@@ -110,7 +121,7 @@ export default {
             '    <!--If you want to show a second content in the breadcrumb-->\n' +
             '    <template #subContent>\n' +
             '    <!--You are free this area, be mindful of the height of the items you use-->\n' +
-            '      <t-button color="green" size="sm">\n' +
+            '      <t-button color="solid-green" size="sm">\n' +
             '        <font-awesome-icon icon="plus-circle"/>\n' +
             '        Add Button\n' +
             '      </t-button>\n' +

@@ -52,14 +52,14 @@
                   v-model="form.checkbox"
                   :disabled="true"
                   :radius="0"
-                  color="white"
+                  color="solid-white"
                   input-value="disabled"
                   label="Disabled"
               />
               <t-input-check-box
                   v-model="form.checkbox"
                   :radius="0"
-                  color="white"
+                  color="solid-white"
                   input-value="default1"
                   label="Default"
               />
@@ -69,7 +69,7 @@
                   v-model="form.checkbox"
                   :checked="true"
                   :radius="8"
-                  color="gray"
+                  color="solid-gray"
                   input-value="default2"
                   label="Default"
               />
@@ -77,7 +77,7 @@
               <t-input-check-box
                   v-model="form.checkbox"
                   :radius="3"
-                  color="green"
+                  color="solid-green"
                   input-value="yes"
                   label="Yes"
               >
@@ -89,7 +89,7 @@
               <t-input-check-box
                   v-model="form.checkbox"
                   :radius="3"
-                  color="red"
+                  color="solid-red"
                   input-value="no"
                   label="No"
               >
@@ -101,7 +101,7 @@
               <t-input-check-box
                   v-model="form.checkbox"
                   :radius="5"
-                  color="blue"
+                  color="solid-blue"
                   input-value="maybe"
                   label="Maybe"
               >
@@ -118,14 +118,14 @@
                   v-model="form.radio"
                   :disabled="true"
                   :radius="0"
-                  color="white"
+                  color="solid-white"
                   input-value="disabled"
                   label="Disabled"
               />
               <t-input-radio-button
                   v-model="form.radio"
                   :radius="0"
-                  color="white"
+                  color="solid-white"
                   input-value="default1"
                   label="Default"
               />
@@ -135,7 +135,7 @@
                   v-model="form.radio"
                   :checked="true"
                   :radius="8"
-                  color="gray"
+                  color="solid-gray"
                   input-value="default2"
                   label="Default"
               />
@@ -143,7 +143,7 @@
               <t-input-radio-button
                   v-model="form.radio"
                   :radius="3"
-                  color="green"
+                  color="solid-green"
                   input-value="yes"
                   label="Yes"
               >
@@ -155,7 +155,7 @@
               <t-input-radio-button
                   v-model="form.radio"
                   :radius="3"
-                  color="red"
+                  color="solid-red"
                   input-value="no"
                   label="No"
               >
@@ -167,7 +167,7 @@
               <t-input-radio-button
                   v-model="form.radio"
                   :radius="5"
-                  color="blue"
+                  color="solid-blue"
                   input-value="maybe"
                   label="Maybe"
               >
@@ -193,9 +193,17 @@
       <ssh-pre :copy-button="true" label="Code" language="html">{{ sampleCode.html }}</ssh-pre>
       <ssh-pre :copy-button="true" label="JS" language="js">{{ sampleCode.js }}</ssh-pre>
       <!--Variables Table-->
-      <t-table :content="sampleCode.table.content" :header="sampleCode.table.header"
-               :searchable="['variable','details']" class="mt-5"
-               color="blue"/>
+      <t-table
+          :content="sampleCode.table.content"
+          :header="sampleCode.table.header"
+          :searchable="['variable','details']"
+          class="mt-5"
+          color="solid-blue">
+        <template #details="{props}">
+              <span class="whitespace-nowrap tablet:whitespace-normal" v-html="props.details">
+              </span>
+        </template>
+      </t-table>
     </template>
   </app-layout>
 </template>
@@ -293,14 +301,14 @@ export default {
             '            v-model="form.checkbox"\n' +
             '            :disabled="true"\n' +
             '            :radius="0"\n' +
-            '            color="white"\n' +
+            '            color="solid-white"\n' +
             '            input-value="disabled"\n' +
             '            label="Disabled"\n' +
             '        />\n' +
             '        <t-input-check-box\n' +
             '            v-model="form.checkbox"\n' +
             '            :radius="0"\n' +
-            '            color="white"\n' +
+            '            color="solid-white"\n' +
             '            input-value="default1"\n' +
             '            label="Default"\n' +
             '        />\n' +
@@ -310,7 +318,7 @@ export default {
             '            v-model="form.checkbox"\n' +
             '            :checked="true"\n' +
             '            :radius="8"\n' +
-            '            color="gray"\n' +
+            '            color="solid-gray"\n' +
             '            input-value="default2"\n' +
             '            label="Default"\n' +
             '        />\n' +
@@ -318,7 +326,7 @@ export default {
             '        <t-input-check-box\n' +
             '            v-model="form.checkbox"\n' +
             '            :radius="3"\n' +
-            '            color="green"\n' +
+            '            color="solid-green"\n' +
             '            input-value="yes"\n' +
             '            label="Yes"\n' +
             '        >\n' +
@@ -331,7 +339,7 @@ export default {
             '        <t-input-check-box\n' +
             '            v-model="form.checkbox"\n' +
             '            :radius="3"\n' +
-            '            color="red"\n' +
+            '            color="solid-red"\n' +
             '            input-value="no"\n' +
             '            label="No"\n' +
             '        >\n' +
@@ -344,7 +352,7 @@ export default {
             '        <t-input-check-box\n' +
             '            v-model="form.checkbox"\n' +
             '            :radius="5"\n' +
-            '            color="blue"\n' +
+            '            color="solid-blue"\n' +
             '            input-value="maybe"\n' +
             '            label="Maybe"\n' +
             '        >\n' +
@@ -362,14 +370,14 @@ export default {
             '            v-model="form.radio"\n' +
             '            :disabled="true"\n' +
             '            :radius="0"\n' +
-            '            color="white"\n' +
+            '            color="solid-white"\n' +
             '            input-value="disabled"\n' +
             '            label="Disabled"\n' +
             '        />\n' +
             '        <t-input-radio-button\n' +
             '            v-model="form.radio"\n' +
             '            :radius="0"\n' +
-            '            color="white"\n' +
+            '            color="solid-white"\n' +
             '            input-value="default1"\n' +
             '            label="Default"\n' +
             '        />\n' +
@@ -379,7 +387,7 @@ export default {
             '            v-model="form.radio"\n' +
             '            :checked="true"\n' +
             '            :radius="8"\n' +
-            '            color="gray"\n' +
+            '            color="solid-gray"\n' +
             '            input-value="default2"\n' +
             '            label="Default"\n' +
             '        />\n' +
@@ -387,7 +395,7 @@ export default {
             '        <t-input-radio-button\n' +
             '            v-model="form.radio"\n' +
             '            :radius="3"\n' +
-            '            color="green"\n' +
+            '            color="solid-green"\n' +
             '            input-value="yes"\n' +
             '            label="Yes"\n' +
             '        >\n' +
@@ -400,7 +408,7 @@ export default {
             '        <t-input-radio-button\n' +
             '            v-model="form.radio"\n' +
             '            :radius="3"\n' +
-            '            color="red"\n' +
+            '            color="solid-red"\n' +
             '            input-value="no"\n' +
             '            label="No"\n' +
             '        >\n' +
@@ -413,7 +421,7 @@ export default {
             '        <t-input-radio-button\n' +
             '            v-model="form.radio"\n' +
             '            :radius="5"\n' +
-            '            color="blue"\n' +
+            '            color="solid-blue"\n' +
             '            input-value="maybe"\n' +
             '            label="Maybe"\n' +
             '        >\n' +

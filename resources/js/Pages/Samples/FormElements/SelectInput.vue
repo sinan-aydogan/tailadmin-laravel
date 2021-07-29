@@ -4,11 +4,11 @@
       Select Input Component
     </template>
     <template #action-buttons>
-      <TButton :radius="3" color="yellow">
+      <TButton :radius="3" color="solid-yellow">
         <font-awesome-icon icon="angle-left"/>
         Back to Home
       </TButton>
-      <TButton :radius="3" color="green">
+      <TButton :radius="3" color="solid-green">
         <font-awesome-icon icon="plus-circle"/>
         Add New
       </TButton>
@@ -45,8 +45,17 @@
       <ssh-pre :copy-button="true" label="Code" language="html">{{ sampleCode.html }}</ssh-pre>
       <ssh-pre :copy-button="true" label="JS" language="js">{{ sampleCode.js }}</ssh-pre>
       <!--Variables Table-->
-      <t-table :content="sampleCode.table.content" :header="sampleCode.table.header" :searchable="['variable','details']" class="mt-5"
-               color="blue"/>
+      <t-table
+          :content="sampleCode.table.content"
+          :header="sampleCode.table.header"
+          :searchable="['variable','details']"
+          class="mt-5"
+          color="solid-blue">
+        <template #details="{props}">
+              <span class="whitespace-nowrap tablet:whitespace-normal" v-html="props.details">
+              </span>
+        </template>
+      </t-table>
     </template>
   </app-layout>
 </template>

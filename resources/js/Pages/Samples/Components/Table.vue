@@ -18,11 +18,11 @@
                     <grid-section col="12" gap="2">
                         <!--Name-->
                         <t-input-group class="col-span-12 md:col-span-6" label="Name">
-                            <t-input-text/>
+                            <t-input-text id="name"/>
                         </t-input-group>
                         <!--Email-->
                         <t-input-group class="col-span-12 md:col-span-6" label="Email">
-                            <t-input-text/>
+                            <t-input-text id="email"/>
                         </t-input-group>
                     </grid-section>
                 </template>
@@ -45,8 +45,12 @@
                 :header="sampleCode.table.header"
                 :searchable="['variable','details']"
                 class="mt-5"
-                color="blue"
-            />
+                color="solid-blue">
+              <template #details="{props}">
+              <span class="whitespace-nowrap tablet:whitespace-normal" v-html="props.details">
+              </span>
+              </template>
+            </t-table>
         </template>
     </app-layout>
 </template>
@@ -72,7 +76,7 @@ export default {
     props: ['users'],
     data() {
         return {
-            tableColor: 'blue',
+            tableColor: 'solid-blue',
             header: [
                 {label: 'Avatar', key: 'photo', align: 'center', width: '5'},
                 {label: 'Name', key: 'name', align: 'left'},
@@ -84,8 +88,8 @@ export default {
                     '    :content="content"\n' +
                     '    :header="header"\n' +
                     '    :searchable="[\'name\',\'email\']"\n' +
-                    '    color="blue"\n' +
-                    '    pagination-color="blue"\n' +
+                    '    color="solid-blue"\n' +
+                    '    pagination-color="solid-blue"\n' +
                     '    :radius="3"\n' +
                     '    :border="true"\n' +
                     '    :zebra="true"\n' +
@@ -164,35 +168,36 @@ export default {
                             type: 'Array',
                             details: 'It\'s you want to search in which the fields. You should write the field\'s key names. If it\'s blank, the search area will be hidden'
                         },
-                        {
-                            variable: "color",
-                            type: "String",
-                            details: "Your table color theme.<br><b>Options Simple:</b> red, blue, green, yellow, indigo, pink, purple, gray, black, white,<br><b>Options Light:</b> light-red, light-blue, light-green, light-yellow, light-indigo, light-pink, light-purple, light-gray"
-                        },
+                      {
+                        variable: 'color',
+                        type: 'String',
+                        details: "Your table color theme.<br><b>Options Solid:</b> solid-red, solid-blue, solid-green, solid-yellow, solid-indigo, solid-pink, solid-purple, solid-gray, solid-black, solid-white,<br>" +
+                            "<b>Options Light:</b> light-red, light-blue, light-green, light-yellow, light-indigo, light-pink, light-purple, light-gray<br>"
+                      },
                         {
                             variable: "pagination-color",
                             type: "String",
-                            details: "Your table\'s pagination color theme. If you want to set different color than the table color, you can use it. If you didn't use it, the pagination color will be the table color<br><b>Options Simple:</b> red, blue, green, yellow, indigo, pink, purple, gray, black, white,<br><b>Options Light:</b> light-red, light-blue, light-green, light-yellow, light-indigo, light-pink, light-purple, light-gray"
+                            details: "Your table\'s pagination color theme. If you want to set different color than the table color, you can use it. If you didn't use it, the pagination color will be the table color<br><b>Options Solid:</b> solid-red, solid-blue, solid-green, solid-yellow, solid-indigo, solid-pink, solid-purple, solid-gray, solid-black, solid-white,<br><b>Options Light:</b> light-red, light-blue, light-green, light-yellow, light-indigo, light-pink, light-purple, light-gray<br>"
                         },
                         {
                             variable: ":radius",
                             type: "Number",
-                            details: "<b>Options:</b> none, 1, 2, 3, 4, 5, 6, 7, 8. <b>Default:</b> 3"
+                            details: "<b>Options:</b> none, 1, 2, 3, 4, 5, 6, 7, 8. <br><b>Default:</b> 3"
                         },
                         {
                             variable: ":border",
                             type: "Number",
-                            details: "If you want to show a border between rows. <b>Options:</b> true, false. <b>Default:</b> true"
+                            details: "If you want to show a border between rows. <b>Options:</b> true, false. <br><b>Default:</b> true"
                         },
                         {
                             variable: ":zebra",
                             type: "Number",
-                            details: "If you want the table looks like zebra. <b>Options:</b> true, false. <b>Default:</b> true"
+                            details: "If you want the table looks like zebra. <b>Options:</b> true, false. <br><b>Default:</b> true"
                         },
                         {
                             variable: ":shadow",
                             type: "Number",
-                            details: "If you want to show the show around the table <b>Options:</b> true, false. <b>Default:</b> true"
+                            details: "If you want to show the show around the table <b>Options:</b> true, false. <br><b>Default:</b> true"
                         },
                     ]
                 }

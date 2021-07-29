@@ -3,7 +3,7 @@
     <template #header>Avatars</template>
     <template #subHeader>User avatars and team members avatar group</template>
     <template #default>
-      <grid-section :col="2" :gap="2">
+      <grid-section :col-tablet="2">
         <!--Avatar Radius Card-->
         <t-content-card :width="1" color="gradient-gray-to-gray">
           <template #title>Avatar Radius</template>
@@ -23,14 +23,16 @@
         <!--Avatar Group-->
         <t-content-card :width="1">
           <template #title>Avatar Group - Team Members</template>
-          <template #subTitle>Best for lists of project members. The avatars gets from <a href="https://pravatar.cc/" target="_blank">https://pravatar.cc/</a></template>
+          <template #subTitle>Best for lists of project members. The avatars gets from <a href="https://pravatar.cc/"
+                                                                                          target="_blank">https://pravatar.cc/</a>
+          </template>
           <template #content>
             <div class="flex flex-wrap gap-4">
               <t-avatar-group>
                 <t-avatar
                     v-for="i in 8"
-                    :radius="8"
                     :key="i"
+                    :radius="8"
                     :src="'https://i.pravatar.cc/300?img='+i"
                 />
               </t-avatar-group>
@@ -45,9 +47,9 @@
             <div class="flex flex-wrap items-end gap-4">
               <t-avatar
                   v-for="i in 8"
+                  :key="i"
                   :radius="3"
                   :size="i"
-                  :key="i"
                   :src="'https://i.pravatar.cc/300?img='+i"
               />
             </div>
@@ -60,81 +62,81 @@
           <template #content>
             <div class="flex flex-wrap items-end gap-4">
               <t-avatar
-                  :radius="1"
-                  :size="1"
                   :indicator="{
                     color: 'solid-red',
                     label: 2,
                     position: 'lb'
                   }"
+                  :radius="1"
+                  :size="1"
               />
               <t-avatar
-                  :radius="2"
-                  :size="2"
                   :indicator="{
                     color: 'solid*blue',
                     label: 2,
                     position: 'lt'
                   }"
+                  :radius="2"
+                  :size="2"
                   src="https://i.pravatar.cc/300?img=0"
               />
               <t-avatar
-                  :radius="3"
-                  :size="3"
                   :indicator="{
                     color: 'solid-green',
                     position: 'rb'
                   }"
+                  :radius="3"
+                  :size="3"
                   src="https://i.pravatar.cc/300?img=1"
               />
               <t-avatar
-                  :radius="4"
-                  :size="4"
                   :indicator="{
                     color: 'solid-yellow',
                     label: 14,
                     position: 'lb'
                   }"
+                  :radius="4"
+                  :size="4"
                   src="https://i.pravatar.cc/300?img=2"
               />
               <t-avatar
-                  :radius="5"
-                  :size="5"
                   :indicator="{
                     color: 'solid-indigo',
                     label: 7,
                     position: 'rt'
                   }"
+                  :radius="5"
+                  :size="5"
                   src="https://i.pravatar.cc/300?img=3"
               />
               <t-avatar
-                  :radius="6"
-                  :size="6"
                   :indicator="{
                     color: 'solid-pink',
                     label: 85,
                     position: 'rt'
                   }"
+                  :radius="6"
+                  :size="6"
                   src="https://i.pravatar.cc/300?img=4"
               />
               <t-avatar
-                  :radius="7"
-                  :size="7"
                   :indicator="{
                     color: 'light-purple',
                     label: 12,
                     position: 'lb'
                   }"
+                  :radius="7"
+                  :size="7"
                   src="https://i.pravatar.cc/300?img=5"
               />
               <t-avatar
-                  :radius="8"
-                  :size="8"
                   :indicator="{
                     color: 'gradient-red-to-pink',
                     label: 2,
                     position: 'rb'
                   }"
+                  :radius="8"
+                  :size="8"
                   src="https://i.pravatar.cc/300?img=6"
               />
             </div>
@@ -145,7 +147,18 @@
       <ssh-pre :copy-button="true" label="Code" language="html">{{ sampleCode.html }}</ssh-pre>
       <ssh-pre :copy-button="true" label="JS" language="js">{{ sampleCode.js }}</ssh-pre>
       <!--Variables Table-->
-      <t-table :content="sampleCode.table.content" :header="sampleCode.table.header" class="mt-5" color="blue" :searchable="['variable','details']"/>
+      <t-table
+          :content="sampleCode.table.content"
+          :header="sampleCode.table.header"
+          :searchable="['variable','details']"
+          class="mt-5"
+          color="solid-blue"
+      >
+        <template #details="{props}">
+              <span class="whitespace-nowrap tablet:whitespace-normal" v-html="props.details">
+              </span>
+        </template>
+      </t-table>
     </template>
   </app-layout>
 </template>
@@ -178,13 +191,13 @@ export default {
     return {
       sampleCode: {
         html:
-              '<t-avatar src="/img/samples/dummyAvatar.svg" :size="5" :radius="8" :indicator="{color: \'gradient-red-to-pink\', gradient-direction: \'r\', label: \'5\', position: \'lb\'}" />\n\n' +
-              '<!--For Avatar Group-->\n\n' +
-              '<t-avatar-group>\n' +
-              '    <t-avatar src="/img/samples/dummyAvatar.svg" :size="5" :radius="8"/>\n' +
-              '    <t-avatar src="/img/samples/dummyAvatar.svg" :size="5" :radius="8"/>\n' +
-              '    <t-avatar src="/img/samples/dummyAvatar.svg" :size="5" :radius="8"/>\n' +
-              '</t-avatar-group>',
+            '<t-avatar src="/img/samples/dummyAvatar.svg" :size="5" :radius="8" :indicator="{color: \'gradient-red-to-pink\', gradient-direction: \'r\', label: \'5\', position: \'lb\'}" />\n\n' +
+            '<!--For Avatar Group-->\n\n' +
+            '<t-avatar-group>\n' +
+            '    <t-avatar src="/img/samples/dummyAvatar.svg" :size="5" :radius="8"/>\n' +
+            '    <t-avatar src="/img/samples/dummyAvatar.svg" :size="5" :radius="8"/>\n' +
+            '    <t-avatar src="/img/samples/dummyAvatar.svg" :size="5" :radius="8"/>\n' +
+            '</t-avatar-group>',
         js:
             'import TAvatar from "@/Components/Avatar/TAvatar";\n' +
             'import TAvatarGroup from "@/Components/Avatar/TAvatarGroup";";\n\n' +
@@ -227,14 +240,14 @@ export default {
             {
               variable: ":indicator=\"{<br>&nbsp&nbsp&nbsp&nbsp color:&nbsp' ',<br>&nbsp&nbsp&nbsp&nbsp gradient-direction:&nbsp' ',<br>&nbsp&nbsp&nbsp&nbsp label:&nbsp' ',<br>&nbsp&nbsp&nbsp&nbsp position:&nbsp' '<br>}\"",
               type: "Object",
-              details:"This object have must 3 sub items: color, label and position<br>" +
-                      "<b>Color Options Solid:</b> solid-red, solid-blue, solid-green, solid-yellow, solid-indigo, solid-pink, solid-purple, solid-gray, solid-black, solid-white,<br>" +
+              details: "This object have must 3 sub items: color, label and position<br>" +
+                  "<b>Color Options Solid:</b> solid-red, solid-blue, solid-green, solid-yellow, solid-indigo, solid-pink, solid-purple, solid-gray, solid-black, solid-white,<br>" +
                   "<b>Color Options Light:</b> light-red, light-blue, light-green, light-yellow, light-indigo, light-pink, light-purple, light-gray<br>" +
                   "<b>Color Options Gradient:</b> gradient-red-to-pink. Red is first color and Pink is second color. You change red end pink with red, blue, green, yellow, indigo, pink, purple and gray)<br>" +
                   "<b>Color Options Gradient Direction:</b> If you use to the gradient color, you can select gradient's direction. <br><b>Gradient Direction Options:</b> r, l, b, t, tl, bl, tr, br " +
                   "<b>Default:</b> r (Means: l: left, r: right, b: bottom, t: top)<br>" +
-                      "<b>Label Options:</b> everything you want <br>" +
-                      "<b>Label Position Options:</b> lb, rb, lt, rt <small>(Means: l:left,r:right,b:bottom,t:top)</small>"
+                  "<b>Label Options:</b> everything you want <br>" +
+                  "<b>Label Position Options:</b> lb, rb, lt, rt <small>(Means: l:left,r:right,b:bottom,t:top)</small>"
             }
           ]
         }

@@ -3,26 +3,26 @@
         <template #header>Modals</template>
         <template #subHeader>Pretty and sweet windows</template>
         <template #default>
-            <grid-section :col="3" :gap="4">
+            <grid-section :col-tablet="3">
                 <t-content-card :width="2">
                     <template #title>Click to the buttons for show modal windows</template>
                     <template #subTitle>10 solid, 8 light and limitless gradient color options with radius</template>
                     <template #content>
-                        <div class="gap-2 inline-flex">
+                        <div class="flex flex-wrap gap-2 items-center justify-center">
                             <!--Simple Modal-->
-                            <t-button color="white" type="button" @click.native="showModal1 = !showModal1">Show Simple
+                            <t-button color="solid-white" type="button" @click.native="showModal1 = !showModal1">Show Simple
                                 Modal
                             </t-button>
-                            <t-modal :radius="3" :show="showModal1" color="white" @close="showModal1 = $event">
+                            <t-modal :radius="3" :show="showModal1" color="solid-white" @close="showModal1 = $event">
                                 <template #header>Modal Header</template>
                                 <template #content>
-                                    Modal content area. This modal's color is "<b>white</b>"
+                                    Modal content area. This modal's color is "<b>solid-white</b>"
                                 </template>
                                 <template #footer-right>
-                                    <t-button :radius="3" color="white" @click.native="showModal1 = false">
+                                    <t-button :radius="3" color="solid-white" @click.native="showModal1 = false">
                                         Close
                                     </t-button>
-                                    <t-button :radius="3" color="green">
+                                    <t-button :radius="3" color="solid-green">
                                         <font-awesome-icon icon="save"/>
                                         Save
                                     </t-button>
@@ -38,21 +38,21 @@
                                     Modal content area. This modal's color is "<b>light-blue</b>"
                                 </template>
                                 <template #footer-left>
-                                    <t-button :radius="3" color="red" size="sm" @click.native="showModal = false">Left
+                                    <t-button :radius="3" color="solid-red" size="sm" @click.native="showModal = false">Left
                                         Button
                                     </t-button>
                                 </template>
                                 <template #footer-center>
-                                    <t-button :radius="3" color="pink" size="sm" @click.native="showModal = false">
+                                    <t-button :radius="3" color="solid-pink" size="sm" @click.native="showModal = false">
                                         Center Button
                                     </t-button>
                                 </template>
                                 <template #footer-right>
-                                    <t-button :radius="3" color="yellow" size="sm">Right Button</t-button>
+                                    <t-button :radius="3" color="solid-yellow" size="sm">Right Button</t-button>
                                 </template>
                             </t-modal>
                             <!--Notification-->
-                            <t-button color="red" type="button" @click.native="showModal3 = !showModal3">Notification (Gradient)
+                            <t-button color="solid-red" type="button" @click.native="showModal3 = !showModal3">Notification (Gradient)
                             </t-button>
                             <t-modal :radius="3" :show="showModal3" color="gradient-red-to-pink"
                                      @close="showModal3 = $event">
@@ -65,7 +65,7 @@
                                     </div>
                                 </template>
                                 <template #footer-left>
-                                    <t-button :radius="3" color="white" @click.native="showModal3 = false">
+                                    <t-button :radius="3" color="solid-white" @click.native="showModal3 = false">
                                         Cancel
                                     </t-button>
                                 </template>
@@ -77,9 +77,9 @@
                                 </template>
                             </t-modal>
                             <!--Form-->
-                            <t-button color="indigo" type="button" @click.native="showModal4 = !showModal4">Form Modal
+                            <t-button color="solid-indigo" type="button" @click.native="showModal4 = !showModal4">Form Modal
                             </t-button>
-                            <t-modal :radius="3" :show="showModal4" color="white"
+                            <t-modal :radius="3" :show="showModal4" color="solid-white"
                                      @close="showModal4 = $event">
                                 <template #header>User Registration</template>
                                 <template #content>
@@ -92,7 +92,7 @@
                                     </t-input-group>
                                 </template>
                                 <template #footer-left>
-                                    <t-button :radius="3" color="white" @click.native="showModal4 = false">
+                                    <t-button :radius="3" color="solid-white" @click.native="showModal4 = false">
                                         Cancel
                                     </t-button>
                                 </template>
@@ -109,7 +109,7 @@
                 <t-content-card :width="1">
                     <template #title>Tips</template>
                     <template #content>
-                        <t-list color="white" :radius="3">
+                        <t-list color="solid-white" :radius="3">
                             <t-list-item>
                                 <template #default>Footer area has 3 location for buttons (left, center and right)</template>
                             </t-list-item>
@@ -124,7 +124,18 @@
             <ssh-pre :copy-button="true" label="Code" language="html">{{ sampleCode.html }}</ssh-pre>
             <ssh-pre :copy-button="true" label="JS" language="js">{{ sampleCode.js }}</ssh-pre>
             <!--Variables Table-->
-            <t-table :content="sampleCode.table.content" :header="sampleCode.table.header" class="mt-5" color="blue" :searchable="['variable','details']"/>
+            <t-table
+                :content="sampleCode.table.content"
+                :header="sampleCode.table.header"
+                class="mt-5"
+                color="solid-blue"
+                :searchable="['variable','details']"
+            >
+              <template #details="{props}">
+              <span class="whitespace-nowrap tablet:whitespace-normal" v-html="props.details">
+              </span>
+              </template>
+            </t-table>
         </template>
     </app-layout>
 </template>
@@ -157,7 +168,7 @@ export default {
         return {
             sampleCode: {
                 html:
-                    '<t-modal :radius="3" :show="showModal" color="white" @close="showModal = $event">\n\n' +
+                    '<t-modal :radius="3" :show="showModal" color="solid-white" @close="showModal = $event">\n\n' +
                     '    <!--Modal Header-->\n'+
                     '    <template #header>User Registration</template>\n\n' +
                     '    <!--Modal Content-->\n'+
@@ -174,19 +185,19 @@ export default {
                     '    </template>\n\n' +
                     '    <!--Footer Left Button Area-->\n' +
                     '    <template #footer-left>\n' +
-                    '        <t-button :radius="3" color="red" size="sm" @click.native="showModal = false">Left\n' +
+                    '        <t-button :radius="3" color="solid-red" size="sm" @click.native="showModal = false">Left\n' +
                     '            Button\n' +
                     '        </t-button>\n' +
                     '    </template>\n\n' +
                     '    <!--Footer Center Button Area-->\n' +
                     '    <template #footer-center>\n' +
-                    '        <t-button :radius="3" color="pink" size="sm" @click.native="showModal = false">\n' +
+                    '        <t-button :radius="3" color="solid-pink" size="sm" @click.native="showModal = false">\n' +
                     '            Center Button\n' +
                     '        </t-button>\n' +
                     '    </template>\n\n' +
                     '    <!--Footer Right Button Area-->\n' +
                     '    <template #footer-right>\n' +
-                    '        <t-button :radius="3" color="yellow" size="sm">Right Button</t-button>\n' +
+                    '        <t-button :radius="3" color="solid-yellow" size="sm">Right Button</t-button>\n' +
                     '    </template>\n\n' +
                     '</t-modal>',
                 js:
@@ -207,13 +218,19 @@ export default {
                     ],
                     content: [
                         {variable: 'show', type: 'Boolean', details: 'You should define a variable in the data and connect to this data'},
-                        {
-                            variable: 'color',
-                            type: 'String',
-                            details: "Your modal color theme.<br><b>Options Simple:</b> red, blue, green, yellow, indigo, pink, purple, gray, black, white,<br>" +
-                                "<b>Options Light:</b> light-red, light-blue, light-green, light-yellow, light-indigo, light-pink, light-purple, light-gray<br" +
-                                "><b>Options Gradient:</b> gradient-red-to-pink. Red is first color and Pink is second color. You change red end pink with red, blue, green, yellow, indigo, pink, purple and gray)"
-                        },
+                      {
+                        variable: 'color',
+                        type: 'String',
+                        details: "Your modal color theme.<br><b>Options Solid:</b> solid-red, solid-blue, solid-green, solid-yellow, solid-indigo, solid-pink, solid-purple, solid-gray, solid-black, solid-white,<br>" +
+                            "<b>Options Light:</b> light-red, light-blue, light-green, light-yellow, light-indigo, light-pink, light-purple, light-gray<br" +
+                            "><b>Options Gradient:</b> gradient-red-to-pink. Red is first color and Pink is second color. You change red end pink with red, blue, green, yellow, indigo, pink, purple and gray)"
+                      },
+                      {
+                        variable: 'gradient-direction',
+                        type: 'String',
+                        details: "If you use to the gradient color, you can select gradient's direction. <br><b>Options:</b> r, l, b, t, tl, bl, tr, br<br>" +
+                            "<b>Default:</b> r<br>(Means: l: left, r: right, b: bottom, t: top)"
+                      },
                         {
                             variable: ":radius",
                             type: "Number",

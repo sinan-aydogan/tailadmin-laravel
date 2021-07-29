@@ -1,14 +1,14 @@
 <template>
   <app-layout :actionButtons="true">
     <template #header>
-     Multi Select Input Component
+      Multi Select Input Component
     </template>
     <template #action-buttons>
-      <TButton :radius="3" color="yellow">
+      <TButton :radius="3" color="solid-yellow">
         <font-awesome-icon icon="angle-left"/>
         Back to Home
       </TButton>
-      <TButton :radius="3" color="green">
+      <TButton :radius="3" color="solid-green">
         <font-awesome-icon icon="plus-circle"/>
         Add New
       </TButton>
@@ -21,7 +21,7 @@
           <!-- Manager -->
           <t-input-group class="col-span-12 md:col-span-6" label="Manager - Searchable" labelFor="user_id">
             <t-input-multi-select v-model="form.name" :clear-button="true" :search="true" place-holder="Select"
-                            search-place-holder="Search...">
+                                  search-place-holder="Search...">
               <t-input-select-item v-for="(item,index) in users" :key="index" :value="item.id"><span
                   :class="item.class">{{ item.name }}</span></t-input-select-item>
             </t-input-multi-select>
@@ -29,7 +29,7 @@
           <!-- T-Shirt Size -->
           <t-input-group class="col-span-12 md:col-span-6" label="T-Shirt Size" labelFor="size">
             <t-input-multi-select v-model="form.size" :clear-button="true" place-holder="Select"
-                            search-place-holder="Search...">
+                                  search-place-holder="Search...">
               <t-input-select-item value="sm">
                 Small
               </t-input-select-item>
@@ -46,8 +46,17 @@
       <ssh-pre :copy-button="true" label="Code" language="html">{{ sampleCode.html }}</ssh-pre>
       <ssh-pre :copy-button="true" label="JS" language="js">{{ sampleCode.js }}</ssh-pre>
       <!--Variables Table-->
-      <t-table :content="sampleCode.table.content" :header="sampleCode.table.header" :searchable="['variable','details']" class="mt-5"
-               color="blue"/>
+      <t-table
+          :content="sampleCode.table.content"
+          :header="sampleCode.table.header"
+          :searchable="['variable','details']"
+          class="mt-5"
+          color="solid-blue">
+        <template #details="{props}">
+              <span class="whitespace-nowrap tablet:whitespace-normal" v-html="props.details">
+              </span>
+        </template>
+      </t-table>
     </template>
   </app-layout>
 </template>

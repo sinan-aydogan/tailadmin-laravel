@@ -10,18 +10,18 @@
           <template #content>
             <div class="flex gap-4 w-full pb-4">
               <t-input-group class="w-1/2" label="Target Value" label-for="target">
-                <t-input-text v-model="target" type="number"/>
+                <t-input-text v-model.number="target" type="number"/>
               </t-input-group>
-              <t-input-group class="w-1/2" label="Animation Speed (ms)" label-for="counter">
-                <t-input-text v-model="speed" type="number"/>
+              <t-input-group class="w-1/2" label="Anim. Speed (ms)" label-for="counter">
+                <t-input-text v-model.number="speed" type="number"/>
               </t-input-group>
             </div>
             <div class="flex flex-col w-full gap-4">
-              <t-progress :height="1" :value="target" :speed="speed" title="Performance"/>
-              <t-progress :height="2" :value="25" color="red" title="Claim"/>
-              <t-progress :height="3" :value="50" color="yellow" title="Cost"/>
-              <t-progress :height="4" :value="75" color="blue" title="Man Hour"/>
-              <t-progress :height="5" :value="90" color="indigo" title="Lost"/>
+              <t-progress :height="1" :speed="speed" :value="target" title="Performance"/>
+              <t-progress :height="2" :value="25" color="solid-red" title="Claim"/>
+              <t-progress :height="3" :value="50" color="solid-yellow" title="Cost"/>
+              <t-progress :height="4" :value="75" color="gradient-purple-to-pink" title="Man Hour"/>
+              <t-progress :height="5" :value="90" color="gradient-green-to-red" title="Lost"/>
             </div>
           </template>
         </t-content-card>
@@ -30,8 +30,18 @@
       <ssh-pre :copy-button="true" label="Code" language="html">{{ sampleCode.html }}</ssh-pre>
       <ssh-pre :copy-button="true" label="JS" language="js">{{ sampleCode.js }}</ssh-pre>
       <!--Variables Table-->
-      <t-table :content="sampleCode.table.content" :header="sampleCode.table.header" :searchable="['variable','details']" class="mt-5"
-               color="blue"/>
+      <t-table
+          :content="sampleCode.table.content"
+          :header="sampleCode.table.header"
+          :searchable="['variable','details']"
+          class="mt-5"
+          color="solid-blue"
+      >
+        <template #details="{props}">
+              <span class="whitespace-nowrap tablet:whitespace-normal" v-html="props.details">
+              </span>
+        </template>
+      </t-table>
     </template>
   </app-layout>
 </template>
@@ -85,11 +95,11 @@ export default {
               details: 'It must be between 1 and 100'
             },
             {
-              variable: "color",
-              type: "String",
-              details: "Your progress bar color theme.<br><b>Options:</b> red,blue,green,yellow,indigo,pink,purple,gray,black,white. <b>Default:</b> green"
+              variable: 'color',
+              type: 'String',
+              details: "Your progress bar color theme.<br><b>Options Solid:</b> solid-red, solid-blue, solid-green, solid-yellow, solid-indigo, solid-pink, solid-purple, solid-gray, solid-black, solid-white,<br>" +
+                  "<b>Options Gradient:</b> gradient-red-to-pink. Red is first color and Pink is second color. You change red end pink with red, blue, green, yellow, indigo, pink, purple and gray)"
             },
-
             {
               variable: ":height",
               type: "Number",

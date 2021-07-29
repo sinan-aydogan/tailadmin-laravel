@@ -3,65 +3,75 @@
     <template #header>Popovers</template>
     <template #subHeader>Simple and casual pops</template>
     <template #default>
-        <grid-section :col="2" :gap="4">
-            <t-content-card :width="1">
-                <template #title>Popover Title and Position</template>
-                <template #subTitle>Left, Top, Right and Bottom Positions</template>
-                <template #content>
-                    <div class="flex flex-wrap gap-8">
-                        <t-popover position="top">
-                            <template #mainContent>Click me!</template>
-                            <template #secondTitle>Title for Top</template>
-                            <template #secondContent>Hello, I'm at the top</template>
-                        </t-popover>
-                        <t-popover position="bottom">
-                            <template #mainContent>Click me!</template>
-                            <template #secondTitle>Title for Bottom</template>
-                            <template #secondContent>Hello, I'm at the bottom</template>
-                        </t-popover>
-                        <t-popover position="left">
-                            <template #mainContent>Click me!</template>
-                            <template #secondTitle>Title for Left</template>
-                            <template #secondContent>Hello, I'm at the left</template>
-                        </t-popover>
-                        <t-popover position="right">
-                            <template #mainContent>Click me!</template>
-                            <template #secondTitle>Title for Right</template>
-                            <template #secondContent>Hello, I'm at the right</template>
-                        </t-popover>
-                    </div>
-                </template>
-            </t-content-card>
-            <t-content-card :width="1">
-                <template #title>Popover without Title</template>
-                <template #subTitle>Left, Top, Right and Bottom Positions</template>
-                <template #content>
-                    <div class="flex flex-wrap gap-8">
-                        <t-popover position="top">
-                            <template #mainContent>Click me!</template>
-                            <template #secondContent>Hello, I'm at the top</template>
-                        </t-popover>
-                        <t-popover position="bottom">
-                            <template #mainContent>Click me!</template>
-                            <template #secondContent>Hello, I'm at the bottom</template>
-                        </t-popover>
-                        <t-popover position="left">
-                            <template #mainContent>Click me!</template>
-                            <template #secondContent>Hello, I'm at the left</template>
-                        </t-popover>
-                        <t-popover position="right">
-                            <template #mainContent>Click me!</template>
-                            <template #secondContent>Hello, I'm at the right</template>
-                        </t-popover>
-                    </div>
-                </template>
-            </t-content-card>
-        </grid-section>
-        <!--Sample Codes-->
-        <ssh-pre :copy-button="true" label="Code" language="html">{{ sampleCode.html }}</ssh-pre>
-        <ssh-pre :copy-button="true" label="JS" language="js">{{ sampleCode.js }}</ssh-pre>
-        <!--Variables Table-->
-        <t-table :content="sampleCode.table.content" :header="sampleCode.table.header" class="mt-5" color="blue" :searchable="['variable','details']"/>
+      <grid-section :col="2">
+        <t-content-card :width="1">
+          <template #title>Popover Title and Position</template>
+          <template #subTitle>Left, Top, Right and Bottom Positions</template>
+          <template #content>
+            <div class="flex flex-wrap gap-8">
+              <t-popover position="top">
+                <template #mainContent>Click me!</template>
+                <template #secondTitle>Title for Top</template>
+                <template #secondContent>Hello, I'm at the top</template>
+              </t-popover>
+              <t-popover position="bottom">
+                <template #mainContent>Click me!</template>
+                <template #secondTitle>Title for Bottom</template>
+                <template #secondContent>Hello, I'm at the bottom</template>
+              </t-popover>
+              <t-popover position="left">
+                <template #mainContent>Click me!</template>
+                <template #secondTitle>Title for Left</template>
+                <template #secondContent>Hello, I'm at the left</template>
+              </t-popover>
+              <t-popover position="right">
+                <template #mainContent>Click me!</template>
+                <template #secondTitle>Title for Right</template>
+                <template #secondContent>Hello, I'm at the right</template>
+              </t-popover>
+            </div>
+          </template>
+        </t-content-card>
+        <t-content-card :width="1">
+          <template #title>Popover without Title</template>
+          <template #subTitle>Left, Top, Right and Bottom Positions</template>
+          <template #content>
+            <div class="flex flex-wrap gap-8">
+              <t-popover position="top">
+                <template #mainContent>Click me!</template>
+                <template #secondContent>Hello, I'm at the top</template>
+              </t-popover>
+              <t-popover position="bottom">
+                <template #mainContent>Click me!</template>
+                <template #secondContent>Hello, I'm at the bottom</template>
+              </t-popover>
+              <t-popover position="left">
+                <template #mainContent>Click me!</template>
+                <template #secondContent>Hello, I'm at the left</template>
+              </t-popover>
+              <t-popover position="right">
+                <template #mainContent>Click me!</template>
+                <template #secondContent>Hello, I'm at the right</template>
+              </t-popover>
+            </div>
+          </template>
+        </t-content-card>
+      </grid-section>
+      <!--Sample Codes-->
+      <ssh-pre :copy-button="true" label="Code" language="html">{{ sampleCode.html }}</ssh-pre>
+      <ssh-pre :copy-button="true" label="JS" language="js">{{ sampleCode.js }}</ssh-pre>
+      <!--Variables Table-->
+      <t-table
+          :content="sampleCode.table.content"
+          :header="sampleCode.table.header"
+          :searchable="['variable','details']" class="mt-5"
+          color="solid-blue"
+      >
+        <template #details="{props}">
+              <span class="whitespace-nowrap tablet:whitespace-normal" v-html="props.details">
+              </span>
+        </template>
+      </t-table>
     </template>
   </app-layout>
 </template>
@@ -81,7 +91,7 @@ import SshPre from "simple-syntax-highlighter";
 
 export default {
   name: "Popover",
-  components: {AppLayout, SshPre,GridSection,TButton,TContentCard,TTable,TPopover},
+  components: {AppLayout, SshPre, GridSection, TButton, TContentCard, TTable, TPopover},
   data() {
     return {
       sampleCode: {

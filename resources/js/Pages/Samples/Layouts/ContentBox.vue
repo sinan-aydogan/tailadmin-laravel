@@ -30,16 +30,15 @@
       <grid-section :col="3" :gap="4">
         <t-content-card
             :border="true"
-            :color="selectedColor"
             :line="true"
-            :radius="selectedRadius"
+            :radius="0"
             :width="1"
         >
           <template #title>
             Content Card Component Title
           </template>
           <template #subTitle>
-            Solid, Light and Gradient Options
+            Solid, Light and Gradient Color Options
           </template>
           <template #content>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
@@ -52,10 +51,10 @@
         </t-content-card>
         <t-content-card
             :border="true"
-            color="solid-red"
             :line="true"
             :radius="3"
             :width="1"
+            color="solid-red"
         >
           <template #title>
             Adaptive Height: False
@@ -69,12 +68,12 @@
           </template>
         </t-content-card>
         <t-content-card
-            :border="true"
-            color="light-indigo"
-            :line="false"
-            :radius="3"
-            :width="1"
             :adaptive-height="true"
+            :border="true"
+            :line="false"
+            :radius="6"
+            :width="1"
+            color="light-indigo"
         >
           <template #title>
             Adaptive Height: True
@@ -93,9 +92,17 @@
       <ssh-pre :copy-button="true" label="Code" language="html">{{ sampleCode.html }}</ssh-pre>
       <ssh-pre :copy-button="true" label="JS" language="js">{{ sampleCode.js }}</ssh-pre>
       <!--Variables Table-->
-      <t-table :content="sampleCode.table.content" :header="sampleCode.table.header"
-               :searchable="['variable','details']" class="mt-5"
-               color="blue"/>
+      <t-table
+          :content="sampleCode.table.content"
+          :header="sampleCode.table.header"
+          :searchable="['variable','details']"
+          class="mt-5"
+          color="solid-blue">
+        <template #details="{props}">
+              <span class="whitespace-nowrap tablet:whitespace-normal" v-html="props.details">
+              </span>
+        </template>
+      </t-table>
     </template>
   </app-layout>
 </template>
@@ -140,7 +147,7 @@ export default {
             '        <!--If you show a icon/photo on the left you can use this icon template-->\n' +
             '        <template #icon>\n' +
             '            <t-avatar slot="icon" :radius="8" :size="4" src="link"/>\n' +
-            '          </template>' +
+            '          </template>\n' +
             '        <template #title>\n' +
             '            Title Text\n' +
             '        </template>\n' +

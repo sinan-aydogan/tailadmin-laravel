@@ -3,14 +3,14 @@
     <template #header>Alerts</template>
     <template #subHeader>Notifications and alert boxes (2.880 variations)</template>
     <template #default>
-      <grid-section :col="3" :gap="4">
+      <grid-section :col-tablet="2">
         <!--With Color-->
         <t-content-card :width="3">
           <template #title>Alert Box Colors</template>
           <template #subTitle>
           </template>
           <template #content>
-            <grid-section :col="2">
+            <grid-section :col-tablet="2">
               <!--Red-Deleted-->
               <t-alert color="solid-red">
                 <t-trash-icon slot="icon" class="w-6 h-6"/>
@@ -53,30 +53,13 @@
             </grid-section>
           </template>
         </t-content-card>
-        <!--With Close Button-->
-        <t-content-card :width="3">
-          <template #title>Alert Box Close Button</template>
-          <template #content>
-            <grid-section :col="2">
-              <t-alert color="light-red" :border="true" :closeable="true">
-                <t-trash-icon slot="icon" class="w-6 h-6"/>
-                The user deleted successfully,click me
-              </t-alert>
-              <!--Closeable Green-->
-              <t-alert color="solid-green" :border="true" :closeable="true">
-                <t-check-circle-solid-icon slot="icon" class="w-7 h-7"/>
-                The post added successfully
-              </t-alert>
-            </grid-section>
-          </template>
-        </t-content-card>
         <!--With Timer-->
         <t-content-card :width="3">
           <template #title>Alert Box Timer</template>
           <template #subTitle>Timer for close</template>
           <template #content>
-            <grid-section :col="2">
-              <t-alert id="test" :radius="5" :timer="4000" color="gradient-gray-to-black">
+            <grid-section :col-tablet="2">
+              <t-alert id="test" :radius="5" :timer="4000" color="gradient-purple-to-pink">
                 Closer timer activated, alert box. (<b>Time:</b>4 seconds)
               </t-alert>
               <component
@@ -91,7 +74,7 @@
               >
                 Closer timer activated, alert box. (<b>Time:</b>4 seconds)
               </component>
-              <t-button :radius="5" color="green" size="full" @click.native="addAlertBox">
+              <t-button :radius="5" color="solid-indigo" size="full" @click.native="addAlertBox">
                 Recall Closed Alert Box
               </t-button>
             </grid-section>
@@ -102,9 +85,17 @@
       <ssh-pre :copy-button="true" label="Code" language="html">{{ sampleCode.html }}</ssh-pre>
       <ssh-pre :copy-button="true" label="JS" language="js">{{ sampleCode.js }}</ssh-pre>
       <!--Variables Table-->
-      <t-table :content="sampleCode.table.content" :header="sampleCode.table.header"
-               :searchable="['variable','details']" class="mt-5"
-               color="blue"/>
+      <t-table :content="sampleCode.table.content"
+               :header="sampleCode.table.header"
+               :searchable="['variable','details']"
+               class="mt-5"
+               color="solid-blue"
+      >
+        <template #details="{props}">
+              <span class="whitespace-nowrap tablet:whitespace-normal" v-html="props.details">
+              </span>
+        </template>
+      </t-table>
     </template>
   </app-layout>
 </template>
@@ -163,7 +154,7 @@ export default {
       newToasterID: 1,
       sampleCode: {
         html:
-            '<t-alert color="indigo" :closeable="true" :radius="5" :timer="500">\n' +
+            '<t-alert color="solid-indigo" :closeable="true" :radius="5" :timer="500">\n' +
             "    <b>Colorful toaster / notification</b>\n" +
             "</t-alert>",
         js:
@@ -191,7 +182,7 @@ export default {
             {
               variable: 'color',
               type: 'String',
-              details: "Your content box color theme.<br><b>Options Solid:</b> solid-red, solid-blue, solid-green, solid-yellow, solid-indigo, solid-pink, solid-purple, solid-gray, solid-black, solid-white,<br>" +
+              details: "Your alert box color theme.<br><b>Options Solid:</b> solid-red, solid-blue, solid-green, solid-yellow, solid-indigo, solid-pink, solid-purple, solid-gray, solid-black, solid-white,<br>" +
                   "<b>Options Light:</b> light-red, light-blue, light-green, light-yellow, light-indigo, light-pink, light-purple, light-gray<br" +
                   "><b>Options Gradient:</b> gradient-red-to-pink. Red is first color and Pink is second color. You change red end pink with red, blue, green, yellow, indigo, pink, purple and gray)"
             },

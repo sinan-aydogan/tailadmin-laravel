@@ -7,9 +7,9 @@
       Useful badges like tags
     </template>
     <template #default>
-      <grid-section :col="2" :gap="4">
+      <grid-section :col="1">
         <!--With Color-->
-        <t-content-card :width="2">
+        <t-content-card :width="1">
           <template #title>Custom Badges</template>
           <template #subTitle>Color, radius, icon and value options</template>
           <template #content>
@@ -52,7 +52,7 @@
           </template>
         </t-content-card>
         <!--With Collapsible-->
-        <t-content-card :width="2">
+        <t-content-card :width="1">
           <template #title>Collapsible Badges</template>
           <template #subTitle>Click them</template>
           <template #content>
@@ -73,8 +73,18 @@
       <ssh-pre :copy-button="true" label="Code" language="html">{{ sampleCode.html }}</ssh-pre>
       <ssh-pre :copy-button="true" label="JS" language="js">{{ sampleCode.js }}</ssh-pre>
       <!--Variables Table-->
-      <t-table :content="sampleCode.table.content" :header="sampleCode.table.header" :searchable="['variable','details']" class="mt-5"
-               color="blue"/>
+      <t-table
+          :content="sampleCode.table.content"
+          :header="sampleCode.table.header"
+          :searchable="['variable','details']"
+          class="mt-5"
+          color="solid-blue"
+      >
+        <template #details="{props}">
+              <span class="whitespace-nowrap tablet:whitespace-normal" v-html="props.details">
+              </span>
+        </template>
+      </t-table>
     </template>
   </app-layout>
 </template>
@@ -139,7 +149,7 @@ export default {
             {
               variable: 'color',
               type: 'String',
-              details: "Your content box color theme.<br><b>Options Solid:</b> solid-red, solid-blue, solid-green, solid-yellow, solid-indigo, solid-pink, solid-purple, solid-gray, solid-black, solid-white,<br>" +
+              details: "Your badge color theme.<br><b>Options Solid:</b> solid-red, solid-blue, solid-green, solid-yellow, solid-indigo, solid-pink, solid-purple, solid-gray, solid-black, solid-white,<br>" +
                   "<b>Options Light:</b> light-red, light-blue, light-green, light-yellow, light-indigo, light-pink, light-purple, light-gray<br" +
                   "><b>Options Gradient:</b> gradient-red-to-pink. Red is first color and Pink is second color. You change red end pink with red, blue, green, yellow, indigo, pink, purple and gray)"
             },
