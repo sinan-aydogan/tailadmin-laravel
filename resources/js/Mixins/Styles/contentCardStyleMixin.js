@@ -40,7 +40,7 @@ export const contentCardStyleMixin = {
             if(this.adaptiveHeight){
                 style = 'place-self-start '
             }
-            style += this.bgColorStyle + ' ' + this.radiusStyle + ' ' + this.widthStyle[this.width] + ' ' + this.defaultStyle[0]
+            style += this.bgColorStyle + ' ' + this.radiusStyle +' ' + this.textColorStyle + ' ' + this.widthStyle[this.width] + ' ' + this.defaultStyle[0]
             return style
         }
     }
