@@ -1,6 +1,6 @@
 <template>
     <t-register
-        color="gray"
+        color="solid-gray"
         :radius="5"
         bg-color="gradient-gray-to"
         button-color="light-gray"

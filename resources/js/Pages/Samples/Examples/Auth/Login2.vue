@@ -1,6 +1,6 @@
 <template>
     <t-login
-        color="gray"
+        color="solid-gray"
         bg-color="gradient-gray-to"
         :radius="5"
         login-button-color="light-gray"

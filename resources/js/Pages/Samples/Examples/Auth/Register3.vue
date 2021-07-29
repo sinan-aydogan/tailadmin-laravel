@@ -1,9 +1,9 @@
 <template>
     <t-register
-        color="blue"
+        color="solid-blue"
         :radius="5"
-        bg-color="white"
-        button-color="blue"
+        bg-color="light-gray"
+        button-color="solid-blue"
         :status="status"
         :privacyPolicyFeature="true"
         termsLink="terms"

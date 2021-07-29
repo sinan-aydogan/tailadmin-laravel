@@ -1,9 +1,9 @@
 <template>
     <t-login
-        color="blue"
+        color="solid-blue"
         :radius="5"
-        bg-color="white"
-        login-button-color="blue"
+        bg-color="light-gray"
+        login-button-color="solid-blue"
         :canResetPassword="canResetPassword"
         :status="status"
     >

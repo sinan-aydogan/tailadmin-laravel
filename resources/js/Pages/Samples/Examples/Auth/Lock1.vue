@@ -1,9 +1,9 @@
 <template>
     <t-lock
-        color="white"
+        color="solid-white"
         :radius="5"
         bg-image="/img/samples/bgFakurianDesign-nY14Fs8pxT8-unsplash.jpg"
-        button-color="pink"
+        button-color="solid-pink"
     >
     </t-lock>
 </template>

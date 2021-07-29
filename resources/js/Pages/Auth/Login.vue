@@ -3,8 +3,8 @@
         :canResetPassword="canResetPassword"
         :radius="5"
         :status="status"
-        bg-image="/img/samples/bgFakurianDesign-nY14Fs8pxT8-unsplash.jpg"
-        login-button-color="pink"
+        bg-image="/img/samples/bgFakurianDesign-nY14Fs8pxT8-unsplash-compressed.jpg"
+        login-button-color="solid-pink"
         color="gradient-purple-to-pink"
     >
         <!--Logo-->

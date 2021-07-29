@@ -3,7 +3,7 @@
         color="gradient-purple-to-pink"
         :radius="5"
         bg-image="/img/samples/bgFakurianDesign-nY14Fs8pxT8-unsplash.jpg"
-        login-button-color="pink"
+        login-button-color="solid-pink"
         :canResetPassword="canResetPassword"
         :status="status"
     >

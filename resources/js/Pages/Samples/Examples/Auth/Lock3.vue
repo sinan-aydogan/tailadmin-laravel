@@ -1,8 +1,9 @@
 <template>
     <t-lock
-        color="white"
+        color="light-gray"
         bg-color="gradient-blue-to-white"
-        button-color="blue"
+        bg-gradient-direction="br"
+        button-color="solid-blue"
         :radius="5"
     >
     </t-lock>

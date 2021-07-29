@@ -4,20 +4,20 @@
       Form Structure
     </template>
     <template #action-buttons>
-      <TButton :radius="3" color="yellow">
+      <TButton :radius="3" color="solid-yellow">
         <font-awesome-icon icon="angle-left"/>
         Back to Home
       </TButton>
-      <TButton :radius="3" color="green">
+      <TButton :radius="3" color="solid-green">
         <font-awesome-icon icon="plus-circle"/>
         Add New
       </TButton>
     </template>
     <template #default>
-      <t-form-content @reset="reset" @submitted="save" :reset-button="false" :submit-button="false">
+      <t-form-content :reset-button="false" :submit-button="false" @reset="reset" @submitted="save">
         <!--Form Content Area Indicator-->
         <div class="p-2">
-          <t-badge color="green">Form Content Area</t-badge>
+          <t-badge color="solid-green">Form Content Area</t-badge>
         </div>
 
         <t-form-section
@@ -25,36 +25,49 @@
             title="Personal Infos - (Title)">
           <!--Form Section Area Indicator-->
           <div class="col-span-full">
-            <t-badge color="blue">Form Section Area</t-badge>
+            <t-badge color="solid-blue">Form Section Area</t-badge>
           </div>
 
           <!-- Name -->
-          <t-input-group class="col-span-12 md:col-span-6" label="Name" labelFor="name">
+          <t-input-group
+              class="col-span-12 md:col-span-6"
+              label="Name"
+              labelFor="name"
+          >
             <t-input-text id="name" v-model="form.name" placeholder="Business mail address"/>
           </t-input-group>
           <!-- Tax ID -->
-          <t-input-group class="col-span-12 md:col-span-6" label="Tax ID" labelFor="tax_id">
+          <t-input-group
+              class="col-span-12 md:col-span-6"
+              label="Tax ID"
+              labelFor="tax_id"
+          >
             <t-input-text id="tax_id" v-model="form.tax_id"/>
           </t-input-group>
           <!-- Address -->
           <t-input-group class="col-span-12" label="Address" labelFor="address">
-            <t-input-text-area id="address" v-model="form.address" :clear-button="true" :counter="true" :rows="3"
-                               placeholder="Full address"/>
+            <t-input-text-area
+                id="address"
+                v-model="form.address"
+                :clear-button="true"
+                :counter="true"
+                :rows="3"
+                placeholder="Full address"
+            />
           </t-input-group>
         </t-form-section>
         <!--Status Area Indicator-->
         <template #button-area>
-          <div class="inline-flex gap-2 items-center">
-            <div>
-              <t-badge color="pink">Form Extra Button Area</t-badge>
+            <div class="flex flex-wrap col-span-12 justify-center tablet:justify-end space-x-2 mr-4 py-4">
+              <t-badge color="solid-pink">Form Extra Button Area</t-badge>
             </div>
             <div class="border p-2 gap-2 inline-flex items-center">
-              <div class="flex gap-1">
-                <t-badge color="gray">Form Status Area</t-badge> or
-                <t-badge color="indigo">Default Form Buttons Area</t-badge>
+              <div class="flex flex-wrap gap-1 justify-center tablet:justify-end">
+                <t-badge color="solid-gray">Form Status Area</t-badge>
+                or
+                <t-badge color="solid-indigo">Default Form Buttons Area</t-badge>
               </div>
             </div>
-          </div>
         </template>
       </t-form-content>
       <ssh-pre :copy-button="true" label="Code" language="html">{{ sampleCode.html }}</ssh-pre>
@@ -138,7 +151,7 @@ export default {
             '    </template>\n\n' +
             '    <!--Optional | Form Status Area: For form submit success or loading messages. When this area active, the form default buttons will be hidden until form submit action finished: https://inertiajs.com/forms (recentlySuccessful)-->\n' +
             '    <template #status>\n' +
-            '        <t-button v-if="form.recentlySuccessful" :radius="3" color="gray" disabled="disabled">\n' +
+            '        <t-button v-if="form.recentlySuccessful" :radius="3" color="solid-gray" disabled="disabled">\n' +
             '            <t-check-icon class="w-5 h-5"/>\n' +
             '            Saved\n' +
             '        </t-button>\n' +
@@ -185,19 +198,19 @@ export default {
     };
   },
   methods: {
-        reset: function () {
-          this.form.name = null;
-          this.form.tax_id = null;
-          this.form.email = null;
-          this.form.phone = null;
-          this.form.status = null;
-          this.form.address = null;
-        },
-        save() {
-          this.form.post(route('customer.store'), {
-            errorBag: 'customer',
-            preserveScroll: true,
-          });
+    reset: function () {
+      this.form.name = null;
+      this.form.tax_id = null;
+      this.form.email = null;
+      this.form.phone = null;
+      this.form.status = null;
+      this.form.address = null;
+    },
+    save() {
+      this.form.post(route('customer.store'), {
+        errorBag: 'customer',
+        preserveScroll: true,
+      });
       this.loading = true;
     }
   }
