@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="inputStyle === 'checkbox'">
-      <ul class="flex flex-wrap justify-center gap-2 p-2 bg-white border  bg-opacity-60 border-opacity-60 rounded-lg laptop:rounded-full items-center">
+      <ul class="flex flex-wrap justify-center gap-2 p-2 bg-white border border-gray-300 bg-opacity-60 border-opacity-60 rounded-lg laptop:rounded-full items-center">
         <li
             v-for="(item,itemKey,index) in colors"
             :key="index"
@@ -172,6 +172,9 @@ export default {
   watch: {
     calculatedColor() {
       this.$emit('selected-color', this.calculatedColor)
+    },
+    selectedColor() {
+      this.$emit('selected-color', this.selectedColor)
     }
   }
 }
