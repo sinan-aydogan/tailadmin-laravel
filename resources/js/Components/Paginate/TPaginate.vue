@@ -4,8 +4,7 @@
             :disabled="range>activePage"
             :class="[
                 'pagination-arrow',
-                radiusStyle,
-                arrowStyle,
+                calculatedArrowStyle,
                 range>=activePage && 'opacity-10'
                 ]"
             @click="previousPage"
@@ -17,8 +16,7 @@
             v-if="item>=start && end>=item"
             :class="[
                 'pagination-item',
-                activePage === item ? activePaginateStyle : paginateStyle,
-                radiusStyle
+                activePage === item ? calculatedActivePaginateStyle : calculatedPaginateStyle,
                 ]"
             @click="activePage = item; $emit('input', item)">
             {{ item }}
@@ -28,8 +26,7 @@
             :disabled="activePage===total"
             :class="[
                 'pagination-arrow',
-                radiusStyle,
-                arrowStyle,
+                calculatedArrowStyle,
                 activePage===total && 'opacity-10'
                 ]"
             @click="nextPage"
@@ -40,7 +37,7 @@
 </template>
 
 <script>
-import {radiusSizeMixin} from "@/Mixins/radiusSizeMixin";
+import {paginateStyleMixin} from "@/Mixins/Styles/paginateStyleMixin";
 /*Icons*/
 import TChevronLeft from "@/Components/Icon/TChevronLeftIcon";
 import TChevronRight from "@/Components/Icon/TChevronRightIcon";
@@ -62,12 +59,9 @@ export default {
             type: Number,
             default: 5
         },
-        color: {
-            type: String,
-            default: 'blue'
-        }
+
     },
-    mixins: [radiusSizeMixin],
+    mixins: [paginateStyleMixin],
     components: {
         TChevronRight, TChevronLeft
     },
