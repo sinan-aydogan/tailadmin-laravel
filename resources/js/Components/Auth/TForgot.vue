@@ -1,25 +1,25 @@
 <template>
-    <t-full-screen-card :bg-image="bgImage" :color="bgColor">
+    <t-full-screen-card :bg-image="bgImage" :color="bgColor" :gradient-direction="bgGradientDirection">
         <div class="relative max-w-min">
             <!--Container-->
             <div :class="[
-            'flex flex-col border items-center justify-center shadow border-none overflow-hidden',
-            radiusStyle
+            'auth-container',
+            deviceType !== 'phone' && radiusStyle
             ]">
                 <!--Header-->
                 <div :class="[
-                'flex flex-col w-full',
-                forgotPasswordStyle
+                'auth-header',
+                calculatedForgotPasswordStyle
                 ]">
                     <!--Logo-->
-                    <div class="inline-flex px-32 py-4">
+                  <div class="auth-logo">
                         <slot name="logo"/>
                     </div>
                     <!--Greeting-->
-                    <div class="inline-flex whitespace-normal justify-center items-center text-center w-full bg-gray-200 py-1 bg-opacity-20 w-full">
+                  <div class="auth-greeting">
                         <div class="text-sm">
                             <!--Status-->
-                            <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
+                          <div v-if="status" class="auth-status">
                                 {{ status }}
                             </div>
                             <slot v-else name="greeting"/>
@@ -31,7 +31,7 @@
                     <slot name="subGreeting"/>
                 </div>
                 <!--Form-->
-                <div class="flex flex-col gap-4 bg-white px-8 w-full">
+              <div class="auth-form">
                     <form @submit.prevent="submit">
                         <!--Email-->
                         <div class="mt-2">
@@ -40,7 +40,7 @@
                             </t-input-group>
                         </div>
                         <!--Submit Button-->
-                        <div class="flex items-center my-4">
+                      <div class="auth-submit-area">
                             <t-button size="full" :class="{ 'opacity-25': form.processing }" :color="buttonColor" :disabled="form.processing"
                                       :radius="3">
                                 Email Password Reset Link
@@ -49,14 +49,14 @@
                     </form>
                 </div>
             </div>
-            <div class="absolute w-full translate-y-1/2 mt-4 text-white">
+          <div class="auth-error">
                 <!--Errors-->
                 <transition @before-enter="beforeStyle" @after-enter="enterStyle">
-                    <t-alert v-if="hasErrors" :radius="5" color="red">
+                    <t-alert v-if="hasErrors" :radius="deviceType !== 'phone' && 5" color="solid-red">
                         <template #icon>
                             <t-bell-icon class="w-8 h-8"/>
                         </template>
-                        <ul class="list-inside text-sm text-red-600">
+                        <ul class="list-inside text-sm">
                             <li v-for="(error, key) in errors" :key="key">{{ error }}</li>
                         </ul>
                     </t-alert>
@@ -68,11 +68,12 @@
 </template>
 
 <script>
+import {forgotPasswordStyleMixin} from "@/Mixins/Styles/forgotPasswordStyleMixin";
+import {windowSizeMixin} from "@/Mixins/windowSizeMixin";
 import TFullScreenCard from "@/Components/Card/TFullScreenCard";
 import TInputGroup from "@/Components/Form/TInputGroup";
 import TInputText from "@/Components/Form/Inputs/TInputText";
 import TButton from "@/Components/Button/TButton";
-import {radiusSizeMixin} from "@/Mixins/radiusSizeMixin";
 import TAlert from "@/Components/Alert/TAlert";
 import TBellIcon from "@/Components/Icon/TBellIcon";
 
@@ -82,7 +83,7 @@ export default {
         TBellIcon,
         TAlert, TButton, TInputText, TInputGroup, TFullScreenCard
     },
-    mixins: [radiusSizeMixin],
+    mixins: [forgotPasswordStyleMixin,windowSizeMixin],
     props: {
         status: String,
         color: {
@@ -91,11 +92,14 @@ export default {
         },
         buttonColor: {
             type: String,
-            default: 'green'
+            default: 'solid-green'
         },
         bgColor: {
             type: String,
-            default: 'gray'
+            default: 'solid-gray'
+        },
+      bgGradientDirection: {
+            type: String,
         },
         bgImage: {
             type: String
@@ -123,25 +127,6 @@ export default {
         }
     },
     computed: {
-        forgotPasswordStyle() {
-            /*Color Styles*/
-            /*Solid*/
-            if (!this.color.includes('-') && this.color !== 'black' && this.color !== 'white') {
-                return 'bg-' + this.color + '-500 text-white';
-            } else if (this.color === 'black') {
-                return 'bg-black text-white'
-            } else if (this.color === 'white') {
-                return 'bg-white border border-gray-300 text-gray-700'
-            }
-            /*Light*/
-            if (this.color.includes('light')) {
-                return 'bg-' + this.color.split('-')[1] + '-50 border border-' + this.color.split('-')[1] + '-500 text-' + this.color.split('-')[1] + '-600';
-            }
-            /*Gradient*/
-            if (this.color.includes('gradient')) {
-                return 'bg-gradient-to-r from-' + this.color.split('-')[1] + '-500 to-' + this.color.split('-')[3] + '-700 text-white';
-            }
-        },
         errors() {
             return this.$page.props.errors
         },

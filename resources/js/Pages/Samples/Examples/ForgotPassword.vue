@@ -6,20 +6,20 @@
       <grid-section :col-tablet="3">
         <!--Demo 1-->
         <div class="flex flex-col gap-2">
-          <img :src="'/img/demo/login_1_gradient.png'" class="rounded-md" alt="Forgot Password Screen">
-          <t-button :link="route('login-app-1')" :radius="3" color="gradient-purple-to-pink" size="full">See Demo Login
+          <img :src="'/img/demo/forgot_1_gradient.png'" class="rounded-md" alt="Forgot Password Screen">
+          <t-button :link="route('forgot-password-app-1')" :radius="3" color="gradient-purple-to-pink" size="full">See Demo Login
             1
           </t-button>
         </div>
         <!--Demo 2-->
         <div class="flex flex-col gap-2">
-          <img :src="'/img/demo/login_2_gray.png'" class="rounded-md" alt="Forgot Password Screen">
-          <t-button :link="route('login-app-2')" :radius="3" color="solid-gray" size="full">See Demo Login 2</t-button>
+          <img :src="'/img/demo/forgot_2_gray.png'" class="rounded-md" alt="Forgot Password Screen">
+          <t-button :link="route('forgot-password-app-2')" :radius="3" color="solid-gray" size="full">See Demo Login 2</t-button>
         </div>
         <!--Demo 3-->
         <div class="flex flex-col gap-2">
-          <img :src="'/img/demo/login_3_blue.png'" class="rounded-md" alt="Forgot Password Screen">
-          <t-button :link="route('login-app-3')" :radius="3" color="solid-blue" size="full">See Demo Login 3</t-button>
+          <img :src="'/img/demo/forgot_3_blue.png'" class="rounded-md" alt="Forgot Password Screen">
+          <t-button :link="route('forgot-password-app-3')" :radius="3" color="solid-blue" size="full">See Demo Login 3</t-button>
         </div>
       </grid-section>
       <!--Sample Codes-->
@@ -61,34 +61,37 @@ export default {
     return {
       sampleCode: {
         html:
-            '<t-login\n' +
+            '<t-forgot\n' +
             '         color="gradient-purple-to-pink"\n' +
             '         :radius="5"\n' +
             '         bg-color="solid-pink"\n' +
             '         bg-image="/img/samples/bgFakurianDesign-nY14Fs8pxT8-unsplash.jpg"\n' +
             '         button-color="solid-pink"\n' +
-            '        :canResetPassword="canResetPassword"\n' +
             '        :status="status"\n' +
-            '>\n' +
+            '>\n\n' +
             '    <!--Logo-->\n' +
             '    <template #logo>\n' +
             '        <div class="flex flex-col justify-center items-center w-full">\n' +
             '            <t-logo class="w-12 h-12"/>\n' +
             '            <span class="text-3xl">TailAdmin</span>\n' +
             '        </div>\n' +
-            '    </template>\n' +
+            '    </template>\n\n' +
             '    <!--Greeting-->\n' +
             '    <template #greeting>\n' +
-            '        Sign in to your account\n' +
-            '    </template>\n' +
-            '</t-login>',
+            '        <b>Forgot your password? No problem.</b>\n' +
+            '    </template>\n\n' +
+            '    <!--Greeting Sub-->\n' +
+            '    <template #subGreeting>\n' +
+            '        Write your email address and we will email you a password reset link\n' +
+            '    </template>\n\n' +
+            '</t-forgot>',
         js:
-            'import TLogin from "@/Components/Auth/TLogin";\n' +
-            'import TLogo from "@/Components/Icon/TLogo";' +
+            'import TForgot from "@/Components/Auth/TForgot;\n' +
+            'import TLogo from "@/Components/Icon/TLogo";\n' +
             "\n" +
             "export default {\n" +
             '  name: "Badge",\n' +
-            "  components: {TBadge},\n" +
+            "  components: {TForgot, TLogo},\n" +
             "  }",
         table: {
           header: [
@@ -109,9 +112,15 @@ export default {
             {
               variable: 'color',
               type: 'String',
-              details: "Your login form continer\'s color theme.<br><b>Options Simple:</b> red, blue, green, yellow, indigo, pink, purple, gray, black, white,<br>" +
+              details: "Your forgot password form continer\'s color theme.<br><b>Options Solid:</b> solid-red, solid-blue, solid-green, solid-yellow, solid-indigo, solid-pink, solid-purple, solid-gray, solid-black, solid-white,<br>" +
                   "<b>Options Light:</b> light-red, light-blue, light-green, light-yellow, light-indigo, light-pink, light-purple, light-gray<br" +
                   "><b>Options Gradient:</b> gradient-red-to-pink. Red is first color and Pink is second color. You change red end pink with red, blue, green, yellow, indigo, pink, purple and gray)"
+            },
+            {
+              variable: 'gradient-direction',
+              type: 'String',
+              details: "If you use to the gradient color, you can select gradient's direction of login form continer. <br><b>Options:</b> r, l, b, t, tl, bl, tr, br<br>" +
+                  "<b>Default:</b> r<br>(Means: l: left, r: right, b: bottom, t: top)"
             },
             {
               variable: ":radius",
@@ -134,11 +143,6 @@ export default {
               details: "Your submit button\'s color theme.<br><b>Options Simple:</b> red, blue, green, yellow, indigo, pink, purple, gray, black, white,<br><b>Options Light:</b> light-red, light-blue, light-green, light-yellow, light-indigo, light-pink, light-purple, light-gray"
             },
             {
-              variable: ":canResetPassword",
-              type: "Boolean",
-              details: "For showing to 'Forgot your password?' link.<br><b>Options:</b> true, false. <b>Default:</b> true"
-            },
-            {
               variable: ":status",
               type: "String",
               details: "If you want to feedback, you can use this prop. It'll showing in the greeting area."
@@ -151,7 +155,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-
-</style>
