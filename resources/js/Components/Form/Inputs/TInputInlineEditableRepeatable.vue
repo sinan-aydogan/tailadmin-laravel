@@ -1,7 +1,7 @@
 <template>
     <div class="relative">
         <!--Adding Form-->
-        <div :class="value.length > 0 && 'p-inputtext p-component hover:border-blue-400'" class=" justify-between items-center flex  cursor-pointer text-gray-600">
+        <div class="justify-between items-center flex  cursor-pointer text-gray-600">
             <!--Conditional View-->
             <!--Fields-->
             <div class="flex flex-col space-y-2 w-full">
@@ -20,7 +20,7 @@
                     </div>
                     <!--Add Button-->
                     <div class="flex flex-col w-full pl-4 pr-6 mt-2">
-                        <t-button v-if="index === value.length-1" type="button" color="green" @click.native="addItem(index)" size="sm">
+                        <t-button v-if="index === value.length-1" type="button" color="solid-green" @click.native="addItem(index)" size="sm">
                             <t-plus-circle-icon class="w-6 h-5 cursor-pointer mr-2"/>
                             Add new item
                         </t-button>

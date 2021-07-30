@@ -20,10 +20,10 @@
             :key="index"
             @click="deSelect(index)"
         >
-          <t-badge class="hover:bg-red-500" v-html="item.componentInstance.$el.innerHTML" />
+          <t-badge :radius="8" class="hover:bg-red-500 hover:text-white hover:border-0 text-sm px-2" v-html="item.componentInstance.$el.innerHTML"/>
         </div>
         <div v-for="(item,index) in selectedOption" v-else :key="index">
-          <t-badge v-html="item.componentInstance.label"/>
+          <t-badge :radius="8" color="solid-blue" v-html="item.componentInstance.label"/>
         </div>
       </div>
       <!--Clear Button-->
