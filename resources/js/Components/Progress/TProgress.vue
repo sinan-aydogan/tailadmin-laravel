@@ -1,17 +1,16 @@
 <template>
-    <div class="flex flex-col w-full">
-        <div class="flex flex-row justify-between text-sm">
+    <div class="progress">
+        <div class="progress-container">
             <div v-text="title"></div>
             <div>{{ counterValue + '%' }}</div>
         </div><transition name="progress">
             <div :class="[
-            'flex w-full bg-gray-200 shadow-inner rounded-full overflow-hidden flex-shrink-0 flex-grow-0',
-            6>height ? 'h-'+height : 'h-2'
+            'progress-value',
+            heightStyles[height]
             ]">
                 <div :class="[
                     'flex',
-                    colorStyle,
-                    6>height ? 'h-'+height : 'h-2',
+                    calculatedProgressStyle
                     ]"
                      :style="'width:'+counterValue+'%'"
                 ></div>
@@ -21,6 +20,8 @@
 </template>
 
 <script>
+import {progressStyleMixin} from "@/Mixins/Styles/progressStyleMixin";
+
 export default {
     name: "TProgress",
     props: {
@@ -31,33 +32,15 @@ export default {
             type: Number,
             default: 10
         },
-        color: {
-            type: String,
-            default: 'green'
-        },
-        height: {
-            type: Number,
-            default: 3
-        },
         speed: {
             type: Number,
             default: 20
         }
     },
+  mixins: [progressStyleMixin],
     data(){
         return {
             counterValue:0
-        }
-    },
-    computed: {
-        colorStyle() {
-            if (this.color === 'white') {
-                return 'bg-white'
-            } else if (this.color === 'black') {
-                return 'bg-black'
-            } else {
-                return 'bg-' + this.color + '-500'
-            }
         }
     },
     watch:{
