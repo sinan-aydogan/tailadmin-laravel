@@ -1,9 +1,13 @@
 <?php
 
 use App\Http\Controllers\LockAuthController;
+use App\Http\Controllers\Settings\UserController;
+use App\Models\User;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +38,21 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function (){
             'phpVersion' => PHP_VERSION,
         ]);
     })->name('dashboard');
+
+    /*They are the required pages for the system, don't delete it*/
+    Route::prefix('settings')->group(function () {
+       Route::get('/', function () {return Inertia::render('Settings/Index',[
+           'users_count' => count(User::all('id')),
+           'roles_count' => count(Role::all()),
+           'permissions_count' => count(Permission::all())
+       ]);})->name('settings');
+       Route::resource('settings-user', UserController::class);
+       Route::get('role', function () {return Inertia::render('Settings/Role');})->name('settings-role');
+       Route::get('permission', function () {return Inertia::render('Settings/Permission');})->name('settings-permission');
+       Route::get('system', function () {return Inertia::render('Settings/System');})->name('settings-system');
+    });
+
+    /*This pages for example, you can delete when you design the your system*/
     //Example Pages
     Route::get('login-app',function (){return Inertia::render('Samples/Examples/Login');})->name('login-app');
         Route::get('login-app-1',function (){return Inertia::render('Samples/Examples/Auth/Login1');})->name('login-app-1');

@@ -37,10 +37,10 @@ import {
     faTrash,
     faPlusCircle,
     faAngleDoubleRight,
-    faCheck, faMinusCircle, faInfo, faSave
+    faCheck, faMinusCircle, faInfo, faSave, faCog
 } from '@fortawesome/free-solid-svg-icons'
 
-library.add(faRocket, faDotCircle, faWindowRestore, faSave, faEdit, faJs, faCss3, faInfo, faCalendarAlt, faVuejs, faEnvelope, faTasks, faWindowMaximize, faChartBar, faChevronDown, faCode, faAngleDown, faAngleUp, faChartBar, faLayerGroup, faGripHorizontal, faAngleLeft, faClock, faRetweet, faTags, faTv, faPlug, faTable, faShoppingBag, faLiraSign, faTrash, faPlusCircle, faAngleDoubleRight, faCheck, faMinusCircle)
+library.add(faRocket, faDotCircle, faWindowRestore, faSave, faEdit, faJs, faCss3, faInfo, faCalendarAlt, faVuejs, faEnvelope, faTasks, faWindowMaximize, faChartBar, faChevronDown, faCode, faAngleDown, faAngleUp, faChartBar, faLayerGroup, faGripHorizontal, faAngleLeft, faClock, faRetweet, faTags, faTv, faPlug, faTable, faShoppingBag, faLiraSign, faTrash, faPlusCircle, faAngleDoubleRight, faCheck, faMinusCircle, faCog)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 
