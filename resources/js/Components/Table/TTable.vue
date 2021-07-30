@@ -55,17 +55,14 @@
     </div>
     <!--Table-->
     <div :class="[
-            'overflow-x-auto scrollbar scrollbar-thin',
-            shadow && 'shadow-md',
-            this.color.includes('light') && 'border border-' + this.color.split('-')[1] + '-500',
-            radiusStyle,
-            scrollStyle
+            'overflow-x-auto scrollbar scrollbar-thin ',
+            calculatedTableStyle,
             ]">
       <table class="w-full">
         <!--Header-->
         <thead>
         <!--Header Row-->
-        <tr :class="headerStyle">
+        <tr :class="headerColors[color]">
           <!--Header Cell-->
           <th
               v-for="(item,index) in header"
@@ -99,7 +96,7 @@
             :key="index"
             :class="[
                         'transition duration-300 ease-in-out',
-                        contentStyle,
+                        contentColors[color],
                         zebra && index%2 === 0 ? 'bg-opacity-0' : 'bg-opacity-10',
                         paginatedContent.length > index+1 && border && 'border-b'
                         ]">
@@ -148,8 +145,7 @@ import TCollection from "@/Components/Icon/TCollectionIcon";
 import TPaginate from "@/Components/Paginate/TPaginate";
 import TAdjustments from "@/Components/Icon/TAdjustmentsIcon";
 import TSearchIcon from "@/Components/Icon/TSearchIcon";
-import {radiusSizeMixin} from "@/Mixins/radiusSizeMixin";
-
+import {tableStyleMixin} from "@/Mixins/Styles/tableStyleMixin";
 library.add(faInfoCircle)
 
 export default {
@@ -159,17 +155,13 @@ export default {
     TAdjustments,
     TPaginate, TCollection, TInputDropdownItem, TInputDropdown, InputText, TInputGroup, TSearchCircle
   },
-  mixins: [radiusSizeMixin],
+  mixins: [tableStyleMixin],
   props: {
     header: {
       type: Array
     },
     content: {
       type: Array
-    },
-    color: {
-      type: String,
-      default: 'white'
     },
     paginationColor: {
       type: String,
@@ -205,63 +197,6 @@ export default {
     }
   },
   computed: {
-    headerStyle() {
-      /*Color Styles*/
-      /*Solid*/
-      if (!this.color.includes('-') && this.color !== 'black' && this.color !== 'white') {
-        return 'bg-' + this.color + '-500 bg-opacity-95 text-white';
-      } else if (this.color === 'black') {
-        return 'bg-black text-white'
-      } else if (this.color === 'white') {
-        return 'bg-white border-b-2'
-      }
-      /*Light*/
-      if (this.color.includes('light')) {
-        return 'bg-' + this.color.split('-')[1] + '-50 text-' + this.color.split('-')[1] + '-600 border-' + this.color.split('-')[1] + '-500 border-b-2';
-      }
-      /*Gradient*/
-      if (this.color.includes('gradient')) {
-        return 'bg-gradient-to-r from-' + this.color.split('-')[1] + '-500 to-' + this.color.split('-')[3] + '-700 text-white';
-      }
-    },
-    contentStyle() {
-      /*Color Styles*/
-      /*Solid*/
-      if (!this.color.includes('-') && this.color !== 'black' && this.color !== 'white') {
-        return 'bg-' + this.color + '-500 hover:bg-' + this.color + '-300 border-' + this.color + '-200';
-      } else if (this.color === 'black') {
-        return 'bg-black hover:bg-gray-900 hover:text-white'
-      } else if (this.color === 'white') {
-        return 'bg-white border-gray-200 hover:bg-gray-200'
-      }
-      /*Light*/
-      if (this.color.includes('light')) {
-        return 'bg-' + this.color.split('-')[1] + '-200 hover:bg-' + this.color.split('-')[1] + '-300 border-' + this.color.split('-')[1] + '-300 text-' + this.color.split('-')[1] + '-600';
-      }
-      /*Gradient*/
-      if (this.color.includes('gradient')) {
-        return 'bg-gradient-to-r from-' + this.color.split('-')[1] + '-500 to-' + this.color.split('-')[3] + '-700 text-white';
-      }
-    },
-    scrollStyle() {
-      /*Color Styles*/
-      /*Solid*/
-      if (!this.color.includes('-') && this.color !== 'black' && this.color !== 'white') {
-        return 'scrollbar-thumb-' + this.color + '-500 scrollbar-track-' + this.color + '-300';
-      } else if (this.color === 'black') {
-        return 'scrollbar-thumb-gray-700 scrollbar-track-gray-300';
-      } else if (this.color === 'white') {
-        return 'scrollbar-thumb-gray-500 scrollbar-track-gray-300';
-      }
-      /*Light*/
-      if (this.color.includes('light')) {
-        return 'scrollbar-thumb-' + this.color.split('-')[1] + '-500 scrollbar-track-' + this.color.split('-')[1] + '-300';
-      }
-      /*Gradient*/
-      if (this.color.includes('gradient')) {
-        return 'scrollbar-thumb-' + this.color.split('-')[1] + '-500 scrollbar-track-' + this.color.split('-')[1] + '-300';
-      }
-    },
     paginationStyle() {
       if (this.color && !this.paginationColor) {
         return this.color
