@@ -4,16 +4,35 @@
       <!--Form Body-->
       <div class="mt-5 md:mt-0 md:col-span-2 bg-white shadow sm:rounded-md">
         <slot></slot>
-        <!--Submit Button-->
+        <!--Form Buttons Container-->
         <transition duration="500" name="status">
           <div v-if="submitButton || resetButton || $slots.status || $slots.button+'-area'"
-               class="flex flex-wrap col-span-12 justify-end space-x-2 mr-4 py-4">
+               class="flex flex-wrap col-span-12 justify-center tablet:justify-end space-x-2 mr-4 py-4">
+            <!--Extra Form Buttons Area-->
             <slot name="button-area"/>
-            <slot v-if="$slots.status" name="status"></slot>
-            <div v-else class="flex flex-wrap gap-2">
-              <t-button v-if="resetButton" :radius="3" color="yellow" type="button" @click.native="reset">Reset
+            <!--Status Area-->
+            <slot v-if="$slots.status" name="status"/>
+            <!--Default Form Buttons-->
+            <div v-else class="flex flex-wrap w-full justify-center tablet:justify-end items-center gap-2">
+              <!--Reset Button-->
+              <t-button
+                  v-if="resetButton"
+                  :radius="3"
+                  color="solid-yellow"
+                  type="button"
+                  @click.native="reset"
+              >
+                Reset
               </t-button>
-              <t-button v-if="submitButton" :disabled="disabled" :radius="3" color="green" icon="plus" type="submit">
+              <!--Save Button-->
+              <t-button
+                  v-if="submitButton"
+                  :disabled="disabled"
+                  :radius="3"
+                  color="solid-green"
+                  icon="plus"
+                  type="submit"
+              >
                 Save
               </t-button>
             </div>
