@@ -9,8 +9,7 @@
     <div v-if="show" class="modal-container">
       <div :class="[
                 'modal-box',
-                radiusStyle,
-                modalStyle
+                calculatedModalStyle
                 ]">
         <!--Close button-->
         <div class="modal-close-button" @click="showModal=false;$emit('close', false)">x</div>
@@ -43,45 +42,20 @@
 </template>
 
 <script>
-import {radiusSizeMixin} from "@/Mixins/radiusSizeMixin";
+import {modalStyleMixin} from "@/Mixins/Styles/modalStyleMixin";
 
 export default {
   name: "TModal",
-  mixins: [radiusSizeMixin],
+  mixins: [modalStyleMixin],
   props: {
     show: {
       type: Boolean,
       default: false
-    },
-    color: {
-      type: String,
-      default: 'white'
     }
   },
   data() {
     return {
       showModal: this.show
-    }
-  },
-  computed: {
-    modalStyle() {
-      /*Color Styles*/
-      /*Solid*/
-      if (!this.color.includes('-') && this.color !== 'black' && this.color !== 'white') {
-        return 'bg-' + this.color + '-500 text-white';
-      } else if (this.color === 'black') {
-        return 'bg-black text-white'
-      } else if (this.color === 'white') {
-        return 'bg-white border border-gray-300 text-gray-700'
-      }
-      /*Light*/
-      if (this.color.includes('light')) {
-        return 'bg-' + this.color.split('-')[1] + '-50 border border-' + this.color.split('-')[1] + '-500 text-' + this.color.split('-')[1] + '-600';
-      }
-      /*Gradient*/
-      if (this.color.includes('gradient')) {
-        return 'bg-gradient-to-r from-' + this.color.split('-')[1] + '-500 to-' + this.color.split('-')[3] + '-700 text-white';
-      }
     }
   },
   created() {
