@@ -264,6 +264,23 @@
     @apply flex flex-col whitespace-normal z-10 absolute border rounded-md mt-1 overflow-hidden bg-white
 }
 
+/*Form Input*/
+/*SelectInput*/
+.select-container{
+    @apply form-input justify-between items-center h-10 cursor-pointer select-none
+}
+/*SelectInput Dropdown Icon*/
+.select-dropdown-icon{
+    @apply w-6 h-6 transform duration-300
+}
+/*SelectInput Options List Container*/
+.select-options-container{
+    @apply absolute flex flex-col top-11 bg-white border border-gray-300 rounded-md shadow-lg z-50
+}
+/*SelectInput Option Item Style*/
+.select-option-item{
+    @apply flex hover:bg-gray-200 p-2 cursor-pointer whitespace-nowrap
+}
 
 /*Pagination*/
 /*Pagination Container*/
