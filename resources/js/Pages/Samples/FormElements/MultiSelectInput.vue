@@ -20,25 +20,33 @@
             title="Personal Infos">
           <!-- Manager -->
           <t-input-group class="col-span-12 md:col-span-6" label="Manager - Searchable" labelFor="user_id">
-            <t-input-multi-select v-model="form.name" :clear-button="true" :search="true" place-holder="Select"
-                                  search-place-holder="Search...">
-              <t-input-select-item v-for="(item,index) in users" :key="index" :value="item.id"><span
-                  :class="item.class">{{ item.name }}</span></t-input-select-item>
-            </t-input-multi-select>
+            <t-input-multi-select
+                v-model="form.managers"
+                :clear-button="true"
+                :search="true"
+                place-holder="Select"
+                search-place-holder="Search..."
+                :options="users"
+                options-label-key="name"
+                options-value-key="id"
+            />
           </t-input-group>
           <!-- T-Shirt Size -->
           <t-input-group class="col-span-12 md:col-span-6" label="T-Shirt Size" labelFor="size">
-            <t-input-multi-select v-model="form.size" :clear-button="true" place-holder="Select"
-                                  search-place-holder="Search...">
-              <t-input-select-item value="sm">
-                Small
-              </t-input-select-item>
-              <t-input-select-item value="md">
-                Medium
-              </t-input-select-item>
-              <t-input-select-item value="lg">
-                Large
-              </t-input-select-item>
+            <t-input-multi-select
+                v-model="form.size"
+                :clear-button="true"
+                :options="sizes"
+                options-label-key="name"
+                options-value-key="value"
+                place-holder="Select"
+                search-place-holder="Search..."
+            >
+              <template #label="{ props }">
+                  <span :class="[props.value === 'sm' ? 'text-red-500' : 'text-blue-500']">
+                    <b>{{ props.name }}</b>
+                  </span>
+              </template>
             </t-input-multi-select>
           </t-input-group>
         </t-form-section>
@@ -70,7 +78,6 @@ import SshPre from 'simple-syntax-highlighter'
 import 'simple-syntax-highlighter/dist/sshpre.css'
 import TInputGroup from "@/Components/Form/TInputGroup";
 import TInputSelect from "@/Components/Form/Inputs/TInputSelect";
-import TInputSelectItem from "@/Components/Form/Inputs/TInputSelectItem";
 import TTable from "@/Components/Table/TTable";
 import TInputMultiSelect from "@/Components/Form/Inputs/TInputMultiSelect";
 
@@ -79,7 +86,6 @@ export default {
   components: {
     TInputMultiSelect,
     TTable,
-    TInputSelectItem,
     TInputSelect,
     AppLayout,
     TButton,
@@ -94,12 +100,13 @@ export default {
       loading: false,
       form: this.$inertia.form({
         _method: 'POST',
-        name: null,
-        size: null,
+        managers: [],
+        size: [],
       }),
-      status: [
-        {name: 'Passive', value: 0, icon: 'XIcon', class: 'w-5 h-5 text-red-500 mr-2'},
-        {name: 'Active', value: 1, icon: 'Checked', class: 'w-5 h-5 text-green-500 mr-2'}
+      sizes: [
+        {name: 'Small', value: 'sm'},
+        {name: 'Medium', value: 'm'},
+        {name: 'Large', value: 'lg'}
       ],
       sampleCode: {
         html:

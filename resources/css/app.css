@@ -267,19 +267,19 @@
 /*Form Input*/
 /*SelectInput*/
 .select-container{
-    @apply form-input justify-between items-center h-10 cursor-pointer select-none
+    @apply relative form-input justify-between items-center min-h-10 cursor-pointer select-none
 }
 /*SelectInput Dropdown Icon*/
 .select-dropdown-icon{
-    @apply w-6 h-6 transform duration-300
+    @apply w-6 h-6 duration-300
 }
 /*SelectInput Options List Container*/
 .select-options-container{
-    @apply absolute flex flex-col top-11 bg-white border border-gray-300 rounded-md shadow-lg z-50
+    @apply absolute flex flex-col top-11 bg-white border border-gray-300 rounded-md shadow-lg z-50 overflow-hidden
 }
 /*SelectInput Option Item Style*/
 .select-option-item{
-    @apply flex hover:bg-gray-200 p-2 cursor-pointer whitespace-nowrap
+    @apply flex justify-between items-center hover:bg-gray-200 gap-2 p-2 cursor-pointer whitespace-nowrap
 }
 
 /*Pagination*/

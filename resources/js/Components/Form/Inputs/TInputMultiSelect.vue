@@ -1,73 +1,129 @@
 <template>
   <div v-click-outside="outside" class="relative select-none min-w-3">
-    <div :class="['form-input bg-white min-h-10 flex items-center cursor-pointer',radiusStyle]">
-      <slot></slot>
-      <!--Placeholder Text-->
-      <span v-if="selectedOption.length === 0" :class="['w-full p-2 hover:font-semibold',disabled && 'text-gray-300']"
-            aria-disabled="true"
-            @click="changeShowOptions">
-                {{ placeHolder ? placeHolder : 'Select' }}
-            </span>
-      <!--Selected Option-->
-      <div
-          v-if="selectedOption.length > 0"
-          class="flex flex-wrap gap-1 pl-0 p-2 w-full"
-          @click="changeShowOptions">
+    <!--Container-->
+    <div
+        :class="['select-container z-10',radiusStyle]"
+        @click.self="changeShowOptions"
+    >
+
+      <!--Texts-->
+      <div class="flex">
+
+        <!--Placeholder Text-->
+        <span
+            v-if="value === [] || value === null || value.length === 0"
+            class="w-full"
+            v-text="placeHolder ? placeHolder : 'Select'"
+            @click="changeShowOptions"
+        />
+
+        <!--Selected Option-->
+        <div v-else class="flex flex-wrap justify-start gap-2 py-2 z-10">
+          <!--ScopeSlot Rich Label-->
+          <span
+              v-for="(item,key,index) in selectedOption"
+              v-if="$scopedSlots.label"
+              :key="selectedOption[optionsValueKey]"
+          >
+            <t-badge
+                :radius="8"
+            >
+              <t-x-circle-icon class="w-5 h-5 text-gray-400 hover:text-red-500" slot="icon" @click.native="select(item)"/>
+              <slot
+                  :props="item"
+                  name="label"
+                  v-html="item[optionsLabelKey]"
+              />
+            </t-badge>
+          </span>
+
+          <!--Simple Text Label-->
+          <span
+              v-for="(item,key,index) in selectedOption"
+              v-if="!$scopedSlots.label"
+              :key="selectedOption[optionsValueKey]"
+          >
+          <t-badge
+              :radius="8"
+
+          >
+            <t-x-circle-icon class="w-5 h-5 text-gray-400 hover:text-red-500" slot="icon" @click.native="select(item)"/>
+            {{ item[optionsLabelKey] }}
+          </t-badge>
+        </span>
+        </div>
+
+      </div>
+
+      <!--Icons-->
+      <div class="inline-flex">
+
+        <!--Clear Button-->
         <div
-            class="relative"
-            v-for="(item,index) in selectedOption"
-            v-if="item.componentInstance.$el.innerHTML"
-            :key="index"
-            @click="deSelect(index)"
+            v-if="clearButton && selectedOption.length > 0"
+            @click="selectedOption = [];selectedIDs = [];searchText = '';$emit('input',[])"
         >
-          <t-badge :radius="8" class="hover:bg-red-500 hover:text-white hover:border-0 text-sm px-2" v-html="item.componentInstance.$el.innerHTML"/>
+          <t-x-circle-icon class="w-6 h-6 rounded-full hover:bg-red-500 hover:text-white cursor-pointer"/>
         </div>
-        <div v-for="(item,index) in selectedOption" v-else :key="index">
-          <t-badge :radius="8" color="solid-blue" v-html="item.componentInstance.label"/>
-        </div>
-      </div>
-      <!--Clear Button-->
-      <div v-if="clearButton && selectedID.length>0"
-           @click="selectedID = [];selectedOption = [];searchText = '';$emit('input',null)">
-        <t-x-circle-icon class="w-6 h-6 rounded-full hover:bg-red-500 hover:text-white cursor-pointer"/>
-      </div>
-      <!--DropDown Icon-->
-      <div @click="changeShowOptions">
+
+        <!--Dropdown Icon-->
         <t-chevron-down-icon
             :class="[
-                'w-6 h-6 transform duration-300',
+                'select-dropdown-icon transform',
                 showOptions ? 'rotate-90' : 'rotate-0'
                 ]"
+            @click.native="changeShowOptions"
         />
       </div>
-      <!--Options Container-->
-      <div v-if="showOptions"
-           class="absolute flex flex-col top-11 bg-white border border-gray-300 rounded-md w-full -ml-2 shadow-lg z-50">
-        <!--Search Box-->
-        <div v-if="search" class="flex w-full p-2 bg-gray-200">
-          <t-input-text v-model="searchText"
-                        :placeholder="searchPlaceHolder ? searchPlaceHolder : 'Search...'"></t-input-text>
-        </div>
-        <!--Options List-->
-        <div
-            v-for="(item,index) in searchList"
-            v-if="index<9"
-            :key="index"
-            :class="[
-                'inline-flex justify-between hover:bg-gray-200 p-2 cursor-pointer',
-                alignStyle[align]
-            ]"
-            @click="$emit('input', item.componentInstance.value); showOptions = !showOptions; select(index)">
-          <div v-if="item.componentInstance.$el.innerHTML" v-html="item.componentInstance.$el.innerHTML"/>
-          <div v-else v-html="item.componentInstance.label"/>
-          <t-check-circle-solid-icon
-              v-if="selectedID.includes(item.componentInstance.value)"
-              class="w-5 h-5 text-green-500"
-          />
-        </div>
-        <div v-if="searchList.length>10" class="hidden lg:block text-xs text-center p-2 text-blue-500">The results are
-          too many, please search...
-        </div>
+    </div>
+
+    <!--Options Container-->
+    <div v-if="showOptions" class="select-options-container">
+      <!--Search Box-->
+      <div v-if="search" class="flex w-full p-2 bg-gray-200">
+        <t-input-text
+            v-model="searchText"
+            :placeholder="searchPlaceHolder ? searchPlaceHolder : 'Search...'"
+        />
+      </div>
+      <!--Options List-->
+      <div
+          v-for="(item,index) in searchedList"
+          v-if="index<10"
+          :key="item[optionsValueKey]"
+          :class="[
+              'select-option-item',
+              selectedIDs.includes(item[optionsValueKey]) && 'bg-gray-100 border-b last:border-b-0',
+              alignStyle[align]
+              ]"
+          @click="select(item)"
+      >
+        <!--ScopeSlot Rich Label-->
+        <slot
+            v-if="$scopedSlots.label"
+            :props="item"
+            name="label"
+            v-html="item[optionsLabelKey]"
+        />
+        <!--Simple Text Label-->
+        <span
+            v-else
+            v-text="item[optionsLabelKey]"
+        />
+        <t-check-circle-solid-icon
+            v-if="selectedIDs.includes(item[optionsValueKey])"
+            class="w-5 h-5 text-green-500"
+        />
+      </div>
+
+      <!--Many Items Notification-->
+      <div
+          v-if="searchedList.length>10"
+          class="hidden tablet:block text-xs text-center p-2 text-blue-500"
+      >
+        The
+        results({{ searchedList.length }}) are
+        too many, please search...
       </div>
     </div>
   </div>
@@ -76,15 +132,16 @@
 <script>
 import TInputText from "@/Components/Form/Inputs/TInputText";
 import {radiusSizeMixin} from "@/Mixins/radiusSizeMixin";
+import TChevronDownIcon from "@/Components/Icon/TChevronDownIcon";
+import TChevronLeftIcon from "@/Components/Icon/TChevronLeftIcon";
+import TXCircleIcon from "@/Components/Icon/TXCircleIcon";
 import TBadge from "@/Components/Badge/TBadge";
 import TCheckCircleSolidIcon from "@/Components/Icon/TCheckCircleSolidIcon";
-import TXCircleIcon from "@/Components/Icon/TXCircleIcon";
-import TChevronDownIcon from "@/Components/Icon/TChevronDownIcon";
 
 export default {
   name: "TInputMultiSelect",
-  components: {TChevronDownIcon, TXCircleIcon, TCheckCircleSolidIcon, TBadge, TInputText},
-  props: ['value', 'placeHolder', 'searchPlaceHolder', 'clearButton', 'disabled', 'search', 'align'],
+  components: {TCheckCircleSolidIcon, TBadge, TXCircleIcon, TChevronLeftIcon, TChevronDownIcon, TInputText},
+  props: ['value', 'options', 'optionsLabelKey', 'optionsValueKey', 'placeHolder', 'searchPlaceHolder', 'clearButton', 'disabled', 'search', 'align'],
   mixins: [radiusSizeMixin],
   directives: {
     'click-outside': {
@@ -115,18 +172,17 @@ export default {
       unbind: function (el) {
         // Remove Event Listeners
         document.removeEventListener('click', el.__vueClickOutside__)
-        el.__vueClickOutside__ = null
+        el.__vueClickOutside__ = []
 
       }
     }
   },
   data() {
     return {
-      searchText: '',
-      searchList: [],
-      options: [],
-      selectedID: [],
       selectedOption: [],
+      selectedIDs: [],
+      searchedList: this.options,
+      searchText: '',
       showOptions: false,
       alignStyle: {
         'left': 'text-left',
@@ -135,24 +191,18 @@ export default {
       }
     }
   },
+  created() {
+    if (this.value !== []) {
+      this.options.forEach((item) => {
+        if (this.value === item[this.optionsValueKey]) {
+          this.selectedOption = item
+        }
+      })
+    }
+  },
   methods: {
     outside() {
       this.showOptions = false
-    },
-    select(index) {
-      let options = [...this.searchList];
-      let selectedUid = options[index].componentInstance._uid;
-      let selected = options.filter(item => item.componentInstance._uid === selectedUid)
-      if(!this.selectedID.includes(selected[0].componentInstance.value)){
-        this.selectedOption.push(selected[0]);
-        this.selectedID.push(selected[0].componentInstance.value)
-      }else{
-        this.deSelect(index)
-      }
-    },
-    deSelect(index) {
-      this.selectedOption.splice(index,1);
-      this.selectedID.splice(index,1);
     },
     changeShowOptions() {
       if (this.disabled) {
@@ -160,32 +210,36 @@ export default {
       } else {
         this.showOptions = !this.showOptions
       }
-    }
-  },
-  created() {
-    this.options = this.$slots.default;
-    if (this.searchText === '') {
-      let list;
-      list = this.options;
-      list.forEach(item => {
-        if (item.tag !== undefined) {
-          this.searchList = [...this.searchList, item]
-        }
-      })
+    },
+    select(item) {
+
+      if (!this.selectedIDs.includes(item[this.optionsValueKey])) {
+        /*Select the option*/
+        this.selectedOption.push(item);
+        this.selectedIDs.push(item[this.optionsValueKey])
+        this.$emit('input', this.selectedIDs)
+        this.showOptions = false
+      } else {
+        /*Deselect the option*/
+        this.selectedOption.forEach((a, index) => {
+          if (a[this.optionsValueKey] === item[this.optionsValueKey]) {
+            this.selectedOption.splice(index, 1);
+            this.selectedIDs.splice(index, 1);
+            this.$emit('input', this.selectedIDs)
+            this.showOptions = false
+          }
+        })
+
+      }
+
     }
   },
   watch: {
-        value() {
-          this.$emit('change',this.value)
-        },
-    selectedID(){
-          this.$emit('input',this.selectedID)
-},
     searchText() {
       if (this.searchText !== '') {
-        this.searchList = this.options.filter(option => option.componentInstance.$el.innerHTML.toLowerCase().replace(/[^a-zA-Z ]/g, "").indexOf(this.searchText.toLowerCase().replace(/[^a-zA-Z ]/g, "")) > -1)
+        this.searchedList = this.options.filter(option => option[this.optionsLabelKey].toLowerCase().replace(/[^a-zA-Z ]/g, "").indexOf(this.searchText.toLowerCase().replace(/[^a-zA-Z ]/g, "")) > -1)
       } else {
-        this.searchList = this.options
+        this.searchedList = this.options
       }
     }
   }
