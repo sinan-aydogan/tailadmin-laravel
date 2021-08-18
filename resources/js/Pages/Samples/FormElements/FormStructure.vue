@@ -87,14 +87,12 @@ import TInputTextArea from "@/Components/Form/Inputs/TInputTextArea";
 import SshPre from 'simple-syntax-highlighter'
 import 'simple-syntax-highlighter/dist/sshpre.css'
 import TInputSelect from "@/Components/Form/Inputs/TInputSelect";
-import TInputSelectItem from "@/Components/Form/Inputs/TInputSelectItem";
 import TBadge from "@/Components/Badge/TBadge";
 
 export default {
   name: "FormStructure",
   components: {
     TBadge,
-    TInputSelectItem,
     TInputSelect,
     AppLayout, TButton, TFormSection, TFormContent, TInputGroup, TInputText, TInputTextArea, SshPre
   },

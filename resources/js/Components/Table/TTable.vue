@@ -139,8 +139,6 @@ import {faInfoCircle} from '@fortawesome/free-solid-svg-icons'
 import TSearchCircle from "@/Components/Icon/TSearchCircleIcon";
 import TInputGroup from "@/Components/Form/TInputGroup";
 import InputText from "@/Components/Form/Inputs/TInputText";
-import TInputDropdown from "@/Components/Form/Inputs/TInputSelect";
-import TInputDropdownItem from "@/Components/Form/Inputs/TInputSelectItem";
 import TCollection from "@/Components/Icon/TCollectionIcon";
 import TPaginate from "@/Components/Paginate/TPaginate";
 import TAdjustments from "@/Components/Icon/TAdjustmentsIcon";
@@ -153,7 +151,7 @@ export default {
   components: {
     TSearchIcon,
     TAdjustments,
-    TPaginate, TCollection, TInputDropdownItem, TInputDropdown, InputText, TInputGroup, TSearchCircle
+    TPaginate, TCollection, InputText, TInputGroup, TSearchCircle
   },
   mixins: [tableStyleMixin],
   props: {

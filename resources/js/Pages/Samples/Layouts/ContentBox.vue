@@ -118,7 +118,6 @@ import TTable from "@/Components/Table/TTable";
 import TComponentRadiusSelector from "@/Components/Misc/TComponentRadiusSelector";
 import TComponentWidthSelector from "@/Components/Misc/TComponentWidthSelector";
 import TInputSelect from "@/Components/Form/Inputs/TInputSelect";
-import TInputSelectItem from "@/Components/Form/Inputs/TInputSelectItem";
 import TUserGroupIcon from "@/Components/Icon/TUserGroupIcon";
 import TAvatar from "@/Components/Avatar/TAvatar";
 
@@ -127,7 +126,6 @@ export default {
   components: {
     TAvatar,
     TUserGroupIcon,
-    TInputSelectItem,
     TInputSelect,
     TComponentWidthSelector,
     TComponentRadiusSelector, TTable, TComponentColorSelector, TContentCard, GridSection, AppLayout, SshPre

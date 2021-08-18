@@ -21,35 +21,43 @@
         </li>
       </ul>
     </div>
-    <div v-if="inputStyle === 'select'" class="flex flex-col gap-4 justify-center items-start">
+    <!--<div v-if="inputStyle === 'select'" class="flex flex-col gap-4 justify-center items-start">
       <div class="flex flex-wrap gap-4 items-center">
-        <!--Color Type-->
-        <t-input-select v-model="selectedType" place-holder="Color Type">
-          <t-input-select-item :disabled="true">Select a Color Type</t-input-select-item>
-          <t-input-select-item value="solid">Solid Color Type</t-input-select-item>
-          <t-input-select-item value="light">Light Color Type</t-input-select-item>
-          <t-input-select-item value="gradient">Gradient Color Type</t-input-select-item>
-        </t-input-select>
-        <!--Solid Colors-->
-        <t-input-select v-show="selectedType === 'solid'" v-model="selectedSolidColors" place-holder="Solid Colors">
+        &lt;!&ndash;Color Type&ndash;&gt;
+        <t-input-select
+            v-model="selectedType"
+            place-holder="Color Type"
+            :options="colorTypes"
+            options-label-key="label"
+            options-value-key="id"
+            :clear-button="true"
+        />
+        &lt;!&ndash;Solid Colors&ndash;&gt;
+        <t-input-select
+            v-show="selectedType === 'solid'"
+            v-model="selectedSolidColors"
+            place-holder="Solid Colors"
+            :options="mainColors"
+            options-value-key=""
+        >
           <t-input-select-item :disabled="true">Select a Color</t-input-select-item>
           <t-input-select-item v-for="(item,index) in mainColors" :key="index" :value="item">Solid: {{ item }}
           </t-input-select-item>
         </t-input-select>
-        <!--Light Colors-->
+        &lt;!&ndash;Light Colors&ndash;&gt;
         <t-input-select v-show="selectedType === 'light'" v-model="selectedLightColors" place-holder="Light Colors">
           <t-input-select-item :disabled="true">Select a Color</t-input-select-item>
           <t-input-select-item v-for="(item,index) in mainColors" :key="index" :value="item">Light: {{ item }}
           </t-input-select-item>
         </t-input-select>
-        <!--Gradient First Color-->
+        &lt;!&ndash;Gradient First Color&ndash;&gt;
         <t-input-select v-show="selectedType === 'gradient'" v-model="selectedGradientFirstColors"
                         place-holder="First Gradient Colors">
           <t-input-select-item :disabled="true">Select a Color</t-input-select-item>
           <t-input-select-item v-for="(item,index) in mainColors" :key="index" :value="item">First: {{ item }}
           </t-input-select-item>
         </t-input-select>
-        <!--Gradient Second Color-->
+        &lt;!&ndash;Gradient Second Color&ndash;&gt;
         <t-input-select v-show="selectedType === 'gradient'" v-model="selectedGradientSecondColors"
                         place-holder="Second Gradient Colors">
           <t-input-select-item :disabled="true">Select a Color</t-input-select-item>
@@ -61,19 +69,18 @@
         Color Code:
         <t-badge color="white">color="{{ calculatedColor }}"</t-badge>
       </div>
-    </div>
+    </div>-->
   </div>
 </template>
 
 <script>
 import TCheckIcon from "@/Components/Icon/TCheckIcon";
 import TInputSelect from "@/Components/Form/Inputs/TInputSelect";
-import TInputSelectItem from "@/Components/Form/Inputs/TInputSelectItem";
 import TBadge from "@/Components/Badge/TBadge";
 
 export default {
   name: "TComponentColorSelector",
-  components: {TBadge, TInputSelectItem, TInputSelect, TCheckIcon},
+  components: {TBadge, TInputSelect, TCheckIcon},
   props: {
     inputStyle: {
       type: String,

@@ -14,7 +14,7 @@
         </li>
       </ul>
     </div>
-    <div v-if="inputStyle === 'select'" class="flex flex-col gap-4 justify-center items-start">
+    <!--<div v-if="inputStyle === 'select'" class="flex flex-col gap-4 justify-center items-start">
       <div class="flex flex-wrap gap-4 items-center">
         <t-input-select v-model="selectedWidth" place-holder="Radius" :value="6">
           <t-input-select-item :disabled="true">
@@ -33,17 +33,16 @@
         Width Code:
         <t-badge color="white">:width="{{ selectedWidth }}"</t-badge>
       </div>
-    </div>
+    </div>-->
   </div>
 </template>
 
 <script>
 import TInputSelect from "@/Components/Form/Inputs/TInputSelect";
-import TInputSelectItem from "@/Components/Form/Inputs/TInputSelectItem";
 import TBadge from "@/Components/Badge/TBadge";
 export default {
   name: "TComponentWidthSelector",
-  components: {TBadge, TInputSelectItem, TInputSelect},
+  components: {TBadge, TInputSelect},
   props: {
     inputStyle: {
       type: String,

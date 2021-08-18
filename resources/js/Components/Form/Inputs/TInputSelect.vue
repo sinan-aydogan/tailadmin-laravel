@@ -47,7 +47,7 @@
         <!--Dropdown Icon-->
         <t-chevron-down-icon
             :class="[
-                'select-dropdown-icon',
+                'select-dropdown-icon transform',
                 showOptions ? 'rotate-90' : 'rotate-0'
                 ]"
             @click="changeShowOptions"

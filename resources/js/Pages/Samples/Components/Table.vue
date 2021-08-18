@@ -15,7 +15,7 @@
             <t-table :color="tableColor" :content="users" :header="header" :pagination="true"
                      :searchable="['name','email']">
                 <template #search>
-                    <grid-section col="12" gap="2">
+                    <grid-section :col="12" :gap="2">
                         <!--Name-->
                         <t-input-group class="col-span-12 md:col-span-6" label="Name">
                             <t-input-text id="name"/>

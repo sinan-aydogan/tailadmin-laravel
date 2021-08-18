@@ -47,7 +47,6 @@ import TFormContent from "@/Components/Form/TFormContent";
 import TInputGroup from "@/Components/Form/TInputGroup";
 import TInputText from "@/Components/Form/Inputs/TInputText";
 import TInputSelect from "@/Components/Form/Inputs/TInputSelect";
-import TInputSelectItem from "@/Components/Form/Inputs/TInputSelectItem";
 
 export default {
     name: "Toaster",
