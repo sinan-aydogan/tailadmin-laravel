@@ -13,8 +13,8 @@
         <span
             v-if="value === [] || value === null || value.length === 0"
             class="w-full"
-            v-text="placeHolder ? placeHolder : 'Select'"
             @click="changeShowOptions"
+            v-text="placeHolder ? placeHolder : 'Select'"
         />
 
         <!--Selected Option-->
@@ -28,7 +28,8 @@
             <t-badge
                 :radius="8"
             >
-              <t-x-circle-icon class="w-5 h-5 text-gray-400 hover:text-red-500" slot="icon" @click.native="select(item)"/>
+              <t-x-circle-icon slot="icon" class="w-5 h-5 text-gray-400 hover:text-red-500"
+                               @click.native="select(item)"/>
               <slot
                   :props="item"
                   name="label"
@@ -47,7 +48,7 @@
               :radius="8"
 
           >
-            <t-x-circle-icon class="w-5 h-5 text-gray-400 hover:text-red-500" slot="icon" @click.native="select(item)"/>
+            <t-x-circle-icon slot="icon" class="w-5 h-5 text-gray-400 hover:text-red-500" @click.native="select(item)"/>
             {{ item[optionsLabelKey] }}
           </t-badge>
         </span>
@@ -179,9 +180,7 @@ export default {
   },
   data() {
     return {
-      selectedOption: [],
       selectedIDs: [],
-      searchedList: this.options,
       searchText: '',
       showOptions: false,
       alignStyle: {
@@ -191,13 +190,30 @@ export default {
       }
     }
   },
-  created() {
-    if (this.value !== []) {
-      this.options.forEach((item) => {
-        if (this.value === item[this.optionsValueKey]) {
-          this.selectedOption = item
+  computed: {
+    selectedOption() {
+      if (!this.value) {
+        return null
+      }
+
+      let list = [];
+
+      for (let i = 0; i < this.value.length; i++) {
+        if (this.options.find((item => item[this.optionsValueKey] === this.value[i]))) {
+          list.push(this.options.find((item => item[this.optionsValueKey] === this.value[i])))
         }
-      })
+      }
+
+      return list
+
+      console.log(this.list)
+    },
+    searchedList() {
+      if (this.searchText === '') {
+        return this.options
+      }
+
+      return this.options.filter(option => option[this.optionsLabelKey].toLowerCase().replace(/[^a-zA-Z ]/g, "").includes(this.searchText.toLowerCase().replace(/[^a-zA-Z ]/g, "")))
     }
   },
   methods: {
@@ -232,15 +248,6 @@ export default {
 
       }
 
-    }
-  },
-  watch: {
-    searchText() {
-      if (this.searchText !== '') {
-        this.searchedList = this.options.filter(option => option[this.optionsLabelKey].toLowerCase().replace(/[^a-zA-Z ]/g, "").indexOf(this.searchText.toLowerCase().replace(/[^a-zA-Z ]/g, "")) > -1)
-      } else {
-        this.searchedList = this.options
-      }
     }
   }
 }

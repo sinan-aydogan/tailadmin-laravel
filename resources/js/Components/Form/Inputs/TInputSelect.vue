@@ -2,7 +2,7 @@
   <div v-click-outside="outside" class="relative select-none min-w-3">
     <!--Container-->
     <div
-        :class="['select-container',radiusStyle]"
+        :class="['select-container', disabled && 'bg-gray-100' ,radiusStyle]"
         @click="changeShowOptions"
     >
 
@@ -39,7 +39,7 @@
         <!--Clear Button-->
         <div
             v-if="clearButton && selectedOption"
-            @click="selectedOption = null;searchText = '';$emit('input',null)"
+            @click="searchText = '';$emit('input',null)"
         >
           <t-x-circle-icon class="w-6 h-6 rounded-full hover:bg-red-500 hover:text-white cursor-pointer"/>
         </div>
@@ -149,8 +149,6 @@ export default {
   },
   data() {
     return {
-      selectedOption: null,
-      searchedList: this.options,
       searchText: '',
       showOptions: false,
       alignStyle: {
@@ -160,39 +158,38 @@ export default {
       }
     }
   },
-  created() {
-    if (this.value !== null) {
-      this.options.forEach((item) => {
-        if (this.value === item[this.optionsValueKey]) {
-          this.selectedOption = item
-        }
-      })
+  computed: {
+    selectedOption() {
+      if (!this.value) {
+        return null
+      }
+
+      return this.options.find(item => item[this.optionsValueKey] === this.value)
+    },
+    searchedList() {
+      if (this.searchText === '') {
+        return this.options
+      }
+
+      return this.options.filter(option => option[this.optionsLabelKey].toLowerCase().replace(/[^a-zA-Z ]/g, "").includes(this.searchText.toLowerCase().replace(/[^a-zA-Z ]/g, "")))
     }
   },
   methods: {
     outside() {
       this.showOptions = false
-    },
+    }
+    ,
     changeShowOptions() {
       if (this.disabled) {
         this.showOptions = false
       } else {
         this.showOptions = !this.showOptions
       }
-    },
+    }
+    ,
     select(item) {
-      this.selectedOption = item;
       this.$emit('input', item[this.optionsValueKey])
       this.showOptions = false
-    }
-  },
-  watch: {
-    searchText() {
-      if (this.searchText !== '') {
-        this.searchedList = this.options.filter(option => option[this.optionsLabelKey].toLowerCase().replace(/[^a-zA-Z ]/g, "").indexOf(this.searchText.toLowerCase().replace(/[^a-zA-Z ]/g, "")) > -1)
-      } else {
-        this.searchedList = this.options
-      }
     }
   }
 }
