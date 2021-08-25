@@ -62,7 +62,7 @@
         <!--Clear Button-->
         <div
             v-if="clearButton && selectedOption.length > 0"
-            @click="selectedOption = [];selectedIDs = [];searchText = '';$emit('input',[])"
+            @click="selectedIDs = [];searchText = '';$emit('input',[])"
         >
           <t-x-circle-icon class="w-6 h-6 rounded-full hover:bg-red-500 hover:text-white cursor-pointer"/>
         </div>
