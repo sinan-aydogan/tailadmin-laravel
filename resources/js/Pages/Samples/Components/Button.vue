@@ -202,7 +202,7 @@ export default {
             {
               variable: "type",
               type: "String",
-              details: "<b>Options:</b> submit(default), button and reset"
+              details: "This component works as both a button or a link. If you want to be a link, you should set the link. If you want to be a button, you should set the button or the submit.<b>Options:</b> submit(default), button and link"
             }
           ]
         }

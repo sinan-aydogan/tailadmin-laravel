@@ -1,5 +1,6 @@
 <template>
   <button
+      v-if="type === 'submit' || type === 'button'"
       :class="[
             'button',
             calculatedButtonStyle,
@@ -9,6 +10,17 @@
       :type="type">
     <slot></slot>
   </button>
+  <inertia-link
+      v-else
+      :href="link"
+      :class="[
+            'button',
+            calculatedButtonStyle,
+            size ? sizes[size].sizeStyle : 'h-10',
+            ]"
+  >
+    <slot></slot>
+  </inertia-link>
 </template>
 
 <script>
