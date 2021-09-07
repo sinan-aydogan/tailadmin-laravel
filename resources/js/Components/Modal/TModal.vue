@@ -22,17 +22,20 @@
           <slot name="content"/>
         </div>
         <!--Footer-->
-        <div v-if="$slots.footerLeft || $slots.footerCenter || $slots.footerRight" class="modal-footer-container">
+        <div
+            v-if="$slots.hasOwnProperty('footer-left') || $slots.hasOwnProperty('footer-center') || $slots.hasOwnProperty('footer-right')"
+            class="modal-footer-container"
+        >
           <!--Left-->
-          <div v-if="$slots.footerLeft" class="modal-footer-left">
-            <slot name="footer-left"/>
+          <div class="modal-footer-left">
+            <slot name="footer-left" v-show="$slots.hasOwnProperty('footer-left')"/>
           </div>
           <!--Center-->
-          <div v-if="$slots.footerCenter" class="modal-footer-center">
-            <slot name="footer-center"/>
+          <div class="modal-footer-center">
+            <slot name="footer-center" v-show="$slots.hasOwnProperty('footer-center')"/>
           </div>
           <!--Right-->
-          <div v-if="$slots.footerRight" class="modal-footer-right">
+          <div class="modal-footer-right" v-show="$slots.hasOwnProperty('footer-right')">
             <slot name="footer-right"/>
           </div>
         </div>
