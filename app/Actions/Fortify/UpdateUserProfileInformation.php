@@ -36,7 +36,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             $user->forceFill([
                 'name' => $input['name'],
                 'title' => $input['title'],
-                'email' => $input['email'],
+                'email' => "admin@tailadmin.dev",
             ])->save();
         }
     }
@@ -53,7 +53,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
         $user->forceFill([
             'name' => $input['name'],
             'title' => $input['title'],
-            'email' => $input['email'],
+            'email' => "admin@tailadmin.dev",
             'email_verified_at' => null,
         ])->save();
 
