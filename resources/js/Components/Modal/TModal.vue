@@ -22,17 +22,17 @@
           <slot name="content"/>
         </div>
         <!--Footer-->
-        <div class="modal-footer-container">
+        <div v-if="$slots.footerLeft || $slots.footerCenter || $slots.footerRight" class="modal-footer-container">
           <!--Left-->
-          <div class="modal-footer-left">
+          <div v-if="$slots.footerLeft" class="modal-footer-left">
             <slot name="footer-left"/>
           </div>
           <!--Center-->
-          <div class="modal-footer-center">
+          <div v-if="$slots.footerCenter" class="modal-footer-center">
             <slot name="footer-center"/>
           </div>
           <!--Right-->
-          <div class="modal-footer-right">
+          <div v-if="$slots.footerRight" class="modal-footer-right">
             <slot name="footer-right"/>
           </div>
         </div>
