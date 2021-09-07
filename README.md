@@ -12,14 +12,19 @@ TailAdmin Inertia
   <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" />
   <img src="https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D" />
 </p>
-<center>
+<p align="center">
 
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/sinanaydogan)
+<a href="https://ko-fi.com/sinanaydogan" target="_blank">
+    <img src="https://ko-fi.com/img/githubbutton_sm.svg">
+</a>
 
+</p>
+
+<p align="center">
 <a href="https://www.buymeacoffee.com/sinanaydogan">
     <img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=sinanaydogan&button_colour=FFDD00&font_colour=000000&font_family=Lato&outline_colour=000000&coffee_colour=ffffff">
 </a>
-</center>
+</p>
 
 Setup Directions
 ------
@@ -126,11 +131,16 @@ License
 ------
 The TailAdmin is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
-<center>
+<p align="center">
 
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/sinanaydogan)
+<a href="https://ko-fi.com/sinanaydogan" target="_blank">
+    <img src="https://ko-fi.com/img/githubbutton_sm.svg">
+</a>
 
+</p>
+
+<p align="center">
 <a href="https://www.buymeacoffee.com/sinanaydogan">
     <img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=sinanaydogan&button_colour=FFDD00&font_colour=000000&font_family=Lato&outline_colour=000000&coffee_colour=ffffff">
 </a>
-</center>
+</p>
