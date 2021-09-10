@@ -43,7 +43,7 @@ Admin Login Infos / Demo Account
 ------
 
 - **Demo:** *[https://tailadmin.dev](https://tailadmin.dev)*
-- **Email:** *admin@tailadmin.com*
+- **Email:** *admin@tailadmin.dev*
 - **Password:** *admin*
 
 <a href="https://www.youtube.com/watch?v=B_8os9zoLZw" target="_blank">
