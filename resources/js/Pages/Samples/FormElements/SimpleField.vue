@@ -41,9 +41,13 @@
           <t-input-group class="col-span-12 lg:col-span-6" label="Color-HTML5" labelFor="color">
             <t-input-text id="color" v-model="form.color" type="color"/>
           </t-input-group>
-          <!--File-->
-          <t-input-group class="col-span-12 lg:col-span-6" label="File" labelFor="file">
-            <t-input-file :preview="true" id="file" v-model="form.file"/>
+          <!--Single File-->
+          <t-input-group class="col-span-12 lg:col-span-6" label="Singe File" labelFor="singleFile">
+            <t-input-file :preview="true" id="singleFile" v-model="form.singleFile"/>
+          </t-input-group>
+          <!--Multi File-->
+          <t-input-group class="col-span-12 lg:col-span-6" label="Multi File" labelFor="multiFile">
+            <t-input-file :preview="true" id="multiFile" v-model="form.multiFile" :multiple="true"/>
           </t-input-group>
           <!--Check Box-->
           <t-input-group class="col-span-12 lg:col-span-6" label="CheckBox" labelFor="checkbox">
@@ -250,7 +254,8 @@ export default {
         month: null,
         time: null,
         color: null,
-        file: null,
+        singleFile: null,
+        multiFile: [],
         checkbox: [],
         radio: null,
         textArea: null,
@@ -290,9 +295,13 @@ export default {
             '<t-input-group class="col-span-12 lg:col-span-6" label="Color-HTML5" labelFor="color">\n' +
             '    <t-input-text id="color" v-model="form.color" type="color"/>\n' +
             '</t-input-group>\n' +
-            '<!--File-->\n' +
-            '<t-input-group class="col-span-12 lg:col-span-6" label="File" labelFor="file">\n' +
-            '    <t-input-file :preview="true" id="file" v-model="form.file"/>\n' +
+            '<!--Single File-->\n' +
+            '<t-input-group class="col-span-12 lg:col-span-6" label="File" labelFor="singleFile">\n' +
+            '    <t-input-file :preview="true" id="singleFile" v-model="form.singeFile"/>\n' +
+            '</t-input-group>\n\n' +
+            '<!--Multi File-->\n' +
+            '<t-input-group class="col-span-12 lg:col-span-6" label="File" labelFor="multiFile">\n' +
+            '    <t-input-file :preview="true" :multiple="true" id="multiFile" v-model="form.multiFile"/>\n' +
             '</t-input-group>\n\n' +
             '<!--Check Box: Output is Array, You should create a array state for this field. All of them\'s v-model should be same -->\n' +
             '<t-input-group class="col-span-12 lg:col-span-6" label="CheckBox" labelFor="checkbox">\n' +
@@ -550,7 +559,14 @@ export default {
               variable: ':preview',
               type: 'Boolean',
               input: '<span class="whitespace-nowrap">t-input-file</span>',
-              details: 'It shows the file preview<b>Options: true, false</a><br><b>Default:</b> false'
+              details: 'It shows the file preview. If you use to multiple options, it shows both icon and preview<b>Options: true, false</a><br><b>Default:</b> false'
+            },
+
+            {
+              variable: ':multiple',
+              type: 'Boolean',
+              input: '<span class="whitespace-nowrap">t-input-file</span>',
+              details: 'Adds multi-file selection feature, v-model state had been a array like that "multiFile: []" <b>Options: true, false</a><br><b>Default:</b> false'
             },
           ]
         }
