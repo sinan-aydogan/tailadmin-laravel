@@ -16,6 +16,11 @@
                 <jet-section-border/>
             </div>
 
+          <t-alert :closeable="true" class="mt-10 -mb-4 sm:mt-0" radius="1" color="solid-yellow">
+            <t-information-icon class="w-8 h-8" slot="icon"/>
+            Two Factor Authentication disabled at the demo, you can activate in the <code><pre class="bg-gray-500 rounded px-2 max-w-min inline-block bg-opacity-75">config/fortify.php</pre></code>
+          </t-alert>
+
             <div v-if="$page.props.jetstream.canManageTwoFactorAuthentication">
                 <two-factor-authentication-form class="mt-10 sm:mt-0"/>
 
@@ -41,11 +46,15 @@ import LogoutOtherBrowserSessionsForm from './LogoutOtherBrowserSessionsForm'
 import TwoFactorAuthenticationForm from './TwoFactorAuthenticationForm'
 import UpdatePasswordForm from './UpdatePasswordForm'
 import UpdateProfileInformationForm from './UpdateProfileInformationForm'
+import TAlert from "@/Components/Alert/TAlert";
+import TInformationIcon from "@/Components/Icon/TInformationIcon";
 
 export default {
     props: ['sessions'],
 
     components: {
+      TInformationIcon,
+      TAlert,
         AppLayout,
         DeleteUserForm,
         JetSectionBorder,

@@ -391,8 +391,8 @@
         >
           <a
               class="text-blue-600 hover:underline"
-              href="https://tailadmin.dev/"
-          >TailAdmin v.1.0.3</a
+              :href="version.url"
+          >TailAdmin {{version.name}}</a
           >
           <span>by</span>
           <a
@@ -406,7 +406,6 @@
               target="_blank"
           >
             <t-github-icon class="w-5 h-5 -mt-1"/>
-            {{ deviceType }}
           </a>
         </footer>
       </div>
@@ -462,6 +461,10 @@ export default {
 
   data() {
     return {
+      version: {
+        name: null,
+        url: null
+      },
       showingLeftMenu: localStorage.showingLeftMenu,
       hiddenLeftMenu: localStorage.hiddenLeftMenu,
       showingNavigationDropdown: false,
@@ -524,6 +527,11 @@ export default {
       }
     }
     this.leftMenuStorage();
+    /*Version*/
+    axios.get('https://api.github.com/repos/sinan-aydogan/tailadmin-laravel/releases/latest').then((promise)=>{
+      this.version.name = promise.data.name;
+      this.version.url = promise.data.html_url;
+    })
   },
   watch: {
     deviceType() {
