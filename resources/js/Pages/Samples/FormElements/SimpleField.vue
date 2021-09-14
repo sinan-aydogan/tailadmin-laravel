@@ -68,6 +68,7 @@
                                 label="Default"
                             />
 
+
                             <t-input-check-box
                                 v-model="form.checkbox"
                                 :checked="true"
