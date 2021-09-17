@@ -11,7 +11,13 @@
             title="Delete Account">
             <!--Info Box-->
             <div class="col-span-full text-sm text-gray-600">
-                Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.
+                Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting
+                your account, please download any data or information that you wish to retain.
+                <br>
+                <span class="text-red-500 inline-flex items-center gap-1 justify-center">
+                    <t-information-circle-icon class="w-5 h-5"/>
+                    You can't  delete the admin in the demo
+                </span>
             </div>
             <!-- Delete Account Confirmation Modal -->
             <t-modal :radius="3" :show="confirmingUserDeletion" @close="closeModal">
@@ -19,7 +25,9 @@
                     Delete Account
                 </template>
                 <template #content>
-                    Are you sure you want to delete your account? Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.
+                    Are you sure you want to delete your account? Once your account is deleted, all of its resources and
+                    data will be permanently deleted. Please enter your password to confirm you would like to
+                    permanently delete your account.
                     <t-input-group :error="form.errors.password">
                         <t-input-text
                             :radius="3"
@@ -60,70 +68,72 @@
 </template>
 
 <script>
-    import JetActionSection from '@/Jetstream/ActionSection'
-    import JetDialogModal from '@/Jetstream/DialogModal'
-    import JetDangerButton from '@/Jetstream/DangerButton'
-    import JetInput from '@/Jetstream/Input'
-    import JetInputError from '@/Jetstream/InputError'
-    import JetSecondaryButton from '@/Jetstream/SecondaryButton'
-    import TFormContent from "@/Components/Form/TFormContent";
-    import TButton from "@/Components/Button/TButton";
-    import TCheckIcon from "@/Components/Icon/TCheckIcon";
-    import TFormSection from "@/Components/Form/TFormSection";
-    import TModal from "@/Components/Modal/TModal";
-    import TTrashIcon from "@/Components/Icon/TTrashIcon";
-    import TInputGroup from "@/Components/Form/TInputGroup";
-    import TInputText from "@/Components/Form/Inputs/TInputText";
+import JetActionSection from '@/Jetstream/ActionSection'
+import JetDialogModal from '@/Jetstream/DialogModal'
+import JetDangerButton from '@/Jetstream/DangerButton'
+import JetInput from '@/Jetstream/Input'
+import JetInputError from '@/Jetstream/InputError'
+import JetSecondaryButton from '@/Jetstream/SecondaryButton'
+import TFormContent from "@/Components/Form/TFormContent";
+import TButton from "@/Components/Button/TButton";
+import TCheckIcon from "@/Components/Icon/TCheckIcon";
+import TFormSection from "@/Components/Form/TFormSection";
+import TModal from "@/Components/Modal/TModal";
+import TTrashIcon from "@/Components/Icon/TTrashIcon";
+import TInputGroup from "@/Components/Form/TInputGroup";
+import TInputText from "@/Components/Form/Inputs/TInputText";
+import TInformationCircleIcon from "../../Components/Icon/TInformationCircleIcon";
 
-    export default {
-        components: {
-            TInputText,
-            TInputGroup,
-            TTrashIcon,
-            TModal,
-            TFormSection,
-            TCheckIcon,
-            TButton,
-            TFormContent,
-            JetActionSection,
-            JetDangerButton,
-            JetDialogModal,
-            JetInput,
-            JetInputError,
-            JetSecondaryButton,
+export default {
+    components: {
+        TInformationCircleIcon,
+        TInputText,
+        TInputGroup,
+        TTrashIcon,
+        TModal,
+        TFormSection,
+        TCheckIcon,
+        TButton,
+        TFormContent,
+        JetActionSection,
+        JetDangerButton,
+        JetDialogModal,
+        JetInput,
+        JetInputError,
+        JetSecondaryButton,
+    },
+
+    data() {
+        return {
+            confirmingUserDeletion: false,
+
+            form: this.$inertia.form({
+                password: '',
+            })
+        }
+    },
+
+    methods: {
+        confirmUserDeletion() {
+            this.confirmingUserDeletion = true;
+
+            setTimeout(() => this.$refs.password.focus(), 250)
         },
 
-        data() {
-            return {
-                confirmingUserDeletion: false,
-
-                form: this.$inertia.form({
-                    password: '',
-                })
-            }
+        deleteUser() {
+            this.form.delete(route('current-user.destroy'), {
+                preserveScroll: true,
+                onSuccess: () => this.closeModal(),
+                onError: () => this.$refs.password.focus(),
+                onFinish: () => this.form.reset(),
+            })
         },
 
-        methods: {
-            confirmUserDeletion() {
-                this.confirmingUserDeletion = true;
+        closeModal() {
+            this.confirmingUserDeletion = false
 
-                setTimeout(() => this.$refs.password.focus(), 250)
-            },
-
-            deleteUser() {
-                this.form.delete(route('current-user.destroy'), {
-                    preserveScroll: true,
-                    onSuccess: () => this.closeModal(),
-                    onError: () => this.$refs.password.focus(),
-                    onFinish: () => this.form.reset(),
-                })
-            },
-
-            closeModal() {
-                this.confirmingUserDeletion = false
-
-                this.form.reset()
-            },
+            this.form.reset()
         },
-    }
+    },
+}
 </script>
