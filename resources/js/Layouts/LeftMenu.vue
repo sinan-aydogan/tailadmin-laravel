@@ -4,7 +4,7 @@
     <div class="left-menu-logo">
       <inertia-link
           :href="route('dashboard')">
-        <div class="flex justify-center items-center h-20 gap-1">
+        <div class="flex justify-center items-center space-x-1 space-y-1">
           <div class="flex justify-between h-10 overflow-hidden mx-4">
             <t-logo class="w-10 h-10 text-white"/>
             <transition name="left-menu">
@@ -16,7 +16,7 @@
     </div>
     <!--Menu Items-->
     <nav
-        class="flex flex-col h-full mt-6 px-1 overflow-y-auto text-gray-500 scrollbar-thin scrollbar-thumb-blue-500 scrollbar-track-gray-300 overflow-y-scroll">
+        class="h-full mt-6 px-1 overflow-y-auto text-gray-500 scrollbar-thin scrollbar-thumb-blue-500 scrollbar-track-gray-300 overflow-y-scroll">
       <slot/>
     </nav>
     <!--Left Menu Footer-->

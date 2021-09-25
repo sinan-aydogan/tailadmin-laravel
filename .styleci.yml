@@ -1,21 +1,13 @@
-vue:
-  tab-width: 4
-  use-tabs: false
-  print-width: 120
-  double-quotes: false
-  trailing-commas: es5
-  semicolons: true
-  arrow-parens: always
-  bracket-spacing: true
-  indent-script-and-style: false
-  whitespace-sensitivity: css
+php:
+  preset: laravel
+  disabled:
+    - no_unused_imports
   finder:
-    exclude:
-      - "modules"
-      - "node_modules"
-      - "nova"
-      - "nova-components"
-      - "storage"
-      - "spark"
-      - "vendor"
-    name: "*.vue"
+    not-name:
+      - index.php
+      - server.php
+js:
+  finder:
+    not-name:
+      - webpack.mix.js
+css: true

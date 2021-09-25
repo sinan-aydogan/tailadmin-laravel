@@ -8,7 +8,7 @@
                     <template #title>Simple</template>
                     <template #subTitle>Left, Top, Right and Bottom Positions</template>
                     <template #content>
-                        <div class="flex flex-wrap gap-8">
+                        <div class="flex flex-wrap space-x-8">
                             <t-tooltip position="top">
                                 <template #mainContent>Hover me!</template>
                                 <template #secondContent>Hello, I'm at the top</template>

@@ -9,10 +9,10 @@
           <template #title>Sample Buttons</template>
           <template #subTitle>Color, radius, icon and size options</template>
           <template #content>
-            <div class="flex flex-wrap items-center justify-center tablet:justify-start items-stretch gap-4">
+            <div class="flex flex-wrap items-center justify-center tablet:justify-start items-stretch space-x-4">
               <!--With Text-->
-              <div class="flex flex-wrap gap-2 items-center justify-center">
-                <t-button :radius="0">
+              <div class="flex flex-wrap space-x-2  space-y-2 items-center justify-center">
+                <t-button :radius="0" class="mt-2">
                   Submit
                 </t-button>
                 <t-button :radius="1" color="light-green">
@@ -54,8 +54,8 @@
                   Delete
                 </t-button>
               </div>
-              <div class="flex flex-wrap gap-2 items-center justify-center w-full desktop:w-auto">
-                <t-button :radius="0" color="gradient-red-to-pink">
+              <div class="flex flex-wrap space-x-2  space-y-2 items-center justify-center w-full desktop:w-auto">
+                <t-button :radius="0" color="gradient-red-to-pink" class="mt-2">
                   <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                        xmlns="http://www.w3.org/2000/svg">
                     <path

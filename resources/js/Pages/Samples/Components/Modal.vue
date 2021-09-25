@@ -8,7 +8,7 @@
                     <template #title>Click to the buttons for show modal windows</template>
                     <template #subTitle>10 solid, 8 light and limitless gradient color options with radius</template>
                     <template #content>
-                        <div class="flex flex-wrap gap-2 items-center justify-center">
+                        <div class="flex flex-wrap space-x-2 items-center justify-center">
                             <!--Simple Modal-->
                             <t-button color="solid-white" type="button" @click.native="showModal1 = !showModal1">Show Simple
                                 Modal

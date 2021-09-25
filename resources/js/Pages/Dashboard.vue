@@ -21,7 +21,7 @@
             Incomes
           </template>
           <template #icon>
-            <t-cash-icon class="w-15 h-15"/>
+            <t-cash-icon class="w-16 h-16"/>
           </template>
         </t-statistic-widget>
         <!--With Icon, Up Direction-->
@@ -35,7 +35,7 @@
             Daily Done Charts
           </template>
           <template #icon>
-            <t-shopping-bag-icon class="w-15 h-15"/>
+            <t-shopping-bag-icon class="w-16 h-16"/>
           </template>
         </t-statistic-widget>
         <!--Simple-->

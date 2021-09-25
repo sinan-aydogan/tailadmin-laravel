@@ -13,7 +13,7 @@
           <template #title>Custom Badges</template>
           <template #subTitle>Color, radius, icon and value options</template>
           <template #content>
-            <div class="flex flex-wrap gap-4 items-center justify-center py-4">
+            <div class="flex flex-wrap space-x-4 space-y-2 items-center justify-center py-4">
               <t-badge :radius="8" color="solid-red">Error</t-badge>
               <t-badge :radius="8" color="solid-red">
                 <t-x-circle-icon slot="icon" class="w-5 h-5"/>
@@ -56,7 +56,7 @@
           <template #title>Collapsible Badges</template>
           <template #subTitle>Click them</template>
           <template #content>
-            <div class="flex flex-wrap gap-4">
+            <div class="flex flex-wrap space-x-4">
               <t-badge :collapsible="true" :radius="1" color="solid-indigo">
                 <t-shield-check-icon slot="icon"/>
                 Super Admin
