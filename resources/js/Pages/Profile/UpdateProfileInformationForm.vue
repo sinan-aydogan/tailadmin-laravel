@@ -30,28 +30,23 @@
                         <img :alt="user.name" :src="user.profile_photo_url"
                              class="rounded-full h-28 w-28 object-cover border-2">
                         <!--Add Button-->
-                        <t-button
+                        <button
                             v-if="!user.profile_photo_path"
-                            :radius="8"
-                            class="absolute right-0 top-0"
-                            size="sm"
+                            class="absolute right-0 top-0 button bg-green-500 border-green-500 hover:bg-green-100 hover:text-green-700 text-gray-100 hover:bg-green-100 hover:text-green-700 rounded-full h-8 w-8 text-sm"
                             type="button"
-                            @click.native.prevent="selectNewPhoto"
+                            @click.prevent="selectNewPhoto"
                         >
                             <t-plus-icon class="w-5 h-5 -mx-1"/>
-                        </t-button>
+                        </button>
                         <!--Delete Button-->
-                        <t-button
+                        <button
                             v-if="user.profile_photo_path"
-                            :radius="8"
-                            class="absolute  right-0 top-0"
-                            color="solid-red"
-                            size="sm"
+                            class="absolute right-0 top-0 button bg-red-500 border-red-500 hover:bg-red-100 hover:text-red-700 text-gray-100 hover:bg-red-100 hover:text-red-700 rounded-full h-8 w-8 text-sm"
                             type="button"
-                            @click.native.prevent="deletePhoto"
+                            @click.prevent="deletePhoto"
                         >
                             <t-x-icon class="w-5 h-5 -mx-1"/>
-                        </t-button>
+                        </button>
                     </div>
 
                     <!-- New Profile Photo Preview -->

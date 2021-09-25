@@ -90,14 +90,14 @@
     @apply hidden tablet:block tablet:text-xl text-gray-600 ml-0.5 text-2xl font-semibold;
 }
 .container-header .page-action-buttons {
-    @apply flex flex-row items-center gap-1;
+    @apply flex flex-row items-center space-x-1;
 }
 
 /*Left Menu*/
 
 /*Left Menu Item*/
 .left-menu-logo {
-    @apply flex items-center justify-center h-16 bg-blue-600;
+    @apply flex items-center justify-center h-16 py-3 bg-blue-600;
 }
 .left-menu-item {
     @apply flex items-center p-2 font-semibold cursor-pointer whitespace-nowrap select-none overflow-hidden transition-all duration-700 ease-in-out;
@@ -147,20 +147,20 @@
 }
 /*Modal Footer Left Area*/
 .modal-footer-left {
-    @apply inline-flex gap-2 justify-start
+    @apply inline-flex space-x-2 justify-start
 }
 /*Modal Footer Center Area*/
 .modal-footer-center {
-    @apply inline-flex gap-2 justify-center
+    @apply inline-flex space-x-2 justify-center
 }
 /*Modal Footer Left Area*/
 .modal-footer-right {
-    @apply inline-flex gap-2 justify-end
+    @apply inline-flex space-x-2 justify-end
 }
 
 /*Alert Box*/
 .alert-box {
-    @apply flex flex-shrink-0 items-center justify-between shadow p-4 gap-2 relative w-full max-h-min flex-grow-0 bg-opacity-95
+    @apply flex flex-shrink-0 items-center justify-between shadow p-4 gap-2 relative w-full flex-grow-0 bg-opacity-95
 }
 .alert-close {
     @apply hover:text-red-500 cursor-pointer
@@ -285,7 +285,7 @@
 /*Pagination*/
 /*Pagination Container*/
 .pagination-container {
-    @apply inline-flex items-center justify-center gap-2 flex-shrink-0
+    @apply inline-flex items-center justify-center space-x-2 flex-shrink-0
 }
 /*Pagination Item*/
 .pagination-item {
@@ -435,7 +435,7 @@
     @apply flex flex-shrink-0 items-center overflow-hidden object-cover
 }
 .statistic-widget-icon{
-    @apply flex items-center justify-center p-4 border-2 w-20 rounded-full
+    @apply flex items-center justify-center p-4 border-2 w-20 h-20 rounded-full
 }
 .statistic-widget-picture-container{
     @apply flex flex-shrink-0 items-center

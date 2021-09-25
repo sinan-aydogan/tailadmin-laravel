@@ -7,8 +7,10 @@
         align === 'right' && 'flex-row-reverse']"
         @click="showPanel = !showPanel">
       <div
-          :class="['flex items-center gap-2 w-full whitespace-normal',align === 'left' && 'justify-start',align === 'center' && 'justify-center',align === 'right' && 'flex-row-reverse']">
-        <slot name="title"/>
+          :class="['flex items-center space-x-2 w-full whitespace-normal',align === 'left' && 'justify-start',align === 'center' && 'justify-center',align === 'right' && 'flex-row-reverse']">
+        <span>
+            <slot name="title"/>
+        </span>
       </div>
       <!--DropDown Icon-->
       <t-chevron-down-icon

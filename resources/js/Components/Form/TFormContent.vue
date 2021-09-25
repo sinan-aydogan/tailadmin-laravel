@@ -13,7 +13,7 @@
             <!--Status Area-->
             <slot v-if="$slots.status" name="status"/>
             <!--Default Form Buttons-->
-            <div v-else class="flex flex-wrap w-full justify-center tablet:justify-end items-center gap-2">
+            <div v-else class="flex flex-wrap w-full justify-center tablet:justify-end items-center space-x-2">
               <!--Reset Button-->
               <t-button
                   v-if="resetButton"

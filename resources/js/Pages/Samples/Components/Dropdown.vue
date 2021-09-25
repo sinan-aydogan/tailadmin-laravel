@@ -12,7 +12,7 @@
           <template #title>Simple</template>
           <template #subTitle>Link (Blank, Internal, External and Route) and Icons</template>
           <template #content>
-            <div class="flex flex-wrap items-center justify-center gap-4">
+            <div class="flex flex-wrap items-center justify-center space-x-4">
               <!--Indigo-->
               <t-dropdown color="solid-white" size="fit">
                 <template #title>

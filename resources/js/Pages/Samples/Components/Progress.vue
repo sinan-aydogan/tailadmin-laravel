@@ -8,7 +8,7 @@
           <template #title>Simple and colorful</template>
           <template #subTitle>8 different color and 5 different height</template>
           <template #content>
-            <div class="flex gap-4 w-full pb-4">
+            <div class="flex space-x-4 w-full pb-4">
               <t-input-group class="w-1/2" label="Target Value" label-for="target">
                 <t-input-text v-model.number="target" type="number"/>
               </t-input-group>
