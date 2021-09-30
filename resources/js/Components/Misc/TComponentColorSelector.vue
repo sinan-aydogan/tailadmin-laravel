@@ -74,11 +74,13 @@
 </template>
 
 <script>
+import {defineComponent} from "vue";
+
 import TCheckIcon from "@/Components/Icon/TCheckIcon";
 import TInputSelect from "@/Components/Form/Inputs/TInputSelect";
 import TBadge from "@/Components/Badge/TBadge";
 
-export default {
+export default defineComponent({
   name: "TComponentColorSelector",
   components: {TBadge, TInputSelect, TCheckIcon},
   props: {
@@ -184,5 +186,5 @@ export default {
       this.$emit('selected-color', this.selectedColor)
     }
   }
-}
+})
 </script>

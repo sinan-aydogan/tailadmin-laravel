@@ -5,7 +5,9 @@
 </template>
 
 <script>
-export default {
+import {defineComponent} from "vue";
+
+export default defineComponent({
     name: 'TTabItem',
     props: {
         title: {
@@ -17,5 +19,5 @@ export default {
             isActive: true
         }
     }
-}
+})
 </script>

@@ -5,7 +5,9 @@
 </template>
 
 <script>
-export default {
+import {defineComponent} from "vue";
+
+export default defineComponent({
     name: "TList",
     props: {
         color: {
@@ -19,9 +21,5 @@ export default {
             required: false
         }
     }
-}
+})
 </script>
-
-<style scoped>
-
-</style>

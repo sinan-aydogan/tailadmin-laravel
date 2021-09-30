@@ -3,15 +3,6 @@ import {bgColorStyles} from "@/Mixins/Styles/bgColorStyles";
 
 export const avatarStyleMixin = {
     props: {
-        size: {
-            type: Number,
-            require: false,
-            default: 3
-        },
-        indicator: {
-            type: Object,
-            require: false,
-        }
     },
     mixins: [radiusSizeMixin, bgColorStyles],
     data() {

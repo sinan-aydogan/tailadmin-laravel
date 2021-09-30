@@ -38,9 +38,11 @@
 </template>
 
 <script>
+import {defineComponent} from "vue";
+
 import TInputSelect from "@/Components/Form/Inputs/TInputSelect";
 import TBadge from "@/Components/Badge/TBadge";
-export default {
+export default defineComponent({
   name: "TComponentRadiusSelector",
   components: {TBadge, TInputSelect},
   props: {
@@ -70,9 +72,5 @@ export default {
       this.$emit('selected-radius',itemKey)
     }
   }
-}
+})
 </script>
-
-<style scoped>
-
-</style>

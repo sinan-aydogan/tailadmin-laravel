@@ -9,9 +9,11 @@
 </template>
 
 <script>
+import {defineComponent} from "vue";
 import TLock from "@/Components/Auth/TLock";
-export default {
+
+export default defineComponent({
     name: "LockScreen",
     components: {TLock}
-}
+})
 </script>

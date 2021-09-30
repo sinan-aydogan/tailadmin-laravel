@@ -37,12 +37,13 @@
 </template>
 
 <script>
+import {defineComponent} from "vue";
 import {paginateStyleMixin} from "@/Mixins/Styles/paginateStyleMixin";
 /*Icons*/
 import TChevronLeft from "@/Components/Icon/TChevronLeftIcon";
 import TChevronRight from "@/Components/Icon/TChevronRightIcon";
 
-export default {
+export default defineComponent({
     name: "TPaginate",
     props: {
         active: {
@@ -151,7 +152,7 @@ export default {
 
         }
     }
-}
+})
 </script>
 
 <style scoped>

@@ -4,7 +4,8 @@
         :class="['flex flex-row items-center overflow-hidden',
         radiusStyle]"
     >
-        <div :class="['absolute flex w-10 h-10 bg-gray-200 items-center justify-center rounded-r-none border-gray-300 border border-r-0 text-gray-600', radiusStyle]">
+        <div
+            :class="['absolute flex w-10 h-10 bg-gray-200 items-center justify-center rounded-r-none border-gray-300 border border-r-0 text-gray-600', radiusStyle]">
             <slot name="icon"></slot>
         </div>
         <input
@@ -12,9 +13,9 @@
             :type="type"
             :id="id"
             :placeholder="placeholder"
-            :value="value"
+            :value="modelValue"
             :disabled="disabled"
-            @input="$emit('input', $event.target.value)"
+            @input="$emit('update:modelValue', $event.target.value)"
             ref="input"
         >
     </div>
@@ -24,9 +25,9 @@
         :type="type"
         :id="id"
         :placeholder="placeholder"
-        :value="value"
+        :value="modelValue"
         :disabled="disabled"
-        @input="$emit('input', $event.target.value)"
+        @input="$emit('update:modelValue', $event.target.value)"
         ref="input"
     >
 
@@ -34,20 +35,27 @@
 
 <script>
 import {radiusSizeMixin} from "@/Mixins/radiusSizeMixin";
+
 export default {
     name: "TInputText",
     props: {
-      value:{},
-      id:{},
-      placeholder: {},
-      type: {
-        default: 'text'
-      },
-      disabled: {
-        default:false
-      }
+        modelValue: {},
+        id: {},
+        placeholder: {},
+        type: {
+            default: 'text'
+        },
+        disabled: {
+            default: false
+        }
 
-},
+    },
     mixins: [radiusSizeMixin],
+    emits: ['update:modelValue'],
+    methods: {
+        focus() {
+            this.$refs.input.focus()
+        }
+    }
 }
 </script>

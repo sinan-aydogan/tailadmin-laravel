@@ -24,11 +24,13 @@
 </template>
 
 <script>
+import {defineComponent} from "vue";
 import TDotsVerticalIcon from "@/Components/Icon/TDotsVerticalIcon";
 import TEyeIcon from "@/Components/Icon/TEyeIcon";
 import TPencilAltIcon from "@/Components/Icon/TPencilAltIcon";
 import TTrashIcon from "@/Components/Icon/TTrashIcon";
-export default {
+
+export default defineComponent({
     name: "TTableActionDropdown",
     components: {TTrashIcon, TPencilAltIcon, TEyeIcon, TDotsVerticalIcon},
     props: {
@@ -52,7 +54,7 @@ export default {
                 this.$emit('action', button)
         }
     }
-}
+})
 </script>
 
 <style scoped>

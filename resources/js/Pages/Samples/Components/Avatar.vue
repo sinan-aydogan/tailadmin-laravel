@@ -63,7 +63,7 @@
             <div class="flex flex-wrap items-end gap-4">
               <t-avatar
                   :indicator="{
-                    color: 'solid-red',
+                    color: 'red',
                     label: 2,
                     position: 'lb'
                   }"
@@ -72,7 +72,7 @@
               />
               <t-avatar
                   :indicator="{
-                    color: 'solid*blue',
+                    color: 'blue',
                     label: 2,
                     position: 'lt'
                   }"
@@ -82,7 +82,7 @@
               />
               <t-avatar
                   :indicator="{
-                    color: 'solid-green',
+                    color: 'green',
                     position: 'rb'
                   }"
                   :radius="3"
@@ -91,7 +91,7 @@
               />
               <t-avatar
                   :indicator="{
-                    color: 'solid-yellow',
+                    color: 'yellow',
                     label: 14,
                     position: 'lb'
                   }"
@@ -101,7 +101,7 @@
               />
               <t-avatar
                   :indicator="{
-                    color: 'solid-indigo',
+                    color: 'indigo',
                     label: 7,
                     position: 'rt'
                   }"
@@ -111,7 +111,7 @@
               />
               <t-avatar
                   :indicator="{
-                    color: 'solid-pink',
+                    color: 'pink',
                     label: 85,
                     position: 'rt'
                   }"
@@ -121,7 +121,7 @@
               />
               <t-avatar
                   :indicator="{
-                    color: 'light-purple',
+                    color: 'purple',
                     label: 12,
                     position: 'lb'
                   }"
@@ -131,7 +131,7 @@
               />
               <t-avatar
                   :indicator="{
-                    color: 'gradient-red-to-pink',
+                    color: 'pink',
                     label: 2,
                     position: 'rb'
                   }"

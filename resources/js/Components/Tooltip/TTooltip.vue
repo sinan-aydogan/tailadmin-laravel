@@ -34,9 +34,10 @@
 </template>
 
 <script>
+import {defineComponent} from "vue";
 import {tooltipStyleMixin} from "@/Mixins/Styles/tooltipStyleMixin";
 
-export default {
+export default defineComponent({
   name: "TTooltip",
   props: {
     position: {
@@ -55,5 +56,5 @@ export default {
       this.show = false
     }
   }
-}
+})
 </script>

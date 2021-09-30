@@ -34,10 +34,11 @@
 </template>
 
 <script>
+import { defineComponent } from 'vue'
 import {inputGroupStyleMixin} from "@/Mixins/Styles/inputGroupStyleMixin";
 
-export default {
+export default defineComponent({
   props: ['label', 'subLabel', 'subLabelColor', 'labelFor', 'error'],
   mixins: [inputGroupStyleMixin]
-}
+})
 </script>

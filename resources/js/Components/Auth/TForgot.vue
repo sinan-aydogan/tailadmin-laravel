@@ -68,6 +68,7 @@
 </template>
 
 <script>
+import { defineComponent } from 'vue'
 import {forgotPasswordStyleMixin} from "@/Mixins/Styles/forgotPasswordStyleMixin";
 import {windowSizeMixin} from "@/Mixins/windowSizeMixin";
 import TFullScreenCard from "@/Components/Card/TFullScreenCard";
@@ -77,7 +78,7 @@ import TButton from "@/Components/Button/TButton";
 import TAlert from "@/Components/Alert/TAlert";
 import TBellIcon from "@/Components/Icon/TBellIcon";
 
-export default {
+export default defineComponent({
     name: "TForgot",
     components: {
         TBellIcon,
@@ -135,7 +136,7 @@ export default {
             return Object.keys(this.errors).length > 0;
         },
     }
-}
+})
 </script>
 
 <style scoped>

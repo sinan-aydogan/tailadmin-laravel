@@ -1,10 +1,10 @@
 <template>
-    <calendar v-model="date" :is24hr="is24hr" :isRange="isRange" :masks="{input:masks}" :mode="mode">
+    <date-picker v-model="date" :is24hr="is24hr" :isRange="isRange" :masks="{input:masks}" :mode="mode">
         <template v-slot="{ inputValue, togglePopover }">
             <div class="relative flex items-center">
                 <input
                     v-if="!isRange"
-                    v-model="inputValue"
+                    v-model="inertnalDate"
                     :class="['form-input h-10',radiusStyle]"
                     :placeholder="masks.input"
                     @click="togglePopover()"
@@ -46,11 +46,11 @@
             </div>
         </template>
 
-    </calendar>
+    </date-picker>
 </template>
 
 <script>
-import Calendar from 'v-calendar/lib/components/date-picker.umd';
+import { DatePicker } from 'v-calendar';
 import TCalendarIcon from "@/Components/Icon/TCalendarIcon";
 import {radiusSizeMixin} from "@/Mixins/radiusSizeMixin";
 import TClockIcon from "@/Components/Icon/TClockIcon";
@@ -82,10 +82,11 @@ export default {
         TXCircleIcon,
         TClockIcon,
         TCalendarIcon,
-        Calendar,
+        DatePicker,
     },
     data() {
         return {
+            inertnalDate: null,
             date: this.value
         }
     },

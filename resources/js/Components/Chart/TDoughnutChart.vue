@@ -1,7 +1,8 @@
 <script>
+import { defineComponent } from 'vue'
 import { Doughnut } from 'vue-chartjs'
 
-export default {
+export default defineComponent({
     name : 'DoughnutChart',
     extends: Doughnut,
     props: {
@@ -17,5 +18,5 @@ export default {
     mounted () {
         this.renderChart(this.chartdata, this.options)
     }
-}
+})
 </script>

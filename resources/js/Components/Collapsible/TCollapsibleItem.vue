@@ -33,10 +33,11 @@
 </template>
 
 <script>
+import { defineComponent } from 'vue'
 import {collapsibleStyleMixin} from "@/Mixins/Styles/collapsibleStyleMixin";
 import TChevronDownIcon from "@/Components/Icon/TChevronDownIcon";
 
-export default {
+export default defineComponent({
   name: "CollapsibleItem",
   components: {TChevronDownIcon},
   mixins: [collapsibleStyleMixin],
@@ -45,7 +46,7 @@ export default {
       showPanel: false
     }
   },
-}
+})
 </script>
 
 <style scoped>

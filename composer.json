@@ -9,10 +9,10 @@
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
-        "inertiajs/inertia-laravel": "^0.3.5",
-        "laravel/framework": "^v8.52.0",
-        "laravel/jetstream": "2.1",
-        "laravel/sanctum": "^2.6",
+        "inertiajs/inertia-laravel": "^0.4.3",
+        "laravel/framework": "^8.54",
+        "laravel/jetstream": "^2.4",
+        "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "spatie/laravel-permission": "^4.2",
         "tightenco/ziggy": "^1.0"
@@ -41,6 +41,9 @@
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"
+        ],
+        "post-update-cmd": [
+            "@php artisan vendor:publish --tag=laravel-assets --ansi"
         ],
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""

@@ -32,9 +32,10 @@
 </template>
 
 <script>
+import {defineComponent} from "vue";
 import {tabStyleMixin} from "@/Mixins/Styles/tabStyleMixin";
 
-export default {
+export default defineComponent({
   name: 'TTab',
   props: {
     active: {
@@ -64,6 +65,6 @@ export default {
       })
     }
   },
-}
+})
 </script>
 

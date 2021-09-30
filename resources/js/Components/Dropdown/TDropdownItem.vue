@@ -19,16 +19,14 @@
 </template>
 
 <script>
-export default {
+import { defineComponent } from 'vue'
+
+export default defineComponent({
     name: "TDropdownItem",
     props: {
         link: {
             type: String
         }
     }
-}
+})
 </script>
-
-<style scoped>
-
-</style>

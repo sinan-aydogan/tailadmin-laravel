@@ -20,9 +20,12 @@
 </template>
 
 <script>
-    import Modal from './Modal'
+    import { defineComponent } from 'vue'
+    import Modal from './Modal.vue'
 
-    export default {
+    export default defineComponent({
+        emits: ['close'],
+
         components: {
             Modal,
         },
@@ -44,5 +47,5 @@
                 this.$emit('close')
             },
         }
-    }
+    })
 </script>

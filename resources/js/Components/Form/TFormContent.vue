@@ -48,9 +48,11 @@
 </template>
 
 <script>
+import { defineComponent } from 'vue'
+
 import TButton from "@/Components/Button/TButton";
 
-export default {
+export default defineComponent({
   props: {
     enctype: String,
     disabled: Boolean,
@@ -78,7 +80,7 @@ export default {
       this.$emit('reset')
     },
   }
-}
+})
 </script>
 
 

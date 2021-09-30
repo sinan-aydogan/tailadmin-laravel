@@ -265,6 +265,9 @@ export default {
             this.form.name = null;
             this.form.email = null;
         },
+        testMetodu(){
+            alert('kedi')
+        }
     }
 }
 </script>

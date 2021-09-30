@@ -1,7 +1,7 @@
 <template>
     <!-- Item Container-->
     <div v-show="showingLeftMenu === 'true'">
-        <inertia-link
+        <Link
             :href="
             item.link != null ?
             item.linkType === 'route' ? route(item.link) :
@@ -18,13 +18,19 @@
                     </div>
                 </div>
             </div>
-        </inertia-link>
+        </Link>
     </div>
 </template>
 
 <script>
-export default {
+import {defineComponent} from "vue";
+import {Link} from '@inertiajs/inertia-vue3';
+
+export default defineComponent({
     name: "LeftMenuSubItem",
+    components: {
+        Link
+    },
     props: ["item", "showingLeftMenu", "active"],
     computed: {
         menuStyle(){
@@ -37,9 +43,5 @@ export default {
             return style
         }
     }
-}
+})
 </script>
-
-<style scoped>
-
-</style>

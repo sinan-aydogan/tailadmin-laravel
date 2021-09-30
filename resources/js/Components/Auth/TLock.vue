@@ -65,6 +65,7 @@
 </template>
 
 <script>
+import { defineComponent } from 'vue'
 import {lockStyleMixin} from "@/Mixins/Styles/lockStyleMixin";
 import TFullScreenCard from "@/Components/Card/TFullScreenCard";
 import {windowSizeMixin} from "@/Mixins/windowSizeMixin";
@@ -76,7 +77,7 @@ import TUserCircleIcon from "@/Components/Icon/TUserCircleIcon";
 import TAvatar from "@/Components/Avatar/TAvatar";
 import TButton from "@/Components/Button/TButton";
 
-export default {
+export default defineComponent({
   name: "TLock",
   components: {TButton, TAvatar, TUserCircleIcon, TInputText, TInputGroup, TBellIcon, TAlert, TFullScreenCard},
   mixins: [lockStyleMixin, windowSizeMixin],
@@ -134,9 +135,5 @@ export default {
       return Object.keys(this.errors).length > 0;
     },
   }
-}
+})
 </script>
-
-<style scoped>
-
-</style>

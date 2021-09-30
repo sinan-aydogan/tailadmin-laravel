@@ -26,9 +26,11 @@
 </template>
 
 <script>
+import {defineComponent} from "vue";
+
 import {listStyleMixin} from "@/Mixins/Styles/listStyleMixin";
 
-export default {
+export default defineComponent({
     name: "TListItem",
     props: {
         active: {
@@ -36,9 +38,5 @@ export default {
         }
     },
     mixins: [listStyleMixin],
-}
+})
 </script>
-
-<style scoped>
-
-</style>

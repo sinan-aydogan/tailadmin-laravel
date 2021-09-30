@@ -1,11 +1,11 @@
 require('./bootstrap');
 
-// Import modules...
-import Vue from 'vue';
-import {App as InertiaApp, plugin as InertiaPlugin} from '@inertiajs/inertia-vue';
-import PortalVue from 'portal-vue';
+import { createApp, h } from 'vue';
+import { createInertiaApp } from '@inertiajs/inertia-vue3';
+import { InertiaProgress } from '@inertiajs/progress';
 
 // Fontawesome
+
 import {library} from '@fortawesome/fontawesome-svg-core'
 import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome'
 import {faCss3, faJs, faVuejs} from "@fortawesome/free-brands-svg-icons";
@@ -41,24 +41,19 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(faRocket, faDotCircle, faWindowRestore, faSave, faEdit, faJs, faCss3, faInfo, faCalendarAlt, faVuejs, faEnvelope, faTasks, faWindowMaximize, faChartBar, faChevronDown, faCode, faAngleDown, faAngleUp, faChartBar, faLayerGroup, faGripHorizontal, faAngleLeft, faClock, faRetweet, faTags, faTv, faPlug, faTable, faShoppingBag, faLiraSign, faTrash, faPlusCircle, faAngleDoubleRight, faCheck, faMinusCircle, faCog)
-Vue.component('font-awesome-icon', FontAwesomeIcon)
 
+const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
 
-Vue.mixin({methods: {route}});
-Vue.use(InertiaPlugin);
-Vue.use(PortalVue);
+createInertiaApp({
+    title: (title) => `${title} - ${appName}`,
+    resolve: (name) => require(`./Pages/${name}.vue`),
+    setup({ el, app, props, plugin }) {
+        return createApp({ render: () => h(app, props) })
+            .use(plugin)
+            .component("font-awesome-icon", FontAwesomeIcon)
+            .mixin({ methods: { route } })
+            .mount(el);
+    },
+});
 
-Vue.config.productionTip = false
-
-
-const app = document.getElementById('app');
-
-new Vue({
-    render: (h) =>
-        h(InertiaApp, {
-            props: {
-                initialPage: JSON.parse(app.dataset.page),
-                resolveComponent: (name) => require(`./Pages/${name}`).default,
-            },
-        })
-}).$mount(app);
+InertiaProgress.init({ color: '#4B5563' });

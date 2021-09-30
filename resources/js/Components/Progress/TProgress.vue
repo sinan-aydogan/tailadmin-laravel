@@ -20,9 +20,10 @@
 </template>
 
 <script>
+import {defineComponent} from "vue";
 import {progressStyleMixin} from "@/Mixins/Styles/progressStyleMixin";
 
-export default {
+export default defineComponent({
     name: "TProgress",
     props: {
         title: {
@@ -59,5 +60,5 @@ export default {
             immediate: true,
         }
     }
-}
+})
 </script>

@@ -1,5 +1,5 @@
 <template>
-    <app-layout>
+    <app-layout title="Profile">
         <template #header>
             Profile
         </template>
@@ -34,15 +34,16 @@
 </template>
 
 <script>
-import AppLayout from '@/Layouts/AppLayout'
-import DeleteUserForm from './DeleteUserForm'
-import JetSectionBorder from '@/Jetstream/SectionBorder'
-import LogoutOtherBrowserSessionsForm from './LogoutOtherBrowserSessionsForm'
-import TwoFactorAuthenticationForm from './TwoFactorAuthenticationForm'
-import UpdatePasswordForm from './UpdatePasswordForm'
-import UpdateProfileInformationForm from './UpdateProfileInformationForm'
+import {defineComponent} from 'vue'
+import AppLayout from '@/Layouts/AppLayout.vue'
+import DeleteUserForm from '@/Pages/Profile/Partials/DeleteUserForm.vue'
+import JetSectionBorder from '@/Jetstream/SectionBorder.vue'
+import LogoutOtherBrowserSessionsForm from '@/Pages/Profile/Partials/LogoutOtherBrowserSessionsForm.vue'
+import TwoFactorAuthenticationForm from '@/Pages/Profile/Partials/TwoFactorAuthenticationForm.vue'
+import UpdatePasswordForm from '@/Pages/Profile/Partials/UpdatePasswordForm.vue'
+import UpdateProfileInformationForm from '@/Pages/Profile/Partials/UpdateProfileInformationForm.vue'
 
-export default {
+export default defineComponent({
     props: ['sessions'],
 
     components: {
@@ -54,5 +55,5 @@ export default {
         UpdatePasswordForm,
         UpdateProfileInformationForm,
     },
-}
+})
 </script>

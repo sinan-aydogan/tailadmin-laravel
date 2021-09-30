@@ -10,11 +10,9 @@
 </template>
 
 <script>
-export default {
+import { defineComponent } from 'vue'
+
+export default defineComponent({
   name: "TCogIcon"
-}
+})
 </script>
-
-<style scoped>
-
-</style>

@@ -45,9 +45,10 @@
 </template>
 
 <script>
+import {defineComponent} from "vue";
 import {radiusSizeMixin} from "@/Mixins/radiusSizeMixin";
 
-export default {
+export default defineComponent({
   name: 'InitialVerticalMenu',
   props: {
     color: {
@@ -85,9 +86,5 @@ export default {
       }
     }
   }
-}
+})
 </script>
-
-<style scoped>
-
-</style>

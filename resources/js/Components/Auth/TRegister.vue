@@ -86,7 +86,7 @@
               </t-input-group>
             </div>
             <!--Terms-->
-            <div v-if="privacyPolicyFeature" class="mt-4">
+            <div v-if="$page.props.jetstream.hasTermsAndPrivacyPolicyFeature" class="mt-4">
               <t-input-group label-for="terms">
                 <div class="flex items-center">
                   <input
@@ -98,33 +98,33 @@
 
                   <div class="ml-2">
                     I agree to the
-                    <inertia-link
-                        :href="termsLink"
+                    <Link
+                        :href="route('terms.show')"
                         class="underline text-sm text-gray-600 hover:text-gray-900"
                         target="_blank"
                     >
                       Terms of Service
-                    </inertia-link>
+                    </Link>
                     and
-                    <inertia-link
-                        :href="policyLink"
+                    <Link
+                        :href="route('policy.show')"
                         class="underline text-sm text-gray-600 hover:text-gray-900"
                         target="_blank"
                     >
                       Privacy Policy
-                    </inertia-link>
+                    </Link>
                   </div>
                 </div>
               </t-input-group>
             </div>
 
             <div class="flex items-center justify-end mt-4">
-              <inertia-link
+              <Link
                   :href="route('login')"
                   class="underline text-sm text-gray-600 hover:text-gray-900"
               >
                 Already registered?
-              </inertia-link>
+              </Link>
 
               <t-button
                   :class="{ 'opacity-25': form.processing }"
@@ -158,6 +158,8 @@
 </template>
 
 <script>
+
+import { defineComponent } from 'vue'
 import {registerStyleMixin} from "@/Mixins/Styles/registerStyleMixin";
 import TAlert from "@/Components/Alert/TAlert";
 import TBellIcon from "@/Components/Icon/TBellIcon";
@@ -166,67 +168,72 @@ import TFullScreenCard from "@/Components/Card/TFullScreenCard";
 import TInputGroup from "@/Components/Form/TInputGroup";
 import TInputText from "@/Components/Form/Inputs/TInputText";
 import {windowSizeMixin} from "@/Mixins/windowSizeMixin";
+import { Link } from '@inertiajs/inertia-vue3';
 
-export default {
-  name: "TRegister",
-  components: {TAlert, TBellIcon, TButton, TFullScreenCard, TInputGroup, TInputText},
-  mixins: [registerStyleMixin, windowSizeMixin],
-  props: {
-    bgColor: {
-      type: String,
-      default: 'solid-gray'
+export default defineComponent({
+    name: "TRegister",
+    components: {
+        TAlert,
+        TBellIcon,
+        TButton,
+        TFullScreenCard,
+        TInputGroup,
+        TInputText,
+        Link
     },
-    bgGradientDirection: {
-      type: String,
+    mixins: [registerStyleMixin, windowSizeMixin],
+    props: {
+        bgColor: {
+            type: String,
+            default: 'solid-gray'
+        },
+        bgGradientDirection: {
+            type: String,
+        },
+        bgImage: {
+            type: String
+        },
+        status: {
+            type: String
+        },
+        privacyPolicyFeature: Boolean,
+        termsLink: String,
+        policyLink: String
     },
-    bgImage: {
-      type: String
+    data() {
+        return {
+            form: this.$inertia.form({
+                name: '',
+                email: '',
+                password: '',
+                password_confirmation: '',
+                terms: false,
+            })
+        }
     },
-    status: {
-      type: String
+
+    methods: {
+        submit() {
+            this.form.post(this.route('register'), {
+                onFinish: () => this.form.reset('password', 'password_confirmation'),
+            })
+        },
+        beforeStyle(event) {
+            event.style.opacity = 0
+        },
+        enterStyle(event) {
+            event.style.opacity = 1
+            event.style.transition = `all 1s linear`
+        }
     },
-    privacyPolicyFeature: Boolean,
-    termsLink: String,
-    policyLink: String
-  },
-  data() {
-    return {
-      form: this.$inertia.form({
-        name: '',
-        email: '',
-        password: '',
-        password_confirmation: '',
-        terms: false,
-      })
+    computed: {
+        errors() {
+            return this.$page.props.errors
+        },
+
+        hasErrors() {
+            return Object.keys(this.errors).length > 0;
+        },
     }
-  },
-
-  methods: {
-    submit() {
-      this.form.post(this.route('register'), {
-        onFinish: () => this.form.reset('password', 'password_confirmation'),
-      })
-    },
-    beforeStyle(event) {
-      event.style.opacity = 0
-    },
-    enterStyle(event) {
-      event.style.opacity = 1
-      event.style.transition = `all 1s linear`
-    }
-  },
-  computed: {
-    errors() {
-      return this.$page.props.errors
-    },
-
-    hasErrors() {
-      return Object.keys(this.errors).length > 0;
-    },
-  }
-}
+})
 </script>
-
-<style scoped>
-
-</style>

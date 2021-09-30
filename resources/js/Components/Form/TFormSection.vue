@@ -19,9 +19,11 @@
         </div>
     </div>
 </template>
-<script>
 
-export default {
+<script>
+import { defineComponent } from 'vue'
+
+export default defineComponent({
     props: ['title','description'],
     components: {
     },
@@ -34,5 +36,5 @@ export default {
             this.$emit('reset')
         },
     }
-}
+})
 </script>

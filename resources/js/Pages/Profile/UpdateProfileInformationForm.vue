@@ -158,7 +158,6 @@ export default {
                 errorBag: 'updateProfileInformation',
                 preserveScroll: true
             });
-            console.log(this.$refs.photo.files[0])
         },
 
         selectNewPhoto() {

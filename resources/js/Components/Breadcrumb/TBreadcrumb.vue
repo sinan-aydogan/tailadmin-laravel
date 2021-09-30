@@ -51,9 +51,10 @@
 </template>
 
 <script>
+import { defineComponent } from 'vue'
 import {breadcrumbStyleMixin} from "@/Mixins/Styles/breadcrumbStyleMixin";
 
-export default {
+export default defineComponent({
   name: 'TBreadcrumb',
   props: {
     breadcrumbs: {
@@ -72,9 +73,5 @@ export default {
     },
   },
   mixins: [breadcrumbStyleMixin]
-}
+})
 </script>
-
-<style scoped>
-
-</style>

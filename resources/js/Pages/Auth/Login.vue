@@ -1,4 +1,6 @@
 <template>
+    <Head title="Log in"/>
+
     <t-login
         :canResetPassword="canResetPassword"
         :radius="5"
@@ -9,12 +11,12 @@
     >
         <!--Logo-->
         <template #logo>
-            <inertia-link href="/">
+            <Link href="/">
                 <div class="flex flex-col justify-center items-center w-full">
                     <t-logo class="w-12 h-12"/>
                     <span class="text-3xl">TailAdmin</span>
                 </div>
-            </inertia-link>
+            </Link>
         </template>
         <!--Greeting-->
         <template #greeting>
@@ -24,18 +26,22 @@
 </template>
 
 <script>
+import {defineComponent} from 'vue'
 import TLogin from "@/Components/Auth/TLogin";
 import TLogo from "@/Components/Icon/TLogo";
+import {Head, Link} from '@inertiajs/inertia-vue3';
 
-export default {
+export default defineComponent({
     components: {
+        Head,
         TLogo,
         TLogin,
+        Link
     },
 
     props: {
         canResetPassword: Boolean,
         status: String
-    },
-}
+    }
+})
 </script>

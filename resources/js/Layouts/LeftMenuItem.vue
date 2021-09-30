@@ -43,7 +43,7 @@
           </transition>
         </div>
         <!-- Root Item-->
-        <inertia-link
+        <Link
             v-if="item.link"
             :href="
             item.link != null ?
@@ -74,7 +74,7 @@
                 {{ item.label }}
             </div>
           </transition>
-        </inertia-link>
+        </Link>
 
         <!-- Sub Item -->
         <transition name="fade" type="easy">
@@ -93,12 +93,15 @@
 </template>
 
 <script>
+import {defineComponent} from "vue";
 import LeftMenuSubItem from "@/Layouts/LeftMenuSubItem";
+import {Link} from '@inertiajs/inertia-vue3';
 
-export default {
+export default defineComponent({
     name: "LeftMenuItem",
     components: {
-        LeftMenuSubItem
+        LeftMenuSubItem,
+        Link
     },
     props: ["item", "showingLeftMenu"],
     data() {
@@ -129,7 +132,7 @@ export default {
             return false
         },
     }
-}
+})
 </script>
 
 <style>

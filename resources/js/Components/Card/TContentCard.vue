@@ -41,9 +41,10 @@
 </template>
 
 <script>
+import { defineComponent } from 'vue'
 import {contentCardStyleMixin} from "@/Mixins/Styles/contentCardStyleMixin";
 
-export default {
+export default defineComponent({
   name: "TContentCard",
   mixins: [contentCardStyleMixin],
   props: {
@@ -61,5 +62,5 @@ export default {
       showSecondContent: false,
     }
   }
-}
+})
 </script>

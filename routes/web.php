@@ -1,8 +1,5 @@
 <?php
 
-use App\Http\Controllers\LockAuthController;
-use App\Http\Controllers\Settings\UserController;
-use App\Models\User;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -21,12 +18,12 @@ use Spatie\Permission\Models\Role;
 */
 
 Route::get('/', function () {
-    return Inertia::render([
+    return Inertia::render('Dashboard', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
-    ], 'Dashboard');
+    ]);
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function (){
@@ -37,7 +34,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function (){
             'laravelVersion' => Application::VERSION,
             'phpVersion' => PHP_VERSION,
         ]);
-    })->name('dashboard');
+})->name('dashboard');
 
     /*They are the required pages for the system, don't delete it*/
     Route::prefix('settings')->group(function () {

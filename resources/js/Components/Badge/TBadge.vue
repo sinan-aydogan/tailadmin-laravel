@@ -45,9 +45,10 @@
 </template>
 
 <script>
+import { defineComponent } from 'vue'
 import {badgeStyleMixin} from "@/Mixins/Styles/badgeStyleMixin";
 
-export default {
+export default defineComponent({
   name: "TBadge",
   mixins: [badgeStyleMixin],
   props: {
@@ -70,7 +71,7 @@ export default {
       this.showTitle = !this.showTitle;
     }
   }
-};
+});
 </script>
 
 <style scoped>

@@ -41,9 +41,10 @@
 </template>
 
 <script>
+import {defineComponent} from "vue";
 import {popoverStyleMixin} from "@/Mixins/Styles/popoverStyleMixin";
 
-export default {
+export default defineComponent({
   name: "TPopover",
   mixins: [popoverStyleMixin],
   directives: {
@@ -90,9 +91,5 @@ export default {
       this.show = false
     }
   },
-}
+})
 </script>
-
-<style scoped>
-
-</style>
