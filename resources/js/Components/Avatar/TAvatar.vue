@@ -66,8 +66,6 @@ export default defineComponent({
         const size = props.size;
         const indicator = props.indicator;
 
-        console.log(indicator)
-
         const sizeStyleClass = 'avatar-size-' + size;
         const indicatorStyleClass = indicator ? (' avatar-indicator-position-' + indicator.position  + ' avatar-indicator-'+ indicator.color) : '';
 

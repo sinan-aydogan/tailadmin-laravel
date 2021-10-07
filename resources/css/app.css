@@ -3,6 +3,7 @@
 @import 'tailwindcss/components';
 @import "./components/alert.css";
 @import "./components/avatar.css";
+@import "./components/badge.css";
 
 /*Utilities*/
 @import 'tailwindcss/utilities';
@@ -162,28 +163,6 @@
 /*Modal Footer Left Area*/
 .modal-footer-right {
     @apply inline-flex space-x-2 justify-end
-}
-
-/*Badge*/
-/*Badge*/
-.badge {
-    @apply flex py-0.5 items-center justify-center max-w-min max-h-min whitespace-nowrap select-none flex-grow-0
-}
-/*Badge Icon*/
-.badge-icon {
-    @apply w-5 h-5 flex flex-shrink-0 flex-grow-0 items-center justify-center
-}
-/*Badge Container*/
-.badge-container {
-    @apply flex inline-flex items-center overflow-hidden text-xs gap-1
-}
-/*Badge Content*/
-.badge-content {
-    @apply inline-flex
-}
-/*Badge Value*/
-.badge-value {
-    @apply flex px-1 text-2xs items-center justify-center border rounded-full
 }
 
 /*Breadcrumb*/
