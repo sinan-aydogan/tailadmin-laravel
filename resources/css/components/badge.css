@@ -1,0 +1,635 @@
+.badge {
+    @apply flex relative flex-grow-0 flex-shrink-0 justify-center items-center whitespace-nowrap select-none overflow-hidden max-w-min max-h-min place-content-center transition-all duration-75
+}
+.badge-icon {
+    @apply w-5 h-5 flex flex-shrink-0 flex-grow-0 items-center justify-center
+}
+.badge-content-container {
+    @apply flex justify-center items-center flex-shrink-0 flex-grow-0
+}
+.badge-content {
+    @apply flex justify-start items-center px-1 overflow-hidden text-xs space-x-1 flex-shrink-0 flex-grow-0;
+}
+.badge-select-icon {
+    @apply cursor-pointer
+}
+.badge-value {
+    @apply flex text-2xs items-center justify-center flex-shrink-0 flex-grow-0;
+    margin-top: .075rem;
+}
+
+/*<editor-fold desc="Filled Style">*/
+/*General Definitions*/
+.badge-filled-base {
+    @apply text-white font-semibold border
+}
+.badge-filled-base .badge-value {
+    @apply border-gray-100 border-opacity-50 border-l font-semibold
+}
+
+/*Colors: black, blue, gray, green, indigo, pink, purple, white and yellow*/
+/*Black*/
+.badge-filled-black {
+    @apply bg-gray-700 border-gray-800
+}
+.badge-filled-black .badge-value {
+    @apply border-gray-800 !important
+}
+/*Blue*/
+.badge-filled-blue {
+    @apply bg-blue-500 border-blue-500
+}
+/*Gray*/
+.badge-filled-gray {
+    @apply bg-gray-500 border-gray-500
+}
+/*Green*/
+.badge-filled-green {
+    @apply bg-green-500 border-green-500
+}
+/*Indigo*/
+.badge-filled-indigo {
+    @apply bg-indigo-500 border-indigo-500
+}
+/*Pink*/
+.badge-filled-pink {
+    @apply bg-pink-500 border-pink-500
+}
+/*Purple*/
+.badge-filled-purple {
+    @apply bg-purple-500 border-purple-500
+}
+/*Red*/
+.badge-filled-red {
+    @apply bg-red-500 border-red-500
+}
+/*White*/
+.badge-filled-white {
+    @apply bg-gray-100 border-gray-300 text-gray-700  !important
+}
+.badge-filled-white .badge-value{
+    @apply border-gray-300 !important
+}
+/*Yellow*/
+.badge-filled-yellow {
+    @apply bg-yellow-500 border-yellow-500
+}
+/*</editor-fold>*/
+
+/*<editor-fold desc="Light Style">*/
+/*General Definitions*/
+.badge-light-base {
+    @apply border font-semibold
+}
+.badge-light-base .badge-value {
+    @apply border-l font-semibold
+}
+
+/*Colors: black, blue, gray, green, indigo, pink, purple, white and yellow*/
+/*Black*/
+.badge-light-black {
+    @apply bg-gray-500 border-gray-800 text-gray-50
+}
+.badge-light-black .badge-value {
+    @apply border-gray-800
+}
+/*Blue*/
+.badge-light-blue {
+    @apply bg-blue-200 border-blue-500 text-blue-800
+}
+.badge-light-blue .badge-value{
+    @apply border-blue-500
+}
+/*Gray*/
+.badge-light-gray {
+    @apply bg-gray-200 border-gray-500 text-gray-800
+}
+.badge-light-gray .badge-value{
+    @apply border-gray-500
+}
+/*Green*/
+.badge-light-green {
+    @apply bg-green-200 border-green-500 text-green-800
+}
+.badge-light-green .badge-value{
+    @apply border-green-500
+}
+/*Indigo*/
+.badge-light-indigo {
+    @apply bg-indigo-200 border-indigo-500 text-indigo-800
+}
+.badge-light-indigo .badge-value{
+    @apply border-indigo-500
+}
+/*Pink*/
+.badge-light-pink {
+    @apply bg-pink-200 border-pink-500 text-pink-800
+}
+.badge-light-pink .badge-value{
+    @apply border-pink-500
+}
+/*Purple*/
+.badge-light-purple {
+    @apply bg-purple-200 border-purple-500 text-purple-800
+}
+.badge-light-purple .badge-value{
+    @apply border-purple-500
+}
+/*Red*/
+.badge-light-red {
+    @apply bg-red-200 border-red-500 text-red-800
+}
+.badge-light-red .badge-value{
+    @apply border-red-500
+}
+/*White*/
+.badge-light-white {
+    @apply bg-white border-gray-300 text-gray-700
+}
+.badge-light-white .badge-value{
+    @apply border-gray-300
+}
+/*Yellow*/
+.badge-light-yellow {
+    @apply bg-yellow-200 border-yellow-500 text-yellow-800
+}
+.badge-light-yellow .badge-value{
+    @apply border-yellow-500
+}
+/*</editor-fold>*/
+
+/*<editor-fold desc="Inline Style">*/
+/*General Definitions*/
+.badge-inline-base {
+    @apply text-gray-700 bg-white bg-opacity-50 font-semibold overflow-hidden;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px .01rem .1rem;
+}
+.badge-inline-line {
+    @apply w-1.5 h-full flex-shrink-0;
+}
+.badge-inline-line:after {
+    content: '&nbsp';
+    visibility: hidden;
+}
+
+/*Colors: black, blue, gray, green, indigo, pink, purple, white and yellow*/
+/*Black*/
+.badge-inline-black .badge-icon {
+    @apply text-gray-800
+}
+.badge-inline-black #line {
+    @apply bg-gray-800
+}
+/*Blue*/
+.badge-inline-blue .badge-icon {
+    @apply text-blue-500
+}
+.badge-inline-blue #line,.badge-inline-blue .badge-increase-button {
+    @apply  bg-blue-500
+}
+/*Gray*/
+.badge-inline-gray .badge-icon {
+    @apply text-gray-500
+}
+.badge-inline-gray #line,.badge-inline-gray .badge-increase-button {
+    @apply  bg-gray-500
+}
+/*Green*/
+.badge-inline-green .badge-icon {
+    @apply text-green-500
+}
+.badge-inline-green #line,.badge-inline-green .badge-increase-button {
+    @apply  bg-green-500
+}
+/*Indigo*/
+.badge-inline-indigo .badge-icon {
+    @apply text-indigo-500
+}
+.badge-inline-indigo #line,.badge-inline-indigo .badge-increase-button {
+    @apply  bg-indigo-500
+}
+/*Pink*/
+.badge-inline-pink .badge-icon {
+    @apply text-pink-500
+}
+.badge-inline-pink #line,.badge-inline-pink .badge-increase-button {
+    @apply  bg-pink-500
+}
+/*Purple*/
+.badge-inline-purple .badge-icon {
+    @apply text-purple-500
+}
+.badge-inline-purple #line,.badge-inline-purple .badge-increase-button {
+    @apply  bg-purple-500
+}
+/*Red*/
+.badge-inline-red .badge-icon {
+    @apply text-red-500
+}
+.badge-inline-red #line,.badge-inline-red .badge-increase-button {
+    @apply  bg-red-500
+}
+/*White*/
+.badge-inline-white .badge-icon {
+    @apply text-gray-300
+}
+.badge-inline-white #line,.badge-inline-white .badge-increase-button {
+    @apply  bg-gray-300
+}
+/*Yellow*/
+.badge-inline-yellow .badge-icon {
+    @apply text-yellow-500
+}
+.badge-inline-yellow #line,.badge-inline-yellow .badge-increase-button {
+    @apply  bg-yellow-500
+}
+/*</editor-fold>*/
+
+/*<editor-fold desc="Outline Style">*/
+.badge-outline-base {
+    @apply text-gray-700 font-semibold overflow-hidden
+}
+.badge-outline-line {
+    @apply rounded-full flex-shrink-0;
+    margin-top: .05rem;
+    margin-right: .125rem;
+    width: .5rem;
+    height: .5rem;
+}
+.badge-outline-line:after {
+    content: '&nbsp';
+    visibility: hidden;
+}
+.badge-outline-base .badge-icon {
+    @apply ml-2
+}
+.badge-outline-base .badge-increase-button, .badge-decrease-button {
+    @apply w-5 h-5
+}
+
+/*Colors: black, blue, gray, green, indigo, pink, purple, white and yellow*/
+/*Black*/
+.badge-outline-black #line {
+    @apply bg-gray-800
+}
+.badge-outline-black .badge-value {
+    @apply text-gray-800
+}
+/*Blue*/
+.badge-outline-blue #line {
+    @apply  bg-blue-500
+}
+.badge-outline-blue .badge-value {
+    @apply  text-blue-500
+}
+/*Gray*/
+.badge-outline-gray #line {
+    @apply  bg-gray-500
+}
+.badge-outline-gray .badge-value {
+    @apply  text-gray-500
+}
+/*Green*/
+.badge-outline-green #line {
+    @apply  bg-green-500
+}
+.badge-outline-green .badge-value {
+    @apply  text-green-500
+}
+/*Indigo*/
+.badge-outline-indigo #line {
+    @apply  bg-indigo-500
+}
+.badge-outline-indigo .badge-value {
+    @apply  text-indigo-500
+}
+/*Pink*/
+.badge-outline-pink #line {
+    @apply  bg-pink-500
+}
+.badge-outline-pink .badge-value {
+    @apply  text-pink-500
+}
+/*Purple*/
+.badge-outline-purple #line {
+    @apply  bg-purple-500
+}
+.badge-outline-purple .badge-value {
+    @apply  text-purple-500
+}
+/*Red*/
+.badge-outline-red #line {
+    @apply  bg-red-500
+}
+.badge-outline-red .badge-value {
+    @apply  text-red-500
+}
+/*White*/
+.badge-outline-white #line {
+    @apply  bg-gray-300
+}
+.badge-outline-white .badge-value {
+    @apply  text-gray-500
+}
+/*Yellow*/
+.badge-outline-yellow #line {
+    @apply  bg-yellow-500
+}
+.badge-outline-yellow .badge-value {
+    @apply  text-yellow-500
+}
+/*</editor-fold>*/
+
+/*<editor-fold desc="Elegant Style">*/
+/*General Definitions*/
+.badge-elegant-base {
+    @apply bg-white bg-opacity-50 border font-semibold overflow-hidden
+}
+.badge-elegant-base .badge-value{
+    @apply border-0 font-semibold my-0.5 rounded-full;
+    margin-right: .160rem;
+}
+
+/*Colors: black, blue, gray, green, indigo, pink, purple, white and yellow*/
+/*Black*/
+.badge-elegant-black {
+    @apply text-gray-800 border-gray-800
+}
+.badge-elegant-black .badge-value {
+    @apply border-gray-800 bg-gray-700 text-white
+}
+/*Blue*/
+.badge-elegant-blue {
+    @apply  text-blue-600 border-blue-500
+}
+.badge-elegant-blue .badge-value {
+    @apply border-blue-500 bg-blue-200 text-blue-700
+}
+/*Gray*/
+.badge-elegant-gray {
+    @apply  text-gray-600 border-gray-500
+}
+.badge-elegant-gray .badge-value {
+    @apply border-gray-500 bg-gray-500 text-white
+}
+/*Green*/
+.badge-elegant-green {
+    @apply  text-green-600 border-green-500
+}
+.badge-elegant-green .badge-value {
+    @apply border-green-500 bg-green-200 text-green-700
+}
+/*Indigo*/
+.badge-elegant-indigo {
+    @apply  text-indigo-600 border-indigo-500
+}
+.badge-elegant-indigo .badge-value {
+    @apply border-indigo-500 bg-indigo-200 text-indigo-700
+}
+/*Pink*/
+.badge-elegant-pink {
+    @apply  text-pink-600 border-pink-500
+}
+.badge-elegant-pink .badge-value {
+    @apply border-pink-500 bg-pink-200 text-pink-700
+}
+/*Purple*/
+.badge-elegant-purple {
+    @apply  text-purple-600 border-purple-500
+}
+.badge-elegant-purple .badge-value {
+    @apply border-purple-500 bg-purple-200 text-purple-700
+}
+/*Red*/
+.badge-elegant-red {
+    @apply  text-red-600 border-red-500
+}
+.badge-elegant-red .badge-value {
+    @apply border-red-500 bg-red-200 text-red-700
+}
+/*White*/
+.badge-elegant-white {
+    @apply  text-gray-600 border-gray-400
+}
+.badge-elegant-white .badge-value {
+    @apply border-gray-400 bg-gray-200 text-gray-700
+}
+/*Yellow*/
+.badge-elegant-yellow {
+    @apply  text-yellow-600 border-yellow-500
+}
+.badge-elegant-yellow .badge-value {
+    @apply border-yellow-500 bg-yellow-200 text-yellow-700
+}
+/*</editor-fold>*/
+
+/*<editor-fold desc="Block Style">*/
+/*General Definitions*/
+.badge-block-base {
+    @apply bg-white shadow-inner border border-gray-300 bg-opacity-50 font-semibold overflow-hidden
+}
+.badge-block-base .badge-icon {
+    @apply h-full
+}
+.badge-block-base .badge-value {
+    @apply font-bold
+}
+
+/*Colors: black, blue, gray, green, indigo, pink, purple, white and yellow*/
+/*Black*/
+.badge-block-black {
+    @apply border-gray-800 text-gray-700
+}
+.badge-block-black .badge-icon {
+    @apply bg-gray-600 text-gray-100
+}
+/*Blue*/
+.badge-block-blue {
+    @apply border-blue-300 text-blue-600
+}
+.badge-block-blue .badge-icon {
+    @apply  bg-blue-100 text-blue-600
+}
+/*Gray*/
+.badge-block-gray {
+    @apply border-gray-500 text-gray-600
+}
+.badge-block-gray .badge-icon {
+    @apply  bg-gray-300 text-gray-600
+}
+/*Green*/
+.badge-block-green {
+    @apply border-green-300 text-green-600
+}
+.badge-block-green .badge-icon {
+    @apply  bg-green-100 text-green-600
+}
+/*Indigo*/
+.badge-block-indigo {
+    @apply border-indigo-300 text-indigo-600
+}
+.badge-block-indigo .badge-icon {
+    @apply  bg-indigo-100 text-indigo-600
+}
+/*Pink*/
+.badge-block-pink {
+    @apply border-pink-300 text-pink-600
+}
+.badge-block-pink .badge-icon {
+    @apply  bg-pink-100 text-pink-600
+}
+/*Purple*/
+.badge-block-purple {
+    @apply border-purple-300 text-purple-600
+}
+.badge-block-purple .badge-icon {
+    @apply  bg-purple-100 text-purple-600
+}
+/*Red*/
+.badge-block-red {
+    @apply border-red-300 text-red-600
+}
+.badge-block-red .badge-icon {
+    @apply  bg-red-100 text-red-600
+}
+/*White*/
+.badge-block-white {
+    @apply border-gray-200 text-gray-600
+}
+.badge-block-white .badge-icon {
+    @apply  bg-gray-100 text-gray-600
+}
+/*Yellow*/
+.badge-block-yellow {
+    @apply border-yellow-300 text-yellow-600
+}
+.badge-block-yellow .badge-icon {
+    @apply  bg-yellow-100 text-yellow-600
+}
+/*</editor-fold>*/
+
+/*<editor-fold desc="Gradient Style">*/
+/*General Definitions*/
+.badge-gradient-base {
+    @apply  font-semibold
+}
+.badge-gradient-base .badge-icon {
+    @apply ml-2
+}
+.badge-gradient-base .badge-increase-button, .badge-decrease-button {
+    @apply w-5 h-5
+}
+
+/*Colors: black, blue, gray, green, indigo, pink, purple, white and yellow*/
+/*Rose*/
+.badge-gradient-rose {
+    @apply text-gray-600;
+    text-shadow: #ffafbd 0.2px 0.2px ;
+    background: linear-gradient(90deg, rgba(255,175,189,1) 0%, rgba(255,195,160,1) 100%);
+}
+.badge-gradient-rose .badge-close{
+    @apply bg-gray-500 text-gray-100 hover:bg-white hover:text-red-700 bg-opacity-75 rounded-full;
+}
+.badge-gradient-rose .badge-increase-button {
+    background-color: rgba(255,235,239,1);
+}
+/*Sky*/
+.badge-gradient-sky {
+    @apply text-gray-100;
+    text-shadow: #2193b0 0.2px 0.2px ;
+    background: linear-gradient(90deg, rgba(33,147,176,1) 0%, rgba(109,213,237,1) 100%);
+}
+.badge-gradient-sky .badge-close{
+    @apply bg-gray-500 text-gray-100 hover:bg-white hover:text-red-700 bg-opacity-75 rounded-full;
+}
+.badge-gradient-sky .badge-increase-button {
+    background-color: rgba(183,237,250,1);
+}
+/*Fuchsia*/
+.badge-gradient-fuchsia {
+    @apply text-gray-100;
+    text-shadow: #cc2b5e 0.2px 0.2px ;
+    background: linear-gradient(90deg, rgba(204,43,94,1) 0%, rgba(117,58,136,1) 100%);
+}
+.badge-gradient-fuchsia .badge-close{
+    @apply bg-gray-100 hover:text-red-700 bg-opacity-75 rounded-full;
+    color: #753a88;
+}
+.badge-gradient-fuchsia .badge-increase-button {
+    background-color: rgba(252,156,187,1);
+}
+/*Violet*/
+.badge-gradient-violet {
+    @apply text-gray-100;
+    text-shadow: #42275a 0.2px 0.2px ;
+    background: linear-gradient(90deg, rgba(66,39,90,1) 0%, rgba(115,75,109,1) 100%);
+}
+.badge-gradient-violet .badge-close{
+    @apply bg-gray-100 hover:text-red-700 bg-opacity-75 rounded-full;
+    color: #753a88;
+}
+.badge-gradient-violet .badge-increase-button {
+    background-color: rgba(207,171,240,1);
+}
+/*Cloud*/
+.badge-gradient-cloud {
+    @apply text-gray-100;
+    text-shadow: #bdc3c7 0.2px 0.2px ;
+    background: linear-gradient(90deg, rgba(44,62,80,1) 0%, rgba(189,195,199,1) 100%);
+}
+.badge-gradient-cloud .badge-close{
+    @apply bg-gray-500 hover:bg-gray-200 hover:text-red-700 rounded-full;
+}
+.badge-gradient-cloud .badge-increase-button {
+    background-color: rgba(179,195,210,1);
+}
+/*Turquoise*/
+.badge-gradient-turquoise {
+    @apply text-gray-100;
+    text-shadow: #06beb6 0.2px 0.2px ;
+    background: linear-gradient(90deg, rgba(6,190,182,1) 0%, rgba(72,177,191,1) 100%);
+}
+.badge-gradient-turquoise .badge-close{
+    @apply bg-gray-100 hover:text-red-700 bg-opacity-75 rounded-full;
+    color: #48b1bf;
+}
+.badge-gradient-turquoise .badge-increase-button {
+    background-color: rgba(168,247,244,1);
+}
+/*Catterpillar*/
+.badge-gradient-caterpillar {
+    @apply text-gray-100;
+    text-shadow: #2193b0 0.2px 0.2px ;
+    background: linear-gradient(90deg, rgba(86,171,47,1) 0%, rgba(168,224,99,1) 100%);
+}
+.badge-gradient-caterpillar .badge-close{
+    @apply bg-gray-500 text-gray-100 hover:bg-white hover:text-red-700 bg-opacity-75 rounded-full;
+}
+.badge-gradient-caterpillar .badge-increase-button {
+    background-color: rgba(208,245,192,1);
+}
+/*Biscuit*/
+.badge-gradient-biscuit {
+    @apply text-gray-100;
+    text-shadow: #d76d77 0.2px 0.2px ;
+    background: linear-gradient(90deg, rgba(58,28,113,1) 0%, rgba(215,109,119,1) 50%, rgba(255,175,123,1) 100%);
+}
+.badge-gradient-biscuit .badge-close{
+    @apply bg-gray-500 text-gray-100 hover:bg-white hover:text-red-700 bg-opacity-75 rounded-full;
+}
+.badge-gradient-biscuit .badge-increase-button {
+    background-color: rgba(219,205,245,1);
+}
+/*Dream*/
+.badge-gradient-dream {
+    @apply text-gray-100;
+    text-shadow: #d76d77 0.2px 0.2px ;
+    background: linear-gradient(90deg, rgba(105,74,101,1) 0%, rgba(183,121,235,1) 40%, rgba(125,173,249,1) 80%, rgba(4,189,200,1) 100%);
+}
+.badge-gradient-dream .badge-close{
+    @apply bg-gray-500 text-gray-100 hover:bg-white hover:text-red-700 bg-opacity-75 rounded-full;
+}
+.badge-gradient-dream .badge-increase-button {
+    background-color: rgba(219,205,245,1);
+}
+/*</editor-fold>*/
