@@ -185,6 +185,10 @@
 .alert-inline-line {
     @apply w-1.5 h-full rounded-full flex-shrink-0 -ml-0.5 mr-1
 }
+.alert-inline-line:after {
+    content: '&nbsp';
+    visibility: hidden;
+}
 .alert-inline-base .alert-icon {
     @apply ml-2
 }
@@ -271,6 +275,10 @@
 }
 .alert-outline-line {
     @apply w-1.5 h-full flex-shrink-0 mr-1
+}
+.alert-outline-line:after {
+    content: '&nbsp';
+    visibility: hidden;
 }
 .alert-outline-base .alert-icon {
     @apply ml-2
