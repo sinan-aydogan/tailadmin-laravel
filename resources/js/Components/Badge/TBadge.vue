@@ -76,12 +76,11 @@
 import {defineComponent, ref, toRefs} from 'vue'
 import {radiusSizeMixin} from "@/Mixins/radiusSizeMixin";
 import TPlusIcon from "@/Components/Icon/TPlusIcon";
-import TIconMinus from "@/Components/Icon/solid/TIconMinus";
 import TXCircleIcon from "@/Components/Icon/TXCircleIcon";
 
 export default defineComponent({
     name: "TBadge",
-    components: {TXCircleIcon, TIconMinus, TPlusIcon},
+    components: {TXCircleIcon, TPlusIcon},
     mixins: [radiusSizeMixin],
     props: {
         design: {

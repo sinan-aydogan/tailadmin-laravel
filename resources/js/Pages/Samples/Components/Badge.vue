@@ -230,8 +230,6 @@ import TStarSolidIcon from "@/Components/Icon/TStarSolidIcon";
 import TShieldCheckIcon from "@/Components/Icon/TShieldCheckIcon";
 import TBanIcon from "@/Components/Icon/TBanIcon";
 import TPlusCircleIcon from "@/Components/Icon/TPlusCircleIcon";
-import TIconHand from "@/Components/Icon/solid/TIconHand";
-import TIconStop from "@/Components/Icon/solid/TIconStop";
 import TUserCircleIcon from "@/Components/Icon/TUserCircleIcon";
 import TUserGroupIcon from "@/Components/Icon/TUserGroupIcon";
 import TCogIcon from "@/Components/Icon/TCogIcon";
@@ -246,8 +244,6 @@ export default {
         TCogIcon,
         TUserGroupIcon,
         TUserCircleIcon,
-        TIconStop,
-        TIconHand,
         TPlusCircleIcon,
         TBanIcon,
         TShieldCheckIcon,
