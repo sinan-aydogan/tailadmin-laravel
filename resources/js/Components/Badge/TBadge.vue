@@ -7,7 +7,7 @@
             radiusStyle,
             styleClass()
         ]"
-        @click.stop="toggle(); (selectable && !selectIndicator) && select()"
+        @click.stop="collapsible && toggle(); (selectable && !selectIndicator) && select()"
     >
         <!--Inline Line-->
         <div v-if="design.includes('line')"
@@ -24,12 +24,12 @@
             5 <= radius && design === 'inline' && 'ml-0.5'
             ]"
         >
-            <slot name="icon" @click="toggle"></slot>
+            <slot name="icon" @click="collapsible && toggle()"></slot>
         </div>
 
         <!--Badge Content-->
         <transition name="show-content">
-            <div v-if="showContent || !collapsible" class="badge-content-container" :key="badge-content">
+            <div v-if="showContent || !collapsible" class="badge-content-container">
                 <!--Content-->
                 <div :class="[
                     'badge-content',
@@ -159,7 +159,6 @@ export default defineComponent({
                 activeDesign.value = design.value;
             }
 
-            console.log(activeDesign.value)
             return 'badge-' + activeDesign.value + '-' + activeColor.value + ' badge-' + activeDesign.value + '-base'
         }
 
