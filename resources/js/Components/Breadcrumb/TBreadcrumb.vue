@@ -1,77 +1,105 @@
 <template>
-  <div>
-    <!--Style 1-->
-    <div
-        v-if="breadcrumbStyle === 1"
-        :class="['breadcrumb-1',
-                  position === 'right' ? 'flex-row-reverse' : 'justify-end']">
-      <div class="breadcrumb-container">
+    <div>
         <div
-            v-for="(item,index) in breadcrumbs"
-            :key="index"
-            :class="['breadcrumb-item-1',
-            breadcrumbs.length !== index+1 ? 'font-semibold text-gray-600' :
-              item.activeColor ? 'breadcrumb-item-active ' + style1ActiveColors[item.activeColor] :
-                  'breadcrumb-item-active border-blue-600 text-blue-600'
-        ]">
-          {{ item.label }}
-          <font-awesome-icon v-if="breadcrumbs.length !== index+1" class="mt-0.5" icon="angle-double-right"/>
-        </div>
-      </div>
-      <div v-if="$slots.hasOwnProperty('subContent')" class="breadcrumb-sub-content">
-        <slot name="subContent"></slot>
-      </div>
-    </div>
-    <!--Style 2-->
-    <div
-        v-if="breadcrumbStyle === 2"
-        :class="['breadcrumb-2',
-        position === 'right' ? 'flex-row-reverse' : 'justify-end'
-        ]">
-      <div class="breadcrumb-container">
-        <div
-            v-for="(item,index) in breadcrumbs"
-            :key="index"
+            v-if="design==='filled'"
             :class="[
-              'breadcrumb-item-2',
-                breadcrumbs.length !== index+1 ? 'bg-gray-300 border-gray-500' :
-                  style2ActiveColors[item.activeColor] +  ' bg-opacity-80 font-bold text-white',
-              ]">
-          <div class="flex">
-            {{ item.label }}
-          </div>
+            'breadcrumb',
+            styleClass,
+            position === 'right' && 'flex-row-reverse'
+            ]">
+            <div id="breadcrumb-filled-container">
+                <div
+                    v-for="(item,index) in breadcrumbs"
+                    :key="index"
+                    :class="[
+                    'breadcrumb-filled-item',
+                    item.active && 'breadcrumb-item-active '
+                    ]">
+                    <!--Icon-->
+                    <div v-if="$slots[item.key]">
+                        <slot :name="item.key" :props="item"/>
+                    </div>
+                    <div>
+                        {{ item.label }}
+                    </div>
+                    <t-chevron-right-icon v-if="breadcrumbs.length !== index+1" class="w-5 h-5"/>
+                </div>
+            </div>
+            <div v-if="$slots['subContent']" class="breadcrumb-sub-content">
+                <slot name="subContent"></slot>
+            </div>
         </div>
-      </div>
-      <div v-if="$slots.subContent" class="breadcrumb-sub-content">
-        <slot name="subContent"></slot>
-      </div>
+
+        <div
+            v-if="design==='block'"
+            :class="[
+            'breadcrumb breadcrumb-block-base',
+            position === 'right' && 'flex-row-reverse'
+        ]">
+            <div id="breadcrumb-block-container" :class="styleClass">
+                <div
+                    v-for="(item,index) in breadcrumbs"
+                    :key="index"
+                    :class="[
+              'breadcrumb-block-item',
+              item.active ? 'breadcrumb-item-active' : 'text-gray-700'
+              ]">
+                    <!--Icon-->
+                    <div v-if="$slots[item.key]">
+                        <slot :name="item.key" :props="item"/>
+                    </div>
+                    <div>
+                        {{ item.label }}
+                    </div>
+                </div>
+            </div>
+            <div v-if="$slots['subContent']" class="breadcrumb-sub-content">
+                <slot name="subContent"></slot>
+            </div>
+        </div>
     </div>
-    <!--Mobile-->
-  </div>
 </template>
 
 <script>
-import { defineComponent } from 'vue'
-import {breadcrumbStyleMixin} from "@/Mixins/Styles/breadcrumbStyleMixin";
+import {defineComponent, toRefs, ref} from 'vue'
+import TChevronRightIcon from "@/Components/Icon/TChevronRightIcon";
 
 export default defineComponent({
-  name: 'TBreadcrumb',
-  props: {
-    breadcrumbs: {
-      type: Array,
-      require: true
+    name: 'TBreadcrumb',
+    props: {
+        breadcrumbs: {
+            type: Array,
+            require: true
+        },
+        design: {
+            type: String,
+            default: 'filled'
+        },
+        color: {
+            type: String,
+            default: 'gray'
+        },
+        position: {
+            type: String,
+            require: true,
+            default: 'left'
+        },
     },
-    breadcrumbStyle: {
-      type: Number,
-      require: true,
-      default: 1
-    },
-    position: {
-      type: String,
-      require: true,
-      default: 'left'
-    },
-  },
-  mixins: [breadcrumbStyleMixin]
+    components: {TChevronRightIcon},
+    setup(props, {slots}) {
+        const {breadcrumbs, design, color, position} = toRefs(props)
+
+        /*Design Check*/
+        const styleClass = ref()
+        if (design.value === 'filled') {
+            styleClass.value = 'breadcrumb-' + design.value + '-' + color.value + ' breadcrumb-' + design.value + '-base'
+        } else if (design.value === 'block') {
+            styleClass.value = 'breadcrumb-block-' + color.value
+        }
+
+        const hasSlot = name => !!slots[name]
+
+        return {breadcrumbs, design, color, position, hasSlot, styleClass}
+    }
 })
 </script>
