@@ -5,6 +5,8 @@
 @import "./components/avatar.css";
 @import "./components/badge.css";
 @import "./components/breadcrumb.css";
+@import "./components/button.css";
+@import "./components/loading.css";
 
 /*Utilities*/
 @import 'tailwindcss/utilities';
@@ -164,13 +166,6 @@
 /*Modal Footer Left Area*/
 .modal-footer-right {
     @apply inline-flex space-x-2 justify-end
-}
-
-
-
-/*Button*/
-.button {
-    @apply flex justify-center items-center whitespace-nowrap font-semibold border p-2 gap-1 focus:ring-2 focus:outline-none flex-grow-0 transition duration-300 ease-in-out
 }
 
 /*Collapsible*/
