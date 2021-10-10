@@ -39,7 +39,6 @@ import {buttonStyleMixin} from "@/Mixins/Styles/buttonStyleMixin";
 import {Link} from '@inertiajs/inertia-vue3';
 import ThreeBars from "@/Components/Loading/Animations/ThreeBars";
 import ThreeDots from "@/Components/Loading/Animations/ThreeDots";
-import CircleSnake from "@/Components/Loading/Animations/CircleSnake";
 
 export default defineComponent({
     name: "TButton",
@@ -90,7 +89,6 @@ export default defineComponent({
         }
     },
     components: {
-        CircleSnake,
         ThreeDots,
         ThreeBars,
         Link
