@@ -1,8 +1,8 @@
 <template>
     <div class="loading-three-dots">
-        <div id="dot1" :class="styleClass"/>
-        <div id="dot2" :class="styleClass"/>
-        <div id="dot3" :class="styleClass"/>
+        <div id="dot1" :class="styleClass()"/>
+        <div id="dot2" :class="styleClass()"/>
+        <div id="dot3" :class="styleClass()"/>
     </div>
 </template>
 
@@ -19,14 +19,19 @@ export default {
         color: {
             type: String,
             default: 'gray'
+        },
+        target: {
+            type: String,
+            default: 'button'
         }
     },
-    setup(props) {
-        const {color} = toRefs(props)
+    setup(props){
+        const {color,target} = toRefs(props)
         /*Design Check*/
-        const styleClass = ref()
+        const styleClass = () => {
 
-        styleClass.value = 'loading-' + color.value
+            return 'loading-'+color.value + (target.value === 'button' ? ' w-2 h-2' : ' w-8 h-8 desktop:w-14 desktop:h-14')
+        }
 
         return {styleClass}
     }
@@ -38,8 +43,6 @@ export default {
     content: '&nbps';
     -webkit-animation: threeDots 1.2s infinite ease-in-out;
     animation: threeDots 1.2s infinite ease-in-out;
-    width: .5em;
-    height: .5em;
     border-radius: 999em;
     -moz-border-radius: 999em;
     -webkit-border-radius: 999em;
