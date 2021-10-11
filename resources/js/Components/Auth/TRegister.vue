@@ -131,7 +131,8 @@
                   :disabled="form.processing"
                   :radius="3"
                   class="ml-4"
-                  color="solid-green"
+                  :color="buttonColor"
+                  :design="buttonDesign"
               >
                 Register
               </t-button>
@@ -142,7 +143,7 @@
       <div class="auth-error">
         <!--Errors-->
         <transition @before-enter="beforeStyle" @after-enter="enterStyle">
-          <t-alert v-if="hasErrors" :radius="deviceType !== 'phone' && 5" color="solid-red">
+          <t-alert v-if="hasErrors" :radius="deviceType !== 'phone' && 5" color="red">
             <template #icon>
               <t-bell-icon class="w-8 h-8"/>
             </template>
@@ -192,6 +193,14 @@ export default defineComponent({
         },
         bgImage: {
             type: String
+        },
+        buttonDesign: {
+            type: String,
+            default: 'filled'
+        },
+        buttonColor: {
+            type: String,
+            default: 'green'
         },
         status: {
             type: String

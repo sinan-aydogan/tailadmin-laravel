@@ -1,5 +1,5 @@
 <template>
-  <app-layout>
+  <app-layout title="Forgot Password Screen">
     <template #header>Forgot Password Screen</template>
     <template #subHeader>You should make to changes in the Resources/Js/Pages/Auth/ForgotPassword.vue</template>
     <template #default>
@@ -7,19 +7,19 @@
         <!--Demo 1-->
         <div class="flex flex-col gap-2">
           <img :src="'/img/demo/forgot_1_gradient.png'" class="rounded-md" alt="Forgot Password Screen">
-          <t-button :link="route('forgot-password-app-1')" :radius="3" color="gradient-purple-to-pink" size="full">See Demo Login
+          <t-button type="link" :link="route('forgot-password-app-1')" :radius="3" color="pink" size="full">See Demo Login
             1
           </t-button>
         </div>
         <!--Demo 2-->
         <div class="flex flex-col gap-2">
           <img :src="'/img/demo/forgot_2_gray.png'" class="rounded-md" alt="Forgot Password Screen">
-          <t-button :link="route('forgot-password-app-2')" :radius="3" color="solid-gray" size="full">See Demo Login 2</t-button>
+          <t-button type="link" :link="route('forgot-password-app-2')" :radius="3" color="gray" size="full">See Demo Login 2</t-button>
         </div>
         <!--Demo 3-->
         <div class="flex flex-col gap-2">
           <img :src="'/img/demo/forgot_3_blue.png'" class="rounded-md" alt="Forgot Password Screen">
-          <t-button :link="route('forgot-password-app-3')" :radius="3" color="solid-blue" size="full">See Demo Login 3</t-button>
+          <t-button type="link" :link="route('forgot-password-app-3')" :radius="3" color="blue" size="full">See Demo Login 3</t-button>
         </div>
       </grid-section>
       <!--Sample Codes-->
@@ -66,7 +66,7 @@ export default {
             '         :radius="5"\n' +
             '         bg-color="solid-pink"\n' +
             '         bg-image="/img/samples/bgFakurianDesign-nY14Fs8pxT8-unsplash.jpg"\n' +
-            '         button-color="solid-pink"\n' +
+            '         button-color="pink"\n' +
             '        :status="status"\n' +
             '>\n\n' +
             '    <!--Logo-->\n' +

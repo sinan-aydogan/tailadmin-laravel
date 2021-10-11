@@ -4,14 +4,14 @@
       Select Input Component
     </template>
     <template #action-buttons>
-      <TButton :radius="3" color="solid-yellow">
+      <t-button :radius="3" color="yellow">
         <font-awesome-icon icon="angle-left"/>
         Back to Home
-      </TButton>
-      <TButton :radius="3" color="solid-green">
+      </t-button>
+      <t-button :radius="3" color="green">
         <font-awesome-icon icon="plus-circle"/>
         Add New
-      </TButton>
+      </t-button>
     </template>
     <template #default>
       <t-form-content @reset="reset" @submitted="save">

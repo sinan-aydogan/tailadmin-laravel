@@ -39,11 +39,11 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function (){
     /*They are the required pages for the system, don't delete it*/
     Route::prefix('settings')->group(function () {
        Route::get('/', function () {return Inertia::render('Settings/Index',[
-           'users_count' => count(User::all('id')),
+           'users_count' => count(\App\Models\User::all('id')),
            'roles_count' => count(Role::all()),
            'permissions_count' => count(Permission::all())
        ]);})->name('settings');
-       Route::resource('settings-user', UserController::class);
+       Route::resource('settings-user', \App\Http\Controllers\Settings\UserController::class);
        Route::get('role', function () {return Inertia::render('Settings/Role');})->name('settings-role');
        Route::get('permission', function () {return Inertia::render('Settings/Permission');})->name('settings-permission');
        Route::get('system', function () {return Inertia::render('Settings/System');})->name('settings-system');

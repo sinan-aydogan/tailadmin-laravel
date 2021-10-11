@@ -1,5 +1,5 @@
 <template>
-    <app-layout>
+    <app-layout title="Dashboard">
         <template #breadcrumb>
             <t-breadcrumb :breadcrumbStyle="1" :breadcrumbs="breadcrumbs"/>
         </template>

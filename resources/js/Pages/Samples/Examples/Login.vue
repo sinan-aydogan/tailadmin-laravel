@@ -1,5 +1,5 @@
 <template>
-  <app-layout>
+  <app-layout title="Login Screen">
     <template #header>Login Screen</template>
     <template #subHeader>You should make to changes in the Resources/Js/Pages/Auth/Login.vue</template>
     <template #default>
@@ -7,19 +7,19 @@
         <!--Demo 1-->
         <div class="flex flex-col gap-2">
           <img :src="'/img/demo/login_1_gradient.png'" class="rounded-md" alt="Login Screen">
-          <t-button :link="route('login-app-1')" :radius="3" color="gradient-purple-to-pink" size="full">See Demo Login
+          <t-button type="link" :link="route('login-app-1')" :radius="3" color="pink" size="full">See Demo Login
             1
           </t-button>
         </div>
         <!--Demo 2-->
         <div class="flex flex-col gap-2">
           <img :src="'/img/demo/login_2_gray.png'" class="rounded-md" alt="Login Screen">
-          <t-button :link="route('login-app-2')" :radius="3" color="solid-gray" size="full">See Demo Login 2</t-button>
+          <t-button type="link" :link="route('login-app-2')" :radius="3" color="gray" size="full">See Demo Login 2</t-button>
         </div>
         <!--Demo 3-->
         <div class="flex flex-col gap-2">
           <img :src="'/img/demo/login_3_blue.png'" class="rounded-md" alt="Login Screen">
-          <t-button :link="route('login-app-3')" :radius="3" color="solid-blue" size="full">See Demo Login 3</t-button>
+          <t-button type="link" :link="route('login-app-3')" :radius="3" color="blue" size="full">See Demo Login 3</t-button>
         </div>
       </grid-section>
       <!--Sample Codes-->
@@ -68,20 +68,20 @@ export default {
             '         bg-color="gradient-purple-to-pink"\n' +
             '         bg-gradient-direction="br"\n' +
             '         bg-image="/img/samples/bgFakurianDesign-nY14Fs8pxT8-unsplash.jpg"\n' +
-            '         login-button-color="solid-pink"\n' +
-            '         register-button-color="solid-pink"\n' +
+            '         login-button-color="pink"\n' +
+            '         register-button-color="pink"\n' +
             '        :canResetPassword="canResetPassword"\n' +
             '        :status="status"\n' +
             '        :register-button="false"\n' +
             '>\n' +
             '    <!--Logo-->\n' +
             '    <template #logo>\n' +
-            '        <inertia-link href="/">\n' +
+            '        <Link href="/">\n' +
             '            <div class="flex flex-col justify-center items-center w-full">\n' +
             '                <t-logo class="w-12 h-12"/>\n' +
             '                <span class="text-3xl">TailAdmin</span>\n' +
             '            </div>\n' +
-            '        </inertia-link>\n' +
+            '        </Link>\n' +
             '    </template>\n' +
             '    <!--Greeting-->\n' +
             '    <template #greeting>\n' +
@@ -91,10 +91,11 @@ export default {
         js:
             'import TLogin from "@/Components/Auth/TLogin";\n' +
             'import TLogo from "@/Components/Icon/TLogo";' +
+            'import {Link} from "@inertiajs/inertia-vue3";;' +
             "\n" +
             "export default {\n" +
             '  name: "Login",\n' +
-            "  components: {TLogin, TLogo},\n" +
+            "  components: {TLogin, TLogo, Login},\n" +
             "  }",
         table: {
           header: [

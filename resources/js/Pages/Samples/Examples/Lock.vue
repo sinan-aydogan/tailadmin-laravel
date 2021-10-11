@@ -1,5 +1,5 @@
 <template>
-  <app-layout>
+  <app-layout title="Lock Screen">
     <template #header>Lock Screen</template>
     <template #subHeader>Only sample screen, it's not active module</template>
     <template #default>
@@ -7,19 +7,19 @@
         <!--Demo 1-->
         <div class="flex flex-col gap-2">
           <img :src="'/img/demo/lock_1_gradient.png'" class="rounded-md" alt="Lock Screen Photo">
-          <t-button :link="route('lock-app-1')" :radius="3" color="gradient-purple-to-pink" size="full">See Demo Lock 1
+          <t-button type="link" :link="route('lock-app-1')" :radius="3" color="pink" size="full">See Demo Lock 1
           </t-button>
         </div>
         <!--Demo 2-->
         <div class="flex flex-col gap-2">
           <img :src="'/img/demo/lock_2_gray.png'" class="rounded-md" alt="Lock Screen Photo">
-          <t-button :link="route('lock-app-2')" :radius="3" color="solid-gray" size="full">See Demo Lock 2
+          <t-button type="link" :link="route('lock-app-2')" :radius="3" color="gray" size="full">See Demo Lock 2
           </t-button>
         </div>
         <!--Demo 3-->
         <div class="flex flex-col gap-2">
           <img :src="'/img/demo/lock_3_blue.png'" class="rounded-md" alt="Lock Screen Photo">
-          <t-button :link="route('lock-app-3')" :radius="3" color="solid-blue" size="full">See Demo Lock 3
+          <t-button type="link" :link="route('lock-app-3')" :radius="3" color="blue" size="full">See Demo Lock 3
           </t-button>
         </div>
       </grid-section>
@@ -70,7 +70,7 @@ export default {
             '    <!--You should use either bg-color or bg-image-->\n' +
             '    bg-image="/img/samples/bgFakurianDesign-nY14Fs8pxT8-unsplash.jpg"\n' +
             '    bg-color="gradient-pink-to-pruple"\n' +
-            '    button-color="solid-pink"\n' +
+            '    button-color="pink"\n' +
             '>\n' +
             '</t-lock>',
         js:

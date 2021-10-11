@@ -41,8 +41,14 @@
                         </div>
                         <!--Submit Button-->
                       <div class="auth-submit-area">
-                            <t-button size="full" :class="{ 'opacity-25': form.processing }" :color="buttonColor" :disabled="form.processing"
-                                      :radius="3">
+                            <t-button
+                                size="full"
+                                :design="buttonDesign"
+                                :class="{ 'opacity-25': form.processing }"
+                                :color="buttonColor"
+                                :disabled="form.processing"
+                                :radius="3"
+                            >
                                 Email Password Reset Link
                             </t-button>
                         </div>
@@ -52,7 +58,7 @@
           <div class="auth-error">
                 <!--Errors-->
                 <transition @before-enter="beforeStyle" @after-enter="enterStyle">
-                    <t-alert v-if="hasErrors" :radius="deviceType !== 'phone' && 5" color="solid-red">
+                    <t-alert v-if="hasErrors" :radius="deviceType !== 'phone' && 5" color="red">
                         <template #icon>
                             <t-bell-icon class="w-8 h-8"/>
                         </template>
@@ -91,9 +97,13 @@ export default defineComponent({
             type: String,
             default: 'gradient-red-to-pink'
         },
+        buttonDesign: {
+            type: String,
+            default: 'filled'
+        },
         buttonColor: {
             type: String,
-            default: 'solid-green'
+            default: 'green'
         },
         bgColor: {
             type: String,
@@ -138,7 +148,3 @@ export default defineComponent({
     }
 })
 </script>
-
-<style scoped>
-
-</style>

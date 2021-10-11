@@ -4,7 +4,7 @@ x
         color="gradient-purple-to-pink"
         :radius="5"
         bg-image="/img/samples/bgFakurianDesign-nY14Fs8pxT8-unsplash.jpg"
-        button-color="solid-pink"
+        button-color="pink"
         :status="status"
         :privacyPolicyFeature="true"
         termsLink="terms"
@@ -12,12 +12,12 @@ x
     >
         <!--Logo-->
         <template #logo>
-            <inertia-link href="/">
+            <Link href="/">
                 <div class="flex flex-col justify-center items-center w-full">
                     <t-logo class="w-12 h-12"/>
                     <span class="text-3xl">TailAdmin</span>
                 </div>
-            </inertia-link>
+            </Link>
         </template>
         <!--Greeting-->
         <template #greeting>
@@ -27,6 +27,7 @@ x
 </template>
 
 <script>
+import {Link} from "@inertiajs/inertia-vue3";
 import TLogo from "@/Components/Icon/TLogo";
 import TRegister from "@/Components/Auth/TRegister";
 
@@ -34,6 +35,7 @@ export default {
     components: {
         TLogo,
         TRegister,
+        Link
     },
     props: {
         status: String

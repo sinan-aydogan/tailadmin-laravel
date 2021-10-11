@@ -60,7 +60,7 @@
                     </template>
                     Closer timer activated, alert box. (<b>4 seconds</b>)
                 </component>
-                <t-button color="solid-pink" size="full" @click.native="addAlertBox">
+                <t-button color="pink" size="full" @click.native="addAlertBox">
                     Recall Closed Alert Box
                 </t-button>
             </grid-section>

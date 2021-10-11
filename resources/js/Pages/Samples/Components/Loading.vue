@@ -231,19 +231,19 @@ export default defineComponent({
                 '    </template>\n\n' +
                 '    <!--Footer Left Button Area-->\n' +
                 '    <template #footer-left>\n' +
-                '        <t-button :radius="3" color="solid-red" size="sm" @click.native="showModal = false">Left\n' +
+                '        <t-button :radius="3" color="red" size="sm" @click.native="showModal = false">Left\n' +
                 '            Button\n' +
                 '        </t-button>\n' +
                 '    </template>\n\n' +
                 '    <!--Footer Center Button Area-->\n' +
                 '    <template #footer-center>\n' +
-                '        <t-button :radius="3" color="solid-pink" size="sm" @click.native="showModal = false">\n' +
+                '        <t-button :radius="3" color="pink" size="sm" @click.native="showModal = false">\n' +
                 '            Center Button\n' +
                 '        </t-button>\n' +
                 '    </template>\n\n' +
                 '    <!--Footer Right Button Area-->\n' +
                 '    <template #footer-right>\n' +
-                '        <t-button :radius="3" color="solid-yellow" size="sm">Right Button</t-button>\n' +
+                '        <t-button :radius="3" color="yellow" size="sm">Right Button</t-button>\n' +
                 '    </template>\n\n' +
                 '</t-modal>',
             js:

@@ -245,7 +245,7 @@ export default {
             colors: ['solid-red', 'solid-blue', 'solid-green', 'solid-yellow', 'solid-indigo', 'solid-pink', 'solid-purple', 'solid-gray', 'solid-black', 'solid-white', 'light-red', 'light-blue', 'light-green', 'light-yellow', 'light-indigo', 'light-pink', 'light-purple', 'light-gray'],
             sampleCode: {
                 html:
-                    '<t-button color="solid-yellow" :radius="5" :link="route(\'login\')" type="button">\n' +
+                    '<t-button color="yellow" :radius="5" :link="route(\'login\')" type="button">\n' +
                     '    <font-awesome-icon icon="user"/>\n' +
                     "    Login\n" +
                     "</t-button>",
