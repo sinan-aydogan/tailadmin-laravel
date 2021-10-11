@@ -83,6 +83,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function (){
     Route::get('collapsible',function (){return Inertia::render('Samples/Components/Collapsible');})->name('collapsible');
     Route::get('dropdown',function (){return Inertia::render('Samples/Components/Dropdown');})->name('dropdown');
     Route::get('list',function (){return Inertia::render('Samples/Components/List');})->name('list');
+    Route::get('loading',function (){return Inertia::render('Samples/Components/Loading');})->name('loading');
     Route::get('modal',function (){return Inertia::render('Samples/Components/Modal');})->name('modal');
     Route::get('pagination',function (){return Inertia::render('Samples/Components/Paginate');})->name('pagination');
     Route::get('popover',function (){return Inertia::render('Samples/Components/Popover');})->name('popover');
