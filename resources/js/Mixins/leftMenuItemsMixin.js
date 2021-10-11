@@ -172,6 +172,14 @@ export const leftMenuItemsMixin = {
                             activeKey: ["list"],
                         },
                         {
+                            label: "Loadings",
+                            icon: "",
+                            link: "loading",
+                            linkType: "route",
+                            type: "standard",
+                            activeKey: ["loading"],
+                        },
+                        {
                             label: "Modals",
                             icon: "",
                             link: "modal",
