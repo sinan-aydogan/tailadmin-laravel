@@ -6,7 +6,9 @@
         :radius="5"
         :status="status"
         bg-image="/img/samples/bgFakurianDesign-nY14Fs8pxT8-unsplash-compressed.jpg"
-        login-button-color="solid-pink"
+        login-button-color="pink"
+        register-button-design="link-plus"
+        register-button-color="purple"
         color="gradient-purple-to-pink"
     >
         <!--Logo-->

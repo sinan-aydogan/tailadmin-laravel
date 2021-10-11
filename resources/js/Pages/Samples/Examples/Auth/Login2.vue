@@ -3,18 +3,21 @@
         color="solid-gray"
         bg-color="gradient-gray-to"
         :radius="5"
-        login-button-color="light-gray"
+        login-button-color="gray"
+        login-buttondesign="light"
+        register-button-color="white"
+        register-button-design="outline"
         :canResetPassword="canResetPassword"
         :status="status"
     >
         <!--Logo-->
         <template #logo>
-            <inertia-link href="/">
+            <Link href="/">
                 <div class="flex flex-col justify-center items-center w-full">
                     <t-logo class="w-12 h-12"/>
                     <span class="text-3xl">TailAdmin</span>
                 </div>
-            </inertia-link>
+            </Link>
         </template>
         <!--Greeting-->
         <template #greeting>
@@ -24,6 +27,7 @@
 </template>
 
 <script>
+import {Link} from "@inertiajs/inertia-vue3";
 import TLogin from "@/Components/Auth/TLogin";
 import TLogo from "@/Components/Icon/TLogo";
 
@@ -31,6 +35,7 @@ export default {
     components: {
         TLogo,
         TLogin,
+        Link
     },
 
     props: {

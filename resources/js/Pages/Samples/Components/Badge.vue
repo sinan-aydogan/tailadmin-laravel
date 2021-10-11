@@ -281,7 +281,7 @@ export default {
 
         const sampleCode = {
             html:
-                '<t-badge :radius="8" color="solid-blue" :collapsible="true" value="6.40TL">\n' +
+                '<t-badge :radius="8" color="blue" :collapsible="true" value="6.40TL">\n' +
                 '    <font-awesome-icon icon="info" slot="icon" />\n' +
                 "    Mathematical Signs\n" +
                 "</t-badge>",

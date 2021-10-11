@@ -16,7 +16,7 @@
                             <t-collection-icon v-if="props.label === 'Home'" class="w-5 h-5"/>
                         </template>
                         <template #subContent>
-                            <t-button v-if="index===0" color="solid-green" size="sm">
+                            <t-button v-if="index===0" color="green" size="sm">
                                 <t-plus-circle-icon class="w-5 h-5"/>
                                 Add Button
                             </t-button>
@@ -25,7 +25,7 @@
                     </t-breadcrumb>
                 </div>
             </grid-section>
-            <t-alert class="block tablet:hidden" color="solid-red">The breakcrumb component works only on the large
+            <t-alert class="block tablet:hidden" color="red">The breakcrumb component works only on the large
                 screens. If you want to see how ist works, you should use a large screen bigger than 728px
             </t-alert>
             <!--Sample Codes-->
@@ -82,7 +82,7 @@ export default {
                 '    <!--If you want to show a second content in the breadcrumb-->\n' +
                 '    <template #subContent>\n' +
                 '    <!--You are free this area, be mindful of the height of the items you use-->\n' +
-                '      <t-button color="solid-green" size="sm">\n' +
+                '      <t-button color="green" size="sm">\n' +
                 '        <t-plus-circle-icon class="w-5 h-5"/>\n' +
                 '        Add Button\n' +
                 '      </t-button>\n' +

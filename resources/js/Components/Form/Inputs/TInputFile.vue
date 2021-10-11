@@ -82,7 +82,7 @@
                                 </t-badge>
                             </span>
                             <!--Delete Button-->
-                            <t-button type="button" color="solid-red" @click.native="deleteFile(index)">
+                            <t-button type="button" color="red" @click.native="deleteFile(index)">
                                 <t-trash-icon class="w-5 h-5"/>
                             </t-button>
                         </div>

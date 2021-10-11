@@ -99,7 +99,7 @@
           <t-list-item>
             <template #default>Materials</template>
             <template #secondContent>
-              <t-badge :radius="5" color="solid-red">6 pcs.</t-badge>
+              <t-badge :radius="5" color="red">6 pcs.</t-badge>
             </template>
           </t-list-item>
           <t-list-item>

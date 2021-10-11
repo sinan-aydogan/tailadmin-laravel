@@ -1,7 +1,7 @@
 <template>
     <t-form-content :disabled="form.processing" @submitted="updateProfileInformation">
         <template #status>
-            <t-button v-if="form.recentlySuccessful" :radius="3" color="solid-gray" disabled="disabled">
+            <t-button v-if="form.recentlySuccessful" :radius="3" color="gray" disabled="disabled">
                 <t-check-icon class="w-5 h-5"/>
                 Saved
             </t-button>
@@ -60,7 +60,7 @@
                             v-if="$refs.photo"
                             :radius="8"
                             class="absolute right-0 top-0"
-                            color="solid-red"
+                            color="red"
                             size="sm"
                             type="button"
                             @click.native.prevent="deletePhoto"

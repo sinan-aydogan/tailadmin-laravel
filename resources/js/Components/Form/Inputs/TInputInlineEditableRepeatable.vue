@@ -20,7 +20,7 @@
                     </div>
                     <!--Add Button-->
                     <div class="flex flex-col w-full pl-4 pr-6 mt-2">
-                        <t-button v-if="index === value.length-1" type="button" color="solid-green" @click.native="addItem(index)" size="sm">
+                        <t-button v-if="index === value.length-1" type="button" color="green" @click.native="addItem(index)" size="sm">
                             <t-plus-circle-icon class="w-6 h-5 cursor-pointer mr-2"/>
                             Add new item
                         </t-button>
@@ -30,7 +30,8 @@
                 <!--Placeholder-->
                 <t-button
                     type="button"
-                    color="light-green"
+                    design="light"
+                    color="green"
                     v-if="value.length === 0"
                     @click.native="addItem"
                 >

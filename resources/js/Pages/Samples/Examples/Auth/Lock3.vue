@@ -3,7 +3,7 @@
         color="light-gray"
         bg-color="gradient-blue-to-white"
         bg-gradient-direction="br"
-        button-color="solid-blue"
+        button-color="blue"
         :radius="5"
     >
     </t-lock>

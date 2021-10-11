@@ -1,71 +1,74 @@
 <template>
-  <t-full-screen-card :bg-image="bgImage" :color="bgColor" :gradient-direction="bgGradientDirection">
-    <div :class="['relative']">
-      <!--Avatar-->
-      <div class="auth-avatar-container">
-        <div class="auth-avatar">
-          <t-avatar
-              :alt="$page.props.user.name"
-              :radius="8"
-              :size="7"
-              :src="$page.props.user.profile_photo_url"
-          />
-        </div>
-      </div>
-      <!--Container-->
-      <div :class="[
+    <t-full-screen-card :bg-image="bgImage" :color="bgColor" :gradient-direction="bgGradientDirection">
+        <div :class="['relative']">
+            <!--Avatar-->
+            <div class="auth-avatar-container">
+                <div class="auth-avatar">
+                    <t-avatar
+                        :alt="$page.props.user.name"
+                        :radius="8"
+                        :size="7"
+                        :src="$page.props.user.profile_photo_url"
+                    />
+                </div>
+            </div>
+            <!--Container-->
+            <div :class="[
             'auth-container',
             radiusStyle
             ]">
-        <form @submit.prevent="submit">
-          <!--Form-->
-          <div :class="[
+                <form @submit.prevent="submit">
+                    <!--Form-->
+                    <div :class="[
                         'auth-lock-form',
                         calculatedLockStyle,
                         radiusStyle
                         ]">
-            <!--Name-->
-            <div class="auth-name">
-              {{ $page.props.user.name }}
+                        <!--Name-->
+                        <div class="auth-name">
+                            {{ $page.props.user.name }}
+                        </div>
+                        <!--Password-->
+                        <t-input-group :radius="5" class="relative" label-for="password">
+                            <t-input-text id="password" v-model="form.password" :radius="3" placeholder="Password">
+                                <template #icon>
+                                    <t-user-circle-icon class="w-5 h-5"/>
+                                </template>
+                            </t-input-text>
+                        </t-input-group>
+                        <!--Button-->
+                        <t-button
+                            :class="{ 'opacity-25': form.processing }"
+                            :color="buttonColor"
+                            :design="buttonDesign"
+                            :disabled="form.processing"
+                            :radius="3"
+                        >
+                            {{ buttonText }}
+                        </t-button>
+                    </div>
+                </form>
             </div>
-            <!--Password-->
-            <t-input-group :radius="5" class="relative" label-for="password">
-              <t-input-text id="password" v-model="form.password" :radius="3" placeholder="Password">
-                <template #icon>
-                  <t-user-circle-icon class="w-5 h-5"/>
-                </template>
-              </t-input-text>
-            </t-input-group>
-            <!--Button-->
-            <t-button :class="{ 'opacity-25': form.processing }"
-                      :color="buttonColor"
-                      :disabled="form.processing"
-                      :radius="3">
-              {{ buttonText }}
-            </t-button>
-          </div>
-        </form>
-      </div>
-      <div class="auth-error">
-        <!--Errors-->
-        <transition @before-enter="beforeStyle" @after-enter="enterStyle">
-          <t-alert v-if="hasErrors" :radius="deviceType !== 'phone' && 5" color="solid-red">
-            <template #icon>
-              <t-bell-icon class="w-8 h-8"/>
-            </template>
-            <ul class="list-inside text-sm">
-              <li v-for="(error, key) in errors" :key="key">{{ error }}</li>
-            </ul>
-          </t-alert>
-        </transition>
-      </div>
+            <div class="auth-error">
+                <!--Errors-->
+                <transition @before-enter="beforeStyle" @after-enter="enterStyle">
+                    <t-alert v-if="hasErrors" :radius="deviceType !== 'phone' && 5" color="red">
+                        <template #icon>
+                            <t-bell-icon class="w-8 h-8"/>
+                        </template>
+                        <ul class="list-inside text-sm">
+                            <li v-for="(error, key) in errors" :key="key">{{ error }}</li>
+                        </ul>
+                    </t-alert>
+                </transition>
+            </div>
 
-    </div>
-  </t-full-screen-card>
+        </div>
+    </t-full-screen-card>
 </template>
 
 <script>
-import { defineComponent } from 'vue'
+import {defineComponent} from 'vue'
 import {lockStyleMixin} from "@/Mixins/Styles/lockStyleMixin";
 import TFullScreenCard from "@/Components/Card/TFullScreenCard";
 import {windowSizeMixin} from "@/Mixins/windowSizeMixin";
@@ -78,62 +81,66 @@ import TAvatar from "@/Components/Avatar/TAvatar";
 import TButton from "@/Components/Button/TButton";
 
 export default defineComponent({
-  name: "TLock",
-  components: {TButton, TAvatar, TUserCircleIcon, TInputText, TInputGroup, TBellIcon, TAlert, TFullScreenCard},
-  mixins: [lockStyleMixin, windowSizeMixin],
-  props: {
-    buttonColor: {
-      type: String,
-      default: 'solid-green'
+    name: "TLock",
+    components: {TButton, TAvatar, TUserCircleIcon, TInputText, TInputGroup, TBellIcon, TAlert, TFullScreenCard},
+    mixins: [lockStyleMixin, windowSizeMixin],
+    props: {
+        buttonColor: {
+            type: String,
+            default: 'solid-green'
+        },
+        buttonDesign: {
+            type: String,
+            default: 'filled'
+        },
+        bgColor: {
+            type: String,
+            default: 'gray'
+        },
+        bgGradientDirection: {
+            type: String,
+        },
+        bgImage: {
+            type: String
+        },
+        buttonText: {
+            type: String,
+            default: 'Re-Login'
+        }
     },
-    bgColor: {
-      type: String,
-      default: 'solid-gray'
+    data() {
+        return {
+            form: this.$inertia.form({
+                password: ''
+            })
+        }
     },
-    bgGradientDirection: {
-      type: String,
+    methods: {
+        submit() {
+            this.form
+                .transform(data => ({
+                    ...data,
+                }))
+                .post(this.route('unlock'), {
+                    onFinish: () => this.form.reset('password'),
+                })
+        },
+        beforeStyle(event) {
+            event.style.opacity = 0
+        },
+        enterStyle(event) {
+            event.style.opacity = 1
+            event.style.transition = `all 1s linear`
+        }
     },
-    bgImage: {
-      type: String
-    },
-    buttonText: {
-      type: String,
-      default: 'Re-Login'
-    }
-  },
-  data() {
-    return {
-      form: this.$inertia.form({
-        password: ''
-      })
-    }
-  },
-  methods: {
-    submit() {
-      this.form
-          .transform(data => ({
-            ...data,
-          }))
-          .post(this.route('unlock'), {
-            onFinish: () => this.form.reset('password'),
-          })
-    },
-    beforeStyle(event) {
-      event.style.opacity = 0
-    },
-    enterStyle(event) {
-      event.style.opacity = 1
-      event.style.transition = `all 1s linear`
-    }
-  },
-  computed: {
-    errors() {
-      return this.$page.props.errors
-    },
+    computed: {
+        errors() {
+            return this.$page.props.errors
+        },
 
-    hasErrors() {
-      return Object.keys(this.errors).length > 0;
-    },
-  }
+        hasErrors() {
+            return Object.keys(this.errors).length > 0;
+        },
+    }
 })
 </script>

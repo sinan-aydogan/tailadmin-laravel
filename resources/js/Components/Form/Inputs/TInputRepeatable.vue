@@ -30,7 +30,7 @@
                type="text"/>
         <!--Add Button-->
         <div class="flex items-center justify-center ml-1 h-10">
-          <t-button color="solid-green" type="button" @click.native="addItem">
+          <t-button color="green" type="button" @click.native="addItem">
             <t-plus-circle-icon class="w-6 h-6 tablet:w-5 tablet:h-5"/>
             <span class="hidden tablet:block pr-2">Add</span>
           </t-button>
@@ -59,7 +59,7 @@
                 </span>
       </div>
       <!--Close Button-->
-      <t-button color="solid-white" size="sm" type="button" @click.native="showPanel=false">
+      <t-button color="white" size="sm" type="button" @click.native="showPanel=false">
         Close
       </t-button>
     </div>

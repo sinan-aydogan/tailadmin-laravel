@@ -87,19 +87,22 @@
                             <t-button
                                 v-if="registerButton"
                                 :class="{ 'opacity-25': form.processing }"
+                                :design="registerButtonDesign"
                                 :color="registerButtonColor"
                                 :link="route('register')"
                                 :radius="3"
-                                type="button"
+                                type="link"
                             >
                                 Register
                             </t-button>
 
                             <!--Submit Button-->
-                            <t-button :class="{ 'opacity-25': form.processing }"
-                                      :color="loginButtonColor"
-                                      :disabled="form.processing"
-                                      :radius="3" class="ml-4"
+                            <t-button
+                                :class="{ 'opacity-25': form.processing }"
+                                :color="loginButtonColor"
+                                :design="loginButtonDesign"
+                                :disabled="form.processing"
+                                :radius="3" class="ml-4"
                             >
                                 Login
                             </t-button>
@@ -110,7 +113,7 @@
             <div class="auth-error">
                 <!--Errors-->
                 <transition @before-enter="beforeStyle" @after-enter="enterStyle">
-                    <t-alert v-if="hasErrors" :radius="deviceType !== 'phone' && 5" color="solid-red">
+                    <t-alert v-if="hasErrors" :radius="deviceType !== 'phone' && 5" color="red">
                         <template #icon>
                             <t-bell-icon class="w-8 h-8"/>
                         </template>
@@ -151,13 +154,21 @@ export default defineComponent({
     props: {
         canResetPassword: Boolean,
         status: String,
+        registerButtonDesign: {
+            type: String,
+            default: 'filled'
+        },
         registerButtonColor: {
             type: String,
-            default: 'solid-white'
+            default: 'white'
+        },
+        loginButtonDesign: {
+            type: String,
+            default: 'filled'
         },
         loginButtonColor: {
             type: String,
-            default: 'solid-green'
+            default: 'green'
         },
         bgColor: {
             type: String,

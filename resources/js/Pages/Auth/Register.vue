@@ -5,7 +5,7 @@
         :radius="5"
         :status="status"
         bg-image="/img/samples/bgFakurianDesign-nY14Fs8pxT8-unsplash.jpg"
-        button-color="solid-pink"
+        button-color="pink"
         color="gradient-purple-to-pink"
         :privacyPolicyFeature="true"
         termsLink="terms"

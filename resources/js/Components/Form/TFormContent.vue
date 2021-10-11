@@ -18,7 +18,8 @@
               <t-button
                   v-if="resetButton"
                   :radius="3"
-                  color="solid-yellow"
+                  design="filled"
+                  color="yellow"
                   type="button"
                   @click.native="reset"
               >
@@ -29,7 +30,8 @@
                   v-if="submitButton"
                   :disabled="disabled"
                   :radius="3"
-                  color="solid-green"
+                  design="filled"
+                  color="green"
                   icon="plus"
                   type="submit"
               >
