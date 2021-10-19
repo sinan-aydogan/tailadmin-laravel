@@ -32,6 +32,7 @@
         <div class="flex flex-wrap whitespace-normal w-full">
           <!--Card Main Content-->
           <slot v-if="!showSecondContent" name="content"></slot>
+          <slot v-if="!showSecondContent"></slot>
           <!--Card Second Content-->
           <slot v-if="showSecondContent" name="secondContent"></slot>
         </div>
