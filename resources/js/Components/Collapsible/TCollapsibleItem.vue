@@ -1,95 +1,135 @@
 <template>
-    <div class="collapsible-item-container">
-        <!--Title-->
-        <div
-            :class="['collapsible-item',
-        calculatedCollapsibleTitleStyle,
-        align === 'right' && 'flex-row-reverse']"
-            @click="updateStatus"
-            @mouseover.passive="type.includes('hover') ? updateStatus('open') :''"
-            @mouseout.passive="type.includes('hover') ? updateStatus('close') :''"
-        >
+    <div :class="[
+        styleClass.container(),
+        activeDesign.includes('line') ? 'justfiy-between' : 'flex-col'
+        ]">
+        <!--Inline Line-->
+        <div v-if="activeDesign.includes('line')"
+             id="line"
+             :class="[activeDesign === 'inline' ? 'collapsible-inline-line' : 'collapsible-outline-line']"
+        />
+        <div class="w-full">
+            <!--Header-->
             <div
-                :class="['flex items-center space-x-2 w-full whitespace-normal',align === 'left' && 'justify-start',align === 'center' && 'justify-center',align === 'right' && 'flex-row-reverse']">
-        <span>
-            <slot name="title"/> {{activeItems}}
-        </span>
+                :class="styleClass.header()"
+                @click="updateStatus"
+                @mouseenter.passive="openingType.includes('hover') ? updateStatus('open') :''"
+            >
+                <!--Title-->
+                <div :class="styleClass.title()">
+                    <slot name="title"/>
+                </div>
+                <!--DropDown Icons-->
+                <component
+                    :is="activeTriggerType==='chevron' ? 'TChevronIcon' : 'TCrossIcon'"
+                    :class="styleClass.trigger()"
+                />
             </div>
-            <!--DropDown Icon-->
-            <t-chevron-down-icon
-                :class="[
-                'w-6 h-6 transform duration-300',
-                showPanel ? 'rotate-90' : 'rotate-0'
-                ]"
-            />
-        </div>
-        <!--Content-->
-        <div
-            v-show="showPanel"
-            :class="[calculatedCollapsibleItemContentStyle]"
-            @mouseover.passive="type.includes('hover') ? updateStatus('show') :''"
-            @mouseout.passive="type.includes('hover') ? updateStatus('hide') :''"
-        >
-        <span class="flex p-4 overflow-hidden">
-            <slot name="content"></slot>
-        </span>
+            <!--Content-->
+            <transition name="content">
+                <div v-show="isVisibleContent()">
+                    <div :class="styleClass.content()" >
+                        <slot name="content"></slot>
+                    </div>
+                </div>
+
+            </transition>
         </div>
     </div>
 </template>
 
 <script>
-import {defineComponent, ref, inject, toRefs, getCurrentInstance} from 'vue'
+import {defineComponent, ref, inject, toRefs, reactive, onMounted, onUpdated} from 'vue'
 import {uniqueId} from "lodash";
-import {collapsibleStyleMixin} from "@/Mixins/Styles/collapsibleStyleMixin";
-import TChevronDownIcon from "@/Components/Icon/TChevronDownIcon";
+import TChevronIcon from "@/Components/Icon/TChevronDownIcon";
+import TCrossIcon from "@/Components/Icon/TXIcon";
 
 export default defineComponent({
     name: "CollapsibleItem",
-    components: {TChevronDownIcon},
-    mixins: [collapsibleStyleMixin],
+    components: {TChevronIcon, TCrossIcon},
     props: {
         itemKey: {
             type: [String, Number],
-            default:uniqueId()
+            default: uniqueId()
         },
-        align: {
+        titleAlign: {
             type: String,
             default: 'left'
-        }
+        },
+        triggerAlign: {
+            type: String,
+            default: 'right'
+        },
+        design: {
+            type: String,
+            default: 'filled'
+        },
+        color: {
+            type: String,
+            default: 'white'
+        },
     },
-    setup(props) {
-        const {itemKey} = toRefs(props)
-        const showPanel = ref(false)
+    setup(props, {emit}) {
+        /*Definitions*/
+        const {itemKey, titleAlign, triggerAlign, design, color} = toRefs(props)
+        const styleClass = reactive({})
+        const radiusSizes = {
+            1: 'rounded-sm',
+            2: 'rounded',
+            3: 'rounded-md',
+            4: 'rounded-lg',
+            5: 'rounded-xl',
+            6: 'rounded-2xl',
+            7: 'rounded-3xl',
+            8: 'rounded-full'
+        }
 
-        /*v-model data from root for mount*/
-        let vModelActiveItemsList = getCurrentInstance().parent.props.modelValue
-        const vModelActiveStatus = ref(Object.values(vModelActiveItemsList).includes(itemKey.value))
-        vModelActiveStatus.value ? showPanel.value= true : showPanel.value= false
+        /*Injections*/
+        const activeItems = ref(inject('activeItems'))
+        const openingType = ref(inject('openingType'))
+        const accordion = ref(inject('accordion'))
+        const radius = ref(inject('radius'))
+        const separated = ref(inject('separated'))
+        const rootColor = ref(inject('rootColor'))
+        const rootDesign = ref(inject('rootDesign'))
+        const rootTitleAlign = ref(inject('rootTitleAlign'))
+        const rootTriggerAlign = ref(inject('rootTriggerAlign'))
+        const rootTriggerType = ref(inject('rootTriggerType'))
 
-        /*default active items list for subItems*/
-        const activeItems = ref([].concat(Object.values(vModelActiveItemsList)))
+        /*Taken Over Definitions from Root */
+        const activeColor = ref(rootColor.value ? rootColor.value : color.value)
+        const activeDesign = ref(rootDesign.value ? rootDesign.value : design.value)
+        const activeTitleAlign = ref(rootTitleAlign.value ? rootTitleAlign.value : titleAlign.value)
+        const activeTriggerAlign = ref(rootTriggerAlign.value ? rootTriggerAlign.value : triggerAlign.value)
+        const activeTriggerType = ref(rootTriggerType.value ? rootTriggerType.value : triggerType.value)
+
+        /*Detection of Active Items*/
+        const isVisibleContent = () => {
+            if(activeItems.value.includes(itemKey.value)){
+                return  true
+            }else{
+                return  false
+            }
+        }
 
 
-
-        /*collapsible component type from root*/
-        const type = ref(inject('type'))
-
-
+        /*Open-Close Actions*/
         const updateStatus = (rule) => {
-            vModelActiveItemsList = ['cicik']
             /*Open Function*/
             const openItem = () => {
-                if(!activeItems.value.includes(itemKey.value)){
+                if(accordion.value && !activeItems.value.includes(itemKey.value)){
+                    activeItems.value = [itemKey.value]
+                }else if(!accordion.value && !activeItems.value.includes(itemKey.value)){
                     activeItems.value.push(itemKey.value)
                 }
-                showPanel.value = true
+                emit('active', activeItems.value)
             }
             /*Close Function*/
             const closeItem = () => {
-                if(activeItems.value.includes(itemKey.value)){
-                    activeItems.value.splice(activeItems.value.indexOf(item=>item === itemKey.value),1)
+                if (activeItems.value.includes(itemKey.value)) {
+                    activeItems.value.splice(activeItems.value.indexOf(item => item === itemKey.value), 1)
                 }
-                showPanel.value = false
+                emit('active', activeItems.value)
             }
             /*Open/Close Action Controller*/
             if (rule === 'open') {
@@ -97,17 +137,84 @@ export default defineComponent({
             } else if (rule === 'close') {
                 closeItem()
             } else {
-                if(showPanel.value){
+                if (isVisibleContent()) {
                     closeItem()
-                }else{
+                } else {
                     openItem()
                 }
             }
         }
 
-        getCurrentInstance().parent.props.modelValue = activeItems.value
+        /*Generating Style Classes*/
+        styleClass.container = () => {
+            return 'collapsible-container ' +
+                'collapsible-' + activeDesign.value + '-base ' +
+                'collapsible-' + activeDesign.value + '-' + activeColor.value + ' ' +
+                (separated.value ? radiusSizes[radius.value] + ' border-0' : '')
+        }
+        styleClass.header = () => {
+            let triggerAlignStyle;
+            /*Trigger Position*/
+            if (activeTriggerAlign.value === 'left') {
+                triggerAlignStyle = 'flex-row-reverse';
+            } else {
+                triggerAlignStyle = 'justify-start';
+            }
 
-        return {showPanel, updateStatus,type, activeItems}
+            return 'collapsible-header ' +
+                triggerAlignStyle
+        }
+        styleClass.trigger = () => {
+            let triggerAnimationStyle;
+            if (isVisibleContent() && activeTriggerType.value === 'chevron' || activeTriggerType.value === 'cross') {
+                triggerAnimationStyle = 'rotate-0'
+            }
+
+            if (!isVisibleContent() && activeTriggerType.value === 'chevron') {
+                if (activeTriggerAlign.value === 'right') {
+                    triggerAnimationStyle = 'rotate-90'
+                } else {
+                    triggerAnimationStyle = '-rotate-90'
+                }
+            }
+
+            if (!isVisibleContent() && activeTriggerType.value === 'cross') {
+                triggerAnimationStyle = 'rotate-45'
+            }
+
+            return 'collapsible-trigger-icon ' +
+                triggerAnimationStyle
+        }
+        styleClass.title = () => {
+            let titleAlignStyle;
+            if (activeTitleAlign.value === 'left') {
+                titleAlignStyle = 'text-left';
+            } else if (activeTitleAlign.value === 'center') {
+                titleAlignStyle = 'justify-center';
+            } else {
+                titleAlignStyle = 'flex-row-reverse';
+            }
+
+            return 'collapsible-title ' + titleAlignStyle
+        }
+        styleClass.content = () => {
+            return 'collapsible-content '
+        }
+
+        return {isVisibleContent, openingType, updateStatus, styleClass, activeTriggerType,activeDesign}
     }
 })
 </script>
+
+<style>
+.content-enter-active, .content-leave-active {
+    transition: all 300ms ease-in-out;
+}
+
+.content-enter-from, .content-leave-to {
+    max-height: 0;
+}
+.content-enter-to, .content-leave-from {
+    max-height: 100vmax;
+}
+</style>
