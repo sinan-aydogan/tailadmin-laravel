@@ -2,12 +2,6 @@ import {radiusSizeMixin} from "@/Mixins/radiusSizeMixin";
 import {bgColorStyles} from "@/Mixins/Styles/bgColorStyles";
 
 export const collapsibleStyleMixin = {
-    props: {
-        align: {
-            type: String,
-            default: 'left'
-        }
-    },
     mixins: [radiusSizeMixin,bgColorStyles],
     data(){
         return {

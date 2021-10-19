@@ -6,6 +6,7 @@
 @import "./components/badge.css";
 @import "./components/breadcrumb.css";
 @import "./components/button.css";
+@import "./components/collapsible.css";
 @import "./components/loading.css";
 
 /*Utilities*/
@@ -166,17 +167,6 @@
 /*Modal Footer Left Area*/
 .modal-footer-right {
     @apply inline-flex space-x-2 justify-end
-}
-
-/*Collapsible*/
-.collapsible {
-    @apply flex flex-col flex-grow-0 flex-shrink-0 self-start w-full border border-gray-400 overflow-hidden
-}
-.collapsible-item-container{
-    @apply flex flex-col flex-grow-0 flex-shrink-0 flex-wrap w-full overflow-hidden shadow-sm
-}
-.collapsible-item{
-    @apply flex w-full justify-between items-center p-4 font-bold cursor-pointer
 }
 
 /*Dropdown*/
