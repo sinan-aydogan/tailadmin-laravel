@@ -1,32 +1,22 @@
 <template>
     <button
         v-if="type === 'submit' || type === 'button'"
-        :class="[
-            'button',
-            border && 'border',
-            radiusStyle,
-            styleClass,
-            loading || loadingWithContent ? 'pointer-events-none' : '',
-            ]"
+        :class="styleClass ()"
         :onclick="!disabled ? 'window.location.href=\''+link+'\'' : ''"
         :type="type">
         <component :is="loadingComponent" v-if="loadingWithContent" :color="loadingColor ? loadingColor : color"/>
 
-        <div :class="{invisible: loading}" class="flex justify-center items-center whitespace-nowrap flex-shrink-0 gap-1 space-x-1">
-            <slot />
+        <div :class="{invisible: loading}"
+             class="flex justify-center items-center whitespace-nowrap flex-shrink-0 gap-1 space-x-1">
+            <slot/>
         </div>
-        <component :is="loadingComponent" v-if="loading" :color="loadingColor ? loadingColor : color" class="mx-auto absolute"/>
+        <component :is="loadingComponent" v-if="loading" :color="loadingColor ? loadingColor : color"
+                   class="mx-auto absolute"/>
     </button>
     <Link
         v-else
         :href="link"
-        :class="[
-            'button',
-            border && 'border',
-            radiusStyle,
-            styleClass,
-            loading || loadingWithContent ? 'pointer-events-none' : '',
-            ]"
+        :class="styleClass()"
     >
         <slot></slot>
     </Link>
@@ -34,15 +24,12 @@
 
 <script>
 import {defineComponent, defineAsyncComponent, toRefs, ref} from 'vue'
-import {radiusSizeMixin} from "@/Mixins/radiusSizeMixin";
-import {buttonStyleMixin} from "@/Mixins/Styles/buttonStyleMixin";
 import {Link} from '@inertiajs/inertia-vue3';
 import ThreeBars from "@/Components/Loading/Animations/ThreeBars";
 import ThreeDots from "@/Components/Loading/Animations/ThreeDots";
 
 export default defineComponent({
     name: "TButton",
-    mixins: [radiusSizeMixin],
     props: {
         size: {
             type: String,
@@ -55,6 +42,10 @@ export default defineComponent({
         color: {
             type: String,
             default: 'blue'
+        },
+        radius: {
+            type: Number,
+            default: 3
         },
         link: {
             type: String,
@@ -94,26 +85,46 @@ export default defineComponent({
         Link
     },
     setup(props) {
-        const {color, design, disabled, link, size, type, loadingColor,loadingDesign} = toRefs(props)
-        /*Design Check*/
-        const styleClass = ref()
-        styleClass.value =
-            'button-' + size.value +
-            ' button-' + design.value + '-base' +
-            ' button-' + design.value + '-' + color.value +
-            (disabled.value ? ' button-disabled' : '')
+        /*Definitions*/
+        const {
+            color,
+            design,
+            border,
+            radius,
+            disabled,
+            link,
+            size,
+            type,
+            loading,
+            loadingWithContent,
+            loadingColor,
+            loadingDesign
+        } = toRefs(props)
+
+        /*Generating Style Classes*/
+        const styleClass = () => {
+            return 'button' + ' ' +
+                'button-' + size.value + ' ' +
+                'button-' + design.value + '-base' + ' ' +
+                'button-' + design.value + '-' + color.value + ' ' +
+                'radius-' + radius.value + ' ' +
+                (disabled.value ? ' button-disabled' : '') + ' ' +
+                (border.value ? 'border' : '') + ' ' +
+                (loading.value || loadingWithContent.value ? 'pointer-events-none' : '')
+        }
+
 
         /*Loading Component*/
         const activeLoadingComponent = ref();
-        if(loadingDesign.value === 'three-bars'){
+        if (loadingDesign.value === 'three-bars') {
             activeLoadingComponent.value = 'ThreeBars'
-        }else {
+        } else {
             activeLoadingComponent.value = 'ThreeDots'
         }
 
-        const loadingComponent = defineAsyncComponent(()=>import(`@/Components/Loading/Animations/${activeLoadingComponent.value}.vue`))
+        const loadingComponent = defineAsyncComponent(() => import(`@/Components/Loading/Animations/${activeLoadingComponent.value}.vue`))
 
-        return {size, link, type, loadingColor, styleClass,loadingComponent}
+        return {size, link, type, loadingColor, styleClass, loadingComponent}
     }
 })
 </script>

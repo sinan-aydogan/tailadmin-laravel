@@ -1,5 +1,5 @@
 <template>
-    <app-layout>
+    <app-layout title="Badges">
         <template #header>
             Badges
         </template>

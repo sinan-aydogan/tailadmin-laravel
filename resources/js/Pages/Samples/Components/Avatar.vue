@@ -1,5 +1,5 @@
 <template>
-  <app-layout>
+  <app-layout title="Avatars">
     <template #header>Avatars</template>
     <template #subHeader>User avatars and team members avatar group</template>
     <template #default>

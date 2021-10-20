@@ -84,7 +84,7 @@
                         <!--Notification and Logout Buttons-->
                         <div class="action-section">
                             <!--Notifications-->
-                            <t-dropdown align="right">
+                            <t-dropdown align="right" trigger-type="rich">
                                 <template #trigger>
                                     <button class="trigger-button">
                                         <span
@@ -126,7 +126,9 @@
                         </div>
                         <!--User Menu-->
                         <t-dropdown
-                            align="right">
+                            align="right"
+                            trigger-type="rich"
+                        >
                             <template #trigger>
                                 <!--If The user has a avatar-->
                                 <button

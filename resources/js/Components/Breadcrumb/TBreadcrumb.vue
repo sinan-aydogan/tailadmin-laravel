@@ -2,19 +2,12 @@
     <div>
         <div
             v-if="design==='filled'"
-            :class="[
-            'breadcrumb',
-            styleClass,
-            position === 'right' && 'flex-row-reverse'
-            ]">
+            :class="filledStyle()">
             <div id="breadcrumb-filled-container">
                 <div
                     v-for="(item,index) in breadcrumbs"
                     :key="index"
-                    :class="[
-                    'breadcrumb-filled-item',
-                    item.active && 'breadcrumb-item-active '
-                    ]">
+                    :class="filledContainerStyle(item)">
                     <!--Icon-->
                     <div v-if="$slots[item.key]">
                         <slot :name="item.key" :props="item"/>
@@ -32,18 +25,12 @@
 
         <div
             v-if="design==='block'"
-            :class="[
-            'breadcrumb breadcrumb-block-base',
-            position === 'right' && 'flex-row-reverse'
-        ]">
-            <div id="breadcrumb-block-container" :class="styleClass">
+            :class="blockStyle()">
+            <div id="breadcrumb-block-container" :class="blockSubStyle()">
                 <div
                     v-for="(item,index) in breadcrumbs"
                     :key="index"
-                    :class="[
-              'breadcrumb-block-item',
-              item.active ? 'breadcrumb-item-active' : 'text-gray-700'
-              ]">
+                    :class="blockContainerStyle(item)">
                     <!--Icon-->
                     <div v-if="$slots[item.key]">
                         <slot :name="item.key" :props="item"/>
@@ -87,19 +74,59 @@ export default defineComponent({
     },
     components: {TChevronRightIcon},
     setup(props, {slots}) {
+        /*Definitions*/
         const {breadcrumbs, design, color, position} = toRefs(props)
 
-        /*Design Check*/
-        const styleClass = ref()
-        if (design.value === 'filled') {
-            styleClass.value = 'breadcrumb-' + design.value + '-' + color.value + ' breadcrumb-' + design.value + '-base'
-        } else if (design.value === 'block') {
-            styleClass.value = 'breadcrumb-block-' + color.value
+        /*Generating Style Classes*/
+        const styleClass = () => {
+            let style;
+            if (design.value === 'filled') {
+                style = 'breadcrumb-' + design.value + '-' + color.value + ' breadcrumb-' + design.value + '-base'
+            } else if (design.value === 'block') {
+                style = 'breadcrumb-block-' + color.value
+            }
+
+            return style
+        }
+        const filledStyle = () => {
+            return 'breadcrumb' + ' ' +
+                'breadcrumb-' + design.value + '-' + color.value + ' '+
+                'breadcrumb-' + design.value + '-base' + ' ' +
+                (position.value === 'right' ? 'flex-row-reverse' : '')
+        }
+        const filledContainerStyle = (item) => {
+            return 'breadcrumb-filled-item' + ' ' +
+                (item.active ? 'breadcrumb-item-active' : '')
+        }
+        const blockStyle = () => {
+            return 'breadcrumb' + ' ' +
+                'breadcrumb-' + design.value + '-base' + ' ' +
+                (position.value === 'right' ? 'flex-row-reverse' : '')
+        }
+        const blockSubStyle = () => {
+            return 'breadcrumb-' + design.value + '-' + color.value + ' '
+        }
+        const blockContainerStyle = (item) => {
+            return 'breadcrumb-block-item'+ ' ' +
+                (item.active ? 'breadcrumb-item-active' : 'text-gray-700')
         }
 
+        /*Slot Check*/
         const hasSlot = name => !!slots[name]
 
-        return {breadcrumbs, design, color, position, hasSlot, styleClass}
+        return {
+            breadcrumbs,
+            design,
+            color,
+            position,
+            hasSlot,
+            styleClass,
+            filledContainerStyle,
+            filledStyle,
+            blockStyle,
+            blockSubStyle,
+            blockContainerStyle
+        }
     }
 })
 </script>

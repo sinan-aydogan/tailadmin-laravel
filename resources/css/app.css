@@ -7,7 +7,10 @@
 @import "./components/breadcrumb.css";
 @import "./components/button.css";
 @import "./components/collapsible.css";
+@import "./components/dropdown.css";
 @import "./components/loading.css";
+@import "./components/radius.css";
+
 
 /*Utilities*/
 @import 'tailwindcss/utilities';
@@ -167,15 +170,6 @@
 /*Modal Footer Left Area*/
 .modal-footer-right {
     @apply inline-flex space-x-2 justify-end
-}
-
-/*Dropdown*/
-.dropdown{
-    @apply relative flex flex-row justify-between border whitespace-nowrap font-semibold p-2 items-center gap-2 cursor-pointer
-}
-/*Dropdown Child*/
-.dropdown-content{
-    @apply flex flex-col whitespace-normal z-10 absolute border rounded-md mt-1 overflow-hidden bg-white
 }
 
 /*Form Input*/

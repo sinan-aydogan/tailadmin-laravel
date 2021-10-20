@@ -1,0 +1,58 @@
+/*TODO:Apply all of them*/
+.radius-0{
+    @apply rounded-none
+}
+.radius-1{
+    @apply rounded-sm
+}
+.radius-2{
+    @apply rounded
+}
+.radius-3{
+    @apply rounded-md
+}
+.radius-4{
+    @apply rounded-lg
+}
+.radius-5{
+    @apply rounded-xl
+}
+.radius-6{
+    @apply rounded-2xl
+}
+.radius-7{
+    @apply rounded-3xl
+}
+.radius-8{
+    @apply rounded-full
+}
+
+/*<editor-fold desc="Group Radius">*/
+.group-radius-0{
+    @apply rounded-none
+}
+.group-radius-1{
+    @apply first:rounded-t-sm last:rounded-b-sm
+}
+.group-radius-2{
+    @apply first:rounded-t last:rounded-b
+}
+.group-radius-3{
+    @apply first:rounded-t-md last:rounded-b-md
+}
+.group-radius-4{
+    @apply first:rounded-t-lg last:rounded-b-lg
+}
+.group-radius-5{
+    @apply first:rounded-t-xl last:rounded-b-xl
+}
+.group-radius-6{
+    @apply first:rounded-t-2xl last:rounded-b-2xl
+}
+.group-radius-7{
+    @apply first:rounded-t-3xl last:rounded-b-3xl
+}
+.group-radius-8{
+    @apply first:rounded-t-full last:rounded-b-full
+}
+/*</editor-fold>*/

@@ -1,48 +1,41 @@
 <template>
-    <div v-click-outside="outside" class="relative max-w-min select-none">
+    <div class="dropdown" ref="dropDownItem">
 
-        <!--Trigger as a Title-->
+        <!--Trigger as a Simple Trigger-->
         <div
-            v-if="$slots.title"
-            :class="[
-            'dropdown',
-            calculatedTriggerStyle
-            ]"
-            @click="showContent = !showContent"
+            v-if="triggerType === 'button'"
+            :class="buttonTriggerStyle()"
+            @click="updateStatus"
         >
-            <slot name="title"/>
-            <t-chevron-down-icon
-                :class="[
-                'w-5 h-5 transform duration-300',
-                showContent ? 'rotate-90' : 'rotate-0'
-                ]"
-            />
+            <t-button type="button" :color="buttonColor" :design="buttonDesign" :size="buttonSize">
+                <slot name="trigger"/>
+                <t-chevron-down-icon :class="triggerIconStyle()"/>
+            </t-button>
+
         </div>
 
         <!--Trigger as a Rich Item-->
         <div
-            class="cursor-pointer"
-            v-if="$slots.trigger"
-            @click="showContent = !showContent"
+            class="dropdown-rich-trigger"
+            v-if="triggerType === 'rich'"
+            @click="updateStatus"
         >
             <slot name="trigger"/>
         </div>
 
         <!--Content-->
-        <transition name="drop-down">
-            <div>
+        <transition name="dropDown">
+            <div v-if="isVisible" class="dropdown-content-container">
+                <!--Button Trigger Content-->
                 <div
-                    v-if="showContent && $slots.title"
-                    :class="['dropdown-content',
-          calculatedContentStyle
-          ]">
-                    <slot></slot>
+                    v-if="triggerType === 'button'"
+                    :class="buttonTriggerContentStyle()">
+                    <slot/>
                 </div>
+                <!--Rich Trigger Content-->
                 <div
-                    v-if="showContent && $slots.trigger"
-                    :class="['absolute flex flex-col whitespace-normal z-10',
-          calculatedContentStyle
-          ]"
+                    v-if="triggerType === 'rich'"
+                    :class="richTriggerContentStyle()"
                 >
                     <slot/>
                 </div>
@@ -52,74 +45,113 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue'
-import {dropdownStyleMixin} from "@/Mixins/Styles/dropdownStyleMixin";
+import {defineComponent, provide, ref, toRefs} from 'vue';
+import {onClickOutside} from '@vueuse/core';
 import TChevronDownIcon from "@/Components/Icon/TChevronDownIcon";
+import TButton from "@/Components/Button/TButton";
 
 export default defineComponent({
     name: "TDropdown",
-    components: {TChevronDownIcon},
-    mixins: [dropdownStyleMixin],
-    directives: {
-        'click-outside': {
-            bind: function (el, binding, vNode) {
-                // Provided expression must evaluate to a function.
-                if (typeof binding.value !== 'function') {
-                    const compName = vNode.context.name
-                    let warn = `[Vue-click-outside:] provided expression '${binding.expression}' is not a function, but has to be`
-                    if (compName) {
-                        warn += `Found in component '${compName}'`
-                    }
-
-                    console.warn(warn)
-                }
-                // Define Handler and cache it on the element
-                const bubble = binding.modifiers.bubble
-                const handler = (e) => {
-                    if (bubble || (!el.contains(e.target) && el !== e.target)) {
-                        binding.value(e)
-                    }
-                }
-                el.__vueClickOutside__ = handler
-
-                // add Event Listeners
-                document.addEventListener('click', handler)
-            },
-
-            unbind: function (el) {
-                // Remove Event Listeners
-                document.removeEventListener('click', el.__vueClickOutside__)
-                el.__vueClickOutside__ = null
-
-            }
+    components: {TButton, TChevronDownIcon},
+    props: {
+        align: {
+            type: String,
+            default: 'left'
+        },
+        buttonColor: {
+            type: String,
+            default: 'blue'
+        },
+        buttonDesign: {
+            type: String,
+            default: 'filled'
+        },
+        buttonSize: {
+            type: String,
+            default: 'normal'
+        },
+        size: {
+            type: String,
+            default: 'wide'
+        },
+        triggerType: {
+            type: String,
+            default: 'button'
+        },
+        radius: {
+            type: Number,
+            default: 3
         }
     },
-    data() {
+    setup(props) {
+        /*Definitions*/
+        const {align, size, radius, triggerType} = toRefs(props)
+        const isVisible = ref(false)
+        const dropDownItem = ref(null)
+
+        /*Provides*/
+        provide('triggerType', ref(triggerType))
+
+        /*Open-Close Actions*/
+        const updateStatus = () => {
+            isVisible.value = !isVisible.value
+        }
+        onClickOutside(dropDownItem, (event) => isVisible.value = false)
+
+        /*Generating Style Classes*/
+
+        const buttonTriggerStyle = () => {
+            return 'dropdown-button-trigger' + ' ' +
+                'radius-' + radius.value
+        }
+        const contentStyle = () => {
+            return 'dropdown-content-' + align.value + ' ' +
+                'dropdown-content-' + size.value
+        }
+        const buttonTriggerContentStyle = () => {
+            return 'dropdown-button-trigger-content' + ' ' +
+                contentStyle()
+        }
+        const richTriggerContentStyle = () => {
+            return 'dropdown-rich-trigger-content' + ' ' +
+                contentStyle()
+        }
+        const triggerIconStyle = () => {
+            return 'dropdown-trigger-icon ' +
+                (isVisible.value ? 'rotate-90' : 'rotate-0')
+        }
+
+        /*Slot Check*/
+        const hasSlot = name => !!slots[name]
+
         return {
-            showContent: false,
+            isVisible,
+            updateStatus,
+            hasSlot,
+            dropDownItem,
+            triggerIconStyle,
+            buttonTriggerStyle,
+            buttonTriggerContentStyle,
+            richTriggerContentStyle
         }
     },
-    methods: {
-        outside() {
-            this.showContent = false
-        }
-    }
 })
 </script>
 
 <style scoped>
 /*TODO: Leave 75*/
-.drop-down-enter-active, .drop-down-leave active {
-    transition: all ease-in-out .2s;
+.dropDown-enter-active, .dropDown-leave-active {
+    transition: all ease-in-out 300ms;
+    z-index: 9999;
 }
 
-.drop-down-enter, .drop-down-leave-to {
-    transform: scale(.9);
+.dropDown-enter-from, .dropDown-leave-to {
+    transform: scaleY(.75) scaleX(.75);
     opacity: 0;
 }
 
-.drop-down-leave, drop-down-enter-to {
-    transform: scale(1);
+.dropDown-enter-to, .dropDown-leave-from {
+    transform: scaleY(1) scaleX(1);
     opacity: 1;
 }
 </style>

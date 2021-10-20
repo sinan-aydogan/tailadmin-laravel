@@ -1,5 +1,5 @@
 <template>
-    <app-layout>
+    <app-layout title="Buttons">
         <template #header>Buttons</template>
         <template #subHeader>For all use (1.296 variations)</template>
         <template #default>
