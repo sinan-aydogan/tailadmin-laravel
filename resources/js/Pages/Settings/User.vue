@@ -5,7 +5,7 @@
         <initial-vertical-menu :menu="menuList"/>
         <t-table :content="users" :header="headers" class="mt-4" :searchable="['name']">
             <template #id="{props}">
-                <t-dropdown align="right" size="fit">
+                <t-dropdown align="right" size="fit" trigger-type="rich">
                     <template #trigger>
                         <t-dots-vertical-icon class="w-6 h-6 cursor-pointer"/>
                     </template>

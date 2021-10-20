@@ -97,7 +97,7 @@
                             :separated="true"
                         >
                             <t-collapsible-item
-                                @active="collapsibleActive = $event"
+                                @active="collapsibleActive2 = $event"
                                 item-key="TailAdmin"
                                 color="red"
                             >
@@ -111,7 +111,7 @@
                                 </template>
                             </t-collapsible-item>
                             <t-collapsible-item
-                                @active="collapsibleActive = $event"
+                                @active="collapsibleActive2 = $event"
                                 item-key="LaraQuality"
                                 color="blue"
                             >
@@ -128,7 +128,7 @@
                                 </template>
                             </t-collapsible-item>
                             <t-collapsible-item
-                                @active="collapsibleActive = $event"
+                                @active="collapsibleActive2 = $event"
                                 item-key="LaraCoin"
                                 color="indigo"
                             >
@@ -154,7 +154,7 @@
                             Hover + Separated + Cross + Accordion
                         </template>
                         <t-collapsible
-                            v-model="collapsibleActive2"
+                            v-model="collapsibleActive3"
                             :accordion="true"
                             opening-type="hover"
                             trigger-type="cross"
@@ -163,7 +163,7 @@
                             :separated="false"
                         >
                             <t-collapsible-item
-                                @active="collapsibleActive = $event"
+                                @active="collapsibleActive3 = $event"
                                 item-key="TailAdmin"
                                 color="red"
                             >
@@ -177,7 +177,7 @@
                                 </template>
                             </t-collapsible-item>
                             <t-collapsible-item
-                                @active="collapsibleActive = $event"
+                                @active="collapsibleActive3 = $event"
                                 item-key="LaraQuality"
                                 color="blue"
                             >
@@ -194,7 +194,7 @@
                                 </template>
                             </t-collapsible-item>
                             <t-collapsible-item
-                                @active="collapsibleActive = $event"
+                                @active="collapsibleActive3 = $event"
                                 item-key="LaraCoin"
                                 color="indigo"
                             >
