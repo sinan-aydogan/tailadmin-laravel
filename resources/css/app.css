@@ -9,6 +9,8 @@
 @import "./components/collapsible.css";
 @import "./components/dropdown.css";
 @import "./components/loading.css";
+@import "./components/radius.css";
+
 
 /*Utilities*/
 @import 'tailwindcss/utilities';
