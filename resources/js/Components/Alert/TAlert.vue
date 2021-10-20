@@ -3,11 +3,7 @@
         <!--Alert Container-->
         <div
             v-if="showAlertBox"
-            :class="[
-                'alert',
-                radiusStyle,
-                styleClass
-                ]"
+            :class="styleClass()"
         >
             <!--Inline Line-->
             <div v-if="design.includes('line')"
@@ -53,34 +49,31 @@
 </template>
 
 <script>
-import {defineComponent, ref} from 'vue'
-import {radiusSizeMixin} from "@/Mixins/radiusSizeMixin";
+import {defineComponent, ref, toRefs} from 'vue'
 import TXCircleIcon from "@/Components/Icon/TXCircleIcon";
 
 export default defineComponent({
     name: "TAlert",
     components: {TXCircleIcon},
-    mixins: [radiusSizeMixin],
     props: {
         id: {
             type: String
         },
         closeable: {
             type: Boolean,
-            required: false,
             default: false
         },
         timer: {
             type: Number,
             required: false
         },
-        type: {
-            type: String,
-            default: null
-        },
         title: {
             type: String,
             default: null
+        },
+        radius: {
+            type: Number,
+            default: 3
         },
         design: {
             type: String,
@@ -89,40 +82,42 @@ export default defineComponent({
         color: {
             type: String,
             default: 'white'
-        },
-        gradientDirection: {
-            type: String,
-            default: 'r'
         }
     },
     setup(props, {slots, emit}) {
+        /*Definitions*/
+        const {design, color, radius, timer, id} = toRefs(props)
         const showAlertBox = ref(true)
-        /*Design Check*/
-        const design = props.design
-        const color = props.color
-        const styleClass = 'alert-' + design + '-' + color + ' alert-' + design + '-base'
+
+        /*Generating Style Classes*/
+        const styleClass = () => {
+            return  'alert ' +
+                'alert-' + design.value + '-' + color.value + ' '+
+                'alert-' + design.value + '-base' + ' '+
+                'radius-'+radius.value
+        }
 
         /*Close Function*/
         const close = () => {
             showAlertBox.value = false;
-            emit('destroy', props.id)
+            emit('destroy', id.value)
         }
 
         /*Timer*/
         const timerCounter = ref(0)
         const countDownCounter = ref(0)
 
-        if (props.timer) {
+        if (timer.value) {
             /*Timer Function*/
             let timerFn = setTimeout(() => {
                 showAlertBox.value = false;
-                emit('destroy', props.id)
-            }, props.timer)
+                emit('destroy', id.value)
+            }, timer.value)
 
             /*Count Down Function*/
             let countDownFn = setInterval(() => {
-                if (props.timer >= timerCounter.value) {
-                    countDownCounter.value = 100 - (timerCounter.value / props.timer) * 100
+                if (timer.value >= timerCounter.value) {
+                    countDownCounter.value = 100 - (timerCounter.value / timer.value) * 100
                     timerCounter.value += 4
                 } else {
                     clearInterval(countDownFn)

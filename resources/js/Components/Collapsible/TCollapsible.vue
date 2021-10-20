@@ -1,14 +1,11 @@
 <template>
-    <div
-        :class="styleClass()"
-    >
+    <div :class="styleClass()">
         <slot></slot>
     </div>
 </template>
 
 <script>
-import {defineComponent, inject, provide, ref, toRef, toRefs} from 'vue'
-
+import {defineComponent, provide, ref, toRefs} from 'vue'
 
 export default defineComponent({
     name: "Collapsible",
@@ -21,7 +18,7 @@ export default defineComponent({
             type: Number,
             default: 3
         },
-        accordion:{
+        accordion: {
             type: Boolean,
             default: false
         },
@@ -55,7 +52,6 @@ export default defineComponent({
         const {
             openingType,
             modelValue,
-            border,
             triggerType,
             separated,
             radius,
@@ -65,37 +61,26 @@ export default defineComponent({
             triggerAlign,
             accordion
         } = toRefs(props)
-        const radiusSizes = {
-            1: 'first:rounded-t-sm last:rounded-b-sm',
-            2: 'first:rounded-t last:rounded-b',
-            3: 'first:rounded-t-md last:rounded-b-md',
-            4: 'first:rounded-t-lg last:rounded-b-lg',
-            5: 'first:rounded-t-xl last:rounded-b-xl',
-            6: 'first:rounded-t-2xl last:rounded-b-2xl',
-            7: 'first:rounded-t-3xl last:rounded-b-3xl',
-            8: 'first:rounded-t-full last:rounded-b-full'
-        }
 
         /*Provide*/
-        provide('openingType', ref(openingType.value))
+        provide('openingType', ref(openingType))
         provide('activeItems', ref(modelValue.value))
-        provide('radius', ref(radius.value))
-        provide('accordion', ref(accordion.value))
-        provide('separated', ref(separated.value))
-        provide('rootColor', ref(color.value))
-        provide('rootDesign', ref(design.value))
-        provide('rootTitleAlign', ref(titleAlign.value))
-        provide('rootTriggerAlign', ref(triggerAlign.value))
-        provide('rootTriggerType', ref(triggerType.value))
+        provide('radius', ref(radius))
+        provide('accordion', ref(accordion))
+        provide('separated', ref(separated))
+        provide('rootColor', ref(color))
+        provide('rootDesign', ref(design))
+        provide('rootTitleAlign', ref(titleAlign))
+        provide('rootTriggerAlign', ref(triggerAlign))
+        provide('rootTriggerType', ref(triggerType))
 
         /*Generating Style Classes*/
         const styleClass = () => {
-
-            return 'collapsible ' +
-                (separated.value ? 'space-y-2' : radiusSizes[radius.value])
+            return 'collapsible' + ' ' +
+                (separated.value ? 'space-y-2' : 'group-radius-' + radius.value)
         }
 
-        return {modelValue, styleClass}
+        return {styleClass}
     }
 })
 </script>

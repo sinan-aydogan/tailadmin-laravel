@@ -4,7 +4,6 @@
             'badge',
             (collapsible || (selectable && !selectIndicator)) && 'cursor-pointer',
             selectable && !modelValue && !selectActiveStyle && 'filter grayscale opacity-50',
-            radiusStyle,
             styleClass()
         ]"
         @click.stop="collapsible && toggle(); (selectable && !selectIndicator) && select()"
@@ -74,14 +73,12 @@
 
 <script>
 import {defineComponent, ref, toRefs} from 'vue'
-import {radiusSizeMixin} from "@/Mixins/radiusSizeMixin";
 import TPlusIcon from "@/Components/Icon/TPlusIcon";
 import TXCircleIcon from "@/Components/Icon/TXCircleIcon";
 
 export default defineComponent({
     name: "TBadge",
     components: {TXCircleIcon, TPlusIcon},
-    mixins: [radiusSizeMixin],
     props: {
         design: {
             type: String,
@@ -90,6 +87,10 @@ export default defineComponent({
         color: {
             type: String,
             default: 'white'
+        },
+        radius: {
+            type: Number,
+            default: 3
         },
         selectable: {
             type: Boolean,
@@ -119,26 +120,26 @@ export default defineComponent({
         }
     },
     setup(props, {emit}) {
-        const {design, color, selectable, selectActiveStyle, selectPassiveStyle} = toRefs(props)
+        /*Definitions*/
+        const {design, color, radius,selectable, selectActiveStyle, selectPassiveStyle, modelValue} = toRefs(props)
+        const showContent = ref(false)
+        const value = ref(modelValue.value)
+        const activeColor = ref();
+        const activeDesign = ref();
 
         /*Select*/
-        const value = ref(props.modelValue)
         const select = () => {
             value.value = !value.value
             emit('update:modelValue', value.value)
         }
 
         /*Toggle*/
-        const showContent = ref(false)
         const toggle = () => {
             showContent.value = !showContent.value
         }
 
-        /*Design Check*/
+        /*Generating Style Classes*/
         const styleClass = () => {
-            const activeColor = ref();
-            const activeDesign = ref();
-
             if(selectable.value){
                 /*Select Style Check*/
                 if(selectActiveStyle.value && !selectPassiveStyle.value){
@@ -159,9 +160,12 @@ export default defineComponent({
                 activeDesign.value = design.value;
             }
 
-            return 'badge-' + activeDesign.value + '-' + activeColor.value + ' badge-' + activeDesign.value + '-base'
+            return 'badge-' + activeDesign.value + '-' + activeColor.value + ' ' +
+                'badge-' + activeDesign.value + '-base'+ ' ' +
+                'radius-' + radius.value
         }
 
+        /*Slot Check*/
         const hasSlot = name => !!slots[name]
 
         return {hasSlot, showContent, toggle, select, styleClass}

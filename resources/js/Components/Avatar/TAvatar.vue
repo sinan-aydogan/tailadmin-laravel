@@ -3,19 +3,19 @@
     <div :class="[
         'avatar-container',
         isAvatarGroup && 'avatar-container-group',
-        sizeStyleClass
+        sizeStyle()
         ]">
         <Link v-if="link" :href="link">
-        <img :class="[
-            radiusStyle,
-            sizeStyleClass,
+            <img :class="[
+            radiusStyle(),
+            sizeStyle(),
             isAvatarGroup ? 'avatar-group-image' : ''
             ]"
-             :src="avatarURL"/>
+                 :src="avatarURL"/>
         </Link>
         <img v-else :class="[
-            radiusStyle,
-            sizeStyleClass,
+            radiusStyle(),
+            sizeStyle(),
             isAvatarGroup ? 'avatar-group-image' : ''
             ]"
              :src="avatarURL"/>
@@ -24,7 +24,7 @@
             :class="[
                 'avatar-indicator',
                 size<7 ? 'text-2xs' : 'text-normal',
-                indicatorStyleClass
+                indicatorStyle()
                 ]">
             <div v-text="size>3 ? indicator.label : null"/>
         </div>
@@ -32,13 +32,11 @@
 </template>
 
 <script>
-import { defineComponent,getCurrentInstance,ref } from 'vue'
-import {radiusSizeMixin} from "@/Mixins/radiusSizeMixin";
+import {defineComponent, getCurrentInstance, ref, toRefs} from 'vue'
 import {Link} from '@inertiajs/inertia-vue3';
 
 export default defineComponent({
     name: "TAvatar",
-    mixins: [radiusSizeMixin],
     props: {
         src: {
             type: String,
@@ -53,6 +51,10 @@ export default defineComponent({
             require: false,
             default: 3
         },
+        radius: {
+            type: Number,
+            default: 3
+        },
         indicator: {
             type: Object,
             require: false,
@@ -61,27 +63,33 @@ export default defineComponent({
     components: {
         Link
     },
-    setup(props){
-        /*Size Check*/
-        const size = props.size;
-        const indicator = props.indicator;
+    setup(props) {
+        /*Definitions*/
+        const {size, indicator, src, radius} = toRefs(props)
 
-        const sizeStyleClass = 'avatar-size-' + size;
-        const indicatorStyleClass = indicator ? (' avatar-indicator-position-' + indicator.position  + ' avatar-indicator-'+ indicator.color) : '';
+        /*Generating Style Classes*/
+        const sizeStyle = () => {
+            return 'avatar-size-' + size.value;
+        }
+        const indicatorStyle = () => {
+            return indicator.value ? (' avatar-indicator-position-' + indicator.value.position + ' avatar-indicator-' + indicator.value.color) : '';
+        }
+        const radiusStyle = () => {
+            return 'radius-'+radius.value
+        }
 
         /*Is Avatar Group*/
         const isAvatarGroup = getCurrentInstance().parent.type.name === 'TAvatarGroup';
 
         /*Avatar Url Generator*/
-
         const avatarURL = ref();
-        if (!props.src) {
+        if (!src.value) {
             avatarURL.value = '/img/samples/dummyAvatar.svg'
         } else {
-            avatarURL.value = props.src
+            avatarURL.value = src.value
         }
 
-        return {isAvatarGroup,avatarURL,sizeStyleClass,indicatorStyleClass}
+        return {isAvatarGroup, avatarURL, sizeStyle, indicatorStyle, radiusStyle}
     }
 });
 </script>

@@ -1,6 +1,6 @@
 <template>
     <div :class="[
-        styleClass.container(),
+        containerStyle(),
         activeDesign.includes('line') ? 'justfiy-between' : 'flex-col'
         ]">
         <!--Inline Line-->
@@ -11,24 +11,24 @@
         <div class="w-full">
             <!--Header-->
             <div
-                :class="styleClass.header()"
+                :class="headerStyle()"
                 @click="updateStatus"
                 @mouseenter.passive="openingType.includes('hover') ? updateStatus('open') :''"
             >
                 <!--Title-->
-                <div :class="styleClass.title()">
+                <div :class="titleStyle()">
                     <slot name="title"/>
                 </div>
                 <!--DropDown Icons-->
                 <component
                     :is="activeTriggerType==='chevron' ? 'TChevronIcon' : 'TCrossIcon'"
-                    :class="styleClass.trigger()"
+                    :class="triggerStyle()"
                 />
             </div>
             <!--Content-->
             <transition name="content">
                 <div v-show="isVisibleContent()">
-                    <div :class="styleClass.content()" >
+                    <div :class="contentStyle()" >
                         <slot name="content"></slot>
                     </div>
                 </div>
@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import {defineComponent, ref, inject, toRefs, reactive, onMounted, onUpdated} from 'vue'
+import {defineComponent, ref, inject, toRefs, reactive} from 'vue'
 import {uniqueId} from "lodash";
 import TChevronIcon from "@/Components/Icon/TChevronDownIcon";
 import TCrossIcon from "@/Components/Icon/TXIcon";
@@ -67,34 +67,23 @@ export default defineComponent({
         color: {
             type: String,
             default: 'white'
-        },
+        }
     },
     setup(props, {emit}) {
         /*Definitions*/
         const {itemKey, titleAlign, triggerAlign, design, color} = toRefs(props)
-        const styleClass = reactive({})
-        const radiusSizes = {
-            1: 'rounded-sm',
-            2: 'rounded',
-            3: 'rounded-md',
-            4: 'rounded-lg',
-            5: 'rounded-xl',
-            6: 'rounded-2xl',
-            7: 'rounded-3xl',
-            8: 'rounded-full'
-        }
 
         /*Injections*/
-        const activeItems = ref(inject('activeItems'))
-        const openingType = ref(inject('openingType'))
-        const accordion = ref(inject('accordion'))
-        const radius = ref(inject('radius'))
-        const separated = ref(inject('separated'))
-        const rootColor = ref(inject('rootColor'))
-        const rootDesign = ref(inject('rootDesign'))
-        const rootTitleAlign = ref(inject('rootTitleAlign'))
-        const rootTriggerAlign = ref(inject('rootTriggerAlign'))
-        const rootTriggerType = ref(inject('rootTriggerType'))
+        const activeItems = inject('activeItems')
+        const openingType = inject('openingType')
+        const accordion = inject('accordion')
+        const radius = inject('radius')
+        const separated = inject('separated')
+        const rootColor = inject('rootColor')
+        const rootDesign = inject('rootDesign')
+        const rootTitleAlign = inject('rootTitleAlign')
+        const rootTriggerAlign = inject('rootTriggerAlign')
+        const rootTriggerType = inject('rootTriggerType')
 
         /*Taken Over Definitions from Root */
         const activeColor = ref(rootColor.value ? rootColor.value : color.value)
@@ -146,13 +135,13 @@ export default defineComponent({
         }
 
         /*Generating Style Classes*/
-        styleClass.container = () => {
+        const containerStyle = () => {
             return 'collapsible-container ' +
                 'collapsible-' + activeDesign.value + '-base ' +
                 'collapsible-' + activeDesign.value + '-' + activeColor.value + ' ' +
-                (separated.value ? radiusSizes[radius.value] + ' border-0' : '')
+                (separated.value ? 'radius-' + radius.value + ' border-0' : '')
         }
-        styleClass.header = () => {
+        const headerStyle = () => {
             let triggerAlignStyle;
             /*Trigger Position*/
             if (activeTriggerAlign.value === 'left') {
@@ -164,7 +153,7 @@ export default defineComponent({
             return 'collapsible-header ' +
                 triggerAlignStyle
         }
-        styleClass.trigger = () => {
+        const triggerStyle = () => {
             let triggerAnimationStyle;
             if (isVisibleContent() && activeTriggerType.value === 'chevron' || activeTriggerType.value === 'cross') {
                 triggerAnimationStyle = 'rotate-0'
@@ -185,7 +174,7 @@ export default defineComponent({
             return 'collapsible-trigger-icon ' +
                 triggerAnimationStyle
         }
-        styleClass.title = () => {
+        const titleStyle = () => {
             let titleAlignStyle;
             if (activeTitleAlign.value === 'left') {
                 titleAlignStyle = 'text-left';
@@ -197,11 +186,11 @@ export default defineComponent({
 
             return 'collapsible-title ' + titleAlignStyle
         }
-        styleClass.content = () => {
+        const contentStyle = () => {
             return 'collapsible-content '
         }
 
-        return {isVisibleContent, openingType, updateStatus, styleClass, activeTriggerType,activeDesign}
+        return {isVisibleContent, openingType, updateStatus, contentStyle, containerStyle, titleStyle, triggerStyle,headerStyle, activeTriggerType,activeDesign}
     }
 })
 </script>
