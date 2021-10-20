@@ -1,5 +1,5 @@
 <template>
-    <app-layout>
+    <app-layout title="Breadcrumb">
         <template #header>Breadcrumb</template>
         <template #subHeader>2 Different breadcrumbs style</template>
         <template #default>
