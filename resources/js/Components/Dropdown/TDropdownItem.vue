@@ -5,8 +5,7 @@
             v-if="link"
             class="flex flex-row items-center justify-start"
         >
-
-            <div v-if="$slots.icon" class="flex justify-center items-center w-5 h-5 mr-1">
+            <div v-if="$slots['icon']" class="flex justify-center items-center w-5 h-5 mr-1">
                 <slot name="icon"></slot>
             </div>
             <div class="flex">
@@ -19,7 +18,7 @@
 </template>
 
 <script>
-import {defineComponent} from 'vue'
+import {defineComponent, inject} from 'vue'
 import {Link} from '@inertiajs/inertia-vue3';
 
 export default defineComponent({
@@ -31,6 +30,15 @@ export default defineComponent({
         link: {
             type: String
         }
+    },
+    setup(props){
+        /*Definitions*/
+        const triggerType = inject('triggerType')
+
+        /*Slot Check*/
+        const hasSlot = name => !!slots[name]
+
+        return {hasSlot, triggerType}
     }
 })
 </script>
