@@ -1,4 +1,7 @@
 /*TODO:Apply all of them*/
+.radius-0{
+    @apply rounded-none
+}
 .radius-1{
     @apply rounded-sm
 }
@@ -25,6 +28,9 @@
 }
 
 /*<editor-fold desc="Group Radius">*/
+.group-radius-0{
+    @apply rounded-none
+}
 .group-radius-1{
     @apply first:rounded-t-sm last:rounded-b-sm
 }
