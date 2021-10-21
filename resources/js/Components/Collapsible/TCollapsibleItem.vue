@@ -1,12 +1,12 @@
 <template>
     <div :class="[
         containerStyle(),
-        activeDesign.includes('line') ? 'justfiy-between' : 'flex-col'
+        activeDesign().includes('line') ? 'justify-between' : 'flex-col'
         ]">
         <!--Inline Line-->
-        <div v-if="activeDesign.includes('line')"
+        <div v-if="activeDesign().includes('line')"
              id="line"
-             :class="[activeDesign === 'inline' ? 'collapsible-inline-line' : 'collapsible-outline-line']"
+             :class="[activeDesign() === 'inline' ? 'collapsible-inline-line' : 'collapsible-outline-line']"
         />
         <div class="w-full">
             <!--Header-->
@@ -21,7 +21,7 @@
                 </div>
                 <!--DropDown Icons-->
                 <component
-                    :is="activeTriggerType==='chevron' ? 'TChevronIcon' : 'TCrossIcon'"
+                    :is="activeTriggerType()==='chevron' ? 'TChevronIcon' : 'TCrossIcon'"
                     :class="triggerStyle()"
                 />
             </div>
@@ -60,6 +60,10 @@ export default defineComponent({
             type: String,
             default: 'right'
         },
+        triggerType: {
+            type: String,
+            require: false
+        },
         design: {
             type: String,
             default: 'filled'
@@ -86,11 +90,21 @@ export default defineComponent({
         const rootTriggerType = inject('rootTriggerType')
 
         /*Taken Over Definitions from Root */
-        const activeColor = ref(rootColor.value ? rootColor.value : color.value)
-        const activeDesign = ref(rootDesign.value ? rootDesign.value : design.value)
-        const activeTitleAlign = ref(rootTitleAlign.value ? rootTitleAlign.value : titleAlign.value)
-        const activeTriggerAlign = ref(rootTriggerAlign.value ? rootTriggerAlign.value : triggerAlign.value)
-        const activeTriggerType = ref(rootTriggerType.value ? rootTriggerType.value : triggerType.value)
+        const activeColor = () => {
+            return rootColor.value ? rootColor.value : color.value
+        }
+        const activeDesign = () => {
+            return rootDesign.value ? rootDesign.value : design.value
+        }
+        const activeTitleAlign = () => {
+            return rootTitleAlign.value ? rootTitleAlign.value : titleAlign.value
+        }
+        const activeTriggerAlign = () => {
+            return rootTriggerAlign.value ? rootTriggerAlign.value : triggerAlign.value
+        }
+        const activeTriggerType = () => {
+            return rootTriggerType.value ? rootTriggerType.value : triggerType.value
+        }
 
         /*Detection of Active Items*/
         const isVisibleContent = () => {
@@ -137,14 +151,14 @@ export default defineComponent({
         /*Generating Style Classes*/
         const containerStyle = () => {
             return 'collapsible-container ' +
-                'collapsible-' + activeDesign.value + '-base ' +
-                'collapsible-' + activeDesign.value + '-' + activeColor.value + ' ' +
+                'collapsible-' + activeDesign() + '-base ' +
+                'collapsible-' + activeDesign() + '-' + activeColor() + ' ' +
                 (separated.value ? 'radius-' + radius.value + ' border-0' : '')
         }
         const headerStyle = () => {
             let triggerAlignStyle;
             /*Trigger Position*/
-            if (activeTriggerAlign.value === 'left') {
+            if (activeTriggerAlign() === 'left') {
                 triggerAlignStyle = 'flex-row-reverse';
             } else {
                 triggerAlignStyle = 'justify-start';
@@ -155,19 +169,19 @@ export default defineComponent({
         }
         const triggerStyle = () => {
             let triggerAnimationStyle;
-            if (isVisibleContent() && activeTriggerType.value === 'chevron' || activeTriggerType.value === 'cross') {
+            if (isVisibleContent() && activeTriggerType() === 'chevron' || activeTriggerType() === 'cross') {
                 triggerAnimationStyle = 'rotate-0'
             }
 
-            if (!isVisibleContent() && activeTriggerType.value === 'chevron') {
-                if (activeTriggerAlign.value === 'right') {
+            if (!isVisibleContent() && activeTriggerType() === 'chevron') {
+                if (activeTriggerAlign() === 'right') {
                     triggerAnimationStyle = 'rotate-90'
                 } else {
                     triggerAnimationStyle = '-rotate-90'
                 }
             }
 
-            if (!isVisibleContent() && activeTriggerType.value === 'cross') {
+            if (!isVisibleContent() && activeTriggerType() === 'cross') {
                 triggerAnimationStyle = 'rotate-45'
             }
 
@@ -176,9 +190,9 @@ export default defineComponent({
         }
         const titleStyle = () => {
             let titleAlignStyle;
-            if (activeTitleAlign.value === 'left') {
+            if (activeTitleAlign() === 'left') {
                 titleAlignStyle = 'text-left';
-            } else if (activeTitleAlign.value === 'center') {
+            } else if (activeTitleAlign() === 'center') {
                 titleAlignStyle = 'justify-center';
             } else {
                 titleAlignStyle = 'flex-row-reverse';
