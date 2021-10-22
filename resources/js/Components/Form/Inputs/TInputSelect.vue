@@ -1,6 +1,7 @@
 <template>
     <!--TODO: Styles will be separate-->
     <div class="relative select-none min-w-3" ref="selectItem">
+        {{modelValue}}
         <!--Container-->
         <div
             :class="['select-container', disabled && 'bg-gray-100' ,radiusStyle]"
@@ -12,8 +13,8 @@
 
                 <!--Placeholder Text-->
                 <span
-                    v-if="modelValue === null"
-                    v-text="placeHolder ? placeHolder : 'Select'"
+                    v-if="modelValue === null || modelValue === undefined"
+                    v-text="placeHolder"
                 />
 
                 <!--Selected Option-->
@@ -40,7 +41,7 @@
                 <!--Clear Button-->
                 <div
                     v-if="clearButton && selectedOption()"
-                    @click="clear"
+                    @click.stop="clear"
                 >
                     <t-x-circle-icon class="w-6 h-6 rounded-full hover:bg-red-500 hover:text-white cursor-pointer"/>
                 </div>
@@ -48,10 +49,10 @@
                 <!--Dropdown Icon-->
                 <t-chevron-down-icon
                     :class="[
-                'select-dropdown-icon transform',
+                'select-dropdown-icon transform ml-1',
                 isVisible ? 'rotate-90' : 'rotate-0'
                 ]"
-                    @click="updateStatus"
+                    @click.stop="updateStatus"
                 />
             </div>
         </div>
@@ -62,7 +63,7 @@
             <div v-if="search" class="flex w-full p-2 bg-gray-200">
                 <t-input-text
                     v-model="searchText"
-                    :placeholder="searchPlaceHolder ? searchPlaceHolder : 'Search...'"
+                    :placeholder="searchPlaceHolder"
                 />
             </div>
             <!--Options List-->
@@ -115,7 +116,44 @@ import {ref, toRefs} from "vue";
 export default {
     name: "TInputSelect",
     components: {TXCircleIcon, TChevronLeftIcon, TChevronDownIcon, TInputText},
-    props: ['modelValue', 'options', 'optionsLabelKey', 'optionsValueKey', 'placeHolder', 'searchPlaceHolder', 'clearButton', 'disabled', 'search', 'align'],
+    props: {
+        modelValue:{
+            default: null
+        },
+        options:{
+            default: [
+                {key: '', label:'Please add a options source'}
+            ]
+        },
+        optionsLabelKey:{
+            default: 'label'
+        },
+        optionsValueKey:{
+            default: 'key'
+        },
+        placeHolder: {
+            default: 'Select'
+        },
+        searchPlaceHolder: {
+            default: 'Search...'
+        },
+        clearButton: {
+            type: Boolean,
+            default: false
+        },
+        disabled : {
+            type: Boolean,
+            default: false
+        },
+        search: {
+            type: Boolean,
+            default: false
+        },
+        align: {
+            type: String,
+            default: 'left'
+        }
+    },
     mixins: [radiusSizeMixin],
     setup(props, {emit, slots}) {
         /*Definitions*/
@@ -140,14 +178,17 @@ export default {
             align
         } = toRefs(props)
 
+
+
+
         onClickOutside(selectItem, (event) => isVisible.value = false)
 
 
         const selectedOption = () => {
-            if (!modelValue.value) {
+            if (modelValue.value === null || modelValue.value === undefined) {
                 return null
-            }
 
+            }
             return options.value.find(item => item[optionsValueKey.value] === modelValue.value)
         }
 
