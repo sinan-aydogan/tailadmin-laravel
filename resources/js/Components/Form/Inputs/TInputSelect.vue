@@ -1,7 +1,6 @@
 <template>
     <!--TODO: Styles will be separate-->
     <div class="relative select-none min-w-3" ref="selectItem">
-        {{modelValue}}
         <!--Container-->
         <div
             :class="['select-container', disabled && 'bg-gray-100' ,radiusStyle]"
