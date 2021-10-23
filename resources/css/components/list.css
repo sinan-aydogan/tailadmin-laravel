@@ -3,7 +3,7 @@
 }
 
 .list-container {
-    @apply flex flex-grow-0 flex-shrink-0 space-x-2 hover:shadow items-center w-full whitespace-normal transition duration-100 ease-in-out
+    @apply flex flex-grow-0 flex-shrink-0 space-x-2 items-center w-full whitespace-normal transition duration-100 ease-in-out
 }
 
 .list-content {
@@ -22,8 +22,8 @@
     @apply bg-gray-800 border-black border-opacity-50 hover:bg-gray-300 hover:text-gray-700 focus:bg-gray-300 focus:text-gray-700
 }
 
-.list-filled-black + .active {
-    @apply bg-gray-600 border-gray-700 hover:bg-gray-300 hover:text-gray-700
+.list-filled-black-active {
+    @apply bg-gray-600 border-black border-gray-700 hover:bg-gray-300 hover:text-gray-700 !important
 }
 
 /*Blue*/
@@ -31,8 +31,8 @@
     @apply bg-blue-500 border-blue-300 border-opacity-50 hover:bg-blue-200 hover:text-blue-700 focus:bg-blue-200 focus:text-blue-700
 }
 
-.list-filled-blue + .active {
-    @apply bg-blue-100 border-opacity-100 text-blue-700 hover:bg-blue-200 hover:text-blue-700
+.list-filled-blue-active {
+    @apply bg-blue-100 border-blue-300 text-blue-700 hover:bg-blue-200 hover:text-blue-700
 }
 
 /*Gray*/
@@ -40,8 +40,8 @@
     @apply bg-gray-500 border-gray-300 border-opacity-50 hover:bg-gray-200 hover:text-gray-700 focus:bg-gray-200 focus:text-gray-700
 }
 
-.list-filled-gray + .active {
-    @apply bg-white border-opacity-100 text-gray-700 hover:bg-gray-200 hover:text-gray-700
+.list-filled-gray-active {
+    @apply bg-white border-gray-300 text-gray-700 hover:bg-gray-200 hover:text-gray-700
 }
 
 /*Green*/
@@ -49,8 +49,8 @@
     @apply bg-green-500 border-green-300 border-opacity-50 hover:bg-green-200 hover:text-green-700 focus:bg-green-200 focus:text-green-700
 }
 
-.list-filled-green + .active {
-    @apply bg-green-100 border-opacity-100 text-green-700 hover:bg-green-200 hover:text-green-700
+.list-filled-green-active {
+    @apply bg-green-100 border-green-300 text-green-700 hover:bg-green-200 hover:text-green-700
 }
 
 /*Indigo*/
@@ -58,8 +58,8 @@
     @apply bg-indigo-500 border-indigo-300 border-opacity-50 hover:bg-indigo-200 hover:text-indigo-700 focus:bg-indigo-200 focus:text-indigo-700
 }
 
-.list-filled-indigo + .active {
-    @apply bg-indigo-100 border-opacity-100 text-indigo-700 hover:bg-indigo-200 hover:text-indigo-700
+.list-filled-indigo-active {
+    @apply bg-indigo-100 border-indigo-300 text-indigo-700 hover:bg-indigo-200 hover:text-indigo-700
 }
 
 /*Pink*/
@@ -67,8 +67,8 @@
     @apply bg-pink-500 border-pink-300 border-opacity-50 hover:bg-pink-200 hover:text-pink-700 focus:bg-pink-200 focus:text-pink-700
 }
 
-.list-filled-pink + .active {
-    @apply bg-pink-100 border-opacity-100 text-pink-700 hover:bg-pink-200 hover:text-pink-700
+.list-filled-pink-active {
+    @apply bg-pink-100 border-pink-300 text-pink-700 hover:bg-pink-200 hover:text-pink-700
 }
 
 /*Purple*/
@@ -76,8 +76,8 @@
     @apply bg-purple-500 border-purple-300 border-opacity-50 hover:bg-purple-200 hover:text-purple-700 focus:bg-purple-200 focus:text-purple-700
 }
 
-.list-filled-purple+ .active {
-    @apply bg-purple-100 border-opacity-100 text-purple-700 hover:bg-purple-200 hover:text-purple-700
+.list-filled-purple-active {
+    @apply bg-purple-100 border-purple-300 text-purple-700 hover:bg-purple-200 hover:text-purple-700
 }
 
 /*Red*/
@@ -85,8 +85,8 @@
     @apply bg-red-500 border-red-100 border-opacity-50 hover:bg-red-200 hover:text-red-700 focus:bg-red-200 focus:text-red-700
 }
 
-.list-filled-red + .active {
-    @apply bg-red-100 border-opacity-100 border-red-300 text-red-700 hover:bg-red-200 hover:text-red-700
+.list-filled-red-active {
+    @apply bg-red-100 border-red-100 border-red-300 text-red-700 hover:bg-red-200 hover:text-red-700
 }
 
 /*White*/
@@ -94,8 +94,8 @@
     @apply bg-white text-gray-700 border-gray-500 border-opacity-50 hover:bg-gray-200 hover:text-gray-700 focus:bg-gray-200 focus:text-gray-700
 }
 
-.list-filled-white + .active {
-    @apply bg-gray-300 border-opacity-100 text-gray-700 hover:bg-gray-200 hover:text-gray-700
+.list-filled-white-active {
+    @apply bg-gray-300 border-gray-500 text-gray-700 hover:bg-gray-200 hover:text-gray-700
 }
 
 /*Yellow*/
@@ -104,8 +104,8 @@
     @apply bg-yellow-500 border-yellow-300 border-opacity-50 hover:bg-yellow-200 hover:text-yellow-700 focus:bg-yellow-200 focus:text-yellow-700
 }
 
-.list-filled-yellow + .active {
-    @apply bg-yellow-100 border-opacity-100 text-yellow-700 hover:bg-yellow-200 hover:text-yellow-700
+.list-filled-yellow-active {
+    @apply bg-yellow-100 border-yellow-300 text-yellow-700 hover:bg-yellow-200 hover:text-yellow-700
 }
 
 /*</editor-fold>*/
@@ -122,8 +122,8 @@
     @apply bg-gray-500 border-black text-gray-50 hover:bg-gray-500 hover:text-white
 }
 
-.list-light-black + .active {
-    @apply bg-gray-300 border-opacity-100 text-gray-700 hover:bg-gray-500 hover:text-white
+.list-light-black-active {
+    @apply bg-gray-300 border-black text-gray-700 hover:bg-gray-500 hover:text-white
 }
 
 /*Blue*/
@@ -131,8 +131,8 @@
     @apply bg-blue-200 border-blue-500 text-blue-800 hover:bg-blue-500 hover:text-white
 }
 
-.list-light-blue + .active {
-    @apply bg-blue-300 border-opacity-100 text-blue-700 hover:bg-blue-500 hover:text-white
+.list-light-blue-active {
+    @apply bg-blue-300 border-blue-500 text-blue-700 hover:bg-blue-500 hover:text-white
 }
 
 /*Gray*/
@@ -140,8 +140,8 @@
     @apply bg-gray-200 border-gray-500 text-gray-800 hover:bg-gray-500 hover:text-white
 }
 
-.list-light-gray + .active {
-    @apply bg-white border-opacity-100 text-gray-700 hover:bg-gray-500 hover:text-white
+.list-light-gray-active {
+    @apply bg-white border-gray-500 text-gray-700 hover:bg-gray-500 hover:text-white
 }
 
 /*Green*/
@@ -149,8 +149,8 @@
     @apply bg-green-200 border-green-500 text-green-800 hover:bg-green-500 hover:text-white
 }
 
-.list-light-green + .active {
-    @apply bg-green-300 border-opacity-100 text-green-700 hover:bg-green-500 hover:text-white
+.list-light-green-active {
+    @apply bg-green-300 border-green-500 text-green-700 hover:bg-green-500 hover:text-white
 }
 
 /*Indigo*/
@@ -158,8 +158,8 @@
     @apply bg-indigo-200 border-indigo-500 text-indigo-800 hover:bg-indigo-500 hover:text-white
 }
 
-.list-light-indigo + .active {
-    @apply bg-indigo-300 border-opacity-100 text-indigo-700 hover:bg-indigo-500 hover:text-white
+.list-light-indigo-active {
+    @apply bg-indigo-300 border-indigo-500 text-indigo-700 hover:bg-indigo-500 hover:text-white
 }
 
 /*Pink*/
@@ -167,8 +167,8 @@
     @apply bg-pink-200 border-pink-500 text-pink-800 hover:bg-pink-500 hover:text-white
 }
 
-.list-light-pink + .active {
-    @apply bg-pink-300 border-opacity-100 text-pink-700 hover:bg-pink-500 hover:text-white
+.list-light-pink-active {
+    @apply bg-pink-300 border-pink-500 text-pink-700 hover:bg-pink-500 hover:text-white
 }
 
 /*Purple*/
@@ -176,8 +176,8 @@
     @apply bg-purple-200 border-purple-500 text-purple-800
 }
 
-.list-light-purple + .active {
-    @apply bg-purple-300 border-opacity-100 text-purple-700 hover:bg-purple-500 hover:text-white
+.list-light-purple-active {
+    @apply bg-purple-300 border-purple-500 text-purple-700 hover:bg-purple-500 hover:text-white
 }
 
 /*Red*/
@@ -185,8 +185,8 @@
     @apply bg-red-200 border-red-500 text-red-800 hover:bg-red-500 hover:text-white
 }
 
-.list-light-red + .active {
-    @apply bg-red-300 border-opacity-100 text-red-700 hover:bg-red-500 hover:text-white
+.list-light-red-active {
+    @apply bg-red-300 border-red-500 text-red-700 hover:bg-red-500 hover:text-white
 }
 
 /*White*/
@@ -194,16 +194,16 @@
     @apply bg-white border-gray-300 text-gray-700
 }
 
-.list-light-white + .active {
-    @apply bg-gray-300 border-gray-100 text-gray-700 hover:bg-gray-500 hover:text-white
+.list-light-white-active {
+    @apply bg-gray-300 border-gray-400 border-opacity-75 text-gray-700 hover:bg-gray-500 hover:text-white
 }
 /*Yellow*/
 .list-light-yellow {
     @apply bg-yellow-200 border-yellow-500 text-yellow-800 hover:bg-yellow-500 hover:text-white
 }
 
-.list-light-yellow + .active {
-    @apply bg-yellow-300 border-opacity-100 text-yellow-700 hover:bg-yellow-500 hover:text-white
+.list-light-yellow-active {
+    @apply bg-yellow-300 border-yellow-500 text-yellow-700 hover:bg-yellow-500 hover:text-white
 }
 
 /*</editor-fold>*/
@@ -219,8 +219,8 @@
     @apply border-black text-gray-700 hover:bg-gray-500 hover:text-white
 }
 
-.list-outline-black + .active {
-    @apply bg-gray-300 border-opacity-100 text-gray-700 hover:bg-gray-500 hover:text-white
+.list-outline-black-active {
+    @apply bg-gray-300 border-black text-gray-700 hover:bg-gray-500 hover:text-white
 }
 
 /*Blue*/
@@ -228,8 +228,8 @@
     @apply border-blue-500 text-blue-700 hover:bg-blue-100
 }
 
-.list-outline-blue + .active {
-    @apply bg-blue-200 border-opacity-100 text-blue-700 hover:bg-blue-500 hover:text-white
+.list-outline-blue-active {
+    @apply bg-blue-100 border-blue-500 text-blue-700 hover:bg-blue-500 hover:text-white
 }
 
 /*Gray*/
@@ -237,8 +237,8 @@
     @apply border-gray-500 text-gray-700 hover:bg-gray-200
 }
 
-.list-outline-gray + .active {
-    @apply bg-white border-opacity-100 text-gray-700 hover:bg-gray-500 hover:text-white
+.list-outline-gray-active {
+    @apply bg-gray-200 border-gray-500  text-gray-700 hover:bg-gray-500 hover:text-white
 }
 
 /*Green*/
@@ -246,8 +246,8 @@
     @apply border-green-500 text-green-700 hover:bg-green-100
 }
 
-.list-outline-green + .active {
-    @apply bg-green-200 border-opacity-100 text-green-700 hover:bg-green-500 hover:text-white
+.list-outline-green-active {
+    @apply bg-green-100 border-green-500 text-green-700 hover:bg-green-500 hover:text-white
 }
 
 /*Indigo*/
@@ -255,8 +255,8 @@
     @apply border-indigo-500 text-indigo-700 hover:bg-indigo-100
 }
 
-.list-outline-indigo + .active {
-    @apply bg-indigo-200 border-opacity-100 text-indigo-700 hover:bg-indigo-500 hover:text-white
+.list-outline-indigo-active {
+    @apply bg-indigo-100 border-indigo-500 text-indigo-700 hover:bg-indigo-500 hover:text-white
 }
 
 /*Pink*/
@@ -264,8 +264,8 @@
     @apply border-pink-500 text-pink-700 hover:bg-pink-100
 }
 
-.list-outline-pink + .active {
-    @apply bg-pink-200 border-opacity-100 text-pink-700 hover:bg-pink-500 hover:text-white
+.list-outline-pink-active {
+    @apply bg-pink-100 border-pink-500 text-pink-700 hover:bg-pink-500 hover:text-white
 }
 
 /*Purple*/
@@ -273,8 +273,8 @@
     @apply border-purple-500 text-purple-700 hover:bg-purple-100
 }
 
-.list-outline-purple + .active {
-    @apply bg-purple-200 border-opacity-100 text-purple-700 hover:bg-purple-500 hover:text-white
+.list-outline-purple-active {
+    @apply bg-purple-100 border-purple-500 text-purple-700 hover:bg-purple-500 hover:text-white
 }
 
 /*Red*/
@@ -282,8 +282,8 @@
     @apply border-red-500 text-red-700 hover:bg-red-100
 }
 
-.list-outline-red + .active {
-    @apply bg-red-200 border-opacity-100 text-red-700 hover:bg-red-500 hover:text-white
+.list-outline-red-active {
+    @apply bg-red-100 border-red-500 text-red-700 hover:bg-red-500 hover:text-white
 }
 
 /*White*/
@@ -291,7 +291,7 @@
     @apply border-gray-300 text-gray-700 hover:bg-white
 }
 
-.list-outline-white + .active {
+.list-outline-white-active {
     @apply bg-gray-200 border-gray-300 border-opacity-100 text-gray-700 hover:bg-gray-500 hover:text-white
 }
 
@@ -300,8 +300,8 @@
     @apply border-yellow-500 text-yellow-700 hover:bg-yellow-100
 }
 
-.list-outline-yellow + .active {
-    @apply bg-yellow-200 border-opacity-100 text-yellow-700 hover:bg-yellow-500 hover:text-white
+.list-outline-yellow-active {
+    @apply bg-yellow-100 border-yellow-500 text-yellow-700 hover:bg-yellow-500 hover:text-white
 }
 
 /*</editor-fold>*/
@@ -318,7 +318,7 @@
     @apply bg-gray-500 text-white text-opacity-80 border-gray-800 hover:bg-gray-300 hover:text-gray-700 hover:text-opacity-80
 }
 
-.list-elegant-black + .active {
+.list-elegant-black-active {
     @apply bg-gray-200 border-opacity-100 border-opacity-100 text-gray-700 text-opacity-80 hover:bg-gray-300 hover:text-gray-700 hover:text-opacity-80
 }
 
@@ -327,7 +327,7 @@
     @apply bg-blue-50 text-gray-700 text-opacity-80 border-blue-300 hover:bg-blue-200
 }
 
-.list-elegant-blue + .active {
+.list-elegant-blue-active {
     @apply bg-blue-100 border-opacity-100 text-blue-700 text-opacity-80 hover:bg-blue-200 hover:text-gray-700 hover:text-opacity-80
 }
 
@@ -336,7 +336,7 @@
     @apply bg-gray-50 text-gray-700 text-opacity-80 border-gray-300 hover:bg-gray-200
 }
 
-.list-elegant-gray + .active {
+.list-elegant-gray-active {
     @apply bg-white border-opacity-100 text-gray-700 text-opacity-80 hover:bg-gray-300 hover:text-gray-700 hover:text-opacity-80
 }
 
@@ -345,7 +345,7 @@
     @apply bg-green-50 text-gray-700 text-opacity-80 border-green-300 hover:bg-green-200
 }
 
-.list-elegant-green + .active {
+.list-elegant-green-active {
     @apply bg-green-100 border-opacity-100 text-green-700 text-opacity-80 hover:bg-green-200 hover:text-gray-700 hover:text-opacity-80
 }
 
@@ -354,7 +354,7 @@
     @apply bg-indigo-50 text-gray-700 text-opacity-80 border-indigo-300 hover:bg-indigo-200
 }
 
-.list-elegant-indigo + .active {
+.list-elegant-indigo-active {
     @apply bg-indigo-100 border-opacity-100 text-indigo-700 text-opacity-80 hover:bg-indigo-200 hover:text-gray-700 hover:text-opacity-80
 }
 
@@ -363,7 +363,7 @@
     @apply bg-pink-50 text-gray-700 text-opacity-80 border-pink-300 hover:bg-pink-200
 }
 
-.list-elegant-pink + .active {
+.list-elegant-pink-active {
     @apply bg-pink-100 border-opacity-100 text-pink-700 text-opacity-80 hover:bg-pink-200 hover:text-gray-700 hover:text-opacity-80
 }
 
@@ -372,7 +372,7 @@
     @apply bg-purple-50 text-gray-700 text-opacity-80 border-purple-300 hover:bg-purple-200
 }
 
-.list-elegant-purple + .active {
+.list-elegant-purple-active {
     @apply bg-purple-100 border-opacity-100 text-purple-700 text-opacity-80 hover:bg-purple-200 hover:text-gray-700 hover:text-opacity-80
 }
 
@@ -381,7 +381,7 @@
     @apply bg-red-50 text-gray-700 text-opacity-80 border-red-300 hover:bg-red-200
 }
 
-.list-elegant-red + .active {
+.list-elegant-red-active {
     @apply bg-red-100 border-opacity-100 text-red-700 text-opacity-80 hover:bg-red-200 hover:text-gray-700 hover:text-opacity-80
 }
 
@@ -390,7 +390,7 @@
     @apply bg-white text-gray-700 text-opacity-80 border-gray-300 hover:bg-gray-200
 }
 
-.list-elegant-white + .active {
+.list-elegant-white-active {
     @apply bg-gray-100 border-opacity-100 text-gray-700 text-opacity-80 hover:bg-gray-200 hover:text-gray-700 hover:text-opacity-80
 }
 
@@ -399,7 +399,7 @@
     @apply bg-yellow-50 text-gray-700 text-opacity-80 border-yellow-300 hover:bg-yellow-200
 }
 
-.list-elegant-yellow + .active {
+.list-elegant-yellow-active {
     @apply bg-yellow-100 border-opacity-100 text-yellow-700 text-opacity-80 hover:bg-yellow-200 hover:text-gray-700 hover:text-opacity-80
 }
 
@@ -417,7 +417,7 @@
     @apply border-gray-800 hover:bg-gray-300 hover:border-transparent hover:text-gray-700 focus:bg-gray-300 focus:text-gray-700
 }
 
-.list-simple-black + .active {
+.list-simple-black-active {
     @apply font-bold text-gray-700 hover:bg-gray-300 hover:text-gray-700
 }
 
@@ -426,7 +426,7 @@
     @apply border-blue-200 hover:bg-blue-50 hover:border-transparent hover:text-blue-700 focus:bg-blue-200 focus:text-blue-700
 }
 
-.list-simple-blue + .active {
+.list-simple-blue-active {
     @apply text-blue-700 hover:bg-blue-50 hover:text-blue-700
 }
 
@@ -435,7 +435,7 @@
     @apply border-gray-200 hover:bg-gray-200 hover:border-transparent hover:text-gray-700 focus:bg-gray-200 focus:text-gray-700
 }
 
-.list-simple-gray + .active {
+.list-simple-gray-active {
     @apply font-bold text-gray-700 hover:bg-gray-200 hover:text-gray-700
 }
 
@@ -444,7 +444,7 @@
     @apply border-green-200 hover:bg-green-50 hover:border-transparent hover:text-green-700 focus:bg-green-200 focus:text-green-700
 }
 
-.list-simple-green + .active {
+.list-simple-green-active {
     @apply text-green-700 hover:bg-green-50 hover:text-green-700
 }
 
@@ -453,7 +453,7 @@
     @apply border-indigo-200 hover:bg-indigo-50 hover:border-transparent hover:text-indigo-700 focus:bg-indigo-200 focus:text-indigo-700
 }
 
-.list-simple-indigo + .active {
+.list-simple-indigo-active {
     @apply text-indigo-700 hover:bg-indigo-50 hover:text-indigo-700
 }
 
@@ -462,7 +462,7 @@
     @apply border-pink-200 hover:bg-pink-50 hover:border-transparent hover:text-pink-700 focus:bg-pink-200 focus:text-pink-700
 }
 
-.list-simple-pink + .active {
+.list-simple-pink-active {
     @apply text-pink-700 hover:bg-red-50 hover:text-pink-700
 }
 
@@ -471,7 +471,7 @@
     @apply border-purple-200 hover:bg-purple-50 hover:border-transparent hover:text-purple-700 focus:bg-purple-200 focus:text-purple-700
 }
 
-.list-simple-purple + .active {
+.list-simple-purple-active {
     @apply text-purple-700 hover:bg-purple-50 hover:text-purple-700
 }
 
@@ -480,7 +480,7 @@
     @apply border-red-200 hover:bg-red-50 hover:border-transparent hover:text-red-700 focus:bg-red-200 focus:text-red-700
 }
 
-.list-simple-red + .active {
+.list-simple-red-active {
     @apply text-red-700 hover:bg-red-50 hover:text-red-700
 }
 
@@ -489,7 +489,7 @@
     @apply border-gray-200 hover:bg-white hover:border-transparent hover:text-gray-700 focus:bg-white focus:text-gray-700
 }
 
-.list-simple-white + .active {
+.list-simple-white-active {
     @apply font-bold text-gray-700 hover:bg-white hover:text-gray-700
 }
 
@@ -499,7 +499,7 @@
     @apply bg-yellow-500 border-yellow-300 border-opacity-50 hover:bg-yellow-200 hover:text-yellow-700 focus:bg-yellow-200 focus:text-yellow-700
 }
 
-.list-simple-yellow + .active {
+.list-simple-yellow-active {
     @apply bg-yellow-100 border-opacity-100 text-yellow-700 hover:bg-yellow-200 hover:text-yellow-700
 }
 
