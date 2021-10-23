@@ -24,7 +24,7 @@
                             </t-dropdown>
 
                             <!--With Icon-->
-                            <t-dropdown color="gradient-red-to-pink" align="right">
+                            <t-dropdown button-color="purple" button-design="outline" align="right">
                                 <template #trigger>
                                     Wide Links
                                 </template>
