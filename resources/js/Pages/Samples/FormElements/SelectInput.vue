@@ -42,10 +42,10 @@
                 place-holder="Select a status"
             >
               <template #label="{ props }">
-                <span v-if="props.value===1" class="flex flex-row items-center gap-1">
+                <span v-if="props.value===true" class="flex flex-row items-center gap-1">
                   <t-check-circle-icon  class="w-5 h-5 text-green-500 "/> {{ props.name }}
                 </span>
-                <span v-if="props.value===0" class="flex flex-row items-center gap-1">
+                <span v-if="props.value===false" class="flex flex-row items-center gap-1">
                   <t-x-circle-icon class="w-5 h-5 text-red-500 items-center"/> {{ props.name }}
                 </span>
               </template>
@@ -105,11 +105,11 @@ export default {
       form: this.$inertia.form({
         _method: 'POST',
         user_id: null,
-        status: 1,
+        status: false
       }),
       status: [
-        {name: 'Passive', value: 0, icon: 'XIcon', class: 'w-5 h-5 text-red-500 mr-2'},
-        {name: 'Active', value: 1, icon: 'Checked', class: 'w-5 h-5 text-green-500 mr-2'}
+        {name: 'Passive', value: false, icon: 'XIcon', class: 'w-5 h-5 text-red-500 mr-2'},
+        {name: 'Active', value: true, icon: 'Checked', class: 'w-5 h-5 text-green-500 mr-2'}
       ],
       sampleCode: {
         html:

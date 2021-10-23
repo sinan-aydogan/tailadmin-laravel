@@ -1,7 +1,7 @@
 <template>
     <app-layout title="Dashboard">
         <template #breadcrumb>
-            <t-breadcrumb :breadcrumbStyle="1" :breadcrumbs="breadcrumbs"/>
+            <t-breadcrumb :breadcrumbStyle="1" :breadcrumbs="breadcrumbs" color="white"/>
         </template>
         <template #header>
             Welcome to TailAdmin
@@ -72,7 +72,7 @@
                         Users List
                     </template>
                     <template #content>
-                        <t-list :radius="3" class="w-full" color="solid-white">
+                        <t-list :radius="3" class="w-full" design="light" color="white" border>
                             <t-list-item>
                                 <template #icon>
                                     <t-avatar :radius="8" :size="2" src="https://i.pravatar.cc/150?u=1"></t-avatar>

@@ -3,7 +3,7 @@
     <template #header>Paginate</template>
     <template #subHeader>Tables, lists and all of lists</template>
     <template #default>
-      <t-component-color-selector class="mb-4" @selected-color="selectedColor = $event"/>
+      <t-component-style-selector class="mb-4" v-model:colorValue="selectedColor" />
       <grid-section :col="1">
         <content-card :width="1">
           <template #title>The color, the radius, the active you want</template>
@@ -47,14 +47,14 @@ import GridSection from "@/Layouts/GridSection";
 import ContentCard from "@/Components/Card/TContentCard";
 import TTable from "@/Components/Table/TTable";
 import TPaginate from "@/Components/Paginate/TPaginate";
-import TComponentColorSelector from "@/Components/Misc/TComponentColorSelector";
+import TComponentStyleSelector from "@/Components/Misc/TComponentStyleSelector";
 /*Codehighlighter*/
 import "simple-syntax-highlighter/dist/sshpre.css";
 import SshPre from "simple-syntax-highlighter";
 
 export default {
   name: "Paginate",
-  components: {ContentCard, GridSection, AppLayout, SshPre, TTable, TPaginate, TComponentColorSelector},
+  components: {ContentCard, GridSection, AppLayout, SshPre, TTable, TPaginate, TComponentStyleSelector},
   data() {
     return {
       activePage: 2,

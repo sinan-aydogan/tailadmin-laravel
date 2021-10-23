@@ -113,10 +113,7 @@ import SshPre from "simple-syntax-highlighter";
 import 'simple-syntax-highlighter/dist/sshpre.css'
 import GridSection from "@/Layouts/GridSection";
 import TContentCard from "@/Components/Card/TContentCard";
-import TComponentColorSelector from "@/Components/Misc/TComponentColorSelector";
 import TTable from "@/Components/Table/TTable";
-import TComponentRadiusSelector from "@/Components/Misc/TComponentRadiusSelector";
-import TComponentWidthSelector from "@/Components/Misc/TComponentWidthSelector";
 import TInputSelect from "@/Components/Form/Inputs/TInputSelect";
 import TUserGroupIcon from "@/Components/Icon/TUserGroupIcon";
 import TAvatar from "@/Components/Avatar/TAvatar";
@@ -127,8 +124,11 @@ export default {
     TAvatar,
     TUserGroupIcon,
     TInputSelect,
-    TComponentWidthSelector,
-    TComponentRadiusSelector, TTable, TComponentColorSelector, TContentCard, GridSection, AppLayout, SshPre
+    TTable,
+    TContentCard,
+    GridSection,
+    AppLayout,
+    SshPre
   },
   data() {
     return {
