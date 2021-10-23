@@ -1,6 +1,8 @@
 <template>
-    <div :class="styleClass()">
-        <slot></slot>
+    <div class="flex w-full">
+        <div :class="styleClass()">
+            <slot></slot>
+        </div>
     </div>
 </template>
 
