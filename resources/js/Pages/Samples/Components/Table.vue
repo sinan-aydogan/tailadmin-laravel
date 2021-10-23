@@ -10,7 +10,7 @@
         </template>
         <!--Content-->
         <template #default>
-            <t-component-color-selector @selected-color="tableColor = $event"/>
+            <t-component-style-selector v-model:colorValue="tableColor" class="mb-4"/>
 
             <t-table :color="tableColor" :content="users" :header="header" :pagination="true"
                      :searchable="['name','email']">
@@ -66,12 +66,12 @@ import TInputText from "@/Components/Form/Inputs/TInputText";
 import GridSection from "@/Layouts/GridSection";
 import TButton from "@/Components/Button/TButton";
 import TUserCircleIcon from "@/Components/Icon/TUserCircleIcon";
-import TComponentColorSelector from "@/Components/Misc/TComponentColorSelector";
+import TComponentStyleSelector from "@/Components/Misc/TComponentStyleSelector";
 
 export default {
     name: "Table",
     components: {
-        TComponentColorSelector,
+        TComponentStyleSelector,
         TUserCircleIcon, TButton, GridSection, TInputText, TInputGroup, AppLayout, TTable, TAvatar, SshPre},
     props: ['users'],
     data() {

@@ -8,7 +8,7 @@
     </template>
     <template #default>
       <!-- Color Selector -->
-      <t-component-color-selector class="mb-4" @selected-color="selectedColor = $event"/>
+      <t-component-style-selector v-model:colorValue="selectedColor" class="mb-4"/>
       <grid-section :col-tablet="2">
         <!--Style 1-->
         <t-tab :color="selectedColor" :tab-style="1">
@@ -92,11 +92,11 @@ import TTable from "@/Components/Table/TTable";
 /*Codehighlighter*/
 import SshPre from "simple-syntax-highlighter";
 import "simple-syntax-highlighter/dist/sshpre.css";
-import TComponentColorSelector from "@/Components/Misc/TComponentColorSelector";
+    import TComponentStyleSelector from "@/Components/Misc/TComponentStyleSelector";
 
 export default {
   name: "Tab",
-  components: {TComponentColorSelector, AppLayout, GridSection, SshPre, TContentCard, TTab, TTable, TTabItem},
+    components: {TComponentStyleSelector, AppLayout, GridSection, SshPre, TContentCard, TTab, TTable, TTabItem},
   data() {
     return {
       selectedColor: 'solid-gray',
