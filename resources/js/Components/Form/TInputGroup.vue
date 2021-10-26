@@ -3,7 +3,7 @@
     <!--Label-->
     <label
         :for="labelFor"
-        class="flex flex-row gap-1 items-center font-medium text-sm text-gray-700 whitespace-normal"
+        class="flex flex-row gap-1 items-center font-medium text-sm whitespace-normal"
     >
       <!--Label-->
       <span v-if="label">
