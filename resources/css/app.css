@@ -12,6 +12,7 @@
 @import "./components/list.css";
 @import "./components/modal.css";
 @import "./components/radius.css";
+@import "./components/pagination.css";
 
 
 /*Utilities*/
@@ -156,20 +157,6 @@
 /*SelectInput Option Item Style*/
 .select-option-item{
     @apply flex justify-between items-center hover:bg-gray-200 gap-2 px-2 py-0.5 cursor-pointer whitespace-nowrap
-}
-
-/*Pagination*/
-/*Pagination Container*/
-.pagination-container {
-    @apply inline-flex items-center justify-center space-x-2 flex-shrink-0
-}
-/*Pagination Item*/
-.pagination-item {
-    @apply flex items-center justify-center w-8 h-8 cursor-pointer font-semibold select-none flex-shrink-0
-}
-/*Left Right Navigation Arrows*/
-.pagination-arrow {
-    @apply flex flex-shrink-0 items-center justify-center w-8 h-8 cursor-pointer font-semibold bg-opacity-0 hover:bg-opacity-10 select-none
 }
 
 /*Popover*/
