@@ -1,22 +1,49 @@
 <template>
-  <app-layout>
-    <template #header>Paginate</template>
+  <app-layout title="Pagination">
+    <template #header>Pagination</template>
     <template #subHeader>Tables, lists and all of lists</template>
     <template #default>
-      <t-component-style-selector class="mb-4" v-model:colorValue="selectedColor" />
-      <grid-section :col="1">
+      <t-component-style-selector class="mb-4" v-model:colorValue="selectedColor"/>
+      <grid-section :col-desktop="2" :gap="4">
         <content-card :width="1">
-          <template #title>The color, the radius, the active you want</template>
-          <template #subTitle>18 colors and 8 radius options, custom range and custom active page</template>
-          <template #content>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 w-full gap-4">
-              <!--Color Selector-->
-              <t-paginate v-model="activePage" :color="selectedColor" :range="2" :total="17"/>
-              <t-paginate :active="3" :color="selectedColor" :radius="3" :range="3" :total="17"/>
-              <t-paginate :active="4" :color="selectedColor" :radius="5" :range="4" :total="17"/>
-              <t-paginate :active="5" :color="selectedColor" :radius="8" :range="5" :total="17"/>
-            </div>
-          </template>
+          <t-paginate
+              reverse
+              v-model="activePage1"
+              :color="selectedColor"
+              :range="5"
+              :total="54321"
+              jump
+          />
+          <t-paginate
+              v-model="activePage2"
+              :color="selectedColor"
+              :radius="3"
+              :range="3"
+              :total="17"
+              :jump="false"
+              :arrow-text="false"
+          />
+        </content-card>
+        <content-card :width="1">
+          <t-paginate
+              v-model="activePage3"
+              :color="selectedColor"
+              :radius="5"
+              :range="4"
+              :total="17"
+              :detail="false"
+          />
+          <t-paginate
+              :jump="true"
+              v-model="activePage4"
+              :color="selectedColor"
+              :radius="8"
+              :range="5"
+              :total="17"
+              next-text="Sonraki"
+              previous-text="Önceki"
+              detail-text="Sayfa: $a / $b"
+          />
         </content-card>
       </grid-section>
       <!--Sample Codes-->
@@ -57,8 +84,11 @@ export default {
   components: {ContentCard, GridSection, AppLayout, SshPre, TTable, TPaginate, TComponentStyleSelector},
   data() {
     return {
-      activePage: 2,
-      selectedColor: 'solid-gray',
+      activePage1: 2,
+      activePage2: 1,
+      activePage3: 5,
+      activePage4: 10,
+      selectedColor: 'gray',
       sampleCode: {
         html:
             '<t-paginate :range="3" :active="3" :total="17" :radius="3" color="solid-white" v-model="activePage"/>',
