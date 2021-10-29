@@ -18,7 +18,7 @@
 @apply bg-gray-50 text-gray-50
 }
 .loading-screen-close {
-    @apply fixed flex right-12 rounded-md top-12 bg-gray-50 border-4 border-gray-400 hover:border-red-500 hover:text-red-500 cursor-pointer;
+    @apply fixed flex right-12 rounded-md top-12 bg-gray-50 border-4 border-gray-400 hover:border-red-500 hover:text-red-500 cursor-pointer transition-all duration-300 ease-in-out;
 }
 .loading-screen-countdown {
     @apply absolute top-0 w-screen h-2 bg-gray-50 bg-opacity-90 transition-all
@@ -28,6 +28,12 @@
 }
 
 /*Animations*/
+.loading-cogs-container{
+    @apply flex justify-center
+}
+.loading-cogs-second{
+    @apply mt-8 -ml-4
+}
 .loading-three-bars{
     @apply relative flex flex-shrink-0 flex-grow-0 h-4 justify-between space-x-1
 }

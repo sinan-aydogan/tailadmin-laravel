@@ -2,17 +2,17 @@
   <transition name="alert">
     <!--Alert Container-->
     <div
-        v-if="showAlertBox"
-        :class="styleClass()"
+      v-if="showAlertBox"
+      :class="tStyle['container']"
     >
       <!--Inline Line-->
       <div v-if="design.includes('line')"
            id="line"
-           :class="[design === 'inline' ? 'alert-inline-line' : 'alert-outline-line']"
+           :class="tStyle['line']"
       />
 
       <!--Alert Icon-->
-      <div v-if="$slots['icon'] && design !== 'elegant'"
+      <div v-if="hasSlot('icon') && design !== 'elegant'"
            class="alert-icon"
       >
         <slot name="icon"></slot>
@@ -20,14 +20,16 @@
 
 
       <!--Alert Content-->
-      <div class="flex justify-start items-center flex-grow whitespace-normal py-2 px-4">
+      <div class="alert-content-container">
         <!--Elegant Title-->
         <div v-if="title && design === 'elegant'" id="elegant-title">
           {{ title }}
         </div>
-        <div class="grid grid-cols-1">
+        <div class="alert-content">
           <!--General Title (except elegant style)-->
-          <span v-if="title && design !== 'elegant'" class="font-bold text-lg">{{ title }}</span>
+          <span v-if="title && design !== 'elegant'" class="alert-title">
+            {{ title }}
+          </span>
           <!--Content Slot-->
           <div>
             <slot></slot>
@@ -37,8 +39,11 @@
 
       <!--Close Icon-->
       <span v-if="closeable" class="alert-close" @click="close">
-                <t-x-circle-icon class="h-6 w-6"/>
-            </span>
+        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      </span>
 
       <!--Countdown Line-->
       <div v-if="timer" class="alert-countdown">
@@ -47,19 +52,16 @@
     </div>
   </transition>
 </template>
-
 <script>
-import {defineComponent, ref, toRefs} from 'vue'
-import TXCircleIcon from "@/Components/Icon/TXCircleIcon";
+import { defineComponent, ref, toRefs, computed, reactive } from "vue";
 
 export default defineComponent({
   name: "TAlert",
-  components: {TXCircleIcon},
   props: {
     id: {
       type: String,
-      default: function () {
-        return 'alert-' + Number(new Date())
+      default: function() {
+        return "alert-" + Number(new Date());
       }
     },
     closeable: {
@@ -68,6 +70,7 @@ export default defineComponent({
     },
     timer: {
       type: Number,
+      default: null,
       required: false
     },
     title: {
@@ -80,63 +83,70 @@ export default defineComponent({
     },
     design: {
       type: String,
-      default: 'filled'
+      default: "filled"
     },
     color: {
       type: String,
-      default: 'white'
+      default: "white"
     }
   },
-  setup(props, {slots, emit}) {
+  emits: ["destroy"],
+
+  setup(props, { slots, emit }) {
     /*Definitions*/
-    const {design, color, radius, timer, id} = toRefs(props)
-    const showAlertBox = ref(true)
+    const { design, color, radius, timer, id } = toRefs(props);
+    const showAlertBox = ref(true);
 
     /*Generating Style Classes*/
-    const styleClass = () => {
-      return 'alert ' +
-          'alert-' + design.value + '-' + color.value + ' ' +
-          'alert-' + design.value + '-base' + ' ' +
-          'radius-' + radius.value
-    }
+    const tStyle = reactive({});
+    tStyle["container"] = computed(() => {
+      return "alert " +
+        "alert-" + design.value + "-" + color.value + " " +
+        "alert-" + design.value + "-base" + " " +
+        "radius-" + radius.value;
+    });
+    tStyle["line"] = computed(() => {
+      return (design.value === "inline" ? "alert-inline-line" : "alert-outline-line");
+    });
 
     /*Close Function*/
     const close = () => {
       showAlertBox.value = false;
-      emit('destroy', id.value)
-    }
+      emit("destroy", id.value);
+    };
 
     /*Timer*/
-    const timerCounter = ref(0)
-    const countDownCounter = ref(0)
+    const timerCounter = ref(0);
+    const countDownCounter = ref(0);
 
     if (timer.value) {
       /*Timer Function*/
-      let timerFn = setTimeout(() => {
+      setTimeout(() => {
         showAlertBox.value = false;
-        emit('destroy', id.value)
-      }, timer.value)
+        emit("destroy", id.value);
+      }, timer.value);
 
       /*Count Down Function*/
       let countDownFn = setInterval(() => {
         if (timer.value >= timerCounter.value) {
-          countDownCounter.value = 100 - (timerCounter.value / timer.value) * 100
-          timerCounter.value += 4
+          countDownCounter.value = 100 - (timerCounter.value / timer.value) * 100;
+          timerCounter.value += 4;
         } else {
-          clearInterval(countDownFn)
+          clearInterval(countDownFn);
         }
-      }, 1)
+      }, 1);
     }
 
     /*Slot Check*/
-    const hasSlot = name => !!slots[name]
+    const hasSlot = name => !!slots[name];
 
-    return {showAlertBox, styleClass, countDownCounter, timerCounter, hasSlot, close}
+    return { showAlertBox, tStyle, countDownCounter, timerCounter, hasSlot, close };
   }
-})
+});
 </script>
 
 <style scoped>
+/* eslint-disable no-alert */
 .alert-enter-active, .alert-leave-active {
   transition: opacity ease-out .75s;
 }
@@ -150,4 +160,6 @@ export default defineComponent({
   opacity: 1;
   height: revert;
 }
+
+/* eslint-disable no-alert */
 </style>
