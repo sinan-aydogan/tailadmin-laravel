@@ -1,95 +1,108 @@
 <template>
-  <!--TODO: THE EFFECT ADDED-->
-  <div v-click-outside="outside" class="relative select-none">
-    <!--Main Content-->
-    <div
-        :class="[
-                $slots.mainContent[0].text.length>0 && 'popover'
-                ]"
-        @click="show = !show"
-    >
-      <slot name="mainContent"></slot>
-    </div>
-    <!--Second Content Container-->
-    <div
-        v-if="show"
-        :class="[
-                'absolute z-10 w-44 m-2',
-                positionStyle[position].box
-            ]"
-    >
-      <!--Arrow-->
-      <div :class="[
-                positionStyle[position].arrow,
-                $slots.secondTitle && position !== 'top' ? 'bg-gray-300' : 'bg-white',
-                !$slots.secondTitle && 'bg-white'
-                ]"></div>
-      <!--Title-->
-      <div v-if="$slots.secondTitle"
-           class="popover-title">
-        <slot name="secondTitle"></slot>
-      </div>
-      <!--Content-->
-      <div :class="[
-                'popover-content',
-                $slots.secondTitle ? 'rounded-b-md' : 'rounded-md'
-                ]">
-        <slot name="secondContent"></slot>
+  <!--Main Content-->
+  <div class="popover">
+    <div :class="tStyle['container']" ref="popoverItem" @click="updateStatus">
+      <slot/>
+      <!--Second Content Container-->
+      <div
+        ref="box"
+        :style="{visibility: showPopover ? 'visible': 'hidden'}"
+        :class="tStyle['box']"
+      >
+        <!--Arrow-->
+        <div :class="tStyle['arrow']" :style="{backgroundColor: !hasSlot('boxTitle') ? 'white': ''}"></div>
+        <!--Title-->
+        <div v-if="hasSlot('boxTitle')"
+             class="popover-box-title">
+          <slot name="boxTitle"></slot>
+        </div>
+        <!--Content-->
+        <div :class="tStyle['content']">
+          <slot name="boxContent"></slot>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import {defineComponent} from "vue";
-import {popoverStyleMixin} from "@/Mixins/Styles/popoverStyleMixin";
+import { computed, defineComponent, reactive, ref, toRefs } from "vue";
+import { onClickOutside } from "@vueuse/core";
 
 export default defineComponent({
   name: "TPopover",
-  mixins: [popoverStyleMixin],
-  directives: {
-    'click-outside': {
-      bind: function (el, binding, vNode) {
-        // Provided expression must evaluate to a function.
-        if (typeof binding.value !== 'function') {
-          const compName = vNode.context.name
-          let warn = `[Vue-click-outside:] provided expression '${binding.expression}' is not a function, but has to be`
-          if (compName) {
-            warn += `Found in component '${compName}'`
-          }
+  props: {
+    position: {
+      type: String,
+      default: "bottom"
+    },
+    color: {
+      type: String,
+      default: "white"
+    },
+    border: {
+      type: Boolean,
+      default: true
+    },
+    bold: {
+      type: Boolean,
+      default: true
+    }
+  },
+  setup(props, { slots }) {
+    /*Definitions*/
+    const { color, position, border, bold} = toRefs(props);
+    const showPopover = ref(false);
+    const activePosition = ref(position.value);
+    const popoverItem = ref(null);
+    const box = ref(null);
 
-          console.warn(warn)
-        }
-        // Define Handler and cache it on the element
-        const bubble = binding.modifiers.bubble
-        const handler = (e) => {
-          if (bubble || (!el.contains(e.target) && el !== e.target)) {
-            binding.value(e)
-          }
-        }
-        el.__vueClickOutside__ = handler
+    /*Open-Close Actions*/
+    const updateStatus = () => {
+      let popoverPosition = box.value.getBoundingClientRect();
+      let windowInnerWidth = window.innerWidth;
+      showPopover.value = !showPopover.value;
 
-        // add Event Listeners
-        document.addEventListener('click', handler)
-      },
-
-      unbind: function (el) {
-        // Remove Event Listeners
-        document.removeEventListener('click', el.__vueClickOutside__)
-        el.__vueClickOutside__ = null
-
+      /*If it's outside of the left*/
+      if (popoverPosition.width > popoverPosition.left && position.value==='left') {
+        activePosition.value = "right";
       }
-    }
-  },
-  data() {
-    return {
-      show: false,
-    }
-  },
-  methods: {
-    outside() {
-      this.show = false
-    }
-  },
-})
+
+      /*If it's outside of the right*/
+      if (popoverPosition.right > windowInnerWidth) {
+        activePosition.value = "left";
+      }
+    };
+    onClickOutside(popoverItem, () => showPopover.value = false);
+
+    /*Generating Style Classes*/
+    const tStyle = reactive({});
+
+    tStyle["container"] = computed(() => {
+      return "popover-container" + " " +
+        (border.value ? 'popover-border' : '') + " " +
+        (bold.value ? 'popover-bold' : '')
+    });
+
+    tStyle["box"] = computed(() => {
+      return "popover-box" + " " +
+        "popover-" + color.value + " " +
+        "popover-" + activePosition.value + "-container";
+    });
+    tStyle["arrow"] = computed(() => {
+      return "popover-arrow" + " " +
+      "popover-" + activePosition.value + "-arrow" + " " +
+        (hasSlot("boxTitle") && activePosition.value === "top" ? "bg-white" : "" ) + " ";
+    });
+    tStyle["content"] = computed(() => {
+      return "popover-box-content" + " " +
+        (hasSlot("boxTitle") ? "rounded-b-md" : "rounded-md");
+    });
+
+    /*Slot Check*/
+    const hasSlot = name => !!slots[name];
+
+    return { popoverItem, box, showPopover, updateStatus, hasSlot, tStyle };
+  }
+});
 </script>
