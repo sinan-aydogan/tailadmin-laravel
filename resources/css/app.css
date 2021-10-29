@@ -13,6 +13,7 @@
 @import "./components/modal.css";
 @import "./components/radius.css";
 @import "./components/pagination.css";
+@import "./components/popover.css";
 
 
 /*Utilities*/
@@ -157,19 +158,6 @@
 /*SelectInput Option Item Style*/
 .select-option-item{
     @apply flex justify-between items-center hover:bg-gray-200 gap-2 px-2 py-0.5 cursor-pointer whitespace-nowrap
-}
-
-/*Popover*/
-.popover{
-    @apply border-b-2 border-dotted inline-flex whitespace-normal cursor-pointer
-}
-/*Popover Second Title*/
-.popover-title{
-    @apply relative bg-gray-300 px-2 py-1 whitespace-normal z-50 rounded-t-md font-semibold w-44
-}
-/*Popover Second Content*/
-.popover-content{
-    @apply bg-white px-2 py-1 whitespace-normal z-50 border
 }
 
 /*Progress*/
