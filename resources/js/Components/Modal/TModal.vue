@@ -1,83 +1,83 @@
 <template>
   <transition name="modal">
     <!--Container-->
-    <div v-if="modelValue" :class="containerStyle()">
+    <div v-if="modelValue" :class="tStyle['container'] ">
       <!--Countdown Line-->
       <div v-if="timer" class="modal-countdown">
         <div id="countdown" :style="{width: countDownCounter+'%'}"></div>
       </div>
       <!--Modal Content Box-->
       <div
-          :class="modalBoxStyle()"
-          ref="modalItem"
+        :class="tStyle['box'] "
+        ref="modalItem"
       >
         <!--Header-->
         <div class="modal-header">
           <!--Titles-->
-          <div  id="title-container">
-            <span v-if="design==='elegant'"  id="title" v-text="title"/>
-            <span v-if="design==='elegant'"  id="sub-title" v-text="subTitle"/>
+          <div id="title-container">
+            <span v-if="design==='elegant'" id="top-title" v-text="title" />
+            <span v-if="design==='elegant'" id="top-sub-title" v-text="subTitle" />
           </div>
           <!--Buttons-->
           <div class="modal-actions-container">
             <!--Action-->
             <div v-if="hasSlot('action-buttons')" class="modal-action-buttons">
-              <slot name="action-buttons"/>
+              <slot name="action-buttons" />
             </div>
             <!--Close-->
             <div
-                v-if="closeButton"
-                class="modal-close-button"
-                @click="close()"
+              v-if="closeButton"
+              class="modal-close-button"
+              @click="close()"
             >
               <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
                    stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
               </svg>
             </div>
           </div>
         </div>
         <!--Header Separator-->
-        <div v-if="design==='elegant'" id="header-separator"/>
+        <div v-if="design==='elegant'" id="header-separator" />
         <!--Content-->
         <div class="modal-content-container">
           <!--Icon-->
           <div class="modal-icon">
-            <svg v-if="icon" v-html="iconList.find(i=>i.key === icon).content" :class="iconStyle()"/>
-            <slot v-else name="icon"/>
+            <svg v-if="icon" v-html="iconList.find(i=>i.key === icon).content" :class="tStyle['icon'] " />
+            <slot v-else name="icon" />
           </div>
           <!--Titles-->
           <div class="flex flex-col w-full text-center -mt-2 mb-4">
-            <span v-if="design!=='elegant'"  id="title" v-text="title"/>
-            <span v-if="design!=='elegant'"  id="sub-title" v-text="subTitle"/>
+            <span v-if="design!=='elegant'" id="content-title" v-text="title" />
+            <span v-if="design!=='elegant'" id="content-sub-title" v-text="subTitle" />
           </div>
           <!--Content-->
           <div class="modal-content">
-            <span v-html="content" class="modal-content-default"/>
-            <slot name="content"/>
+            <span v-html="content" class="modal-content-default" />
+            <slot name="content" />
           </div>
         </div>
         <!--Footer-->
         <div
-            v-if="hasSlot('footer-left') || hasSlot('footer-center') || hasSlot('footer-right')"
-            class="modal-footer-container"
+          v-if="hasSlot('footer-left') || hasSlot('footer-center') || hasSlot('footer-right')"
+          class="modal-footer-container"
         >
           <!--Left-->
           <div class="modal-footer-left">
             <span class="modal-footer-item" v-show="hasSlot('footer-left')">
-              <slot name="footer-left"/>
+              <slot name="footer-left" />
             </span>
           </div>
           <!--Center-->
           <div class="modal-footer-center">
             <span class="modal-footer-item" v-show="hasSlot('footer-center')">
-              <slot name="footer-center"/>
+              <slot name="footer-center" />
             </span>
           </div>
           <!--Right-->
           <div class="modal-footer-right">
             <span class="modal-footer-item" v-show="hasSlot('footer-right')">
-              <slot name="footer-right"/>
+              <slot name="footer-right" />
             </span>
           </div>
         </div>
@@ -87,10 +87,10 @@
 </template>
 
 <script>
-import {defineComponent, toRefs, watch} from "vue";
-import {ref} from "vue";
-import {useKeypress} from 'vue3-keypress'
-import {onClickOutside} from '@vueuse/core';
+import { computed, defineComponent, reactive, toRefs, watch } from "vue";
+import { ref } from "vue";
+import { useKeypress } from "vue3-keypress";
+import { onClickOutside } from "@vueuse/core";
 
 export default defineComponent({
   name: "TModal",
@@ -101,13 +101,13 @@ export default defineComponent({
     },
     id: {
       type: String,
-      default: function () {
-        return 'modal-' + Number(new Date())
+      default: function() {
+        return "modal-" + Number(new Date());
       }
     },
     bgColor: {
       type: String,
-      default: 'gray'
+      default: "gray"
     },
     darkMode: {
       type: Boolean,
@@ -115,11 +115,11 @@ export default defineComponent({
     },
     design: {
       type: String,
-      default: 'filled'
+      default: "filled"
     },
     color: {
       type: String,
-      default: 'white'
+      default: "white"
     },
     radius: {
       type: Number,
@@ -139,26 +139,32 @@ export default defineComponent({
     },
     title: {
       type: String,
+      default: null,
       require: false
     },
     subTitle: {
       type: String,
+      default: null,
       require: false
     },
     content: {
       type: String,
+      default: null,
       require: false
     },
     icon: {
       type: String,
+      default: null,
       require: false
     },
     timer: {
       type: Number,
+      default: null,
       require: false
     }
   },
-  setup(props, {slots, emit}) {
+  emits: ['destroy', 'update:modelValue'],
+  setup(props, { slots, emit }) {
     /*Definitions*/
     const {
       modelValue,
@@ -170,55 +176,52 @@ export default defineComponent({
       bgColor,
       esc,
       outSideClick,
-      closeButton,
-      title,
-      content,
       icon,
       timer
-    } = toRefs(props)
-    const modalItem = ref(null)
+    } = toRefs(props);
+    const modalItem = ref(null);
     const iconList = [
       {
-        key: 'success',
-        content: '<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">\n' +
-            '  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />\n' +
-            '</svg>',
-        color: 'text-green-500'
+        key: "success",
+        content: "<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"h-6 w-6\" fill=\"none\" viewBox=\"0 0 24 24\" stroke=\"currentColor\">\n" +
+          "  <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z\" />\n" +
+          "</svg>",
+        color: "text-green-500"
       },
       {
-        key: 'warning',
-        content: '<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">\n' +
-            '  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />\n' +
-            '</svg>',
-        color: 'text-yellow-500'
+        key: "warning",
+        content: "<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"h-6 w-6\" fill=\"none\" viewBox=\"0 0 24 24\" stroke=\"currentColor\">\n" +
+          "  <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z\" />\n" +
+          "</svg>",
+        color: "text-yellow-500"
       },
       {
-        key: 'error',
-        content: '<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">\n' +
-            '  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />\n' +
-            '</svg>',
-        color: 'text-red-500'
+        key: "error",
+        content: "<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"h-6 w-6\" fill=\"none\" viewBox=\"0 0 24 24\" stroke=\"currentColor\">\n" +
+          "  <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z\" />\n" +
+          "</svg>",
+        color: "text-red-500"
       },
       {
-        key: 'info',
-        content: '<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">\n' +
-            '  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />\n' +
-            '</svg>',
-        color: 'bg-blue-500'
+        key: "info",
+        content: "<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"h-6 w-6\" fill=\"none\" viewBox=\"0 0 24 24\" stroke=\"currentColor\">\n" +
+          "  <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z\" />\n" +
+          "</svg>",
+        color: "bg-blue-500"
       },
       {
-        key: 'question',
-        content: '<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">\n' +
-            '  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />\n' +
-            '</svg>',
-        color: 'text-indigo-500'
-      },
-    ]
+        key: "question",
+        content: "<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"h-6 w-6\" fill=\"none\" viewBox=\"0 0 24 24\" stroke=\"currentColor\">\n" +
+          "  <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z\" />\n" +
+          "</svg>",
+        color: "text-indigo-500"
+      }
+    ];
 
     /*ESC Key Action*/
     if (esc.value) {
-      const someSuccessCallback = ({keyCode}) => {
-        close()
+      const someSuccessCallback = () => {
+        close();
       };
 
       useKeypress({
@@ -226,75 +229,76 @@ export default defineComponent({
         keyBinds: [
           {
             keyCode: "esc", // or keyCode as integer, e.g. 40
-            success: someSuccessCallback,
-          },
+            success: someSuccessCallback
+          }
         ]
-      })
+      });
     }
 
     /*Outside Click Action*/
     if (outSideClick.value) {
-      onClickOutside(modalItem, (event) => close())
+      onClickOutside(modalItem, () => close());
     }
 
     /*Close Action*/
     const close = () => {
-      emit('destroy', id.value)
-      emit('update:modelValue', false)
-    }
+      emit("destroy", id.value);
+      emit("update:modelValue", false);
+    };
 
     /*Timer*/
     watch(modelValue, (value) => {
       if (value && timer.value) {
-        autoClose()
+        autoClose();
       }
-    })
-    const timerCounter = ref(0)
-    const countDownCounter = ref(0)
+    });
+    const timerCounter = ref(0);
+    const countDownCounter = ref(0);
     const autoClose = () => {
       /*Timer Function*/
-      const timerFn = setTimeout(() => {
+      setTimeout(() => {
         close();
-      }, timer.value)
+      }, timer.value);
 
       /*Count Down Function*/
       const countDownFn = setInterval(() => {
         if (timer.value >= timerCounter.value) {
-          countDownCounter.value = (timerCounter.value / timer.value) * 100
-          timerCounter.value += 4
+          countDownCounter.value = (timerCounter.value / timer.value) * 100;
+          timerCounter.value += 4;
         } else {
-          timerCounter.value = 0
-          countDownCounter.value = 0
-          clearInterval(countDownFn)
+          timerCounter.value = 0;
+          countDownCounter.value = 0;
+          clearInterval(countDownFn);
         }
-      }, 1)
-    }
+      }, 1);
+    };
 
     /*Generating Style Classes*/
-    const containerStyle = () => {
-      return 'modal-container' + ' ' +
-          'modal-container-' + bgColor.value
-    }
-    const modalBoxStyle = () => {
-      return 'modal-box' + ' ' +
-          'modal-' + design.value + (darkMode.value ? '-dark' : '-light') + ' ' +
-          'modal-' + design.value + '-base' + ' ' +
-          'modal-' + design.value + '-' + color.value + ' ' +
-          'radius-' + radius.value
-    }
-    const iconStyle = () => {
-      return 'modal-icon-default' + ' ' +
-          iconList.find(i=>i.key === icon.value).color
-    }
+    const tStyle = reactive({})
+    tStyle['container'] = computed(() => {
+      return "modal-container" + " " +
+        "modal-container-" + bgColor.value;
+    });
+    tStyle['box']  = computed(() => {
+      return "modal-box" + " " +
+        "modal-" + design.value + (darkMode.value ? "-dark" : "-light") + " " +
+        "modal-" + design.value + "-base" + " " +
+        "modal-" + design.value + "-" + color.value + " " +
+        "radius-" + radius.value;
+    });
+    tStyle['icon']  = computed(() => {
+      return "modal-icon-default" + " " +
+        iconList.find(i => i.key === icon.value).color;
+    });
 
     /*Icon*/
 
     /*Slot Check*/
-    const hasSlot = name => !!slots[name]
+    const hasSlot = name => !!slots[name];
 
-    return {hasSlot, close, containerStyle, modalBoxStyle, iconStyle, iconList, countDownCounter, modalItem}
+    return { hasSlot, close, tStyle, iconList, countDownCounter, modalItem };
   }
-})
+});
 </script>
 
 <style scoped>

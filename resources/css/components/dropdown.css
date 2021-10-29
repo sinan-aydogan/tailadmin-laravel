@@ -7,7 +7,7 @@
 }
 
 .dropdown-button-trigger-content {
-    @apply flex flex-col whitespace-normal z-10 absolute border rounded-md mt-1 overflow-hidden bg-white
+    @apply flex flex-col whitespace-nowrap z-10 absolute border rounded-md mt-1 overflow-hidden bg-white
 }
 
 .dropdown-rich-trigger {
@@ -45,4 +45,14 @@
 
 .dropdown-trigger-icon {
     @apply w-5 h-5 transform duration-300
+}
+
+.dropdown-item-container{
+    @apply justify-start p-2 hover:bg-gray-600 hover:text-white cursor-pointer
+}
+.dropdown-item{
+    @apply flex flex-row items-center justify-start
+}
+.dropdown-icon{
+    @apply flex justify-center items-center w-5 h-5 mr-1
 }
