@@ -1,7 +1,7 @@
 <template>
     <app-layout title="Dashboard">
         <template #breadcrumb>
-            <t-breadcrumb :breadcrumbStyle="1" :breadcrumbs="breadcrumbs" color="white"/>
+            <t-breadcrumb :breadcrumb-style="1" :breadcrumbs="breadcrumbs" color="white"/>
         </template>
         <template #header>
             Welcome to TailAdmin
@@ -109,7 +109,7 @@
                         <t-table :content="tableContent" :searchable="['name']" :header="tableHeader" :radius="0" :shadow="false" color="solid-white">
                             <template #status="{props}">
                                 <div class="flex justify-center">
-                                    <t-progress :value="props.status" color="solid-green"/>
+                                    <t-progress :model-value="props.status" color="green"/>
                                 </div>
                             </template>
                         </t-table>
