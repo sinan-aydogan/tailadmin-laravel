@@ -1,0 +1,92 @@
+.progress {
+    @apply flex flex-col w-full
+}
+
+.progress-container {
+    @apply flex flex-row justify-between text-sm
+}
+
+.progress-value {
+    @apply flex w-full bg-gray-200 shadow-inner rounded-full overflow-hidden flex-shrink-0 flex-grow-0
+}
+
+.progress-counter-line {
+    @apply flex transition-all duration-1000
+}
+
+/*<editor-fold desc="Progress Height Styles">*/
+.progress-height-1 {
+    @apply h-1
+}
+
+.progress-height-2 {
+    @apply h-2
+}
+
+.progress-height-3 {
+    @apply h-3
+}
+
+.progress-height-4 {
+    @apply h-4
+}
+
+.progress-height-5 {
+    @apply h-5
+}
+
+/*</editor-fold>*/
+
+/*<editor-fold desc="Progress Color Styles">*/
+/*Colors: black, blue, gray, green, indigo, pink, purple, white and yellow*/
+/*Black*/
+.progress-black {
+    @apply bg-gray-800
+}
+
+/*Blue*/
+.progress-blue {
+    @apply bg-blue-500
+}
+
+/*Gray*/
+.progress-gray {
+    @apply bg-gray-500
+}
+
+/*Green*/
+.progress-green {
+    @apply bg-green-500
+}
+
+/*Indigo*/
+.progress-indigo {
+    @apply bg-indigo-500
+}
+
+/*Pink*/
+.progress-pink {
+    @apply bg-pink-500
+}
+
+/*Purple*/
+.progress-purple {
+    @apply bg-purple-500
+}
+
+/*Red*/
+.progress-red {
+    @apply bg-red-500
+}
+
+/*White*/
+.progress-white {
+    @apply bg-white shadow-inner shadow-lg;
+}
+
+/*Yellow*/
+.progress-yellow {
+    @apply bg-yellow-500
+}
+
+/*</editor-fold>*/
