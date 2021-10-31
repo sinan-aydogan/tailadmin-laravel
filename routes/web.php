@@ -101,6 +101,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function (){
     Route::get('layout-grid',function (){return Inertia::render('Samples/Layouts/Grid');})->name('layout-grid');
     Route::get('layout-content-box',function (){return Inertia::render('Samples/Layouts/ContentBox');})->name('layout-content-box');
     Route::get('layout-statistic-widget',function (){return Inertia::render('Samples/Layouts/StatisticWidget');})->name('layout-statistic-widget');
+    Route::get('test',function (){return Inertia::render('Samples/Test');})->name('test');
     // Form Pages
     Route::get('form-structure',function (){return Inertia::render('Samples/FormElements/FormStructure');})->name('form-structure');
     Route::get('form-input-group',function (){return Inertia::render('Samples/FormElements/InputGroup');})->name('form-input-group');
