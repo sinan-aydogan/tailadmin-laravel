@@ -15,7 +15,7 @@
 @import "./components/pagination.css";
 @import "./components/popover.css";
 @import "./components/progress.css";
-
+@import "./components/tab.css";
 
 /*Utilities*/
 @import 'tailwindcss/utilities';
@@ -24,7 +24,7 @@
 /*Layout Main Styles*/
 
 /*Main Area*/
-.main-area{
+.main-area {
     @apply relative flex flex-col flex-grow justify-between min-h-screen w-full overflow-y-auto text-gray-800;
 }
 
@@ -32,59 +32,77 @@
 .main-area .top-menu {
     @apply flex flex-shrink-0 flex-grow-0 justify-between justify-items-stretch items-center h-16 px-6 bg-white phone:px-10 gap-4;
 }
+
 .top-menu .trigger {
     @apply flex relative justify-center items-center cursor-pointer w-8 h-8;
 }
+
 .top-menu .trigger-bordered {
     @apply fixed w-6 h-6 -ml-7 border-l-0  rounded-r-sm bg-gradient-to-r from-blue-600 to-blue-600 text-white;
 }
+
 /*Top Menu -> Search Box*/
 .top-menu .search-box-container {
     @apply flex flex-grow;
 }
+
 .top-menu .search-box {
     @apply relative justify-self-start phone:-ml-2 hidden tablet:flex;
 }
+
 .search-box input {
     @apply w-full py-2 pl-10 pr-4 placeholder-gray-400 border rounded-full overflow-hidden focus:outline-none;
 }
+
 /*Top Menu -> User Menu*/
 .top-menu .user-menu {
     @apply flex items-center space-x-2;
 }
+
 .user-menu .trigger-button {
     @apply relative inline-flex items-center px-2 focus:outline-none;
 }
+
 .trigger-button .staff-info {
     @apply hidden pt-1 tablet:flex tablet:flex-col items-center tablet:leading-tight;
 }
+
 .staff-info .staff-name {
     @apply flex justify-end w-full font-semibold whitespace-nowrap ;
 }
+
 .staff-info .staff-title {
     @apply flex justify-end w-full text-sm text-gray-600 whitespace-nowrap ;
 }
+
 .staff-photo .trigger-button {
     @apply flex text-sm transition duration-150 ease-in-out border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300;
 }
+
 .staff-photo img {
     @apply object-cover w-full h-full rounded-full;
 }
+
 .user-menu .dropdown-header {
     @apply block px-4 py-2 text-xs text-gray-400
 }
-.user-menu .dropdown-list-container{
+
+.user-menu .dropdown-list-container {
     @apply bg-white shadow mt-2 rounded-md overflow-hidden;
 }
+
 .user-menu .dropdown-item {
     @apply block px-4 py-2 text-sm text-gray-500 font-semibold text-left hover:bg-gray-200 w-full
 }
+
 .top-menu .action-section {
     @apply flex p-1 gap-2;
 }
+
 .action-section .trigger-button {
     @apply relative p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-600 focus:bg-gray-100 rounded-full focus:text-gray-600 focus:border-gray-300 focus:outline-none;
 }
+
 .user-menu .logout-button {
     @apply flex w-full px-4 py-2 hover:bg-red-500 hover:text-white inline-flex h-full gap-2 text-red-500 items-center focus:outline-none font-semibold;
 }
@@ -94,20 +112,25 @@
 .main-area .content-container {
     @apply flex flex-col flex-grow p-6 space-y-6 phone:p-10;
 }
+
 /*Content Container -> Content Header*/
 .content-container .container-header {
     @apply flex flex-col laptop:justify-between items-center space-y-6 tablet:space-y-0 tablet:flex-row;
 }
+
 /*Content Header -> Page Header*/
 .container-header .page-header {
     @apply mr-6 flex flex-col flex-grow;
 }
-.page-header .page-title{
+
+.page-header .page-title {
     @apply mb-2 text-2xl laptop:text-4xl font-semibold;
 }
-.page-header .page-subtitle{
+
+.page-header .page-subtitle {
     @apply hidden tablet:block tablet:text-xl text-gray-600 ml-0.5 text-2xl font-semibold;
 }
+
 .container-header .page-action-buttons {
     @apply flex flex-row items-center space-x-1;
 }
@@ -118,6 +141,7 @@
 .left-menu-logo {
     @apply flex items-center justify-center h-16 py-3 bg-blue-600;
 }
+
 .left-menu-item {
     @apply flex items-center p-2 font-semibold cursor-pointer whitespace-nowrap select-none overflow-hidden transition-all duration-700 ease-in-out;
 }
@@ -131,230 +155,244 @@
 .form-input {
     @apply flex w-full px-2 border border-gray-300 focus:border-indigo-300 focus:outline-none focus:ring focus:ring-indigo-200 focus:ring-opacity-50 shadow-sm placeholder-gray-300 text-gray-500
 }
+
 .file-input-close-icon {
     @apply w-5 h-5 bg-gray-200 hover:bg-red-500 hover:text-white
 }
+
 .file-input-close-button {
     @apply px-2 outline-none focus:outline-none
 }
 
 /*Footer*/
-.footer{
+.footer {
     @apply flex items-center mx-10 py-2 justify-end space-x-1 text-sm font-semibold text-right text-gray-500
 }
 
 /*Form Input*/
 /*SelectInput*/
-.select-container{
+.select-container {
     @apply flex w-full px-2 bg-white text-gray-700 border border-gray-300 focus:border-indigo-300 focus:outline-none focus:ring focus:ring-indigo-200 focus:ring-opacity-50 shadow-sm placeholder-gray-300 text-gray-500 relative justify-between items-center min-h-10 cursor-pointer select-none
 }
+
 /*SelectInput Dropdown Icon*/
-.select-dropdown-icon{
+.select-dropdown-icon {
     @apply w-6 h-6 duration-300
 }
+
 /*SelectInput Options List Container*/
-.select-options-container{
+.select-options-container {
     @apply absolute flex flex-col w-full text-gray-700 top-11 bg-white border border-gray-300 rounded-md shadow-xl z-50 overflow-hidden
 }
+
 /*SelectInput Option Item Style*/
-.select-option-item{
+.select-option-item {
     @apply flex justify-between items-center hover:bg-gray-200 gap-2 px-2 py-0.5 cursor-pointer whitespace-nowrap
 }
-
-/*Tab*/
-
-.tab{
-    @apply flex flex-col w-full
-}
-/*Tab Title Container*/
-.tab-title-container{
-    @apply flex flex-row max-w-min
-}
-/*Tab Title*/
-.tab-title{
-    @apply flex  justify-start cursor-pointer font-semibold whitespace-normal transition duration-200 select-none
-}
-/*Tab Title Style1*/
-.tab-title-1{
-    @apply px-4 py-3
-}
-/*Tab Title Style2*/
-.tab-title-2{
-    @apply px-4 py-1
-}
-/*Tab Content*/
-.tab-content{
-    @apply flex p-2 border
-}
-
-
 
 /*Table*/
 /*Table Container*/
 .table-container {
     @apply w-full
 }
+
 /*Table Top Bar*/
-.table-top{
+.table-top {
     @apply flex flex-col
 }
+
 /*Table Top Bar Container*/
-.table-top-container{
+.table-top-container {
     @apply flex flex-col tablet:flex-row justify-between my-2 gap-2 tablet:gap-0
 }
+
 /*Table Top Bar Left*/
-.table-top-left{
+.table-top-left {
     @apply relative inline-flex items-center min-w-24 select-none
 }
+
 /*Table Top Bar Search Icon*/
-.table-top-search-icon{
+.table-top-search-icon {
     @apply absolute left-2 w-5 h-5 text-gray-300 overflow-hidden
 }
+
 /*Table Top Bar Main Search Input*/
-.table-top ,#search, input{
+.table-top, #search, input {
     @apply pl-8 w-full border-2 border-gray-300 rounded-full
 }
+
 /*Table Top Bar Pagination Container*/
-.table-top-pagination{
+.table-top-pagination {
     @apply absolute right-11 bg-gray-200 h-9 items-center justify-center flex w-8 cursor-pointer hover:bg-blue-500 hover:text-white
 }
+
 /*Table Top Bar Pagination List Container*/
-.table-top-pagination-ul{
+.table-top-pagination-ul {
     @apply absolute right-10 top-11 bg-white border rounded-md overflow-hidden
 }
+
 /*Table Top Bar Pagination List Item*/
-.table-top-pagination-li{
+.table-top-pagination-li {
     @apply text-center bg-white hover:bg-gray-200 cursor-pointer px-2
 }
-.table-top-right{
+
+.table-top-right {
     @apply inline-flex justify-center tablet:justify-end items-center gap-2
 }
-.table-advanced-search-area{
+
+.table-advanced-search-area {
     @apply p-2 mb-4 bg-white border rounded-lg
 }
 
 /*Tooltip*/
-.tooltip{
+.tooltip {
     @apply border-b-2 border-dotted inline-flex whitespace-normal cursor-pointer
 }
+
 /*Tooltip Container*/
-.tooltip-container{
+.tooltip-container {
     @apply absolute z-10 w-44 m-2 filter drop-shadow
 }
+
 /*Tooltip Content*/
-.tooltip-content{
+.tooltip-content {
     @apply bg-white text-gray-700 px-2 py-1 whitespace-normal z-50 border rounded-md
 }
 
 /*Toastr*/
-.toastr{
+.toastr {
     @apply flex flex-row justify-between items-center shadow p-4 min-h-max
 }
-.toastr-close{
+
+.toastr-close {
     @apply flex items-center justify-center w-5 h-5 rounded-full font-bold hover:bg-red-700 hover:text-white hover:bg-opacity-90 cursor-pointer
 }
 
 /*Statistic Widget*/
-.statistic-widget{
+.statistic-widget {
     @apply flex justify-between h-full w-full
 }
-.statistic-widget-data{
+
+.statistic-widget-data {
     @apply flex flex-col flex-grow
 }
-.statistic-widget-title{
+
+.statistic-widget-title {
     @apply text-lg font-semibold
 }
-.statistic-widget-value{
+
+.statistic-widget-value {
     @apply text-xl tablet:text-2xl desktop:text-3xl font-bold py-2
 }
-.statistic-widget-diff-value{
+
+.statistic-widget-diff-value {
     @apply flex items-center gap-1 max-w-min text-sm
 }
-.statistic-widget-icon-container{
+
+.statistic-widget-icon-container {
     @apply flex flex-shrink-0 items-center overflow-hidden object-cover
 }
-.statistic-widget-icon{
+
+.statistic-widget-icon {
     @apply flex items-center justify-center p-4 border-2 w-20 h-20 rounded-full
 }
-.statistic-widget-picture-container{
+
+.statistic-widget-picture-container {
     @apply flex flex-shrink-0 items-center
 }
-.statistic-widget-picture{
+
+.statistic-widget-picture {
     @apply flex items-center justify-center border-2 w-20 rounded-full object-cover overflow-hidden
 }
 
 /*Full Screen Card*/
-.full-screen-card{
+.full-screen-card {
     @apply relative flex h-screen w-screen
 }
+
 /*Full Screen Card Container*/
-.full-screen-card-container{
+.full-screen-card-container {
     @apply absolute h-screen w-screen bg-cover z-10
 }
+
 /*Full Screen Card Content*/
-.full-screen-card-content{
+.full-screen-card-content {
     @apply flex w-full items-center justify-center z-20
 }
 
 /*Auth*/
 /*Auth Container*/
-.auth-container{
+.auth-container {
     @apply flex flex-col border items-center justify-center shadow border-none overflow-hidden
 }
+
 /*Auth Header*/
-.auth-header{
+.auth-header {
     @apply flex flex-col w-full justify-center items-center
 }
+
 /*Auth Logo*/
-.auth-logo{
+.auth-logo {
     @apply inline-flex px-32 py-4
 }
+
 /*Auth Greeting*/
-.auth-greeting{
+.auth-greeting {
     @apply inline-flex justify-center w-full bg-gray-200 py-1 bg-opacity-20 w-full
 }
+
 /*Auth Status*/
-.auth-status{
+.auth-status {
     @apply mb-4 font-medium text-sm text-green-600
 }
+
 /*Auth Form*/
-.auth-form{
+.auth-form {
     @apply flex flex-col gap-4 bg-white p-8 w-full
 }
+
 /*Auth Remember: Login*/
-.auth-remember{
+.auth-remember {
     @apply flex justify-between mt-4
 }
+
 /*Auth Remember Text: Login*/
-.auth-remember-text{
+.auth-remember-text {
     @apply ml-2 text-sm text-gray-600
 }
+
 /*Auth Forgot Password: Login*/
-.auth-forgot-password{
+.auth-forgot-password {
     @apply underline text-sm text-gray-600 hover:text-gray-900
 }
+
 /*Auth Submit Area*/
-.auth-submit-area{
+.auth-submit-area {
     @apply flex items-center justify-between mt-4
 }
+
 /*Auth Error*/
-.auth-error{
+.auth-error {
     @apply absolute w-full translate-y-1/2 mt-4 text-white
 }
+
 /*Auth Avatar Container: Lock*/
-.auth-avatar-container{
-     @apply absolute -mt-12 grid w-full justify-center
+.auth-avatar-container {
+    @apply absolute -mt-12 grid w-full justify-center
 }
+
 /*Auth Avatar Container: Lock*/
-.auth-avatar{
-     @apply border-4 rounded-full bg-gray-300 z-10
+.auth-avatar {
+    @apply border-4 rounded-full bg-gray-300 z-10
 }
+
 /*Auth Lock Form*/
-.auth-lock-form{
+.auth-lock-form {
     @apply flex flex-col gap-4 p-8 w-full
 }
+
 /*Auth Name*/
-.auth-name{
+.auth-name {
     @apply text-xl text-center font-semibold pt-6 -mb-3
 }
 
@@ -362,9 +400,11 @@
 .ivm {
     @apply flex flex-col tablet:flex-row items-center max-h-min w-full px-2 py-2 overflow-hidden
 }
+
 .ivm-container {
     @apply flex flex-col tablet:flex-row w-full gap-2
 }
+
 .ivm-item {
     @apply bg-opacity-0 hover:bg-opacity-100 items-center justify-center px-3 py-2 gap-2 whitespace-nowrap h-full w-full tablet:max-w-min font-bold cursor-pointer transition duration-300 ease-in-out
 }
