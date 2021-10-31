@@ -7,7 +7,7 @@
             <transition name="app-left-menu">
                 <left-menu
                     v-if="hiddenLeftMenu === 'false'"
-                    :showingLeftMenu="showingLeftMenu"
+                    :showing-left-menu="showingLeftMenu"
                     class="bg-gray-800 relative">
                     <div
                         v-for="(item, index) in menuList"
@@ -17,7 +17,7 @@
                         <left-menu-item
                             :key="index"
                             :item="item"
-                            :showingLeftMenu="showingLeftMenu"
+                            :showing-left-menu="showingLeftMenu"
                             @showLeftMenuEmit="showingLeftMenu = 'true'"
                         ></left-menu-item>
                     </div>
@@ -398,7 +398,7 @@
                     <a
                         class="text-blue-600 hover:underline"
                         href="https://tailadmin.dev/"
-                    >TailAdmin v.1.0.3</a
+                    >TailAdmin v.2.0.0</a
                     >
                     <span>by</span>
                     <a
@@ -412,7 +412,6 @@
                         target="_blank"
                     >
                         <t-github-icon class="w-5 h-5 -mt-1"/>
-                        {{ deviceType }}
                     </a>
                 </footer>
             </div>
