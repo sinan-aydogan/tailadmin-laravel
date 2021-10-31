@@ -3,20 +3,20 @@
     <template #header>Pagination</template>
     <template #subHeader>Tables, lists and all of lists</template>
     <template #default>
-      <t-component-style-selector class="mb-4" v-model:colorValue="selectedColor"/>
+      <t-component-style-selector class="mb-4" v-model="selectedData"/>
       <grid-section :col-desktop="2" :gap="4">
         <content-card :width="1">
           <t-paginate
               reverse
               v-model="activePage1"
-              :color="selectedColor"
+              :color="selectedData.color"
               :range="5"
               :total="54321"
               jump
           />
           <t-paginate
               v-model="activePage2"
-              :color="selectedColor"
+              :color="selectedData.color"
               :radius="3"
               :range="3"
               :total="17"
@@ -27,7 +27,7 @@
         <content-card :width="1">
           <t-paginate
               v-model="activePage3"
-              :color="selectedColor"
+              :color="selectedData.color"
               :radius="5"
               :range="4"
               :total="17"
@@ -36,7 +36,7 @@
           <t-paginate
               :jump="true"
               v-model="activePage4"
-              :color="selectedColor"
+              :color="selectedData.color"
               :radius="8"
               :range="5"
               :total="17"
@@ -88,7 +88,9 @@ export default {
       activePage2: 1,
       activePage3: 5,
       activePage4: 10,
-      selectedColor: 'gray',
+      selectedData: {
+        color: 'gray'
+      },
       sampleCode: {
         html:
             '<t-paginate :range="3" :active="3" :total="17" :radius="3" color="solid-white" v-model="activePage"/>',
