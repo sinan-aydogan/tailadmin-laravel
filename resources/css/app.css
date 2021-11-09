@@ -16,6 +16,9 @@
 @import "./components/popover.css";
 @import "./components/progress.css";
 @import "./components/tab.css";
+@import "./components/table.css";
+@import "./components/backEndTablePagination.css";
+@import "./components/input.css";
 
 /*Utilities*/
 @import 'tailwindcss/utilities';
@@ -143,7 +146,7 @@
 }
 
 .left-menu-item {
-    @apply flex items-center p-2 font-semibold cursor-pointer whitespace-nowrap select-none overflow-hidden transition-all duration-700 ease-in-out;
+    @apply flex items-center px-4 py-2 font-semibold cursor-pointer whitespace-nowrap select-none overflow-hidden transition-all duration-700 ease-in-out;
 }
 
 /*Content Card*/
@@ -151,97 +154,9 @@
     @apply absolute top-4 right-4 text-gray-600 hover:bg-gray-500 hover:text-white w-7 h-7 flex items-center justify-center rounded-full cursor-pointer
 }
 
-/*Form*/
-.form-input {
-    @apply flex w-full px-2 border border-gray-300 focus:border-indigo-300 focus:outline-none focus:ring focus:ring-indigo-200 focus:ring-opacity-50 shadow-sm placeholder-gray-300 text-gray-500
-}
-
-.file-input-close-icon {
-    @apply w-5 h-5 bg-gray-200 hover:bg-red-500 hover:text-white
-}
-
-.file-input-close-button {
-    @apply px-2 outline-none focus:outline-none
-}
-
 /*Footer*/
 .footer {
-    @apply flex items-center mx-10 py-2 justify-end space-x-1 text-sm font-semibold text-right text-gray-500
-}
-
-/*Form Input*/
-/*SelectInput*/
-.select-container {
-    @apply flex w-full px-2 bg-white text-gray-700 border border-gray-300 focus:border-indigo-300 focus:outline-none focus:ring focus:ring-indigo-200 focus:ring-opacity-50 shadow-sm placeholder-gray-300 text-gray-500 relative justify-between items-center min-h-10 cursor-pointer select-none
-}
-
-/*SelectInput Dropdown Icon*/
-.select-dropdown-icon {
-    @apply w-6 h-6 duration-300
-}
-
-/*SelectInput Options List Container*/
-.select-options-container {
-    @apply absolute flex flex-col w-full text-gray-700 top-11 bg-white border border-gray-300 rounded-md shadow-xl z-50 overflow-hidden
-}
-
-/*SelectInput Option Item Style*/
-.select-option-item {
-    @apply flex justify-between items-center hover:bg-gray-200 gap-2 px-2 py-0.5 cursor-pointer whitespace-nowrap
-}
-
-/*Table*/
-/*Table Container*/
-.table-container {
-    @apply w-full
-}
-
-/*Table Top Bar*/
-.table-top {
-    @apply flex flex-col
-}
-
-/*Table Top Bar Container*/
-.table-top-container {
-    @apply flex flex-col tablet:flex-row justify-between my-2 gap-2 tablet:gap-0
-}
-
-/*Table Top Bar Left*/
-.table-top-left {
-    @apply relative inline-flex items-center min-w-24 select-none
-}
-
-/*Table Top Bar Search Icon*/
-.table-top-search-icon {
-    @apply absolute left-2 w-5 h-5 text-gray-300 overflow-hidden
-}
-
-/*Table Top Bar Main Search Input*/
-.table-top, #search, input {
-    @apply pl-8 w-full border-2 border-gray-300 rounded-full
-}
-
-/*Table Top Bar Pagination Container*/
-.table-top-pagination {
-    @apply absolute right-11 bg-gray-200 h-9 items-center justify-center flex w-8 cursor-pointer hover:bg-blue-500 hover:text-white
-}
-
-/*Table Top Bar Pagination List Container*/
-.table-top-pagination-ul {
-    @apply absolute right-10 top-11 bg-white border rounded-md overflow-hidden
-}
-
-/*Table Top Bar Pagination List Item*/
-.table-top-pagination-li {
-    @apply text-center bg-white hover:bg-gray-200 cursor-pointer px-2
-}
-
-.table-top-right {
-    @apply inline-flex justify-center tablet:justify-end items-center gap-2
-}
-
-.table-advanced-search-area {
-    @apply p-2 mb-4 bg-white border rounded-lg
+    @apply flex flex-wrap items-center py-2 px-6 justify-center tablet:justify-end space-x-1 text-sm font-semibold text-right text-gray-500
 }
 
 /*Tooltip*/
