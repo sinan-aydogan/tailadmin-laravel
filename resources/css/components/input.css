@@ -1,0 +1,54 @@
+.input {
+    @apply flex w-full min-h-10 px-2 border-gray-300 focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-200 focus:ring-opacity-50 placeholder-gray-300 text-gray-500 leading-none !important
+}
+
+.input-clear-button {
+    @apply flex justify-center items-center w-5 h-5 m-auto rounded-full bg-gray-200 hover:bg-red-500 hover:text-white
+}
+
+.input-clear-icon {
+    @apply w-4 h-4
+}
+
+/*<editor-fold desc="Select">*/
+.select-container {
+    @apply flex w-full px-2 bg-white text-gray-700 border border-gray-300 focus:border-indigo-300 focus:outline-none focus:ring focus:ring-indigo-200 focus:ring-opacity-50 shadow-sm placeholder-gray-300 text-gray-500 relative justify-between items-center min-h-10 cursor-pointer select-none
+}
+
+/*SelectInput Dropdown Icon*/
+.select-dropdown-icon {
+    @apply w-6 h-6 duration-300
+}
+
+/*SelectInput Options List Container*/
+.select-options-container {
+    @apply absolute flex flex-col w-full text-gray-700 top-11 bg-white border border-gray-300 rounded-md shadow-xl z-50 overflow-hidden
+}
+
+/*SelectInput Option Item Style*/
+.select-option-item {
+    @apply flex justify-between items-center hover:bg-gray-200 gap-2 px-2 py-0.5 cursor-pointer whitespace-nowrap
+}
+
+/*</editor-fold>*/
+
+/*<editor-fold desc="Text">*/
+.text-input {
+    @apply inline-flex justify-between items-center
+}
+.text-input-icon {
+    @apply flex min-h-10 px-2 bg-gray-200 items-center justify-center text-gray-500 border-gray-300 border
+}
+.text-input-prepend {
+    @apply flex items-center border-gray-300 bg-gray-200 text-gray-500 font-semibold px-2 border h-full
+}
+.text-input-prepend-inline {
+    @apply flex items-center border-gray-300 px-2 border h-full
+}
+.text-input-append {
+    @apply flex items-center border-gray-300 bg-gray-200 text-gray-500 font-semibold px-2 border h-full
+}
+.text-input-append-inline {
+    @apply flex items-center border-gray-300 px-2 border h-full
+}
+/*</editor-fold>*/
