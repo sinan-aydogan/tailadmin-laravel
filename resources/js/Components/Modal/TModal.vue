@@ -14,12 +14,12 @@
         <!--Header-->
         <div class="modal-header">
           <!--Titles-->
-          <div id="title-container">
+          <div v-if="design==='elegant' && (title || subTitle)" id="title-container">
             <span v-if="design==='elegant'" id="top-title" v-text="title" />
             <span v-if="design==='elegant'" id="top-sub-title" v-text="subTitle" />
           </div>
           <!--Buttons-->
-          <div class="modal-actions-container">
+          <div :class="tStyle['actionsContainer']">
             <!--Action-->
             <div v-if="hasSlot('action-buttons')" class="modal-action-buttons">
               <slot name="action-buttons" />
@@ -40,20 +40,20 @@
         <!--Header Separator-->
         <div v-if="design==='elegant'" id="header-separator" />
         <!--Content-->
-        <div class="modal-content-container">
+        <div :class="tStyle['content']">
           <!--Icon-->
-          <div class="modal-icon">
+          <div v-if="icon || hasSlot('icon')" class="modal-icon">
             <svg v-if="icon" v-html="iconList.find(i=>i.key === icon).content" :class="tStyle['icon'] " />
             <slot v-else name="icon" />
           </div>
           <!--Titles-->
-          <div class="flex flex-col w-full text-center -mt-2 mb-4">
-            <span v-if="design!=='elegant'" id="content-title" v-text="title" />
-            <span v-if="design!=='elegant'" id="content-sub-title" v-text="subTitle" />
+          <div v-if="design!=='elegant' && (title || subTitle)" id="content-title-container">
+            <span v-if="design!=='elegant' && title" id="content-title" v-text="title" />
+            <span v-if="design!=='elegant' && subTitle" id="content-sub-title" v-text="subTitle" />
           </div>
           <!--Content-->
-          <div class="modal-content">
-            <span v-html="content" class="modal-content-default" />
+          <div v-if="content || hasSlot('content')" class="modal-content">
+            <span v-if="content" v-html="content" class="modal-content-default"/>
             <slot name="content" />
           </div>
         </div>
@@ -177,7 +177,10 @@ export default defineComponent({
       esc,
       outSideClick,
       icon,
-      timer
+      timer,
+      content,
+      title,
+      subTitle
     } = toRefs(props);
     const modalItem = ref(null);
     const iconList = [
@@ -278,6 +281,27 @@ export default defineComponent({
     tStyle['container'] = computed(() => {
       return "modal-container" + " " +
         "modal-container-" + bgColor.value;
+    });
+    tStyle['actionsContainer'] = computed(() => {
+      return "modal-actions-container" + " " +
+        (design.value!=='elegant' ? 'w-full justify-end' : '');
+    });
+    tStyle['content'] = computed(() => {
+      let style
+      if((content.value || title.value || subTitle.value) && !hasSlot('content') ){
+        style='modal-content-container'
+      }
+      if(hasSlot('content')){
+        style='modal-custom-content-container'
+      }
+      if(content.value && hasSlot('content')){
+        style='modal-content-container'
+      }
+
+      if(!hasSlot('footer-left') && !hasSlot('footer-center') && !hasSlot('footer-right')){
+        style = style + ' ' + 'pb-8'
+      }
+      return style
     });
     tStyle['box']  = computed(() => {
       return "modal-box" + " " +
