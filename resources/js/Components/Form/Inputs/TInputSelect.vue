@@ -41,8 +41,11 @@
                 <div
                     v-if="clearButton && selectedOption()"
                     @click.stop="clear"
+                    class="input-clear-button"
                 >
-                    <t-x-circle-icon class="w-6 h-6 rounded-full hover:bg-red-500 hover:text-white cursor-pointer"/>
+                  <svg class="input-clear-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
                 </div>
 
                 <!--Dropdown Icon-->

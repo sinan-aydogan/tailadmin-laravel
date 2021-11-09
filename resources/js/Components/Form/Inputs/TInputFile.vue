@@ -28,14 +28,16 @@
                 {{ files.length === 0 ? 'Please select some files' : files.length + ' files added' }}
             </div>
             <!--Buttons-->
-            <div class="flex flex-grow-0 flex-shrink-0 items-center">
+            <div class="flex flex-grow-0 flex-shrink-0 items-center space-x-2">
                 <button
                     v-if="files[0]"
-                    class="file-input-close-button"
+                    class="input-clear-button"
                     type="button"
                     @click="clearFile"
                 >
-                    <t-x-icon class="file-input-close-icon"/>
+                  <svg class="input-clear-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
                 </button>
                 <button
                     class="form-control min-h-10 px-2 border-l outline-none focus:outline-none whitespace-nowrap"
