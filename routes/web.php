@@ -92,6 +92,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function (){
     Route::get('table',function (){return Inertia::render('Samples/Components/Table',[
         'users' => \App\Models\User::all()
     ]);})->name('table');
+    Route::match(['get','post'],'back-end-table',[\App\Http\Controllers\DemoContentController::class, 'index'])->name('back-end-table');
 
     /*TODO: Toastr Feature
     Route::get('toastr',function (){return Inertia::render('Samples/Components/Toastr');})->name('toastr');*/
