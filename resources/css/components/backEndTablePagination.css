@@ -14,10 +14,10 @@
     @apply relative flex items-center
 }
 .bet-pagination-detail-jump-input{
-    @apply flex h-7 ml-2 px-0 text-center focus:ring-0
+    @apply flex h-8 ml-2 px-0 text-center focus:ring-0
 }
 .bet-pagination-detail-jump-button{
-    @apply flex text-sm items-center px-0.5 cursor-pointer h-7
+    @apply flex text-sm items-center px-0.5 cursor-pointer h-8
 }
 .bet-pagination-counters {
     @apply inline-flex flex-shrink-0 justify-end items-center overflow-hidden ease-in-out duration-200 transition-all

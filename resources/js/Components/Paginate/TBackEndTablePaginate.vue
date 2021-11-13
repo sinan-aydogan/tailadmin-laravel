@@ -10,7 +10,7 @@
                v-model="jumpPage"
                @keypress.enter="selectPage(Number(jumpPage))"
                :class="tStyle['jumpInput']"
-               :style="{width:Math.floor(pageCount.toString().length)-(.25*pageCount.toString().length-.5)+'rem'}"
+               :style="{width:Math.floor(pageCount.toString().length)-(.25*pageCount.toString().length-.8)+'rem'}"
                :maxlength="pageCount.toString().length"
         />
         <span :class="tStyle['jumpButton']" @click="selectPage(Number(jumpPage))">
