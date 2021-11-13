@@ -1,61 +1,139 @@
 <template>
+  <!--Container-->
+  <div  class="text-input">
+    <!--Icon-->
     <div
-        v-if="$slots.icon"
-        :class="['flex flex-row items-center overflow-hidden',
-        radiusStyle]"
-    >
-        <div
-            :class="['absolute flex w-10 h-10 bg-gray-200 items-center justify-center rounded-r-none border-gray-300 border border-r-0 text-gray-600', radiusStyle]">
-            <slot name="icon"></slot>
-        </div>
-        <input
-            :class="['form-input rounded-l-none h-10 ml-10',radiusStyle]"
-            :type="type"
-            :id="id"
-            :placeholder="placeholder"
-            :value="modelValue"
-            :disabled="disabled"
-            @input="$emit('update:modelValue', $event.target.value)"
-            ref="input"
-        >
+      v-if="hasSlot('icon')"
+      :class="tStyle['icon']">
+      <slot name="icon"></slot>
     </div>
+    <!--Inline Icon-->
+    <!--Prepend-->
+    <div v-if="prepend || hasSlot('prepend')" :class="tStyle['prepend']">
+      <span v-if="prepend" v-text="prepend"/>
+      <slot v-else name="prepend"></slot>
+    </div>
+    <!--Input Field-->
     <input
-        v-else
-        :class="['form-input h-10', radiusStyle]"
-        :type="type"
-        :id="id"
-        :placeholder="placeholder"
-        :value="modelValue"
-        :disabled="disabled"
-        @input="$emit('update:modelValue', $event.target.value)"
-        ref="input"
+      :class="tStyle['input']"
+      :type="type"
+      :id="id"
+      :placeholder="placeholder"
+      :value="modelValue"
+      :disabled="disabled"
+      @input="$emit('update:modelValue', $event.target.value)"
+      ref="input"
     >
-
+    <!--Append-->
+    <div v-if="append || hasSlot('append')" :class="tStyle['append']">
+      <span v-if="append" v-text="append"/>
+      <slot v-else name="append"></slot>
+    </div>
+  </div>
 </template>
 
 <script>
-import {radiusSizeMixin} from "@/Mixins/radiusSizeMixin";
+import { computed, defineComponent, reactive, ref, toRefs } from "vue";
 
-export default {
-    name: "TInputText",
-    props: {
-        modelValue: {},
-        id: {},
-        placeholder: {},
-        type: {
-            default: 'text'
-        },
-        disabled: {
-            default: false
-        }
-
+export default defineComponent({
+  name: "TInputText",
+  props: {
+    modelValue: {
+      type: [Number, String, Date],
+      default: null
     },
-    mixins: [radiusSizeMixin],
-    emits: ['update:modelValue'],
-    methods: {
-        focus() {
-            this.$refs.input.focus()
-        }
+    id: {
+      type: String,
+      default() {
+        return "text-select-input-" + Number(new Date());
+      }
+    },
+    placeholder: {
+      type: String,
+      default: ""
+    },
+    prepend: {
+      type: String,
+      default: ""
+    },
+    append: {
+      type: String,
+      default: ""
+    },
+    type: {
+      type: String,
+      default: "text"
+    },
+    radius: {
+      type: Number,
+      default: 3
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+    },
+    readOnly: {
+      type: Boolean,
+      default: false
+    },
+    clearButton: {
+      type: Boolean,
+      default: false
     }
-}
+  },
+  emits: ["update:modelValue"],
+  setup(props, {slots}){
+    /*Definitions*/
+    const {radius, prepend, append} = toRefs(props)
+    const input = ref(null)
+
+    /*Focus Action*/
+    const focus = ()=>{
+      input.value.focus()
+    }
+
+    /*Generating Style Classes*/
+    const tStyle = reactive({});
+    tStyle["icon"] = computed(() => {
+      return "text-input-icon" + " " +
+        "radius-l-" + radius.value;
+    });
+    tStyle["input"] = computed(() => {
+      let radiusStyle
+
+      if((prepend.value || hasSlot('prepend') || hasSlot('icon')) && (!append.value && !hasSlot('append'))){
+        /*Left Full and Right Empty*/
+        radiusStyle = "border-l-0 radius-r-" + radius.value
+      }else if((!prepend.value && !hasSlot('prepend') && !hasSlot('icon')) && (append.value || hasSlot('append'))){
+        /*Left Empty and Right Full*/
+        radiusStyle = "border-r-0 radius-l-" + radius.value
+      }else if((prepend.value || hasSlot('prepend') || hasSlot('icon')) && (append.value || hasSlot('append'))){
+        /*Both Full*/
+        radiusStyle = "border-l-0 border-r-0"
+      }else{
+        radiusStyle = "radius-" + radius.value
+      }
+      return "input text-input" + " " +
+        radiusStyle;
+    });
+    tStyle["prepend"] = computed(() => {
+      return "text-input-prepend" + " " +
+        (hasSlot('icon') ? 'border-l-0' : "radius-l-" + radius.value);
+    });
+    tStyle["icon"] = computed(() => {
+      return "text-input-icon" + " " +
+        "radius-l-" + radius.value;
+    });
+    tStyle["append"] = computed(() => {
+      return "text-input-append" + " " +
+        "radius-r-" + radius.value;
+    });
+
+
+    /*Slot Check*/
+    const hasSlot = name => !!slots[name];
+
+    return {input, tStyle,focus, hasSlot}
+  }
+});
 </script>
