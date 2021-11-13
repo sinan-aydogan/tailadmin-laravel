@@ -2,14 +2,12 @@
 
 namespace App\Models;
 
-use App\Scope\SimpleSearchGenerator;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class DemoContent extends Model
 {
     use HasFactory;
-    use SimpleSearchGenerator;
 
     /**
      * The attributes that are mass assignable.
