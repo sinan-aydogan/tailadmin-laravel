@@ -109,6 +109,24 @@
 .user-menu .logout-button {
     @apply flex w-full px-4 py-2 hover:bg-red-500 hover:text-white inline-flex h-full gap-2 text-red-500 items-center focus:outline-none font-semibold;
 }
+.theme-changer-container{
+    @apply flex justify-center space-x-2 py-2 mx-auto items-center bg-gray-200
+}
+.theme-changer-button {
+    @apply inline-flex justify-center items-center space-x-1 p-2 rounded-full font-semibold p-1 rounded-full text-gray-600 text-sm cursor-pointer
+}
+.theme-changer-button-active{
+    @apply bg-gray-300
+}
+.theme-changer-button-auto.theme-changer-button-active {
+    @apply bg-blue-50 text-blue-600 shadow-sm
+}
+.theme-changer-button-dark.theme-changer-button-active {
+    @apply bg-gray-700 text-white
+}
+.theme-changer-button-light.theme-changer-button-active {
+    @apply bg-white shadow-sm text-yellow-500;
+}
 
 
 /*Main Area -> Content Container*/

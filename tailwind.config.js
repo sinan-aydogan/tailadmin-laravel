@@ -19,6 +19,10 @@ module.exports = {
             fontSize: {
                 '2xs': '.65rem',
             },
+            width: {
+                '75' : '75px',
+                '250' : '250px'
+            },
             minWidth: {
                 '0': '0',
                 '3': '0.75rem',
