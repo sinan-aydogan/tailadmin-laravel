@@ -1,0 +1,65 @@
+.table-outside-container {
+    @apply w-full
+}
+
+.table-top {
+    @apply flex justify-between
+}
+.table-top-left {
+    @apply flex justify-start items-center space-x-2
+}
+.table-simple-search-container{
+    @apply relative
+}
+.table-simple-search{
+    @apply relative
+}
+.table-simple-search-input{
+    @apply pl-10 h-10
+}
+.table-simple-search-icon{
+    @apply absolute left-2 top-2 w-6 h-6 opacity-50
+}
+.table-container{
+    @apply w-full
+}
+.table-paginator{
+    @apply mt-4
+}
+
+
+/*<editor-fold desc="Elegant Style">*/
+/*General Definitions*/
+.table-elegant .table-header-cell{
+    @apply px-4 pt-2 text-sm font-bold text-gray-500 uppercase leading-normal
+}
+.table-elegant .table-content-cell{
+    @apply px-4 py-2
+}
+
+/*Colors: black, blue, gray, green, indigo, pink, purple, white and yellow*/
+/*Dark*/
+.table-elegant.table-dark .table-content-cell {
+    @apply bg-gray-700 text-white
+}
+/*Search Input*/
+.table-elegant.table-dark .table-simple-search-input {
+    @apply bg-gray-700 text-white placeholder-gray-200
+}
+.table-elegant.table-dark .table-simple-search-icon {
+    @apply text-gray-200
+}
+
+/*Light*/
+.table-elegant.table-light{
+    filter: shadow(5px 5px #4a5568);
+}
+.table-elegant.table-light .table-content-cell {
+    @apply bg-white text-gray-700
+}
+/*Search Input*/
+.table-elegant.table-light .table-simple-search-input {
+    @apply bg-white text-gray-700 border
+}
+
+/*</editor-fold>*/

@@ -220,12 +220,20 @@ export const leftMenuItemsMixin = {
                             activeKey: ["tab"],
                         },
                         {
-                            label: "Tables",
+                            label: "Table(JSON)",
                             icon: "table",
                             link: "table",
                             linkType: "route",
                             type: "standard",
                             activeKey: ["table"],
+                        },
+                        {
+                            label: "Table(BackEnd)",
+                            icon: "table",
+                            link: "back-end-table",
+                            linkType: "route",
+                            type: "standard",
+                            activeKey: ["back-end-table"],
                         },/* TODO: Toastr Feature
                         {
                             label: "Toastr",
