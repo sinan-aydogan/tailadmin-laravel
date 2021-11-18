@@ -1,6 +1,7 @@
 <template>
   <transition name="fade">
     <div :class="tStyle" v-if="modelValue">
+      {{modelValue}}
       <!--Countdown Line-->
       <div v-if="timer" class="loading-screen-countdown">
         <div id="countdown" :style="{width: countDownCounter+'%'}"></div>
@@ -41,7 +42,7 @@
 </template>
 
 <script>
-import { computed, defineAsyncComponent, defineComponent, ref, toRefs } from "vue";
+import { computed, defineAsyncComponent, defineComponent, onBeforeMount, ref, toRefs, watch } from "vue";
 
 export default defineComponent({
   name: "TLoading",
@@ -82,7 +83,7 @@ export default defineComponent({
   },
   emits: ["update:modelValue"],
   setup(props, { emit, slots }) {
-    const { timer, color, loadingDesign } = toRefs(props);
+    const { modelValue,timer, color, loadingDesign } = toRefs(props);
 
     /*Design Check*/
     const tStyle = computed(() => {
@@ -93,23 +94,30 @@ export default defineComponent({
     /*Timer*/
     const timerCounter = ref(0);
     const countDownCounter = ref(0);
+    watch(modelValue,()=>{
+      if (timer.value && modelValue.value) {
+        /*Timer Function*/
+        setTimeout(() => {
+          close();
+        }, timer.value);
 
-    if (timer.value) {
-      /*Timer Function*/
-      setTimeout(() => {
-        close();
-      }, timer.value);
-
-      /*Count Down Function*/
-      let countDownFn = setInterval(() => {
-        if (timer.value >= timerCounter.value) {
-          countDownCounter.value = 100 - (timerCounter.value / timer.value) * 100;
-          timerCounter.value += 4;
-        } else {
-          clearInterval(countDownFn);
-        }
-      }, 1);
-    }
+        /*Count Down Function*/
+        let countDownFn = setInterval(() => {
+          if (timer.value >= timerCounter.value) {
+            countDownCounter.value = 100 - (timerCounter.value / timer.value) * 100;
+            timerCounter.value += 4;
+            console.log(countDownCounter.value)
+            console.log(timerCounter.value)
+          } else {
+            clearInterval(countDownFn);
+            timerCounter.value = 0;
+            close();
+            console.log(countDownCounter.value)
+            console.log(timerCounter.value)
+          }
+        }, 1);
+      }
+    })
 
     /*Close*/
     const close = () => {
