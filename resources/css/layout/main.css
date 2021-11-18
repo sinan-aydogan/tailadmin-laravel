@@ -124,7 +124,7 @@
 
 
 .top-menu {
-    @apply flex flex-shrink-0 flex-grow-0 justify-between items-center h-16 px-4 bg-white phone:px-10 space-x-4 rounded-md shadow-md;
+    @apply flex flex-shrink-0 flex-grow-0 justify-between items-center h-16 px-4 bg-white phone:px-10 space-x-4 shadow-md;
 }
 
 

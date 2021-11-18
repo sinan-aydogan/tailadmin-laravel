@@ -26,7 +26,10 @@
     <!--Content Container-->
     <div class="content-wrapper">
       <!--Top Menu-->
-      <div class="top-menu">
+      <div
+        class="top-menu"
+        :class="'radius-' + conf.app.topMenu.radius"
+      >
         <!--Left Menu Trigger-->
         <div @click="leftMenuTrigger" class="trigger">
           <!--Fold & Close Icon-->
@@ -233,10 +236,10 @@
                 </template>
 
                 <!--Language Selector-->
-                <div class="dropdown-header border-t border-gray-100 dark:border-gray-600">
+                <div v-if="conf.app.topMenu.languageSelector" class="dropdown-header border-t border-gray-100 dark:border-gray-600">
                   Language
                 </div>
-                <div class="inline-flex px-4 space-x-2">
+                <div v-if="conf.app.topMenu.languageSelector" class="inline-flex px-4 space-x-2">
                   <template v-for="item in conf.app.languages" :key="item.key">
                     <span class="transform hover:scale-110" :class="item.key !== selectedLang ? 'opacity-40': ''">
                       <svg v-html="item.icon" class="w-6 h-6 cursor-pointer" @click="changeLang(item.key)" />
@@ -245,10 +248,10 @@
                 </div>
 
                 <!--Dark Mode Selector-->
-                <div class="dropdown-header border-t border-gray-100 dark:border-gray-600">
+                <div v-if="conf.app.topMenu.darkModeSelector" class="dropdown-header border-t border-gray-100 dark:border-gray-600">
                   Dark Mode
                 </div>
-                <div class="theme-changer-container border-b border-t border-gray-200">
+                <div v-if="conf.app.topMenu.darkModeSelector" class="theme-changer-container border-b border-t border-gray-200">
                   <div
                     v-for="mode in ['auto','dark','light']"
                     :key="mode"
@@ -383,10 +386,10 @@
                 </form>
               </template>
               <!--Language Selector-->
-              <div class="block px-4 py-2 text-xs text-gray-400 border-t border-gray-100 dark:border-gray-600">
+              <div v-if="conf.app.topMenu.languageSelector" class="block px-4 py-2 text-xs text-gray-400 border-t border-gray-100 dark:border-gray-600">
                 Language
               </div>
-              <div class="inline-flex px-4 space-x-2">
+              <div v-if="conf.app.topMenu.languageSelector" class="inline-flex px-4 space-x-2">
                 <template v-for="item in conf.app.languages" :key="item.key">
                     <span class="transform hover:scale-110" :class="item.key !== selectedLang ? 'opacity-40': ''">
                       <svg v-html="item.icon" class="w-6 h-6 cursor-pointer" @click="changeLang(item.key)" />
@@ -394,8 +397,8 @@
                 </template>
               </div>
               <!--Dark Mode Selector-->
-              <div class="border-t border-gray-200"></div>
-              <div class="theme-changer-container">
+              <div v-if="conf.app.topMenu.darkModeSelector" class="border-t border-gray-200"></div>
+              <div v-if="conf.app.topMenu.darkModeSelector" class="theme-changer-container">
                 <div
                   v-for="mode in ['auto','dark','light']"
                   :key="mode"

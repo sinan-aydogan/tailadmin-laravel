@@ -108,6 +108,11 @@ export default function() {
           ]
         }
       },
+      topMenu: {
+        radius:3,
+        languageSelector: true,
+        darkModeSelector: true
+      },
       footer: {
         status: true,
         text: "<a\n" +
