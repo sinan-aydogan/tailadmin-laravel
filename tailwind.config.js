@@ -19,10 +19,6 @@ module.exports = {
             fontSize: {
                 '2xs': '.65rem',
             },
-            width: {
-                '75' : '75px',
-                '250' : '250px'
-            },
             minWidth: {
                 '0': '0',
                 '3': '0.75rem',
@@ -62,7 +58,7 @@ module.exports = {
                 'screen': '100vh',
                 'min': 'min-content',
                 'max': 'max-content',
-            }
+            },
         },
         screens: {
             'phone': '425',
@@ -75,6 +71,7 @@ module.exports = {
     variants: {
         extend: {
             opacity: ['disabled'],
+            scale: ['active'],
             textColor: ['hover', 'active'],
             backgroundColor: ['active'],
             fontWeight: ['hover', 'active', 'focus'],
