@@ -31,7 +31,10 @@
         :class="'radius-' + conf.app.topMenu.radius"
       >
         <!--Left Menu Trigger-->
-        <div @click="leftMenuTrigger" class="trigger">
+        <div
+          @click="leftMenuTrigger"
+          class="trigger"
+        >
           <!--Fold & Close Icon-->
           <svg
             class="trigger-icon"
@@ -62,7 +65,7 @@
           </svg>
         </div>
         <!--Search Box-->
-        <div class="search-box">
+        <div @click="searchBar=true" class="search-box">
           <svg
             class="search-icon"
             xmlns="http://www.w3.org/2000/svg"
@@ -74,6 +77,7 @@
                   d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
         </div>
+
         <!--Filler-->
         <div class="filler"></div>
         <!--User Menu-->
@@ -236,7 +240,8 @@
                 </template>
 
                 <!--Language Selector-->
-                <div v-if="conf.app.topMenu.languageSelector" class="dropdown-header border-t border-gray-100 dark:border-gray-600">
+                <div v-if="conf.app.topMenu.languageSelector"
+                     class="dropdown-header border-t border-gray-100 dark:border-gray-600">
                   Language
                 </div>
                 <div v-if="conf.app.topMenu.languageSelector" class="inline-flex px-4 space-x-2">
@@ -248,10 +253,12 @@
                 </div>
 
                 <!--Dark Mode Selector-->
-                <div v-if="conf.app.topMenu.darkModeSelector" class="dropdown-header border-t border-gray-100 dark:border-gray-600">
+                <div v-if="conf.app.topMenu.darkModeSelector"
+                     class="dropdown-header border-t border-gray-100 dark:border-gray-600">
                   Dark Mode
                 </div>
-                <div v-if="conf.app.topMenu.darkModeSelector" class="theme-changer-container border-b border-t border-gray-200">
+                <div v-if="conf.app.topMenu.darkModeSelector"
+                     class="theme-changer-container border-b border-t border-gray-200">
                   <div
                     v-for="mode in ['auto','dark','light']"
                     :key="mode"
@@ -386,7 +393,8 @@
                 </form>
               </template>
               <!--Language Selector-->
-              <div v-if="conf.app.topMenu.languageSelector" class="block px-4 py-2 text-xs text-gray-400 border-t border-gray-100 dark:border-gray-600">
+              <div v-if="conf.app.topMenu.languageSelector"
+                   class="block px-4 py-2 text-xs text-gray-400 border-t border-gray-100 dark:border-gray-600">
                 Language
               </div>
               <div v-if="conf.app.topMenu.languageSelector" class="inline-flex px-4 space-x-2">
@@ -506,6 +514,15 @@
   </div>
   <!--Modals-->
   <teleport to="body">
+    <!--Search Bar-->
+    <transition>
+      <t-loading v-model="searchBar" color="gray" title="Search" closeable >
+        <div class="w-1/2 bg-white dark:bg-gray-800 shadow-lg rounded-md p-4 bg-opacity-90">
+          <input type="text" class="w-full rounded-md text-xl text-center"/>
+        </div>
+      </t-loading>
+    </transition>
+
   </teleport>
 </template>
 
@@ -529,9 +546,11 @@ import { Inertia } from "@inertiajs/inertia";
 import windowSizeCalculator from "@/Functions/windowSizeCalculator";
 import config from "@/config";
 import TModal from "@/Components/Modal/TModal";
+import TLoading from "@/Components/Loading/TLoading";
 
 export default defineComponent({
   components: {
+    TLoading,
     TModal,
     Head,
     TCheckCircleIcon,
@@ -562,6 +581,7 @@ export default defineComponent({
     /*Definitions*/
     const { deviceType } = windowSizeCalculator();
     const { conf } = config();
+    const searchBar = ref(false)
 
     /*Dark Mode*/
     const darkMode = ref("auto");
@@ -705,6 +725,7 @@ export default defineComponent({
     const hasSlot = name => !!slots[name];
 
     return {
+      searchBar,
       showLeftMenu,
       foldLeftMenu,
       showingNavigationDropdown,
