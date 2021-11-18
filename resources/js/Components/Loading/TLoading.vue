@@ -1,7 +1,6 @@
 <template>
   <transition name="fade">
     <div :class="tStyle" v-if="modelValue">
-      {{modelValue}}
       <!--Countdown Line-->
       <div v-if="timer" class="loading-screen-countdown">
         <div id="countdown" :style="{width: countDownCounter+'%'}"></div>
@@ -106,14 +105,10 @@ export default defineComponent({
           if (timer.value >= timerCounter.value) {
             countDownCounter.value = 100 - (timerCounter.value / timer.value) * 100;
             timerCounter.value += 4;
-            console.log(countDownCounter.value)
-            console.log(timerCounter.value)
           } else {
             clearInterval(countDownFn);
             timerCounter.value = 0;
             close();
-            console.log(countDownCounter.value)
-            console.log(timerCounter.value)
           }
         }, 1);
       }
