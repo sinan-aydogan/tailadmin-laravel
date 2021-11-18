@@ -515,14 +515,11 @@
   <!--Modals-->
   <teleport to="body">
     <!--Search Bar-->
-    <transition>
       <t-loading v-model="searchBar" color="gray" title="Search" closeable >
         <div class="w-1/2 bg-white dark:bg-gray-800 shadow-lg rounded-md p-4 bg-opacity-90">
           <input type="text" class="w-full rounded-md text-xl text-center"/>
         </div>
       </t-loading>
-    </transition>
-
   </teleport>
 </template>
 
@@ -537,26 +534,20 @@ import TAlert from "@/Components/Alert/TAlert";
 import TToastr from "@/Components/Toastr/TToastr";
 import TAvatar from "@/Components/Avatar/TAvatar";
 import TDropdown from "@/Components/Dropdown/TDropdown";
-import THamburgerMenuTriggerIcon from "@/Components/Icon/THamburgerMenuTriggerIcon";
-import TXIcon from "@/Components/Icon/TXIcon";
 import TLogOutIcon from "@/Components/Icon/TLogOutIcon";
 import TCheckCircleIcon from "@/Components/Icon/TCheckCircleIcon";
 import { Head, Link } from "@inertiajs/inertia-vue3";
 import { Inertia } from "@inertiajs/inertia";
 import windowSizeCalculator from "@/Functions/windowSizeCalculator";
 import config from "@/config";
-import TModal from "@/Components/Modal/TModal";
 import TLoading from "@/Components/Loading/TLoading";
 
 export default defineComponent({
   components: {
     TLoading,
-    TModal,
     Head,
     TCheckCircleIcon,
     TLogOutIcon,
-    TXIcon,
-    THamburgerMenuTriggerIcon,
     TDropdown,
     TAvatar,
     TToastr,

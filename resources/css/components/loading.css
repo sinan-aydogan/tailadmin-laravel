@@ -17,8 +17,8 @@
 .loading-screen-content #animation {
     @apply flex justify-center items-center h-28 mb-8 -mt-28
 }
-.loading-screen-content #custom-content {
-    @apply flex flex-col text-white justify-between items-center h-screen
+.loading-screen #custom-content {
+    @apply flex text-white justify-center items-center h-screen w-full
 }
 .loading-screen-content + .loading-black , .loading-blue , .loading-gray , .loading-green , .loading-indigo , .loading-pink , .loading-red , .loading-purple, .loading-yellow {
 @apply bg-gray-50 text-gray-50
