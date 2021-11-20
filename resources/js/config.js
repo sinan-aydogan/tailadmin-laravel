@@ -111,7 +111,8 @@ export default function() {
       topMenu: {
         radius:3,
         languageSelector: true,
-        darkModeSelector: true
+        darkModeSelector: true,
+        searchPlaceHolderText: 'type and search'
       },
       footer: {
         status: true,

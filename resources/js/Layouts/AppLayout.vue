@@ -34,6 +34,7 @@
         <div
           @click="leftMenuTrigger"
           class="trigger"
+          :class="'radius-' + conf.app.topMenu.radius"
         >
           <!--Fold & Close Icon-->
           <svg
@@ -65,167 +66,182 @@
           </svg>
         </div>
         <!--Search Box-->
-        <div @click="searchBar=true" class="search-box">
-          <svg
-            class="search-icon"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
+        <div class="search-box">
+          <div
+            @click="searchBar=true"
+            class="search-box-wrapper"
+            :class="'radius-' + conf.app.topMenu.radius"
           >
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-          </svg>
-        </div>
-
-        <!--Filler-->
-        <div class="filler"></div>
-        <!--User Menu-->
-        <div class="user-menu">
-
-          <!--Notification and Logout Buttons-->
-          <div class="action-section">
-            <!--Notifications-->
-            <t-dropdown align="right" trigger-type="rich">
-              <template #trigger>
-                <button class="trigger-button">
-                  <span class="absolute top-0 right-0 w-2 h-2 mt-1 mr-2 bg-red-500 rounded-full" />
-                  <span class="absolute top-0 right-0 w-2 h-2 mt-1 mr-2 bg-red-500 rounded-full animate-ping" />
-                  <svg
-                    aria-hidden="true"
-                    class="w-6 h-6"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                    />
-                  </svg>
-                </button>
-              </template>
-              <template #default>
-                <div class="dropdown-list-container">
-                  <!--Pending Works-->
-                  <div class="dropdown-header">
-                    Pending Works
-                  </div>
-                  <!--To-Do-->
-                  <button class="dropdown-item">2 To-Do's</button>
-                  <!--Calibration-->
-                  <button class="dropdown-item">5 Calibration Task's</button>
-                  <!--Messages-->
-                  <div class="border-t border-gray-100"></div>
-                  <button class="dropdown-item">9 Messages</button>
-                </div>
-              </template>
-            </t-dropdown>
+            <svg
+              class="search-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
           </div>
-          <!--User Menu-->
-          <t-dropdown
-            align="right"
-            trigger-type="rich"
-          >
-            <template #trigger>
-              <!--If The user has a avatar-->
-              <button
-                v-if="$page.props.jetstream.managesProfilePhotos"
-                class="trigger-button tablet:gap-2"
-                @click="hamburgerMenuTrigger"
+        </div>
+        <!--Active Team-->
+        <div class="active-team">
+          <div
+            v-if="$page.props.jetstream.hasTeamFeatures"
+            :title="$page.props.user.current_team.name"
+            class="active-team-wrapper">
+            <svg
+              class="left-menu-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+            </svg>
+            <span
+              class="active-team-label"
+              v-text="$page.props.user.current_team.name"
+            />
+          </div>
+        </div>
+        <!--Notifications-->
+        <t-dropdown align="right" trigger-type="rich">
+          <template #trigger>
+            <div
+              class="notification-box"
+              :class="'radius-' + conf.app.topMenu.radius"
+            >
+              <!--Notification Ping-->
+              <div>
+                <span class="notification-ping animate-ping" />
+                <span class="notification-ping" />
+              </div>
+              <!--Notification Icon-->
+              <svg
+                class="notification-icon"
+                aria-hidden="true"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
               >
-                <!--User Info-->
-                <span class="staff-info">
-                    <span class="staff-name">
-                      {{ $page.props.user.name }}
-                    </span>
-                    <span class="staff-title">
-                      {{ $page.props.user.title }}
-                    </span>
-                  </span>
-                <!--User Photo-->
-                <t-avatar
-                  :alt="$page.props.user.name"
-                  :indicator="{
+                <path
+                  d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                />
+              </svg>
+            </div>
+          </template>
+          <template #default>
+            <div class="dropdown-container">
+              <!--Pending Works-->
+              <div class="dropdown-header">
+                Pending Works
+              </div>
+              <!--To-Do-->
+              <button class="dropdown-item">2 To-Do's</button>
+              <!--Calibration-->
+              <button class="dropdown-item">5 Calibration Task's</button>
+              <!--Messages-->
+              <div class="dropdown-item-separator" />
+              <button class="dropdown-item">9 Messages</button>
+            </div>
+          </template>
+        </t-dropdown>
+        <!--User Menu-->
+        <t-dropdown
+          align="right"
+          trigger-type="rich"
+        >
+          <template #trigger>
+            <!--If The user has a avatar-->
+            <div
+              @click="hamburgerMenuTrigger"
+              class="user-menu-trigger"
+            >
+              <!--User Info-->
+              <span class="staff-info">
+                <span class="staff-name">
+                  {{ $page.props.user.name }}
+                </span>
+                <span class="staff-title">
+                  {{ $page.props.user.title }}
+                </span>
+              </span>
+              <!--User Photo-->
+              <t-avatar
+                v-if="$page.props.jetstream.managesProfilePhotos"
+                :alt="$page.props.user.name"
+                :indicator="{
                           color:'green',
                           label : '',
                           position: 'rb'
                         }"
-                  :radius="8"
-                  :size="3"
-                  :src="$page.props.user.profile_photo_url"
-                />
-              </button>
-              <!--If The user has not a avatar-->
-              <span v-else class="inline-flex rounded-md">
-                  <button
-                    class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
-                    type="button">
-                    {{ $page.props.user.name }}
-                    <svg class="ml-2 -mr-0.5 h-4 w-4" fill="currentColor"
-                         viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                      <path clip-rule="evenodd"
-                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                            fill-rule="evenodd" />
-                    </svg>
-                  </button>
-                </span>
-            </template>
-            <template #default>
-              <div v-show="deviceType !== 'phone'" class="dropdown-list-container">
-                <!-- Account Management -->
+                :radius="8"
+                :size="3"
+                :src="$page.props.user.profile_photo_url"
+              />
+            </div>
+          </template>
+          <template #default>
+            <div
+              v-show="deviceType !== 'phone'"
+              class="dropdown-container"
+            >
+              <!-- Account Management -->
+              <div class="dropdown-header">
+                Manage Account
+              </div>
+
+              <!--Profile-->
+              <Link :href="route('profile.show')">
+                <div class="dropdown-item">
+                  Profile
+                </div>
+              </Link>
+
+              <!--API Tokens-->
+              <Link v-if="$page.props.jetstream.hasApiFeatures"
+                    :href="route('api-tokens.index')">
+                <div class="dropdown-item">
+                  Profile
+                </div>
+              </Link>
+
+              <!-- Team Management -->
+              <div class="border-t border-gray-100 dark:border-gray-600"></div>
+              <template v-if="$page.props.jetstream.hasTeamFeatures">
                 <div class="dropdown-header">
-                  Manage Account
+                  Manage Team
                 </div>
 
-                <!--Profile-->
-                <Link :href="route('profile.show')">
+                <!-- Team Settings -->
+                <Link :href="route('teams.show', $page.props.user.current_team)">
                   <div class="dropdown-item">
-                    Profile
+                    Team Settings
                   </div>
                 </Link>
 
-                <!--API Tokens-->
-                <Link v-if="$page.props.jetstream.hasApiFeatures"
-                      :href="route('api-tokens.index')">
+                <!--Create New Team-->
+                <Link v-if="$page.props.jetstream.canCreateTeams"
+                      :href="route('teams.create')">
                   <div class="dropdown-item">
-                    Profile
+                    Create New Team
                   </div>
                 </Link>
 
-                <!-- Team Management -->
-                <div class="border-t border-gray-100 dark:border-gray-600"></div>
-                <template v-if="$page.props.jetstream.hasTeamFeatures">
-                  <div class="dropdown-header">
-                    Manage Team
-                  </div>
+                <!-- Team Switcher -->
+                <div class="dropdown-item-separator" />
+                <div class="dropdown-header">
+                  Switch Teams
+                </div>
 
-                  <!-- Team Settings -->
-                  <Link :href="route('teams.show', $page.props.user.current_team)">
-                    <div class="dropdown-item">
-                      Team Settings
-                    </div>
-                  </Link>
-
-                  <!--Create New Team-->
-                  <Link v-if="$page.props.jetstream.canCreateTeams"
-                        :href="route('teams.create')">
-                    <div class="dropdown-item">
-                      Create New Team
-                    </div>
-                  </Link>
-
-                  <!-- Team Switcher -->
-                  <div class="border-t border-gray-100"></div>
-                  <div class="dropdown-header">
-                    Switch Teams
-                  </div>
-
-                  <template v-for="team in $page.props.user.all_teams" :key="team.id">
-                    <form @submit.prevent="switchToTeam(team)">
-                      <button class="dropdown-item">
+                <template v-for="team in $page.props.user.all_teams" :key="team.id">
+                  <form @submit.prevent="switchToTeam(team)">
+                    <button class="dropdown-item">
                           <span class="flex items-center">
                             <t-check-circle-icon
                               v-if="team.id === $page.props.user.current_team_id"
@@ -234,81 +250,80 @@
                             {{ team.name }}
                           </span>
 
-                      </button>
-                    </form>
-                  </template>
+                    </button>
+                  </form>
                 </template>
+              </template>
 
-                <!--Language Selector-->
-                <div v-if="conf.app.topMenu.languageSelector"
-                     class="dropdown-header border-t border-gray-100 dark:border-gray-600">
-                  Language
-                </div>
-                <div v-if="conf.app.topMenu.languageSelector" class="inline-flex px-4 space-x-2">
-                  <template v-for="item in conf.app.languages" :key="item.key">
+              <!--Language Selector-->
+              <div v-if="conf.app.topMenu.languageSelector"
+                   class="dropdown-header border-t border-gray-100 dark:border-gray-600">
+                Language
+              </div>
+              <div v-if="conf.app.topMenu.languageSelector" class="inline-flex px-4 space-x-2">
+                <template v-for="item in conf.app.languages" :key="item.key">
                     <span class="transform hover:scale-110" :class="item.key !== selectedLang ? 'opacity-40': ''">
                       <svg v-html="item.icon" class="w-6 h-6 cursor-pointer" @click="changeLang(item.key)" />
                     </span>
-                  </template>
-                </div>
+                </template>
+              </div>
 
-                <!--Dark Mode Selector-->
-                <div v-if="conf.app.topMenu.darkModeSelector"
-                     class="dropdown-header border-t border-gray-100 dark:border-gray-600">
-                  Dark Mode
-                </div>
-                <div v-if="conf.app.topMenu.darkModeSelector"
-                     class="theme-changer-container border-b border-t border-gray-200">
-                  <div
-                    v-for="mode in ['auto','dark','light']"
-                    :key="mode"
-                    :class="[
+              <!--Dark Mode Selector-->
+              <div v-if="conf.app.topMenu.darkModeSelector"
+                   class="dropdown-header border-t border-gray-100 dark:border-gray-600">
+                Dark Mode
+              </div>
+              <div v-if="conf.app.topMenu.darkModeSelector"
+                   class="theme-changer-container border-b border-t border-gray-200">
+                <div
+                  v-for="mode in ['auto','dark','light']"
+                  :key="mode"
+                  :class="[
                     'theme-changer-button',
                     'theme-changer-button-'+mode,
                     mode === darkMode ? 'theme-changer-button-active':'',
                     ]"
-                    @click="darkMode=mode"
-                  >
-                    <!--Mode Icons-->
-                    <!--Auto-->
-                    <svg v-if="mode==='auto'" key="auto" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
-                         fill="none"
-                         viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-                    </svg>
-                    <!--Dark-->
-                    <svg v-if="mode==='dark'" key="dark" xmlns="http://www.w3.org/2000/svg"
-                         class="h-5 w-5" fill="none"
-                         viewBox="0 0 24 24"
-                         stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-                    </svg>
-                    <!--Light-->
-                    <svg v-if="mode==='light'" key="light" xmlns="http://www.w3.org/2000/svg"
-                         class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-                         stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-                    </svg>
-                    <!--Mode Title-->
-                    <span v-text="mode" />
-                  </div>
+                  @click="darkMode=mode"
+                >
+                  <!--Mode Icons-->
+                  <!--Auto-->
+                  <svg v-if="mode==='auto'" key="auto" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
+                       fill="none"
+                       viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                  </svg>
+                  <!--Dark-->
+                  <svg v-if="mode==='dark'" key="dark" xmlns="http://www.w3.org/2000/svg"
+                       class="h-5 w-5" fill="none"
+                       viewBox="0 0 24 24"
+                       stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                  </svg>
+                  <!--Light-->
+                  <svg v-if="mode==='light'" key="light" xmlns="http://www.w3.org/2000/svg"
+                       class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                       stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                  </svg>
+                  <!--Mode Title-->
+                  <span v-text="mode" />
                 </div>
+              </div>
 
-                <!-- Authentication -->
-                <form @submit.prevent="logout">
-                  <button class="w-full border-red-500">
+              <!-- Authentication -->
+              <form @submit.prevent="logout">
+                <button class="w-full border-red-500">
                       <span class="logout-button">
                         <t-log-out-icon class="w-5 h-5" /> Logout
                       </span>
-                  </button>
-                </form>
-              </div>
-            </template>
-          </t-dropdown>
-        </div>
+                </button>
+              </form>
+            </div>
+          </template>
+        </t-dropdown>
       </div>
       <!-- Responsive Navigation Menu -->
       <div v-if="deviceType === 'phone' && showingNavigationDropdown">
@@ -515,11 +530,14 @@
   <!--Modals-->
   <teleport to="body">
     <!--Search Bar-->
-      <t-loading v-model="searchBar" color="gray" title="Search" closeable >
-        <div class="w-1/2 bg-white dark:bg-gray-800 shadow-lg rounded-md p-4 bg-opacity-90">
-          <input type="text" class="w-full rounded-md text-xl text-center"/>
-        </div>
-      </t-loading>
+    <t-loading v-model="searchBar" color="gray" title="Search" closeable>
+      <div
+        class="search-modal"
+        :class="'radius-' + conf.app.topMenu.radius"
+      >
+        <input type="text" id="search" :placeholder="conf.app.topMenu.searchPlaceHolderText"/>
+      </div>
+    </t-loading>
   </teleport>
 </template>
 
@@ -572,7 +590,7 @@ export default defineComponent({
     /*Definitions*/
     const { deviceType } = windowSizeCalculator();
     const { conf } = config();
-    const searchBar = ref(false)
+    const searchBar = ref(false);
 
     /*Dark Mode*/
     const darkMode = ref("auto");
@@ -632,6 +650,7 @@ export default defineComponent({
     };
 
     /*Switch Team Action*/
+    const showTeamSelector = ref(false);
     const switchToTeam = (team) => {
       Inertia.put(
         route("current-team.update"),
@@ -725,6 +744,7 @@ export default defineComponent({
       selectedLang,
       showSelectLangModal,
       conf,
+      showTeamSelector,
       changeLang,
       switchToTeam,
       hamburgerMenuTrigger,
