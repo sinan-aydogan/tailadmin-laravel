@@ -23,7 +23,7 @@
       class="left-menu-label-wrapper"
       :class="[!foldLeftMenu ? 'w-show' : 'w-hide']"
     >
-      <span v-text="item.label" />
+      <span v-t="item.label ? item.label : item.label" />
       <!--Indicator Icon-->
       <span id="trigger">
       <svg
@@ -70,9 +70,8 @@
     <span
       class="left-menu-label-wrapper"
       :class="[!foldLeftMenu ? 'w-show' : 'w-hide']"
-    >
-      {{ item.label }}
-    </span>
+      v-t="item.label ? item.label : item.label"
+    />
   </Link>
   <!--External Link-->
   <a
@@ -94,9 +93,8 @@
     <span
       class="left-menu-label-wrapper"
       :class="[!foldLeftMenu ? 'w-show' : 'w-hide']"
-    >
-      {{ item.label }}
-    </span>
+      v-t="item.label ? item.label : item.label"
+    />
 
   </a>
   <!-- Sub Item -->

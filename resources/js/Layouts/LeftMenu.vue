@@ -10,7 +10,7 @@
         ]"
     >
       <Link
-        :href="route('dashboard')"
+        :href="route('/')"
         class="logo-out-container"
       >
         <div class="logo-inside-container">
@@ -60,7 +60,7 @@
                 class="left-menu-icon"
                 v-html="link.icon"
               />
-              <span v-text="link.label" />
+              <span v-t="link.label ? link.label : link.label" />
             </Link>
             <!--External Link-->
             <a
@@ -75,7 +75,7 @@
                 v-html="link.icon"
                 class="left-menu-icon"
               />
-              <span v-text="link.label" />
+              <span v-t="link.label ? link.label : link.label" />
             </a>
           </template>
         </div>
@@ -99,6 +99,7 @@
 <script>
 import { defineComponent, inject } from "vue";
 import { Link } from "@inertiajs/inertia-vue3";
+import {useI18n} from "vue-i18n";
 
 export default defineComponent({
   name: "LeftMenu",
@@ -107,7 +108,7 @@ export default defineComponent({
   },
   emits: ["foldLeftMenu"],
   setup() {
-
+    const {t} = useI18n()
     /*Injection*/
     const foldLeftMenu = inject("foldLeftMenu");
     const conf = inject("conf");

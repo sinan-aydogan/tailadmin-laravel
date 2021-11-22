@@ -15,9 +15,8 @@
     <span
       class="left-menu-label-wrapper"
       :class="[!foldLeftMenu ? 'w-show' : 'w-hide']"
-    >
-        {{ item.label }}
-      </span>
+      v-t="item.label ? item.label : item.label"
+    />
     <!-- Icon -->
     <span class="left-menu-icon">
       <font-awesome-icon v-if="item.icon" :icon="item.icon" />
@@ -33,9 +32,8 @@
     <span
       class="left-menu-label-wrapper"
       :class="[!foldLeftMenu ? 'w-show' : 'w-hide']"
-    >
-      {{ item.label }}
-    </span>
+      v-t="item.label ? item.label : item.labelitem"
+    />
 
     <!-- Icon -->
     <span class="left-menu-icon">

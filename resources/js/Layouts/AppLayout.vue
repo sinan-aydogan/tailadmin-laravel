@@ -14,7 +14,7 @@
           ]"
     >
       <template
-        v-for="(item, index) in menuList"
+        v-for="(item, index) in leftMenuLinks"
         :key="index"
       >
         <left-menu-item
@@ -192,52 +192,38 @@
               class="dropdown-container"
             >
               <!-- Account Management -->
-              <div class="dropdown-header">
-                Manage Account
-              </div>
+              <div class="dropdown-header" v-t="'topMenu.userMenu.manageAccount'"/>
 
               <!--Profile-->
               <Link :href="route('profile.show')">
-                <div class="dropdown-item">
-                  Profile
-                </div>
+                <div class="dropdown-item" v-t="'topMenu.userMenu.profile'"/>
               </Link>
 
               <!--API Tokens-->
               <Link v-if="$page.props.jetstream.hasApiFeatures"
                     :href="route('api-tokens.index')">
-                <div class="dropdown-item">
-                  Profile
-                </div>
+                <div class="dropdown-item" v-t="'topMenu.userMenu.api'"/>
               </Link>
 
               <!-- Team Management -->
               <div class="border-t border-gray-100 dark:border-gray-600"></div>
               <template v-if="$page.props.jetstream.hasTeamFeatures">
-                <div class="dropdown-header">
-                  Manage Team
-                </div>
+                <div class="dropdown-header" v-t="'topMenu.userMenu.manageTeam'"/>
 
                 <!-- Team Settings -->
                 <Link :href="route('teams.show', $page.props.user.current_team)">
-                  <div class="dropdown-item">
-                    Team Settings
-                  </div>
+                  <div class="dropdown-item" v-t="'topMenu.userMenu.teamSettings'"/>
                 </Link>
 
                 <!--Create New Team-->
                 <Link v-if="$page.props.jetstream.canCreateTeams"
                       :href="route('teams.create')">
-                  <div class="dropdown-item">
-                    Create New Team
-                  </div>
+                  <div class="dropdown-item" v-t="'topMenu.userMenu.createNewTeam'"/>
                 </Link>
 
                 <!-- Team Switcher -->
                 <div class="dropdown-item-separator" />
-                <div class="dropdown-header">
-                  Switch Teams
-                </div>
+                <div class="dropdown-header" v-t="'topMenu.userMenu.switchTeams'"/>
 
                 <template v-for="team in $page.props.user.all_teams" :key="team.id">
                   <form @submit.prevent="switchToTeam(team)">
@@ -254,15 +240,12 @@
                   </form>
                 </template>
               </template>
-
               <!--Language Selector-->
               <div v-if="conf.app.topMenu.languageSelector"
-                   class="dropdown-header border-t border-gray-100 dark:border-gray-600">
-                Language
-              </div>
+                   class="dropdown-header border-t border-gray-100 dark:border-gray-600" v-t="'topMenu.userMenu.language'"/>
               <div v-if="conf.app.topMenu.languageSelector" class="inline-flex px-4 space-x-2">
                 <template v-for="item in conf.app.languages" :key="item.key">
-                    <span class="transform hover:scale-110" :class="item.key !== selectedLang ? 'opacity-40': ''">
+                    <span class="transform hover:scale-110" :class="item.key !== locale ? 'opacity-40': ''">
                       <svg v-html="item.icon" class="w-6 h-6 cursor-pointer" @click="changeLang(item.key)" />
                     </span>
                 </template>
@@ -270,9 +253,7 @@
 
               <!--Dark Mode Selector-->
               <div v-if="conf.app.topMenu.darkModeSelector"
-                   class="dropdown-header border-t border-gray-100 dark:border-gray-600">
-                Dark Mode
-              </div>
+                   class="dropdown-header border-t border-gray-100 dark:border-gray-600" v-t="'topMenu.userMenu.darkMode'"/>
               <div v-if="conf.app.topMenu.darkModeSelector"
                    class="theme-changer-container border-b border-t border-gray-200">
                 <div
@@ -309,7 +290,7 @@
                           d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
                   </svg>
                   <!--Mode Title-->
-                  <span v-text="mode" />
+                  <span v-t="'topMenu.userMenu.'+ mode" />
                 </div>
               </div>
 
@@ -317,7 +298,8 @@
               <form @submit.prevent="logout">
                 <button class="w-full border-red-500">
                       <span class="logout-button">
-                        <t-log-out-icon class="w-5 h-5" /> Logout
+                        <t-log-out-icon class="w-5 h-5" />
+                        <span v-t="'topMenu.userMenu.logout'"/>
                       </span>
                 </button>
               </form>
@@ -414,8 +396,8 @@
               </div>
               <div v-if="conf.app.topMenu.languageSelector" class="inline-flex px-4 space-x-2">
                 <template v-for="item in conf.app.languages" :key="item.key">
-                    <span class="transform hover:scale-110" :class="item.key !== selectedLang ? 'opacity-40': ''">
-                      <svg v-html="item.icon" class="w-6 h-6 cursor-pointer" @click="changeLang(item.key)" />
+                    <span class="transform hover:scale-110" :class="item.key !== locale ? 'opacity-40': ''">
+                      <svg v-html="item.icon" class="w-6 h-6 cursor-pointer" @click="locale =changeLang(item.key)" />
                     </span>
                 </template>
               </div>
@@ -547,7 +529,6 @@ import JetBanner from "@/Jetstream/Banner.vue";
 import JetResponsiveNavLink from "@/Jetstream/ResponsiveNavLink.vue";
 import LeftMenu from "@/Layouts/LeftMenu";
 import LeftMenuItem from "@/Layouts/LeftMenuItem";
-import { leftMenuItemsMixin } from "@/Mixins/leftMenuItemsMixin";
 import TAlert from "@/Components/Alert/TAlert";
 import TToastr from "@/Components/Toastr/TToastr";
 import TAvatar from "@/Components/Avatar/TAvatar";
@@ -558,7 +539,10 @@ import { Head, Link } from "@inertiajs/inertia-vue3";
 import { Inertia } from "@inertiajs/inertia";
 import windowSizeCalculator from "@/Functions/windowSizeCalculator";
 import config from "@/config";
+import { leftMenu } from "@/leftMenu";
 import TLoading from "@/Components/Loading/TLoading";
+import { useI18n } from "vue-i18n";
+
 
 export default defineComponent({
   components: {
@@ -576,18 +560,21 @@ export default defineComponent({
     TAlert,
     Link
   },
-
-  mixins: [leftMenuItemsMixin],
-
   props: {
     title: {
       type: String,
       default: null
     }
   },
-
+  mixins: [leftMenu],
   setup(props, { slots }) {
     /*Definitions*/
+    const { t, locale } = useI18n({
+      useScope: 'global',
+      missingWarn: false,
+      warnHtmlMessage: false,
+      fallbackWarn: false
+    })
     const { deviceType } = windowSizeCalculator();
     const { conf } = config();
     const searchBar = ref(false);
@@ -640,13 +627,16 @@ export default defineComponent({
     });
 
     /*Language Selector*/
-    const selectedLang = ref("en");
-    const showSelectLangModal = ref(false);
     /*Language: Change Language Function*/
+    onBeforeMount(()=>{
+      if (localStorage.lang) {
+        locale.value = localStorage.lang
+      }
+    })
     const changeLang = (key) => {
-      selectedLang.value = key;
-      localStorage.lang = key;
-      showSelectLangModal.value = false;
+      locale.value = key;
+      localStorage.setItem("lang", key);
+      Inertia.visit(route().current(), { preserveScroll: true })
     };
 
     /*Switch Team Action*/
@@ -741,10 +731,10 @@ export default defineComponent({
       showingNavigationDropdown,
       deviceType,
       darkMode,
-      selectedLang,
-      showSelectLangModal,
       conf,
       showTeamSelector,
+      t,
+      locale,
       changeLang,
       switchToTeam,
       hamburgerMenuTrigger,

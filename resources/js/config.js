@@ -84,7 +84,7 @@ export default function() {
           status: true,
           links: [
             {
-              label: "Help",
+              label: "leftMenu.footer.help",
               linkType: "external",
               link: "https://github.com/sinan-aydogan",
               icon: "<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"h-6 w-6\" fill=\"none\" viewBox=\"0 0 24 24\" stroke=\"currentColor\">\n" +
@@ -93,7 +93,7 @@ export default function() {
             },
             {
               showWhenFolded: true,
-              label: "Settings",
+              label: "leftMenu.footer.settings",
               linkType: "route",
               link: "settings",
               icon: "<svg aria-hidden=\"true\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\n" +
