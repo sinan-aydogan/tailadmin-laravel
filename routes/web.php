@@ -17,14 +17,7 @@ use Spatie\Permission\Models\Role;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Dashboard', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
+
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function (){
     Route::get('/', function () {
@@ -34,7 +27,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function (){
             'laravelVersion' => Application::VERSION,
             'phpVersion' => PHP_VERSION,
         ]);
-})->name('dashboard');
+})->name('/');
 
     /*They are the required pages for the system, don't delete it*/
     Route::prefix('settings')->group(function () {
