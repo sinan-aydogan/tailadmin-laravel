@@ -158,7 +158,7 @@
 
 
 .top-menu {
-    @apply flex flex-shrink-0 flex-grow-0 justify-between items-center h-16 px-4 bg-white dark:bg-gray-800 phone:px-10 shadow-md dark:text-gray-200 overflow-hidden;
+    @apply flex flex-shrink-0 flex-grow-0 justify-between items-center h-16 px-4 bg-white dark:bg-gray-800 phone:px-10 shadow-md dark:text-gray-200;
 }
 
 .top-menu .dropdown-container {
@@ -222,7 +222,7 @@
     @apply hidden tablet:flex flex-grow justify-start items-center overflow-hidden
 }
 .top-menu .active-team-wrapper{
-    @apply flex justify-between items-center space-x-2 p-2 rounded-md border border-gray-300 text-gray-600 bg-opacity-50 overflow-hidden
+    @apply flex justify-between items-center space-x-2 p-2 rounded-md border border-gray-300 dark:border-gray-600 text-gray-600 bg-opacity-50 dark:text-gray-400 overflow-hidden
 }
 .top-menu .active-team-label {
     @apply flex whitespace-nowrap font-semibold overflow-hidden
