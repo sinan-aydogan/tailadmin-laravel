@@ -34,6 +34,12 @@
 
         <!--Form-->
         <div class="auth-form">
+          <div class="flex justify-center w-full -my-2">
+            <t-badge color="solid-yellow">
+              <t-information-icon class="w-5 h-5" slot="icon"/>
+              The demo resets in every day
+            </t-badge>
+          </div>
           <form @submit.prevent="submit">
             <!--Email-->
             <div>
@@ -132,10 +138,12 @@ import TFullScreenCard from "@/Components/Card/TFullScreenCard";
 import TInputGroup from "@/Components/Form/TInputGroup";
 import TInputText from "@/Components/Form/Inputs/TInputText";
 import {windowSizeMixin} from "@/Mixins/windowSizeMixin";
+import TBadge from "@/Components/Badge/TBadge";
+import TInformationIcon from "@/Components/Icon/TInformationIcon";
 
 export default {
   name: "TLogin",
-  components: {TAlert, TBellIcon, TButton, TFullScreenCard, TInputGroup, TInputText},
+  components: { TInformationIcon, TBadge, TAlert, TBellIcon, TButton, TFullScreenCard, TInputGroup, TInputText},
   mixins: [ windowSizeMixin,loginStyleMixin],
   props: {
     canResetPassword: Boolean,
@@ -167,8 +175,8 @@ export default {
   data() {
     return {
       form: this.$inertia.form({
-        email: '',
-        password: '',
+        email: 'admin@tailadmin.dev',
+        password: 'admin',
         remember: false
       })
     }

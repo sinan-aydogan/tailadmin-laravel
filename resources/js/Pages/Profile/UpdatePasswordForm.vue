@@ -10,8 +10,7 @@
                 description="Ensure your account is using a long, random password to stay secure."
                 title="Update Password">
                     <!-- Current Password -->
-                    <t-input-group class="col-span-12" :error="form.errors.current_password" label="Current Password" label-for="current_password">
-                        <t-input-text
+              <t-input-group class="col-span-12" :error="form.errors.current_password" label="Current Password" label-for="current_password" error="You can't change password at the demo">                        <t-input-text
                             id="current_password"
                             v-model="form.current_password"
                             :radius="3"

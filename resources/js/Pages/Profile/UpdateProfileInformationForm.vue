@@ -80,7 +80,7 @@
                     </t-input-group>
 
                     <!-- Email -->
-                    <t-input-group :error="form.errors.email" label="Email" label-for="email">
+                  <t-input-group :error="form.errors.email" label="Email" label-for="email" error="You can't change the email at the demo">
                         <t-input-text id="email" v-model="form.email" :radius="3" autocomplete="email" type="email"/>
                     </t-input-group>
 
