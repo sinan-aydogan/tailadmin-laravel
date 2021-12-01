@@ -46,7 +46,7 @@
 /*Colors: black, blue, gray, green, indigo, pink, purple, white and yellow*/
 /*Black*/
 .button-filled-black {
-    @apply bg-gray-800 hover:bg-gray-300 hover:text-gray-700 border-black
+    @apply bg-gray-700 hover:bg-gray-300 hover:text-gray-700 border-black
 }
 
 .button-filled-black .loading-black {
@@ -118,7 +118,7 @@
 
 /*White*/
 .button-filled-white {
-    @apply bg-gray-100 hover:bg-gray-200 hover:text-gray-700 border-gray-300 text-gray-700  !important
+    @apply bg-white hover:bg-gray-200 hover:text-gray-700 border-gray-200 text-gray-700  !important
 }
 
 .button-filled-white .loading-white {
@@ -149,7 +149,7 @@
 /*Colors: black, blue, gray, green, indigo, pink, purple, white and yellow*/
 /*Black*/
 .button-light-black {
-    @apply bg-gray-500 hover:bg-gray-800 text-gray-50 border-gray-800
+    @apply bg-gray-500 hover:bg-gray-700 text-gray-50 border-gray-700
 }
 
 .button-light-black .loading-black {
@@ -221,7 +221,7 @@
 
 /*White*/
 .button-light-white {
-    @apply bg-gray-100 hover:bg-gray-500 text-gray-700 border-gray-300
+    @apply bg-white hover:bg-gray-500 text-gray-700 border-gray-300
 }
 
 .button-light-white .loading-white {
@@ -252,11 +252,11 @@
 /*Colors: black, blue, gray, green, indigo, pink, purple, white and yellow*/
 /*Black*/
 .button-outline-black {
-    @apply hover:bg-gray-800 text-gray-800 border-gray-800
+    @apply hover:bg-gray-700 text-gray-700 border-gray-700
 }
 
 .button-outline-black .loading-black {
-    @apply bg-gray-800
+    @apply bg-gray-700
 }
 
 /*Blue*/
@@ -355,11 +355,11 @@
 /*Colors: black, blue, gray, green, indigo, pink, purple, white and yellow*/
 /*Black*/
 .button-link-black {
-    @apply text-gray-800
+    @apply text-gray-700
 }
 
 .button-link-black .loading-black {
-    @apply bg-gray-800
+    @apply bg-gray-700
 }
 
 /*Blue*/
@@ -458,11 +458,11 @@
 /*Colors: black, blue, gray, green, indigo, pink, purple, white and yellow*/
 /*Black*/
 .button-link-plus-black {
-    @apply text-gray-800 hover:bg-gray-800
+    @apply text-gray-700 hover:bg-gray-700
 }
 
 .button-link-plus-black .loading-black {
-    @apply bg-gray-800
+    @apply bg-gray-700
 }
 
 /*Blue*/
@@ -530,7 +530,7 @@
 
 /*White*/
 .button-link-plus-white {
-    @apply text-gray-700 hover:bg-gray-300 hover:text-gray-700
+    @apply text-gray-700 hover:bg-white hover:text-gray-700
 }
 
 .button-link-plus-white .loading-white {

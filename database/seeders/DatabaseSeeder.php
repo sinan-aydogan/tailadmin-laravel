@@ -16,5 +16,6 @@ class DatabaseSeeder extends Seeder
         /*Admin Seeder*/
         $this->call(UserSeeder::class);
         \App\Models\User::factory(50)->create();
+        \App\Models\DemoContent::factory(100)->create();
     }
 }

@@ -5,6 +5,9 @@
 .loading-screen-content {
     @apply flex flex-col text-white justify-between items-center h-screen
 }
+.loading-screen-content #wrapper{
+    @apply flex flex-col h-full space-y-8 justify-center items-center
+}
 .loading-screen-content #title {
     @apply flex text-4xl tablet:text-7xl filter drop-shadow-lg text-center
 }
@@ -13,6 +16,9 @@
 }
 .loading-screen-content #animation {
     @apply flex justify-center items-center h-28 mb-8 -mt-28
+}
+.loading-screen #custom-content {
+    @apply flex text-white justify-center items-center h-screen w-full
 }
 .loading-screen-content + .loading-black , .loading-blue , .loading-gray , .loading-green , .loading-indigo , .loading-pink , .loading-red , .loading-purple, .loading-yellow {
 @apply bg-gray-50 text-gray-50

@@ -23,11 +23,15 @@
 }
 
 .modal-content-container {
-    @apply flex flex-col justify-center items-center px-16 py-8
+    @apply flex flex-col justify-center items-center px-16 pt-8
+}
+
+.modal-custom-content-container {
+    @apply flex items-center p-4
 }
 
 .modal-content {
-    @apply text-center space-y-4
+    @apply text-center space-y-4 w-full
 }
 
 .modal-content-default {
@@ -43,7 +47,7 @@
 }
 
 .modal-footer-container {
-    @apply grid grid-cols-3 grid-rows-1 gap-2 w-full p-4  whitespace-normal
+    @apply flex justify-between w-full p-4  whitespace-normal
 }
 
 .modal-countdown {
@@ -62,15 +66,15 @@
 }
 
 .modal-footer-left {
-    @apply inline-flex space-x-2 justify-start
+    @apply inline-flex flex-grow space-x-2 justify-start
 }
 
 .modal-footer-center {
-    @apply inline-flex space-x-2 justify-center
+    @apply inline-flex flex-grow space-x-2 justify-center
 }
 
 .modal-footer-right {
-    @apply inline-flex space-x-2 justify-end
+    @apply inline-flex flex-grow space-x-2 justify-end
 }
 
 /*<editor-fold desc="Modal Background Color Styles">*/
@@ -182,15 +186,15 @@
 }
 
 /*Title Styles*/
-.modal-filled-base #title-container {
-    @apply flex flex-col justify-center
+.modal-filled-base #content-title-container {
+    @apply flex flex-col w-full text-center -mt-2 mb-4
 }
 
-.modal-filled-base #title {
+.modal-filled-base #content-title {
     @apply text-3xl
 }
 
-.modal-filled-base #sub-title {
+.modal-filled-base #content-sub-title {
     @apply text-xl
 }
 
@@ -292,11 +296,11 @@
     @apply flex flex-col justify-center
 }
 
-.modal-elegant-base #title {
+.modal-elegant-base #top-title {
     @apply text-3xl
 }
 
-.modal-elegant-base #sub-title {
+.modal-elegant-base #top-sub-title {
     @apply text-xl
 }
 
