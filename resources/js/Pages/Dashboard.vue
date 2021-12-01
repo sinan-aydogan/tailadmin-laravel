@@ -1,12 +1,7 @@
 <template>
-  <app-layout title="Dashboard">
+  <app-layout title="Dashboard" :header="t('title')">
     <template #breadcrumb>
       <t-breadcrumb :breadcrumb-style="1" :breadcrumbs="breadcrumbs" color="white" />
-    </template>
-    <template #header>
-      <span v-t="'title'" />
-    </template>
-    <template #subHeader>
     </template>
     <template #default>
       <!--Statistical Widgets-->
@@ -108,11 +103,8 @@
             <!--Table-->
             <t-table
               :content="tableContent"
-              :searchable="['name']"
               :header="tableHeader"
-              :radius="0"
-              :shadow="false"
-              color="solid-white"
+              :features="tableFeatures"
             >
               <template #status="{props}">
                 <div class="flex justify-center">
@@ -173,7 +165,7 @@
 </template>
 
 <script>
-import { defineComponent, reactive } from "vue";
+import { computed, defineComponent, reactive } from "vue";
 import AppLayout from "@/Layouts/AppLayout.vue";
 import GridSection from "@/Layouts/GridSection";
 import TStatisticWidget from "@/Components/Card/TStatisticWidget";
@@ -270,18 +262,45 @@ export default defineComponent({
       { label: t("dashboard"), link: "", active: true, activeColor: "blue" }
     ]);
     const tableHeader = reactive([
-      { key: "id", label: "ID", position: "center" },
-      { key: "name", label: "Name", position: "left" },
-      { key: "start", label: "Start Date", position: "left" },
-      { key: "end", label: "End Date", position: "left" },
-      { key: "status", label: "Status", position: "center" }
+      { key: "id", label: "ID", align: "center" },
+      { key: "name", label: "Name", align: "left", searchable: true, status: true },
+      { key: "start", label: "Start Date", align: "left", status: true },
+      { key: "end", label: "End Date", align: "left", status: true },
+      { key: "status", label: "Status", align: "center", status: true }
     ])
     const tableContent = reactive([
       { id: 1, name: "VueJS Components", start: "01.03.2021", end: "14.09.2021", status: 10 },
       { id: 2, name: "Custom Style Optimize", start: "02.05.2021", end: "25.08.2021", status: 20 },
       { id: 3, name: "Error Management", start: "25.04.2021", end: "30.12.2021", status: 70 }
     ])
-    return { t, breadcrumbs, tableHeader, tableContent };
+    const tableFeatures = reactive({
+      table: {
+        design: 'elegant',
+        rowBorder: true,
+        zebraRow: true,
+        radius: 3,
+        perPage:5
+      },
+      pagination: {
+        status: true,
+        radius: 3,
+        range: 5,
+        jump: true,
+        nextText: "Sonraki",
+        previousText: "Önceki",
+        detailText: "Sayfa: $a - $b"
+      },
+      actions: {
+        status: true,
+        headerText: "Aksiyonlar"
+      },
+      deleteModal: {
+        headerText: "Item's deleting",
+        contentText: "You are going to delete <br><b></b><br>Are you sure ?",
+        icon: "warning"
+      }
+    });
+    return { t, breadcrumbs, tableHeader, tableContent, tableFeatures };
   }
 });
 </script>
