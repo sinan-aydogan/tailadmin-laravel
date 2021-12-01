@@ -1,5 +1,5 @@
 .table-outside-container {
-    @apply w-full
+    @apply w-full space-y-4
 }
 
 .table-top {
@@ -11,6 +11,9 @@
 .table-simple-search-container{
     @apply relative
 }
+.table-simple-search-container #title{
+    @apply font-bold mb-2
+}
 .table-simple-search{
     @apply relative
 }
@@ -19,6 +22,12 @@
 }
 .table-simple-search-icon{
     @apply absolute left-2 top-2 w-6 h-6 opacity-50
+}
+.table-advanced-search-container{
+    @apply flex flex-col p-4 space-y-4 border bg-white dark:border-transparent dark:bg-gray-800 dark:text-gray-200
+}
+.table-advanced-search-content-wrapper{
+    @apply grid grid-cols-1 tablet:grid-cols-2 gap-4
 }
 .table-container{
     @apply w-full
