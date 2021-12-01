@@ -208,7 +208,7 @@ export default defineComponent({
       messages: {
         local: "en",
         en: {
-          title: "Welcome to TailAdmin",
+          title: "Welcome to Anemon",
           home: "Home",
           dashboard: "Dashboard",
           incomes: "Incomes",
@@ -232,7 +232,7 @@ export default defineComponent({
             "<br/><b>User:</b> Zuhal TAŞÇI"
         },
         tr: {
-          title: "TailAdmin'e Hoşgeldiniz",
+          title: "Anemon'a Hoşgeldiniz",
           home: "Ana Sayfa",
           dashboard: "Panel",
           incomes: "Gelirler",

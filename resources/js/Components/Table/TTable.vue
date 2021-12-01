@@ -309,7 +309,6 @@
 <script>
 import { computed, defineComponent, onBeforeMount, reactive, ref, toRefs } from "vue";
 import TPaginate from "@/Components/Paginate/TPaginate";
-import { tableStyleMixin } from "@/Mixins/Styles/tableStyleMixin";
 import TButton from "@/Components/Button/TButton";
 import TModal from "@/Components/Modal/TModal";
 import TInputSelect from "@/Components/Form/Inputs/TInputSelect";
@@ -325,7 +324,6 @@ export default defineComponent({
     TButton,
     TPaginate
   },
-  mixins: [tableStyleMixin],
   props: {
     features: {
       type: Object,
