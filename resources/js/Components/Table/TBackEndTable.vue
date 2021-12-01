@@ -1,86 +1,136 @@
 <template>
-  <div :class="tStyle['container']">
+  <div
+    class="table-outside-container"
+    :class="`table-${features.table.design}`"
+  >
     <!--Top Content-->
-    <div class="table-top">
+    <div
+      v-if="hasSlot('search') || hasSlot('top-right') || hasSlot('top-left') || simpleSearchableFields.length>0"
+      class="table-top"
+    >
       <!--Left-->
-      <div class="table-top-left">
+      <div
+        v-if="simpleSearchableFields.length>0"
+        class="table-top-left"
+      >
         <!--Search-->
         <div class="table-simple-search-container">
           <!--Search Input-->
-          <input :class="tStyle['searchInput']" v-model="tableRequest.searchText" placeholder="search for ..." />
+          <input
+            id="search"
+            type="text"
+            v-model="tableRequest.searchText"
+            class="table-simple-search-input"
+            :class="`radius-${features.table.radius}`"
+            :placeholder="t('component.table.searchPlaceHolder')"
+          />
           <!--Search Icon-->
-          <svg class="table-simple-search-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-               stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          <svg
+            class="table-simple-search-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none" viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+            />
           </svg>
         </div>
         <!--Customize Showing Options-->
         <t-button
-          :color="features.table.darkMode ? 'black' : 'white'"
           :radius="features.table.radius"
           border
           @click="showCustomizeModal = !showCustomizeModal"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+          <!--Options Icon-->
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
+            />
           </svg>
         </t-button>
-        <!--Advanced Filter Button-->
+        <!--Advanced Search Button-->
         <t-button
-          :color="features.table.darkMode ? 'black' : 'white'"
+          v-if="advancedSearchableFields.keys.length>0"
           :radius="features.table.radius"
           border
-          @click="showAdvancedFilters = !showAdvancedFilters"
+          @click="showAdvancedSearchPanel = !showAdvancedSearchPanel"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+          <!--Advanced Search Icon-->
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"
+            />
           </svg>
         </t-button>
         <!--Custom Top Left Content-->
         <slot name="top-left" />
       </div>
       <!--Right-->
-      <div class="table-top-right">
-        <t-button color="green" design="light" border>+ Add New</t-button>
+      <div
+        v-if="hasSlot('top-right')"
+        class="table-top-right"
+      >
         <!--Custom Top Right Content-->
         <slot name="top-right" />
       </div>
     </div>
     <!--Advanced Filters Area-->
-    <div v-show="showAdvancedFilters" class="flex flex-col w-full my-4 border bg-white px-4 py-2">
-      <span class="font-bold mb-2">Advanced Filters</span>
-      <div class="grid grid-cols-2 gap-4 mb-2">
+    <transition name="tableSearch">
+      <div
+        v-if="showAdvancedSearchPanel"
+      >
         <div
-          v-for="item in regeneratedHeader"
-          :key="item.key"
-          :class="[item.compareOperators ? 'grid grid-cols-2': 'grid grid-cols-1']"
+          class="table-advanced-search-container"
+          :class="`radius-${features.table.radius}`"
         >
-          <t-input-group label="Condition">
-            <t-input-select
-              v-if="item.compareOperators"
-              :options="item.compareOperators"
-            />
-          </t-input-group>
-          <t-input-group :label="item.label">
-            <!--Text-->
-            <t-input-text
-              v-if="item.filterStatus && item.filterType==='text'"
-              v-model.lazy="advancedFilters[item.key]"
-              :options="item.compareOperators"
-            />
-            <!--Select-->
-            <t-input-select
-              v-if="item.filterStatus && item.filterType==='select'"
-              v-model="advancedFilters[item.key]"
-              :options="item.filterSource"
-            />
-          </t-input-group>
+          <span id="title" v-t="'component.table.advancedSearch'" />
+          <div class="table-advanced-search-content-wrapper">
+            <div
+              v-for="field in advancedSearchableFields.content"
+              :key="field.key"
+            >
+
+              <t-input-group :label="field.label">
+                <!--Text-->
+                <t-input-text
+                  v-if="field.advancedSearchInputType==='text'"
+                  v-model="advancedSearchQuery[field.key].value"
+                  v-model:selectValue="advancedSearchQuery[field.key].condition"
+                  :options="field.compareOperators"
+                />
+                <t-input-select
+                  v-if="field.advancedSearchInputType==='select'"
+                  v-model.lazy="advancedSearchQuery[field.key].value"
+                  :options="field.advancedSearchSelectInputSource"
+                />
+              </t-input-group>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </transition>
     <!--Table-->
     <table :class="tStyle['table']">
       <!--Header-->
@@ -220,7 +270,6 @@
     <div class="table-paginator">
       <t-back-end-table-paginate
         v-model="tableRequest.activePage"
-        :dark-mode="features.pagination.darkMode"
         :jump="features.pagination.jump"
         :total="content.total"
         :range="5"
@@ -239,9 +288,8 @@
     <!--Header Fields/Per-page Item Customize Modal-->
     <t-modal
       v-model="showCustomizeModal"
-      title="Showing Options"
+      :title="t('component.table.optionsModalTitle')"
       design="elegant"
-      :dark-mode="features.table.darkMode"
     >
       <template #content>
         <div class="flex flex-col text-left">
@@ -324,7 +372,6 @@
         </div>
       </template>
       <template #footer-left>
-
         <div class="inline-flex whitespace-nowrap items-center space-x-2">
                 <span>
                   Items in per page:
@@ -373,7 +420,7 @@
 <script>
 import { Inertia } from "@inertiajs/inertia";
 import { computed, defineComponent, reactive, toRefs, watch, ref, onBeforeMount } from "vue";
-import { debouncedWatch } from '@vueuse/core'
+import { debouncedWatch } from "@vueuse/core";
 import TBackEndTablePaginate from "@/Components/Paginate/TBackEndTablePaginate";
 import TButton from "@/Components/Button/TButton";
 import TModal from "@/Components/Modal/TModal";
@@ -384,6 +431,7 @@ import TList from "@/Components/List/TList";
 import TListItem from "@/Components/List/TListItem";
 import TInputGroup from "@/Components/Form/TInputGroup";
 import TInputText from "@/Components/Form/Inputs/TInputText";
+import { useI18n } from "vue-i18n";
 
 export default defineComponent({
   name: "TBackEndTable",
@@ -417,7 +465,6 @@ export default defineComponent({
       default() {
         return {
           table: {
-            darkMode: false,
             design: "filled",
             rowBorder: true,
             zebraRow: true,
@@ -427,7 +474,6 @@ export default defineComponent({
           pagination: {
             status: true,
             range: 5,
-            darkMode: false,
             jump: true,
             radius: 3,
             arrowText: true,
@@ -456,36 +502,32 @@ export default defineComponent({
   setup(props, { slots }) {
     /*Definitions*/
     const { header, content, contentKey, features } = toRefs(props);
-    const dataLoading = ref(false)
+    const dataLoading = ref(false);
     const tableRequest = reactive({
       activePage: 1,
-      searchText:'',
+      searchText: "",
       perPageItem: 15,
       sortKey: null,
       sortDirection: false
     });
     const activeHeaders = reactive([]);
-    const searchableFields = reactive([]);
+    const simpleSearchableFields = reactive([]);
+    const advancedSearchableFields = reactive({
+      keys: [],
+      content: []
+    });
     const selectedItem = ref(null);
-    const advancedFilters = reactive({});
+    const advancedSearchQuery = reactive({});
     /*Modal Show Hide Definitions*/
     const showCustomizeModal = ref(false);
     const showDeleteModal = ref(false);
-    const showAdvancedFilters = ref(false);
+    const showAdvancedSearchPanel = ref(false);
+    const { t } = useI18n();
 
     /*Generating Style Classes*/
     const tStyle = reactive({});
-    tStyle["container"] = computed(() => {
-      return "table-outside-container" + " " +
-        "table-" + (features.value["table"].darkMode ? "dark" : "light") + " " +
-        "table-" + features.value["table"].design;
-    });
     tStyle["table"] = computed(() => {
       return "table-container";
-    });
-    tStyle["searchInput"] = computed(() => {
-      return "table-simple-search-input" + " " +
-        "radius-" + +features.value["table"].radius;
     });
     const contentCellStyle = (itemIndex, cellIndex) => {
       let style;
@@ -512,12 +554,26 @@ export default defineComponent({
           activeHeaders.push(item["key"]);
         }
       });
-      /*Generate Searchable Key Array*/
+      /*Generate Simple Searchable Key Array*/
       header.value.forEach(item => {
-        if (item.searchable) {
-          searchableFields.push(item["key"]);
+        if (item.simpleSearchable) {
+          simpleSearchableFields.push(item["key"]);
         }
       });
+      /*Generate Advanced Searchable Key Array*/
+      header.value.forEach(item => {
+        if (item.advancedSearchable) {
+          advancedSearchableFields.content.push(item);
+          advancedSearchableFields.keys.push(item);
+        }
+      });
+      /*Generate Advaned Search Query*/
+      advancedSearchableFields.content.forEach(item=>{
+        advancedSearchQuery[item.key] = {
+          value: null,
+          condition: null
+        }
+      })
     });
 
     const startDrag = (event, type, index) => {
@@ -571,44 +627,51 @@ export default defineComponent({
 
 
     /*Watch Actions For Dynamic Data*/
-    debouncedWatch(()=>Object.values(tableRequest), () => {
-      Inertia.reload({
-        method: 'post',
-        data: {
-          tableRequest: {
-            perPage: Number(tableRequest.perPageItem),
-            sortKey: tableRequest.sortKey,
-            sortDirection: tableRequest.sortDirection,
-            searchText: tableRequest.searchText,
-            searchable: searchableFields
-          }
-        },
-        only: [contentKey.value]
-      });
-    },
+    debouncedWatch(() => Object.values(tableRequest), () => {
+        Inertia.reload({
+          method: "post",
+          data: {
+            tableRequest: {
+              perPage: Number(tableRequest.perPageItem),
+              sortKey: tableRequest.sortKey,
+              sortDirection: tableRequest.sortDirection,
+              searchText: tableRequest.searchText,
+              simpleSearchQuery: simpleSearchableFields
+            }
+          },
+          only: [contentKey.value]
+        });
+      },
       { debounce: 500 }
     );
-    watch(()=>tableRequest.activePage,()=>{
-        Inertia.reload({
+    watch(() => tableRequest.activePage, () => {
+      Inertia.reload({
           data: {
             page: tableRequest.activePage
           },
           only: [contentKey.value]
         }
-      )
-      })
-    watch(advancedFilters, () => {
-      tableRequest.activePage = 1;
-      Inertia.reload({
-        data: {
-          page: 1,
-          ...advancedFilters
-        },
-        only: [contentKey.value],
-        onStart: visit => {dataLoading.value = true},
-        onSuccess: page => {dataLoading.value = false}
-      });
+      );
     });
+    /*watch(advancedSearchQuery, () => {
+        tableRequest.activePage = 1;
+        Inertia.reload({
+          data: {
+            page: 1,
+            ...advancedSearchQuery
+          },
+          only: [contentKey.value],
+          onStart: visit => {
+            dataLoading.value = true;
+          },
+          onSuccess: page => {
+            dataLoading.value = false;
+          }
+        });
+      },
+      {
+        deep: true
+      });*/
 
 
     /*Content Delete Confirm Modal Function*/
@@ -645,13 +708,32 @@ export default defineComponent({
       onDrop,
       onDragLeave,
       onDragOver,
+      simpleSearchableFields,
+      advancedSearchableFields,
       selectedItem,
       showDeleteModal,
-      showAdvancedFilters,
-      advancedFilters,
+      showAdvancedSearchPanel,
+      advancedSearchQuery,
       deleteItem,
-      tableRequest
+      tableRequest,
+      t
     };
   }
 });
 </script>
+
+<style scoped>
+.tableSearch-enter-active, .tableSearch-leave-active {
+  transition: all 700ms;
+}
+
+.tableSearch-enter-from, .tableSearch-leave-to {
+  opacity: 0;
+  max-height: 0;
+}
+
+.tableSearch-enter-to, .tableSearch-leave-from {
+  opacity: 1;
+  max-height: 500px;
+}
+</style>

@@ -21,8 +21,11 @@
         :header="header"
         :features="features"
       >
+        <template #top-right>
+          <t-button color="green" design="light" border>+ Add New</t-button>
+        </template>
         <template #type="{props}">
-          {{ filterType.find(t => t.key === props.type).label }}
+          {{ filterType.find(t => t.key === Number(props.type)).label }}
         </template>
         <template #status="{props}">
           <t-badge :color="filterStatus.find(t=>t.key === props.status).color">
@@ -41,10 +44,12 @@ import TComponentStyleSelector from "@/Components/Misc/TComponentStyleSelector";
 import { reactive, defineComponent, computed } from "vue";
 import TBackEndTable from "@/Components/Table/TBackEndTable";
 import TBadge from "@/Components/Badge/TBadge";
+import TButton from "@/Components/Button/TButton";
 
 export default defineComponent({
   name: "Table",
   components: {
+    TButton,
     TBadge,
     TBackEndTable,
     TComponentStyleSelector, AppLayout
@@ -63,9 +68,9 @@ export default defineComponent({
       { key: 0, label: "Passive", color: "red" }
     ]);
     const filterType = reactive([
-      { key: "0", label: "Printer" },
-      { key: "1", label: "Pencil" },
-      { key: "2", label: "Clipper" }
+      { key: 0, label: "Printer" },
+      { key: 1, label: "Pencil" },
+      { key: 2, label: "Clipper" }
     ]);
     const compareOperators = reactive([
       { key: "contains", label: "contains" },
@@ -118,9 +123,9 @@ export default defineComponent({
         key: "name",
         align: "left",
         status: true,
-        searchable: true,
-        filterStatus: true,
-        filterType: "text",
+        simpleSearchable: true,
+        advancedSearchable: true,
+        advancedSearchInputType: "text",
         compareOperators: compareOperators
       },
       {
@@ -128,19 +133,19 @@ export default defineComponent({
         key: "type",
         align: "left",
         status: true,
-        searchable: true,
-        filterStatus: true,
-        filterSource: filterType,
-        filterType: "select"
+        simpleSearchable: true,
+        advancedSearchable: true,
+        advancedSearchSelectInputSource: filterType,
+        advancedSearchInputType: "select"
       },
       {
         label: "Price",
         key: "price",
         align: "right",
         status: true,
-        searchable: true,
-        filterStatus: true,
-        filterType: "text",
+        simpleSearchable: true,
+        advancedSearchable: true,
+        advancedSearchInputType: "text",
         compareOperators: priceCompareOperators
       },
       {
@@ -148,10 +153,10 @@ export default defineComponent({
         key: "status",
         align: "center",
         status: true,
-        searchable: true,
-        filterStatus: true,
-        filterSource: filterStatus,
-        filterType: "select",
+        simpleSearchable: true,
+        advancedSearchable: true,
+        advancedSearchSelectInputSource: filterStatus,
+        advancedSearchInputType: "select",
         compareOperators: compareOperators
       }
     ]);
