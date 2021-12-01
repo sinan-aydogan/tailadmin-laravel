@@ -1,6 +1,15 @@
 const messages = {
   en: {
-    button: {},
+    component: {
+      button: {},
+      table: {
+        searchPlaceHolder: "search",
+        optionsModalTitle: "Table Options",
+        optionsModalColumnOrder: "Column Order and Visibility",
+        anyContentMessage: "There is any content for your search criteria",
+        advancedSearch: "Advanced Search"
+      }
+    },
     auth: {},
     topMenu: {
       notification: {},
@@ -43,7 +52,7 @@ const messages = {
         modal: "Modal",
         pagination: "Pagination",
         popover: "Popover",
-        progressBar:'Progress Bar',
+        progressBar: "Progress Bar",
         statisticWidget: "Statistic Widget",
         tab: "Tab",
         tableJson: "Table(JSON)",
@@ -66,7 +75,7 @@ const messages = {
         inlineRepeatableInput: "Inline Repeat. Input",
         dateTimeInput: "Date/Time Input",
         selectInput: "Select Input",
-        multiSelectInput: "Multi Select Input",
+        multiSelectInput: "Multi Select Input"
       },
       footer: {
         help: "Help",
@@ -80,10 +89,27 @@ const messages = {
     },
     message: {},
     error: {},
-    global: {}
+    global: {},
+    demoContent: {
+      topMenu: {
+        pendingWorks: "Pending Works",
+        activeTodos: "2 To-Do's",
+        calibrationTasks: "5 Calibration Task's",
+        unreadMessages: "9 Messages"
+      }
+    }
   },
   tr: {
-    button: {},
+    component: {
+      button: {},
+      table: {
+        searchPlaceHolder: "Ara",
+        optionsModalTitle: "Tablo Özellikleri",
+        optionsModalColumnOrder: "Sütunları Sırala veya Gizle",
+        anyContentMessage: "Aradığınız kriterde içerik bulunamadı",
+        advancedSearch: "Detaylı Arama"
+      }
+    },
     auth: {},
     topMenu: {
       notification: {},
@@ -126,7 +152,7 @@ const messages = {
         modal: "Açılır Pencere/Modal",
         pagination: "Sayfalandırma",
         popover: "Bilgi Baloncuğu/Popover",
-        progressBar:'İlerleme Çubuğu/Progress',
+        progressBar: "İlerleme Çubuğu/Progress",
         statisticWidget: "İstatistik Kutusu",
         tab: "Sekmeli İçerik/Tab",
         tableJson: "Tablo (Kullanıcı)",
@@ -149,7 +175,7 @@ const messages = {
         inlineRepeatableInput: "Düzenlenebilir Tek. Input",
         dateTimeInput: "Zaman/Saat Input",
         selectInput: "Select Input",
-        multiSelectInput: "Multi Select Input",
+        multiSelectInput: "Multi Select Input"
       },
       footer: {
         help: "Yardım",
@@ -163,7 +189,15 @@ const messages = {
     },
     message: {},
     error: {},
-    global: {}
+    global: {},
+    demoContent: {
+      topMenu: {
+        pendingWorks: "Bekleyen İşler",
+        activeTodos: "2 Atanmış Görev",
+        calibrationTasks: "5 Kalibrasyon İşlemi",
+        unreadMessages: "9 Mesaj"
+      }
+    }
   }
 };
 

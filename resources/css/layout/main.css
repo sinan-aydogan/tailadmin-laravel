@@ -3,7 +3,7 @@
 }
 
 .content-wrapper {
-    @apply flex flex-col min-h-screen flex-grow p-4 space-y-6 overflow-y-auto;
+    @apply flex flex-col flex-shrink-0 laptop:flex-shrink min-h-screen flex-grow p-4 space-y-6 overflow-y-auto  w-screen laptop:w-full;
 }
 
 /*<editor-fold desc="Left Menu">*/
@@ -162,7 +162,7 @@
 }
 
 .top-menu .dropdown-container {
-    @apply bg-white dark:bg-gray-700 dark:text-gray-200 shadow mt-2 rounded-md overflow-hidden
+    @apply bg-white dark:bg-gray-800 dark:text-gray-200 dark:shadow-dark shadow mt-2 rounded-md overflow-hidden;
 }
 
 .top-menu .dropdown-header {
@@ -175,6 +175,25 @@
 
 .top-menu .dropdown-item-separator {
     @apply border-t border-gray-200 dark:border-gray-600
+}
+
+.top-menu .lang-selector-container {
+    @apply flex flex-wrap px-4 py-1 w-full justify-center items-center;
+}
+.top-menu .lang-selector-item {
+    @apply transform hover:scale-110 p-1 transition-size-short;
+}
+
+.top-menu .lang-icon {
+    @apply w-8 h-8 cursor-pointer;
+}
+
+.top-menu .theme-icon {
+    @apply w-6 h-6 cursor-pointer;
+}
+
+.top-menu .logout-button {
+    @apply flex justify-center w-full px-4 py-2 hover:bg-red-500 text-red-500 hover:text-white dark:bg-red-500 dark:hover:bg-red-500 dark:hover:bg-opacity-50  dark:hover:text-white dark:text-white inline-flex h-full space-x-1 items-center focus:outline-none font-semibold cursor-pointer;
 }
 
 /*<editor-fold desc="Top Menu Trigger">*/
@@ -272,6 +291,8 @@
     @apply bg-white dark:bg-gray-700 dark:text-white shadow mt-2 rounded-md overflow-hidden;
 }
 
+
+
 .top-menu .action-section {
     @apply flex p-1 gap-2;
 }
@@ -280,58 +301,64 @@
     @apply relative p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-600 focus:bg-gray-100 rounded-full focus:text-gray-600 focus:border-gray-300 focus:outline-none;
 }
 
-.user-menu .logout-button {
-    @apply flex w-full px-4 py-2 hover:bg-red-500 hover:text-white inline-flex h-full gap-2 text-red-500 items-center focus:outline-none font-semibold;
-}
+
 
 .theme-changer-container {
-    @apply flex justify-center space-x-2 py-1 mx-auto items-center bg-gray-200 dark:bg-opacity-5
+    @apply flex justify-center space-x-2 py-2 mx-auto items-center
 }
 
 .theme-changer-button {
-    @apply inline-flex justify-center items-center space-x-1 p-2 rounded-full font-semibold p-1 rounded-full text-gray-600 dark:text-white text-sm cursor-pointer
+    @apply flex justify-around p-1 items-center space-x-1 rounded-full font-semibold rounded-full text-gray-600 dark:text-white text-sm cursor-pointer overflow-hidden
 }
-
-.theme-changer-button-active {
-    @apply bg-gray-300
+/*Auto*/
+.theme-changer-button-auto {
+    @apply text-blue-600 dark:text-blue-600
 }
-
-.theme-changer-button-auto.theme-changer-button-active {
-    @apply bg-blue-50 text-blue-600 shadow-sm
+.theme-changer-button-auto-active {
+    @apply bg-blue-500 text-white
 }
-
-.theme-changer-button-dark.theme-changer-button-active {
+/*Dark*/
+.theme-changer-button-dark {
+    @apply text-gray-600
+}
+.theme-changer-button-dark-active {
     @apply bg-gray-700 text-white
 }
-
-.theme-changer-button-light.theme-changer-button-active {
-    @apply bg-white shadow-sm text-yellow-500;
+/*Light*/
+.theme-changer-button-light {
+    @apply text-yellow-600 dark:text-yellow-600;
+}
+.theme-changer-button-light-active {
+     @apply bg-yellow-500 shadow-sm text-white;
+ }
+.theme-changer-button-text {
+    @apply transition-size-long
 }
 
 /*</editor-fold>*/
 
 
 .content-container {
-    @apply relative flex flex-col flex-grow justify-between w-full;
+    @apply relative flex flex-col flex-grow justify-between space-y-6 w-full;
 }
 
 
 /*Content Container -> Content Header*/
 .container-header {
-    @apply flex flex-col laptop:justify-between items-center space-y-6 tablet:space-y-0 tablet:flex-row;
+    @apply flex flex-col laptop:justify-between items-center tablet:flex-row;
 }
 
 /*Content Header -> Page Header*/
 .container-header .page-header {
-    @apply mr-6 flex flex-col flex-grow;
+    @apply flex flex-col flex-grow;
 }
 
 .page-header .page-title {
-    @apply mb-2 text-2xl laptop:text-4xl font-semibold;
+    @apply mb-2 text-2xl laptop:text-4xl font-semibold  dark:text-gray-200;
 }
 
 .page-header .page-subtitle {
-    @apply hidden tablet:block tablet:text-xl text-gray-600 ml-0.5 text-2xl font-semibold;
+    @apply hidden tablet:block tablet:text-xl text-gray-600 ml-0.5 text-2xl font-semibold  dark:text-gray-400;
 }
 
 .container-header .page-action-buttons {

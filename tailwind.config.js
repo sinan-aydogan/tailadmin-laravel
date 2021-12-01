@@ -59,6 +59,9 @@ module.exports = {
                 'min': 'min-content',
                 'max': 'max-content',
             },
+            boxShadow: {
+                'dark': '0 0 1px 1px rgba(255, 255, 255, 0.1)'
+            }
         },
         screens: {
             'phone': '425',
@@ -73,10 +76,11 @@ module.exports = {
             opacity: ['disabled'],
             scale: ['active'],
             textColor: ['hover', 'active'],
-            backgroundColor: ['active'],
+            backgroundColor: ['active','odd','even'],
             fontWeight: ['hover', 'active', 'focus'],
             borderWidth: ['first', 'last', 'hover'],
             borderRadius: ['first', 'last'],
+            boxShadow: ['dark'],
             padding: ['focus', 'hover'],
             zIndex: ['hover'],
             brightness: ['hover', 'focus'],
