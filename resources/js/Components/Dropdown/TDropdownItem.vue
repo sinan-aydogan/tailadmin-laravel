@@ -1,34 +1,43 @@
 <template>
-    <div class="justify-start p-2 hover:bg-gray-600 hover:text-white cursor-pointer">
-        <inertia-link
-        :href="link"
-        v-if="link"
-        class="flex flex-row items-center justify-start"
-        >
+  <div class="dropdown-item-container">
+    <Link
+      :href="link"
+      v-if="link"
+      class="dropdown-item"
+    >
+      <div v-if="hasSlot('icon')" class="dropdown-icon">
+        <slot name="icon"></slot>
+      </div>
+      <div class="flex">
+        <slot></slot>
+      </div>
+    </Link>
+    <slot v-else></slot>
 
-            <div v-if="$slots.icon" class="flex justify-center items-center w-5 h-5 mr-1">
-                <slot name="icon"></slot>
-            </div>
-            <div class="flex">
-                <slot></slot>
-            </div>
-        </inertia-link>
-        <slot v-else></slot>
-
-    </div>
+  </div>
 </template>
 
 <script>
-export default {
-    name: "TDropdownItem",
-    props: {
-        link: {
-            type: String
-        }
+import { defineComponent } from "vue";
+import { Link } from "@inertiajs/inertia-vue3";
+
+export default defineComponent({
+  name: "TDropdownItem",
+  components: {
+    Link
+  },
+  props: {
+    link: {
+      type: String,
+      default: null
     }
-}
+  },
+  setup(props,{slots}) {
+
+    /*Slot Check*/
+    const hasSlot = name => !!slots[name];
+
+    return { hasSlot };
+  }
+});
 </script>
-
-<style scoped>
-
-</style>

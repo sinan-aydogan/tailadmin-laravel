@@ -205,8 +205,6 @@ export default {
       }
 
       return list
-
-      console.log(this.list)
     },
     searchedList() {
       if (this.searchText === '') {

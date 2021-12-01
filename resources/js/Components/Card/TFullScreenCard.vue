@@ -15,9 +15,10 @@
 </template>
 
 <script>
+import { defineComponent } from 'vue'
 import {fullScreenCardStyleMixin} from "@/Mixins/Styles/fullScreenCardStyleMixin";
 
-export default {
+export default defineComponent({
   name: "TFullScreenCard",
   props: {
     bgImage: {
@@ -26,5 +27,5 @@ export default {
     }
   },
   mixins: [fullScreenCardStyleMixin],
-}
+})
 </script>

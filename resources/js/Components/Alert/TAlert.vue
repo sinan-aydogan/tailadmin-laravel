@@ -1,93 +1,165 @@
 <template>
-    <transition name="fade">
-        <!--Alert Container-->
-        <div
-            v-if="showAlertBox"
-            :class="[
-                'alert-box',
-                calculatedAlertStyle
-                ]"
-        >
-            <!--Alert Icon-->
-            <div class="flex flex-shrink-0">
-                <slot name="icon"></slot>
-            </div>
-            <!--Alert Content-->
-            <div class="flex flex-wrap flex-grow whitespace-normal">
-              <span>
-                <slot></slot>
-              </span>
-            </div>
-            <!--Close Icon-->
-            <span v-if="closeable" class="alert-close" @click="close">
-                <t-x-circle-icon class="h-6 w-6"/>
-            </span>
+  <transition name="alert">
+    <!--Alert Container-->
+    <div
+      v-if="showAlertBox"
+      :class="tStyle['container']"
+    >
+      <!--Inline Line-->
+      <div v-if="design.includes('line')"
+           id="line"
+           :class="tStyle['line']"
+      />
+
+      <!--Alert Icon-->
+      <div v-if="hasSlot('icon') && design !== 'elegant'"
+           class="alert-icon"
+      >
+        <slot name="icon"></slot>
+      </div>
+
+
+      <!--Alert Content-->
+      <div class="alert-content-container">
+        <!--Elegant Title-->
+        <div v-if="title && design === 'elegant'" id="elegant-title">
+          {{ title }}
         </div>
-    </transition>
+        <div class="alert-content">
+          <!--General Title (except elegant style)-->
+          <span v-if="title && design !== 'elegant'" class="alert-title">
+            {{ title }}
+          </span>
+          <!--Content Slot-->
+          <div>
+            <slot></slot>
+          </div>
+        </div>
+      </div>
+
+      <!--Close Icon-->
+      <span v-if="closeable" class="alert-close" @click="close">
+        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      </span>
+
+      <!--Countdown Line-->
+      <div v-if="timer" class="alert-countdown">
+        <div id="countdown" :style="{width: countDownCounter+'%'}"></div>
+      </div>
+    </div>
+  </transition>
 </template>
-
 <script>
-import {alertStyleMixin} from "@/Mixins/Styles/alertStyleMixin";
-import TXCircleIcon from "@/Components/Icon/TXCircleIcon";
+import { defineComponent, ref, toRefs, computed, reactive } from "vue";
 
-export default {
-    name: "TAlert",
-    components: {TXCircleIcon},
-    mixins: [alertStyleMixin],
-    props: {
-        id: {
-            type: String
-        },
-        closeable: {
-            type: Boolean,
-            required: false,
-            default: false
-        },
-        timer: {
-            type: Number,
-            required: false
-        }
+export default defineComponent({
+  name: "TAlert",
+  props: {
+    id: {
+      type: String,
+      default: function() {
+        return "alert-" + Number(new Date());
+      }
     },
-    data() {
-        return {
-            showAlertBox: true,
-        }
+    closeable: {
+      type: Boolean,
+      default: false
     },
-    created() {
-        if (this.timer) {
-            setTimeout(() => {
-                this.showAlertBox = false;
-                this.$emit('destroy', this.id)
-            }, this.timer)
-        }
+    timer: {
+      type: Number,
+      default: null,
+      required: false
     },
-    methods: {
-        close() {
-            this.showAlertBox = false;
-            this.$emit('destroy', this.id)
-        }
+    title: {
+      type: String,
+      default: null
     },
-}
+    radius: {
+      type: Number,
+      default: 3
+    },
+    design: {
+      type: String,
+      default: "filled"
+    },
+    color: {
+      type: String,
+      default: "white"
+    }
+  },
+  emits: ["destroy"],
+
+  setup(props, { slots, emit }) {
+    /*Definitions*/
+    const { design, color, radius, timer, id } = toRefs(props);
+    const showAlertBox = ref(true);
+
+    /*Generating Style Classes*/
+    const tStyle = reactive({});
+    tStyle["container"] = computed(() => {
+      return "alert " +
+        "alert-" + design.value + "-" + color.value + " " +
+        "alert-" + design.value + "-base" + " " +
+        "radius-" + radius.value;
+    });
+    tStyle["line"] = computed(() => {
+      return (design.value === "inline" ? "alert-inline-line" : "alert-outline-line");
+    });
+
+    /*Close Function*/
+    const close = () => {
+      showAlertBox.value = false;
+      emit("destroy", id.value);
+    };
+
+    /*Timer*/
+    const timerCounter = ref(0);
+    const countDownCounter = ref(0);
+
+    if (timer.value) {
+      /*Timer Function*/
+      setTimeout(() => {
+        showAlertBox.value = false;
+        emit("destroy", id.value);
+      }, timer.value);
+
+      /*Count Down Function*/
+      let countDownFn = setInterval(() => {
+        if (timer.value >= timerCounter.value) {
+          countDownCounter.value = 100 - (timerCounter.value / timer.value) * 100;
+          timerCounter.value += 4;
+        } else {
+          clearInterval(countDownFn);
+        }
+      }, 1);
+    }
+
+    /*Slot Check*/
+    const hasSlot = name => !!slots[name];
+
+    return { showAlertBox, tStyle, countDownCounter, timerCounter, hasSlot, close };
+  }
+});
 </script>
 
 <style scoped>
-.fade-enter-active, .fade-leave-active {
-    transition: all ease-out .75s;
+/* eslint-disable no-alert */
+.alert-enter-active, .alert-leave-active {
+  transition: opacity ease-out .75s;
 }
 
-.fade-enter {
-    opacity: 0;
+.alert-enter, .alert-leave-to {
+  opacity: 0;
+  height: revert;
 }
 
-.fade-enter-to {
-    opacity: 1;
+.alert-enter-to, .alert-leave {
+  opacity: 1;
+  height: revert;
 }
 
-.fade-leave {
-    opacity: 1;
-}
-
-.fade-leave-to {
-    opacity: 0;
-}
+/* eslint-disable no-alert */
 </style>

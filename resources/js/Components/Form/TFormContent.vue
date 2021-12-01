@@ -2,55 +2,62 @@
   <div class="w-full">
     <form :enctype="enctype" @submit.prevent="$emit('submitted')">
       <!--Form Body-->
-      <div class="mt-5 md:mt-0 md:col-span-2 bg-white shadow sm:rounded-md">
-        <slot></slot>
-        <!--Form Buttons Container-->
-        <transition duration="500" name="status">
-          <div v-if="submitButton || resetButton || $slots.status || $slots.button+'-area'"
-               class="flex flex-wrap col-span-12 justify-center tablet:justify-end space-x-2 mr-4 py-4">
-            <!--Extra Form Buttons Area-->
-            <slot name="button-area"/>
-            <!--Status Area-->
-            <slot v-if="$slots.status" name="status"/>
-            <!--Default Form Buttons-->
-            <div v-else class="flex flex-wrap w-full justify-center tablet:justify-end items-center space-x-2">
-              <!--Reset Button-->
-              <t-button
+      <t-content-card :radius="conf.app.leftMenu.radius">
+        <div class="flex flex-col w-full">
+          <slot></slot>
+          <!--Form Buttons Container-->
+          <transition duration="500" name="status">
+            <div v-if="submitButton || resetButton || $slots.status || $slots.button+'-area'"
+                 class="flex flex-wrap col-span-12 justify-center tablet:justify-end space-x-2 mr-4 py-4">
+              <!--Extra Form Buttons Area-->
+              <slot name="button-area" />
+              <!--Status Area-->
+              <slot v-if="$slots.status" name="status" />
+              <!--Default Form Buttons-->
+              <div v-else class="flex flex-wrap w-full justify-center tablet:justify-end items-center space-x-2">
+                <!--Reset Button-->
+                <t-button
                   v-if="resetButton"
                   :radius="3"
-                  color="solid-yellow"
+                  design="filled"
+                  color="yellow"
                   type="button"
                   @click.native="reset"
-              >
-                Reset
-              </t-button>
-              <!--Save Button-->
-              <t-button
+                >
+                  Reset
+                </t-button>
+                <!--Save Button-->
+                <t-button
                   v-if="submitButton"
                   :disabled="disabled"
                   :radius="3"
-                  color="solid-green"
+                  design="filled"
+                  color="green"
                   icon="plus"
                   type="submit"
-              >
-                Save
-              </t-button>
+                >
+                  Save
+                </t-button>
+              </div>
             </div>
-          </div>
-        </transition>
+          </transition>
 
-        <div v-if="hasActions" class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6">
-          <slot name="actions"></slot>
+          <div v-if="hasSlot('hasActions')" class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6">
+            <slot name="actions"></slot>
+          </div>
         </div>
-      </div>
+      </t-content-card>
     </form>
   </div>
 </template>
 
 <script>
-import TButton from "@/Components/Button/TButton";
+import { defineComponent, inject } from "vue";
 
-export default {
+import TButton from "@/Components/Button/TButton";
+import TContentCard from "@/Components/Card/TContentCard";
+
+export default defineComponent({
   props: {
     enctype: String,
     disabled: Boolean,
@@ -64,21 +71,25 @@ export default {
     }
   },
   components: {
-    TButton,
+    TContentCard,
+    TButton
   },
+  emits: ["reset"],
 
-  computed: {
-    hasActions() {
-      return !!this.$slots.actions
-    }
-  },
+  setup(props, { emit, slots }) {
+    /*Definitions*/
+    const conf = inject("conf");
 
-  methods: {
-    reset() {
-      this.$emit('reset')
-    },
+    /*Reset*/
+    const reset = () => {
+      emit("reset");
+    };
+
+    /*Slot Check*/
+    const hasSlot = name => !!slots[name];
+    return { conf, hasSlot, reset };
   }
-}
+});
 </script>
 
 

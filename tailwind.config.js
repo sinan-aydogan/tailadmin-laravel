@@ -1,15 +1,15 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
-    purge: {
-        content: [
-            './vendor/laravel/jetstream/**/*.blade.php',
-            './storage/framework/views/*.php',
-            './resources/views/**/*.blade.php',
-            './resources/js/**/*.vue',
-            './resources/js/**/*.js'
-        ],
-    },
+    darkMode: 'class',
+
+    purge: [
+        './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
+        './vendor/laravel/jetstream/**/*.blade.php',
+        './storage/framework/views/*.php',
+        './resources/views/**/*.blade.php',
+        './resources/js/**/*.vue',
+    ],
 
     theme: {
         extend: {
@@ -58,6 +58,9 @@ module.exports = {
                 'screen': '100vh',
                 'min': 'min-content',
                 'max': 'max-content',
+            },
+            boxShadow: {
+                'dark': '0 0 1px 1px rgba(255, 255, 255, 0.1)'
             }
         },
         screens: {
@@ -71,12 +74,14 @@ module.exports = {
     variants: {
         extend: {
             opacity: ['disabled'],
+            scale: ['active'],
             textColor: ['hover', 'active'],
-            backgroundColor: ['active'],
+            backgroundColor: ['active','odd','even'],
             fontWeight: ['hover', 'active', 'focus'],
             borderWidth: ['first', 'last', 'hover'],
             borderRadius: ['first', 'last'],
-            padding: ['focus'],
+            boxShadow: ['dark'],
+            padding: ['focus', 'hover'],
             zIndex: ['hover'],
             brightness: ['hover', 'focus'],
         },

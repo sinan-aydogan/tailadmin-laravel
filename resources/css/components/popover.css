@@ -1,0 +1,111 @@
+.popover, .popover:after, .popover:before{
+    @apply inline-flex
+}
+.popover-container{
+    @apply relative whitespace-normal select-none cursor-pointer
+}
+.popover-box{
+    @apply absolute z-10 font-normal;
+    filter: drop-shadow(0px 0px 2px #4a5568);
+}
+
+.popover-box-title{
+    @apply relative px-2 py-1 whitespace-normal z-50 rounded-t-md font-semibold text-white
+}
+.popover-box #arrow{
+    @apply text-white border-transparent
+}
+
+.popover-box-content{
+    @apply bg-white px-2 py-1 whitespace-nowrap z-50;
+}
+.popover-left-container{
+    @apply right-full -top-4 mr-2 mt-2
+}
+.popover-left-arrow{
+    @apply absolute w-2 h-2 border-r border-t transform -right-1 top-4 rotate-45 z-10
+}
+.popover-right-container{
+    @apply left-full -top-4 ml-2 mt-2
+}
+.popover-right-arrow{
+    @apply absolute w-2 h-2 border-l border-b transform -left-1 top-4 rotate-45 z-10
+}
+.popover-top-container{
+    @apply left-0 bottom-6 mb-2
+}
+.popover-top-arrow{
+    @apply absolute w-2 h-2 bg-white border-b border-r transform left-4 -bottom-1 rotate-45 z-10
+}
+.popover-bottom-container{
+    @apply top-6 mt-2
+}
+.popover-bottom-arrow{
+    @apply absolute w-2 h-2 border-l border-t transform left-4 -top-1 rotate-45 z-10
+}
+
+.popover-border{
+    @apply border-b border-dashed px-1 hover:border-gray-500
+}
+.popover-bold{
+    @apply font-bold
+}
+
+
+/*Colors: black, blue, gray, green, indigo, pink, purple, white and yellow*/
+/*Black*/
+.popover-black .popover-box-title,.popover-black .popover-arrow {
+    @apply bg-gray-800 border-transparent
+}
+
+/*Blue*/
+.popover-blue .popover-box-title,.popover-blue .popover-arrow {
+    @apply bg-blue-500 border-transparent
+}
+
+/*Gray*/
+.popover-gray .popover-box-title,.popover-gray .popover-arrow {
+    @apply bg-gray-500 border-transparent
+}
+
+/*Green*/
+.popover-green .popover-box-title,.popover-green .popover-arrow {
+    @apply bg-green-500 border-transparent
+}
+
+/*Indigo*/
+.popover-indigo .popover-box-title,.popover-indigo .popover-arrow {
+    @apply bg-indigo-500 border-transparent
+}
+
+/*Pink*/
+.popover-pink .popover-box-title,.popover-pink .popover-arrow {
+    @apply bg-pink-500 border-transparent
+}
+
+/*Purple*/
+.popover-purple .popover-box-title,.popover-purple .popover-arrow {
+    @apply bg-purple-500 border-transparent
+}
+
+/*Red*/
+.popover-red .popover-box-title,.popover-red .popover-arrow {
+    @apply bg-red-500 border-transparent
+}
+
+/*White*/
+.popover-white .popover-box-title {
+    @apply bg-gray-200 text-gray-700 border-b border-gray-500
+}
+.popover-white .popover-arrow{
+    @apply bg-gray-200
+}
+
+/*Yellow*/
+.popover-yellow .popover-box-title,.popover-yellow .popover-arrow {
+    @apply bg-yellow-500
+}
+
+.popover-box .popover-top-arrow{
+    @apply bg-white;
+}

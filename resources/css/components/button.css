@@ -1,0 +1,549 @@
+.button {
+    @apply flex justify-center items-center whitespace-nowrap font-semibold flex-shrink-0 p-2 gap-1 focus:ring-2 focus:outline-none select-none transition duration-300 ease-in-out
+}
+
+.button-content {
+    @apply flex justify-center items-center whitespace-nowrap flex-shrink-0 gap-1 space-x-1
+}
+
+.button-disabled {
+    @apply filter grayscale opacity-50 cursor-not-allowed pointer-events-none
+}
+
+.button-group {
+    @apply flex justify-between items-start
+}
+
+/*<editor-fold desc="Size Styles">*/
+.button-small {
+    @apply h-8 text-sm text-sm min-w-min min-h-min
+}
+
+.button-normal {
+    @apply h-10
+}
+
+.button-large {
+    @apply h-14 text-lg text-xl
+}
+
+.button-full {
+    @apply h-12 w-full
+}
+
+/*</editor-fold>*/
+
+/*<editor-fold desc="Filled Style">*/
+/*General Definitions*/
+.button-filled-base {
+    @apply text-white py-1 px-2 font-semibold
+}
+
+.button-filled-base .button-icon {
+    @apply ml-2
+}
+
+/*Colors: black, blue, gray, green, indigo, pink, purple, white and yellow*/
+/*Black*/
+.button-filled-black {
+    @apply bg-gray-700 hover:bg-gray-300 hover:text-gray-700 border-black
+}
+
+.button-filled-black .loading-black {
+    @apply bg-gray-100
+}
+
+/*Blue*/
+.button-filled-blue {
+    @apply bg-blue-500 hover:bg-blue-200 hover:text-blue-700 border-blue-500
+}
+
+.button-filled-blue .loading-blue {
+    @apply bg-blue-100
+}
+
+/*Gray*/
+.button-filled-gray {
+    @apply bg-gray-500 hover:bg-gray-200 hover:text-gray-700 border-gray-500
+}
+
+.button-filled-gray .loading-gray {
+    @apply bg-gray-50
+}
+
+/*Green*/
+.button-filled-green {
+    @apply bg-green-500 hover:bg-green-200 hover:text-green-700 border-green-500
+}
+
+.button-filled-green .loading-green {
+    @apply bg-green-100
+}
+
+/*Indigo*/
+.button-filled-indigo {
+    @apply bg-indigo-500 hover:bg-indigo-200 hover:text-indigo-700 border-indigo-500
+}
+
+.button-filled-indigo .loading-indigo {
+    @apply bg-indigo-100
+}
+
+/*Pink*/
+.button-filled-pink {
+    @apply bg-pink-500 hover:bg-pink-200 hover:text-pink-700 border-pink-500
+}
+
+.button-filled-pink .loading-pink {
+    @apply bg-pink-100
+}
+
+/*Purple*/
+.button-filled-purple {
+    @apply bg-purple-500 hover:bg-purple-200 hover:text-purple-700 border-purple-500
+}
+
+.button-filled-purple .loading-purple {
+    @apply bg-purple-100
+}
+
+/*Red*/
+.button-filled-red {
+    @apply bg-red-500 hover:bg-red-200 hover:text-red-700 border-red-500
+}
+
+.button-filled-red .loading-red {
+    @apply bg-red-100
+}
+
+/*White*/
+.button-filled-white {
+    @apply bg-white hover:bg-gray-200 hover:text-gray-700 border-gray-200 text-gray-700  !important
+}
+
+.button-filled-white .loading-white {
+    @apply bg-gray-500
+}
+
+/*Yellow*/
+.button-filled-yellow {
+    @apply bg-yellow-500 hover:bg-yellow-200 hover:text-yellow-700 border-yellow-500
+}
+
+.button-filled-yellow .loading-yellow {
+    @apply bg-yellow-100
+}
+
+/*</editor-fold>*/
+
+/*<editor-fold desc="Light Style">*/
+/*General Definitions*/
+.button-light-base {
+    @apply hover:text-gray-50 py-1 px-2 font-semibold
+}
+
+.button-light-base .button-icon {
+    @apply ml-2
+}
+
+/*Colors: black, blue, gray, green, indigo, pink, purple, white and yellow*/
+/*Black*/
+.button-light-black {
+    @apply bg-gray-500 hover:bg-gray-700 text-gray-50 border-gray-700
+}
+
+.button-light-black .loading-black {
+    @apply bg-gray-100
+}
+
+/*Blue*/
+.button-light-blue {
+    @apply bg-blue-200 hover:bg-blue-500 text-blue-700 border-blue-500
+}
+
+.button-light-blue .loading-blue {
+    @apply bg-blue-500
+}
+
+/*Gray*/
+.button-light-gray {
+    @apply bg-gray-300 hover:bg-gray-500 text-gray-700 border-gray-500
+}
+
+.button-light-gray .loading-gray {
+    @apply bg-gray-500
+}
+
+/*Green*/
+.button-light-green {
+    @apply bg-green-200 hover:bg-green-500 text-green-700 border-green-500
+}
+
+.button-light-green .loading-green {
+    @apply bg-green-500
+}
+
+/*Indigo*/
+.button-light-indigo {
+    @apply bg-indigo-200 hover:bg-indigo-500 text-indigo-700 border-indigo-500
+}
+
+.button-light-indigo .loading-indigo {
+    @apply bg-indigo-500
+}
+
+/*Pink*/
+.button-light-pink {
+    @apply bg-pink-200 hover:bg-pink-500 text-pink-700 border-pink-500
+}
+
+.button-light-pink .loading-pink {
+    @apply bg-pink-500
+}
+
+/*Purple*/
+.button-light-purple {
+    @apply bg-purple-200 hover:bg-purple-500 text-purple-700 border-purple-500
+}
+
+.button-light-purple .loading-purple {
+    @apply bg-purple-500
+}
+
+/*Red*/
+.button-light-red {
+    @apply bg-red-200 hover:bg-red-500 text-red-700 border-red-500
+}
+
+.button-light-red .loading-red {
+    @apply bg-red-500
+}
+
+/*White*/
+.button-light-white {
+    @apply bg-white hover:bg-gray-500 text-gray-700 border-gray-300
+}
+
+.button-light-white .loading-white {
+    @apply bg-gray-500
+}
+
+/*Yellow*/
+.button-light-yellow {
+    @apply bg-yellow-200 hover:bg-yellow-500 text-yellow-700 border-yellow-500
+}
+
+.button-light-yellow .loading-yellow {
+    @apply bg-yellow-500
+}
+
+/*</editor-fold>*/
+
+/*<editor-fold desc="Outline Style">*/
+/*General Definitions*/
+.button-outline-base {
+    @apply border hover:text-gray-50 py-1 px-2 font-semibold
+}
+
+.button-outline-base .button-icon {
+    @apply ml-2
+}
+
+/*Colors: black, blue, gray, green, indigo, pink, purple, white and yellow*/
+/*Black*/
+.button-outline-black {
+    @apply hover:bg-gray-700 text-gray-700 border-gray-700
+}
+
+.button-outline-black .loading-black {
+    @apply bg-gray-700
+}
+
+/*Blue*/
+.button-outline-blue {
+    @apply hover:bg-blue-500 text-blue-700 border-blue-500
+}
+
+.button-outline-blue .loading-blue {
+    @apply bg-blue-500
+}
+
+/*Gray*/
+.button-outline-gray {
+    @apply hover:bg-gray-500 text-gray-700 border-gray-500
+}
+
+.button-outline-gray .loading-gray {
+    @apply bg-gray-500
+}
+
+/*Green*/
+.button-outline-green {
+    @apply hover:bg-green-500 text-green-700 border-green-500
+}
+
+.button-outline-green .loading-green {
+    @apply bg-green-500
+}
+
+/*Indigo*/
+.button-outline-indigo {
+    @apply hover:bg-indigo-500 text-indigo-700 border-indigo-500
+}
+
+.button-outline-indigo .loading-indigo {
+    @apply bg-indigo-500
+}
+
+/*Pink*/
+.button-outline-pink {
+    @apply hover:bg-pink-500 text-pink-700 border-pink-500
+}
+
+.button-outline-pink .loading-pink {
+    @apply bg-pink-500
+}
+
+/*Purple*/
+.button-outline-purple {
+    @apply hover:bg-purple-500 text-purple-700 border-purple-500
+}
+
+.button-outline-purple .loading-purple {
+    @apply bg-purple-500
+}
+
+/*Red*/
+.button-outline-red {
+    @apply hover:bg-red-500 text-red-700 border-red-500
+}
+
+.button-outline-red .loading-red {
+    @apply bg-red-500
+}
+
+/*White*/
+.button-outline-white {
+    @apply hover:bg-gray-200 text-gray-700 border-gray-300 hover:text-gray-700
+}
+
+.button-outline-white .loading-white {
+    @apply bg-gray-300
+}
+
+/*Yellow*/
+.button-outline-yellow {
+    @apply hover:bg-yellow-500 text-yellow-700 border-yellow-500
+}
+
+.button-outline-yellow .loading-yellow {
+    @apply bg-yellow-500
+}
+
+/*</editor-fold>*/
+
+/*<editor-fold desc="Link Style">*/
+/*General Definitions*/
+.button-link-base {
+    @apply font-semibold hover:font-bold hover:underline py-1 px-2
+}
+
+.button-link-base .button-icon {
+    @apply ml-2
+}
+
+/*Colors: black, blue, gray, green, indigo, pink, purple, white and yellow*/
+/*Black*/
+.button-link-black {
+    @apply text-gray-700
+}
+
+.button-link-black .loading-black {
+    @apply bg-gray-700
+}
+
+/*Blue*/
+.button-link-blue {
+    @apply text-blue-700
+}
+
+.button-link-blue .loading-blue {
+    @apply bg-blue-500
+}
+
+/*Gray*/
+.button-link-gray {
+    @apply text-gray-700
+}
+
+.button-link-gray .loading-gray {
+    @apply bg-gray-500
+}
+
+/*Green*/
+.button-link-green {
+    @apply text-green-700
+}
+
+.button-link-green .loading-green {
+    @apply bg-green-500
+}
+
+/*Indigo*/
+.button-link-indigo {
+    @apply text-indigo-700
+}
+
+.button-link-indigo .loading-indigo {
+    @apply bg-indigo-500
+}
+
+/*Pink*/
+.button-link-pink {
+    @apply text-pink-700
+}
+
+.button-link-pink .loading-pink {
+    @apply bg-pink-500
+}
+
+/*Purple*/
+.button-link-purple {
+    @apply text-purple-700
+}
+
+.button-link-purple .loading-purple {
+    @apply bg-purple-500
+}
+
+/*Red*/
+.button-link-red {
+    @apply text-red-700
+}
+
+.button-link-red .loading-red {
+    @apply bg-red-500
+}
+
+/*White*/
+.button-link-white {
+    @apply text-gray-700
+}
+
+.button-link-white .loading-white {
+    @apply bg-gray-300
+}
+
+/*Yellow*/
+.button-link-yellow {
+    @apply text-yellow-700
+}
+
+.button-link-yellow .loading-yellow {
+    @apply bg-yellow-500
+}
+
+/*</editor-fold>*/
+
+/*<editor-fold desc="Link Plus Style">*/
+/*General Definitions*/
+.button-link-plus-base {
+    @apply font-semibold hover:text-gray-50 hover:underline py-1 px-2
+}
+
+.button-link-plus-base .button-icon {
+    @apply ml-2
+}
+
+/*Colors: black, blue, gray, green, indigo, pink, purple, white and yellow*/
+/*Black*/
+.button-link-plus-black {
+    @apply text-gray-700 hover:bg-gray-700
+}
+
+.button-link-plus-black .loading-black {
+    @apply bg-gray-700
+}
+
+/*Blue*/
+.button-link-plus-blue {
+    @apply text-blue-700 hover:bg-blue-500
+}
+
+.button-link-plus-blue .loading-blue {
+    @apply bg-blue-500
+}
+
+/*Gray*/
+.button-link-plus-gray {
+    @apply text-gray-700 hover:bg-gray-500
+}
+
+.button-link-plus-gray .loading-gray {
+    @apply bg-gray-500
+}
+
+/*Green*/
+.button-link-plus-green {
+    @apply text-green-700 hover:bg-green-500
+}
+
+.button-link-plus-green .loading-green {
+    @apply bg-green-500
+}
+
+/*Indigo*/
+.button-link-plus-indigo {
+    @apply text-indigo-700 hover:bg-indigo-500
+}
+
+.button-link-plus-indigo .loading-indigo {
+    @apply bg-indigo-500
+}
+
+/*Pink*/
+.button-link-plus-pink {
+    @apply text-pink-700 hover:bg-pink-500
+}
+
+.button-link-plus-pink .loading-pink {
+    @apply bg-pink-500
+}
+
+/*Purple*/
+.button-link-plus-purple {
+    @apply text-purple-700 hover:bg-purple-500
+}
+
+.button-link-plus-purple .loading-purple {
+    @apply bg-purple-500
+}
+
+/*Red*/
+.button-link-plus-red {
+    @apply text-red-700 hover:bg-red-500
+}
+
+.button-link-plus-red .loading-red {
+    @apply bg-red-500
+}
+
+/*White*/
+.button-link-plus-white {
+    @apply text-gray-700 hover:bg-white hover:text-gray-700
+}
+
+.button-link-plus-white .loading-white {
+    @apply bg-gray-300
+}
+
+/*Yellow*/
+.button-link-plus-yellow {
+    @apply text-yellow-700 hover:bg-yellow-500
+}
+
+.button-link-plus-yellow .loading-yellow {
+    @apply bg-yellow-500
+}
+
+/*</editor-fold>*/

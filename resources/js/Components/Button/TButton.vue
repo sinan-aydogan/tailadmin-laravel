@@ -1,59 +1,132 @@
 <template>
   <button
-      v-if="type === 'submit' || type === 'button'"
-      :class="[
-            'button',
-            calculatedButtonStyle,
-            size ? sizes[size].sizeStyle : 'h-10',
-            ]"
-      :onclick="'window.location.href=\''+link+'\''"
-      :type="type">
-    <slot></slot>
+    v-if="type === 'submit' || type === 'button' || type === 'external-link'"
+    :class="tStyle['container']"
+    :onclick="(!disabled && type === 'external-link') ? 'window.location.href=\''+link+'\'' : ''"
+    :type="type">
+    <component :is="loadingComponent" v-if="loadingWithContent" :color="loadingColor ? loadingColor : color" />
+
+    <span :class="tStyle['content']">
+      <slot />
+    </span>
+    <component :is="loadingComponent" v-if="loading" :color="loadingColor ? loadingColor : color"
+               class="mx-auto absolute" />
   </button>
-  <inertia-link
-      v-else
-      :href="link"
-      :class="[
-            'button',
-            calculatedButtonStyle,
-            size ? sizes[size].sizeStyle : 'h-10',
-            ]"
+  <Link
+    v-else
+    :href="link"
+    :class="tStyle['container']"
   >
     <slot></slot>
-  </inertia-link>
+  </Link>
 </template>
 
 <script>
-import {buttonStyleMixin} from "@/Mixins/Styles/buttonStyleMixin";
+import { defineComponent, defineAsyncComponent, toRefs, ref, computed, reactive } from "vue";
+import { Link } from "@inertiajs/inertia-vue3";
+import ThreeBars from "@/Components/Loading/Animations/ThreeBars";
+import ThreeDots from "@/Components/Loading/Animations/ThreeDots";
 
-export default {
+export default defineComponent({
   name: "TButton",
-  mixins: [buttonStyleMixin],
   props: {
-    size: String,
+    size: {
+      type: String,
+      default: "normal"
+    },
+    design: {
+      type: String,
+      default: "filled"
+    },
+    color: {
+      type: String,
+      default: "blue"
+    },
+    radius: {
+      type: Number,
+      default: 3
+    },
     link: {
       type: String,
-      default: '#'
+      default: "#"
+    },
+    border: {
+      type: Boolean,
+      default: false
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+    },
+    loading: {
+      type: Boolean,
+      default: false
+    },
+    loadingDesign: {
+      type: String,
+      default: "three-bars"
+    },
+    loadingWithContent: {
+      type: Boolean,
+      default: false
+    },
+    loadingColor: {
+      type: String,
+      default: null
     },
     type: {
       type: String,
-      default: 'submit'
+      default: "submit"
     }
   },
-  data() {
-    return {
-      sizes: {
-        'full': {
-          sizeStyle: "h-12 w-full text-center"
-        },
-        'xl': {
-          sizeStyle: "h-14 text-xl font-bold"
-        },
-        'sm': {
-          sizeStyle: "h-8 text-sm min-w-min min-h-min"
-        }
-      }
+  components: {
+    ThreeDots,
+    ThreeBars,
+    Link
+  },
+  setup(props) {
+    /*Definitions*/
+    const {
+      color,
+      design,
+      border,
+      radius,
+      disabled,
+      size,
+      loading,
+      loadingWithContent,
+      loadingDesign
+    } = toRefs(props);
+
+    /*Generating Style Classes*/
+    const tStyle = reactive({})
+    tStyle['container'] = computed(() => {
+      return "button" + " " +
+        "button-" + size.value + " " +
+        "button-" + design.value + "-base" + " " +
+        "button-" + design.value + "-" + color.value + " " +
+        "radius-" + radius.value + " " +
+        (disabled.value ? " button-disabled" : "") + " " +
+        (border.value ? "border" : "") + " " +
+        (loading.value || loadingWithContent.value ? "pointer-events-none" : "");
+    });
+    tStyle['content'] = computed(() => {
+      return "button-content" + " " +
+        (loading.value ? 'invisible' : '');
+    });
+
+
+    /*Loading Component*/
+    const activeLoadingComponent = ref();
+    if (loadingDesign.value === "three-bars") {
+      activeLoadingComponent.value = "ThreeBars";
+    } else {
+      activeLoadingComponent.value = "ThreeDots";
     }
+
+    const loadingComponent = defineAsyncComponent(() => import(`@/Components/Loading/Animations/${activeLoadingComponent.value}.vue`));
+
+    return { tStyle, loadingComponent };
   }
-}
+});
 </script>

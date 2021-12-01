@@ -19,10 +19,11 @@
 </template>
 
 <script>
+import {defineComponent} from "vue";
 import {toastrStyleMixin} from "@/Mixins/Styles/toastrStyleMixin";
 import TXCircleIcon from "@/Components/Icon/TXCircleIcon";
 
-export default {
+export default defineComponent({
   name: "TToastr",
   components: {TXCircleIcon},
   mixins: [toastrStyleMixin],
@@ -59,7 +60,7 @@ export default {
       this.$emit('destroy', this.id)
     }
   },
-}
+})
 </script>
 
 <style scoped>

@@ -1,7 +1,8 @@
 <script>
+import { defineComponent } from 'vue'
 import { PolarArea } from 'vue-chartjs'
 
-export default {
+export default defineComponent({
   name : 'PolarChart',
   extends: Polar,
   props: {
@@ -17,5 +18,5 @@ export default {
   mounted () {
     this.renderChart(this.chartdata, this.options)
   }
-}
+})
 </script>

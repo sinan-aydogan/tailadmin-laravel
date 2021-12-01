@@ -16,18 +16,18 @@
                     <jet-input type="password" class="mt-1 block w-3/4" placeholder="Password"
                                 ref="password"
                                 v-model="form.password"
-                                @keyup.enter.native="confirmPassword" />
+                                @keyup.enter="confirmPassword" />
 
                     <jet-input-error :message="form.error" class="mt-2" />
                 </div>
             </template>
 
             <template #footer>
-                <jet-secondary-button @click.native="closeModal">
-                    Nevermind
+                <jet-secondary-button @click="closeModal">
+                    Cancel
                 </jet-secondary-button>
 
-                <jet-button class="ml-2" @click.native="confirmPassword" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                <jet-button class="ml-2" @click="confirmPassword" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                     {{ button }}
                 </jet-button>
             </template>
@@ -36,13 +36,16 @@
 </template>
 
 <script>
-    import JetButton from './Button'
-    import JetDialogModal from './DialogModal'
-    import JetInput from './Input'
-    import JetInputError from './InputError'
-    import JetSecondaryButton from './SecondaryButton'
+    import { defineComponent } from 'vue'
+    import JetButton from './Button.vue'
+    import JetDialogModal from './DialogModal.vue'
+    import JetInput from './Input.vue'
+    import JetInputError from './InputError.vue'
+    import JetSecondaryButton from './SecondaryButton.vue'
 
-    export default {
+    export default defineComponent({
+        emits: ['confirmed'],
+
         props: {
             title: {
                 default: 'Confirm Password',
@@ -108,5 +111,5 @@
                 this.form.error = '';
             },
         }
-    }
+    })
 </script>

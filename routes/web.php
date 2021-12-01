@@ -1,8 +1,5 @@
 <?php
 
-use App\Http\Controllers\LockAuthController;
-use App\Http\Controllers\Settings\UserController;
-use App\Models\User;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -20,14 +17,7 @@ use Spatie\Permission\Models\Role;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render([
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ], 'Dashboard');
-});
+
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function (){
     Route::get('/', function () {
@@ -37,16 +27,16 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function (){
             'laravelVersion' => Application::VERSION,
             'phpVersion' => PHP_VERSION,
         ]);
-    })->name('dashboard');
+})->name('/');
 
     /*They are the required pages for the system, don't delete it*/
     Route::prefix('settings')->group(function () {
        Route::get('/', function () {return Inertia::render('Settings/Index',[
-           'users_count' => count(User::all('id')),
+           'users_count' => count(\App\Models\User::all('id')),
            'roles_count' => count(Role::all()),
            'permissions_count' => count(Permission::all())
        ]);})->name('settings');
-       Route::resource('settings-user', UserController::class);
+       Route::resource('settings-user', \App\Http\Controllers\Settings\UserController::class);
        Route::get('role', function () {return Inertia::render('Settings/Role');})->name('settings-role');
        Route::get('permission', function () {return Inertia::render('Settings/Permission');})->name('settings-permission');
        Route::get('system', function () {return Inertia::render('Settings/System');})->name('settings-system');
@@ -86,6 +76,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function (){
     Route::get('collapsible',function (){return Inertia::render('Samples/Components/Collapsible');})->name('collapsible');
     Route::get('dropdown',function (){return Inertia::render('Samples/Components/Dropdown');})->name('dropdown');
     Route::get('list',function (){return Inertia::render('Samples/Components/List');})->name('list');
+    Route::get('loading',function (){return Inertia::render('Samples/Components/Loading');})->name('loading');
     Route::get('modal',function (){return Inertia::render('Samples/Components/Modal');})->name('modal');
     Route::get('pagination',function (){return Inertia::render('Samples/Components/Paginate');})->name('pagination');
     Route::get('popover',function (){return Inertia::render('Samples/Components/Popover');})->name('popover');
@@ -94,6 +85,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function (){
     Route::get('table',function (){return Inertia::render('Samples/Components/Table',[
         'users' => \App\Models\User::all()
     ]);})->name('table');
+    Route::match(['get','post'],'back-end-table',[\App\Http\Controllers\DemoContentController::class, 'index'])->name('back-end-table');
 
     /*TODO: Toastr Feature
     Route::get('toastr',function (){return Inertia::render('Samples/Components/Toastr');})->name('toastr');*/
@@ -103,6 +95,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function (){
     Route::get('layout-grid',function (){return Inertia::render('Samples/Layouts/Grid');})->name('layout-grid');
     Route::get('layout-content-box',function (){return Inertia::render('Samples/Layouts/ContentBox');})->name('layout-content-box');
     Route::get('layout-statistic-widget',function (){return Inertia::render('Samples/Layouts/StatisticWidget');})->name('layout-statistic-widget');
+    Route::get('test',function (){return Inertia::render('Samples/Test');})->name('test');
     // Form Pages
     Route::get('form-structure',function (){return Inertia::render('Samples/FormElements/FormStructure');})->name('form-structure');
     Route::get('form-input-group',function (){return Inertia::render('Samples/FormElements/InputGroup');})->name('form-input-group');

@@ -1,0 +1,287 @@
+.radius-0{
+    @apply rounded-none
+}
+.radius-1{
+    @apply rounded-sm
+}
+.radius-2{
+    @apply rounded
+}
+.radius-3{
+    @apply rounded-md
+}
+.radius-4{
+    @apply rounded-lg
+}
+.radius-5{
+    @apply rounded-xl
+}
+.radius-6{
+    @apply rounded-2xl
+}
+.radius-7{
+    @apply rounded-3xl
+}
+.radius-8{
+    @apply rounded-full
+}
+
+/*<editor-fold desc="Seperated Corner Radius">*/
+/*Top Left*/
+.radius-tl-0{
+    @apply rounded-tl-none
+}
+.radius-tl-1{
+    @apply rounded-tl-sm
+}
+.radius-tl-2{
+    @apply rounded-tl
+}
+.radius-tl-3{
+    @apply rounded-tl-md
+}
+.radius-tl-4{
+    @apply rounded-tl-lg
+}
+.radius-tl-5{
+    @apply rounded-tl-xl
+}
+.radius-tl-6{
+    @apply rounded-tl-2xl
+}
+.radius-tl-7{
+    @apply rounded-tl-3xl
+}
+.radius-tl-8{
+    @apply rounded-tl-full
+}
+/*Top Right*/
+.radius-tr-0{
+    @apply rounded-tr-none
+}
+.radius-tr-1{
+    @apply rounded-tr-sm
+}
+.radius-tr-2{
+    @apply rounded-tr
+}
+.radius-tr-3{
+    @apply rounded-tr-md
+}
+.radius-tr-4{
+    @apply rounded-tr-lg
+}
+.radius-tr-5{
+    @apply rounded-tr-xl
+}
+.radius-tr-6{
+    @apply rounded-tr-2xl
+}
+.radius-tr-7{
+    @apply rounded-tr-3xl
+}
+.radius-tr-8{
+    @apply rounded-tr-full
+}
+/*Bottom Left*/
+.radius-bl-0{
+    @apply rounded-bl-none
+}
+.radius-bl-1{
+    @apply rounded-bl-sm
+}
+.radius-bl-2{
+    @apply rounded-bl
+}
+.radius-bl-3{
+    @apply rounded-bl-md
+}
+.radius-bl-4{
+    @apply rounded-bl-lg
+}
+.radius-bl-5{
+    @apply rounded-bl-xl
+}
+.radius-bl-6{
+    @apply rounded-bl-2xl
+}
+.radius-bl-7{
+    @apply rounded-bl-3xl
+}
+.radius-bl-8{
+    @apply rounded-bl-full
+}
+/*Bottom Right*/
+.radius-br-0{
+    @apply rounded-br-none
+}
+.radius-br-1{
+    @apply rounded-br-sm
+}
+.radius-br-2{
+    @apply rounded-br
+}
+.radius-br-3{
+    @apply rounded-br-md
+}
+.radius-br-4{
+    @apply rounded-br-lg
+}
+.radius-br-5{
+    @apply rounded-br-xl
+}
+.radius-br-6{
+    @apply rounded-br-2xl
+}
+.radius-br-7{
+    @apply rounded-br-3xl
+}
+.radius-br-8{
+    @apply rounded-br-full
+}
+/*</editor-fold>*/
+
+/*<editor-fold desc="Seperated Left-Right Side Radius">*/
+/*Left*/
+.radius-l-0{
+    @apply rounded-l-none
+}
+.radius-l-1{
+    @apply rounded-l-sm
+}
+.radius-l-2{
+    @apply rounded-l
+}
+.radius-l-3{
+    @apply rounded-l-md
+}
+.radius-l-4{
+    @apply rounded-l-lg
+}
+.radius-l-5{
+    @apply rounded-l-xl
+}
+.radius-l-6{
+    @apply rounded-l-2xl
+}
+.radius-l-7{
+    @apply rounded-l-3xl
+}
+.radius-l-8{
+    @apply rounded-l-full
+}
+/*Right*/
+.radius-r-0{
+    @apply rounded-r-none
+}
+.radius-r-1{
+    @apply rounded-r-sm
+}
+.radius-r-2{
+    @apply rounded-r
+}
+.radius-r-3{
+    @apply rounded-r-md
+}
+.radius-r-4{
+    @apply rounded-r-lg
+}
+.radius-r-5{
+    @apply rounded-r-xl
+}
+.radius-r-6{
+    @apply rounded-r-2xl
+}
+.radius-r-7{
+    @apply rounded-r-3xl
+}
+.radius-r-8{
+    @apply rounded-r-full
+}
+/*Top*/
+.radius-t-0{
+    @apply rounded-t-none
+}
+.radius-t-1{
+    @apply rounded-t-sm
+}
+.radius-t-2{
+    @apply rounded-t
+}
+.radius-t-3{
+    @apply rounded-t-md
+}
+.radius-t-4{
+    @apply rounded-t-lg
+}
+.radius-t-5{
+    @apply rounded-t-xl
+}
+.radius-t-6{
+    @apply rounded-t-2xl
+}
+.radius-t-7{
+    @apply rounded-t-3xl
+}
+.radius-t-8{
+    @apply rounded-t-full
+}
+/*Bottom*/
+.radius-b-0{
+    @apply rounded-b-none
+}
+.radius-b-1{
+    @apply rounded-b-sm
+}
+.radius-b-2{
+    @apply rounded-b
+}
+.radius-b-3{
+    @apply rounded-b-md
+}
+.radius-b-4{
+    @apply rounded-b-lg
+}
+.radius-b-5{
+    @apply rounded-b-xl
+}
+.radius-b-6{
+    @apply rounded-b-2xl
+}
+.radius-b-7{
+    @apply rounded-b-3xl
+}
+.radius-b-8{
+    @apply rounded-b-full
+}
+/*</editor-fold>*/
+
+/*<editor-fold desc="Group Radius">*/
+.group-radius-0{
+    @apply rounded-none
+}
+.group-radius-1{
+    @apply first:rounded-t-sm last:rounded-b-sm
+}
+.group-radius-2{
+    @apply first:rounded-t last:rounded-b
+}
+.group-radius-3{
+    @apply first:rounded-t-md last:rounded-b-md
+}
+.group-radius-4{
+    @apply first:rounded-t-lg last:rounded-b-lg
+}
+.group-radius-5{
+    @apply first:rounded-t-xl last:rounded-b-xl
+}
+.group-radius-6{
+    @apply first:rounded-t-2xl last:rounded-b-2xl
+}
+.group-radius-7{
+    @apply first:rounded-t-3xl last:rounded-b-3xl
+}
+.group-radius-8{
+    @apply first:rounded-t-full last:rounded-b-full
+}
+/*</editor-fold>*/

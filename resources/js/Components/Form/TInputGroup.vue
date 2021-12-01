@@ -3,7 +3,7 @@
     <!--Label-->
     <label
         :for="labelFor"
-        class="flex flex-row gap-1 items-center font-medium text-sm text-gray-700 whitespace-normal"
+        class="flex flex-row gap-1 items-center font-medium text-sm whitespace-normal dark:text-gray-200"
     >
       <!--Label-->
       <span v-if="label">
@@ -34,10 +34,11 @@
 </template>
 
 <script>
+import { defineComponent } from 'vue'
 import {inputGroupStyleMixin} from "@/Mixins/Styles/inputGroupStyleMixin";
 
-export default {
+export default defineComponent({
   props: ['label', 'subLabel', 'subLabelColor', 'labelFor', 'error'],
   mixins: [inputGroupStyleMixin]
-}
+})
 </script>

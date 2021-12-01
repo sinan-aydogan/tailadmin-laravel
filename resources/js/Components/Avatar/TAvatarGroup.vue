@@ -1,15 +1,13 @@
 <template>
-    <div class="avatar-group-container">
-        <slot/>
-    </div>
+  <div class="avatar-group-container">
+    <slot />
+  </div>
 </template>
 
 <script>
-export default {
-    name: "TAvatarGroup",
-}
+import { defineComponent } from "vue";
+
+export default defineComponent({
+  name: "TAvatarGroup"
+});
 </script>
-
-<style scoped>
-
-</style>

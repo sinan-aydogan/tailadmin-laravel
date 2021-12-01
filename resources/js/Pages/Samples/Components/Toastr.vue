@@ -172,7 +172,6 @@ export default {
                 timer: 6000,
                 content: 'Selam ben bir uyarı kutusuyum'
             }
-            console.log(this.$page.props.flash.toastr)
         }
     }
 }

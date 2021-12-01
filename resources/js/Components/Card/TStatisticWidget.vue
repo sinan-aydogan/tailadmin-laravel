@@ -66,12 +66,13 @@
 </template>
 
 <script>
+import { defineComponent } from 'vue'
 import {statisticWidgetStyleMixin} from "@/Mixins/Styles/statisticWidgetStyleMixin";
 import TContentCard from "@/Components/Card/TContentCard";
 import TChevronUpIcon from "@/Components/Icon/TChevronUpIcon";
 import TChevronDownIcon from "@/Components/Icon/TChevronDownIcon";
 
-export default {
+export default defineComponent({
   name: "TStatisticWidget",
   components: {
     TChevronDownIcon,
@@ -167,6 +168,6 @@ export default {
       }*/
     }
   }
-}
+})
 </script>
 

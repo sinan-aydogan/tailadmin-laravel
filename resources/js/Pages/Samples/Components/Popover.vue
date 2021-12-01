@@ -1,5 +1,5 @@
 <template>
-  <app-layout>
+  <app-layout title="Popover">
     <template #header>Popovers</template>
     <template #subHeader>Simple and casual pops</template>
     <template #default>
@@ -8,52 +8,52 @@
           <template #title>Popover Title and Position</template>
           <template #subTitle>Left, Top, Right and Bottom Positions</template>
           <template #content>
-            <div class="flex flex-wrap gap-8 space-x-8">
-              <t-popover position="top">
-                <template #mainContent>Click me!</template>
-                <template #secondTitle>Title for Top</template>
-                <template #secondContent>Hello, I'm at the top</template>
+            <grid-section :col-tablet="2" :col-desktop="4" class="place-items-start">
+              <t-popover position="top" color="gray">
+                Click me (T)
+                <template #boxTitle>Title for Top</template>
+                <template #boxContent>Hello, I'm at the top</template>
               </t-popover>
-              <t-popover position="bottom">
-                <template #mainContent>Click me!</template>
-                <template #secondTitle>Title for Bottom</template>
-                <template #secondContent>Hello, I'm at the bottom</template>
+              <t-popover position="bottom" color="red">
+                Click me (B)
+                <template #boxTitle>Title for Bottom</template>
+                <template #boxContent>Hello, I'm at the bottom</template>
               </t-popover>
-              <t-popover position="left">
-                <template #mainContent>Click me!</template>
-                <template #secondTitle>Title for Left</template>
-                <template #secondContent>Hello, I'm at the left</template>
+              <t-popover position="right" color="blue">
+                Click me (R)
+                <template #boxTitle>Title for Right</template>
+                <template #boxContent>Hello, I'm at the left</template>
               </t-popover>
-              <t-popover position="right">
-                <template #mainContent>Click me!</template>
-                <template #secondTitle>Title for Right</template>
-                <template #secondContent>Hello, I'm at the right</template>
+              <t-popover position="right" color="black">
+                Click me (L)
+                <template #boxTitle>Title for Left</template>
+                <template #boxContent>Hello, I'm at the right</template>
               </t-popover>
-            </div>
+            </grid-section>
           </template>
         </t-content-card>
         <t-content-card :width="1">
           <template #title>Popover without Title</template>
           <template #subTitle>Left, Top, Right and Bottom Positions</template>
           <template #content>
-            <div class="flex flex-wrap space-x-8">
+            <grid-section :col-tablet="2" :col-desktop="4">
               <t-popover position="top">
-                <template #mainContent>Click me!</template>
-                <template #secondContent>Hello, I'm at the top</template>
+                Click me (T)
+                <template #boxContent>Hello, I'm at the top</template>
               </t-popover>
               <t-popover position="bottom">
-                <template #mainContent>Click me!</template>
-                <template #secondContent>Hello, I'm at the bottom</template>
+                Click me (B)
+                <template #boxContent>Hello, I'm at the bottom</template>
+              </t-popover>
+              <t-popover position="right" color="red">
+                Click me (R)
+                <template #boxContent>Hello, I'm at the right</template>
               </t-popover>
               <t-popover position="left">
-                <template #mainContent>Click me!</template>
-                <template #secondContent>Hello, I'm at the left</template>
+                Click me (L)
+                <template #boxContent>Hello, I'm at the left</template>
               </t-popover>
-              <t-popover position="right">
-                <template #mainContent>Click me!</template>
-                <template #secondContent>Hello, I'm at the right</template>
-              </t-popover>
-            </div>
+            </grid-section>
           </template>
         </t-content-card>
       </grid-section>
@@ -81,7 +81,6 @@
 import AppLayout from "@/Layouts/AppLayout";
 /*Component*/
 import GridSection from "@/Layouts/GridSection";
-import TButton from "@/Components/Button/TButton";
 import TContentCard from "@/Components/Card/TContentCard";
 import TTable from "@/Components/Table/TTable";
 import TPopover from "@/Components/Popover/TPopover";
@@ -91,15 +90,15 @@ import SshPre from "simple-syntax-highlighter";
 
 export default {
   name: "Popover",
-  components: {AppLayout, SshPre, GridSection, TButton, TContentCard, TTable, TPopover},
+  components: {AppLayout, SshPre, GridSection, TContentCard, TTable, TPopover},
   data() {
     return {
       sampleCode: {
         html:
             '<t-popover position="right">\n' +
-            '    <template #mainContent>Click me!</template>\n' +
-            '    <template #secondTitle>Title for Right</template>\n' +
-            '    <template #secondContent>Hello, I\'m at the right</template>\n' +
+            '    Click me!\n' +
+            '    <template #boxTitle>Title for Right</template>\n' +
+            '    <template #boxContent>Hello, I\'m at the right</template>\n' +
             '</t-popover>',
         js:
             'import TPopover from "@/Components/Popover/TPopover";\n' +

@@ -1,19 +1,21 @@
 <template>
+    <Head title="Forgot Password" />
+
     <t-forgot
         color="gradient-purple-to-pink"
         :radius="5"
         bg-image="/img/samples/bgFakurianDesign-nY14Fs8pxT8-unsplash.jpg"
-        button-color="solid-pink"
+        button-color="pink"
         :status="status"
     >
         <!--Logo-->
         <template #logo>
-            <inertia-link href="/">
+            <Link href="/">
                 <div class="flex flex-col justify-center items-center w-full">
                     <t-logo class="w-12 h-12"/>
                     <span class="text-3xl">TailAdmin</span>
                 </div>
-            </inertia-link>
+            </Link>
         </template>
         <!--Greeting-->
         <template #greeting>
@@ -27,12 +29,21 @@
 </template>
 
 <script>
-import TForgot from "@/Components/Auth/TForgot";
-import TLogo from "@/Components/Icon/TLogo";
-export default{
-    components: {TLogo, TForgot},
-    props: {
-        status: String
-    }
-}
+    import { defineComponent } from 'vue'
+    import { Head,Link } from '@inertiajs/inertia-vue3';
+    import TForgot from "@/Components/Auth/TForgot";
+    import TLogo from "@/Components/Icon/TLogo";
+
+    export default defineComponent({
+        components: {
+            Head,
+            Link,
+            TLogo,
+            TForgot
+        },
+
+        props: {
+            status: String
+        },
+    })
 </script>

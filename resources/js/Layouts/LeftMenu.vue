@@ -1,63 +1,138 @@
 <template>
-  <aside class="flex flex-col justify-between h-full absolute">
+  <aside
+    class="left-menu">
     <!--Logo-->
-    <div class="left-menu-logo">
-      <inertia-link
-          :href="route('dashboard')">
-        <div class="flex justify-center items-center space-x-1 space-y-1">
-          <div class="flex justify-between h-10 overflow-hidden mx-4">
-            <t-logo class="w-10 h-10 text-white"/>
-            <transition name="left-menu">
-              <div v-if="showingLeftMenu === 'true'" class="flex text-3xl text-white h-10 items-center">TailAdmin</div>
-            </transition>
-          </div>
+    <div
+      class="header"
+      :class="[
+        conf.app.leftMenu.headerBgColor,
+        'radius-' + conf.app.leftMenu.radius
+        ]"
+    >
+      <Link
+        :href="route('/')"
+        class="logo-out-container"
+      >
+        <div class="logo-inside-container">
+          <!--TODO: Title and Logo will come from DB-->
+          <!--Logo-->
+          <svg
+            id="logo"
+            v-html="conf.app.leftMenu.logo"
+          />
+          <!--Title-->
+          <div
+            id="logo-title"
+            :class="[!foldLeftMenu ? 'left-menu-title-show' : 'left-menu-title-hide']"
+            v-html="conf.app.leftMenu.title"
+          />
         </div>
-      </inertia-link>
+      </Link>
     </div>
     <!--Menu Items-->
-    <nav
-        class="h-full mt-6 px-1 overflow-y-auto text-gray-500 scrollbar-thin scrollbar-thumb-blue-500 scrollbar-track-gray-300 overflow-y-scroll">
-      <slot/>
+    <nav id="links-wrapper">
+      <slot />
     </nav>
-    <!--Left Menu Footer-->
-    <div class="flex flex-row text-gray-500">
-      <inertia-link :href="route('settings')"
-                    class="flex flex-row justify-center items-center w-full p-3 px-2 border-t border-gray-700 hover:text-gray-400 h-15 hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700">
-        <t-cog-icon class="w-6 h-6"/>
-        <transition name="left-menu">
-          <span v-if="showingLeftMenu === 'true'" class="ml-2">Settings</span>
-        </transition>
-      </inertia-link>
+    <!--Menu Footer-->
+    <div id="footer">
+      <transition name="fade" mode="out-in">
+        <!--Settings-->
+        <div
+          key="leftMenuFooterLinks"
+          id="footer-links-wrapper"
+          v-if="conf.app.leftMenu.footer.links.length>0 && !foldLeftMenu"
+          :class="[
+            conf.app.leftMenu.footer.links.length>1 ? 'grid-cols-2' : '',
+            'radius-' + conf.app.leftMenu.radius
+            ]"
+        >
+          <!--Footer Links-->
+          <template v-for="link in conf.app.leftMenu.footer.links">
+            <!--Internal Route Link-->
+            <Link
+              v-if="link.linkType === 'route'"
+              id="footer-link"
+              :class="conf.app.leftMenu.footer.links.length>2 ? 'justify-start' : 'justify-center'"
+              :href="route(link.link)"
+            >
+              <svg
+                v-if="link.icon"
+                class="left-menu-icon"
+                v-html="link.icon"
+              />
+              <span v-t="link.label ? link.label : link.label" />
+            </Link>
+            <!--External Link-->
+            <a
+              v-else
+              id="footer-link"
+              :class="conf.app.leftMenu.footer.links.length>2 ? 'justify-start' : 'justify-center'"
+              :href="link.link"
+              target="_blank"
+            >
+              <svg
+                v-if="link.icon"
+                v-html="link.icon"
+                class="left-menu-icon"
+              />
+              <span v-t="link.label ? link.label : link.label" />
+            </a>
+          </template>
+        </div>
+        <!--Open Menu Arrow-->
+        <div
+          key="leftMenuOpenArrow"
+          v-else
+          id="footer-trigger"
+          @click="$emit('foldLeftMenu', true)"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="left-menu-trigger-icon" fill="none" viewBox="0 0 24 24"
+               stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7" />
+          </svg>
+        </div>
+      </transition>
     </div>
-
   </aside>
 </template>
 
 <script>
-import TLogo from "@/Components/Icon/TLogo";
-import TCogIcon from "@/Components/Icon/TCogIcon";
+import { defineComponent, inject } from "vue";
+import { Link } from "@inertiajs/inertia-vue3";
+import {useI18n} from "vue-i18n";
 
-export default {
+export default defineComponent({
   name: "LeftMenu",
   components: {
-    TCogIcon,
-    TLogo
+    Link
   },
-  props: ['showingLeftMenu']
-}
+  emits: ["foldLeftMenu"],
+  setup() {
+    const {t} = useI18n()
+    /*Injection*/
+    const foldLeftMenu = inject("foldLeftMenu");
+    const conf = inject("conf");
+
+    return {
+      foldLeftMenu,
+      conf
+    };
+  }
+});
 </script>
-<style>
-.left-menu-enter-active, .left-menu-leave-active {
-  transition: all .75s;
+
+<style scoped>
+.fade-enter-active, .fade-leave-active {
+  transition: all 300ms;
 }
 
-.left-menu-enter, .left-menu-leave-to {
+.fade-enter-from, .fade-leave-to {
   opacity: 0;
-  max-width: 0;
+  transform: scale(0);
 }
 
-.left-menu-enter-to, .left-menu-leave {
+.fade-enter-to, .fade-leave-from {
   opacity: 1;
-  max-width: 500px;
+  transform: scale(1);
 }
 </style>

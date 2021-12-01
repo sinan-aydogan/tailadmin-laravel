@@ -1,45 +1,68 @@
 <template>
-    <!-- Item Container-->
-    <div v-show="showingLeftMenu === 'true'">
-        <inertia-link
-            :href="
+  <!-- Item Container-->
+  <Link
+    v-if="item.type === 'route' && item.link"
+    :href="
             item.link != null ?
-            item.linkType === 'route' ? route(item.link) :
-            item.linkType === 'internal' ? URL(item.link) :
-            item.linkType === 'external' ? item.link : '' : ''"
-            tag="div">
-            <div :class="['flex flex-row py-1 items-center justify-between cursor-pointer',menuStyle]">
-                <div class="flex items-center justify-between w-full">
-                    <!-- Label -->
-                    <div v-if="showingLeftMenu === 'true'" class="flex ml-3 py-1">{{ item.label }}</div>
-                    <!-- Icon -->
-                    <div class="flex pr-4">
-                        <font-awesome-icon v-if="item.icon" :icon="item.icon"/>
-                    </div>
-                </div>
-            </div>
-        </inertia-link>
-    </div>
+            item.type === 'route' ? route(item.link) :
+            item.type === 'internal' ? URL(item.link) : '' : ''"
+    class="left-menu-sub-link"
+    :class="[
+      route().current(this.item.link) ? 'left-menu-sub-link-active' : 'left-menu-sub-link-passive',
+    ]"
+  >
+    <!-- Label -->
+    <span
+      class="left-menu-label-wrapper"
+      :class="[!foldLeftMenu ? 'w-show' : 'w-hide']"
+      v-t="item.label ? item.label : item.label"
+    />
+    <!-- Icon -->
+    <span class="left-menu-icon">
+      <font-awesome-icon v-if="item.icon" :icon="item.icon" />
+    </span>
+  </Link>
+  <a
+    v-else
+    :href="item.link ? item.link : '#'"
+    :target="item.target ? item.target : '_blank'"
+    class="left-menu-sub-link left-menu-sub-link-passive"
+  >
+    <!-- Label -->
+    <span
+      class="left-menu-label-wrapper"
+      :class="[!foldLeftMenu ? 'w-show' : 'w-hide']"
+      v-t="item.label ? item.label : item.labelitem"
+    />
+
+    <!-- Icon -->
+    <span class="left-menu-icon">
+      <font-awesome-icon v-if="item.icon" :icon="item.icon" />
+    </span>
+  </a>
 </template>
 
 <script>
-export default {
-    name: "LeftMenuSubItem",
-    props: ["item", "showingLeftMenu", "active"],
-    computed: {
-        menuStyle(){
-            let style;
-            if(route().current(this.item.link)){
-                style = 'bg-white bg-opacity-70 text-gray-700 font-semibold border-b-4 border-opacity-70 border-blue-500'
-            }else{
-                style = 'text-gray-300 bg-opacity-10 hover:bg-gray-200 hover:bg-opacity-40 hover:text-white'
-            }
-            return style
-        }
+import { defineComponent, inject } from "vue";
+import { Link } from "@inertiajs/inertia-vue3";
+
+export default defineComponent({
+  name: "LeftMenuSubItem",
+  components: {
+    Link
+  },
+  props: {
+    item: {
+      type: [Object, Array],
+      default(){
+        return []
+      }
     }
-}
+  },
+  setup() {
+    const foldLeftMenu = inject("foldLeftMenu");
+
+    return { foldLeftMenu };
+  }
+});
 </script>
-
-<style scoped>
-
-</style>

@@ -12,13 +12,11 @@
 </template>
 
 <script>
+import {defineComponent} from "vue";
 import {gridStyleMixin} from "@/Mixins/Styles/gridStyleMixin";
-export default {
+
+export default defineComponent({
   name: "GridSection",
   mixins: [gridStyleMixin],
-}
+})
 </script>
-
-<style scoped>
-
-</style>
