@@ -39,7 +39,7 @@ class AppServiceProvider extends ServiceProvider
 
             return $this->
             when($searchText, function ($query, $searchText)use($obj){
-                foreach ($obj->searchable as $field) {
+                foreach ($obj->simpleSearchQuery as $field) {
                     $query->orWhere($field, 'like', '%' . $searchText . '%');
                 }
                 return $query;
