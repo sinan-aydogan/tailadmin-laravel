@@ -1,11 +1,13 @@
 <template>
   <div :class="tStyle['container']">
+    <!--Detail-->
     <div v-if="detail || jump" class="pagination-detail-container">
+      <!--Text-->
       <div class="pagination-detail-text">
-        {{ detailGeneratedText }}
+        {{ t('component.pagination.detailText', { activePage: modelValue, totalPage: totalPage, totalRecord: total }) }}
       </div>
+      <!--Jump Button-->
       <div v-if="jump" class="pagination-detail-jump-container">
-        <span>-</span>
         <input type="text"
                :maxlength="total.toString().length"
                v-model="jumpPage"
@@ -22,8 +24,11 @@
         </span>
       </div>
     </div>
+    <!--Filler-->
     <div class="flex flex-grow"></div>
+    <!--Counter Container-->
     <div :class="tStyle['counter']">
+      <!--Previous-->
       <div
         :class="tStyle['previous']"
         @click="previousPage"
@@ -34,6 +39,7 @@
         </svg>
         <span v-if="arrowText" v-text="previousText" class="pagination-arrow-text" />
       </div>
+      <!--Conunter-->
       <template v-for="item in dynamicRange" :key="item">
         <div
           :class="itemStyle(item)"
@@ -41,6 +47,7 @@
           {{ item }}
         </div>
       </template>
+      <!--Next-->
       <div
         :class="tStyle['next']"
         @click="nextPage"
@@ -57,6 +64,7 @@
 
 <script>
 import { computed, defineComponent, reactive, ref, toRefs } from "vue";
+import {useI18n} from "vue-i18n";
 
 export default defineComponent({
   name: "TPaginate",
@@ -120,10 +128,15 @@ export default defineComponent({
     /*Definitions*/
     const { total, radius, design, color, modelValue, range, reverse, detailText } = toRefs(props);
     const jumpPage = ref(null);
+    const {t} =useI18n();
 
+    /*Calculate Total Page*/
+    const totalPage = computed(()=>{
+      return Math.ceil(total.value/range.value)
+    })
     /*Select, Next and Previous Page Change Action*/
     const nextPage = () => {
-      if (Math.ceil(total.value / range.value) > Math.ceil(modelValue.value / range.value)) {
+      if (Math.ceil(totalPage.value / range.value) > Math.ceil(modelValue.value / range.value)) {
         let newPage = (Math.ceil(modelValue.value / range.value)) * range.value + 1;
         emit("update:modelValue", newPage);
       }
@@ -142,8 +155,8 @@ export default defineComponent({
       if (isNaN(item)) {
         newPage = 1;
       } else {
-        if (item > total.value) {
-          newPage = total.value;
+        if (item > totalPage.value) {
+          newPage = totalPage.value;
         } else if (1 > item) {
           newPage = 1;
         } else {
@@ -163,28 +176,19 @@ export default defineComponent({
       } else if (modelValue.value % range.value !== 0) {
         start = start + 1;
         for (let i = start; (start + range.value) > i; i++) {
-          if (total.value >= i) {
+          if (totalPage.value >= i) {
             newRange.push(i);
           }
         }
       } else if (modelValue.value % range.value === 0) {
         start = start - (range.value - 1);
         for (let i = start; (start + range.value) > i; i++) {
-          if (total.value >= i) {
+          if (totalPage.value >= i) {
             newRange.push(i);
           }
         }
       }
       return newRange;
-    });
-
-    /*Generate Detail Text*/
-    const detailGeneratedText = computed(() => {
-      let finalText;
-      finalText = detailText.value.replace("$a", modelValue.value.toString());
-      finalText = finalText.replace("$b", total.value.toString());
-
-      return finalText;
     });
 
     /*Generating Style Classes*/
@@ -206,18 +210,19 @@ export default defineComponent({
       return (range.value >= modelValue.value ? "pagination-passive-arrow" : "pagination-arrow");
     });
     tStyle["next"] = computed(() => {
-      return (Math.ceil(modelValue.value / range.value) === Math.ceil(total.value / range.value) ? "pagination-passive-arrow" : "pagination-arrow");
+      return (Math.ceil(modelValue.value / range.value) === Math.ceil(totalPage.value / range.value) ? "pagination-passive-arrow" : "pagination-arrow");
     });
 
     return {
       nextPage,
       previousPage,
       tStyle,
+      totalPage,
       itemStyle,
       selectPage,
-      detailGeneratedText,
       dynamicRange,
-      jumpPage
+      jumpPage,
+      t
     };
   }
 });

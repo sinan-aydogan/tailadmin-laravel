@@ -112,7 +112,11 @@
     </transition>
     <!--Table-->
     <div class="overflow-x-auto scrollbar scrollbar-thin">
-      <table class="w-full">
+      <table
+          class="w-full border"
+          style="border-spacing: 0 1rem ; border-collapse: separate; border: 0 transparent"
+
+      >
         <!--Header-->
         <thead>
         <!--Header Row-->
@@ -135,8 +139,10 @@
         </tr>
         </thead>
         <!--Content-->
-        <tbody class="bg-white">
-        <tr v-if="paginatedContent.length === 0" id="no-content">
+        <tbody>
+        <tr
+            v-if="paginatedContent.length === 0" id="no-content"
+        >
           <td :colspan="regeneratedHeader.length">
             {{ regeneratedHeader }}
             <div>
@@ -155,8 +161,7 @@
           :key="index"
           :class="[
                         'transition duration-300 ease-in-out',
-                        features.table.zebraRow ? 'odd:bg-gray-200' : 'bg-white',
-                        paginatedContent.length > index+1 && border && 'border-b'
+                        features.table.zebraRow ? 'odd:bg-gray-300 bg-white rounded-full' : 'bg-white rounded-full',
                         ]">
           <!--Content Cell-->
           <td v-for="i in header.length" :key="i" class="whitespace-normal">
@@ -184,12 +189,12 @@
         </tbody>
       </table>
     </div>
-    <div v-if="filteredContent.length > pagedItem" class="flex py-4 justify-center">
+    <div v-if="filteredContent.length > features.table.perPage" class="flex py-4 justify-center">
       <t-paginate
         v-model="activePage"
         :jump="features.pagination.jump"
         :range="5"
-        :total="content.total"
+        :total="filteredContent.length"
         :radius="features.table.radius"
         :per-page-item="features.table.perPage"
         :previous-text="features.pagination.previousText"
@@ -331,6 +336,7 @@ export default defineComponent({
         return {
           table: {
             design: "filled",
+            seperatedRow: false,
             rowBorder: true,
             zebraRow: true,
             radius: 3,
