@@ -70,6 +70,7 @@ export default {
     const tableFeatures = reactive({
       table: {
         design: "elegant",
+        seperatedRow: true,
         rowBorder: true,
         zebraRow: true,
         radius: 3,
