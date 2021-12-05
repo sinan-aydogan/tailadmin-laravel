@@ -63,9 +63,9 @@ export default {
   setup() {
     /*Table States*/
     const tableHeader = reactive([
-      { label: "Avatar", key: "photo", align: "center", width: "5" },
-      { label: "Name", key: "name", align: "left", simpleSearchable:true },
-      { label: "Email", key: "email", align: "left" }
+      { label: "Avatar", key: "photo", align: "center", width: "5", status: true },
+      { label: "Name", key: "name", align: "left", simpleSearchable:true, status: true, sortable: true },
+      { label: "Email", key: "email", align: "left", status: true, sortable: true }
     ]);
     const tableFeatures = reactive({
       table: {

@@ -10,11 +10,11 @@
     </template>
     <!--Content-->
     <template #default>
-      <t-component-style-selector
+      <!--<t-component-style-selector
         v-model="selectedData"
         :select-data="selectData"
         class="mb-4"
-      />
+      />-->
       <t-back-end-table
         :content="demoContent"
         content-key="demoContent"
@@ -123,6 +123,7 @@ export default defineComponent({
         key: "name",
         align: "left",
         status: true,
+        sortable: true,
         simpleSearchable: true,
         advancedSearchable: true,
         advancedSearchInputType: "text",
@@ -143,16 +144,17 @@ export default defineComponent({
         key: "price",
         align: "right",
         status: true,
+        sortable: true,
         simpleSearchable: true,
         advancedSearchable: true,
         advancedSearchInputType: "text",
-        compareOperators: priceCompareOperators
       },
       {
         label: "Status",
         key: "status",
         align: "center",
         status: true,
+        sortable: true,
         simpleSearchable: true,
         advancedSearchable: true,
         advancedSearchSelectInputSource: filterStatus,
@@ -165,8 +167,9 @@ export default defineComponent({
         table: {
           darkMode: selectedData.darkMode,
           design: selectedData.design,
-          rowBorder: true,
-          zebraRow: true,
+          borderRow: true,
+          zebraRow: false,
+          hoverRow: true,
           radius: selectedData.radius
         },
         pagination: {
