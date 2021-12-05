@@ -3,83 +3,83 @@
   <div class="text-input" ref="withSelectInput">
     <!--Icon-->
     <div
-      v-if="hasSlot('icon')"
-      class="text-input-icon"
-      :class="`radius-l-${radius}`"
+        v-if="hasSlot('icon')"
+        class="text-input-icon"
+        :class="`radius-l-${radius}`"
     >
-      <slot name="icon" />
+      <slot name="icon"/>
     </div>
     <!--Prepend-->
     <div
-      v-if="prepend || hasSlot('prepend')"
-      class="text-input-prepend"
-      :class="[
-        selectPosition==='start' && options[0].key ? 'border-r' : '',
+        v-if="prepend || hasSlot('prepend')"
+        class="text-input-prepend"
+        :class="[
+        selectPosition==='left' && options[0].key ? 'border-r' : '',
         hasSlot('icon') ? '' : `border-l radius-l-${radius}`]"
     >
-      <span v-if="prepend" v-text="prepend" />
+      <span v-if="prepend" v-text="prepend"/>
       <slot v-else name="prepend"></slot>
     </div>
-    <!--Start Select-->
+    <!--Left Select-->
     <div
-      v-if="options[0].key && selectPosition==='start'"
-      @click="showSelectList = !showSelectList"
-      class="text-input-select-container"
+        v-if="options[0].key && selectPosition==='left'"
+        @click="showSelectList = !showSelectList"
+        class="text-input-select-container"
     >
       <!--Select Trigger-->
       <div
-        class="text-input-select-trigger"
-        :class="[
+          class="text-input-select-trigger"
+          :class="[
           hasSlot('prepend') || prepend ? '' : `border-l radius-l-${radius}`,
           ]"
       >
         <!--Clear Icon-->
         <svg
-          @click.stop="$emit('update:selectValue', null)"
-          v-if="selectValue"
-          xmlns="http://www.w3.org/2000/svg"
-          class="text-input-clear-icon"
-          :class="selectPosition==='start' ? 'mr-1' : ''"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
+            @click.stop="$emit('update:selectValue', null)"
+            v-if="selectValue"
+            xmlns="http://www.w3.org/2000/svg"
+            class="text-input-clear-icon"
+            :class="selectPosition==='left' ? 'mr-1' : ''"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
         >
           <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
           />
         </svg>
         <!--Selected Item-->
         <span
-          v-if="selectValue && selectType==='inside'"
-          v-text="options.find(o=>o[optionsValueKey] === selectValue)[optionsLabelKey]"
+            v-if="selectValue && selectType==='inside'"
+            v-text="options.find(o=>o[optionsValueKey] === selectValue)[optionsLabelKey]"
         />
         <!--Dropdown Icon-->
         <svg
-          class="w-5 h-5 transform"
-          :class="[
+            class="w-5 h-5 transform"
+            :class="[
             !showSelectList ? 'rotate-0' : '',
-            (showSelectList && selectPosition==='start' && selectType !== 'inside') ? '-rotate-90' : '',
-            (showSelectList && selectPosition==='end') || (showSelectList &&selectType === 'inside') ? 'rotate-90' : '',
+            (showSelectList && selectPosition==='left' && selectType !== 'inside') ? '-rotate-90' : '',
+            (showSelectList && selectPosition==='right') || (showSelectList &&selectType === 'inside') ? 'rotate-90' : '',
             'transition-size-short'
             ]"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24" stroke="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24" stroke="currentColor"
         >
           <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M19 9l-7 7-7-7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M19 9l-7 7-7-7"
           />
         </svg>
         <!--Selected Icon-->
         <div
-          v-if="selectType==='outside'"
-          class="text-input-selected-indicator"
-          :class="selectValue ? 'bg-green-500' : 'bg-gray-500'"
+            v-if="selectType==='outside'"
+            class="text-input-selected-indicator"
+            :class="selectValue ? 'bg-green-500' : 'bg-gray-500'"
         />
       </div>
       <!--Select List-->
@@ -87,26 +87,26 @@
            class="text-input-select-list-container"
            :class="[
              `radius-${radius}`,
-             selectPosition==='start' ? 'left-0' : 'right-0'
+             selectPosition==='left' ? 'left-0' : 'right-0'
              ]"
       >
         <template v-for="item in options">
           <div
-            @click.stop="showSelectList = false; $emit('update:selectValue', item[optionsValueKey])"
-            class="text-input-select-list-item"
+              @click.stop="showSelectList = false; $emit('update:selectValue', item[optionsValueKey])"
+              class="text-input-select-list-item"
           >
-            <span v-text="item[optionsLabelKey]" />
+            <span v-text="item[optionsLabelKey]"/>
             <svg
-              v-if="item[optionsValueKey] === selectValue"
-              xmlns="http://www.w3.org/2000/svg"
-              class="text-input-select-list-selected-icon"
-              viewBox="0 0 20 20"
-              fill="currentColor"
+                v-if="item[optionsValueKey] === selectValue"
+                xmlns="http://www.w3.org/2000/svg"
+                class="text-input-select-list-selected-icon"
+                viewBox="0 0 20 20"
+                fill="currentColor"
             >
               <path
-                fill-rule="evenodd"
-                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                clip-rule="evenodd"
+                  fill-rule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                  clip-rule="evenodd"
               />
             </svg>
           </div>
@@ -116,78 +116,78 @@
     </div>
     <!--Input Field-->
     <input
-      class="input text-input"
-      :class="tStyle['input']"
-      :type="type"
-      :id="id"
-      :placeholder="placeholder"
-      :value="modelValue"
-      :disabled="disabled"
-      @input="$emit('update:modelValue', $event.target.value)"
-      ref="input"
+        class="input text-input"
+        :class="inputStyle"
+        :type="type"
+        :id="id"
+        :placeholder="placeholder"
+        :value="modelValue"
+        :disabled="disabled"
+        @input="$emit('update:modelValue', $event.target.value)"
+        ref="input"
     >
-    <!--End Select-->
+    <!--Right Select-->
     <div
-      v-if="options[0].key && selectPosition==='end'"
-      @click="showSelectList = !showSelectList"
-      class="text-input-select-container"
+        v-if="options[0].key && selectPosition==='right'"
+        @click="showSelectList = !showSelectList"
+        class="text-input-select-container"
 
     >
       <!--Select Trigger-->
       <div
-        class="text-input-select-trigger"
-        :class="[
+          class="text-input-select-trigger"
+          :class="[
           hasSlot('append') || append ? '' : `border-r radius-r-${radius}`,
           ]"
       >
         <!--Clear Icon-->
         <svg
-          @click.stop="$emit('update:selectValue', null)"
-          v-if="selectValue"
-          xmlns="http://www.w3.org/2000/svg"
-          class="text-input-clear-icon"
-          :class="selectPosition==='end' ? 'ml-1' : ''"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
+            @click.stop="$emit('update:selectValue', null)"
+            v-if="selectValue"
+            xmlns="http://www.w3.org/2000/svg"
+            class="text-input-clear-icon"
+            :class="selectPosition==='right' ? 'ml-1' : ''"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
         >
           <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
           />
         </svg>
         <!--Selected Item-->
         <span
-          class="pl-1"
-          v-if="selectValue && selectType==='inside'"
-          v-text="options.find(o=>o[optionsValueKey] === selectValue)[optionsLabelKey]"
+            class="pl-1"
+            v-if="selectValue && selectType==='inside'"
+            v-text="options.find(o=>o[optionsValueKey] === selectValue)[optionsLabelKey]"
         />
         <!--Dropdown Icon-->
         <svg
-          class="w-5 h-5 transform"
-          :class="[
+            class="w-5 h-5 transform"
+            :class="[
             !showSelectList ? 'rotate-0' : '',
-            (showSelectList && selectPosition==='start' && selectType !== 'inside') ? '-rotate-90' : '',
-            (showSelectList && selectPosition==='end') || (showSelectList &&selectType === 'inside') ? 'rotate-90' : '',
+            (showSelectList && selectPosition==='left' && selectType !== 'inside') ? '-rotate-90' : '',
+            (showSelectList && selectPosition==='right') || (showSelectList &&selectType === 'inside') ? 'rotate-90' : '',
             'transition-size-short'
             ]"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24" stroke="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24" stroke="currentColor"
         >
           <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M19 9l-7 7-7-7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M19 9l-7 7-7-7"
           />
         </svg>
         <!--Selected Icon-->
         <div
-          v-if="selectType==='outside'"
-          class="text-input-selected-indicator"
-          :class="selectValue ? 'bg-green-500' : 'bg-gray-500'"
+            v-if="selectType==='outside'"
+            class="text-input-selected-indicator"
+            :class="selectValue ? 'bg-green-500' : 'bg-gray-500 dark:bg-gray-700'"
         />
       </div>
       <!--Select List-->
@@ -195,26 +195,26 @@
            class="text-input-select-list-container"
            :class="[
              `radius-${radius}`,
-             selectPosition==='start' ? 'left-0' : 'right-0'
+             selectPosition==='left' ? 'left-0' : 'right-0'
              ]"
       >
         <template v-for="item in options">
           <div
-            @click.stop="showSelectList = false; $emit('update:selectValue', item[optionsValueKey])"
-            class="text-input-select-list-item"
+              @click.stop="showSelectList = false; $emit('update:selectValue', item[optionsValueKey])"
+              class="text-input-select-list-item"
           >
-            <span v-text="item[optionsLabelKey]" />
+            <span v-text="item[optionsLabelKey]"/>
             <svg
-              v-if="item[optionsValueKey] === selectValue"
-              xmlns="http://www.w3.org/2000/svg"
-              class="text-input-select-list-selected-icon"
-              viewBox="0 0 20 20"
-              fill="currentColor"
+                v-if="item[optionsValueKey] === selectValue"
+                xmlns="http://www.w3.org/2000/svg"
+                class="text-input-select-list-selected-icon"
+                viewBox="0 0 20 20"
+                fill="currentColor"
             >
               <path
-                fill-rule="evenodd"
-                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                clip-rule="evenodd"
+                  fill-rule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                  clip-rule="evenodd"
               />
             </svg>
           </div>
@@ -223,22 +223,22 @@
     </div>
     <!--Append-->
     <div
-      v-if="append || hasSlot('append')"
-      class="text-input-append"
-      :class="[
+        v-if="append || hasSlot('append')"
+        class="text-input-append"
+        :class="[
         `radius-r-${radius}`,
-        selectPosition==='end' && options[0].key ? 'border-l' : ``
+        selectPosition==='right' && options[0].key ? 'border-l' : ``
         ]"
     >
-      <span v-if="append" v-text="append" />
+      <span v-if="append" v-text="append"/>
       <slot v-else name="append"></slot>
     </div>
   </div>
 </template>
 
 <script>
-import { computed, defineComponent, reactive, ref, toRefs } from "vue";
-import { onClickOutside } from "@vueuse/core";
+import {computed, defineComponent, reactive, ref, toRefs} from "vue";
+import {onClickOutside} from "@vueuse/core";
 
 export default defineComponent({
   name: "TInputText",
@@ -279,13 +279,13 @@ export default defineComponent({
     },
     selectPosition: {
       type: String,
-      default: "end"
+      default: ""
     },
     options: {
       type: [Object, Array],
       default() {
         return [
-          { key: "", label: "Please add a options source" }
+          {key: "", label: "Please add a options source"}
         ];
       }
     },
@@ -315,9 +315,9 @@ export default defineComponent({
     }
   },
   emits: ["update:modelValue", "update:selectValue"],
-  setup(props, { slots }) {
+  setup(props, {slots}) {
     /*Definitions*/
-    const { radius, prepend, append, options, optionsValueKey, selectPosition } = toRefs(props);
+    const {radius, prepend, append, options, optionsValueKey, selectPosition} = toRefs(props);
     const input = ref(null);
     const withSelectInput = ref(null);
     const showSelectList = ref(false);
@@ -331,28 +331,34 @@ export default defineComponent({
     };
 
     /*Generating Style Classes*/
-    const tStyle = reactive({});
-    tStyle["input"] = computed(() => {
+    const inputStyle = computed(() => {
       let radiusStyle;
 
-      if ((prepend.value || hasSlot("prepend") || hasSlot("icon") || options.value[0][optionsValueKey.value]) && (!append.value && !hasSlot("append") && selectPosition.value !== "end")) {
+      if (
+          (prepend.value || hasSlot("prepend") || hasSlot("icon") || selectPosition.value === "left") &&
+          (!append.value && !hasSlot("append") && selectPosition.value !== "right")
+      ) {
         /*Left Full and Right Empty*/
         radiusStyle = "radius-r-" + radius.value;
-      } else if ((!prepend.value && !hasSlot("prepend") && !hasSlot("icon") && selectPosition.value !== "start") && (append.value || hasSlot("append") || options.value[0][optionsValueKey.value])) {
-        /*Left Empty and Right Full*/
+
+      } else if (
+          (!prepend.value && !hasSlot("prepend") && !hasSlot("icon") && selectPosition.value !== "left") &&
+          (append.value || hasSlot("append") || selectPosition.value === "right")
+      ) {
+        /*Left Empty Right Full*/
         radiusStyle = "radius-l-" + radius.value;
-      } else if ((!prepend.value && !hasSlot("prepend") && !hasSlot("icon") && !options.value[0][optionsValueKey.value]) && (!append.value && !hasSlot("append") && !options.value[0][optionsValueKey.value])) {
-        /*Both Full*/
+      } else if (!prepend.value && !hasSlot("prepend") && !hasSlot("icon") && !append.value && !hasSlot("append") && selectPosition.value === "") {
+        /*Both Empty*/
         radiusStyle = "radius-" + radius.value;
       }
+
       return radiusStyle;
     });
-
 
     /*Slot Check*/
     const hasSlot = name => !!slots[name];
 
-    return { input, withSelectInput, tStyle, showSelectList, focus, hasSlot };
+    return {input, withSelectInput, inputStyle, showSelectList, focus, hasSlot};
   }
 });
 </script>

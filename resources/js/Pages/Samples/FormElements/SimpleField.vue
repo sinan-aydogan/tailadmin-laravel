@@ -83,6 +83,7 @@
             <t-input-text
               id="text-select"
               type="text"
+              select-position="right"
               placeholder="Simple Text Input Placeholder"
               v-model:selectValue="selectTextInput.framework.select"
               v-model="selectTextInput.framework.text"
@@ -100,29 +101,12 @@
               id="text-select"
               type="text"
               select-type="inside"
+              select-position="right"
               placeholder="tailadmin.dev"
               prepend="https://"
               v-model:selectValue="selectTextInput.link.select"
               v-model="selectTextInput.link.text"
               :options="selectTextInput.link.options"
-            >
-            </t-input-text>
-          </t-input-group>
-          <!-- Text input with end select feature and append by inside -->
-          <t-input-group
-            class="col-span-12 lg:col-span-6"
-            label="Text input with end select feature and append by inside"
-            label-for="text"
-          >
-            <t-input-text
-              id="text-select"
-              type="text"
-              select-type="inside"
-              placeholder="TailAdmin Components"
-              append="Package"
-              v-model:selectValue="selectTextInput.framework.select"
-              v-model="selectTextInput.framework.text"
-              :options="selectTextInput.framework.options"
             >
             </t-input-text>
           </t-input-group>
@@ -136,12 +120,12 @@
               id="text"
               placeholder="Version"
               select-type="inside"
-              select-position="start"
-              v-model:selectValue="selectTextInput.select"
-              v-model="selectTextInput.text"
-              :options="selectTextInput.options"
-            >
-            </t-input-text>
+              prepend="Framework"
+              select-position="left"
+              v-model:selectValue="selectTextInput.framework.select"
+              v-model="selectTextInput.framework.text"
+              :options="selectTextInput.framework.options"
+            />
           </t-input-group>
           <!-- Password-->
           <t-input-group class="col-span-12 lg:col-span-6" label="Password" label-for="password">

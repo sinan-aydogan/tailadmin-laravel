@@ -37,16 +37,16 @@
     @apply inline-flex justify-between items-center
 }
 .text-input-icon {
-    @apply flex min-h-10 px-2 bg-gray-200 dark:bg-gray-700 dark:text-white dark:border-gray-700 items-center justify-center text-gray-500 border-gray-300 border-t border-b border-l
+    @apply flex min-h-10 px-2 bg-gray-200 dark:bg-gray-500 dark:border-gray-500 dark:text-white items-center justify-center text-gray-500 border-gray-300 border-t border-b border-l
 }
 .text-input-prepend {
-    @apply flex items-center border-gray-300 bg-gray-200 text-gray-500 dark:bg-gray-700 dark:text-white dark:border-gray-700 font-semibold px-2 border-t border-b border-l h-full
+    @apply flex min-h-10 items-center border-gray-300 bg-gray-200 text-gray-500 dark:bg-gray-500 dark:border-gray-500 dark:text-white font-semibold px-2 border-t border-b border-l h-full
 }
 .text-input-prepend-inline {
     @apply flex items-center border-gray-300 px-2 border h-full
 }
 .text-input-append {
-    @apply flex items-center border-gray-300 bg-gray-200 text-gray-500 dark:bg-gray-700 dark:text-white dark:border-gray-700 font-semibold px-2 border-t border-b border-r h-full
+    @apply flex min-h-10 items-center border-gray-300 bg-gray-200 text-gray-500 dark:bg-gray-500 dark:border-gray-500 dark:text-white font-semibold px-2 border-t border-b border-r h-full
 }
 .text-input-append-inline {
     @apply flex items-center border-gray-300 px-2 border h-full
@@ -55,16 +55,16 @@
     @apply relative flex justify-center items-center h-full
 }
 .text-input-select-trigger{
-    @apply flex flex-shrink-0 min-h-10 items-center text-gray-500 border-gray-300 bg-gray-200 dark:bg-gray-700 dark:text-white dark:border-gray-700 active:bg-gray-300 font-semibold px-2 border-t border-b select-none cursor-pointer transition-size-short
+    @apply relative flex flex-shrink-0 min-h-10 items-center text-gray-500 border-gray-300 bg-gray-200 dark:bg-gray-500 dark:border-gray-500 dark:text-white active:bg-gray-300 font-semibold px-2 border-t border-b select-none cursor-pointer transition-size-short
 }
 .text-input-clear-icon{
-    @apply h-5 w-5 hover:text-red-500 transform hover:scale-110 transition-size-short
+    @apply h-5 w-5 hover:text-red-500 dark:hover:bg-gray-600 dark:hover:text-red-400 rounded-full transform hover:scale-110 transition-size-short transition-color-short
 }
 .text-input-selected-indicator{
     @apply absolute top-1 right-1 w-2 h-2 rounded-full transition-color-medium
 }
 .text-input-select-list-container{
-    @apply absolute z-50 top-10 mt-1 bg-white dark:bg-gray-700 dark:text-gray-200 shadow-sm border
+    @apply absolute z-50 top-10 mt-1 bg-white dark:bg-gray-500 dark:text-gray-200 shadow overflow-hidden
 }
 .text-input-select-list-item{
     @apply flex justify-between items-center px-4 py-2 space-x-4 text-sm text-gray-500 dark:text-white font-semibold text-left hover:bg-gray-200 active:bg-gray-300 dark:hover:bg-opacity-10 w-full cursor-pointer
