@@ -173,6 +173,7 @@ export default defineComponent({
       }
       leftMenuStorage();
     };
+    console.log(deviceType.value)
     /*Profile Menu Trigger Function*/
     watch(deviceType,
       () => {
