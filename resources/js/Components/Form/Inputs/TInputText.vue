@@ -14,7 +14,7 @@
         v-if="prepend || hasSlot('prepend')"
         class="text-input-prepend"
         :class="[
-        selectPosition==='left' && options[0].key ? 'border-r' : '',
+        selectPosition==='left' && options[0][optionsValueKey] ? 'border-r' : '',
         hasSlot('icon') ? '' : `border-l radius-l-${radius}`]"
     >
       <span v-if="prepend" v-text="prepend"/>
@@ -22,7 +22,7 @@
     </div>
     <!--Left Select-->
     <div
-        v-if="options[0].key && selectPosition==='left'"
+        v-if="options[0][optionsValueKey] && selectPosition==='left'"
         @click="showSelectList = !showSelectList"
         class="text-input-select-container"
     >
@@ -128,7 +128,7 @@
     >
     <!--Right Select-->
     <div
-        v-if="options[0].key && selectPosition==='right'"
+        v-if="options[0][optionsValueKey] && selectPosition==='right'"
         @click="showSelectList = !showSelectList"
         class="text-input-select-container"
 
@@ -227,7 +227,7 @@
         class="text-input-append"
         :class="[
         `radius-r-${radius}`,
-        selectPosition==='right' && options[0].key ? 'border-l' : ``
+        selectPosition==='right' && options[0][optionsValueKey] ? 'border-l' : ``
         ]"
     >
       <span v-if="append" v-text="append"/>
