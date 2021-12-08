@@ -15,7 +15,8 @@
           >
             <t-input-text
               id="text"
-              placeholder="Simple Text Input Placeholder"
+              placeholder="Disabled Text Input Placeholder"
+              disabled
             >
             </t-input-text>
           </t-input-group>
@@ -30,7 +31,9 @@
               placeholder="Text Input"
             >
               <template #icon>
-                <t-bell-icon class="w-6 h-6" />
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+                  </svg>
               </template>
             </t-input-text>
           </t-input-group>
@@ -70,7 +73,9 @@
             >
               <!--Icon-->
               <template #icon>
-                <t-bell-icon class="w-6 h-6" />
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+                  </svg>
               </template>
             </t-input-text>
           </t-input-group>
@@ -91,6 +96,23 @@
             >
             </t-input-text>
           </t-input-group>
+            <!-- Text input with start select feature and append by inside -->
+            <t-input-group
+                class="col-span-12 lg:col-span-6"
+                label="Text input with start select feature and append by inside"
+                label-for="text-icon-prepend-append"
+            >
+                <t-input-text
+                    id="text"
+                    placeholder="Version"
+                    select-type="inside"
+                    prepend="Framework"
+                    select-position="left"
+                    v-model:selectValue="selectTextInput.framework.select"
+                    v-model="selectTextInput.framework.text"
+                    :options="selectTextInput.framework.options"
+                />
+            </t-input-group>
           <!-- Text input with select feature by inside -->
           <t-input-group
             class="col-span-12 lg:col-span-6"
@@ -110,22 +132,25 @@
             >
             </t-input-text>
           </t-input-group>
-          <!-- Text input with start select feature and append by inside -->
+          <!-- Disabled Combined Text Input -->
           <t-input-group
             class="col-span-12 lg:col-span-6"
-            label="Text input with start select feature and append by inside"
-            label-for="text-icon-prepend-append"
+            label="Text input with select feature by inside"
+            label-for="text"
           >
             <t-input-text
-              id="text"
-              placeholder="Version"
+              id="text-select"
+              type="text"
               select-type="inside"
-              prepend="Framework"
-              select-position="left"
-              v-model:selectValue="selectTextInput.framework.select"
-              v-model="selectTextInput.framework.text"
-              :options="selectTextInput.framework.options"
-            />
+              select-position="right"
+              placeholder="tailadmin.dev"
+              prepend="https://"
+              v-model:selectValue="selectTextInput.link.select"
+              v-model="selectTextInput.link.text"
+              :options="selectTextInput.link.options"
+              disableds
+            >
+            </t-input-text>
           </t-input-group>
           <!-- Password-->
           <t-input-group class="col-span-12 lg:col-span-6" label="Password" label-for="password">

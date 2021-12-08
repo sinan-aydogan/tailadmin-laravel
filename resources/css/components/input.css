@@ -1,75 +1,121 @@
 .input {
-    @apply flex w-full min-h-10 px-2 border-gray-300 focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-200 focus:ring-opacity-50 placeholder-gray-300 dark:placeholder-gray-400 bg-white dark:border-transparent dark:bg-gray-600 dark:text-white text-gray-500 leading-none !important
-}
-
-.input-clear-button {
-    @apply flex justify-center items-center w-5 h-5 m-auto rounded-full bg-gray-200 hover:bg-red-500 hover:text-white
+    @apply flex w-full min-h-10 border-gray-300 focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-200 focus:ring-opacity-50 placeholder-gray-300 dark:placeholder-gray-400 bg-white dark:border-transparent dark:bg-gray-600 dark:text-white text-gray-500 leading-none
 }
 
 .input-clear-icon {
-    @apply w-4 h-4
+    @apply h-5 w-5 hover:text-red-500 dark:hover:bg-gray-600 dark:hover:text-red-400 active:bg-gray-200 dark:active:bg-gray-700 active:scale-90 rounded-full transform hover:scale-110 transition-size-short transition-color-short
 }
+
+.input-disabled {
+    @apply bg-gray-200 dark:border-transparent dark:text-gray-500 cursor-not-allowed !important
+}
+
 
 /*<editor-fold desc="Select">*/
+.input-select {
+    @apply relative flex w-full select-none min-w-3
+}
+
 .select-container {
-    @apply flex w-full px-2 bg-white text-gray-700 border border-gray-300 focus:border-indigo-300 focus:outline-none focus:ring focus:ring-indigo-200 focus:ring-opacity-50 shadow-sm placeholder-gray-300 text-gray-500 relative justify-between items-center min-h-10 cursor-pointer select-none
+    @apply relative flex w-full justify-between items-center
 }
 
-/*SelectInput Dropdown Icon*/
-.select-dropdown-icon {
-    @apply w-5 h-5 transform transition-size-short
+.select-input-icon {
+    @apply flex min-h-10 px-2 bg-gray-200 dark:bg-gray-500 dark:border-gray-500 dark:text-white items-center justify-center text-gray-500 border-gray-300 border-t border-b border-l
 }
 
-/*SelectInput Options List Container*/
+.select-trigger {
+    @apply flex min-h-10 w-full justify-between items-center px-2 border border-gray-300 focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-200 focus:ring-opacity-50 placeholder-gray-300 dark:placeholder-gray-400 bg-white dark:border-transparent dark:bg-gray-600 dark:text-white text-gray-500 select-none
+}
+
+.select-trigger-text {
+    @apply inline-flex w-full
+}
+
+.select-trigger-placeholder {
+    @apply text-gray-300 dark:text-gray-400
+}
+
+.select-search-container{
+    @apply w-full px-2 pt-1 pb-2
+}
+
 .select-options-container {
-    @apply absolute flex flex-col w-full text-gray-700 top-11 bg-white border border-gray-300 rounded-md shadow-xl z-50 overflow-hidden
+    @apply absolute flex flex-col z-50 top-10 mt-1 flex w-full top-11 py-2 pl-2 bg-white dark:bg-gray-500 dark:text-gray-200 shadow overflow-hidden
 }
 
-/*SelectInput Option Item Style*/
+.select-options-content {
+    @apply flex flex-col flex-shrink-0 w-full pr-2 my-2 overscroll-y-auto overflow-y-scroll scrollbar scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-white dark:scrollbar-thumb-gray-200 dark:scrollbar-track-gray-500
+}
+
+
 .select-option-item {
-    @apply flex justify-between items-center hover:bg-gray-200 gap-2 px-2 py-0.5 cursor-pointer whitespace-nowrap
+    @apply flex flex-shrink-0 justify-between items-center  p-2 mx-2 text-gray-500 dark:text-white font-semibold text-left hover:bg-gray-200 active:bg-gray-300 dark:hover:bg-opacity-10 gap-2 cursor-pointer whitespace-nowrap transform active:scale-95 transition-size-short
+}
+.select-option-active-item{
+    @apply bg-gray-200 dark:bg-opacity-10 my-1 !important
 }
 
+.select-option-active-item-icon{
+    @apply w-5 h-5 text-green-500 dark:text-gray-200
+}
+
+.select-many-result{
+    @apply hidden tablet:block text-xs text-center text-blue-500 dark:text-gray-200
+}
 /*</editor-fold>*/
 
 /*<editor-fold desc="Text">*/
 .text-input {
-    @apply inline-flex justify-between items-center
+    @apply flex flex-grow justify-start items-center
 }
-.text-input-icon {
+
+.text-input-outside-icon {
     @apply flex min-h-10 px-2 bg-gray-200 dark:bg-gray-500 dark:border-gray-500 dark:text-white items-center justify-center text-gray-500 border-gray-300 border-t border-b border-l
 }
+
+.text-input-inside-icon {
+    @apply absolute flex min-h-10 px-2 items-center justify-center text-gray-300 dark:text-gray-400
+}
+
 .text-input-prepend {
     @apply flex min-h-10 items-center border-gray-300 bg-gray-200 text-gray-500 dark:bg-gray-500 dark:border-gray-500 dark:text-white font-semibold px-2 border-t border-b border-l h-full
 }
+
 .text-input-prepend-inline {
     @apply flex items-center border-gray-300 px-2 border h-full
 }
+
 .text-input-append {
     @apply flex min-h-10 items-center border-gray-300 bg-gray-200 text-gray-500 dark:bg-gray-500 dark:border-gray-500 dark:text-white font-semibold px-2 border-t border-b border-r h-full
 }
+
 .text-input-append-inline {
     @apply flex items-center border-gray-300 px-2 border h-full
 }
+
 .text-input-select-container {
     @apply relative flex justify-center items-center h-full
 }
-.text-input-select-trigger{
-    @apply relative flex flex-shrink-0 min-h-10 items-center text-gray-500 border-gray-300 bg-gray-200 dark:bg-gray-500 dark:border-gray-500 dark:text-white active:bg-gray-300 font-semibold px-2 border-t border-b select-none cursor-pointer transition-size-short
+
+.text-input-select-trigger {
+    @apply relative flex flex-shrink-0 min-h-10 items-center space-x-1 text-gray-500 border-gray-300 bg-gray-200 dark:bg-gray-500 dark:border-gray-500 dark:text-white active:bg-gray-300 font-semibold px-2 border-t border-b select-none transition-size-short
 }
-.text-input-clear-icon{
-    @apply h-5 w-5 hover:text-red-500 dark:hover:bg-gray-600 dark:hover:text-red-400 rounded-full transform hover:scale-110 transition-size-short transition-color-short
-}
-.text-input-selected-indicator{
+
+.text-input-selected-indicator {
     @apply absolute top-1 right-1 w-2 h-2 rounded-full transition-color-medium
 }
-.text-input-select-list-container{
+
+.text-input-select-list-container {
     @apply absolute z-50 top-10 mt-1 bg-white dark:bg-gray-500 dark:text-gray-200 shadow overflow-hidden
 }
-.text-input-select-list-item{
-    @apply flex justify-between items-center px-4 py-2 space-x-4 text-sm text-gray-500 dark:text-white font-semibold text-left hover:bg-gray-200 active:bg-gray-300 dark:hover:bg-opacity-10 w-full cursor-pointer
+
+.text-input-select-list-item {
+    @apply flex justify-between items-center px-4 py-2 space-x-4 text-sm text-gray-500 dark:text-white font-semibold text-left hover:bg-gray-200 active:bg-gray-300 dark:hover:bg-opacity-10 w-full whitespace-nowrap cursor-pointer
 }
-.text-input-select-list-selected-icon{
+
+.text-input-select-list-selected-icon {
     @apply h-5 w-5 text-green-500
 }
+
 /*</editor-fold>*/
