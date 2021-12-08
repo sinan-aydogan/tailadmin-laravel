@@ -11,6 +11,13 @@ const messages = {
                 optionsModalColumnOrder: "Column Order and Visibility",
                 anyContentMessage: "There is any content for your search criteria",
                 advancedSearch: "Advanced Search"
+            },
+            input: {
+                select:{
+                    select: 'Select',
+                    search: 'Search...',
+                    manyResults: 'You\'re looking {showingMaxOptions} options from {totalOptions}, please search...'
+                }
             }
         },
         auth: {},
@@ -99,7 +106,8 @@ const messages = {
                 activeTodos: "2 To-Do's",
                 calibrationTasks: "5 Calibration Task's",
                 unreadMessages: "9 Messages"
-            }
+            },
+            selectTest: 'Search user'
         }
     },
     tr: {
@@ -114,6 +122,13 @@ const messages = {
                 optionsModalColumnOrder: "Sütunları Sırala veya Gizle",
                 anyContentMessage: "Aradığınız kriterde içerik bulunamadı",
                 advancedSearch: "Detaylı Arama"
+            },
+            input: {
+                select:{
+                    select: 'Seç',
+                    search: 'Ara...',
+                    manyResults: '{totalOptions} kayıttan {showingMaxOptions} tanesi gösteriliyor, lütfen arama yapınız...'
+                }
             }
         },
         auth: {},
@@ -202,7 +217,8 @@ const messages = {
                 activeTodos: "2 Atanmış Görev",
                 calibrationTasks: "5 Kalibrasyon İşlemi",
                 unreadMessages: "9 Mesaj"
-            }
+            },
+            selectTest: 'Kulllanıcı ara'
         }
     }
 };
