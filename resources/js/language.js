@@ -16,7 +16,8 @@ const messages = {
                 select:{
                     select: 'Select',
                     search: 'Search...',
-                    manyResults: 'You\'re looking {showingMaxOptions} options from {totalOptions}, please search...'
+                    manyResults: 'You\'re looking {showingMaxOptions} options from {totalOptions}, please search...',
+                    addSource: 'Please add a source'
                 }
             }
         },
@@ -127,7 +128,8 @@ const messages = {
                 select:{
                     select: 'Seç',
                     search: 'Ara...',
-                    manyResults: '{totalOptions} kayıttan {showingMaxOptions} tanesi gösteriliyor, lütfen arama yapınız...'
+                    manyResults: '{totalOptions} kayıttan {showingMaxOptions} tanesi gösteriliyor, lütfen arama yapınız...',
+                    addSource: 'Lütfen kaynak yükleyin'
                 }
             }
         },
@@ -219,6 +221,13 @@ const messages = {
                 unreadMessages: "9 Mesaj"
             },
             selectTest: 'Kulllanıcı ara'
+        }
+    },
+    component: {
+        form: {
+            select: {
+                addSOurce: 'Please add a options source'
+            }
         }
     }
 };

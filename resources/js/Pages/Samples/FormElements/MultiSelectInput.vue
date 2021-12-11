@@ -1,5 +1,5 @@
 <template>
-    <app-layout :actionButtons="true">
+    <app-layout title="Multi Select Input Component">
         <template #header>
             Multi Select Input Component
         </template>
@@ -14,57 +14,104 @@
             </t-button>
         </template>
         <template #default>
-            <t-form-content @reset="reset" @submitted="save">
+            <t-form-content @reset="reset">
                 <t-form-section
                     description="This information is subject to personal data protection law."
                     title="Personal Infos">
-                    <!-- Manager -->
-                    <t-input-group class="col-span-12 md:col-span-6" label="Manager - Searchable" labelFor="user_id">
+                    <!-- Manager - Simple -->
+                    <t-input-group
+                        class="col-span-12 md:col-span-6"
+                        label="Managers - Simple"
+                        labelFor="manager"
+                    >
                         <t-input-multi-select
+                            id="managers"
                             v-model="form.managers"
-                            :clear-button="true"
-                            :search="true"
-                            place-holder="Select"
-                            search-place-holder="Search..."
                             :options="users"
                             options-label-key="name"
                             options-value-key="id"
                         />
                     </t-input-group>
-                    <!-- T-Shirt Size -->
-                    <t-input-group class="col-span-12 md:col-span-6" label="T-Shirt Size" labelFor="size">
+                    <!-- Facilities - Rich Options Content -->
+                    <t-input-group
+                        class="col-span-12 md:col-span-6"
+                        label="Facilities - Rich Options Content"
+                        label-for="facilities"
+                    >
                         <t-input-multi-select
-                            v-model="form.size"
-                            :clear-button="true"
-                            :options="sizes"
+                            id="facilities"
+                            v-model="form.facilities"
+                            :search="false"
+                            :options="facilities"
                             options-label-key="name"
                             options-value-key="value"
-                            place-holder="Select"
-                            search-place-holder="Search..."
                         >
                             <template #label="{ props }">
-                  <span :class="[props.value === 'sm' ? 'text-red-500' : 'text-blue-500']">
-                    <b>{{ props.name }}</b>
-                  </span>
+                                <div class="flex items-center space-x-1">
+                                    <!--Computer-->
+                                    <svg v-if="props.value === 'computer'" class="w-4 h-4" fill="none"
+                                         stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                              d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                    </svg>
+                                    <!--Phone-->
+                                    <svg v-if="props.value === 'phone'" class="w-4 h-4" fill="none"
+                                         stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                              d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                                    </svg>
+                                    <!--Lodge-->
+                                    <svg v-if="props.value === 'lodge'" class="w-4 h-4" fill="none"
+                                         stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                              d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                                    </svg>
+                                    <!--Personal Office-->
+                                    <svg v-if="props.value === 'personal-office'" class="w-4 h-4" fill="none"
+                                         stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                              d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                                    </svg>
+                                    <!--Shared Office-->
+                                    <svg v-if="props.value === 'shared-office'" class="w-4 h-4" fill="none"
+                                         stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                              d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                                    </svg>
+                                    <span v-text="props.name"/>
+                                </div>
                             </template>
                         </t-input-multi-select>
                     </t-input-group>
+                    <!--Disabled-->
+                    <t-input-group
+                        class="col-span-12 md:col-span-6"
+                        label="Disabled"
+                        label-for="disabled"
+                    >
+                        <t-input-multi-select
+                            id="disabled"
+                            :options="users"
+                            disabled
+                        />
+                    </t-input-group>
+                    <!--Read Only-->
+                    <t-input-group
+                        class="col-span-12 md:col-span-6"
+                        label="Read Only"
+                        label-for="readOnly"
+                    >
+                        <t-input-multi-select
+                            id="readOnly"
+                            :options="users"
+                            options-value-key="id"
+                            options-label-key="name"
+                            :model-value="[1,2,3]"
+                            read-only
+                        />
+                    </t-input-group>
                 </t-form-section>
-            </t-form-content> <!--Sample Codes-->
-            <ssh-pre :copy-button="true" label="Code" language="html">{{ sampleCode.html }}</ssh-pre>
-            <ssh-pre :copy-button="true" label="JS" language="js">{{ sampleCode.js }}</ssh-pre>
-            <!--Variables Table-->
-            <t-table
-                :content="sampleCode.table.content"
-                :header="sampleCode.table.header"
-                :searchable="['variable','details']"
-                class="mt-5"
-                color="solid-blue">
-                <template #details="{props}">
-              <span class="whitespace-nowrap tablet:whitespace-normal" v-html="props.details">
-              </span>
-                </template>
-            </t-table>
+            </t-form-content>
         </template>
     </app-layout>
 </template>
@@ -74,170 +121,49 @@ import AppLayout from "@/Layouts/AppLayout";
 import TButton from "@/Components/Button/TButton";
 import TFormSection from "@/Components/Form/TFormSection";
 import TFormContent from "@/Components/Form/TFormContent";
-import SshPre from 'simple-syntax-highlighter'
-import 'simple-syntax-highlighter/dist/sshpre.css'
 import TInputGroup from "@/Components/Form/TInputGroup";
-import TInputSelect from "@/Components/Form/Inputs/TInputSelect";
-import TTable from "@/Components/Table/TTable";
 import TInputMultiSelect from "@/Components/Form/Inputs/TInputMultiSelect";
+import {ref, defineComponent} from "vue";
 
-export default {
+export default defineComponent({
     name: "MultiSelectInput",
     components: {
         TInputMultiSelect,
-        TTable,
-        TInputSelect,
         AppLayout,
         TButton,
         TFormSection,
         TFormContent,
         TInputGroup,
-        SshPre
     },
-    props: ['users'],
-    data() {
-        return {
-            loading: false,
-            form: this.$inertia.form({
-                _method: 'POST',
-                managers: [],
-                size: [],
-            }),
-            sizes: [
-                {name: 'Small', value: 'sm'},
-                {name: 'Medium', value: 'm'},
-                {name: 'Large', value: 'lg'}
-            ],
-            sampleCode: {
-                html:
-                    '<t-input-group label="Manager - Searchable" labelFor="user_id">\n' +
-                    '    <t-input-multi-select\n' +
-                    '        v-model="form.user_id"\n' +
-                    '        :clear-button="true"\n' +
-                    '        :search="true"\n' +
-                    '        :disabled="false"\n' +
-                    '        :radius="3"\n' +
-                    '        align="left"\n' +
-                    '        place-holder="Select"\n' +
-                    '        search-place-holder="Search..."\n' +
-                    '    >\n' +
-                    '        <!--If you work with static values, you can clone this component-->\n' +
-                    '        <t-input-select-item\n' +
-                    '            v-for="(item,index) in users"\n' +
-                    '            :key="index"\n' +
-                    '            :value="item.id"\n' +
-                    '        >\n' +
-                    '            <!--You are free here, you can use to image, bold, colorful, flag here-->\n' +
-                    '            <span>\n' +
-                    '                {{ item.name }}\n' +
-                    '            </span>\n' +
-                    '        </t-input-select-item>\n' +
-                    '    </t-input-multi-select>\n' +
-                    '</t-input-group>',
-                js: 'import TInputGroup from "@/Components/Form/TInputGroup";\n' +
-                    'import TInputMultiSelect from "@/Components/Form/Inputs/TInputMultiSelect";\n' +
-                    'import TInputSelectItem from "@/Components/Form/Inputs/TInputSelectItem";\n\n' +
-                    'export default {\n' +
-                    '    name: "FormStructure",\n' +
-                    '    components: {TInputGroup, TInputSelect, TInputSelectItem},\n' +
-                    '    data() {\n' +
-                    '        return {\n' +
-                    '            loading: false,\n' +
-                    '            form: this.$inertia.form({\n' +
-                    '                _method: \'POST\',\n' +
-                    '                user_id : [],\n' +
-                    '            }),\n' +
-                    '        };\n' +
-                    '    },\n' +
-                    '    methods: {\n' +
-                    '        reset: function () {\n' +
-                    '            this.form.user_id = [];\n' +
-                    '        },\n' +
-                    '        save() {\n' +
-                    '            this.form.post(route(\'user.store\'), {\n' +
-                    '                errorBag: \'user\',\n' +
-                    '                preserveScroll: true,\n' +
-                    '            });\n' +
-                    '            this.loading = true;\n' +
-                    '        }\n' +
-                    '    },\n' +
-                    '}\n',
-                table: {
-                    header: [
-                        {
-                            key: "variable",
-                            label: "Variable"
-                        },
-                        {
-                            key: "type",
-                            label: "Value Type"
-                        },
-                        {
-                            key: "details",
-                            label: "Details"
-                        }
-                    ],
-                    content: [
-                        {
-                            variable: ":clear-button",
-                            type: "Boolean",
-                            details: "It shows a clear button at the end <br><b>Options:</b> true, false <br><b>Default:</b> false"
-                        },
-                        {
-                            variable: ":search",
-                            type: "Boolean",
-                            details: "It shows a search box <br><b>Options:</b> true, false <br><b>Default:</b> false"
-                        },
-                        {
-                            variable: ":disabled",
-                            type: "Boolean",
-                            details: "It makes disabled-inactive the input <br><b>Options:</b> true, false <br><b>Default:</b> false"
-                        },
-                        {
-                            variable: ":radius",
-                            type: "Number",
-                            details: "<b>Options:</b> none, 1, 2, 3, 4, 5, 6, 7, 8"
-                        },
-                        {
-                            variable: "align",
-                            type: "String",
-                            details: "Content direction <br><b>Options:</b> left, center, right<br><b>Default:</b> left"
-                        },
-                        {
-                            variable: "place-holder",
-                            type: "String",
-                            details: "The placeholder text for input"
-                        },
-                        {
-                            variable: "search-place-holder",
-                            type: "String",
-                            details: "The placeholder text for search input"
-                        },
-                        {
-                            variable: "value",
-                            type: "String",
-                            details: "Everything you want, this is your unique output value"
-                        },
-                    ]
-                }
-            },
-
-        };
-    },
-    methods: {
-        reset: function () {
-            this.form.name = null;
-            this.form.size = null;
-        },
-        save() {
-            this.form.post(route('customer.store'), {
-                errorBag: 'customer',
-                preserveScroll: true,
-            });
-            this.loading = true;
+    props: {
+        users: {
+            type: Array,
+            default() {
+                return []
+            }
         }
     },
-}
+    setup() {
+        const form = ref({
+            managers: [],
+            facilities: []
+        })
+        const facilities = [
+            {name: 'Computer', value: 'computer'},
+            {name: 'Phone', value: 'phone'},
+            {name: 'Lodge', value: 'lodge'},
+            {name: 'Personal Office', value: 'personal-office'},
+            {name: 'Shared Office', value: 'shared-office'},
+        ]
+
+        const reset = () => {
+            form.value.managers = [];
+            form.value.facilities = [];
+        }
+
+        return {form, facilities, reset}
+    }
+})
 </script>
 
 <style scoped>

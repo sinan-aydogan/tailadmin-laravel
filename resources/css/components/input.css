@@ -65,6 +65,18 @@
 }
 /*</editor-fold>*/
 
+/*<editor-fold desc="Multi Select">*/
+.multi-select-option-clear-icon{
+    @apply h-4 w-4 hover:text-red-500 dark:hover:bg-gray-600 dark:hover:text-red-400 active:bg-gray-200 dark:active:bg-gray-700 active:scale-90 rounded-full transform hover:scale-110 transition-size-short transition-color-short
+}
+.multi-select-selected-options-container{
+    @apply flex flex-wrap justify-start mt-2
+}
+.multi-select-selected-badge{
+    @apply mr-2 mb-2
+}
+/*</editor-fold>*/
+
 /*<editor-fold desc="Text">*/
 .text-input {
     @apply flex flex-grow justify-start items-center
