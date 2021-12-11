@@ -42,12 +42,12 @@
                             place-holder="Select a status"
                         >
                             <template #label="{ props }">
-                <span v-if="props.value===true" class="flex flex-row items-center gap-1">
+                                <span v-if="props.value===true" class="flex flex-row items-center gap-1">
                   <t-check-circle-icon class="w-5 h-5 text-green-500 "/> {{ props.name }}
                 </span>
                                 <span v-if="props.value===false" class="flex flex-row items-center gap-1">
-                  <t-x-circle-icon class="w-5 h-5 text-red-500 items-center"/> {{ props.name }}
-                </span>
+                                    <t-x-circle-icon class="w-5 h-5 text-red-500 items-center"/> {{ props.name }}
+                                </span>
                             </template>
                         </t-input-select>
                     </t-input-group>

@@ -3,7 +3,7 @@
         <!--Select Container-->
         <div
             class="select-container"
-            @click="updateStatus"
+            @click="updateOptionsShowStatus"
         >
 
             <!--Icon-->
@@ -43,15 +43,15 @@
                             <!--ScopeSlot Rich Label-->
                             <slot
                                 v-if="hasSlot('label') && !disabled"
-                                :props="selectedOption()"
+                                :props="selectedOption"
                                 name="label"
-                                v-html="selectedOption()[optionsLabelKey]"
+                                v-html="selectedOption[optionsLabelKey]"
                             />
 
                             <!--Simple Text Label-->
                             <span
                                 v-if="!hasSlot('label') && !disabled"
-                                v-text="selectedOption()[optionsLabelKey]"
+                                v-text="selectedOption[optionsLabelKey]"
                             />
 
                         </div>
@@ -64,7 +64,7 @@
 
                     <!--Clear Icon-->
                     <svg
-                        v-if="clearButton && selectedOption() && !readOnly && !disabled"
+                        v-if="clearButton && selectedOption && !readOnly && !disabled"
                         @click.stop="clear"
                         xmlns="http://www.w3.org/2000/svg"
                         class="input-clear-icon"
@@ -83,10 +83,10 @@
                     <svg
                         class="w-5 h-5 transform"
                         :class="[
-                            isVisible ? 'rotate-90' : 'rotate-0',
+                            showOptions ? 'rotate-90' : 'rotate-0',
                             'transition-size-short'
                             ]"
-                        @click.stop="updateStatus"
+                        @click.stop="updateOptionsShowStatus"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -107,7 +107,7 @@
         <!--Options Container-->
         <transition name="fade">
             <div
-                v-if="isVisible"
+                v-if="showOptions"
                 class="select-options-container"
                 :class="`radius-${radius}`"
             >
@@ -118,7 +118,10 @@
                 >
 
                     <!--Search Box-->
-                    <div v-if="search && options.length>0" class="select-search-container">
+                    <div
+                        v-if="search && options.length>0"
+                        class="select-search-container"
+                    >
                         <t-input-text
                             v-model="searchText"
                             :placeholder="t(searchPlaceHolder)"
@@ -142,33 +145,36 @@
                             </template>
                         </t-input-text>
                     </div>
-                    <!--Options List-->
 
-                    <template v-for="(item,index) in searchedList()">
+                    <!--Options List-->
+                    <template v-for="(option,index) in searchedList">
                         <div
                             v-if="search ? index<showingMaxOptions : true"
-                            :key="item[optionsValueKey]"
+                            :key="option[optionsValueKey]"
                             :class="[
                                 'select-option-item',
-                                {'select-option-active-item':modelValue === item[optionsValueKey]},
+                                {'select-option-active-item':modelValue === option[optionsValueKey]},
                                 `radius-${radius}`
                                 ]"
-                            @click="select(item)"
+                            @click="selectOption(option[optionsValueKey])"
                         >
+
                             <!--ScopeSlot Rich Label-->
                             <slot
                                 v-if="hasSlot('label')"
-                                :props="item"
+                                :props="option"
                                 name="label"
-                                v-html="item[optionsLabelKey]"
+                                v-html="option[optionsLabelKey]"
                             />
+
                             <!--Simple Text Label-->
                             <span
                                 v-else
-                                v-text="item[optionsLabelKey]"
+                                v-text="option[optionsLabelKey]"
                             />
+
                             <!--Selected Indicator Icon-->
-                            <svg v-if="modelValue === item[optionsValueKey]"
+                            <svg v-if="modelValue === option[optionsValueKey]"
                                  xmlns="http://www.w3.org/2000/svg"
                                  class="select-option-active-item-icon"
                                  viewBox="0 0 20 20"
@@ -180,6 +186,7 @@
                                     clip-rule="evenodd"
                                 />
                             </svg>
+
                         </div>
                     </template>
 
@@ -190,15 +197,16 @@
                     />
 
                 </div>
+
                 <!--Many Items Notification-->
                 <div
-                    v-if="searchedList().length>showingMaxOptions && search"
+                    v-if="searchedList.length>showingMaxOptions && search"
                     class="select-many-result"
                 >
                     {{
                         t('component.input.select.manyResults', {
                             showingMaxOptions: showingMaxOptions,
-                            totalOptions: searchedList().length
+                            totalOptions: searchedList.length
                         })
                     }}
                 </div>
@@ -210,7 +218,7 @@
 <script>
 import TInputText from "@/Components/Form/Inputs/TInputText";
 import {onClickOutside} from "@vueuse/core";
-import {ref, toRefs} from "vue";
+import {ref, toRefs, computed} from "vue";
 import {useI18n} from "vue-i18n";
 
 export default {
@@ -268,12 +276,9 @@ export default {
             default: 3
         }
     },
-emits: ['update:modelValue'],
+    emits: ['update:modelValue'],
     setup(props, {emit, slots}) {
         /*Definitions*/
-        const isVisible = ref(false);
-        const searchText = ref("");
-        const selectItem = ref(null);
         const {
             modelValue,
             options,
@@ -282,62 +287,69 @@ emits: ['update:modelValue'],
             disabled,
             readOnly
         } = toRefs(props);
+
+        /*i18n*/
         const {t} = useI18n();
 
-
-        onClickOutside(selectItem, () => isVisible.value = false);
-
-
-        const selectedOption = () => {
-            if (modelValue.value === null || modelValue.value === undefined) {
-                return null;
-
+        /*Update Show/Hide Status of The Options List*/
+        const showOptions = ref(false);
+        const updateOptionsShowStatus = () => {
+            if (disabled.value || readOnly.value) {
+                showOptions.value = false;
+            } else {
+                showOptions.value = !showOptions.value;
             }
-            return options.value.find(item => item[optionsValueKey.value] === modelValue.value);
         };
 
-        const searchedList = () => {
+        /*Outside Click Event*/
+        const selectItem = ref(null);
+        onClickOutside(selectItem, () => showOptions.value = false);
+
+        /*Select Option*/
+        const selectOption = (value) => {
+            emit("update:modelValue", value);
+            showOptions.value = false;
+        };
+
+        /*Clear Option Selection*/
+        const clear = () => {
+            showOptions.value = false;
+            emit("update:modelValue", null);
+            searchText.value = "";
+        };
+
+        /*Selected Item*/
+        const selectedOption = computed(() => {
+            if (modelValue.value === null || modelValue.value === ''  || modelValue.value === undefined) {
+                return null;
+            }
+            return options.value.find(option => option[optionsValueKey.value] === modelValue.value);
+        });
+
+        /*Search Item*/
+        const searchText = ref("");
+        const searchedList = computed(() => {
             if (searchText.value === "") {
                 return options.value;
             }
 
             return options.value.filter(option => option[optionsLabelKey.value].toLowerCase().replace(/[^a-zA-Z ]/g, "").includes(searchText.value.toLowerCase().replace(/[^a-zA-Z ]/g, "")));
-        };
-
-        const updateStatus = () => {
-            if (disabled.value || readOnly.value) {
-                isVisible.value = false;
-            } else {
-                isVisible.value = !isVisible.value;
-            }
-        };
-
-        const select = (item) => {
-            emit("update:modelValue", item[optionsValueKey.value]);
-            isVisible.value = false;
-        };
-
-        const clear = () => {
-            isVisible.value = false;
-            emit("update:modelValue", null);
-            searchText.value = "";
-        };
-
+        })
 
         /*Slot Check*/
         const hasSlot = name => !!slots[name];
 
         return {
             selectItem,
+            showOptions,
             selectedOption,
             searchedList,
-            select,
-            updateStatus,
-            isVisible,
-            hasSlot,
-            clear,
             t,
-            searchText
+            searchText,
+            selectOption,
+            updateOptionsShowStatus,
+            hasSlot,
+            clear
         };
     }
 };
