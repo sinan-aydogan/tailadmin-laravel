@@ -31,9 +31,10 @@
                     <transition name="fade" mode="out-in">
 
                         <!--Placeholder Text-->
-                        <span v-if="modelValue === null || modelValue === undefined"
-                              v-t="placeHolder"
-                              class="select-trigger-placeholder"
+                        <span
+                            v-if="modelValue === null || modelValue === undefined"
+                            v-t="placeHolder"
+                            class="select-trigger-placeholder"
                         />
 
                         <!--Selected Option-->
@@ -79,14 +80,24 @@
                     </svg>
 
                     <!--Dropdown Icon-->
-                    <t-chevron-down-icon
+                    <svg
                         class="w-5 h-5 transform"
                         :class="[
                             isVisible ? 'rotate-90' : 'rotate-0',
                             'transition-size-short'
                             ]"
                         @click.stop="updateStatus"
-                    />
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M19 9l-7 7-7-7">
+                        </path>
+                    </svg>
 
                 </div>
             </div>
@@ -105,8 +116,9 @@
                     class="select-options-content"
                     :class="{'max-h-56': !search}"
                 >
+
                     <!--Search Box-->
-                    <div v-if="search" class="select-search-container">
+                    <div v-if="search && options.length>0" class="select-search-container">
                         <t-input-text
                             v-model="searchText"
                             :placeholder="t(searchPlaceHolder)"
@@ -131,15 +143,16 @@
                         </t-input-text>
                     </div>
                     <!--Options List-->
+
                     <template v-for="(item,index) in searchedList()">
                         <div
                             v-if="search ? index<showingMaxOptions : true"
                             :key="item[optionsValueKey]"
                             :class="[
-                        'select-option-item',
-                        {'select-option-active-item':modelValue === item[optionsValueKey]},
-                        `radius-${radius}`
-                        ]"
+                                'select-option-item',
+                                {'select-option-active-item':modelValue === item[optionsValueKey]},
+                                `radius-${radius}`
+                                ]"
                             @click="select(item)"
                         >
                             <!--ScopeSlot Rich Label-->
@@ -169,6 +182,13 @@
                             </svg>
                         </div>
                     </template>
+
+                    <!--Empty Source Message-->
+                    <div
+                        v-if="options.length === 0"
+                        v-t="'component.input.select.addSource'"
+                    />
+
                 </div>
                 <!--Many Items Notification-->
                 <div
@@ -189,17 +209,13 @@
 
 <script>
 import TInputText from "@/Components/Form/Inputs/TInputText";
-import {radiusSizeMixin} from "@/Mixins/radiusSizeMixin";
-import TChevronDownIcon from "@/Components/Icon/TChevronDownIcon";
-import TChevronLeftIcon from "@/Components/Icon/TChevronLeftIcon";
-import TXCircleIcon from "@/Components/Icon/TXCircleIcon";
 import {onClickOutside} from "@vueuse/core";
-import {readonly, ref, toRefs, watch} from "vue";
+import {ref, toRefs} from "vue";
 import {useI18n} from "vue-i18n";
 
 export default {
     name: "TInputSelect",
-    components: {TXCircleIcon, TChevronLeftIcon, TChevronDownIcon, TInputText},
+    components: {TInputText},
     props: {
         modelValue: {
             type: [String, Date, Number, Object, Array, Boolean],
@@ -208,9 +224,7 @@ export default {
         options: {
             type: [Object, Array],
             default() {
-                return [
-                    {key: "", label: "Please add a options source"}
-                ];
+                return [];
             }
         },
         optionsLabelKey: {
@@ -248,9 +262,13 @@ export default {
         showingMaxOptions: {
             type: Number,
             default: 10
+        },
+        radius: {
+            type: Number,
+            default: 3
         }
     },
-    mixins: [radiusSizeMixin],
+emits: ['update:modelValue'],
     setup(props, {emit, slots}) {
         /*Definitions*/
         const isVisible = ref(false);
@@ -267,7 +285,7 @@ export default {
         const {t} = useI18n();
 
 
-        onClickOutside(selectItem, (event) => isVisible.value = false);
+        onClickOutside(selectItem, () => isVisible.value = false);
 
 
         const selectedOption = () => {
@@ -300,6 +318,7 @@ export default {
         };
 
         const clear = () => {
+            isVisible.value = false;
             emit("update:modelValue", null);
             searchText.value = "";
         };
