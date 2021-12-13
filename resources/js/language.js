@@ -1,17 +1,6 @@
 const messages = {
     en: {
         component: {
-            button: {},
-            pagination: {
-                detailText: 'Active Page: {activePage} - Total Page: {totalPage}'
-            },
-            table: {
-                searchPlaceHolder: "search",
-                optionsModalTitle: "Table Options",
-                optionsModalColumnOrder: "Column Order and Visibility",
-                anyContentMessage: "There is any content for your search criteria",
-                advancedSearch: "Advanced Search"
-            },
             input: {
                 select:{
                     select: 'Select',
@@ -113,17 +102,6 @@ const messages = {
     },
     tr: {
         component: {
-            button: {},
-            pagination: {
-                detailText: 'Şu anda {activePage}. sayfadasınız toplam {totalPage} sayfada {totalRecord} kayıt listeleniyor'
-            },
-            table: {
-                searchPlaceHolder: "Ara",
-                optionsModalTitle: "Tablo Özellikleri",
-                optionsModalColumnOrder: "Sütunları Sırala veya Gizle",
-                anyContentMessage: "Aradığınız kriterde içerik bulunamadı",
-                advancedSearch: "Detaylı Arama"
-            },
             input: {
                 select:{
                     select: 'Seç',
