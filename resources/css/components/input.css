@@ -17,7 +17,7 @@
 }
 
 .select-container {
-    @apply relative flex w-full justify-between items-center
+    @apply relative flex flex-shrink-0 w-full justify-between items-center
 }
 
 .select-input-icon {
@@ -41,7 +41,7 @@
 }
 
 .select-options-container {
-    @apply absolute flex flex-col z-50 top-10 mt-1 flex w-full top-11 py-2 pl-2 bg-white dark:bg-gray-500 dark:text-gray-200 shadow overflow-hidden
+    @apply absolute flex flex-col z-50 top-10 mt-1 flex w-full top-11 py-2 pl-2 bg-white dark:bg-gray-500 min-w-max dark:text-gray-200 shadow overflow-hidden
 }
 
 .select-options-content {
