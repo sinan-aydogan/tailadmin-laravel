@@ -1,16 +1,13 @@
 const messages = {
     en: {
         component: {
-            button: {},
-            pagination: {
-                detailText: 'Active Page: {activePage} - Total Page: {totalPage}'
-            },
-            table: {
-                searchPlaceHolder: "search",
-                optionsModalTitle: "Table Options",
-                optionsModalColumnOrder: "Column Order and Visibility",
-                anyContentMessage: "There is any content for your search criteria",
-                advancedSearch: "Advanced Search"
+            input: {
+                select:{
+                    select: 'Select',
+                    search: 'Search...',
+                    manyResults: 'You\'re looking {showingMaxOptions} options from {totalOptions}, please search...',
+                    addSource: 'Please add a source'
+                }
             }
         },
         auth: {},
@@ -99,21 +96,19 @@ const messages = {
                 activeTodos: "2 To-Do's",
                 calibrationTasks: "5 Calibration Task's",
                 unreadMessages: "9 Messages"
-            }
+            },
+            selectTest: 'Search user'
         }
     },
     tr: {
         component: {
-            button: {},
-            pagination: {
-                detailText: 'Şu anda {activePage}. sayfadasınız toplam {totalPage} sayfada {totalRecord} kayıt listeleniyor'
-            },
-            table: {
-                searchPlaceHolder: "Ara",
-                optionsModalTitle: "Tablo Özellikleri",
-                optionsModalColumnOrder: "Sütunları Sırala veya Gizle",
-                anyContentMessage: "Aradığınız kriterde içerik bulunamadı",
-                advancedSearch: "Detaylı Arama"
+            input: {
+                select:{
+                    select: 'Seç',
+                    search: 'Ara...',
+                    manyResults: '{totalOptions} kayıttan {showingMaxOptions} tanesi gösteriliyor, lütfen arama yapınız...',
+                    addSource: 'Lütfen kaynak yükleyin'
+                }
             }
         },
         auth: {},
@@ -202,6 +197,14 @@ const messages = {
                 activeTodos: "2 Atanmış Görev",
                 calibrationTasks: "5 Kalibrasyon İşlemi",
                 unreadMessages: "9 Mesaj"
+            },
+            selectTest: 'Kulllanıcı ara'
+        }
+    },
+    component: {
+        form: {
+            select: {
+                addSOurce: 'Please add a options source'
             }
         }
     }

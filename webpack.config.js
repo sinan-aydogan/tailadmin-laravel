@@ -16,5 +16,9 @@ module.exports = {
         alias: {
             '@': path.resolve('resources/js'),
         },
-    }
+    },
+    devServer: {
+        host: 'localhost',
+        port: 8080,
+    },
 };

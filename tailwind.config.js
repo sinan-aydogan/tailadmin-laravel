@@ -83,8 +83,9 @@ module.exports = {
             boxShadow: ['dark'],
             padding: ['focus', 'hover'],
             zIndex: ['hover'],
-            brightness: ['hover', 'focus'],
+            brightness: ['hover', 'focus']
         },
+        scrollbar: ['dark']
     },
 
     plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography'), require('tailwind-scrollbar')],

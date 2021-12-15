@@ -4,9 +4,9 @@
         <div class="md:col-span-1">
             <div class="p-4">
                 <!--Title-->
-                <h3 class="text-lg font-medium text-gray-900">{{ title }}</h3>
+                <h3 class="text-lg font-medium dark:text-gray-200">{{ title }}</h3>
                 <!--Description-->
-                <p class="mt-1 text-sm text-gray-600">{{ description }}</p>
+                <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">{{ description }}</p>
             </div>
         </div>
         <!--Section Content-->

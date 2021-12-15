@@ -1,7 +1,7 @@
 /*Pagination*/
 /*Pagination Container*/
 .pagination-container {
-    @apply flex flex-col-reverse my-2 tablet:flex-row tablet:mt-0 justify-center tablet:justify-between flex-shrink-0 w-full items-center ease-in-out duration-200 transition-all
+    @apply flex flex-wrap my-2 tablet:mt-0 justify-center tablet:justify-between flex-shrink-0 w-full items-center ease-in-out duration-200 transition-all
 }
 /*Pagination Detail Text*/
 .pagination-detail-container{
