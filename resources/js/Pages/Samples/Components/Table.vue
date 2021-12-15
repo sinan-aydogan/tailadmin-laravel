@@ -81,9 +81,6 @@ export default {
         radius: 3,
         range: 5,
         jump: true,
-        nextText: "Sonraki",
-        previousText: "Önceki",
-        detailText: "Sayfa: $a - $b"
       },
       actions: {
         status: true,

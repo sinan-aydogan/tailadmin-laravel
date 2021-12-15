@@ -406,10 +406,7 @@ export default defineComponent({
                         radius: 3,
                         arrowText: true,
                         reverse: false,
-                        nextText: "Next",
-                        previousText: "Previous",
                         detail: true,
-                        detailText: "Page: $a of $b"
                     },
                     actions: {
                         status: true,
