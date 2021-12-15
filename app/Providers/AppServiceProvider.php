@@ -33,14 +33,14 @@ class AppServiceProvider extends ServiceProvider
         Builder::macro('tableSearch', function ($request){
             $obj = (object) $request;
             $perPage;
-            $searchText;
+            $simpleSearchText;
             (isset($obj->perPage)) ? $perPage=$obj->perPage : $perPage = 15;
-            (isset($obj->searchText)) ? $searchText=$obj->searchText : $searchText = "";
+            (isset($obj->simpleSearchText)) ? $simpleSearchText=$obj->simpleSearchText : $simpleSearchText = "";
 
             return $this->
-            when($searchText, function ($query, $searchText)use($obj){
+            when($simpleSearchText, function ($query, $simpleSearchText)use($obj){
                 foreach ($obj->simpleSearchQuery as $field) {
-                    $query->orWhere($field, 'like', '%' . $searchText . '%');
+                    $query->orWhere($field, 'like', '%' . $simpleSearchText . '%');
                 }
                 return $query;
             })->paginate($perPage);

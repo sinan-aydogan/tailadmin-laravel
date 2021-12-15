@@ -17,7 +17,7 @@
                 <t-input-text
                     id="search"
                     type="text"
-                    v-model="tableRequest.searchText"
+                    v-model="simpleSearchObj.searchText"
                     :radius="features.table.radius"
                     :placeholder="t('searchPlaceHolder')"
                 >
@@ -116,14 +116,14 @@
                                 <!--Text-->
                                 <t-input-text
                                     v-if="field.advancedSearchInputType==='text'"
-                                    v-model="advancedSearchQuery[field.key].value"
-                                    v-model:selectValue="advancedSearchQuery[field.key].condition"
+                                    v-model="advancedSearchObj[field.key].value"
+                                    v-model:selectValue="advancedSearchObj[field.key].condition"
                                     :options="field.compareOperators"
                                     :select-position="field.compareOperators?'right':''"
                                 />
                                 <t-input-select
                                     v-if="field.advancedSearchInputType==='select'"
-                                    v-model.lazy="advancedSearchQuery[field.key].value"
+                                    v-model.lazy="advancedSearchObj[field.key].value"
                                     :options="field.advancedSearchSelectInputSource"
                                 />
                             </t-input-group>
@@ -155,7 +155,7 @@
                                 ]"
                             @click="
                             sortableFields.includes(item.key) ?
-                            [tableRequest.sortKey=item.key , tableRequest.sortDirection= !tableRequest.sortDirection] :
+                            [simpleSearchObj.sortKey=item.key , simpleSearchObj.sortDirection= !simpleSearchObj.sortDirection] :
                             ''"
                         >
                             <!--Label-->
@@ -165,11 +165,11 @@
                                 <transition name="fade" mode="out-in">
                   <!--Sort Direction Icon-->
                   <svg
-                      v-if="tableRequest.sortKey===item.key"
+                      v-if="simpleSearchObj.sortKey===item.key"
                       class="h-5 w-5"
                       :class="[
                         'transform transition',
-                        tableRequest.sortDirection ? 'rotate-180' : ''
+                        simpleSearchObj.sortDirection ? 'rotate-180' : ''
                         ]"
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none" viewBox="0 0 24 24"
@@ -326,7 +326,7 @@
             <!--Paginator-->
             <div class="table-paginator">
                 <t-back-end-table-paginate
-                    v-model="tableRequest.activePage"
+                    v-model="activePage"
                     :jump="features.pagination.jump"
                     :total="content.total"
                     :range="5"
@@ -435,7 +435,7 @@
                 <div class="inline-flex whitespace-nowrap items-center space-x-2">
                     <span v-t="'itemsCountPerPage'"/>
                     <t-input-select
-                        v-model.number="tableRequest.perPageItem"
+                        v-model.number="simpleSearchObj.perPageItem"
                         :options="dynamicPerPageItemRange"
                         :clear-button="false"
                         place-holder="t('itemsCountPerPage')"
@@ -541,10 +541,7 @@ export default defineComponent({
                         radius: 3,
                         arrowText: true,
                         reverse: false,
-                        nextText: "Next",
-                        previousText: "Previous",
                         detail: true,
-                        detailText: "Page: $a of $b"
                     },
                     actions: {
                         status: true,
@@ -566,13 +563,13 @@ export default defineComponent({
         /*Definitions*/
         const {header, content, contentKey, features} = toRefs(props);
         const dataLoading = ref(false);
-        const tableRequest = reactive({
-            activePage: 1,
+        const simpleSearchObj = reactive({
             searchText: "",
             perPageItem: 15,
             sortKey: null,
             sortDirection: false
         });
+        const activePage = ref(1);
         const activeHeaders = reactive([]);
         const simpleSearchableFields = reactive([]);
         const sortableFields = reactive([]);
@@ -581,7 +578,7 @@ export default defineComponent({
             content: []
         });
         const selectedItem = ref(null);
-        const advancedSearchQuery = reactive({});
+        const advancedSearchObj = reactive({});
         /*Modal Show Hide Definitions*/
         const showCustomizeModal = ref(false);
         const showDeleteModal = ref(false);
@@ -646,7 +643,7 @@ export default defineComponent({
             });
             /*Generate Advaned Search Query*/
             advancedSearchableFields.content.forEach(item => {
-                advancedSearchQuery[item.key] = {
+                advancedSearchObj[item.key] = {
                     value: null,
                     condition: null
                 }
@@ -702,16 +699,27 @@ export default defineComponent({
             return list;
         });
 
-        /*Watch Actions For Dynamic Data*/
-        debouncedWatch(() => Object.values(tableRequest), () => {
+        /*Watch Active PAge*/
+        watch(activePage, () => {
+            Inertia.reload({
+                    data: {
+                        page: activePage.value
+                    },
+                    only: [contentKey.value]
+                }
+            );
+        });
+
+        /*Watch Simple Search*/
+        debouncedWatch(() => Object.values(simpleSearchObj), () => {
                 Inertia.reload({
                     method: "post",
                     data: {
-                        tableRequest: {
-                            perPage: Number(tableRequest.perPageItem),
-                            sortKey: tableRequest.sortKey,
-                            sortDirection: tableRequest.sortDirection,
-                            searchText: tableRequest.searchText,
+                        searchObj: {
+                            perPage: Number(simpleSearchObj.perPageItem),
+                            sortKey: simpleSearchObj.sortKey,
+                            sortDirection: simpleSearchObj.sortDirection,
+                            searchText: simpleSearchObj.searchText,
                             simpleSearchQuery: simpleSearchableFields
                         }
                     },
@@ -720,21 +728,30 @@ export default defineComponent({
             },
             {debounce: 500}
         );
-        watch(() => tableRequest.activePage, () => {
-            Inertia.reload({
+        /*Watch Advanced Search*/
+        debouncedWatch(() => Object.values(advancedSearchObj), () => {
+                Inertia.reload({
+                    method: "post",
                     data: {
-                        page: tableRequest.activePage
+                        searchObj: {
+                            perPage: Number(simpleSearchObj.perPageItem),
+                            sortKey: simpleSearchObj.sortKey,
+                            sortDirection: simpleSearchObj.sortDirection,
+                            searchText: simpleSearchObj.searchText,
+                            simpleSearchQuery: simpleSearchableFields
+                        }
                     },
                     only: [contentKey.value]
-                }
-            );
-        });
-        /*watch(advancedSearchQuery, () => {
-            tableRequest.activePage = 1;
+                });
+            },
+            {debounce: 500}
+        );
+        /*watch(advancedSearchObj, () => {
+            simpleSearchObj.activePage = 1;
             Inertia.reload({
               data: {
                 page: 1,
-                ...advancedSearchQuery
+                ...advancedSearchObj
               },
               only: [contentKey.value],
               onStart: visit => {
@@ -775,6 +792,7 @@ export default defineComponent({
             actionsCellStyle,
             dynamicPerPageItemRange,
             showCustomizeModal,
+            activePage,
             activeHeaders,
             regeneratedHeader,
             regeneratedContent,
@@ -788,9 +806,9 @@ export default defineComponent({
             selectedItem,
             showDeleteModal,
             showAdvancedSearchPanel,
-            advancedSearchQuery,
+            advancedSearchObj,
             deleteItem,
-            tableRequest,
+            simpleSearchObj,
             t
         };
     }
