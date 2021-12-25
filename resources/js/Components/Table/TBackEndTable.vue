@@ -1,7 +1,7 @@
 <template>
     <div
         class="table-outside-container"
-        :class="`table-${features.table.design}`"
+        :class="`table-${design}`"
     >
         <!--Top Content-->
         <div
@@ -17,9 +17,10 @@
                 <t-input-text
                     id="search"
                     type="text"
-                    v-model="simpleSearchObj.searchText"
-                    :radius="features.table.radius"
+                    v-model="searchObj.simpleSearchText"
+                    :radius="radius"
                     :placeholder="t('searchPlaceHolder')"
+                    :disabled="showAdvancedSearchPanel"
                 >
                     <template #icon>
                         <!--Search Icon-->
@@ -41,7 +42,7 @@
                 </t-input-text>
                 <!--Customize Showing Options-->
                 <t-button
-                    :radius="features.table.radius"
+                    :radius="radius"
                     border
                     @click="showCustomizeModal = !showCustomizeModal"
                 >
@@ -63,8 +64,8 @@
                 </t-button>
                 <!--Advanced Search Button-->
                 <t-button
-                    v-if="advancedSearchableFields.keys.length>0"
-                    :radius="features.table.radius"
+                    v-if="advancedSearchableFields.length>0"
+                    :radius="radius"
                     border
                     @click="showAdvancedSearchPanel = !showAdvancedSearchPanel"
                 >
@@ -103,12 +104,12 @@
             >
                 <div
                     class="table-advanced-search-container"
-                    :class="`radius-${features.table.radius}`"
+                    :class="`radius-${radius}`"
                 >
                     <span id="title" v-t="'advancedSearch'"/>
                     <div class="table-advanced-search-content-wrapper">
                         <div
-                            v-for="field in advancedSearchableFields.content"
+                            v-for="field in advancedSearchableFields"
                             :key="field.key"
                         >
 
@@ -116,15 +117,26 @@
                                 <!--Text-->
                                 <t-input-text
                                     v-if="field.advancedSearchInputType==='text'"
-                                    v-model="advancedSearchObj[field.key].value"
-                                    v-model:selectValue="advancedSearchObj[field.key].condition"
+                                    v-model="searchObj.advancedSearchFields[field.key].value"
+                                    v-model:selectValue="searchObj.advancedSearchFields[field.key].condition"
                                     :options="field.compareOperators"
-                                    :select-position="field.compareOperators?'right':''"
+                                    :options-label-key="field.advancedSearchSelectLabelKey"
+                                    :options-value-key="field.advancedSearchSelectValueKey"
+                                    :select-position="field.compareOperators ? 'right' : ''"
+                                    select-type="inside"
                                 />
+                                <!--Select-->
                                 <t-input-select
                                     v-if="field.advancedSearchInputType==='select'"
-                                    v-model.lazy="advancedSearchObj[field.key].value"
+                                    v-model.lazy="searchObj.advancedSearchFields[field.key].value"
                                     :options="field.advancedSearchSelectInputSource"
+                                    :options-label-key="field.advancedSearchSelectLabelKey"
+                                    :options-value-key="field.advancedSearchSelectValueKey"
+                                />
+                                <!--Between-->
+                                <t-input-between
+                                    v-if="field.advancedSearchInputType==='between'"
+                                    v-model="searchObj.advancedSearchFields[field.key].value"
                                 />
                             </t-input-group>
                         </div>
@@ -132,8 +144,34 @@
                 </div>
             </div>
         </transition>
+        <!--Errors-->
+        <div class="grid grid-cols-1 gap-2">
+
+            <template v-for="error in tableErrors">
+
+                <t-alert
+                    v-if="error.status"
+                    :key="error.title"
+                    :title="`${error.title} ${t('missing')}`"
+                    :radius="radius"
+                    color="yellow"
+                    design="outline"
+                >
+                    <template #icon>
+                        <svg class="w-10 h-10 dark:text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                    </template>
+                    <div v-html="t(error.errorText)" />
+                </t-alert>
+
+            </template>
+
+        </div>
         <!--Table-->
-        <div class="overflow-x-auto scrollbar scrollbar-thin">
+        <div
+            v-if="header.length>0 && content"
+            class="overflow-x-auto scrollbar scrollbar-thin transition-size-medium"
+            :class="{'opacity-25' : dataLoading}"
+        >
             <table class="table-container">
                 <!--Header-->
                 <thead>
@@ -155,7 +193,7 @@
                                 ]"
                             @click="
                             sortableFields.includes(item.key) ?
-                            [simpleSearchObj.sortKey=item.key , simpleSearchObj.sortDirection= !simpleSearchObj.sortDirection] :
+                            [searchObj.sortKey=item.key , searchObj.sortDirection= !searchObj.sortDirection] :
                             ''"
                         >
                             <!--Label-->
@@ -165,11 +203,11 @@
                                 <transition name="fade" mode="out-in">
                   <!--Sort Direction Icon-->
                   <svg
-                      v-if="simpleSearchObj.sortKey===item.key"
+                      v-if="searchObj.sortKey===item.key"
                       class="h-5 w-5"
                       :class="[
                         'transform transition',
-                        simpleSearchObj.sortDirection ? 'rotate-180' : ''
+                        searchObj.sortDirection ? 'rotate-180' : ''
                         ]"
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none" viewBox="0 0 24 24"
@@ -204,8 +242,8 @@
 
                     </th>
                     <!--Actions Header Cell-->
-                    <td v-if="features.actions.status" class="table-header-cell">
-                        {{ features.actions.headerText }}
+                    <td v-if="actions.length>0" class="table-header-cell">
+                        {{ actionsHeaderText }}
                     </td>
                 </tr>
                 </thead>
@@ -217,15 +255,16 @@
                     :key="itemIndex"
                     class="table-content-row"
                     :class="[
-                        {'table-content-zebra-row': features.table.zebraRow},
-                        {'table-content-hover-row': features.table.hoverRow},
-                        {'table-content-border-row': features.table.borderRow},
+                        {'table-content-zebra-row': rowZebra},
+                        {'table-content-hover-row': rowHover},
+                        {'table-content-border-row': rowBorder},
                         ]"
                 >
                     <!--Cells of The Content Row-->
                     <td
                         v-for="(cell,cellKey,cellIndex) in item"
                         :key="cellKey"
+                        class="table-content-cell"
                         :class="contentCellStyle(itemIndex,cellIndex)"
                     >
                         <div
@@ -248,7 +287,7 @@
                     </td>
                     <!--Actions Cell-->
                     <td
-                        v-if="features.actions.status"
+                        v-if="actions.length>0"
                         :class="actionsCellStyle(itemIndex)"
                     >
                         <div class="flex justify-end">
@@ -264,8 +303,10 @@
                                     </div>
                                 </template>
                                 <t-list :radius="3" style="filter: drop-shadow(0px 1px 1px #718096)">
-                                    <t-list-item class="hover:bg-red-100 hover:text-red-500 cursor-pointer text-sm"
-                                                 @click="deleteItem(item)">
+                                    <t-list-item
+                                        class="hover:bg-red-100 hover:text-red-500 cursor-pointer text-sm"
+                                        @click="selectItem($event, item, 'delete')"
+                                    >
                                         <div class="flex items-center h-6">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none"
                                                  viewBox="0 0 24 24"
@@ -274,10 +315,13 @@
                                                       stroke-width="2"
                                                       d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
                                             </svg>
-                                            Delete
+                                            {{t('actionDelete')}}
                                         </div>
                                     </t-list-item>
-                                    <t-list-item class="hover:bg-blue-100 hover:text-blue-500 cursor-pointer text-sm">
+                                    <t-list-item
+                                        class="hover:bg-blue-100 hover:text-blue-500 cursor-pointer text-sm"
+                                        @click="selectItem($event, item, 'edit')"
+                                    >
                                         <div class="flex items-center h-6">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none"
                                                  viewBox="0 0 24 24" stroke="currentColor">
@@ -285,10 +329,13 @@
                                                       stroke-width="2"
                                                       d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
                                             </svg>
-                                            Edit
+                                            {{t('actionEdit')}}
                                         </div>
                                     </t-list-item>
-                                    <t-list-item class="hover:bg-blue-100 hover:text-blue-500 cursor-pointer text-sm">
+                                    <t-list-item
+                                        class="hover:bg-blue-100 hover:text-blue-500 cursor-pointer text-sm"
+                                        @click="selectItem($event, item, 'view')"
+                                    >
                                         <div class="flex items-center h-6">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none"
                                                  viewBox="0 0 24 24" stroke="currentColor">
@@ -299,7 +346,7 @@
                                                       stroke-width="2"
                                                       d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
                                             </svg>
-                                            View
+                                            {{t('actionView')}}
                                         </div>
                                     </t-list-item>
                                 </t-list>
@@ -309,8 +356,13 @@
                 </tr>
                 <!--Empty Content Notification-->
                 <tr v-if="regeneratedContent.length === 0">
-                    <td :colspan="regeneratedHeader.length+(features.actions.status? 1 : 0)">
-                        <div class="table-no-content">
+                    <td
+                        :colspan="regeneratedHeader.length+(actions.length>0 ? 1 : 0)"
+                    >
+                        <div
+                            class="table-no-content"
+                            :class="`radius-${radius}`"
+                        >
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                                  stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -324,18 +376,22 @@
             </table>
 
             <!--Paginator-->
-            <div class="table-paginator">
-                <t-back-end-table-paginate
+            <div
+                class="table-paginator"
+                v-if="content.per_page ? content.total>=content.per_page : content.meta.total>=content.meta.per_page"
+            >
+                <t-paginate
                     v-model="activePage"
-                    :jump="features.pagination.jump"
-                    :total="content.total"
+                    :jump="paginationJump"
+                    :total="content.total ? content.total : content.meta.total"
                     :range="5"
-                    :radius="features.table.radius"
-                    :per-page-item="Number(content.per_page)"
-                    :previous-text="features.pagination.previousText"
-                    :next-text="features.pagination.nextText"
-                    :detail="features.pagination.detail"
-                    :detail-text="features.pagination.detailText"
+                    :radius="radius"
+                    :per-page-item="Number(content.per_page ? content.per_page : content.meta.per_page)"
+                    :previous-text="paginationPreviousText"
+                    :next-text="paginationNextText"
+                    :detail="paginationDetail"
+                    :detail-text="paginationDetailText"
+                    :reverse="paginationDetailReverse"
                 />
             </div>
         </div>
@@ -351,7 +407,7 @@
         >
             <template #content>
                 <div class="flex flex-col text-left">
-                    <h4 class="font-bold text-lg" v-text="optionsModalColumnOrder"/>
+                    <h4 class="font-bold text-lg" v-t="'optionsModalColumnOrder'"/>
                     <div class="flex flex-col max-w-min mt-4">
                         <div
                             v-for="(item, itemIndex) in header"
@@ -435,42 +491,12 @@
                 <div class="inline-flex whitespace-nowrap items-center space-x-2">
                     <span v-t="'itemsCountPerPage'"/>
                     <t-input-select
-                        v-model.number="simpleSearchObj.perPageItem"
-                        :options="dynamicPerPageItemRange"
+                        v-model.number="searchObj.perPage"
+                        :options="dynamicPerPageRange"
                         :clear-button="false"
                         place-holder="t('itemsCountPerPage')"
                     />
                 </div>
-            </template>
-        </t-modal>
-        <!--Deleting Confirmation Modal-->
-        <t-modal
-            v-model="showDeleteModal"
-            :title="!hasSlot('deleteModalContent') ? features.deleteModal.headerText : ''"
-            :content="!hasSlot('deleteModalContent') ? features.deleteModal.contentText : ''"
-            :icon="!hasSlot('deleteModalContent') ? features.deleteModal.icon : ''"
-        >
-            <template #content>
-                <slot name="deleteModalContent" :props="selectedItem"/>
-            </template>
-            <template #footer-left>
-                <t-button
-                    design="light"
-                    color="green"
-                    @click="showDeleteModal=!showDeleteModal"
-                >
-                    No, Never mind
-                </t-button>
-            </template>
-            <template #footer-right>
-                <form id="delete" @submit.prevent="deleteUser">
-                    <t-button
-                        design="light"
-                        color="gray"
-                        type="submit">
-                        Yes, Delete
-                    </t-button>
-                </form>
             </template>
         </t-modal>
     </teleport>
@@ -480,7 +506,6 @@
 import {Inertia} from "@inertiajs/inertia";
 import {computed, defineComponent, reactive, toRefs, watch, ref, onBeforeMount} from "vue";
 import {debouncedWatch} from "@vueuse/core";
-import TBackEndTablePaginate from "@/Components/Paginate/TBackEndTablePaginate";
 import TButton from "@/Components/Button/TButton";
 import TModal from "@/Components/Modal/TModal";
 import TInputCheckBox from "@/Components/Form/Inputs/TInputCheckBox";
@@ -494,10 +519,17 @@ import TInputText from "@/Components/Form/Inputs/TInputText";
 import {useI18n} from "vue-i18n";
 import table_en from "@/Lang/en/table_lang";
 import table_tr from "@/Lang/tr/table_lang";
+import _ from "lodash";
+import TInputBetween from "@/Components/Form/Inputs/TInputBetween";
+import TPaginate from "@/Components/Paginate/TPaginate";
+import TAlert from "@/Components/Alert/TAlert";
 
 export default defineComponent({
     name: "TBackEndTable",
     components: {
+        TAlert,
+        TPaginate,
+        TInputBetween,
         TInputText,
         TInputGroup,
         TListItem,
@@ -507,7 +539,6 @@ export default defineComponent({
         TInputCheckBox,
         TModal,
         TButton,
-        TBackEndTablePaginate
     },
     props: {
         header: {
@@ -522,67 +553,107 @@ export default defineComponent({
                 return {};
             }
         },
-        features: {
-            type: Object,
-            default() {
-                return {
-                    table: {
-                        design: "filled",
-                        borderRow: true,
-                        zebraRow: true,
-                        hoverRow: true,
-                        radius: 3,
-                        uniqueIdKey: "id"
-                    },
-                    pagination: {
-                        status: true,
-                        range: 5,
-                        jump: true,
-                        radius: 3,
-                        arrowText: true,
-                        reverse: false,
-                        detail: true,
-                    },
-                    actions: {
-                        status: true,
-                        headerText: "Actions"
-                    },
-                    deleteModal: {
-                        headerText: "Item's deleting",
-                        contentText: ""
-                    }
-                };
-            }
+        perPage: {
+            type: Number,
+            default: 5
+        },
+        design: {
+            type: String,
+            default: "elegant"
+            ,
+        },
+        rowBorder: {
+            type: Boolean,
+            default: true
+        },
+        rowZebra: {
+            type: Boolean,
+            default: true
+        },
+        rowHover: {
+            type: Boolean,
+            default: true
+        },
+        radius: {
+            type: Number,
+            default: 3
+        },
+        searchRoute: {
+            type: String,
+            default: ''
         },
         contentKey: {
             type: String,
-            default: null
+            default: ''
+        },
+        showPagination: {
+            type: Boolean,
+            default: true
+        },
+        paginationDetail: {
+            type: Boolean,
+            default: false
+        },
+        paginationDetailText: {
+            type: String,
+            default: 'detailText'
+        },
+        paginationRange: {
+            type: Number,
+            default: 5
+        },
+        paginationJump: {
+            type: Boolean,
+            default: true
+        },
+        paginationShowArrowText: {
+            type: Boolean,
+            default: true
+        },
+        paginationPreviousText: {
+            type: String,
+            default: 'previous'
+        },
+        paginationNextText: {
+            type: String,
+            default: 'next'
+        },
+        paginationDetailReverse: {
+            type: Boolean,
+            default: false
+        },
+        actions: {
+            type: Array,
+            default() {
+                return ['view']
+            }
+        },
+        actionsHeaderText: {
+            type: String,
+            default: 'actions'
+        },
+        actionsModal: {
+            type: Array,
+            default() {
+                return ['delete']
+            }
         }
     },
-    setup(props, {slots}) {
-        /*Definitions*/
-        const {header, content, contentKey, features} = toRefs(props);
-        const dataLoading = ref(false);
-        const simpleSearchObj = reactive({
-            searchText: "",
-            perPageItem: 15,
-            sortKey: null,
-            sortDirection: false
-        });
-        const activePage = ref(1);
-        const activeHeaders = reactive([]);
-        const simpleSearchableFields = reactive([]);
-        const sortableFields = reactive([]);
-        const advancedSearchableFields = reactive({
-            keys: [],
-            content: []
-        });
-        const selectedItem = ref(null);
-        const advancedSearchObj = reactive({});
-        /*Modal Show Hide Definitions*/
-        const showCustomizeModal = ref(false);
-        const showDeleteModal = ref(false);
-        const showAdvancedSearchPanel = ref(false);
+emits: ['selectedItem'],
+    setup(props, {slots, emit}) {
+        /*Props*/
+        const {
+            header,
+            content,
+            perPage,
+            radius,
+            searchRoute,
+            contentKey,
+            actions
+        } = toRefs(props);
+
+
+        /*Multi-language Support*/
         const {t} = useI18n({
             messages: {
                 en: table_en,
@@ -590,31 +661,134 @@ export default defineComponent({
             }
         });
 
+
         /*Generating Style Classes*/
         const contentCellStyle = (itemIndex, cellIndex) => {
-            let style;
-            let diffOperator;
-            if (features.value['table'].perPage > regeneratedContent.value.length) {
-                diffOperator = regeneratedContent.value.length
-            } else {
-                diffOperator = content.value['data'].length
+            let style = [];
+
+            if(itemIndex === 0 && cellIndex === 0){
+                /*Top Left*/
+                style.push('radius-tl-'+radius.value)
+            }else if(itemIndex === 0 && cellIndex === regeneratedHeader.value.length-1 && !actions){
+                /*Top Right*/
+                style.push('radius-tr-'+radius.value)
+            }else if(itemIndex+1===regeneratedContent.value.length && cellIndex === 0){
+                /*Bottom Left*/
+                style.push('radius-bl-'+radius.value)
+            }else if(itemIndex+1===regeneratedContent.value.length && cellIndex === regeneratedHeader.value.length-1 && !actions){
+                /*Bottom Right*/
+                style.push('radius-br-'+radius.value)
             }
-            style = "table-content-cell" + " " +
-                ((itemIndex === 0) && (cellIndex === 0) ? "radius-tl-" + features.value["table"].radius :
-                    (itemIndex === 0) && (cellIndex === regeneratedHeader.value.length - 1) && !features.value["actions"].status ? "radius-tr-" + features.value["table"].radius :
-                        (itemIndex + 1 === diffOperator) && (cellIndex === 0) ? "radius-bl-" + features.value["table"].radius :
-                            (itemIndex + 1 === diffOperator) && (cellIndex === regeneratedHeader.value.length - 1) && !features.value["actions"].status ? "radius-br-" + features.value["table"].radius : "");
-            return style;
-        };
-        const actionsCellStyle = (itemIndex) => {
-            let style;
-            style = "table-content-cell" + " " +
-                ((itemIndex === 0) ? "radius-tr-" + features.value["table"].radius :
-                    (itemIndex + 1 === content.value.data.length) ? "radius-br-" + features.value["table"].radius : "");
+
+            console.log('regenerated header length',regeneratedHeader.value.length)
+            console.log('regenerated content length',regeneratedContent.value.length)
+            console.log('item index', itemIndex+1)
+            console.log('cell index', cellIndex)
+
             return style;
         };
 
-        /*Generate Arrays from Header*/
+        const actionsCellStyle = (itemIndex) => {
+            let style;
+            style = "table-content-cell" + " " +
+                ((itemIndex === 0) ? "radius-tr-" + radius.value :
+                    (itemIndex + 1 === content.value.data.length) ? "radius-br-" + radius.value : "");
+            return style;
+        };
+
+
+        /*Customize Table Columns/Rows*/
+        const showCustomizeModal = ref(false);
+        const activeHeaders = reactive([]);
+        const startDrag = (event, type, index) => {
+            event.dataTransfer.dropEffect = "move";
+            event.dataTransfer.effectAllowed = "move";
+            event.dataTransfer.setData("oldIndex", index);
+            event.target.style.opacity = 1;
+        };
+        const onDrop = (event, item, index) => {
+            const oldIndex = event.dataTransfer.getData("oldIndex");
+            let cachedItem = header.value[oldIndex];
+
+            startDrag(event, item, index);
+            header.value[oldIndex] = header.value[index];
+            header.value[index] = cachedItem;
+        };
+        const onDragOver = (event) => {
+            event.target.style.opacity = .3;
+        };
+        const onDragLeave = (event) => {
+            event.target.style.opacity = "1";
+        };
+
+
+        /*Regenerated Table Content*/
+        const regeneratedHeader = computed(() => {
+            let newHeader = [...header.value];
+            return newHeader.filter(i => activeHeaders.includes(i.key));
+        });
+
+        const regeneratedContent = computed(() => {
+            let newContent = [...content.value["data"]];
+            return newContent.map(item => {
+                let row = {};
+                activeHeaders.forEach(key => {
+                    row[key] = item[key];
+                });
+                return row;
+            });
+        });
+
+
+        /*Calculate Items in Per Page Select Data*/
+        const dynamicPerPageRange = computed(() => {
+            let rowCounts = [5, 15, 25, 50, 75, 100];
+            let list = [];
+            rowCounts.forEach(item => {
+                if (content.value['total'] ? content.value['total'] : content.value['meta'].total > item) {
+                    list.push({key: item, label: item});
+                }
+            });
+            return list;
+        });
+
+
+        /*Active Page*/
+
+        /**Active Page State**/
+        const activePage = ref(1);
+
+        /**Watch Active Page**/
+        watch(activePage, () => {
+            Inertia.reload({
+                    data: {
+                        page: activePage.value
+                    },
+                    only: [contentKey.value]
+                }
+            );
+        });
+
+
+        /*Search*/
+
+        /**Searching Simple States**/
+        const dataLoading = ref(false);
+        const showAdvancedSearchPanel = ref(false);
+
+        /**Create Search States**/
+        const simpleSearchableFields = reactive([]);
+        const advancedSearchableFields = reactive([]);
+        const sortableFields = reactive([]);
+        const searchObj = reactive({
+            searchType: "simple",
+            simpleSearchText: "",
+            perPage: perPage.value,
+            sortKey: null,
+            sortDirection: false,
+            advancedSearchFields: {}
+        });
+
         onBeforeMount(() => {
             /*Generate Showing Fields Array*/
             header.value.forEach(item => {
@@ -637,160 +811,90 @@ export default defineComponent({
             /*Generate Advanced Searchable Key Array*/
             header.value.forEach(item => {
                 if (item.advancedSearchable) {
-                    advancedSearchableFields.content.push(item);
-                    advancedSearchableFields.keys.push(item);
+                    advancedSearchableFields.push(item);
                 }
             });
-            /*Generate Advaned Search Query*/
-            advancedSearchableFields.content.forEach(item => {
-                advancedSearchObj[item.key] = {
-                    value: null,
+            /*Generate Advanced Search Query*/
+            advancedSearchableFields.forEach(item => {
+                searchObj.advancedSearchFields[item.key] = {
+                    value: item.advancedSearchInputType === 'between' ? {from: null, to: null} : null,
                     condition: null
                 }
             })
         });
 
-        const startDrag = (event, type, index) => {
-            event.dataTransfer.dropEffect = "move";
-            event.dataTransfer.effectAllowed = "move";
-            event.dataTransfer.setData("oldIndex", index);
-            event.target.style.opacity = 1;
-        };
-        const onDrop = (event, item, index) => {
-            const oldIndex = event.dataTransfer.getData("oldIndex");
-            let cachedItem = header.value[oldIndex];
-
-            startDrag(event, item, index);
-            header.value[oldIndex] = header.value[index];
-            header.value[index] = cachedItem;
-        };
-        const onDragOver = (event) => {
-            event.target.style.opacity = .3;
-        };
-        const onDragLeave = (event) => {
-            event.target.style.opacity = "1";
-        };
-
-        /*Regenerated Table Content*/
-        const regeneratedHeader = computed(() => {
-            let newHeader = [...header.value];
-            return newHeader.filter(i => activeHeaders.includes(i.key));
-        });
-        const regeneratedContent = computed(() => {
-            let newContent = [...content.value["data"]];
-            return newContent.map(item => {
-                let row = {};
-                activeHeaders.forEach(key => {
-                    row[key] = item[key];
-                });
-                return row;
-            });
-        });
-
-        /*Calculate Items in Per Page Select Data*/
-        const dynamicPerPageItemRange = computed(() => {
-            let rowCounts = [5, 15, 25, 50, 75, 100];
-            let list = [];
-            rowCounts.forEach(item => {
-                if (content.value.total > item) {
-                    list.push({key: item, label: item});
-                }
-            });
-            return list;
-        });
-
-        /*Watch Active PAge*/
-        watch(activePage, () => {
-            Inertia.reload({
-                    data: {
-                        page: activePage.value
-                    },
-                    only: [contentKey.value]
-                }
-            );
-        });
-
-        /*Watch Simple Search*/
-        debouncedWatch(() => Object.values(simpleSearchObj), () => {
-                Inertia.reload({
-                    method: "post",
-                    data: {
+        /**Search Post Function**/
+        debouncedWatch(() => _.cloneDeep(searchObj), () => {
+                Inertia.post(route(searchRoute.value),
+                    {
                         searchObj: {
-                            perPage: Number(simpleSearchObj.perPageItem),
-                            sortKey: simpleSearchObj.sortKey,
-                            sortDirection: simpleSearchObj.sortDirection,
-                            searchText: simpleSearchObj.searchText,
-                            simpleSearchQuery: simpleSearchableFields
+                            perPage: Number(searchObj.perPage),
+                            sortKey: searchObj.sortKey,
+                            sortDirection: searchObj.sortDirection,
+                            searchType: searchObj.searchType,
+                            searchValue: searchObj.searchType === 'simple' ?
+                                {
+                                    simpleSearchText: searchObj.simpleSearchText,
+                                    simpleSearchFields: simpleSearchableFields,
+                                } :
+                                searchObj.advancedSearchFields
+
                         }
                     },
-                    only: [contentKey.value]
-                });
+                    {
+                        only: [contentKey.value],
+                        onBefore: visit => {
+                            dataLoading.value = true
+                        },
+                        onFinish: visit => {
+                            dataLoading.value = false
+                        },
+                    });
             },
             {debounce: 500}
         );
-        /*Watch Advanced Search*/
-        debouncedWatch(() => Object.values(advancedSearchObj), () => {
-                Inertia.reload({
-                    method: "post",
-                    data: {
-                        searchObj: {
-                            perPage: Number(simpleSearchObj.perPageItem),
-                            sortKey: simpleSearchObj.sortKey,
-                            sortDirection: simpleSearchObj.sortDirection,
-                            searchText: simpleSearchObj.searchText,
-                            simpleSearchQuery: simpleSearchableFields
-                        }
-                    },
-                    only: [contentKey.value]
-                });
-            },
-            {debounce: 500}
-        );
-        /*watch(advancedSearchObj, () => {
-            simpleSearchObj.activePage = 1;
-            Inertia.reload({
-              data: {
-                page: 1,
-                ...advancedSearchObj
-              },
-              only: [contentKey.value],
-              onStart: visit => {
-                dataLoading.value = true;
-              },
-              onSuccess: page => {
-                dataLoading.value = false;
-              }
-            });
-          },
-          {
-            deep: true
-          });*/
+
+        /**Watch Search Type**/
+        watch(showAdvancedSearchPanel, () => {
+            showAdvancedSearchPanel.value ? searchObj.searchType = 'advanced' : searchObj.searchType = 'simple'
+        })
+
 
         /*Content Delete Confirm Modal Function*/
-        const deleteItem = (item) => {
+        const selectedItem = ref(null);
+        const selectItem = ($event,item,type) => {
             selectedItem.value = item;
-            showDeleteModal.value = true;
+            emit('selectedItem', selectedItem.value, type);
+        }
 
-            let generatedContentText = features.value["deleteModal"].contentText;
-            let replacingKeys = [...generatedContentText.matchAll(/(?:{\$)[A-Za-z0-9]+}/g)];
-            replacingKeys.forEach(async (key) => {
-                let value = selectedItem.value[key[0].substring(2, key[0].length - 1)];
-                generatedContentText = generatedContentText.replace(key[0], value);
-            });
 
-            features.value["deleteModal"].contentText = generatedContentText;
 
-        };
+        /*Error Management*/
+        const tableErrors = computed(()=>{
+            let contentStatus = !Object.keys(content.value);
+            let headerStatus = header.value.length===0;
+            let contentKeyStatus = !contentKey.value;
+            let searchRouteStatus = !searchRoute.value;
+
+            return [
+                {status: contentStatus, title: 'Content', errorText: 'contentError'},
+                {status: headerStatus, title: 'Header', errorText: 'headerError'},
+                {status: contentKeyStatus, title: 'Content Key', errorText: 'contentKeyError'},
+                {status: searchRouteStatus, title: 'Search Route', errorText: 'searchRouteError'}
+            ]
+        })
+
 
         /*Slot Check*/
         const hasSlot = name => !!slots[name];
+
 
         return {
             dataLoading,
             hasSlot,
             contentCellStyle,
             actionsCellStyle,
-            dynamicPerPageItemRange,
+            dynamicPerPageRange,
             showCustomizeModal,
             activePage,
             activeHeaders,
@@ -804,15 +908,15 @@ export default defineComponent({
             simpleSearchableFields,
             advancedSearchableFields,
             selectedItem,
-            showDeleteModal,
+            selectItem,
             showAdvancedSearchPanel,
-            advancedSearchObj,
-            deleteItem,
-            simpleSearchObj,
+            searchObj,
+            tableErrors,
             t
         };
     }
-});
+})
+;
 </script>
 
 <style scoped>
