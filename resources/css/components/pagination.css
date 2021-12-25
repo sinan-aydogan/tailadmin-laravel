@@ -5,7 +5,7 @@
 }
 /*Pagination Detail Text*/
 .pagination-detail-container{
-    @apply flex flex-row flex-shrink-0 mt-2 tablet:mt-0 items-center space-x-2 select-none
+    @apply flex flex-row flex-shrink-0 mt-2 tablet:mt-0 items-center space-x-2 select-none dark:text-gray-200
 }
 .pagination-detail-text{
     @apply flex flex-row flex-shrink-0
