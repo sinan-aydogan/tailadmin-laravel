@@ -31,7 +31,7 @@ class AppServiceProvider extends ServiceProvider
         /*Search Macro for Backend Table Component*/
         Builder::macro('tableSearch', function ($request) {
             $request = (object) $request;
-            $perPage = (isset($request->perPage)) ? $request->perPage : 15;
+            $perPage = (isset($request->perPage)) ? $request->perPage : 5;
 
            if(key($request)){
 
