@@ -111,15 +111,15 @@ export default defineComponent({
     },
     detailText: {
       type: String,
-      default: "Page $a of $b"
+      default: "detailText"
     },
     nextText: {
       type: String,
-      default: "Next"
+      default: "next"
     },
     previousText: {
       type: String,
-      default: "Previous"
+      default: "previous"
     }
   },
   emits: ["update:modelValue"],
