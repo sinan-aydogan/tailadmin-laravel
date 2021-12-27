@@ -224,7 +224,10 @@
                 <!--Empty Content Notification-->
                 <tr v-if="regeneratedContent.length === 0">
                     <td :colspan="regeneratedHeader.length">
-                        <div class="table-no-content">
+                        <div
+                            class="table-no-content"
+                            :class="`radius-${features.table.radius}`"
+                        >
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                                  stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -238,7 +241,10 @@
             </table>
 
             <!--Paginator-->
-            <div v-if="filteredContent.length > perPageItem" class="flex py-4 justify-center">
+            <div
+                v-if="filteredContent.length > perPageItem"
+                 class="flex py-4 justify-center"
+            >
                 <t-paginate
                     v-model="activePage"
                     :jump="features.pagination.jump"

@@ -265,7 +265,7 @@
                         v-for="(cell,cellKey,cellIndex) in item"
                         :key="cellKey"
                         class="table-content-cell"
-                        :class="contentCellStyle(itemIndex,cellIndex)"
+                        :class="contentCellStyle(itemIndex+1,cellIndex+1)"
                     >
                         <div
                             :class="[
@@ -288,7 +288,8 @@
                     <!--Actions Cell-->
                     <td
                         v-if="actions.length>0"
-                        :class="actionsCellStyle(itemIndex)"
+                        class="table-content-cell"
+                        :class="actionsCellStyle(itemIndex+1)"
                     >
                         <div class="flex justify-end">
                             <t-dropdown align="right" button-design="outline" trigger-type="rich" size="fit">
@@ -302,9 +303,13 @@
                                         </svg>
                                     </div>
                                 </template>
-                                <t-list :radius="3" style="filter: drop-shadow(0px 1px 1px #718096)">
-                                    <t-list-item
-                                        class="hover:bg-red-100 hover:text-red-500 cursor-pointer text-sm"
+                                <div
+                                    class="flex justify-between items-center px-2 border dark:border-transparent dark:shadow-dark bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 p-1"
+                                    :class="`radius-${radius}`"
+                                >
+                                    <div
+                                        class="hover:bg-red-100 hover:text-red-500 dark:hover:text-gray-200 dark:hover:bg-red-500 dark:hover:bg-opacity-75 cursor-pointer text-sm px-2"
+                                        :class="`radius-${radius}`"
                                         @click="selectItem($event, item, 'delete')"
                                     >
                                         <div class="flex items-center h-6">
@@ -317,9 +322,10 @@
                                             </svg>
                                             {{t('actionDelete')}}
                                         </div>
-                                    </t-list-item>
-                                    <t-list-item
-                                        class="hover:bg-blue-100 hover:text-blue-500 cursor-pointer text-sm"
+                                    </div>
+                                    <div
+                                        class="hover:bg-indigo-100 hover:text-indigo-500 dark:hover:text-gray-200 dark:hover:bg-indigo-500 dark:hover:bg-opacity-75 cursor-pointer text-sm px-2"
+                                        :class="`radius-${radius}`"
                                         @click="selectItem($event, item, 'edit')"
                                     >
                                         <div class="flex items-center h-6">
@@ -331,9 +337,10 @@
                                             </svg>
                                             {{t('actionEdit')}}
                                         </div>
-                                    </t-list-item>
-                                    <t-list-item
-                                        class="hover:bg-blue-100 hover:text-blue-500 cursor-pointer text-sm"
+                                    </div>
+                                    <div
+                                        class="hover:bg-blue-100 hover:text-blue-500 dark:hover:text-gray-200 dark:hover:bg-blue-500 dark:hover:bg-opacity-75 cursor-pointer text-sm px-2"
+                                        :class="`radius-${radius}`"
                                         @click="selectItem($event, item, 'view')"
                                     >
                                         <div class="flex items-center h-6">
@@ -348,8 +355,8 @@
                                             </svg>
                                             {{t('actionView')}}
                                         </div>
-                                    </t-list-item>
-                                </t-list>
+                                    </div>
+                                </div>
                             </t-dropdown>
                         </div>
                     </td>
@@ -666,33 +673,47 @@ emits: ['selectedItem'],
         const contentCellStyle = (itemIndex, cellIndex) => {
             let style = [];
 
-            if(itemIndex === 0 && cellIndex === 0){
-                /*Top Left*/
-                style.push('radius-tl-'+radius.value)
-            }else if(itemIndex === 0 && cellIndex === regeneratedHeader.value.length-1 && !actions){
-                /*Top Right*/
-                style.push('radius-tr-'+radius.value)
-            }else if(itemIndex+1===regeneratedContent.value.length && cellIndex === 0){
-                /*Bottom Left*/
-                style.push('radius-bl-'+radius.value)
-            }else if(itemIndex+1===regeneratedContent.value.length && cellIndex === regeneratedHeader.value.length-1 && !actions){
-                /*Bottom Right*/
-                style.push('radius-br-'+radius.value)
-            }
+            if(regeneratedContent.value.length>1){
+                if(itemIndex === 1 && cellIndex === 1){
+                    /*Top Left*/
+                    style.push('radius-tl-'+radius.value)
+                }else if(itemIndex === 1 && cellIndex === regeneratedHeader.value.length && actions.value.length===0){
+                    /*Top Right*/
+                    style.push('radius-tr-'+radius.value)
+                }else if(itemIndex===regeneratedContent.value.length && cellIndex===1){
+                    /*Bottom Left*/
+                    style.push('radius-bl-'+radius.value)
+                }else if(itemIndex===regeneratedContent.value.length && cellIndex === regeneratedHeader.value.length && actions.value.length===0){
+                    /*Bottom Right*/
+                    style.push('radius-br-'+radius.value)
+                }
+            }else{
+                if(cellIndex===1){
+                    /*Left*/
+                    style.push('radius-l-'+radius.value)
+                }else if(cellIndex === regeneratedHeader.value.length && actions.value.length===0){
+                    /*Right*/
+                    style.push('radius-r-'+radius.value)
+                }
 
-            console.log('regenerated header length',regeneratedHeader.value.length)
-            console.log('regenerated content length',regeneratedContent.value.length)
-            console.log('item index', itemIndex+1)
-            console.log('cell index', cellIndex)
+
+            }
 
             return style;
         };
 
         const actionsCellStyle = (itemIndex) => {
-            let style;
-            style = "table-content-cell" + " " +
-                ((itemIndex === 0) ? "radius-tr-" + radius.value :
-                    (itemIndex + 1 === content.value.data.length) ? "radius-br-" + radius.value : "");
+            let style = [];
+            if(regeneratedContent.value.length>1){
+                if(itemIndex === 1){
+                    style.push("radius-tr-" + radius.value)
+                }else if(itemIndex === regeneratedContent.value.length){
+                    style.push("radius-br-" + radius.value)
+                }
+            }else{
+                style.push("radius-r-" + radius.value);
+            }
+
             return style;
         };
 
