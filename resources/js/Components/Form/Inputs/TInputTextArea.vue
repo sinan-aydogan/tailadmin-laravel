@@ -1,24 +1,31 @@
 <template>
-  <div class="relative">
+  <div
+      class="relative"
+      :class="[errors.length>0 ? `border border-red-500 radius-${radius}`: '']"
+  >
     <t-x-circle-icon
-        v-if="clearButton && value"
-        @click.native="$emit('input', null)"
+        v-if="clearButton && modelValue"
+        @click.native="$emit('update:modelValue', null)"
         class="absolute rounded-full -top-3 -right-3 w-6 h-6 bg-white hover:bg-red-500 text-red-500 hover:text-white cursor-pointer"
     />
     <textarea
-        :class="['form-input h-auto w-full',radiusStyle]"
+        :class="[
+            'input h-auto w-full',
+            `radius-${radius}`,
+            {'input-disabled cursor-not-allowed' : disabled || readOnly }
+            ]"
         :rows="rows"
         :id="id"
         :placeholder="placeholder"
-        :value="value"
-        @input="$emit('input', $event.target.value)"
+        :value="modelValue"
+        @input="$emit('update:modelValue', $event.target.value)"
         ref="input"
         :disabled="disabled"
     />
     <span
         class="absolute bg-white bg-opacity-70 bottom-3 right-2 float-right text-xs border px-1 py-0.5 rounded-full min-w-6 text-center bg-white-500"
-        v-show="counter && value">
-      {{textLength}}
+        v-show="counter && modelValue">
+      {{ textLength }}
     </span>
   </div>
 </template>
@@ -26,13 +33,14 @@
 <script>
 import {radiusSizeMixin} from "@/Mixins/radiusSizeMixin";
 import TXCircleIcon from "@/Components/Icon/TXCircleIcon";
+import {toRefs, watch, inject, ref} from "vue";
 
 export default {
   name: "TInputTextArea",
   components: {TXCircleIcon},
   mixins: [radiusSizeMixin],
   props: {
-    value: {
+    modelValue: {
       type: String
     },
     id: {
@@ -54,22 +62,28 @@ export default {
       default: false
     },
     disabled: {
-      default:false
+      default: false
+    },
+    readOnly: {
+      default: false
     }
   },
-    data(){
-      return {
-          textLength:null
+  setup(props) {
+    /*Definitions*/
+    const {modelValue} = toRefs(props);
+
+    /*Watch Text Length*/
+    const textLength = ref();
+    watch(modelValue, () => {
+      if (modelValue.value) {
+        textLength.value = modelValue.value.length
       }
-    },
-    watch: {
-      value(){
-        if(this.value) this.textLength = this.value.length
-      }
-    }
+    })
+
+    /*Get Error Status*/
+    const errors = inject('errors', []);
+
+    return {errors, textLength}
+  }
 }
 </script>
-
-<style scoped>
-
-</style>

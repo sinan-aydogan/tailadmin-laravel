@@ -25,20 +25,27 @@
     <!--Input Content-->
     <slot></slot>
     <!--Error-->
-    <div v-show="error">
-      <p class="text-sm text-red-600 mt-2 whitespace-nowrap">
-        {{ error }}
-      </p>
+    <div v-show="errors">
+      <template v-for="error in errors" :key="error.$uid">
+        <p class="text-sm text-red-600 mt-2 whitespace-nowrap">
+          {{ error.$message }}
+        </p>
+      </template>
     </div>
   </div>
 </template>
 
 <script>
-import { defineComponent } from 'vue'
+import {defineComponent, provide, toRefs} from 'vue'
 import {inputGroupStyleMixin} from "@/Mixins/Styles/inputGroupStyleMixin";
 
 export default defineComponent({
-  props: ['label', 'subLabel', 'subLabelColor', 'labelFor', 'error'],
-  mixins: [inputGroupStyleMixin]
+  props: ['label', 'subLabel', 'subLabelColor', 'labelFor', 'errors'],
+  mixins: [inputGroupStyleMixin],
+  setup(props){
+    /*Error Status Provide to Input Component*/
+    const {errors} = toRefs(props);
+    provide('errors', errors );
+  }
 })
 </script>
