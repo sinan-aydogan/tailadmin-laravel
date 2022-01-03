@@ -35,9 +35,10 @@ Setup Directions
 4. Set database infos in the .env
 5. ```php artisan migrate:fresh --seed```
 6. ```php artisan key:generate```
-7. ```php artisan serve```
-8. ```npm run hot```
-9. ```Goto: http://localhost:8000 or your APP_URL (in the .ENV)```
+7. ```php storage:link```
+8. ```php artisan serve```
+9. ```npm run hot```
+10. ```Goto: http://localhost:8000 or your APP_URL (in the .ENV)```
 
 Admin Login Infos / Demo Account
 ------
