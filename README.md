@@ -1,10 +1,14 @@
 TailAdmin Inertia
 ======
 <p align="center">
-  <img src="https://tailadmin.dev/img/misc/01_tailadmin.jpg" alt="TailAdmin"/>
+  <img src="https://core.tailadmin.dev/img/misc/01_tailadmin.jpg" alt="TailAdmin"/>
 </p>
 <p align="center">
-  It's a dashboard theme/UI-Starter Kit with Laravel, Inertia and Vue (JetStream).
+  It's a dashboard theme/UI-Starter Kit with Laravel 8, Inertia and Vue 2 (JetStream).
+</p>
+
+<p align="center">
+  :rocket: If you looking for Vue3 version, You can use <a href="https://github.com/sinan-aydogan/anemon-laravel">Anemon</a> :rocket:
 </p>
 
 <p align="center">
@@ -43,13 +47,17 @@ Setup Directions
 Admin Login Infos / Demo Account
 ------
 
-- **Demo:** *[https://tailadmin.dev](https://tailadmin.dev)*
+- **Demo:** *[https://core.tailadmin.dev](https://core.tailadmin.dev)*
 - **Email:** *admin@tailadmin.dev*
 - **Password:** *admin*
 
 <a href="https://www.youtube.com/watch?v=B_8os9zoLZw" target="_blank">
-<img src="https://tailadmin.dev/img/misc/tailadmin-youtube-main-demo.png" alt="TailAdmin Demo"/>
+<img src="https://core.tailadmin.dev/img/misc/tailadmin-youtube-main-demo.png" alt="TailAdmin Demo"/>
 </a>
+
+<p align="center">
+  :rocket: If you looking for Vue3 version, You can use <a href="https://github.com/sinan-aydogan/anemon-laravel">Anemon</a> :rocket:
+</p>
 
 ## Featured :
 
@@ -73,13 +81,13 @@ Admin Login Infos / Demo Account
     - Buttons (18 colors, any icon, 3 sizes)
     - Collapsible Content (Customizable header (icon, align and 9 colors))
     - Dropdowns (10 colors and works with Inertia-Link)
-    - Lists (18 colors, any icon or photo, radis options and default selectable)
+    - Lists (18 colors, any icon or photo, radius options and default selectable)
     - Modals (Solid, Gradient and Light backgrounds, independent, works with forms)
-    - Pagination (18 colors, connectable every table/content type, custom range and activepage)
+    - Pagination (18 colors, connectable every table/content type, custom range and active page)
     - Popovers (4 directions and 2 options (With Title/Without Title))
     - Progress (Animation, duration control, 10 colors and custom height option)
     - Tabs (2 styles and 10 colors)
-    - Table (Compatable with pagination component, button area (like add new), searchable, list count control, advanced
+    - Table (Compatible with pagination component, button area (like add new), searchable, list count control, advanced
       search panel, custom content areas)
     - Tooltips
 - ### Layout Components :
@@ -88,27 +96,25 @@ Admin Login Infos / Demo Account
     - Content Card (Solid, Gradient and Light background, second content option and resizeable)
     - Statistic Widgets (10 colors, value direction control, auto style with value and any icon/photo)
 - ### Form Components :
-    - Form Content (Pratical form area management component, extra buttons, crud actions' dynamic messages area and
+    - Form Content (Practical form area management component, extra buttons, crud actions' dynamic messages area and
       polished style)
-    - Form Section (Splited and identified blocks of form)
+    - Form Section (Split and identified blocks of form)
     - Input Group (Simple form input management, label, error and others)
     - HTML Inputs (With any icon, dynamic customizable)
     - File Input
     - Unique Checkbox Input (With any icon, 10 colors, radius options and dynamic)
     - Unique Radio Button Input (With any icon, 10 colors, radius options and dynamic)
-    - Unique Text Area (Chracter counter, clear button, row count control)
-    - Unique Select and Multi Select (Independent, useable with rich content, searchable, clear button)
+    - Unique Text Area (Character counter, clear button, row count control)
+    - Unique Select and Multi Select (Independent, usable with rich content, searchable, clear button)
     - Unique Repeatable Inputs (Inline editable, multiple field option, add/delete buttons)
     - Date Input (Powered V-Calendar, date, date time, time and range with popup calendar)
-
-> :rocket:  We are going to make the big updates about app because this theme is using in our projects therefore the updates will be continuous
 
 ---
 
 ### Partners and Sponsors
 
 
-> <a href="https://cleavr.io/" target="_blank"><img src="https://tailadmin.dev/img/misc/cleavr_io_07092021_07092022.jpg" style="width: 200px" alt="TailAdmin Demo"/><br>
+> <a href="https://cleavr.io/" target="_blank"><img src="https://core.tailadmin.dev/img/misc/cleavr_io_07092021_07092022.jpg" style="width: 200px" alt="Cleavr"/><br>
   Cleavr is your all-in-one server and deployment management platform for your PHP and NodeJS apps. Provision,
 deploy, monitor, backup, & more.
 </a>
