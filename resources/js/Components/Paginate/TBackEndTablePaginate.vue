@@ -28,7 +28,7 @@
         :class="tStyle['previous']"
         @click="previousPage"
       >
-        <svg xmlns="http://www.w3.org/2000/svg" :class="['h-6 w-6', arrowText ? '-mx-1 tablet:-ml-2 tablet:-mr-1' : '']"
+        <svg xmlns="http://www.w3.org/2000/svg" :class="['h-6 w-6', arrowText ? '-mx-1 md:-ml-2 md:-mr-1' : '']"
              fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
         </svg>
@@ -46,7 +46,7 @@
         @click="nextPage"
       >
         <span v-if="arrowText" v-text="nextText" class="bet-pagination-arrow-text" />
-        <svg xmlns="http://www.w3.org/2000/svg" :class="['h-6 w-6', arrowText ? '-mx-1 tablet:-mr-2 tablet:-ml-1' : '']"
+        <svg xmlns="http://www.w3.org/2000/svg" :class="['h-6 w-6', arrowText ? '-mx-1 md:-mr-2 md:-ml-1' : '']"
              fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
         </svg>

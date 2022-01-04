@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex flex-wrap justify-center p-2 bg-white border border-gray-300 bg-opacity-60 border-opacity-60 rounded-lg laptop:rounded-full">
+    class="flex flex-wrap justify-center p-2 bg-white border border-gray-300 bg-opacity-60 border-opacity-60 rounded-lg lg:rounded-full">
     <div class="flex flex-wrap justify-center items-center space-x-2">
       <div v-if="selectData !== null" class="flex flex-wrap justify-center items-center space-x-2 text-sm">
         <template v-for="item in selectData">
@@ -15,7 +15,7 @@
           />
         </template>
       </div>
-      <ul class="grid grid-cols-5 my-2 tablet:grid-cols-10 gap-2 place-items-center items-center">
+      <ul class="grid grid-cols-5 my-2 md:grid-cols-10 gap-2 place-items-center items-center">
         <li
           v-for="(item,itemKey,index) in colorOptions"
           :key="index"

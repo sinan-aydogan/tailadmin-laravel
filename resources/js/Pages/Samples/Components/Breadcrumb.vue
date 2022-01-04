@@ -3,7 +3,7 @@
         <template #header>Breadcrumb</template>
         <template #subHeader>2 Different breadcrumbs style</template>
         <template #default>
-            <grid-section class="hidden tablet:block" :col="1" :gap="8">
+            <grid-section class="hidden md:block" :col="1" :gap="8">
 
                 <div v-for="design in ['filled','block']">
                     <t-breadcrumb
@@ -25,7 +25,7 @@
                     </t-breadcrumb>
                 </div>
             </grid-section>
-            <t-alert class="block tablet:hidden" color="red">The breakcrumb component works only on the large
+            <t-alert class="block md:hidden" color="red">The breakcrumb component works only on the large
                 screens. If you want to see how ist works, you should use a large screen bigger than 728px
             </t-alert>
             <!--Sample Codes-->
@@ -40,7 +40,7 @@
                 :searchable="['variable','details']"
             >
                 <template #details="{props}">
-              <span class="whitespace-nowrap tablet:whitespace-normal" v-html="props.details">
+              <span class="whitespace-nowrap md:whitespace-normal" v-html="props.details">
               </span>
                 </template>
             </t-table>

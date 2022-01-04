@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="inputStyle === 'checkbox'">
-      <ul class="flex flex-wrap justify-center gap-2 p-2 bg-white bg-opacity-60 border-opacity-60 border rounded-lg laptop:rounded-full items-center">
+      <ul class="flex flex-wrap justify-center gap-2 p-2 bg-white bg-opacity-60 border-opacity-60 border rounded-lg lg:rounded-full items-center">
         <li
             v-for="(item,index) in radii"
             :key="index"

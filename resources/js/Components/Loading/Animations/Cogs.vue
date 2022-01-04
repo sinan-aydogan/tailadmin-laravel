@@ -48,11 +48,11 @@ export default defineComponent({
     const tStyle = reactive({})
     tStyle['cog1'] = computed(() => {
       return "loading-" + color.value + ' ' +
-        (target.value === "button" ? "w-1.5 h-4" : "w-20 h-20 desktop:w-26 desktop:h-26");
+        (target.value === "button" ? "w-1.5 h-4" : "w-20 h-20 xl:w-26 xl:h-26");
     });
     tStyle['cog2'] = computed(() => {
       return "loading-" + color.value + ' ' +
-        (target.value === "button" ? "w-1.5 h-4" : "w-12 h-12 desktop:w-16 desktop:h-16");
+        (target.value === "button" ? "w-1.5 h-4" : "w-12 h-12 xl:w-16 xl:h-16");
     });
 
     return { tStyle };

@@ -23,7 +23,7 @@
         :disabled="disabled"
     />
     <span
-        class="absolute bg-white bg-opacity-70 bottom-3 right-2 float-right text-xs border px-1 py-0.5 rounded-full min-w-6 text-center bg-white-500"
+        class="absolute bg-white bg-opacity-70 bottom-3 right-2 float-right text-xs border px-1 py-0.5 rounded-full min-w-[1.5rem] text-center bg-white-500"
         v-show="counter && modelValue">
       {{ textLength }}
     </span>

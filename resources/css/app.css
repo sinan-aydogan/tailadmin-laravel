@@ -1,8 +1,8 @@
 @import 'tailwindcss/base';
-/*Utilities*/
-@import 'tailwindcss/utilities';
-/*Components*/
 @import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/*Components*/
 @import "./components/alert.css";
 @import "./components/avatar.css";
 @import "./components/badge.css";
@@ -21,6 +21,8 @@
 @import "./components/table.css";
 @import "./components/backEndTablePagination.css";
 @import "./components/input.css";
+
+
 /*Layouts*/
 @import "./layout/main.css";
 
@@ -31,7 +33,7 @@
 
 /*Footer*/
 .footer {
-    @apply flex flex-wrap flex-shrink-0 items-center py-2 px-6 justify-center tablet:justify-end space-x-1 text-sm font-semibold text-right text-gray-500 w-full
+    @apply flex flex-wrap flex-shrink-0 items-center py-2 px-6 justify-center md:justify-end space-x-1 text-sm font-semibold text-right text-gray-500 w-full
 }
 
 /*Tooltip*/
@@ -72,7 +74,7 @@
 }
 
 .statistic-widget-value {
-    @apply text-xl tablet:text-2xl desktop:text-3xl font-bold py-2
+    @apply text-xl md:text-2xl xl:text-3xl font-bold py-2
 }
 
 .statistic-widget-diff-value {
@@ -188,13 +190,13 @@
 
 /*Initial Vertical Menu*/
 .ivm {
-    @apply flex flex-col tablet:flex-row items-center max-h-min w-full px-2 py-2 overflow-hidden
+    @apply flex flex-col md:flex-row items-center max-h-min w-full px-2 py-2 overflow-hidden
 }
 
 .ivm-container {
-    @apply flex flex-col tablet:flex-row w-full gap-2
+    @apply flex flex-col md:flex-row w-full gap-2
 }
 
 .ivm-item {
-    @apply bg-opacity-0 hover:bg-opacity-100 items-center justify-center px-3 py-2 gap-2 whitespace-nowrap h-full w-full tablet:max-w-min font-bold cursor-pointer transition duration-300 ease-in-out
+    @apply bg-opacity-0 hover:bg-opacity-100 items-center justify-center px-3 py-2 gap-2 whitespace-nowrap h-full w-full md:max-w-min font-bold cursor-pointer transition duration-300 ease-in-out
 }

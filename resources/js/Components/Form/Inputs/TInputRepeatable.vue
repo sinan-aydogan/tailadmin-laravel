@@ -23,16 +23,16 @@
         <!--Conditional View-->
         <input v-if="value1name"
                v-model="value1"
-               :class="value2name == null ? 'rounded-md border' : 'tablet:rounded-l tablet:rounded-r-none tablet:border-r-0'" :placeholder="value1name" class="flex w-full rounded  border-gray-300 p-2" name="value1"
+               :class="value2name == null ? 'rounded-md border' : 'md:rounded-l md:rounded-r-none md:border-r-0'" :placeholder="value1name" class="flex w-full rounded  border-gray-300 p-2" name="value1"
                type="text"/>
-        <input v-if="value2name" v-model="value2" :placeholder="value2name" class="flex w-full rounded tablet:rounded-r tablet:rounded-l-none border border-gray-300 p-2"
+        <input v-if="value2name" v-model="value2" :placeholder="value2name" class="flex w-full rounded md:rounded-r md:rounded-l-none border border-gray-300 p-2"
                name="value2"
                type="text"/>
         <!--Add Button-->
         <div class="flex items-center justify-center ml-1 h-10">
           <t-button color="green" type="button" @click.native="addItem">
-            <t-plus-circle-icon class="w-6 h-6 tablet:w-5 tablet:h-5"/>
-            <span class="hidden tablet:block pr-2">Add</span>
+            <t-plus-circle-icon class="w-6 h-6 md:w-5 md:h-5"/>
+            <span class="hidden md:block pr-2">Add</span>
           </t-button>
         </div>
       </div>

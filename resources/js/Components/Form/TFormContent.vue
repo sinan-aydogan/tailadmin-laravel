@@ -8,13 +8,13 @@
           <!--Form Buttons Container-->
           <transition duration="500" name="status">
             <div v-if="submitButton || resetButton || $slots.status || $slots.button+'-area'"
-                 class="flex flex-wrap col-span-12 justify-center tablet:justify-end space-x-2 mr-4 py-4">
+                 class="flex flex-wrap col-span-12 justify-center md:justify-end space-x-2 mr-4 py-4">
               <!--Extra Form Buttons Area-->
               <slot name="button-area" />
               <!--Status Area-->
               <slot v-if="$slots.status" name="status" />
               <!--Default Form Buttons-->
-              <div v-else class="flex flex-wrap w-full justify-center tablet:justify-end items-center space-x-2">
+              <div v-else class="flex flex-wrap w-full justify-center md:justify-end items-center space-x-2">
                 <!--Reset Button-->
                 <t-button
                   v-if="resetButton"

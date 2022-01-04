@@ -12,10 +12,10 @@
             <three-bars />
             <grid-section :col-laptop="2">
               <!--Styles-->
-              <div class="flex flex-wrap justify-center tablet:justify-start items-center">
+              <div class="flex flex-wrap justify-center md:justify-start items-center">
                 <h2 class="font-semibold mr-4">Styles</h2>
                 <div
-                  class="flex flex-wrap justify-center tablet:justify-start items-center border rounded w-full p-2 space-x-2 space-y-2">
+                  class="flex flex-wrap justify-center md:justify-start items-center border rounded w-full p-2 space-x-2 space-y-2">
                   <!--Filled-->
                   <t-button :radius="0" class="mt-2" color="green">
                     Filled
@@ -61,10 +61,10 @@
               </div>
 
               <!--Disabled-->
-              <div class="flex flex-wrap justify-center tablet:justify-start items-center">
+              <div class="flex flex-wrap justify-center md:justify-start items-center">
                 <h2 class="font-semibold mr-4">Disabled</h2>
                 <div
-                  class="flex flex-wrap justify-center tablet:justify-start items-center border rounded w-full p-2 space-x-2 space-y-2">
+                  class="flex flex-wrap justify-center md:justify-start items-center border rounded w-full p-2 space-x-2 space-y-2">
                   <!--Filled-->
                   <t-button :radius="0" class="mt-2" color="green" disabled>
                     Filled
@@ -110,10 +110,10 @@
               </div>
 
               <!--Loading-->
-              <div class="flex flex-wrap justify-center tablet:justify-start items-center">
+              <div class="flex flex-wrap justify-center md:justify-start items-center">
                 <h2 class="font-semibold mr-4">Loading</h2>
                 <div
-                  class="flex flex-wrap justify-center tablet:justify-start items-center border rounded w-full p-2 space-x-2 space-y-2">
+                  class="flex flex-wrap justify-center md:justify-start items-center border rounded w-full p-2 space-x-2 space-y-2">
                   <!--Filled-->
                   <t-button :radius="2" design="filled" color="pink" loading-with-content class="mt-2">
                     With Text
@@ -149,10 +149,10 @@
               </div>
 
               <!--Icon Buttons-->
-              <div class="flex flex-wrap justify-center tablet:justify-start items-center">
+              <div class="flex flex-wrap justify-center md:justify-start items-center">
                 <h2 class="font-semibold mr-4">Icon Buttons</h2>
                 <div
-                  class="flex flex-wrap justify-center tablet:justify-start items-center border rounded w-full p-2 space-x-2 space-y-2">
+                  class="flex flex-wrap justify-center md:justify-start items-center border rounded w-full p-2 space-x-2 space-y-2">
                   <t-button :radius="0" color="pink" class="mt-2">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                          xmlns="http://www.w3.org/2000/svg">
@@ -216,7 +216,7 @@
         color="solid-blue"
       >
         <template #details="{props}">
-              <span class="whitespace-nowrap tablet:whitespace-normal" v-html="props.details">
+              <span class="whitespace-nowrap md:whitespace-normal" v-html="props.details">
               </span>
         </template>
       </t-table>

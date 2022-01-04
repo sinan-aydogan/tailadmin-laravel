@@ -14,7 +14,7 @@
           ]"
         >
             <template
-                v-for="(item, index) in leftMenuLinks"
+                v-for="(item, index) in sideMenuLinksGn"
                 :key="index"
             >
                 <left-menu-item
@@ -96,18 +96,25 @@
 </template>
 
 <script>
+/*Main Functions*/
 import {defineComponent, provide, reactive, ref, watch} from "vue";
+import {Head} from "@inertiajs/inertia-vue3";
+
+/*Components*/
 import JetBanner from "@/Jetstream/Banner.vue";
 import LeftMenu from "@/Layouts/LeftMenu";
 import LeftMenuItem from "@/Layouts/LeftMenuItem";
 import TAlert from "@/Components/Alert/TAlert";
 import TToastr from "@/Components/Toastr/TToastr";
-import {Head} from "@inertiajs/inertia-vue3";
-import windowSizeCalculator from "@/Functions/windowSizeCalculator";
+import TopMenu from "@/Layouts/TopMenu/TopMenu";
+
+/*External Sources Functions*/
 import config from "@/config";
-import {leftMenu} from "@/leftMenu";
+import {sideMenuLinks} from "@/Config/menuLinks";
+import windowSizeCalculator from "@/Functions/windowSizeCalculator";
+
+/*Multi Language*/
 import {useI18n} from "vue-i18n";
-import TopMenu from "@/Layouts/TopMenu";
 
 
 export default defineComponent({
@@ -134,14 +141,16 @@ export default defineComponent({
             default: null
         }
     },
-    mixins: [leftMenu],
     setup(props, {slots}) {
         /*Definitions*/
-        const {t} = useI18n();
         const {deviceType} = windowSizeCalculator();
         const {conf} = config();
 
-        /*Left Menu*/
+        /*Multi Language*/
+        const {t} = useI18n();
+
+        /*Side Menu*/
+        const sideMenuLinksGn = sideMenuLinks;
         const showLeftMenu = ref(Boolean(localStorage.showLeftMenu));
         const foldLeftMenu = ref(Boolean(localStorage.foldLeftMenu));
         /*Left Menu: Check Local Variables*/
@@ -209,6 +218,7 @@ export default defineComponent({
             deviceType,
             conf,
             t,
+            sideMenuLinksGn,
             leftMenuTrigger,
             leftMenuStorage,
             hasSlot

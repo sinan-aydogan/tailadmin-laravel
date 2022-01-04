@@ -9,10 +9,10 @@
     @apply flex flex-col h-full space-y-8 justify-center items-center
 }
 .loading-screen-content #title {
-    @apply flex text-4xl tablet:text-7xl filter drop-shadow-lg text-center
+    @apply flex text-4xl md:text-7xl filter drop-shadow-lg text-center
 }
 .loading-screen-content #message {
-    @apply flex text-xl tablet:text-4xl filter drop-shadow-lg text-center
+    @apply flex text-xl md:text-4xl filter drop-shadow-lg text-center
 }
 .loading-screen-content #animation {
     @apply flex justify-center items-center h-28 mb-8 -mt-28

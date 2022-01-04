@@ -1,5 +1,5 @@
 .input {
-    @apply flex w-full min-h-10 border-gray-300 focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-200 focus:ring-opacity-50 placeholder-gray-300 dark:placeholder-gray-400 bg-white dark:border-transparent dark:bg-gray-600 dark:text-white text-gray-500 leading-none
+    @apply flex w-full min-h-[2.5rem] border-gray-300 focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-200 focus:ring-opacity-50 placeholder-gray-300 dark:placeholder-gray-400 bg-white dark:border-transparent dark:bg-gray-600 dark:text-white text-gray-500 leading-none
 }
 
 .input-clear-icon {
@@ -13,7 +13,7 @@
 
 /*<editor-fold desc="Select">*/
 .input-select {
-    @apply relative flex w-full select-none min-w-3
+    @apply relative flex w-full select-none min-w-[1rem]
 }
 
 .select-container {
@@ -21,11 +21,11 @@
 }
 
 .select-input-icon {
-    @apply flex min-h-10 px-2 bg-gray-200 dark:bg-gray-500 dark:border-gray-500 dark:text-white items-center justify-center text-gray-500 border-gray-300 border-t border-b border-l
+    @apply flex min-h-[2.5rem] px-2 bg-gray-200 dark:bg-gray-500 dark:border-gray-500 dark:text-white items-center justify-center text-gray-500 border-gray-300 border-t border-b border-l
 }
 
 .select-trigger {
-    @apply flex min-h-10 w-full justify-between items-center px-2 border border-gray-300 focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-200 focus:ring-opacity-50 placeholder-gray-300 dark:placeholder-gray-400 bg-white dark:border-transparent dark:bg-gray-600 dark:text-white text-gray-500 select-none
+    @apply flex min-h-[2.5rem] w-full justify-between items-center px-2 border border-gray-300 focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-200 focus:ring-opacity-50 placeholder-gray-300 dark:placeholder-gray-400 bg-white dark:border-transparent dark:bg-gray-600 dark:text-white text-gray-500 select-none
 }
 
 .select-trigger-text {
@@ -61,7 +61,7 @@
 }
 
 .select-many-result{
-    @apply hidden tablet:block text-xs text-center text-blue-500 dark:text-gray-200
+    @apply hidden md:block text-xs text-center text-blue-500 dark:text-gray-200
 }
 /*</editor-fold>*/
 
@@ -83,15 +83,15 @@
 }
 
 .text-input-outside-icon {
-    @apply flex min-h-10 px-2 bg-gray-200 dark:bg-gray-500 dark:border-gray-500 dark:text-white items-center justify-center text-gray-500 border-gray-300 border-t border-b border-l
+    @apply flex min-h-[2.5rem] px-2 bg-gray-200 dark:bg-gray-500 dark:border-gray-500 dark:text-white items-center justify-center text-gray-500 border-gray-300 border-t border-b border-l
 }
 
 .text-input-inside-icon {
-    @apply absolute flex min-h-10 px-2 items-center justify-center text-gray-300 dark:text-gray-400
+    @apply absolute flex min-h-[2.5rem] px-2 items-center justify-center text-gray-300 dark:text-gray-400
 }
 
 .text-input-prepend {
-    @apply flex min-h-10 items-center border-gray-300 bg-gray-200 text-gray-500 dark:bg-gray-500 dark:border-gray-500 dark:text-white font-semibold px-2 border-t border-b border-l h-full
+    @apply flex min-h-[2.5rem] items-center border-gray-300 bg-gray-200 text-gray-500 dark:bg-gray-500 dark:border-gray-500 dark:text-white font-semibold px-2 border-t border-b border-l h-full
 }
 
 .text-input-prepend-inline {
@@ -99,7 +99,7 @@
 }
 
 .text-input-append {
-    @apply flex min-h-10 items-center border-gray-300 bg-gray-200 text-gray-500 dark:bg-gray-500 dark:border-gray-500 dark:text-white font-semibold px-2 border-t border-b border-r h-full
+    @apply flex min-h-[2.5rem] items-center border-gray-300 bg-gray-200 text-gray-500 dark:bg-gray-500 dark:border-gray-500 dark:text-white font-semibold px-2 border-t border-b border-r h-full
 }
 
 .text-input-append-inline {
@@ -111,7 +111,7 @@
 }
 
 .text-input-select-trigger {
-    @apply relative flex flex-shrink-0 min-h-10 items-center space-x-1 text-gray-500 border-gray-300 bg-gray-200 dark:bg-gray-500 dark:border-gray-500 dark:text-white active:bg-gray-300 font-semibold px-2 border-t border-b select-none transition-size-short
+    @apply relative flex flex-shrink-0 min-h-[2.5rem] items-center space-x-1 text-gray-500 border-gray-300 bg-gray-200 dark:bg-gray-500 dark:border-gray-500 dark:text-white active:bg-gray-300 font-semibold px-2 border-t border-b select-none transition-size-short
 }
 
 .text-input-selected-indicator {

@@ -30,7 +30,7 @@ export default {
     /*Design Check*/
     const tStyle = computed(() => {
 
-      return "loading-" + color.value + (target.value === "button" ? " w-1.5 h-4" : " w-4 h-16 desktop:w-6 desktop:h-24");
+      return "loading-" + color.value + (target.value === "button" ? " w-1.5 h-4" : " w-4 h-16 xl:w-6 xl:h-24");
     });
 
     return { tStyle };

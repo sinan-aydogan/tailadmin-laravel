@@ -3,8 +3,11 @@
 namespace App\Providers;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Env;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\ServiceProvider;
+use Inertia\Inertia;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -27,6 +30,24 @@ class AppServiceProvider extends ServiceProvider
     {
         //Max key length error fix
         Schema::defaultStringLength(191);
+
+        //Shared Variables
+        Inertia::share([
+            'errors' => function () {
+                return Session::get('errors')
+                    ? Session::get('errors')->getBag('default')->getMessages()
+                    : (object) [];
+            },
+            'project_info' => function () {
+                return Env::get('APP_NAME');
+            }
+        ]);
+
+        Inertia::share('flash', function () {
+            return [
+                'message' => Session::get('message'),
+            ];
+        });
 
         /*Search Macro for Backend Table Component*/
         Builder::macro('tableSearch', function ($request) {

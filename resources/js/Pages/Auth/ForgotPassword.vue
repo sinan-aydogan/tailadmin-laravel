@@ -1,49 +1,73 @@
 <template>
     <Head title="Forgot Password" />
 
-    <t-forgot
-        color="gradient-purple-to-pink"
-        :radius="5"
-        bg-image="/img/samples/bgFakurianDesign-nY14Fs8pxT8-unsplash.jpg"
-        button-color="pink"
-        :status="status"
-    >
-        <!--Logo-->
+    <jet-authentication-card>
         <template #logo>
-            <Link href="/">
-                <div class="flex flex-col justify-center items-center w-full">
-                    <t-logo class="w-12 h-12"/>
-                    <span class="text-3xl">TailAdmin</span>
-                </div>
-            </Link>
+            <jet-authentication-card-logo />
         </template>
-        <!--Greeting-->
-        <template #greeting>
-            <b>Forgot your password? No problem.</b>
-        </template>
-        <!--Greeting Sub-->
-        <template #subGreeting>
-            Write your email address and we will email you a password reset link
-        </template>
-    </t-forgot>
+
+        <div class="mb-4 text-sm text-gray-600">
+            Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.
+        </div>
+
+        <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
+            {{ status }}
+        </div>
+
+        <jet-validation-errors class="mb-4" />
+
+        <form @submit.prevent="submit">
+            <div>
+                <jet-label for="email" value="Email" />
+                <jet-input id="email" type="email" class="mt-1 block w-full" v-model="form.email" required autofocus />
+            </div>
+
+            <div class="flex items-center justify-end mt-4">
+                <jet-button :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                    Email Password Reset Link
+                </jet-button>
+            </div>
+        </form>
+    </jet-authentication-card>
 </template>
 
 <script>
     import { defineComponent } from 'vue'
-    import { Head,Link } from '@inertiajs/inertia-vue3';
-    import TForgot from "@/Components/Auth/TForgot";
-    import TLogo from "@/Components/Icon/TLogo";
+    import { Head } from '@inertiajs/inertia-vue3';
+    import JetAuthenticationCard from '@/Jetstream/AuthenticationCard.vue'
+    import JetAuthenticationCardLogo from '@/Jetstream/AuthenticationCardLogo.vue'
+    import JetButton from '@/Jetstream/Button.vue'
+    import JetInput from '@/Jetstream/Input.vue'
+    import JetLabel from '@/Jetstream/Label.vue'
+    import JetValidationErrors from '@/Jetstream/ValidationErrors.vue'
 
     export default defineComponent({
         components: {
             Head,
-            Link,
-            TLogo,
-            TForgot
+            JetAuthenticationCard,
+            JetAuthenticationCardLogo,
+            JetButton,
+            JetInput,
+            JetLabel,
+            JetValidationErrors
         },
 
         props: {
             status: String
         },
+
+        data() {
+            return {
+                form: this.$inertia.form({
+                    email: ''
+                })
+            }
+        },
+
+        methods: {
+            submit() {
+                this.form.post(this.route('password.email'))
+            }
+        }
     })
 </script>

@@ -18,11 +18,11 @@
         <template #search>
           <grid-section :col="12" :gap="2">
             <!--Name-->
-            <t-input-group class="col-span-12 tablet:col-span-6" label="Name">
+            <t-input-group class="col-span-12 md:col-span-6" label="Name">
               <t-input-text id="name" />
             </t-input-group>
             <!--Email-->
-            <t-input-group class="col-span-12 tablet:col-span-6" label="Email">
+            <t-input-group class="col-span-12 md:col-span-6" label="Email">
               <t-input-text id="email" />
             </t-input-group>
           </grid-section>

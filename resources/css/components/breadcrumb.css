@@ -1,5 +1,5 @@
 .breadcrumb {
-    @apply hidden tablet:flex flex-wrap items-center justify-between w-full h-14
+    @apply hidden md:flex flex-wrap items-center justify-between w-full h-14
 }
 .breadcrumb-item-active{
     @apply px-2 py-1 font-bold
@@ -96,7 +96,7 @@
 /*<editor-fold desc="Block Style">*/
 /*General Definitions*/
 .breadcrumb-block-base {
-    @apply hidden tablet:flex flex-wrap items-center justify-between space-x-1 border-b-4 border-gray-300
+    @apply hidden md:flex flex-wrap items-center justify-between space-x-1 border-b-4 border-gray-300
 }
 .breadcrumb-block-base #breadcrumb-block-container {
     @apply  flex flex-wrap space-x-1 -mb-3

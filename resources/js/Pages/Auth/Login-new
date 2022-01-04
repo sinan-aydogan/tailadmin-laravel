@@ -1,0 +1,367 @@
+<template>
+  <Head title="Log in" />
+  <!-- Main Wrapper -->
+  <div class="flex min-h-screen justify-center items-center">
+    <img
+      src="/images/login/fleur-dQf7RZhMOJU-unsplash.jpg"
+      class="fixed bg-cover min-w-sceen min-h-screen object-cover"
+      :class="{
+        'saturate-150': darkMode === 'light',
+        'saturate-10': darkMode === 'dark',
+      }"
+    />
+    <!-- Container -->
+    <div
+      class="
+        relative
+        flex flex-col
+        w-full
+        sm:max-w-md
+        p-6
+        backdrop-blur-lg
+        shadow-xl
+        border-gray-500
+        dark:border-gray-900 dark:border-opacity-60
+        rounded-md
+        bg-opacity-60
+        dark:bg-opacity-60
+        bg-gray-700
+        text-gray-100
+        dark:bg-gray-800
+        transition-all
+        duration-500
+      "
+    >
+      <!-- Dark Mode -->
+      <div
+        class="
+          absolute
+          flex
+          p-1
+          items-center
+          right-4
+          top-4
+          rounded-full
+          bg-gray-300 bg-opacity-25
+        "
+      >
+        <div class="flex relative">
+          <div
+            class="absolute z-0 w-5 h-5 bg-gray-300 rounded-full -top-0.5"
+            :class="[
+              { '-ml-0.5 bg-yellow-500': darkMode === 'light' },
+              { 'ml-[3.35rem]': darkMode === 'dark' },
+              { 'ml-[1.625rem]': darkMode === 'auto' },
+              'transform transition-all duration-500',
+            ]"
+          ></div>
+          <!-- Light -->
+          <i
+            @click="darkMode = 'light'"
+            class="
+              pi pi-sun
+              mr-3
+              z-10
+              cursor-pointer
+              text-white
+              dark:text-yellow-500
+              transition
+              duration-500
+            "
+            v-tooltip.bottom="tm('lightMode')"
+          ></i>
+          <!-- Auto -->
+          <i
+            @click="darkMode = 'auto'"
+            class="
+              pi pi-palette
+              mr-3
+              z-10
+              cursor-pointer
+              text-white
+              dark:text-gray-300
+              transition
+              duration-500
+            "
+            :class="{ 'dark:text-gray-600': darkMode === 'auto' }"
+            v-tooltip.bottom="tm('auto')"
+          ></i>
+          <!-- Dark -->
+          <i
+            @click="darkMode = 'dark'"
+            class="pi pi-moon z-10 cursor-pointer transition duration-500"
+            :class="{
+              'text-violet-500': darkMode === 'dark',
+              'text-gray-200': darkMode !== 'dark',
+            }"
+            v-tooltip.bottom="tm('darkMode')"
+          ></i>
+        </div>
+      </div>
+      <!-- Logo -->
+      <div
+        class="flex justify-center items-center space-x-2 mb-4 mt-2 text-white"
+      >
+        <Logo class="w-16 h-16" />
+        <span class="font-semibold text-4xl">
+          {{ tm("brandName") }}
+        </span>
+      </div>
+
+      <!-- Errors -->
+      <back-end-error />
+
+      <!-- Status -->
+      <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
+        {{ status }}
+      </div>
+
+      <!-- Login Form Inputs -->
+
+      <div class="p-form">
+        <!-- Email -->
+        <div class="p-input-wrapper p-input-w-full">
+          <label for="email" class="font-bold">{{ t("email") }}</label>
+          <span class="p-input-icon-left">
+            <i class="pi pi-envelope" />
+            <InputText
+              id="email"
+              type="email"
+              v-model="form.email"
+              @blur="v.email.$touch"
+              :class="{ 'p-invalid': form.errors.email || v.email.$invalid }"
+              required
+              autofocus
+            />
+          </span>
+        </div>
+        <!-- Password -->
+        <div class="p-input-wrapper p-input-w-full">
+          <label for="password" class="font-bold">{{ t("password") }}</label>
+          <span class="p-input-icon-left">
+            <i class="pi pi-key" />
+            <InputText
+              id="password"
+              type="password"
+              v-model="form.password"
+              @blur="v.password.$touch"
+              :class="{
+                'p-invalid': form.errors.password || v.password.$invalid,
+              }"
+              required
+              autocomplete="current-password"
+            />
+          </span>
+          <small
+            v-if="v.password.$invalid || v.password.$pending.$response"
+            class="p-error"
+            >{{ v.password.required.$message.replace("Value", "Name") }}</small
+          >
+        </div>
+      </div>
+
+      <div class="flex justify-between items-center mt-4">
+        <label class="flex items-center">
+          <jet-checkbox name="remember" v-model:checked="form.remember" />
+          <span class="ml-2 text-sm" v-t="'rememberMe'"></span>
+        </label>
+
+        <Link
+          v-if="canResetPassword"
+          :href="route('password.request')"
+          class="underline text-sm text-white hover:text-blue-500"
+        >
+          {{ t("forgotPassword") }}
+        </Link>
+      </div>
+
+      <!-- Buttons -->
+      <div class="flex justify-between w-full space-x-2 mt-4">
+        <!-- Language -->
+        <Button class="p-button-info" @click="showLanguagesPanel">
+          <div class="flex items-center justify-center flex-shrink-0 space-x-1">
+            <!-- Multi-language Icon -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"
+              />
+            </svg>
+            <!-- Active Language -->
+            <span
+              v-text="languageList.find((i) => i.id === locale).name"
+              class="text-sm"
+            />
+          </div>
+        </Button>
+        <OverlayPanel ref="langSelector">
+          <div class="flex flex-col">
+            <template v-for="lang in languageList" :key="lang.id">
+              <div
+                @click="
+                  changeLang(lang.id);
+                  showLanguagesPanel();
+                "
+                class="
+                  flex
+                  justify-start
+                  items-center
+                  space-x-2
+                  rounded-md
+                  hover:bg-gray-200
+                  dark:hover:bg-gray-700
+                  dark:hover:text-gray-100
+                  dark:hover:bg-opacity-50
+                  p-2
+                  cursor-pointer
+                "
+              >
+                <component
+                  :is="lang.flag"
+                  class="w-6 aspect-auto drop-shadow"
+                />
+                <span class="font-semibold text-sm">{{ lang.name }}</span>
+              </div>
+            </template>
+          </div>
+        </OverlayPanel>
+        <Button
+          :label="t('login')"
+          icon="pi pi-sign-in"
+          iconPos=""
+          class="
+            p-button-success
+            flex
+            justify-center
+            items-center
+            w-full
+            whitespace-nowrap
+          "
+          :loading="form.processing"
+          :disabled="form.processing"
+          @click="submit"
+        />
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+/* Main */
+import { defineComponent, ref } from "vue";
+import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
+import darkModeFn from "@/Function/darkMode";
+import useVuelidate from "@vuelidate/core";
+import { required, email } from "@vuelidate/validators";
+
+/* Components */
+import Logo from "@/Components/Icon/Logo";
+import Button from "primevue/button";
+import OverlayPanel from "primevue/overlaypanel";
+import Listbox from "primevue/listbox";
+import InputText from "primevue/inputtext";
+import Card from "primevue/card";
+import JetCheckbox from "@/Jetstream/Checkbox.vue";
+import JetLabel from "@/Jetstream/Label.vue";
+import JetValidationErrors from "@/Jetstream/ValidationErrors.vue";
+import BackEndError from "@/Components/BackEndError.vue";
+
+/* Multi-language */
+import { useI18n } from "vue-i18n";
+import langChooserFn from "@/Function/langChooser";
+import { languages, flags, authTranslates } from "@/Lang/languages";
+
+export default defineComponent({
+  components: {
+    Logo,
+    Head,
+    Button,
+    OverlayPanel,
+    Listbox,
+    Card,
+    InputText,
+    JetCheckbox,
+    JetLabel,
+    JetValidationErrors,
+    Link,
+    BackEndError,
+    ...flags,
+  },
+
+  props: {
+    canResetPassword: Boolean,
+    status: String,
+  },
+
+  setup() {
+    /* Dark Mode */
+    const { darkMode } = darkModeFn();
+
+    /* Multi-language */
+    const { changeLang, locale, loadingTranslations } = langChooserFn();
+
+    const languageList = languages;
+
+    const { t, tm } = useI18n({
+      inheritLocale: true,
+      messages: authTranslates,
+    });
+
+    const langSelector = ref();
+    const showLanguagesPanel = (event) => {
+      langSelector.value.toggle(event);
+    };
+
+    /* Login */
+    const form = useForm({
+      email: "",
+      password: "",
+      remember: false,
+    });
+
+    /* Client-side Validation */
+    const rules = ref({
+      email: { required, email },
+      password: { required },
+    });
+    const v = useVuelidate(rules, form, { $lazy: true });
+
+    const submit = async () => {
+      if (!(await v.value.$validate())) {
+        return;
+      }
+      form
+        .transform((data) => ({
+          ...data,
+          remember: form.remember ? "on" : "",
+        }))
+        .post(route("login"), {
+          onFinish: () => form.reset("password"),
+        });
+    };
+
+    return {
+      darkMode,
+      form,
+      languageList,
+      langSelector,
+      locale,
+      loadingTranslations,
+      showLanguagesPanel,
+      changeLang,
+      v,
+      t,
+      tm,
+      submit,
+    };
+  },
+});
+</script>

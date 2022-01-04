@@ -31,7 +31,7 @@ export default {
     const tStyle = computed(() => {
 
       return "loading-" + color.value + ' ' +
-        (target.value === "button" ? "w-2 h-2" : "w-8 h-8 desktop:w-14 desktop:h-14");
+        (target.value === "button" ? "w-2 h-2" : "w-8 h-8 xl:w-14 xl:h-14");
     });
 
     return { tStyle };

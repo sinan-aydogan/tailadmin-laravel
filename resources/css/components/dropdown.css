@@ -36,7 +36,7 @@
 }
 
 .dropdown-content-wide {
-    @apply min-w-22
+    @apply min-w-[2rem]
 }
 
 .dropdown-content-fit {

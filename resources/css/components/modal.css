@@ -1,9 +1,9 @@
 .modal-container {
-    @apply fixed top-0 left-0 inset-0 flex h-screen w-full tablet:w-screen overflow-hidden justify-center items-center bg-gray-500 z-50 backdrop-filter backdrop-blur-sm
+    @apply fixed top-0 left-0 inset-0 flex h-screen w-full md:w-screen overflow-hidden justify-center items-center bg-gray-500 z-50 backdrop-filter backdrop-blur-sm
 }
 
 .modal-box {
-    @apply relative flex flex-col tablet:min-w-28 tablet:max-w-2xl
+    @apply relative flex flex-col md:min-w-[3rem] md:max-w-2xl
 }
 
 .modal-header {

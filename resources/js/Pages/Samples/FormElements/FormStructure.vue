@@ -58,11 +58,11 @@
                 </t-form-section>
                 <!--Status Area Indicator-->
                 <template #button-area>
-                    <div class="flex flex-wrap col-span-12 justify-center tablet:justify-end space-x-2 mr-4 py-4">
+                    <div class="flex flex-wrap col-span-12 justify-center md:justify-end space-x-2 mr-4 py-4">
                         <t-badge color="pink">Form Extra Button Area</t-badge>
                     </div>
                     <div class="border p-2 gap-2 inline-flex items-center">
-                        <div class="flex flex-wrap gap-1 justify-center tablet:justify-end">
+                        <div class="flex flex-wrap gap-1 justify-center md:justify-end">
                             <t-badge color="gray">Form Status Area</t-badge>
                             or
                             <t-badge color="indigo">Default Form Buttons Area</t-badge>

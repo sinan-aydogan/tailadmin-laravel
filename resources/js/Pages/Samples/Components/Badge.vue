@@ -15,10 +15,10 @@
                     <template #content>
                         <grid-section :col-laptop="2">
                             <!--Filled-->
-                            <div class="flex flex-wrap justify-center tablet:justify-start items-center">
+                            <div class="flex flex-wrap justify-center md:justify-start items-center">
                                 <h2 class="font-semibold mr-4">Filled</h2>
                                 <div
-                                    class="flex flex-wrap justify-center tablet:justify-start items-center border rounded w-full p-2 space-x-2 space-y-2">
+                                    class="flex flex-wrap justify-center md:justify-start items-center border rounded w-full p-2 space-x-2 space-y-2">
                                     <t-badge design="filled" color="red" :radius="0" class="mt-2">REJECTED</t-badge>
                                     <t-badge design="filled" color="green">ACTIVE</t-badge>
                                     <t-badge design="filled" color="gray" badge-value="2.825,90 TRY">SALARY</t-badge>
@@ -32,10 +32,10 @@
                             </div>
 
                             <!--Light-->
-                            <div class="flex flex-wrap justify-center tablet:justify-start items-center">
+                            <div class="flex flex-wrap justify-center md:justify-start items-center">
                                 <h2 class="font-semibold mr-4">Light</h2>
                                 <div
-                                    class="flex flex-wrap justify-center tablet:justify-start items-center border rounded w-full p-2 space-x-2 space-y-2">
+                                    class="flex flex-wrap justify-center md:justify-start items-center border rounded w-full p-2 space-x-2 space-y-2">
                                     <t-badge design="light" color="blue" :radius="0" class="mt-2">pending</t-badge>
                                     <t-badge design="light" color="purple" badge-value="12">open tasks</t-badge>
                                     <t-badge design="light" color="white" badge-value="125" :radius="8">
@@ -48,10 +48,10 @@
                             </div>
 
                             <!--Inline-->
-                            <div class="flex flex-wrap justify-center tablet:justify-start items-center">
+                            <div class="flex flex-wrap justify-center md:justify-start items-center">
                                 <h2 class="font-semibold mr-4">Inline</h2>
                                 <div
-                                    class="flex flex-wrap justify-center tablet:justify-start items-center border rounded w-full p-2 space-x-2 space-y-2">
+                                    class="flex flex-wrap justify-center md:justify-start items-center border rounded w-full p-2 space-x-2 space-y-2">
                                     <t-badge design="inline" color="green" :radius="0" class="mt-2">#tailwindcss
                                     </t-badge>
                                     <t-badge design="inline" color="pink" badge-value="1 Hr. 25 Min." :radius="2">
@@ -67,10 +67,10 @@
                             </div>
 
                             <!--Outline-->
-                            <div class="flex flex-wrap justify-center tablet:justify-start items-center">
+                            <div class="flex flex-wrap justify-center md:justify-start items-center">
                                 <h2 class="font-semibold mr-4">Outline</h2>
                                 <div
-                                    class="flex flex-wrap justify-center tablet:justify-start items-center border rounded w-full p-2 space-x-2 space-y-2">
+                                    class="flex flex-wrap justify-center md:justify-start items-center border rounded w-full p-2 space-x-2 space-y-2">
                                     <t-badge design="outline" color="green" :radius="0" class="mt-2">Online</t-badge>
                                     <t-badge design="outline" color="red">Offline</t-badge>
                                     <t-badge design="outline" color="yellow" badge-value="12 minutes">Away</t-badge>
@@ -80,10 +80,10 @@
                             </div>
 
                             <!--Elegant-->
-                            <div class="flex flex-wrap justify-center tablet:justify-start items-center">
+                            <div class="flex flex-wrap justify-center md:justify-start items-center">
                                 <h2 class="font-semibold mr-4">Elegant</h2>
                                 <div
-                                    class="flex flex-wrap justify-center tablet:justify-start items-center border rounded w-full p-2 space-x-2 space-y-2">
+                                    class="flex flex-wrap justify-center md:justify-start items-center border rounded w-full p-2 space-x-2 space-y-2">
                                     <t-badge design="elegant" color="green" :radius="0" class="mt-2">Manager</t-badge>
                                     <t-badge design="elegant" color="indigo" badge-value="12">Engineer</t-badge>
                                     <t-badge design="elegant" color="yellow" badge-value="8" :radius="6">
@@ -96,10 +96,10 @@
                             </div>
 
                             <!--Block-->
-                            <div class="flex flex-wrap justify-center tablet:justify-start items-center">
+                            <div class="flex flex-wrap justify-center md:justify-start items-center">
                                 <h2 class="font-semibold mr-4">Block</h2>
                                 <div
-                                    class="flex flex-wrap justify-center tablet:justify-start items-center border rounded w-full p-2 space-x-2 space-y-2">
+                                    class="flex flex-wrap justify-center md:justify-start items-center border rounded w-full p-2 space-x-2 space-y-2">
                                     <t-badge design="block" color="green" :radius="0" class="mt-2">PASSED</t-badge>
                                     <t-badge design="block" color="gray" badge-value="-3K TRY">Prompt Cash</t-badge>
                                     <t-badge design="block" color="red" badge-value="8" :radius="8">
@@ -205,7 +205,7 @@
                 color="solid-blue"
             >
                 <template #details="{props}">
-              <span class="whitespace-nowrap tablet:whitespace-normal" v-html="props.details">
+              <span class="whitespace-nowrap md:whitespace-normal" v-html="props.details">
               </span>
                 </template>
             </t-table>

@@ -3,7 +3,7 @@
 }
 
 .content-wrapper {
-    @apply flex flex-col flex-shrink-0 laptop:flex-shrink min-h-screen flex-grow p-4 space-y-6 overflow-y-auto  w-screen laptop:w-full;
+    @apply flex flex-col flex-shrink-0 lg:flex-shrink min-h-screen flex-grow p-4 space-y-6 overflow-y-auto  w-screen lg:w-full;
 }
 
 /*<editor-fold desc="Left Menu">*/
@@ -158,11 +158,11 @@
 
 
 .top-menu {
-    @apply flex flex-shrink-0 flex-grow-0 justify-between items-center h-16 px-4 bg-white dark:bg-gray-800 phone:px-10 shadow-md dark:text-gray-200;
+    @apply flex flex-shrink-0 flex-grow-0 justify-between items-center h-16 px-4 bg-white dark:bg-gray-800 sm:px-10 shadow-md dark:text-gray-200;
 }
 
 .top-menu .dropdown-container {
-    @apply bg-white dark:bg-gray-800 dark:text-gray-200 dark:shadow-dark shadow mt-2 rounded-md overflow-hidden;
+    @apply bg-white dark:bg-gray-800 dark:text-gray-200 dark:drop-shadow-md shadow mt-2 rounded-md overflow-hidden;
 }
 
 .top-menu .dropdown-header {
@@ -217,7 +217,7 @@
 
 /*<editor-fold desc="Top Menu Search Box">*/
 .top-menu .search-box {
-    @apply flex flex-grow tablet:flex-grow-0 justify-start mr-2;
+    @apply flex flex-grow md:flex-grow-0 justify-start mr-2;
 }
 .top-menu .search-box-wrapper {
     @apply p-2 w-10 h-10 hover:bg-gray-200 dark:hover:bg-opacity-10 active:bg-gray-300 cursor-pointer transition-color-short;
@@ -227,7 +227,7 @@
     @apply h-6 w-6 transform hover:scale-110 active:scale-90 transition-size-short;
 }
 .search-modal{
-    @apply w-2/3 tablet:w-1/2 bg-white dark:bg-gray-800 shadow-lg p-4 bg-opacity-90
+    @apply w-2/3 md:w-1/2 bg-white dark:bg-gray-800 shadow-lg p-4 bg-opacity-90
 }
 .search-modal #search{
     @apply w-full dark:bg-gray-600 dark:text-gray-200 rounded-md text-xl text-center text-gray-600
@@ -238,7 +238,7 @@
 
 /*<editor-fold desc="Top Menu Active Team">*/
 .top-menu .active-team {
-    @apply hidden tablet:flex flex-grow justify-start items-center overflow-hidden
+    @apply hidden md:flex flex-grow justify-start items-center overflow-hidden
 }
 .top-menu .active-team-wrapper{
     @apply flex justify-between items-center space-x-2 p-2 rounded-md border border-gray-300 dark:border-gray-600 text-gray-600 bg-opacity-50 dark:text-gray-400 overflow-hidden
@@ -264,11 +264,11 @@
 
 /*<editor-fold desc="Top Menu User Menu">*/
 .top-menu .user-menu-trigger {
-    @apply inline-flex items-center tablet:space-x-2 px-2
+    @apply inline-flex items-center md:space-x-2 px-2
 }
 
 .user-menu-trigger .staff-info {
-    @apply hidden tablet:flex tablet:flex-col items-center pt-1 leading-tight;
+    @apply hidden md:flex md:flex-col items-center pt-1 leading-tight;
 }
 
 .user-menu-trigger .staff-name {
@@ -345,7 +345,7 @@
 
 /*Content Container -> Content Header*/
 .container-header {
-    @apply flex flex-col laptop:justify-between items-center tablet:flex-row;
+    @apply flex flex-col lg:justify-between items-center md:flex-row;
 }
 
 /*Content Header -> Page Header*/
@@ -354,11 +354,11 @@
 }
 
 .page-header .page-title {
-    @apply mb-2 text-2xl laptop:text-4xl font-semibold  dark:text-gray-200;
+    @apply mb-2 text-2xl lg:text-4xl font-semibold  dark:text-gray-200;
 }
 
 .page-header .page-subtitle {
-    @apply hidden tablet:block tablet:text-xl text-gray-600 ml-0.5 text-2xl font-semibold  dark:text-gray-400;
+    @apply hidden md:block md:text-xl text-gray-600 ml-0.5 text-2xl font-semibold  dark:text-gray-400;
 }
 
 .container-header .page-action-buttons {

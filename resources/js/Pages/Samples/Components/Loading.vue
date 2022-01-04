@@ -158,7 +158,7 @@
         :searchable="['variable','details']"
       >
         <template #details="{props}">
-          <span class="whitespace-nowrap tablet:whitespace-normal" v-html="props.details">
+          <span class="whitespace-nowrap md:whitespace-normal" v-html="props.details">
 
           </span>
         </template>

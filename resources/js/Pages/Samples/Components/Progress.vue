@@ -10,8 +10,8 @@
           <template #content>
 
             <div class="flex flex-col w-full gap-4">
-              <div class="flex flex-col tablet:flex-row justify-center space-y-2 tablet:space-x-2 items-center w-full">
-                <t-input-group class="w-full tablet:w-36" label="Target Value" label-for="target">
+              <div class="flex flex-col md:flex-row justify-center space-y-2 md:space-x-2 items-center w-full">
+                <t-input-group class="w-full md:w-36" label="Target Value" label-for="target">
                   <t-input-text v-model.lazy.number="target" type="number" />
                 </t-input-group>
                 <t-progress :height="1" v-model="target" title="Performance" />
@@ -39,7 +39,7 @@
         color="solid-blue"
       >
         <template #details="{props}">
-              <span class="whitespace-nowrap tablet:whitespace-normal" v-html="props.details">
+              <span class="whitespace-nowrap md:whitespace-normal" v-html="props.details">
               </span>
         </template>
       </t-table>

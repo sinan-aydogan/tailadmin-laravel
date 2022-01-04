@@ -3,7 +3,7 @@
 }
 
 .tab-title-container {
-    @apply relative flex flex-row justify-center tablet:justify-start overflow-x-scroll z-10 scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-300
+    @apply relative flex flex-row justify-center md:justify-start overflow-x-scroll z-10 scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-300
 }
 
 .tab-title {
