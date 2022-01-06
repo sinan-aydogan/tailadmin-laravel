@@ -1,9 +1,9 @@
 <template>
     <div class="relative select-none">
         <!--Trigger-->
-        <t-dots-vertical-icon class="w-6 h-6 cursor-pointer" @click.native="showPanel = !showPanel"/>
+        <t-dots-vertical-icon class="w-6 h-6 cursor-pointer" @click="showPanel = !showPanel"/>
         <transition name="fade">
-            <div v-if="showPanel" class="absolute left-0 -top-1 -left-24 -ml-2 overflow-hidden">
+            <div v-if="showPanel" class="absolute -top-1 -left-24 -ml-2 overflow-hidden">
                 <ul class="flex flex-row gap-2 p-1 border border-gray-500 bg-gray-100 bg-opacity-90 rounded-md">
                     <!--Show-->
                     <li class="border-r border-gray-500 pr-2 cursor-pointer" @click="clickedButton('show')">
@@ -35,15 +35,25 @@ export default defineComponent({
     components: {TTrashIcon, TPencilAltIcon, TEyeIcon, TDotsVerticalIcon},
     props: {
         showAction: {
-            type: Object
+            type: Object,
+            default(){
+                return {}
+            }
         },
         editAction: {
-            type: Object
+            type: Object,
+            default(){
+                return {}
+            }
         },
         deleteAction: {
-            type: Object
+            type: Object,
+            default(){
+                return {}
+            }
         }
     },
+    emits: ['action'],
     data(){
         return{
             showPanel: false
