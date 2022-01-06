@@ -19,7 +19,7 @@ import { defineComponent } from 'vue'
 import {fullScreenCardStyleMixin} from "@/Mixins/Styles/fullScreenCardStyleMixin";
 
 export default defineComponent({
-  name: "TFullScreenCard",
+  name: "FullScreenLayout",
   props: {
     bgImage: {
       type: String,

@@ -1,5 +1,5 @@
 <template>
-  <t-full-screen-card :bg-image="bgImage" :color="bgColor" :gradient-direction="bgGradientDirection">
+  <full-screen-layout :bg-image="bgImage" :color="bgColor" :gradient-direction="bgGradientDirection">
     <div
       :class="[
                 'relative',
@@ -155,7 +155,7 @@
       </div>
 
     </div>
-  </t-full-screen-card>
+  </full-screen-layout>
 </template>
 
 <script>
@@ -165,7 +165,7 @@ import { registerStyleMixin } from "@/Mixins/Styles/registerStyleMixin";
 import TAlert from "@/Components/Alert/TAlert";
 import TBellIcon from "@/Components/Icon/TBellIcon";
 import TButton from "@/Components/Button/TButton";
-import TFullScreenCard from "@/Components/Card/TFullScreenCard";
+import FullScreenLayout from "@/Layouts/FullScreenLayout";
 import TInputGroup from "@/Components/Form/TInputGroup";
 import TInputText from "@/Components/Form/Inputs/TInputText";
 import { Link } from "@inertiajs/inertia-vue3";
@@ -177,7 +177,7 @@ export default defineComponent({
     TAlert,
     TBellIcon,
     TButton,
-    TFullScreenCard,
+    FullScreenLayout,
     TInputGroup,
     TInputText,
     Link

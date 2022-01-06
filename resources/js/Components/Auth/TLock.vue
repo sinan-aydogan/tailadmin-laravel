@@ -1,5 +1,5 @@
 <template>
-  <t-full-screen-card :bg-image="bgImage" :color="bgColor" :gradient-direction="bgGradientDirection">
+  <full-screen-layout :bg-image="bgImage" :color="bgColor" :gradient-direction="bgGradientDirection">
     <div :class="['relative']">
       <!--Avatar-->
       <div class="auth-avatar-container">
@@ -64,13 +64,13 @@
       </div>
 
     </div>
-  </t-full-screen-card>
+  </full-screen-layout>
 </template>
 
 <script>
 import { defineComponent } from "vue";
 import { lockStyleMixin } from "@/Mixins/Styles/lockStyleMixin";
-import TFullScreenCard from "@/Components/Card/TFullScreenCard";
+import FullScreenLayout from "@/Layouts/FullScreenLayout";
 import TAlert from "@/Components/Alert/TAlert";
 import TBellIcon from "@/Components/Icon/TBellIcon";
 import TInputGroup from "@/Components/Form/TInputGroup";
@@ -82,7 +82,7 @@ import windowSizeCalculator from "@/Functions/windowSizeCalculator";
 
 export default defineComponent({
   name: "TLock",
-  components: { TButton, TAvatar, TUserCircleIcon, TInputText, TInputGroup, TBellIcon, TAlert, TFullScreenCard },
+  components: { TButton, TAvatar, TUserCircleIcon, TInputText, TInputGroup, TBellIcon, TAlert, FullScreenLayout },
   mixins: [lockStyleMixin],
   props: {
     buttonColor: {

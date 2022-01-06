@@ -1,5 +1,5 @@
 <template>
-  <t-full-screen-card :bg-image="bgImage" :color="bgColor" :gradient-direction="bgGradientDirection">
+  <full-screen-layout :bg-image="bgImage" :color="bgColor" :gradient-direction="bgGradientDirection">
     <div class="relative max-w-min">
       <!--Container-->
       <div :class="[
@@ -70,13 +70,13 @@
       </div>
 
     </div>
-  </t-full-screen-card>
+  </full-screen-layout>
 </template>
 
 <script>
 import { defineComponent } from "vue";
 import { forgotPasswordStyleMixin } from "@/Mixins/Styles/forgotPasswordStyleMixin";
-import TFullScreenCard from "@/Components/Card/TFullScreenCard";
+import FullScreenLayout from "@/Layouts/FullScreenLayout";
 import TInputGroup from "@/Components/Form/TInputGroup";
 import TInputText from "@/Components/Form/Inputs/TInputText";
 import TButton from "@/Components/Button/TButton";
@@ -88,7 +88,7 @@ export default defineComponent({
   name: "TForgot",
   components: {
     TBellIcon,
-    TAlert, TButton, TInputText, TInputGroup, TFullScreenCard
+    TAlert, TButton, TInputText, TInputGroup, FullScreenLayout
   },
   mixins: [forgotPasswordStyleMixin],
   props: {
