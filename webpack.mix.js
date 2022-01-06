@@ -1,5 +1,4 @@
 const mix = require('laravel-mix');
-
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -20,6 +19,7 @@ mix.js('resources/js/app.js', 'public/js').vue({
         require('postcss-import'),
         require('tailwindcss'),
         require('autoprefixer'),
+        require('postcss-apply')
     ])
     .sass('resources/sass/app.scss', 'public/css')
     .webpackConfig(require('./webpack.config'));
