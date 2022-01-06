@@ -25,12 +25,6 @@
         </div>
         <!--Separator-->
         <hr v-if="line" :class="'my-1 border'"/>
-        <div
-            v-if="hasSlot('secondContent')"
-            class="content-card-show-button"
-            @click="showSecondContent = ! showSecondContent">
-          <font-awesome-icon icon="code"/>
-        </div>
         <div class="flex flex-wrap whitespace-normal w-full">
           <!--Card Main Content-->
           <slot v-if="!showSecondContent" name="content"></slot>
