@@ -207,10 +207,6 @@
             </div>
         </template>
     </t-dropdown>
-
-    <teleport to="body">
-        <t-loading v-model="showLoadingScreen" title="Please wait" message="Your changes applying"/>
-    </teleport>
 </template>
 
 <script>
@@ -222,7 +218,6 @@ import {Inertia} from "@inertiajs/inertia";
 /*Components*/
 import TDropdown from "@/Components/Dropdown/TDropdown";
 import TAvatar from "@/Components/Avatar/TAvatar";
-import TLoading from "@/Components/Loading/TLoading";
 
 /*Multi Language*/
 import {useI18n} from "vue-i18n";
@@ -231,7 +226,7 @@ import langChooserFn from "@/Functions/langChooser";
 
 export default defineComponent({
     name: "TopMenuUserMenu",
-    components: {TLoading, TAvatar, TDropdown, Link},
+    components: {TAvatar, TDropdown, Link},
     setup() {
         /*Definitions*/
         const conf = inject("conf");
