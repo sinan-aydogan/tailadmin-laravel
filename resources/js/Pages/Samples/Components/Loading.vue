@@ -146,23 +146,6 @@
           </template>
         </t-content-card>
       </grid-section>
-      <!--Sample Codes-->
-      <ssh-pre :copy-button="true" label="Code" language="html">{{ sampleCode.html }}</ssh-pre>
-      <ssh-pre :copy-button="true" label="JS" language="js">{{ sampleCode.js }}</ssh-pre>
-      <!--Variables Table-->
-      <t-table
-        :content="sampleCode.table.content"
-        :header="sampleCode.table.header"
-        class="mt-5"
-        color="solid-blue"
-        :searchable="['variable','details']"
-      >
-        <template #details="{props}">
-          <span class="whitespace-nowrap md:whitespace-normal" v-html="props.details">
-
-          </span>
-        </template>
-      </t-table>
     </template>
   </app-layout>
 </template>
@@ -172,15 +155,8 @@
 import AppLayout from "@/Layouts/AppLayout";
 /*Component*/
 import GridSection from "@/Layouts/GridSection";
-import TTable from "@/Components/Table/TTable";
 import TContentCard from "@/Components/Card/TContentCard";
-import TModal from "@/Components/Modal/TModal";
 import TButton from "@/Components/Button/TButton";
-import TInputGroup from "@/Components/Form/TInputGroup";
-import TInputText from "@/Components/Form/Inputs/TInputText";
-/*Codehighlighter*/
-import SshPre from "simple-syntax-highlighter";
-import "simple-syntax-highlighter/dist/sshpre.css";
 import TLoading from "@/Components/Loading/TLoading";
 import { defineComponent, ref } from "vue";
 
@@ -188,7 +164,7 @@ export default defineComponent({
   name: "Modal",
   components: {
     TLoading,
-    AppLayout, GridSection, SshPre, TButton, TContentCard, TModal, TTable, TInputGroup, TInputText
+    AppLayout, GridSection, TButton, TContentCard
   },
   setup() {
     const selectedColor = ref("gray");
@@ -209,93 +185,6 @@ export default defineComponent({
       { key: "white", label: "White" },
       { key: "yellow", label: "Yellow" }
     ];
-    const sampleCode = {
-      html:
-        "<t-modal :radius=\"3\" :show=\"showModal\" color=\"solid-white\" v-model=\"showModal\">\n\n" +
-        "    <!--Modal Header-->\n" +
-        "    <template #header>User Registration</template>\n\n" +
-        "    <!--Modal Content-->\n" +
-        "    <template #content>\n\n" +
-        "        <!--Everything is here: text, component, form, alert, icons-->\n" +
-        "        <!--Form Input: Name-->\n" +
-        "        <t-input-group class=\"col-span-12 md:col-span-6\" label=\"Name\" labelFor=\"name\">\n" +
-        "            <t-input-text id=\"name\" v-model=\"form.name\" placeholder=\"User name\"/>\n" +
-        "        </t-input-group>\n" +
-        "        <!--Form Input: Email-->\n" +
-        "        <t-input-group class=\"col-span-12 md:col-span-6\" label=\"Email\" labelFor=\"name\">\n" +
-        "            <t-input-text id=\"email\" v-model=\"form.email\" placeholder=\"Business mail address\"/>\n" +
-        "        </t-input-group>\n\n" +
-        "    </template>\n\n" +
-        "    <!--Footer Left Button Area-->\n" +
-        "    <template #footer-left>\n" +
-        "        <t-button :radius=\"3\" color=\"red\" size=\"sm\" @click.native=\"showModal = false\">Left\n" +
-        "            Button\n" +
-        "        </t-button>\n" +
-        "    </template>\n\n" +
-        "    <!--Footer Center Button Area-->\n" +
-        "    <template #footer-center>\n" +
-        "        <t-button :radius=\"3\" color=\"pink\" size=\"sm\" @click.native=\"showModal = false\">\n" +
-        "            Center Button\n" +
-        "        </t-button>\n" +
-        "    </template>\n\n" +
-        "    <!--Footer Right Button Area-->\n" +
-        "    <template #footer-right>\n" +
-        "        <t-button :radius=\"3\" color=\"yellow\" size=\"sm\">Right Button</t-button>\n" +
-        "    </template>\n\n" +
-        "</t-modal>",
-      js:
-        "import TModal from \"@/Components/Modal/TModal\";\n" +
-        "import TButton from \"@/Components/Button/TButton\";\n" +
-        "import TInputGroup from \"@/Components/Form/TInputGroup\";\n" +
-        "import TInputText from \"@/Components/Form/Inputs/TInputText\";" +
-        "\n" +
-        "export default {\n" +
-        "  name: \"Modal\",\n" +
-        "  components: {TModal, TButton, TInputGroup, TInputText},\n" +
-        "  }",
-      table: {
-        header: [
-          { key: "variable", label: "Variable" },
-          { key: "type", label: "Value Type" },
-          { key: "details", label: "Details" }
-        ],
-        content: [
-          {
-            variable: "show",
-            type: "Boolean",
-            details: "You should define a variable in the data and connect to this data"
-          },
-          {
-            variable: "color",
-            type: "String",
-            details: "Your modal color theme.<br><b>Options Solid:</b> solid-red, solid-blue, solid-green, solid-yellow, solid-indigo, solid-pink, solid-purple, solid-gray, solid-black, solid-white,<br>" +
-              "<b>Options Light:</b> light-red, light-blue, light-green, light-yellow, light-indigo, light-pink, light-purple, light-gray<br" +
-              "><b>Options Gradient:</b> gradient-red-to-pink. Red is first color and Pink is second color. You change red end pink with red, blue, green, yellow, indigo, pink, purple and gray)"
-          },
-          {
-            variable: "gradient-direction",
-            type: "String",
-            details: "If you use to the gradient color, you can select gradient's direction. <br><b>Options:</b> r, l, b, t, tl, bl, tr, br<br>" +
-              "<b>Default:</b> r<br>(Means: l: left, r: right, b: bottom, t: top)"
-          },
-          {
-            variable: ":radius",
-            type: "Number",
-            details: "<b>Options:</b> none, 1, 2, 3, 4, 5, 6, 7, 8"
-          },
-          {
-            variable: "v-model=\"showModal\"",
-            type: "Connector",
-            details: "You should change \"showModal\" with created new data variables for \"show variable\". You should add to t-modal element."
-          },
-          {
-            variable: "@click.native=\"showModal = false\"",
-            type: "Connector",
-            details: "You should change \"showModal\" with created new data variables for \"show variable\". This is for close button event. You can add any buttons and element."
-          }
-        ]
-      }
-    };
 
     const changeColor = (color) => {
       selectedColor.value = color;
@@ -305,7 +194,6 @@ export default defineComponent({
       selectedColor,
       changeColor,
       colors,
-      sampleCode,
       showLoadingScreenSimpleBars,
       showLoadingScreenSimpleDots,
       showLoadingScreenSimpleCogs,

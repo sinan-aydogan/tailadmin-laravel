@@ -5,11 +5,11 @@
         </template>
         <template #action-buttons>
             <t-button :radius="3" color="yellow">
-                <font-awesome-icon icon="angle-left"/>
+                <icon icon="angle-left"/>
                 Back to Home
             </t-button>
             <t-button :radius="3" color="green">
-                <font-awesome-icon icon="plus-circle"/>
+                <icon icon="plus-circle"/>
                 Add New
             </t-button>
         </template>
@@ -70,8 +70,6 @@
                     </div>
                 </template>
             </t-form-content>
-            <ssh-pre :copy-button="true" label="Code" language="html">{{ sampleCode.html }}</ssh-pre>
-            <ssh-pre :copy-button="true" label="JS" language="js">{{ sampleCode.js }}</ssh-pre>
         </template>
     </app-layout>
 </template>
@@ -84,16 +82,12 @@ import TFormContent from "@/Components/Form/TFormContent";
 import TInputGroup from "@/Components/Form/TInputGroup";
 import TInputText from "@/Components/Form/Inputs/TInputText";
 import TInputTextArea from "@/Components/Form/Inputs/TInputTextArea";
-import SshPre from 'simple-syntax-highlighter'
-import 'simple-syntax-highlighter/dist/sshpre.css'
-import TInputSelect from "@/Components/Form/Inputs/TInputSelect";
 import TBadge from "@/Components/Badge/TBadge";
 
 export default {
     name: "FormStructure",
     components: {
         TBadge,
-        TInputSelect,
         AppLayout,
         TButton,
         TFormSection,
@@ -101,7 +95,6 @@ export default {
         TInputGroup,
         TInputText,
         TInputTextArea,
-        SshPre
     },
     data() {
         return {
@@ -119,87 +112,6 @@ export default {
                 {name: 'Passive', value: 0, icon: 'XIcon', class: 'w-5 h-5 text-red-500 mr-2'},
                 {name: 'Active', value: 1, icon: 'Checked', class: 'w-5 h-5 text-green-500 mr-2'}
             ],
-            sampleCode: {
-                html:
-                    '<!--Main container for your forms, don\'t forget 1 form 1 form content. : https://inertiajs.com/forms (processing)-->\n' +
-                    '<t-form-content\n' +
-                    '    @submitted="save" <!--Form Submit Method, It\'s releated with submit button-->\n' +
-                    '    @reset="reset" <!--Form Inputs Reset method-->\n' +
-                    '    :disabled="form.processing"  <!--The submit button will be disable while the submiting moment-->\n' +
-                    '    :submit-button="true" <!--Show/Hide Submit Button-->\n' +
-                    '    :reset-button="true" <!--Show/Hide Reset Button-->\n' +
-                    '>\n' +
-                    '    <!--Form sections: You can create a lot of form sections in a form content-->\n' +
-                    '    <t-form-section\n' +
-                    '        title="Personal Info"\n' +
-                    '        description="This information is subject to personal data protection law.">\n' +
-                    '        <!-- You should place all of the form inputs here-->\n' +
-                    '        <!-- You can set the with with col-span-xx class: https://tailwindcss.com/docs/grid-column -->\n' +
-                    '        <t-input-group label="Name" labelFor="name" class="col-span-12 md:col-span-6">\n' +
-                    '            <t-input-text id="name"  v-model="form.name" placeholder="Business mail address"/>\n' +
-                    '        </t-input-group>\n' +
-                    '        <!-- Mobile: Full Width PC: Half Width-->\n' +
-                    '        <t-input-group label="Tax ID" labelFor="tax_id" class="col-span-12 md:col-span-6">\n' +
-                    '            <t-input-text id="tax_id"  v-model="form.tax_id"/>\n' +
-                    '        </t-input-group>\n' +
-                    '        <!-- Mobile: Full Width PC: Full Width -->\n' +
-                    '        <t-input-group label="Address" labelFor="address" class="col-span-12">\n' +
-                    '            <t-input-text-area id="address" v-model="form.address" :rows="3" :clear-button="true" :counter="true" placeholder="Full address"/>\n' +
-                    '        </t-input-group>\n' +
-                    '    </t-form-section>\n\n' +
-                    '    <!--Optional | Form Extra Button Area: If you want to add the new buttons-->\n' +
-                    '    <template #button-area>\n' +
-                    '        <!--Button will be here-->\n' +
-                    '        <t-button>\n' +
-                    '            Button\n' +
-                    '        </t-button>\n' +
-                    '    </template>\n\n' +
-                    '    <!--Optional | Form Status Area: For form submit success or loading messages. When this area active, the form default buttons will be hidden until form submit action finished: https://inertiajs.com/forms (recentlySuccessful)-->\n' +
-                    '    <template #status>\n' +
-                    '        <t-button v-if="form.recentlySuccessful" :radius="3" color="gray" disabled="disabled">\n' +
-                    '            <t-check-icon class="w-5 h-5"/>\n' +
-                    '            Saved\n' +
-                    '        </t-button>\n' +
-                    '    </template>\n\n' +
-                    '</t-form-content>',
-                js: 'import TFormSection from "@/Components/Form/TFormSection";\n' +
-                    'import TFormContent from "@/Components/Form/TFormContent";\n' +
-                    'import TInputGroup from "@/Components/Form/TInputGroup";\n' +
-                    'import TInputText from "@/Components/Form/Inputs/TInputText";\n' +
-                    'import TInputTextArea from "@/Components/Form/Inputs/TInputTextArea";\n' +
-                    'export default {\n' +
-                    '    name: "FormStructure",\n' +
-                    '    components: {TFormSection,TFormContent,TInputGroup,TInputText,TInputTextArea},\n' +
-                    '    data() {\n' +
-                    '        return {\n' +
-                    '            loading: false,\n' +
-                    '            form: this.$inertia.form({\n' +
-                    '                _method: \'POST\',\n' +
-                    '                name : null,\n' +
-                    '                tax_id : null,\n' +
-                    '                address : null,\n' +
-                    '            }),\n' +
-                    '        };\n' +
-                    '    },\n' +
-                    '    methods: {\n' +
-                    '        /*This is form fields reset method: https://inertiajs.com/forms*/\n' +
-                    '        reset: function () {\n' +
-                    '            this.form.name = null;\n' +
-                    '            this.form.tax_id = null;\n' +
-                    '            this.form.address = null;\n' +
-                    '        },\n' +
-                    '        /*This is form submit method: https://inertiajs.com/forms*/\n' +
-                    '        save() {\n' +
-                    '            this.form.post(route(\'user.store\'), {\n' +
-                    '                errorBag: \'user\',\n' +
-                    '                preserveScroll: true,\n' +
-                    '            });\n' +
-                    '            /*It is for form status area, you can show a form submit success or loading message when it is true*/\n' +
-                    '            this.loading = true;\n' +
-                    '        }\n' +
-                    '    },\n' +
-                    '}\n'
-            },
         };
     },
     methods: {

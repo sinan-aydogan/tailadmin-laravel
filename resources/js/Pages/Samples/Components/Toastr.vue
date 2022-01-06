@@ -20,12 +20,6 @@
                     </t-input-group>
                 </t-form-section>
             </t-form-content>
-            <!--Sample Codes-->
-            <ssh-pre :copy-button="true" label="Code" language="html">{{ sampleCode.html }}</ssh-pre>
-            <ssh-pre :copy-button="true" label="JS" language="js">{{ sampleCode.js }}</ssh-pre>
-            <!--Variables Table-->
-            <t-table :content="sampleCode.table.content" :header="sampleCode.table.header" :searchable="['variable','details']" class="mt-5"
-                     color="blue"/>
         </template>
     </app-layout>
 </template>
@@ -34,14 +28,6 @@
 /*Layout*/
 import AppLayout from "@/Layouts/AppLayout";
 /*Component*/
-import GridSection from "@/Layouts/GridSection";
-import TButton from "@/Components/Button/TButton";
-import TContentCard from "@/Components/Card/TContentCard";
-import TTable from "@/Components/Table/TTable";
-import TAlert from "@/Components/Alert/TAlert";
-/*Codehighlighter*/
-import "simple-syntax-highlighter/dist/sshpre.css";
-import SshPre from "simple-syntax-highlighter";
 import TFormSection from "@/Components/Form/TFormSection";
 import TFormContent from "@/Components/Form/TFormContent";
 import TInputGroup from "@/Components/Form/TInputGroup";
@@ -51,11 +37,10 @@ import TInputSelect from "@/Components/Form/Inputs/TInputSelect";
 export default {
     name: "Toaster",
     components: {
-        TInputSelectItem,
         TInputSelect,
         TInputText,
         TInputGroup,
-        TFormContent, TFormSection, TTable, TButton, TContentCard, GridSection, AppLayout, SshPre, TAlert},
+        TFormContent, TFormSection, AppLayout},
     data() {
         return {
             colorOptions : {
@@ -99,67 +84,6 @@ export default {
                     label: 'Black',
                     alertStyle: "bg-gray-700 border-black text-gray-200 shadow-sm"
                 },
-            },
-            sampleCode: {
-                html:
-                    '<t-alert color="indigo" :border="true" :closeable="true" :radius="5" :timer="500" position="rb">\n' +
-                    "    <b>Colorful toaster / notification</b>\n" +
-                    "</t-alert>",
-                js:
-                    'import TAlert from "@/Components/Alert/TAlert";";\n\n' +
-                    "export default {\n" +
-                    '  name: "Notification",\n' +
-                    "  components: {TAlert},\n" +
-                    "  }",
-                table: {
-                    header: [
-                        {
-                            key: "variable",
-                            label: "Variable"
-                        },
-                        {
-                            key: "type",
-                            label: "Value Type"
-                        },
-                        {
-                            key: "details",
-                            label: "Details"
-                        }
-                    ],
-                    content: [
-                        {
-                            variable: "color",
-                            type: "String",
-                            details: "Your alert box color theme.<br><b>Options:</b> red,blue,green,yellow,indigo,pink,purple,gray,black,white"
-                        },
-                        {
-                            variable: ":radius",
-                            type: "Number",
-                            details: "<b>Options:</b> none, 1, 2, 3, 4, 5, 6, 7, 8"
-                        },
-                        {
-                            variable: ":border",
-                            type: "Boolean",
-                            details: "Show with a border"
-                        },
-                        {
-                            variable: ":closeable",
-                            type: "Boolean",
-                            details: "Show a close button on the top right"
-                        },
-                        {
-                            variable: ":timer",
-                            type: "Number",
-                            details:
-                                "This value is milisecond, you can enter 1000"
-                        },
-                        {
-                            variable: "position",
-                            type: "String",
-                            details: "If you use the toaster notification, you can use. It's toaster notification position <br><b>Options:</b> lb, rb, lt, rt <small><br>(Means: l:left,r:right,b:bottom,t:top)</small>"
-                        }
-                    ]
-                }
             }
         }
     },

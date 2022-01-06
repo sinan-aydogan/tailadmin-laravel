@@ -5,11 +5,11 @@
         </template>
         <template #action-buttons>
             <t-button :radius="3" color="yellow">
-                <font-awesome-icon icon="angle-left"/>
+                <icon icon="angle-left"/>
                 Back to Home
             </t-button>
             <t-button :radius="3" color="green">
-                <font-awesome-icon icon="plus-circle"/>
+                <icon icon="plus-circle"/>
                 Add New
             </t-button>
         </template>

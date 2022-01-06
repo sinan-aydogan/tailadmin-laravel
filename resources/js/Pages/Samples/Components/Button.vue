@@ -204,22 +204,6 @@
           </template>
         </t-contentCard>
       </grid-section>
-      <!--Sample Codes-->
-      <ssh-pre :copy-button="true" label="Code" language="html">{{ sampleCode.html }}</ssh-pre>
-      <ssh-pre :copy-button="true" label="JS" language="js">{{ sampleCode.js }}</ssh-pre>
-      <!--Variables Table-->
-      <t-table
-        :content="sampleCode.table.content"
-        :header="sampleCode.table.header"
-        :searchable="['variable','details']"
-        class="mt-5"
-        color="solid-blue"
-      >
-        <template #details="{props}">
-              <span class="whitespace-nowrap md:whitespace-normal" v-html="props.details">
-              </span>
-        </template>
-      </t-table>
     </template>
   </app-layout>
 </template>
@@ -231,83 +215,14 @@ import AppLayout from "@/Layouts/AppLayout";
 import GridSection from "@/Layouts/GridSection";
 import TButton from "@/Components/Button/TButton";
 import TContentCard from "@/Components/Card/TContentCard";
-import TTable from "@/Components/Table/TTable";
-/*Codehighlighter*/
-import SshPre from "simple-syntax-highlighter";
-import "simple-syntax-highlighter/dist/sshpre.css";
 import ThreeBars from "@/Components/Loading/Animations/ThreeBars";
 
 export default {
   name: "Button",
-  components: { ThreeBars, AppLayout, GridSection, SshPre, TButton, TContentCard, TTable },
+  components: { ThreeBars, AppLayout, GridSection, TButton, TContentCard },
   data() {
     return {
       colors: ["solid-red", "solid-blue", "solid-green", "solid-yellow", "solid-indigo", "solid-pink", "solid-purple", "solid-gray", "solid-black", "solid-white", "light-red", "light-blue", "light-green", "light-yellow", "light-indigo", "light-pink", "light-purple", "light-gray"],
-      sampleCode: {
-        html:
-          "<t-button color=\"yellow\" :radius=\"5\" :link=\"route('login')\" type=\"button\">\n" +
-          "    <font-awesome-icon icon=\"user\"/>\n" +
-          "    Login\n" +
-          "</t-button>",
-        js:
-          "import TButton from \"@/Components/Button/TButton\";" +
-          "\n" +
-          "export default {\n" +
-          "  name: \"Button\",\n" +
-          "  components: {TButton},\n" +
-          "  }",
-        table: {
-          header: [
-            {
-              key: "variable",
-              label: "Variable"
-            },
-            {
-              key: "type",
-              label: "Value Type"
-            },
-            {
-              key: "details",
-              label: "Details"
-            }
-          ],
-          content: [
-            {
-              variable: "color",
-              type: "String",
-              details: "Your button color theme.<br><b>Options Solid:</b> solid-red, solid-blue, solid-green, solid-yellow, solid-indigo, solid-pink, solid-purple, solid-gray, solid-black, solid-white,<br>" +
-                "<b>Options Light:</b> light-red, light-blue, light-green, light-yellow, light-indigo, light-pink, light-purple, light-gray<br" +
-                "><b>Options Gradient:</b> gradient-red-to-pink. Red is first color and Pink is second color. You change red end pink with red, blue, green, yellow, indigo, pink, purple and gray)"
-            },
-            {
-              variable: "gradient-direction",
-              type: "String",
-              details: "If you use to the gradient color, you can select gradient's direction. <br><b>Options:</b> r, l, b, t, tl, bl, tr, br<br>" +
-                "<b>Default:</b> r<br>(Means: l: left, r: right, b: bottom, t: top)"
-            },
-            {
-              variable: ":radius",
-              type: "Number",
-              details: "<b>Options:</b> none, 1, 2, 3, 4, 5, 6, 7, 8"
-            },
-            {
-              variable: ":size",
-              type: "Number",
-              details: "<b>Options:</b> none, sm, xl, full"
-            },
-            {
-              variable: "link",
-              type: "String",
-              details: "Everything you want, external, internal or route()"
-            },
-            {
-              variable: "type",
-              type: "String",
-              details: "This component works as both a button or a link. If you want to be a link, you should set the link. If you want to be a button, you should set the button or the submit.<b>Options:</b> submit(default), button and link"
-            }
-          ]
-        }
-      }
     };
   }
 };

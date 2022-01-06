@@ -334,8 +334,6 @@
 
 <script>
 import AppLayout from "@/Layouts/AppLayout";
-import SshPre from "simple-syntax-highlighter";
-import "simple-syntax-highlighter/dist/sshpre.css";
 import TFormContent from "@/Components/Form/TFormContent";
 import TFormSection from "@/Components/Form/TFormSection";
 import TInputGroup from "@/Components/Form/TInputGroup";
@@ -346,17 +344,11 @@ import TInputRadioButton from "@/Components/Form/Inputs/TInputRadioButton";
 import TInputTextArea from "@/Components/Form/Inputs/TInputTextArea";
 import TCheckIcon from "@/Components/Icon/TCheckIcon";
 import TXIcon from "@/Components/Icon/TXIcon";
-import TBanIcon from "@/Components/Icon/TBanIcon";
-import TTable from "@/Components/Table/TTable";
-import TBellIcon from "@/Components/Icon/TBellIcon";
 import { ref, defineComponent } from "vue";
 
 export default defineComponent({
   name: "SimpleField",
   components: {
-    TBellIcon,
-    TTable,
-    TBanIcon,
     TXIcon,
     TCheckIcon,
     TInputRadioButton,

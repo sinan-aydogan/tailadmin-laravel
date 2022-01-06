@@ -21,41 +21,23 @@
           </t-input-group>
         </t-form-section>
       </t-form-content>
-      <ssh-pre :copy-button="true" label="Code" language="html">{{ sampleCode.html }}</ssh-pre>
-      <ssh-pre :copy-button="true" label="JS" language="js">{{ sampleCode.js }}</ssh-pre>
-      <!--Variables Table-->
-      <t-table
-          :content="sampleCode.table.content"
-          :header="sampleCode.table.header"
-          :searchable="['variable','details']"
-          class="mt-5"
-          color="solid-blue">
-        <template #details="{props}">
-              <span class="whitespace-nowrap md:whitespace-normal" v-html="props.details">
-              </span>
-        </template>
-      </t-table>
     </template>
   </app-layout>
 </template>
 
 <script>
 import AppLayout from "@/Layouts/AppLayout";
-import SshPre from 'simple-syntax-highlighter'
-import 'simple-syntax-highlighter/dist/sshpre.css'
 import TFormContent from "@/Components/Form/TFormContent";
 import TFormSection from "@/Components/Form/TFormSection";
 import TInputGroup from "@/Components/Form/TInputGroup";
 import TInputText from "@/Components/Form/Inputs/TInputText";
 import TInputInlineEditableRepeatable from "@/Components/Form/Inputs/TInputInlineEditableRepeatable";
-import TTable from "@/Components/Table/TTable";
 
 
 export default {
   name: "InlineRepeatableField",
   components: {
-    TTable,
-    TInputInlineEditableRepeatable, TInputText, TInputGroup, TFormSection, TFormContent, AppLayout, SshPre
+    TInputInlineEditableRepeatable, TInputText, TInputGroup, TFormSection, TFormContent, AppLayout
   },
   data() {
     return {
@@ -63,40 +45,7 @@ export default {
         _method: 'POST',
         name: null,
         job_requirements: [],
-      }),
-      sampleCode: {
-        html:
-            '<t-input-group label="Job Requirements" labelFor="job_requirements">\n' +
-            '    <!--It\'s output is a array-->    ' +
-            '    <t-input-inline-editable-repeatable\n' +
-            '        id="job_requirements"\n' +
-            '        v-model="form.job_requirements"\n' +
-            '        place-holder-text="Requirement"\n' +
-            '    />\n' +
-            '</t-input-group>',
-        js:
-            'import TInputGroup from "@/Components/Form/TInputGroup";\n' +
-            'import TInputInlineEditableRepeatable from "@/Components/Form/Inputs/TInputInlineEditableRepeatable";\n' +
-            '\n' +
-            'export default {\n' +
-            '  name: "InputGroup",\n' +
-            '  components: {TInputGroup, TInputInlineEditableRepeatable},\n' +
-            '  }',
-        table: {
-          header: [
-            {key: 'variable', label: 'Variable'},
-            {key: 'type', label: 'Value Type'},
-            {key: 'details', label: 'Details'},
-          ],
-          content: [
-            {
-              variable: 'place-holder-text',
-              type: 'String',
-              details: 'It\'s placeholder text for input.'
-            },
-          ]
-        }
-      }
+      })
     }
   },
   methods: {

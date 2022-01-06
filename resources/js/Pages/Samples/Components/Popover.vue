@@ -57,21 +57,6 @@
           </template>
         </t-content-card>
       </grid-section>
-      <!--Sample Codes-->
-      <ssh-pre :copy-button="true" label="Code" language="html">{{ sampleCode.html }}</ssh-pre>
-      <ssh-pre :copy-button="true" label="JS" language="js">{{ sampleCode.js }}</ssh-pre>
-      <!--Variables Table-->
-      <t-table
-          :content="sampleCode.table.content"
-          :header="sampleCode.table.header"
-          :searchable="['variable','details']" class="mt-5"
-          color="solid-blue"
-      >
-        <template #details="{props}">
-              <span class="whitespace-nowrap md:whitespace-normal" v-html="props.details">
-              </span>
-        </template>
-      </t-table>
     </template>
   </app-layout>
 </template>
@@ -82,48 +67,11 @@ import AppLayout from "@/Layouts/AppLayout";
 /*Component*/
 import GridSection from "@/Layouts/GridSection";
 import TContentCard from "@/Components/Card/TContentCard";
-import TTable from "@/Components/Table/TTable";
 import TPopover from "@/Components/Popover/TPopover";
-/*Codehighlighter*/
-import "simple-syntax-highlighter/dist/sshpre.css";
-import SshPre from "simple-syntax-highlighter";
 
 export default {
   name: "Popover",
-  components: {AppLayout, SshPre, GridSection, TContentCard, TTable, TPopover},
-  data() {
-    return {
-      sampleCode: {
-        html:
-            '<t-popover position="right">\n' +
-            '    Click me!\n' +
-            '    <template #boxTitle>Title for Right</template>\n' +
-            '    <template #boxContent>Hello, I\'m at the right</template>\n' +
-            '</t-popover>',
-        js:
-            'import TPopover from "@/Components/Popover/TPopover";\n' +
-            '\n' +
-            'export default {\n' +
-            '  name: "Popover",\n' +
-            '  components: {TPopover},\n' +
-            '  }',
-        table: {
-          header: [
-            {key: 'variable', label: 'Variable'},
-            {key: 'type', label: 'Value Type'},
-            {key: 'details', label: 'Details'},
-          ],
-          content: [
-            {
-              variable: 'position',
-              type: 'String',
-              details: '<b>Options:</b> left, right, bottom and top'
-            }
-          ]
-        }
-      }
-    }
-  }
+  components: {AppLayout, GridSection, TContentCard, TPopover},
 }
 </script>
 

@@ -1,20 +1,15 @@
 <template>
-    <app-layout>
+    <app-layout title="Backend Table">
         <!--Header-->
         <template #header>
-            Tables
+            Table with backend data
         </template>
         <!--Subheader-->
         <template #subHeader>
-            Customizable tables
+            Tables with Backend Data and Dynamic options
         </template>
         <!--Content-->
         <template #default>
-            <!--<t-component-style-selector
-              v-model="selectedData"
-              :select-data="selectData"
-              class="mb-4"
-            />-->
             <t-back-end-table
                 :content="demoContent"
                 :header="header"
@@ -38,10 +33,11 @@
 </template>
 
 <script>
-import AppLayout from "@/Layouts/AppLayout";
-import "simple-syntax-highlighter/dist/sshpre.css";
-import TComponentStyleSelector from "@/Components/Misc/TComponentStyleSelector";
+/*Main Functions*/
 import {reactive, defineComponent, computed} from "vue";
+
+/*Components*/
+import AppLayout from "@/Layouts/AppLayout";
 import TBackEndTable from "@/Components/Table/TBackEndTable";
 import TBadge from "@/Components/Badge/TBadge";
 import TButton from "@/Components/Button/TButton";
@@ -52,7 +48,6 @@ export default defineComponent({
         TButton,
         TBadge,
         TBackEndTable,
-        TComponentStyleSelector,
         AppLayout
     },
     props: {
