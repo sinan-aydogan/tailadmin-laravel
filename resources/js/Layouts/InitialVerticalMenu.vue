@@ -37,7 +37,7 @@
                   'font-bold'
         ]"
                     >
-                        <font-awesome-icon v-if="item.icon" :icon="item.icon" size="lg"/>
+                        <icon v-if="item.icon" :icon="item.icon" size="lg"/>
                         {{ item.label }}
                     </Link>
                 </div>
