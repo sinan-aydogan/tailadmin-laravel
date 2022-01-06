@@ -1,0 +1,149 @@
+/*<editor-fold desc="Left Menu">*/
+.left-menu {
+    @apply flex flex-col flex-shrink-0 justify-between h-screen bg-gray-800 relative transition-size-long
+}
+
+/*<editor-fold desc="Left Menu Header">*/
+.left-menu .header {
+    @apply flex flex-shrink-0 justify-start items-center h-16 px-3 m-4;
+}
+
+.left-menu .logo-out-container {
+    @apply flex justify-center w-full
+}
+
+.left-menu .logo-inside-container {
+    @apply flex justify-between items-center text-white overflow-hidden
+}
+
+.left-menu #logo {
+    @apply flex flex-shrink-0 w-10
+}
+
+.left-menu #logo-title {
+    @apply flex flex-shrink-0 text-3xl h-10 items-center leading-normal transition-size-medium
+}
+
+/*</editor-fold>*/
+/*<editor-fold desc="Let Menu Links">*/
+.left-menu #links-wrapper {
+    @apply h-full bg-gray-800 mt-6 px-4 overflow-x-hidden overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-800 transition-size-long overflow-hidden
+
+}
+
+/*Root Link*/
+.left-menu #link {
+    @apply overflow-hidden bg-gray-800 mb-2
+}
+
+.left-menu-root-link {
+    @apply relative z-20 inline-flex w-full border-none border-separate font-semibold cursor-pointer whitespace-nowrap select-none bg-gray-800 active:bg-gray-500 active:text-white transition-color-short transition-size-medium overflow-hidden
+}
+
+.left-menu-root-link-active {
+    @apply bg-white hover:bg-gray-400 text-gray-700 transition-color-short
+}
+
+.left-menu-root-link-passive {
+    @apply text-gray-200 bg-gray-800 hover:text-gray-700 hover:bg-gray-100
+}
+
+.left-menu-root-link-fold {
+    @apply justify-center p-4 space-x-0
+}
+
+.left-menu-root-link-expand {
+    @apply justify-start p-2 space-x-1
+}
+
+.left-menu-label-wrapper {
+    @apply flex justify-between items-center transition-size-long overflow-hidden
+}
+
+.left-menu-root-link #trigger {
+    @apply flex items-center justify-center
+}
+
+.left-menu-root-link #trigger-icon {
+    @apply w-6 h-6 transform transition-size-short
+}
+
+/*Sub Links*/
+.left-menu-sub-links-wrapper {
+    @apply flex flex-col bg-gray-100 bg-opacity-10 transition-size-long overflow-hidden
+}
+
+.left-menu-sub-link {
+    @apply relative inline-flex flex-shrink-0 p-2 items-center w-full whitespace-nowrap cursor-pointer active:bg-gray-500 active:text-white transition-color-short overflow-hidden
+}
+
+.left-menu-sub-link-active {
+    @apply bg-white bg-opacity-60 hover:bg-opacity-25 text-gray-800 hover:text-white font-bold
+}
+
+.left-menu-sub-link-passive {
+    @apply text-gray-200 hover:text-white bg-opacity-10 hover:bg-gray-200 hover:bg-opacity-25
+}
+
+.left-menu-sub-link-fold {
+    @apply justify-center p-4 space-x-0
+}
+
+.left-menu-sub-link-expand {
+    @apply justify-start p-2 space-x-1
+}
+
+.left-menu-icon {
+    @apply flex flex-shrink-0 justify-center items-center w-6 h-6
+}
+
+/*</editor-fold>*/
+/*<editor-fold desc="Left Menu Footer">*/
+.left-menu #footer {
+    @apply flex flex-shrink-0 justify-center items-center w-full overflow-hidden
+}
+
+.left-menu #footer-links-wrapper {
+    @apply grid grid-flow-row auto-cols-max auto-rows-min w-full m-4 justify-center items-center overflow-hidden
+}
+
+.left-menu #footer-link {
+    @apply flex items-center px-2 py-2 text-white bg-gray-100 bg-opacity-10 hover:text-gray-700 hover:bg-gray-100 hover:bg-opacity-75 focus:text-gray-400 focus:bg-gray-700 space-x-1 transition-color-short overflow-hidden
+}
+
+.left-menu #footer-trigger {
+    @apply flex flex-shrink-0 w-full m-4 justify-center items-center text-white cursor-pointer transform hover:scale-110
+}
+
+.left-menu-trigger-icon {
+    @apply w-8 h-8
+}
+
+/*</editor-fold>*/
+/*<editor-fold desc="Left Menu Transitions">*/
+.left-menu-show {
+    @apply m-0 opacity-100
+}
+
+.left-menu-hide {
+    @apply -ml-72 opacity-0
+}
+
+.left-menu-fold {
+    @apply w-24
+}
+
+.left-menu-expand {
+    @apply w-72
+}
+
+.left-menu-title-show {
+    @apply max-w-sm opacity-100 ml-1
+}
+
+.left-menu-title-hide {
+    @apply ml-0 max-w-min opacity-0
+}
+
+/*</editor-fold>*/
+/*</editor-fold>*/

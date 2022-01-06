@@ -1,0 +1,8 @@
+/*Toastr*/
+.toastr {
+    @apply flex flex-row justify-between items-center shadow p-4 min-h-max
+}
+
+.toastr-close {
+    @apply flex items-center justify-center w-5 h-5 rounded-full font-bold hover:bg-red-700 hover:text-white hover:bg-opacity-90 cursor-pointer
+}

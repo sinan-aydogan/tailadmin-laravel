@@ -1,0 +1,14 @@
+/*Tooltip*/
+.tooltip {
+    @apply border-b-2 border-dotted inline-flex whitespace-normal cursor-pointer
+}
+
+/*Tooltip Container*/
+.tooltip-container {
+    @apply absolute z-10 w-44 m-2 filter drop-shadow
+}
+
+/*Tooltip Content*/
+.tooltip-content {
+    @apply bg-white text-gray-700 px-2 py-1 whitespace-normal z-50 border rounded-md
+}

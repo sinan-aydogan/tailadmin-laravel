@@ -3,200 +3,37 @@
 @import 'tailwindcss/utilities';
 
 /*Components*/
-@import "./components/alert.css";
-@import "./components/avatar.css";
-@import "./components/badge.css";
-@import "./components/breadcrumb.css";
-@import "./components/button.css";
-@import "./components/collapsible.css";
-@import "./components/dropdown.css";
-@import "./components/loading.css";
-@import "./components/list.css";
-@import "./components/modal.css";
-@import "./components/radius.css";
-@import "./components/pagination.css";
-@import "./components/popover.css";
-@import "./components/progress.css";
-@import "./components/tab.css";
-@import "./components/table.css";
-@import "./components/backEndTablePagination.css";
-@import "./components/input.css";
-
+@import "./components/auth.css";
+@import "./components/alert";
+@import "./components/avatar";
+@import "./components/badge";
+@import "./components/breadcrumb";
+@import "./components/button";
+@import "./components/collapsible";
+@import "./components/content-box";
+@import "./components/dropdown";
+@import "./components/loading";
+@import "./components/list";
+@import "./components/modal";
+@import "./components/radius";
+@import "./components/pagination";
+@import "./components/popover";
+@import "./components/progress";
+@import "./components/tab";
+@import "./components/table";
+@import "./components/toastr";
+@import "./components/tooltip";
+@import "./components/statistic-box";
+@import "./components/backEndTablePagination";
+@import "./components/input";
+@import "./components/vertical-menu";
 
 /*Layouts*/
-@import "./layout/main.css";
+@import "./layout/main";
+@import "./layout/full-screen-layout";
+@import "./layout/top-bar";
+@import "./layout/side-menu";
+@import "./layout/footer";
 
-/*Content Card*/
-.content-card-show-button {
-    @apply absolute top-4 right-4 text-gray-600 hover:bg-gray-500 hover:text-white w-7 h-7 flex items-center justify-center rounded-full cursor-pointer
-}
-
-/*Footer*/
-.footer {
-    @apply flex flex-wrap flex-shrink-0 items-center py-2 px-6 justify-center md:justify-end space-x-1 text-sm font-semibold text-right text-gray-500 w-full
-}
-
-/*Tooltip*/
-.tooltip {
-    @apply border-b-2 border-dotted inline-flex whitespace-normal cursor-pointer
-}
-
-/*Tooltip Container*/
-.tooltip-container {
-    @apply absolute z-10 w-44 m-2 filter drop-shadow
-}
-
-/*Tooltip Content*/
-.tooltip-content {
-    @apply bg-white text-gray-700 px-2 py-1 whitespace-normal z-50 border rounded-md
-}
-
-/*Toastr*/
-.toastr {
-    @apply flex flex-row justify-between items-center shadow p-4 min-h-max
-}
-
-.toastr-close {
-    @apply flex items-center justify-center w-5 h-5 rounded-full font-bold hover:bg-red-700 hover:text-white hover:bg-opacity-90 cursor-pointer
-}
-
-/*Statistic Widget*/
-.statistic-widget {
-    @apply flex justify-between h-full w-full
-}
-
-.statistic-widget-data {
-    @apply flex flex-col flex-grow
-}
-
-.statistic-widget-title {
-    @apply text-lg font-semibold
-}
-
-.statistic-widget-value {
-    @apply text-xl md:text-2xl xl:text-3xl font-bold py-2
-}
-
-.statistic-widget-diff-value {
-    @apply flex items-center gap-1 max-w-min text-sm
-}
-
-.statistic-widget-icon-container {
-    @apply flex flex-shrink-0 items-center overflow-hidden object-cover
-}
-
-.statistic-widget-icon {
-    @apply flex items-center justify-center p-4 border-2 w-20 h-20 rounded-full
-}
-
-.statistic-widget-picture-container {
-    @apply flex flex-shrink-0 items-center
-}
-
-.statistic-widget-picture {
-    @apply flex items-center justify-center border-2 w-20 rounded-full object-cover overflow-hidden
-}
-
-/*Full Screen Card*/
-.full-screen-card {
-    @apply relative flex h-screen w-screen
-}
-
-/*Full Screen Card Container*/
-.full-screen-card-container {
-    @apply absolute h-screen w-screen bg-cover z-10
-}
-
-/*Full Screen Card Content*/
-.full-screen-card-content {
-    @apply flex w-full items-center justify-center z-20
-}
-
-/*Auth*/
-/*Auth Container*/
-.auth-container {
-    @apply flex flex-col border items-center justify-center shadow border-none overflow-hidden
-}
-
-/*Auth Header*/
-.auth-header {
-    @apply flex flex-col w-full justify-center items-center
-}
-
-/*Auth Logo*/
-.auth-logo {
-    @apply inline-flex px-32 py-4
-}
-
-/*Auth Greeting*/
-.auth-greeting {
-    @apply inline-flex justify-center w-full bg-gray-200 py-1 bg-opacity-20 w-full
-}
-
-/*Auth Status*/
-.auth-status {
-    @apply mb-4 font-medium text-sm text-green-600
-}
-
-/*Auth Form*/
-.auth-form {
-    @apply flex flex-col gap-4 bg-white p-8 w-full
-}
-
-/*Auth Remember: Login*/
-.auth-remember {
-    @apply flex justify-between mt-4
-}
-
-/*Auth Remember Text: Login*/
-.auth-remember-text {
-    @apply ml-2 text-sm text-gray-600
-}
-
-/*Auth Forgot Password: Login*/
-.auth-forgot-password {
-    @apply underline text-sm text-gray-600 hover:text-gray-900
-}
-
-/*Auth Submit Area*/
-.auth-submit-area {
-    @apply flex items-center justify-between mt-4
-}
-
-/*Auth Error*/
-.auth-error {
-    @apply absolute w-full translate-y-1/2 mt-4 text-white
-}
-
-/*Auth Avatar Container: Lock*/
-.auth-avatar-container {
-    @apply absolute -mt-12 grid w-full justify-center
-}
-
-/*Auth Avatar Container: Lock*/
-.auth-avatar {
-    @apply border-4 rounded-full bg-gray-300 z-10
-}
-
-/*Auth Lock Form*/
-.auth-lock-form {
-    @apply flex flex-col gap-4 p-8 w-full
-}
-
-/*Auth Name*/
-.auth-name {
-    @apply text-xl text-center font-semibold pt-6 -mb-3
-}
-
-/*Initial Vertical Menu*/
-.ivm {
-    @apply flex flex-col md:flex-row items-center max-h-min w-full px-2 py-2 overflow-hidden
-}
-
-.ivm-container {
-    @apply flex flex-col md:flex-row w-full gap-2
-}
-
-.ivm-item {
-    @apply bg-opacity-0 hover:bg-opacity-100 items-center justify-center px-3 py-2 gap-2 whitespace-nowrap h-full w-full md:max-w-min font-bold cursor-pointer transition duration-300 ease-in-out
-}
+/* Effects */
+@import "./misc/effect";

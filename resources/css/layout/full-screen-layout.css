@@ -1,0 +1,14 @@
+/*Full Screen Card*/
+.full-screen-card {
+    @apply relative flex h-screen w-screen
+}
+
+/*Full Screen Card Container*/
+.full-screen-card-container {
+    @apply absolute h-screen w-screen bg-cover z-10
+}
+
+/*Full Screen Card Content*/
+.full-screen-card-content {
+    @apply flex w-full items-center justify-center z-20
+}
