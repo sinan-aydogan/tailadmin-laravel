@@ -1,4 +1,4 @@
-import {computed, onBeforeMount, onUnmounted, ref, watch} from "vue";
+import { computed, onBeforeMount, onUnmounted, ref, watch } from "vue";
 
 export default function () {
     /*Definitions*/
@@ -17,7 +17,7 @@ export default function () {
 
 
     const deviceTypeCalculate = () => {
-        if (windowWidth.value <= 425) {
+        if (windowWidth.value <= 640) {
             deviceType.value = "phone";
         } else if (windowWidth.value <= 768) {
             deviceType.value = "tablet";
@@ -39,5 +39,5 @@ export default function () {
             deviceTypeCalculate();
         });
 
-    return {deviceType};
+    return { deviceType };
 }

@@ -1,34 +1,26 @@
 <template>
     <!--Browser Title-->
-    <Head :title="title"/>
+    <Head :title="title" />
     <!--TODO: Convert to Announcement Bar Component(TA-23)-->
-    <jet-banner/>
+    <jet-banner />
     <!--Main Container-->
     <div class="main-container">
         <!--Left Menu -->
         <left-menu
             @foldLeftMenu="leftMenuTrigger"
             :class="[
-          showLeftMenu ? 'left-menu-show' : 'left-menu-hide',
-          foldLeftMenu ? 'left-menu-fold' : 'left-menu-expand'
-          ]"
+                showLeftMenu ? 'left-menu-show' : 'left-menu-hide',
+                foldLeftMenu ? 'left-menu-fold' : 'left-menu-expand'
+            ]"
         >
-            <template
-                v-for="(item, index) in sideMenuLinksGn"
-                :key="index"
-            >
-                <left-menu-item
-                    :item="item"
-                    @foldLeftMenu="leftMenuTrigger"
-                ></left-menu-item>
+            <template v-for="(item, index) in sideMenuLinksGn" :key="index">
+                <left-menu-item :item="item" @foldLeftMenu="leftMenuTrigger"></left-menu-item>
             </template>
         </left-menu>
         <!--Content Container-->
         <div class="content-wrapper">
             <!--Top Menu-->
-            <top-menu
-                @foldLeftMenu="leftMenuTrigger"
-            />
+            <top-menu @foldLeftMenu="leftMenuTrigger" />
             <!--TODO: Sync with Popup Menu-->
             <!--Content-->
             <div class="content-container">
@@ -38,13 +30,13 @@
                     <header class="page-header">
                         <!--Page Title-->
                         <h1 v-if="hasSlot('header') || header" class="page-title">
-                            <slot v-if="hasSlot('header')" name="header"/>
-                            <span v-else v-text="header"/>
+                            <slot v-if="hasSlot('header')" name="header" />
+                            <span v-else v-text="header" />
                         </h1>
                         <!--Page SubTitle-->
                         <h2 v-if="hasSlot('subHeader') || subHeader" class="page-subtitle">
                             <slot v-if="hasSlot('subHeader')" name="subHeader"></slot>
-                            <span v-else v-text="subHeader"/>
+                            <span v-else v-text="subHeader" />
                         </h2>
                     </header>
                     <!--Page Action Buttons-->
@@ -58,11 +50,7 @@
                 <main class="flex flex-col flex-grow">
                     <!--Flash Messages-->
                     <div v-if="$page.props.flash.message" class="alert">
-                        <t-alert
-                            :color="$page.props.flash.message.type"
-                            :timer="5000"
-                            class="my-2"
-                        >
+                        <t-alert :color="$page.props.flash.message.type" :timer="5000" class="my-2">
                             <span v-html="$page.props.flash.message.content"></span>
                         </t-alert>
                     </div>
@@ -80,25 +68,20 @@
                         <span v-html="$page.props.flash.toastr.content"></span>
                     </t-toastr>
                 </div>
-            </div
-            >
-            <footer
-                v-if="conf.app.footer.status"
-                class="footer"
-            >
-                <span class="mt-1 space-x-1 select-none" v-html="conf.app.footer.text"/>
+            </div>
+            <footer v-if="conf.app.footer.status" class="footer">
+                <span class="mt-1 space-x-1 select-none" v-html="conf.app.footer.text" />
             </footer>
         </div>
     </div>
     <!--Modals-->
-    <teleport to="body">
-    </teleport>
+    <teleport to="body"></teleport>
 </template>
 
 <script>
 /*Main Functions*/
-import {defineComponent, provide, reactive, ref, watch} from "vue";
-import {Head} from "@inertiajs/inertia-vue3";
+import { defineComponent, provide, reactive, ref, watch } from "vue";
+import { Head } from "@inertiajs/inertia-vue3";
 
 /*Components*/
 import JetBanner from "@/Jetstream/Banner.vue";
@@ -110,11 +93,11 @@ import TopMenu from "@/Layouts/TopMenu/TopMenu";
 
 /*External Sources Functions*/
 import config from "@/config";
-import {sideMenuLinks} from "@/Config/menuLinks";
+import { sideMenuLinks } from "@/Config/menuLinks";
 import windowSizeCalculator from "@/Functions/windowSizeCalculator";
 
 /*Multi Language*/
-import {useI18n} from "vue-i18n";
+import { useI18n } from "vue-i18n";
 
 
 export default defineComponent({
@@ -141,13 +124,13 @@ export default defineComponent({
             default: null
         }
     },
-    setup(props, {slots}) {
+    setup(props, { slots }) {
         /*Definitions*/
-        const {deviceType} = windowSizeCalculator();
-        const {conf} = config();
+        const { deviceType } = windowSizeCalculator();
+        const { conf } = config();
 
         /*Multi Language*/
-        const {t} = useI18n();
+        const { t } = useI18n();
 
         /*Side Menu*/
         const sideMenuLinksGn = sideMenuLinks;
