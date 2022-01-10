@@ -91,7 +91,7 @@ export default defineComponent({
         },
         color: {
             type: String,
-            default: "white"
+            default: "light"
         }
     },
     emits: ["destroy"],
