@@ -61,5 +61,16 @@ export default function () {
         }
     });
 
-    return { darkMode };
+    /* Change Dark Mode */
+    const changeTheme = () => {
+                if (darkMode .value=== 'light') {
+                  darkMode.value = 'dark';
+                } else if (darkMode.value === 'dark') {
+                  darkMode .value= 'auto';
+                } else {
+                  darkMode.value = 'light';
+                }
+              }
+
+    return { darkMode, changeTheme };
 }
