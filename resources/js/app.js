@@ -33,6 +33,9 @@ const i18n = createI18n({
     },
 });
 
+/* Highlighter */
+import VueHighlightJS from 'vue3-highlightjs'
+
 const appName =
     window.document.getElementsByTagName("title")[0]?.innerText || "Laravel";
 
@@ -43,6 +46,7 @@ createInertiaApp({
         return createApp({ render: () => h(app, props) })
             .use(plugin)
             .use(i18n)
+            .use(VueHighlightJS)
             .component("icon", FontAwesomeIcon)
             .mixin({ methods: { route } })
             .mount(el);

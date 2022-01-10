@@ -35,5 +35,6 @@
 @import "./layout/side-menu";
 @import "./layout/footer";
 
-/* Effects */
+/* Miscs */
 @import "./misc/effect";
+@import "./misc/highlighter"
