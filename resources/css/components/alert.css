@@ -406,15 +406,15 @@
 /*<editor-fold desc="Block Style">*/
 /*General Definitions*/
 .alert-block {
-    @apply shadow pr-4 text-gray-700 bg-white dark:bg-slate-800 dark:text-white overflow-hidden
+    @apply shadow pl-1 pr-4 text-gray-700 bg-white dark:bg-slate-800 dark:text-white overflow-hidden
 }
 
 .alert-block .alert-content{
-    @apply py-3 px-4
+    @apply py-3 ml-12 pr-4
 }
 
 .alert-block .alert-icon {
-    @apply h-full px-5 py-1 border-r-4
+    @apply absolute h-full px-5 border-r-4 left-0
 }
 
 .alert-block-base #countdown {
