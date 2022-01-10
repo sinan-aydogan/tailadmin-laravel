@@ -12,30 +12,34 @@
         <template #default>
             <grid-section :col="1" :gap="4">
                 <template v-for="(content,key) in demoContents" :key="key+newAlertID">
-                    <t-alert
-                        :id="key + newAlertID"
-                        :design="content.design"
-                        :color="content.color"
-                        :radius="content.radius"
-                        :title="content.title ? tm(content.title) : null"
-                        :closeable="content.closeable"
-                        :timer="content.timer"
-                        @destroy="$event === key + newAlertID ? active = false : active = true"
-                    >
-                        <template #icon v-if="content.icon || content.media">
-                            <icon v-if="content.icon" :icon="content.icon" size="lg" />
-                            <t-avatar
-                                v-if="content.media"
-                                :radius="8"
-                                :size="3"
-                                src="https://i.pravatar.cc/300"
-                                class="my-2"
-                            />
-                        </template>
-                        <span v-text="tm(content.content)"></span>
-                    </t-alert>
+                    <t-code-showcase>
+                        <t-alert
+                            :id="key + newAlertID"
+                            :design="content.design"
+                            :color="content.color"
+                            :radius="content.radius"
+                            :title="content.title ? tm(content.title) : null"
+                            :closeable="content.closeable"
+                            :timer="content.timer"
+                            @destroy="$event === key + newAlertID ? active = false : active = true"
+                        >
+                            <template #icon v-if="content.icon || content.media">
+                                <icon v-if="content.icon" :icon="content.icon" size="lg" />
+                                <t-avatar
+                                    v-if="content.media"
+                                    :radius="8"
+                                    :size="3"
+                                    src="https://i.pravatar.cc/300"
+                                    class="my-2"
+                                />
+                            </template>
+                            <span v-text="tm(content.content)"></span>
+                        </t-alert>
+                        <template #js>{{ demoContent[content.design].js }}</template>
+                        <template #template>{{ demoContent[content.design].template }}</template>
+                    </t-code-showcase>
                 </template>
-            </grid-section>
+            </grid-section>,
         </template>
     </app-layout>
 </template>
@@ -51,6 +55,10 @@ import GridSection from "@/Layouts/GridSection";
 import TAlert from "@/Components/Alert/TAlert";
 import TButton from "@/Components/Button/TButton";
 import TAvatar from "@/Components/Avatar/TAvatar";
+import TCodeShowcase from '@/Components/Code/TCodeShowcase'
+
+/* Demo */
+import { samples } from "@/Components/Alert/TAlertDoc";
 
 /*Import FontAwesomeIcon*/
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -69,8 +77,11 @@ export default defineComponent({
         GridSection,
         TAlert,
         TButton,
+        TCodeShowcase,
     },
     setup() {
+        /* Demo */
+        const demoContent = samples;
         /* Multi-language */
         const { t, tm } = useI18n({
             inheritLocale: true,
@@ -127,7 +138,7 @@ export default defineComponent({
             "danger": {
                 design: "light",
                 content: "lightContent",
-                color: "dark",
+                color: "danger",
                 radius: 3,
                 icon: "trash",
                 title: "lightTitle",
@@ -197,6 +208,7 @@ export default defineComponent({
 
         return {
             active,
+            demoContent,
             newAlertID,
             selectedColor,
             colors,
