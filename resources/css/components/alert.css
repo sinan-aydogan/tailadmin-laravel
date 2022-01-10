@@ -1,5 +1,5 @@
 .alert {
-    @apply flex flex-shrink-0 items-center justify-between relative w-full flex-grow-0
+    @apply flex flex-shrink-0 items-center justify-start relative w-full flex-grow-0
 }
 
 .alert-content {
@@ -177,15 +177,15 @@
 /*<editor-fold desc="Inline Style">*/
 /*General Definitions*/
 .alert-inline {
-    @apply border py-1 pl-2 pr-4 text-white
+    @apply border py-1 pl-6 pr-4 text-white
+}
+
+.alert-inline .alert-icon{
+    @apply -mr-2
 }
 
 .alert-inline .alert-line {
-    @apply w-1.5 h-full rounded-full flex-shrink-0 -ml-0.5 mr-1
-}
-
-.alert-inline .alert-icon {
-    @apply ml-2
+    @apply absolute h-[80%] w-1.5 left-2 rounded-full flex-shrink-0 after:content-['\00a0']
 }
 
 /*Colors: success, danger, warning, info, light, dark, violet*/
@@ -256,15 +256,15 @@
 
 /*<editor-fold desc="Outline Style">*/
 .alert-outline {
-    @apply  shadow pr-4 text-gray-700 bg-white dark:bg-slate-800 dark:text-white overflow-hidden
+    @apply  flex shadow px-4 text-gray-700 bg-white dark:bg-slate-800 dark:text-white overflow-hidden
 }
 
 .alert-outline .alert-content{
-    @apply px-4 py-3
+    @apply pl-2 pr-4 py-3
 }
 
 .alert-outline .alert-line {
-    @apply w-1.5 h-full flex-shrink-0 mr-4
+    @apply absolute w-1.5 h-full left-0 flex-shrink-0 mr-4 before:content-['\00a0']
 }
 
 /*Colors: success, danger, warning, info, light, dark, violet*/
