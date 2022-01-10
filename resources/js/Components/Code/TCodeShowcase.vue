@@ -19,7 +19,7 @@
                 <template v-for="tab in tabs" :key="tab.id">
                     <span
                         @click="selectTab(tab.id)"
-                        class="flex dark:hover:bg-slate-800/75 cursor-pointer px-4 py-2 select-none"
+                        class="flex hover:bg-slate-600 dark:hover:bg-slate-800/75 cursor-pointer px-4 py-2 select-none transition-colors duration-300"
                         v-text="tab.label"
                     ></span>
                 </template>
