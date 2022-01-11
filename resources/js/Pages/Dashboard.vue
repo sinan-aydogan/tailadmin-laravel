@@ -118,21 +118,21 @@
       <!--Alerts-->
       <grid-section :col-tablet="3">
         <!--Red-Deleted-->
-        <t-alert design="filled" :closeable="true" color="red">
+        <t-alert design="filled" :closeable="true" color="danger">
           <template #icon>
             <t-trash-icon slot="icon" class="w-6 h-6" />
           </template>
           <span v-t="'alertDeleted'" />
         </t-alert>
         <!--Blue-Info-->
-        <t-alert design="inline" color="blue">
+        <t-alert design="inline" color="info">
           <template #icon>
             <t-information-circle-icon class="w-6 h-6" />
           </template>
           <span v-t="'alertOverwrite'" />
         </t-alert>
         <!--Green Success-->
-        <t-alert design="outline" color="green">
+        <t-alert design="outline" color="success">
           <template #icon>
             <t-check-circle-icon class="w-6 h-6" />
           </template>
@@ -141,7 +141,7 @@
       </grid-section>
       <!--Rich Alerts-->
       <grid-section :col-tablet="2">
-        <t-alert :radius="3" design="filled" color="white">
+        <t-alert :radius="3" design="gradient" color="fuchsia" :closeable="true">
           <template #icon>
             <t-avatar :radius="8" :size="3" src="https://i.pravatar.cc/300" />
           </template>
@@ -151,12 +151,9 @@
           :radius="3"
           design="elegant"
           :title="t('alertDeletedUserTitle')"
-          color="yellow"
+          color="warning"
           :closeable="true"
         >
-          <template #icon>
-            <t-avatar :radius="8" :size="3" src="https://i.pravatar.cc/300" />
-          </template>
           <span v-html="t('alertDeletedUser')" />
         </t-alert>
       </grid-section>
