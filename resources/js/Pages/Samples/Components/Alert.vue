@@ -40,8 +40,8 @@
                             <icon icon="info" size="lg" />
                             <span v-text="tm('reviveMessage')"></span>
                         </div>
-                        <template #js>{{ demoContent[content.design].js }}</template>
-                        <template #template>{{ demoContent[content.design].template }}</template>
+                        <template #js>{{ docSamples[content.design].js }}</template>
+                        <template #template>{{ docSamples[content.design].template }}</template>
                         <template #label="slotProps">
                             <icon v-if="slotProps.tab.id === 'timer'" icon="play" size="sm" />
                             <span v-text="slotProps.tab.label" />
@@ -64,9 +64,6 @@ import GridSection from "@/Layouts/GridSection";
 import TAlert from "@/Components/Alert/TAlert";
 import TAvatar from "@/Components/Avatar/TAvatar";
 import TCodeShowcase from '@/Components/Code/TCodeShowcase'
-
-/* Demo */
-import { samples } from "@/Components/Alert/TAlertDoc";
 
 /*Import FontAwesomeIcon*/
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -105,7 +102,18 @@ export default defineComponent({
                     elegantContent: 'The all of changes overwrite to themself (elegant)',
                     blockContent: 'Please, check your task list (block)',
                     activateTimer: 'Start timer',
-                    reviveMessage: 'Don\'t worry, it\'ll come back in 4 seconds'
+                    reviveMessage: 'Don\'t worry, it\'ll come back in 4 seconds',
+                    docDefault: 'Default Value',
+                    docDescription: 'Description',
+                    docType: 'Value Type',
+                    docIdDesc: 'It is unique id for your alert. You set it to different value for each alert.',
+                    docDesignDesc: 'The theme of the alert component.',
+                    docColorDesc: 'The color of the alert component. Important: If you use the gradient design, you can not default color options. If you use the gradient design, your color options are rose, sky, fuchsia, violet, cloud, turquoise, caterpillar, dream and biscuit',
+                    docRadiusDesc: 'It shapes the corners of the alert.',
+                    docTitleDesc: 'If you would like to display a title using the alert component, pass/set any value through this prop.',
+                    docCloseableDesc: 'If you would like to make your alert component closeable, you can use this prop.',
+                    docTimerDesc: 'If you would like to make your alert component to close automatically, you can set this prop. Its unit is millisecond.',
+                    docTypeDesc: 'If you don not want to deal with design and color, you can use this prop beacause it sets automatically design and color values to your choose.',
                 },
                 tr: {
                     pageTitle: 'Uyarı Kutusu',
@@ -121,7 +129,18 @@ export default defineComponent({
                     elegantContent: 'Yapıtığınız değişiklikler, var olan kayıtların üzerine yazılacak (elegant)',
                     blockContent: 'Lütfen görev listenizi kontrol ediniz (block)',
                     activateTimer: 'Zamanlayıcıyı Çalıştır',
-                    reviveMessage: 'Endişelenme 4 saniye sonra geri gelecek'
+                    reviveMessage: 'Endişelenme 4 saniye sonra geri gelecek',
+                    docDefault: 'Varsayılan Değer',
+                    docDescription: 'Detay',
+                    docType: 'Değer Türü',
+                    docIdDesc: 'Her uyarı kutusu için benzersiz olması gereken değer. Her uyarı için benzersiz olacak şekilde ayarlamalısın.',
+                    docDesignDesc: 'Uyarı kutusunun genel görünümünü belirler.',
+                    docColorDesc: 'Uyarı kutusunun rengini belirlemenize yarar. Eğer gradient tasarımı kullanıyorsanız lütfen default renkler yerine bu renklerden birini kullanınız: rose, sky, fuchsia, violet, cloud, turquoise, caterpillar, dream ve biscuit',
+                    docRadiusDesc: 'Uyarı kutusunun köşelerinin ovalliğini kontrol etmenizi sağlar.',
+                    docTitleDesc: 'Uyarı kutusu içinde istediğiniz başlığı gösterebilmenizi sağlar.',
+                    docCloseableDesc: 'Uyarı kutusuna gizleme düğmesi eklemenizi sağlar.',
+                    docTimerDesc: 'Uyarı kutusunun belirlediğiniz zaman sonunda kapanmasını sağlar. Milisaniye cinsinden bir değer vermelisiniz.',
+                    docTypeDesc: 'Tasarım ve renk ile uğraşmadan direk başarılı(success-yeşil) veya dikkat(danger-kırmızı) hissiyatı yaratacak hazır tasarımları kullanmanızı sağlar. Type değerini verdiğinizde design ve color değeri girmeniz gerekmez. ',
                 },
             },
         });
@@ -200,11 +219,9 @@ export default defineComponent({
             }
         });
         const activeShowcase = ref()
-
         const startTimer = () => {
             demoContents[activeShowcase.value].timer = 4000
         }
-
         const reviveMessageStatus = ref({});
         const revive = (alert) => {
             setTimeout(() => {
@@ -218,12 +235,264 @@ export default defineComponent({
             }, 4000)
         }
 
-        /* Demo */
-        const demoContent = samples;
+        /* Documentation */
+        /* Props Definitions */
+        const docProps = {
+            headers: [
+                { id: 'prop', label: 'Prop' },
+                { id: 'type', label: tm('docType') },
+                { id: 'options', label: 'Options', colorfulBg: true },
+                { id: 'default', label: tm('docDefault') },
+                { id: 'description', label: tm('docDescription') },
+
+            ],
+            content: [
+                {
+                    id: 'id',
+                    prop: 'id',
+                    type: 'String, Number, Array, Object and Date',
+                    default: 'unique',
+                    description: tm('docIdDesc'),
+                },
+                {
+                    id: 'design',
+                    prop: 'design',
+                    type: 'String',
+                    options: ['filled', 'light', 'inline', 'outline', 'gradient', 'elegant', 'block'],
+                    default: 'filled',
+                    description: tm('docDesignDesc')
+                },
+                {
+                    id: 'color',
+                    prop: 'color',
+                    type: 'String',
+                    options: ['success', 'danger', 'warning', 'info', 'purple', 'light', 'dark'],
+                    default: 'light',
+                    description: tm('docColorDesc')
+                },
+                {
+                    id: 'radius',
+                    prop: 'radius',
+                    type: 'Number',
+                    options: ['0', '1', '2', '3', '4', '5', '6', '7', '8'],
+                    default: '3',
+                    description: tm('docRadiusDesc')
+                },
+                {
+                    id: 'title',
+                    prop: 'title',
+                    type: 'String',
+                    description: tm('docTitleDesc')
+                },
+                {
+                    id: 'closeable',
+                    prop: 'closeable',
+                    type: 'Boolean',
+                    options: ['true', 'false'],
+                    default: 'false',
+                    description: tm('docCloseableDesc')
+                },
+                {
+                    id: 'timer',
+                    prop: 'timer',
+                    type: 'Number',
+                    description: tm('docTimerDesc')
+                },
+                {
+                    id: 'type',
+                    prop: 'type',
+                    type: 'String',
+                    options: ['success', 'danger', 'warning', 'info'],
+                    description: tm('docTypeDesc')
+                },
+            ]
+        };
+
+        /* Sample Codes */
+        const docSamples = {
+            filled: {
+                js: '/* FontAwesomeIcon Import */\n'+
+                    'import { library } from "@fortawesome/fontawesome-svg-core";\n'+
+                    'import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";\n'+
+                    'library.add( faCheckCircle )\n\n/* Alert Component Import */\n'+
+                    'import TAlert from \'@/Components/Alert/TAlert.vue\'\n'+
+                    '\n' +
+                    'export default {\n'+
+                    '    components: { TAlert },\n'+
+                    '    setup() {\n'+
+                    '    },\n' +
+                    '}',
+                template: '<t-alert\n' +
+                    '    id="success"\n' +
+                    '    design="filled"\n' +
+                    '    color="success"\n' +
+                    '    title="Success"\n' +
+                    '    :radius=1\n' +
+                    '    :closeable="true"\n' +
+                    '    >\n' +
+                    '    <template #icon>\n' +
+                    '        <icon icon="check-circle" size="lg" />\n' +
+                    '    </template>\n' +
+                    '    The post added successfully (filled)\n' +
+                    '</t-alert>',
+            },
+            light: {
+                js: '/* FontAwesomeIcon Import */\n' +
+                    'import { library } from "@fortawesome/fontawesome-svg-core";\n' +
+                    'import { faTrash } from "@fortawesome/free-solid-svg-icons";\n' +
+                    'library.add( faTrash  )\n' +
+                    '\n' +
+                    '/* Alert Component Import */\n' +
+                    'import TAlert from \'@/Components/Alert/TAlert.vue\'\n' +
+                    '\n' +
+                    'export default {\n' +
+                    '    components: { TAlert },\n' +
+                    '    setup() {\n' +
+                    '    },\n' +
+                    '}',
+                template: '<t-alert\n' +
+                    '    id="danger"\n' +
+                    '    design="light"\n' +
+                    '    color="danger"\n' +
+                    '    title="Danger"\n' +
+                    '    :closeable="true"\n' +
+                    '    >\n' +
+                    '    <template #icon>\n' +
+                    '        <icon icon="trash" size="lg" />\n' +
+                    '    </template>\n' +
+                    '    The user deleted successfully (light)\n' +
+                    '</t-alert>',
+            },
+            inline: {
+                js: '/* FontAwesomeIcon Import */\n' +
+                    'import { library } from "@fortawesome/fontawesome-svg-core";\n' +
+                    'import { faBan } from "@fortawesome/free-solid-svg-icons";\n' +
+                    'library.add( faBan )\n' +
+                    '\n' +
+                    '/* Alert Component Import */\n' +
+                    'import TAlert from \'@/Components/Alert/TAlert.vue\'\n' +
+                    '\n' +
+                    'export default {\n' +
+                    '    components: { TAlert },\n' +
+                    '    setup() {\n' +
+                    '    },\n' +
+                    '}',
+                template: '<t-alert\n' +
+                    '    id="blocked"\n' +
+                    '    design="inline"\n' +
+                    '    color="warning"\n' +
+                    '    :closeable="false"\n    >\n' +
+                    '    <template #icon>\n' +
+                    '        <icon icon="ban" size="lg" />\n' +
+                    '    </template>\n' +
+                    '    The user deleted successfully (light)\n' +
+                    '</t-alert>',
+            },
+            outline: {
+                js: '/* FontAwesomeIcon Import */\n' +
+                    'import { library } from "@fortawesome/fontawesome-svg-core";\n' +
+                    'import { faRetweet } from "@fortawesome/free-solid-svg-icons";\n' +
+                    'library.add( faRetweet )\n' +
+                    '\n' +
+                    '/* Alert Component Import */\n' +
+                    'import TAlert from \'@/Components/Alert/TAlert.vue\'\n' +
+                    '\n' +
+                    'export default {\n' +
+                    '    components: { TAlert },\n' +
+                    '    setup() {\n' +
+                    '    },\n' +
+                    '}',
+                template: '<t-alert\n' +
+                    '    id="updateSettings"\n' +
+                    '    design="outline"\n' +
+                    '    color="info"\n' +
+                    '    :closeable="false"\n' +
+                    '    >\n' +
+                    '    <template #icon>\n' +
+                    '        <icon icon="retweet" size="lg" />\n' +
+                    '    </template>\n' +
+                    '    You entered a new configuration, the settings will refresh 24hr after (outline)\n' +
+                    '</t-alert>',
+            },
+            gradient: {
+                js: '/* Alert Component Import */\n' +
+                    'import TAlert from \'@/Components/Alert/TAlert.vue\'\n' +
+                    '\n' +
+                    '/* Avatar Component Import */\n' +
+                    'import TAvatar from "@/Components/Avatar/TAvatar";\n' +
+                    '\n' +
+                    'export default {\n' +
+                    '    components: {\n' +
+                    '        TAlert,\n' +
+                    '        TAvatar\n' +
+                    '    },\n' +
+                    '    setup() {\n' +
+                    '    },\n' +
+                    '}',
+                template: '<t-alert\n' +
+                    '    id="createSuccess"\n' +
+                    '    design="gradient"\n' +
+                    '    color="dream"\n' +
+                    '    :closeable="true"\n' +
+                    '    >\n' +
+                    '    <t-avatar\n' +
+                    '        :radius="8"\n' +
+                    '        :size="3"\n' +
+                    '        src="https://i.pravatar.cc/300"\n' +
+                    '        />\n' +
+                    '    The new user is successfully added.<br>\n' +
+                    '    User: Hamdi KAYA (gradient)\n' +
+                    '</t-alert>',
+            },
+            elegant: {
+                js: '/* Alert Component Import */\n' +
+                    'import TAlert from \'@/Components/Alert/TAlert.vue\'\n' +
+                    '\nexport default {\n' +
+                    '    components: { TAlert },\n' +
+                    '    setup() {\n' +
+                    '    },\n' +
+                    '}',
+                template: '<t-alert\n' +
+                    '    id="overwrite"\n' +
+                    '    design="elegant"\n' +
+                    '    color="violet"\n' +
+                    '    title="Attention"\n' +
+                    '    :closeable="true"\n' +
+                    '    :radius=8\n' +
+                    '    >\n' +
+                    '    The all of changes overwrite to themself (elegant)\n' +
+                    '</t-alert>',
+            },
+            block: {
+                js: '/* FontAwesomeIcon Import */\n' +
+                    'import { library } from "@fortawesome/fontawesome-svg-core";\n' +
+                    'import { faInfo } from "@fortawesome/free-solid-svg-icons";\nlibrary.add( faInfo )\n' +
+                    '\n' +
+                    '/* Alert Component Import */\n' +
+                    'import TAlert from \'@/Components/Alert/TAlert.vue\'\n' +
+                    '\n' +
+                    'export default {\n' +
+                    '    components: { TAlert },\n' +
+                    '    setup() {\n' +
+                    '    },\n' +
+                    '}',
+                template: '<t-alert\n' +
+                    '    id="blocked"\n' +
+                    '    design="block"\n' +
+                    '    color="info"\n' +
+                    '    :closeable="true"\n' +
+                    '    >\n' +
+                    '    <template #icon>\n' +
+                    '        <icon icon="info" size="lg" />\n' +
+                    '    </template>\n' +
+                    '    Please, check your task list (block)\n' +
+                    '</t-alert>',
+            }
+        };
         const showcaseTabs = [
             { id: 'js', label: 'JS', type: 'code', codeLang: 'javascript' },
             { id: 'template', label: 'Template', type: 'code', codeLang: 'html' },
-            { id: 'props', label: 'Props' },
+            { id: 'props', label: 'Props', type: 'table', table: docProps },
             {
                 id: 'timer', label: tm('activateTimer'), command: () => startTimer()
             }
@@ -233,9 +502,9 @@ export default defineComponent({
             activeShowcase,
             revive,
             reviveMessageStatus,
-            demoContent,
             showcaseTabs,
             demoContents,
+            docSamples,
             t, tm,
         };
     }
