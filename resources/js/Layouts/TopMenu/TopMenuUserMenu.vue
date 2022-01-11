@@ -31,44 +31,44 @@
             </div>
         </template>
         <template #default>
-            <div class="dropdown-container">
+            <div class="top-menu-dropdown-content-wrapper-transparent min-w-[13rem]">
                 <!-- Account Management -->
-                <div class="dropdown-header" v-text="tm('manageAccount')"/>
+                <div class="top-menu-dropdown-header border-t rounded-t" v-text="tm('manageAccount')"/>
 
                 <!--Profile-->
                 <Link :href="route('profile.show')">
-                    <div class="dropdown-item" v-text="tm('profile')"/>
+                    <div class="top-menu-dropdown-item" v-text="tm('profile')"/>
                 </Link>
 
                 <!--API Tokens-->
                 <Link v-if="$page.props.jetstream.hasApiFeatures"
                       :href="route('api-tokens.index')">
-                    <div class="dropdown-item" v-text="tm('api')"/>
+                    <div class="top-menu-dropdown-item" v-text="tm('api')"/>
                 </Link>
 
                 <!-- Team Management -->
                 <template v-if="$page.props.jetstream.hasTeamFeatures">
                     <div class="dropdown-item-separator"/>
-                    <div class="dropdown-header" v-text="tm('manageTeam')"/>
+                    <div class="top-menu-dropdown-header" v-text="tm('manageTeam')"/>
 
                     <!-- Team Settings -->
                     <Link :href="route('teams.show', $page.props.user.current_team)">
-                        <div class="dropdown-item" v-text="tm('teamSettings')"/>
+                        <div class="top-menu-dropdown-item" v-text="tm('teamSettings')"/>
                     </Link>
 
                     <!--Create New Team-->
                     <Link v-if="$page.props.jetstream.canCreateTeams"
                           :href="route('teams.create')">
-                        <div class="dropdown-item" v-text="tm('createNewTeam')"/>
+                        <div class="top-menu-dropdown-item" v-text="tm('createNewTeam')"/>
                     </Link>
 
                     <!-- Team Switcher -->
                     <div class="dropdown-item-separator"/>
-                    <div class="dropdown-header" v-text="tm('switchTeams')"/>
-
-                    <template v-for="team in $page.props.user.all_teams" :key="team.id">
-                        <form @submit.prevent="switchToTeam(team)">
-                            <button class="dropdown-item">
+                    <div class="top-menu-dropdown-header" v-text="tm('switchTeams')"/>
+                    <div class="top-menu-dropdown-item">
+                        <template v-for="team in $page.props.user.all_teams" :key="team.id">
+                            <form @submit.prevent="switchToTeam(team)">
+                                <button>
                           <span class="flex items-center">
                             <svg
                                 v-if="team.id === $page.props.user.current_team_id"
@@ -86,106 +86,16 @@
                             {{ team.name }}
                           </span>
 
-                            </button>
-                        </form>
-                    </template>
-                </template>
-
-                <!--Language Selector-->
-                <div class="dropdown-item-separator"/>
-                <div
-                    v-if="conf.app.topMenu.languageSelector"
-                    class="lang-selector-container"
-                >
-                    <template v-for="item in conf.app.languages" :key="item.key">
-                    <span
-                        :class="item.key !== locale ? ' opacity-25': ''"
-                        class="lang-selector-item"
-                    >
-                      <svg v-html="item.icon" class="lang-icon" @click="changeLang(item.key)"/>
-                    </span>
-                    </template>
-
-                </div>
-
-                <!--Dark Mode Selector-->
-                <div class="dropdown-item-separator"/>
-                <div
-                    v-if="conf.app.topMenu.darkModeSelector"
-                    class="theme-changer-container"
-                >
-                    <div
-                        v-for="mode in ['auto','dark','light']"
-                        :key="mode"
-                        class="theme-changer-button"
-                        :class="'theme-changer-button-'+ mode + (darkMode === mode ? '-active' : '')"
-                        @click="darkMode=mode"
-                        @mouseenter="showDarkModeTitle=mode"
-                        @mouseleave="showDarkModeTitle=''"
-                    >
-                        <!--Mode Icons-->
-                        <!--Auto-->
-                        <svg v-if="mode==='auto'"
-                             key="auto"
-                             xmlns="http://www.w3.org/2000/svg"
-                             class="theme-icon"
-                             fill="none"
-                             viewBox="0 0 24 24"
-                             stroke="currentColor"
-                        >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"
-                            />
-                        </svg>
-                        <!--Dark-->
-                        <svg
-                            v-if="mode==='dark'"
-                            key="dark"
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="theme-icon"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                        >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-                            />
-                        </svg>
-                        <!--Light-->
-                        <svg
-                            v-if="mode==='light'"
-                            key="light"
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="theme-icon"
-                            viewBox="0 0 20 20"
-                            fill="currentColor"
-                        >
-                            <path
-                                fill-rule="evenodd"
-                                d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
-                                clip-rule="evenodd"
-                            />
-                        </svg>
-                        <!--Mode Title-->
-                        <transition name="darkModeTitle">
-              <span
-                  v-show="showDarkModeTitle===mode"
-                  v-text="tm('mode')"
-                  class="theme-changer-button-text"
-              />
-                        </transition>
+                                </button>
+                            </form>
+                        </template>
                     </div>
-                </div>
+
+                </template>
 
                 <!-- Authentication -->
                 <div class="dropdown-item-separator"/>
-                <span class="logout-button" @click="logout">
+                <span class="logout-button border-b rounded-b" @click="logout">
                         <!--Logout Text-->
                         <span v-text="tm('logout')"/>
                     <!--Logout Icon-->
@@ -210,8 +120,8 @@
 </template>
 
 <script>
-/*Main Funtions*/
-import {defineComponent, inject, onBeforeMount, ref, watch} from "vue";
+/*Main Functions*/
+import {defineComponent, inject, ref} from "vue";
 import {Link} from "@inertiajs/inertia-vue3";
 import {Inertia} from "@inertiajs/inertia";
 
@@ -221,8 +131,7 @@ import TAvatar from "@/Components/Avatar/TAvatar";
 
 /*Multi Language*/
 import {useI18n} from "vue-i18n";
-import { userMenuTranslates} from "@/Lang/languages";
-import langChooserFn from "@/Functions/langChooser";
+import {userMenuTranslates} from "@/Lang/languages";
 
 export default defineComponent({
     name: "TopMenuUserMenu",
@@ -232,7 +141,6 @@ export default defineComponent({
         const conf = inject("conf");
 
         /*Multi Language*/
-        const { changeLang, locale, loadingTranslations } = langChooserFn();
         const {tm} = useI18n({
             inheritLocale: true,
             messages: userMenuTranslates,
@@ -250,66 +158,6 @@ export default defineComponent({
                 });
         };
 
-
-        /*Dark Mode*/
-        const darkMode = ref("auto");
-        const showDarkModeTitle = ref(darkMode.value);
-        /*Dark Mode: Check Local Variables*/
-        onBeforeMount(() => {
-            if (localStorage.theme === "dark") {
-                makeDark();
-                darkMode.value = 'dark'
-            } else if (localStorage.theme === "light") {
-                makeLight();
-                darkMode.value = 'light'
-            } else {
-                makeAuto();
-                darkMode.value = 'auto'
-            }
-        });
-        /*Dark Mode: Set Functions*/
-        const makeDark = () => {
-            document.documentElement.classList.add("dark");
-            document.documentElement.classList.remove("light");
-            document.documentElement.classList.remove("auto");
-        };
-        const makeLight = () => {
-            document.documentElement.classList.add("light");
-            document.documentElement.classList.remove("dark");
-            document.documentElement.classList.remove("auto");
-        };
-        const makeAuto = () => {
-            let darkMedia = window.matchMedia("(prefers-color-scheme: dark)");
-            const changeAutoTheme = () => {
-                if (darkMedia.matches) {
-                    makeDark();
-                } else {
-                    makeLight();
-                }
-            }
-            changeAutoTheme()
-            darkMedia.onchange = () => {
-                changeAutoTheme()
-            };
-        };
-        const darkModeStorage = () => {
-            localStorage.setItem("theme", darkMode.value);
-        };
-
-        /*Dark Mode: Watch*/
-        watch(darkMode, () => {
-            if (darkMode.value === "dark") {
-                makeDark();
-                darkModeStorage();
-            } else if (darkMode.value === "light") {
-                makeLight();
-                darkModeStorage();
-            } else {
-                makeAuto();
-                localStorage.setItem("theme", 'auto');
-            }
-        });
-
         /*Logout Function*/
         const logout = () => {
             Inertia.post(
@@ -322,14 +170,7 @@ export default defineComponent({
             logout,
             switchToTeam,
             showTeamSelector,
-            /*Dark Mode*/
-            darkMode,
-            showDarkModeTitle,
-            loadingTranslations,
-            /*Multi Language*/
-            locale,
             tm,
-            changeLang,
         };
     }
 });

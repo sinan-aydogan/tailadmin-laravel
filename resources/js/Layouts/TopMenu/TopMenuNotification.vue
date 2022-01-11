@@ -28,16 +28,16 @@
       </div>
     </template>
     <template #default>
-      <div class="dropdown-container">
+      <div class="top-menu-dropdown-content-wrapper-transparent">
         <!--Pending Works-->
-        <div class="dropdown-header" v-t="'demoContent.topMenu.pendingWorks'"/>
+        <div class="top-menu-dropdown-header-transparent" v-t="'demoContent.topMenu.pendingWorks'"/>
         <!--To-Do-->
-        <button class="dropdown-item" v-t="'demoContent.topMenu.activeTodos'"/>
+        <button class="top-menu-dropdown-item-transparent" v-t="'demoContent.topMenu.activeTodos'"/>
         <!--Calibration-->
-        <button class="dropdown-item" v-t="'demoContent.topMenu.calibrationTasks'"/>
+        <button class="top-menu-dropdown-item-transparent" v-t="'demoContent.topMenu.calibrationTasks'"/>
         <!--Messages-->
         <div class="dropdown-item-separator" />
-        <button class="dropdown-item" v-t="'demoContent.topMenu.unreadMessages'"/>
+        <button class="top-menu-dropdown-item-transparent" v-t="'demoContent.topMenu.unreadMessages'"/>
       </div>
     </template>
   </t-dropdown>

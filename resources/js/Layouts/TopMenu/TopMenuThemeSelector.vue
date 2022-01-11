@@ -1,6 +1,7 @@
 <template>
     <div
-        class="flex w-8 h-8 justify-center items-center rounded-full cursor-pointer overflow-hidden text-white hover:scale-110 active:scale-90 transform transition-all duration-300"
+        class="flex p-2 w-10 h-10 justify-center items-center cursor-pointer hover:bg-slate-500/10 dark:hover:bg-slate-500/50 overflow-hidden text-white  transform transition-all duration-300"
+        :class="'radius-' + conf.app.topMenu.radius"
         @click="changeTheme"
     >
         <transition-group name="darkTransition">
@@ -11,7 +12,7 @@
                 size="lg"
                 key="light"
                 :alt="t('lightMode')"
-                class="text-yellow-500"
+                class="text-yellow-500 transform hover:scale-110 active:scale-90 transition-all duration-300"
             />
             <!-- Auto -->
             <icon
@@ -20,38 +21,48 @@
                 size="lg"
                 key="auto"
                 :alt="t('auto')"
-                class="text-slate-500"
+                class="transform hover:scale-110 active:scale-90 transition-all duration-300"
             />
             <!-- Dark -->
-            <icon v-if="darkMode === 'dark'" icon="moon" size="lg" key="dark" :alt="t('darkMode')" />
+            <icon
+                v-if="darkMode === 'dark'"
+                icon="moon"
+                size="lg"
+                key="dark"
+                :alt="t('darkMode')"
+                class="transform hover:scale-110 active:scale-90 transition-all duration-300"
+            />
         </transition-group>
     </div>
 </template>
 
 <script>
 /* Main Functions */
-import { defineComponent } from "vue";
-import { library } from "@fortawesome/fontawesome-svg-core";
+import {defineComponent, inject} from "vue";
+import {library} from "@fortawesome/fontawesome-svg-core";
 import darkModeFn from "@/Functions/darkMode";
 
 /*Components*/
-import { faSun, faMoon, faPalette } from "@fortawesome/free-solid-svg-icons";
+import {faSun, faMoon, faPalette} from "@fortawesome/free-solid-svg-icons";
 
 library.add(faSun, faMoon, faPalette)
 
 /*Multi Language*/
-import { useI18n } from "vue-i18n";
+import {useI18n} from "vue-i18n";
 
 export default defineComponent({
     name: "TopMenuThemeSelector",
     setup() {
+        /*Config Settings*/
+        const conf = inject("conf");
+
         /* Dark Mode */
-        const { darkMode, changeTheme } = darkModeFn();
+        const {darkMode, changeTheme} = darkModeFn();
 
         /*Multi Language*/
-        const { t } = useI18n();
+        const {t} = useI18n();
 
-        return { darkMode, changeTheme, t }
+        return {conf, darkMode, changeTheme, t}
     }
 })
 </script>
@@ -64,21 +75,21 @@ export default defineComponent({
 
 .darkTransition-enter-from {
     opacity: 0;
-    transform: translateX(0.5rem) scale(0) rotateZ(-360deg);
+    transform: translateX(5rem) translateZ(5rem) scale(0) rotateZ(-360deg);
 }
 
 .darkTransition-leave-to {
     opacity: 0;
-    transform: translateX(-0.5rem) scale(0) rotateZ(360deg);
+    transform: translateX(-5rem) translateZ(-5rem) scale(0) rotateZ(360deg);
 }
 
 .darkTransition-leave-from {
     opacity: 1;
-    transform: translateX(0.5rem);
+    transform: translateX(0) ;
 }
 
 .darkTransition-enter-to {
     opacity: 1;
-    transform: translateX(-0.5rem);
+    transform: translateX(0) ;
 }
 </style>
