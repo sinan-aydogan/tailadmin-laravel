@@ -18,10 +18,12 @@
             <div class="flex justify-start items-center space-x-6">
                 <template v-for="tab in tabs" :key="tab.id">
                     <span
-                        @click="selectTab(tab.id)"
-                        class="flex hover:bg-slate-600 dark:hover:bg-slate-800/75 cursor-pointer px-4 py-2 select-none transition-colors duration-300"
-                        v-text="tab.label"
-                    ></span>
+                        @click="tab.command ? tab.command() : selectTab(tab.id)"
+                        class="flex items-center justify-center space-x-2 hover:bg-slate-600 dark:hover:bg-slate-800/75 cursor-pointer px-4 py-2 select-none transition-colors duration-300"
+                    >
+                        <slot v-if="$slots['label']" name="label" :tab="tab"></slot>
+                        <span v-else v-text="tab.label"></span>
+                    </span>
                 </template>
             </div>
         </div>
@@ -29,7 +31,7 @@
         <transition name="fade">
             <div
                 v-if="activeTab"
-                class="border border-t-0 rounded-b-md border-slate-400 dark:border-0 overflow-hidden"
+                class="border border-t-0 rounded-b-md border-slate-400 dark:border-0"
             >
                 <template v-for="tab in tabs" :key="tab.id">
                     <!-- Regular Content -->
@@ -37,8 +39,8 @@
 
                     <!-- Code Content -->
                     <pre v-if="activeTab === tab.id && tab.type === 'code'" v-highlightjs>
-                <code class="rounded-b overflow-hidden" :class="tab.codeLang"><slot :name="tab.id"></slot></code>
-            </pre>
+                        <code class="rounded-b overflow-scroll" :class="tab.codeLang"><slot :name="tab.id"></slot></code>
+                    </pre>
                 </template>
             </div>
         </transition>
