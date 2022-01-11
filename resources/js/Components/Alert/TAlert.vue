@@ -7,10 +7,10 @@
             :class="[
                 `alert-${design}`,
                 !type ? `alert-${design}-${color}` :
-                    [{ 'alert-green': type === 'success' },
-                    { 'alert-yellow': type === 'warning' },
-                    { 'alert-red': type === 'error' },
-                    { 'alert-blue': type === 'info' }],
+                    [{ 'alert-success': type === 'success' },
+                    { 'alert-warning': type === 'warning' },
+                    { 'alert-danger': type === 'error' },
+                    { 'alert-info': type === 'info' }],
                 `radius-${radius}`,
             ]"
         >
@@ -59,7 +59,7 @@ export default defineComponent({
     name: "TAlert",
     props: {
         id: {
-            type: String,
+            type: [Number, String, Array, Object, Date, Boolean],
             default: function () {
                 return "alert-" + Number(new Date());
             }
@@ -149,19 +149,17 @@ export default defineComponent({
 /* eslint-disable no-alert */
 .alert-enter-active,
 .alert-leave-active {
-    transition: opacity ease-out 0.75s;
+    transition: all ease-in-out 1000ms;
 }
 
-.alert-enter,
+.alert-enter-from,
 .alert-leave-to {
     opacity: 0;
-    height: revert;
 }
 
 .alert-enter-to,
-.alert-leave {
+.alert-leave-from {
     opacity: 1;
-    height: revert;
 }
 
 /* eslint-disable no-alert */
