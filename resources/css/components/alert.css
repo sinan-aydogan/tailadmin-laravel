@@ -6,10 +6,6 @@
     @apply flex flex-col justify-center items-start flex-grow py-2 px-4 whitespace-pre-line
 }
 
-.alert-elegant .alert-content{
-    @apply flex flex-row justify-start !important
-}
-
 .alert-title {
     @apply font-bold text-lg
 }
@@ -43,7 +39,7 @@
 }
 
 .alert-filled-success .alert-countdown-line {
-    @apply bg-emerald-600
+    @apply bg-emerald-700
 }
 
 /*Danger*/
@@ -52,7 +48,7 @@
 }
 
 .alert-filled-danger .alert-countdown-line {
-    @apply bg-rose-600
+    @apply bg-rose-700
 }
 
 /*Warning*/
@@ -61,7 +57,7 @@
 }
 
 .alert-filled-warning .alert-countdown-line {
-    @apply bg-amber-600
+    @apply bg-amber-700
 }
 
 /*Info*/
@@ -70,7 +66,7 @@
 }
 
 .alert-filled-info .alert-countdown-line {
-    @apply bg-sky-600
+    @apply bg-sky-700
 }
 
 /*Light*/
@@ -97,7 +93,7 @@
 }
 
 .alert-filled-violet .alert-countdown-line {
-    @apply bg-violet-600
+    @apply bg-violet-700
 }
 
 /*</editor-fold>*/
@@ -336,7 +332,11 @@
 /*<editor-fold desc="Elegant Style">*/
 /*General Definitions*/
 .alert-elegant {
-    @apply py-1 px-4 shadow text-gray-700 bg-white dark:bg-slate-800 dark:text-white overflow-hidden
+    @apply flex flex-row justify-start items-center py-1 px-4 shadow text-gray-700 bg-white dark:bg-slate-800 dark:text-white overflow-hidden
+}
+
+.alert-elegant .alert-content{
+    @apply flex flex-row justify-start items-center
 }
 
 .alert-elegant .alert-title {
