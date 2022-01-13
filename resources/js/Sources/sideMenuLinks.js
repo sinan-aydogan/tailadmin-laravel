@@ -283,7 +283,4 @@ const sideMenuFooterLinks = [
     }
 ];
 
-/*Top Bar User Menu*/
-const topBarUserMenuLinks = [];
-
 export {sideMenuLinks, sideMenuFooterLinks}
