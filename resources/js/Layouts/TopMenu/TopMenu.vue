@@ -1,13 +1,13 @@
 <template>
     <div
         class="top-menu"
-        :class="'radius-' + conf.app.topMenu.radius"
+        :class="`radius-${topBarConf.radius ? topBarConf.radius : appConf.radius}`"
     >
         <!--Left Menu Trigger-->
         <div
             @click="$emit('foldLeftMenu', $event)"
             class="trigger"
-            :class="'radius-' + conf.app.topMenu.radius"
+            :class="`radius-${topBarConf.radius ? topBarConf.radius : appConf.radius}`"
         >
             <!--Fold & Close Icon-->
             <svg
@@ -43,7 +43,7 @@
             <div
                 @click="searchBar=true"
                 class="search-box-wrapper"
-                :class="'radius-' + conf.app.topMenu.radius"
+                :class="`radius-${topBarConf.radius ? topBarConf.radius : appConf.radius}`"
             >
                 <svg
                     class="search-icon"
@@ -93,21 +93,25 @@
         <t-loading v-model="searchBar" color="gray" title="Search" closeable>
             <div
                 class="search-modal"
-                :class="'radius-' + conf.app.topMenu.radius"
+                :class="`radius-${topBarConf.radius ? topBarConf.radius : appConf.radius}`"
             >
-                <input type="text" id="search" :placeholder="conf.app.topMenu.searchPlaceHolderText"/>
+                <input type="text" id="search" :placeholder="topBarConf.searchPlaceHolderText"/>
             </div>
         </t-loading>
     </teleport>
 </template>
 
 <script>
+/*Main functions*/
 import TopMenuNotification from "@/Layouts/TopMenu/TopMenuNotification";
 import TopMenuUserMenu from "@/Layouts/TopMenu/TopMenuUserMenu";
-import {defineComponent, inject, ref} from "vue";
+import {defineComponent, inject, provide, ref} from "vue";
 import TLoading from "@/Components/Loading/TLoading";
 import TopMenuThemeSelector from "@/Layouts/TopMenu/TopMenuThemeSelector";
 import TopMenuLanguageSelector from "@/Layouts/TopMenu/TopMenuLanguageSelector";
+
+/*Sources*/
+import {appConf, topBarConf} from "@/config";
 
 export default defineComponent({
     name: "TopMenu",
@@ -117,12 +121,15 @@ export default defineComponent({
         /*Definitions*/
         const searchBar = ref(false);
         /*Injections*/
-        const conf = inject("conf");
         const deviceType = inject("deviceType");
         const foldLeftMenu = inject("foldLeftMenu");
         const showLeftMenu = inject("showLeftMenu");
 
-        return {conf, deviceType, foldLeftMenu, showLeftMenu, searchBar};
+        /*Provider*/
+        provide('appConf', appConf);
+        provide('topBarConf', topBarConf);
+
+        return {appConf, topBarConf, deviceType, foldLeftMenu, showLeftMenu, searchBar};
     }
 });
 </script>

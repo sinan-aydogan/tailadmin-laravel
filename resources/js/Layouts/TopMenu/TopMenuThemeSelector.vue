@@ -1,7 +1,7 @@
 <template>
     <div
         class="flex p-2 w-10 h-10 justify-center items-center cursor-pointer hover:bg-slate-500/10 dark:hover:bg-slate-500/50 overflow-hidden text-white  transform transition-all duration-300"
-        :class="'radius-' + conf.app.topMenu.radius"
+        :class="`radius-${topBarConf.radius ? topBarConf.radius : appConf.radius}`"
         @click="changeTheme"
     >
         <transition-group name="darkTransition">
@@ -53,8 +53,9 @@ import {useI18n} from "vue-i18n";
 export default defineComponent({
     name: "TopMenuThemeSelector",
     setup() {
-        /*Config Settings*/
-        const conf = inject("conf");
+        /*Injections*/
+        const appConf = inject("appConf");
+        const topBarConf = inject("topBarConf");
 
         /* Dark Mode */
         const {darkMode, changeTheme} = darkModeFn();
@@ -62,7 +63,7 @@ export default defineComponent({
         /*Multi Language*/
         const {t} = useI18n();
 
-        return {conf, darkMode, changeTheme, t}
+        return {appConf, topBarConf, darkMode, changeTheme, t}
     }
 })
 </script>
@@ -85,11 +86,11 @@ export default defineComponent({
 
 .darkTransition-leave-from {
     opacity: 1;
-    transform: translateX(0) ;
+    transform: translateX(0);
 }
 
 .darkTransition-enter-to {
     opacity: 1;
-    transform: translateX(0) ;
+    transform: translateX(0);
 }
 </style>

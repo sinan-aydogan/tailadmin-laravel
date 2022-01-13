@@ -5,8 +5,8 @@
         <div
             class="header"
             :class="[
-        conf.app.leftMenu.headerBgColor,
-        'radius-' + conf.app.leftMenu.radius
+        leftMenuConf.logoAreaClasses ? leftMenuConf.logoAreaClasses : appConf.logoAreaClasses,
+        `radius-${leftMenuConf.radius ? leftMenuConf.radius : appConf.radius}`
         ]"
         >
             <Link
@@ -16,15 +16,18 @@
                 <div class="logo-inside-container">
                     <!--TODO: Title and Logo will come from DB-->
                     <!--Logo-->
-                    <svg
-                        id="logo"
-                        v-html="conf.app.leftMenu.logo"
+                    <img
+                        :src="[
+                        appearingMode === 'dark' ? leftMenuConf.darkLogo ? leftMenuConf.darkLogo : appConf.darkLogo :
+                        leftMenuConf.lightLogo ? leftMenuConf.lightLogo : appConf.lightLogo
+                    ]"
+                        :class="leftMenuConf.logoClasses"
                     />
                     <!--Title-->
                     <div
                         id="logo-title"
                         :class="[!foldLeftMenu ? 'left-menu-title-show' : 'left-menu-title-hide']"
-                        v-html="conf.app.leftMenu.title"
+                        v-html="leftMenuConf.appName ? leftMenuConf.appName : appConf.appName"
                     />
                 </div>
             </Link>
@@ -40,19 +43,19 @@
                 <div
                     key="leftMenuFooterLinks"
                     id="footer-links-wrapper"
-                    v-if="conf.app.leftMenu.footer.links.length>0 && !foldLeftMenu"
+                    v-if="sideMenuFooterLinks.length>0 && !foldLeftMenu"
                     :class="[
-            conf.app.leftMenu.footer.links.length>1 ? 'grid-cols-2' : '',
-            'radius-' + conf.app.leftMenu.radius
+            sideMenuFooterLinks.length>1 ? 'grid-cols-2' : '',
+            `radius-${leftMenuConf.radius ? leftMenuConf.radius : appConf.radius}`
             ]"
                 >
                     <!--Footer Links-->
-                    <template v-for="link in sideMenuFooterLinksGn">
+                    <template v-for="link in sideMenuFooterLinks">
                         <!--Internal Route Link-->
                         <Link
                             v-if="link.linkType === 'route'"
                             id="footer-link"
-                            :class="sideMenuFooterLinksGn.length>2 ? 'justify-start' : 'justify-center'"
+                            :class="sideMenuFooterLinks.length>2 ? 'justify-start' : 'justify-center'"
                             :href="route(link.link)"
                         >
                             <icon v-if="link.icon" :icon="link.icon"/>
@@ -62,7 +65,7 @@
                         <a
                             v-else
                             id="footer-link"
-                            :class="sideMenuFooterLinksGn.length>2 ? 'justify-start' : 'justify-center'"
+                            :class="sideMenuFooterLinks.length>2 ? 'justify-start' : 'justify-center'"
                             :href="link.link"
                             target="_blank"
                         >
@@ -95,8 +98,9 @@
 import {defineComponent, inject, provide} from "vue";
 import {Link} from "@inertiajs/inertia-vue3";
 
-/*External Sources Functions*/
-import {sideMenuFooterLinks} from "@/Config/menuLinks";
+/*Sources*/
+import {sideMenuFooterLinks} from "@/Sources/sideMenuLinks";
+import {appConf, leftMenuConf} from "@/config";
 
 /*Multi Language*/
 import {useI18n} from "vue-i18n";
@@ -110,9 +114,6 @@ export default defineComponent({
     emits: ["foldLeftMenu"],
     setup() {
 
-        /*Footer Links*/
-        const sideMenuFooterLinksGn = sideMenuFooterLinks;
-
         /*Multi Language*/
         const {tm} = useI18n({
             inheritLocale: true,
@@ -124,12 +125,14 @@ export default defineComponent({
 
         /*Injection*/
         const foldLeftMenu = inject("foldLeftMenu");
-        const conf = inject("conf");
+        const appearingMode = inject("appearingMode");
 
         return {
+            appConf,
+            appearingMode,
+            leftMenuConf,
             foldLeftMenu,
-            conf,
-            sideMenuFooterLinksGn,
+            sideMenuFooterLinks,
             tm
         };
     }

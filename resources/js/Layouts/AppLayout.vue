@@ -69,8 +69,8 @@
                     </t-toastr>
                 </div>
             </div>
-            <footer v-if="conf.app.footer.status" class="footer">
-                <span class="mt-1 space-x-1 select-none" v-html="conf.app.footer.text" />
+            <footer v-if="footerConf.visible" class="footer">
+                <span class="mt-1 space-x-1 select-none" v-html="footerConf.content" />
             </footer>
         </div>
     </div>
@@ -80,7 +80,7 @@
 
 <script>
 /*Main Functions*/
-import { defineComponent, provide, reactive, ref, watch } from "vue";
+import { defineComponent, provide, ref, watch } from "vue";
 import { Head } from "@inertiajs/inertia-vue3";
 
 /*Components*/
@@ -91,9 +91,10 @@ import TAlert from "@/Components/Alert/TAlert";
 import TToastr from "@/Components/Toastr/TToastr";
 import TopMenu from "@/Layouts/TopMenu/TopMenu";
 
-/*External Sources Functions*/
-import config from "@/config";
-import { sideMenuLinks } from "@/Config/menuLinks";
+/*Sources*/
+import {footerConf} from "@/config";
+import { sideMenuLinks } from "@/Sources/sideMenuLinks";
+import DarkMode from "@/Functions/darkMode";
 import windowSizeCalculator from "@/Functions/windowSizeCalculator";
 
 /*Multi Language*/
@@ -127,7 +128,6 @@ export default defineComponent({
     setup(props, { slots }) {
         /*Definitions*/
         const { deviceType } = windowSizeCalculator();
-        const { conf } = config();
 
         /*Multi Language*/
         const { t } = useI18n();
@@ -190,16 +190,17 @@ export default defineComponent({
         provide("deviceType", ref(deviceType));
         provide("foldLeftMenu", ref(foldLeftMenu));
         provide("showLeftMenu", ref(showLeftMenu));
-        provide("conf", reactive(conf));
+        provide("appearingMode", ref(DarkMode().appearingMode));
+
 
         /*Slot Check*/
         const hasSlot = name => !!slots[name];
 
         return {
+            footerConf,
             showLeftMenu,
             foldLeftMenu,
             deviceType,
-            conf,
             t,
             sideMenuLinksGn,
             leftMenuTrigger,

@@ -1,5 +1,5 @@
 <template>
-    <div id="link" :class="'radius-t-' + conf.app.leftMenu.radius">
+    <div id="link" :class="`radius-t-${leftMenuConf.radius ? leftMenuConf.radius : appConf.radius}`">
         <!--Dropdown Item-->
         <div
             v-if="item.type === 'dropdown'"
@@ -10,7 +10,7 @@
             :class="[
       foldLeftMenu ? 'left-menu-root-link-fold' : 'left-menu-root-link-expand',
       showingSubMenu ? 'left-menu-root-link-active' : 'left-menu-root-link-passive',
-      'radius-'+conf.app.leftMenu.radius,
+      `radius-${leftMenuConf.radius ? leftMenuConf.radius : appConf.radius}`,
       (showingSubMenu && !foldLeftMenu ) ? 'radius-b-0' : ''
     ]"
         >
@@ -59,7 +59,7 @@
             :class="[
       'left-menu-root-link-passive',
       foldLeftMenu ? 'left-menu-root-link-fold' : 'left-menu-root-link-expand',
-      'radius-' + conf.app.leftMenu.radius
+      `radius-${leftMenuConf.radius ? leftMenuConf.radius : appConf.radius}`
       ]"
         >
             <!-- Icon -->
@@ -82,7 +82,7 @@
             :class="[
       'left-menu-root-link-passive',
       foldLeftMenu ? 'left-menu-root-link-fold' : 'left-menu-root-link-expand',
-      'radius-' + conf.app.leftMenu.radius
+      `radius-${leftMenuConf.radius ? leftMenuConf.radius : appConf.radius}`
       ]"
         >
             <!-- Icon -->
@@ -103,7 +103,7 @@
                 v-if="showingSubMenu && !foldLeftMenu"
                 class="left-menu-sub-links-wrapper"
                 :class="[
-          (showingSubMenu && !foldLeftMenu ) ? 'radius-b-' + conf.app.leftMenu.radius : ''
+          (showingSubMenu && !foldLeftMenu ) ? `radius-b-${leftMenuConf.radius ? leftMenuConf.radius : appConf.radius}` : ''
         ]"
             >
                 <left-menu-sub-item
@@ -121,6 +121,8 @@
 import {defineComponent, inject, reactive, toRefs, ref, onBeforeMount} from "vue";
 import {Link} from "@inertiajs/inertia-vue3";
 
+/*Sources*/
+import {appConf,leftMenuConf} from "@/config";
 
 /*Components*/
 import LeftMenuSubItem from "@/Layouts/LeftMenuSubItem";
@@ -169,6 +171,8 @@ export default defineComponent({
         });
 
         return {
+            appConf,
+            leftMenuConf,
             tStyle,
             foldLeftMenu,
             showLeftMenu,

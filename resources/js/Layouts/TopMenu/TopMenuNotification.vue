@@ -3,7 +3,7 @@
     <template #trigger>
       <div
         class="notification-box"
-        :class="'radius-' + conf.app.topMenu.radius"
+        :class="`radius-${topBarConf.radius ? topBarConf.radius : appConf.radius}`"
       >
         <!--Notification Ping-->
         <div>
@@ -44,16 +44,21 @@
 </template>
 
 <script>
+/*Main functions*/
 import { defineComponent,inject } from "vue";
+
+/*Components*/
 import TDropdown from "@/Components/Dropdown/TDropdown";
 
 export default defineComponent({
   name: "TopMenuNotification",
   components: { TDropdown },
   setup(){
-    const conf = inject("conf");
+      /*Injections*/
+      const appConf = inject("appConf");
+      const topBarConf = inject("topBarConf");
 
-    return {conf}
+    return {appConf, topBarConf}
   }
 });
 </script>

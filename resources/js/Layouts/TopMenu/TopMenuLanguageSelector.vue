@@ -4,7 +4,7 @@
             <!--Selected Language-->
             <div
                 class="top-menu-dropdown-trigger-transparent"
-                :class="'radius-' + conf.app.topMenu.radius"
+                :class="`radius-${topBarConf.radius ? topBarConf.radius : appConf.radius}`"
             >
                 <component
                     :is="languages.find(i=>i.id === locale).flag"
@@ -33,12 +33,12 @@
 <script>
 /*Main functions*/
 import {defineComponent, inject} from "vue";
-import langChooserFn from "@/Functions/langChooser"
 
 /*Components*/
 import TDropdown from "@/Components/Dropdown/TDropdown";
 
-/*Sources*/
+/*Multi language*/
+import langChooserFn from "@/Functions/langChooser"
 import {languages, flags} from "@/Lang/languages";
 
 export default defineComponent({
@@ -48,11 +48,16 @@ export default defineComponent({
         ...flags
     },
     setup() {
-        const conf = inject("conf");
+        /*Injections*/
+        const appConf = inject("appConf");
+        const topBarConf = inject("topBarConf");
+
+        /*Multi language*/
         const {locale, changeLang} = langChooserFn()
 
         return {
-            conf,
+            appConf,
+            topBarConf,
             languages,
             locale,
             changeLang
