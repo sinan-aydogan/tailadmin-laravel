@@ -1,5 +1,5 @@
 <template>
-    <full-screen-layout :bg-image="bgImage" :color="bgColor" :gradient-direction="bgGradientDirection">
+    <full-screen-layout :bg-image-url="activeDesign.bgImage[appearingMode]" :bg-color="activeDesign.bgColor">
         <div
             :class="[
                 'relative',
@@ -8,17 +8,29 @@
         >
             <!--Container-->
             <div :class="[
-            'auth-container',
-            deviceType !== 'phone' && radiusStyle
+            'auth-container'
             ]">
                 <!--Header-->
-                <div class="bg-opacity-50 backdrop-filter backdrop-blur" :class="[
+                <div class="backdrop-filter backdrop-blur" :class="[
                 'auth-header',
-                calculatedLoginStyle
+                activeDesign.header,
+                deviceType !== 'phone' && `radius-t-${activeDesign.radius ? activeDesign.radius : appConf.radius}`,
+                authScreenConf.transparent && 'bg-opacity-50'
                 ]">
                     <!--Logo-->
                     <div class="auth-logo">
-                        <slot name="logo"/>
+                        <slot v-if="$slots.logo" name="logo"/>
+                        <div v-else :class="authScreenConf.logoAreaClasses">
+                            <img
+                                :src="[
+                        appearingMode === 'dark' ? authScreenConf.darkLogo ? authScreenConf.darkLogo : appConf.darkLogo :
+                        authScreenConf.lightLogo ? authScreenConf.lightLogo : appConf.lightLogo
+                    ]"
+                                :class="authScreenConf.logoClasses"
+                            />
+                            <span v-text="authScreenConf.appName ? authScreenConf.appName : appConf.appName"
+                                  :class="authScreenConf.appNameClasses"></span>
+                        </div>
                     </div>
                     <!--Greeting-->
                     <div class="auth-greeting">
@@ -33,14 +45,25 @@
                 </div>
 
                 <!--Form-->
-                <div class="auth-form">
+                <div
+                    class="auth-form"
+                    :class="[
+                        deviceType !== 'phone' && `radius-b-${activeDesign.radius ? activeDesign.radius : appConf.radius}`,
+                        authScreenConf.transparent ? 'bg-opacity-50' : 'bg-opacity-100'
+                        ]"
+                >
                     <form @submit.prevent="submit">
                         <!--Email-->
                         <div>
-                            <t-input-group label="Email" label-for="email">
+                            <t-input-group
+                                :label="t('email')"
+                                label-for="email"
+                                :errors="v.email.$errors"
+                            >
                                 <t-input-text
                                     id="email"
                                     v-model="form.email"
+                                    @blur="v.email.$touch"
                                     :radius="3"
                                     autofocus
                                     autocomplete="username"
@@ -51,10 +74,15 @@
                         </div>
                         <!--Password-->
                         <div class="mt-4">
-                            <t-input-group label="Password" label-for="password">
+                            <t-input-group
+                                :label="t('password')"
+                                label-for="password"
+                                :errors="v.password.$errors"
+                            >
                                 <t-input-text
                                     id="password"
                                     v-model="form.password"
+                                    @blur="v.password.$touch"
                                     :radius="3"
                                     autocomplete="current-password"
                                     required
@@ -62,15 +90,19 @@
                                 />
                             </t-input-group>
                         </div>
+
                         <div class="auth-remember">
                             <!--Remember Me-->
                             <label class="flex items-center">
-                                <input
+                                <t-input-check-box
+                                    id="remember"
                                     v-model="form.remember"
-                                    name="remember"
-                                    type="checkbox"
-                                />
-                                <span class="auth-remember-text">Remember me</span>
+                                    :label="t('rememberMe')"
+                                >
+                                    <template #icon>
+                                        <icon icon="key" size="sm"/>
+                                    </template>
+                                </t-input-check-box>
                             </label>
                             <!--Forgot Password-->
                             <Link
@@ -78,44 +110,44 @@
                                 :href="route('password.request')"
                                 class="auth-forgot-password"
                             >
-                                Forgot your password?
+                                {{ t('forgotPassword') }}
                             </Link>
                         </div>
                         <!--Submit Area-->
                         <div class="auth-submit-area">
                             <!--Register Button-->
                             <t-button
-                                v-if="registerButton"
                                 :class="{ 'opacity-25': form.processing }"
-                                :design="registerButtonDesign"
-                                :color="registerButtonColor"
+                                :design="activeDesign.registerButton[appearingMode].design"
+                                :color="activeDesign.registerButton[appearingMode].color"
                                 :link="route('register')"
                                 :radius="3"
                                 type="link"
                             >
-                                Register
+                                {{ t('register') }}
                             </t-button>
 
                             <!--Submit Button-->
                             <t-button
                                 :class="{ 'opacity-25': form.processing }"
-                                :color="loginButtonColor"
-                                :design="loginButtonDesign"
+                                :color="activeDesign.loginButton[appearingMode].color"
+                                :design="activeDesign.loginButton[appearingMode].design"
                                 :disabled="form.processing"
                                 :radius="3" class="ml-4"
                             >
-                                Login
+                                {{ t('login') }}
                             </t-button>
                         </div>
                     </form>
                 </div>
             </div>
+
+            <!--Errors-->
             <div class="auth-error">
-                <!--Errors-->
                 <transition @before-enter="beforeStyle" @after-enter="enterStyle">
-                    <t-alert v-if="hasErrors" :radius="deviceType !== 'phone' && 5" color="red">
+                    <t-alert v-if="hasErrors" :radius="deviceType !== 'phone' && 5" color="danger">
                         <template #icon>
-                            <t-bell-icon class="w-8 h-8"/>
+                            <icon icon="bell" size="lg"/>
                         </template>
                         <ul class="list-inside text-sm">
                             <li v-for="(error, key) in errors" :key="key">{{ error }}</li>
@@ -124,19 +156,105 @@
                 </transition>
             </div>
         </div>
+
+        <!--Selectors-->
+        <div class="fixed bottom-0 flex z-50 w-full justify-center sm:justify-end space-x-6 p-6">
+            <!--Language Selector-->
+            <t-popover
+                v-if="authScreenConf.showLanguageSelector"
+                position="top"
+                :border="false"
+                custom-style
+            >
+                <!--Selected Language-->
+                <div
+                    class="flex justify-center items-center group bg-slate-100/50 hover:bg-slate-800/50 dark:text-slate-100 dark:bg-slate-800/75 dark:hover:bg-slate-100/75 dark:hover:text-slate-700 hover:text-slate-100 p-4 w-10 h-10 cursor-pointer overflow-hidden bg-cover"
+                    :class="`radius-${authScreenConf.radius ? authScreenConf.radius : appConf.radius}`"
+                >
+                    <component
+                        :is="languages.find(i=>i.id === locale).flag"
+                        class="flex flex-shrink-0 w-14 aspect-auto drop-shadow transform hover:scale-110 active:scale-90 hover:-rotate-12 transition-all duration-300"
+                        :alt="languages.find(i=>i.id === locale).name"
+                    />
+                    <span class="absolute text-sm -top-2 -right-2 bg-slate-100/10 dark:bg-slate-800/50 backdrop-filter backdrop-blur text-slate-100 px-1 rounded" v-text="languages.find(i=>i.id === locale).id"></span>
+                </div>
+                <template #boxContent>
+                    <!--Language Lists-->
+                    <div class="top-menu-dropdown-content-wrapper-transparent mb-3">
+                        <template v-for="lang in languages" :key="lang.id">
+                            <div @click="changeLang(lang.id)"
+                                 class="top-menu-dropdown-item-transparent">
+                                <component
+                                    :is="lang.flag"
+                                    class="w-6 aspect-auto drop-shadow"
+                                />
+                                <span v-text="lang.name"></span>
+                            </div>
+                        </template>
+                    </div>
+                </template>
+            </t-popover>
+            <!--Dark Mode-->
+            <div
+                v-if="authScreenConf.showDarkModeSelector"
+                class="flex justify-center items-center bg-slate-100/50 hover:bg-slate-800/50 dark:text-slate-100 dark:bg-slate-800/75 dark:hover:bg-slate-100/75 dark:hover:text-slate-700 hover:text-slate-100 p-4 w-10 h-10 cursor-pointer overflow-hidden"
+                :class="`radius-${authScreenConf.radius ? authScreenConf.radius : appConf.radius}`"
+                @click="changeTheme"
+            >
+
+                <transition mode="out-in" name="darkModeTransition">
+                    <!-- Light -->
+                    <icon
+                        v-if="darkMode === 'light'"
+                        icon="sun"
+                        size="lg"
+                        key="light"
+                        :alt="tm('lightMode')"
+                        class="transform hover:scale-110 active:scale-90 transition-transform duration-300"
+                    />
+                    <!-- Auto -->
+                    <icon
+                        v-else-if="darkMode === 'auto'"
+                        icon="palette"
+                        size="lg"
+                        key="auto"
+                        :alt="tm('auto')"
+                        class="transform hover:scale-110 active:scale-90 transition-transform duration-300"
+                    />
+                    <!-- Dark -->
+                    <icon
+                        v-else
+                        icon="moon"
+                        size="lg"
+                        key="dark"
+                        :alt="tm('darkMode')"
+                        class="transform hover:scale-110 active:scale-90 transition-transform duration-300"
+                    />
+                </transition>
+            </div>
+            <!--Change Background-->
+            <div
+                v-if="authScreenConf.showDesignChanger && authDesigns.length>1"
+                @click="changeBg"
+                class="flex justify-center items-center group bg-slate-100/50 hover:bg-slate-800/50 dark:text-slate-100 dark:bg-slate-800/75 dark:hover:bg-slate-100/75 dark:hover:text-slate-700 hover:text-slate-100 p-4 w-10 h-10 cursor-pointer"
+                :class="`radius-${authScreenConf.radius ? authScreenConf.radius : appConf.radius}`"
+            >
+                <icon icon="redo"
+                      class="transform group-hover:scale-110 group-active:scale-90 transition-transform duration-300"/>
+            </div>
+        </div>
     </full-screen-layout>
 </template>
 
 <script>
 /*Main functions*/
-import {defineComponent,computed, ref} from "vue";
+import {defineComponent, computed, ref} from "vue";
 import {loginStyleMixin} from "@/Mixins/Styles/loginStyleMixin";
 import {Link, useForm} from "@inertiajs/inertia-vue3";
 import windowSizeCalculator from "@/Functions/windowSizeCalculator";
 import darkModeFn from "@/Functions/darkMode";
 import useVuelidate from "@vuelidate/core";
-import {email, required} from "@vuelidate/validators";
-
+import {email, helpers, required} from "@vuelidate/validators";
 
 /*Components*/
 import TAlert from "@/Components/Alert/TAlert";
@@ -145,10 +263,13 @@ import TButton from "@/Components/Button/TButton";
 import FullScreenLayout from "@/Layouts/FullScreenLayout";
 import TInputGroup from "@/Components/Form/TInputGroup";
 import TInputText from "@/Components/Form/Inputs/TInputText";
+import TDropdown from "@/Components/Dropdown/TDropdown";
+import TPopover from "@/Components/Popover/TPopover";
+import TInputCheckBox from "@/Components/Form/Inputs/TInputCheckBox";
 
 /*Sources*/
 import {appConf, authScreenConf} from "@/config";
-import {authBgImages} from "@/Sources/bgImages";
+import {authDesigns} from "@/Sources/authScreenDesigns";
 
 /* Multi language */
 import {useI18n} from "vue-i18n";
@@ -157,16 +278,18 @@ import {languages, flags, authTranslates} from "@/Lang/languages";
 
 /*Fontawesome icons*/
 import {library} from "@fortawesome/fontawesome-svg-core";
-import {faSun, faMoon, faPalette, faRedo} from "@fortawesome/free-solid-svg-icons";
-
-library.add(faSun, faMoon, faPalette, faRedo)
+import {faSun, faMoon, faPalette, faRedo, faKey, faBell} from "@fortawesome/free-solid-svg-icons";
+library.add(faSun, faMoon, faPalette, faRedo, faKey, faBell)
 
 export default defineComponent({
     name: "TLogin",
     components: {
+        TInputCheckBox,
+        TPopover,
         TAlert,
         TBellIcon,
         TButton,
+        TDropdown,
         FullScreenLayout,
         TInputGroup,
         TInputText,
@@ -177,42 +300,8 @@ export default defineComponent({
     props: {
         canResetPassword: Boolean,
         status: String,
-        registerButtonDesign: {
-            type: String,
-            default: "filled"
-        },
-        design: {
-            type: Object,
-            default: null,
-        },
-        registerButtonColor: {
-            type: String,
-            default: "white"
-        },
-        loginButtonDesign: {
-            type: String,
-            default: "filled"
-        },
-        loginButtonColor: {
-            type: String,
-            default: "green"
-        },
-        bgColor: {
-            type: String,
-            default: "solid-gray"
-        },
-        bgGradientDirection: {
-            type: String
-        },
-        bgImage: {
-            type: String
-        },
-        registerButton: {
-            type: Boolean,
-            default: true
-        }
     },
-    setup() {
+    setup(props) {
         /*Device type*/
         const {deviceType} = windowSizeCalculator();
 
@@ -234,10 +323,16 @@ export default defineComponent({
             remember: false,
         });
 
+
         /* Client-side Validation */
         const rules = ref({
-            email: {required, email},
-            password: {required},
+            email: {
+                required: helpers.withMessage(tm('validationMessage.email.required'),required),
+                email: helpers.withMessage(tm('validationMessage.email.email'),email)
+            },
+            password: {
+                required: helpers.withMessage(tm('validationMessage.password.required'),required)
+            },
         });
         const v = useVuelidate(rules, form, {$lazy: true});
 
@@ -255,27 +350,27 @@ export default defineComponent({
                 });
         };
 
-
-        const bgIndex = ref(0)
-        const changeBg = ()=>{
-            if(authBgImages[appearingMode.value].length-1>bgIndex.value){
-                bgIndex.value++
-            }else{
-                bgIndex.value = 0
+        const activeDesignIndex = ref(0)
+        const changeBg = () => {
+            if (authDesigns.length - 1 > activeDesignIndex.value) {
+                activeDesignIndex.value++
+            } else {
+                activeDesignIndex.value = 0
             }
         };
-        const activeBg = computed(()=>{
-            return authBgImages[appearingMode.value][bgIndex.value].url
+        const activeDesign = computed(() => {
+            return authDesigns[activeDesignIndex.value]
         })
 
         return {
+            authDesigns,
             form,
             darkMode,
             appearingMode,
             changeLang,
             changeTheme,
             changeBg,
-            activeBg,
+            activeDesign,
             submit,
             languages,
             locale,
@@ -283,7 +378,8 @@ export default defineComponent({
             appConf,
             authScreenConf,
             t,
-            tm
+            tm,
+            v
         };
     },
 
