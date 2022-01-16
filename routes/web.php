@@ -17,7 +17,25 @@ use Spatie\Permission\Models\Role;
 |
 */
 
+/* Change Lang */
+Route::get('lang/{locale}', function ($locale) {
+    // Available languages
+    $availableLangs = [
+        'en' => 'en',
+        'bg' => 'bg',
+        'de' => 'de',
+        'fr' => 'fr',
+        'ru' => 'ru',
+        'tr' => 'tr',
+        'zh' => 'zh',
+    ];
+    if (array_key_exists($locale, $availableLangs)) {
+        session()->put('locale', $locale);
+    }
+    return redirect()->back();
 
+
+})->name('lang');
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/', function () {
         return Inertia::render('Dashboard', [
@@ -28,25 +46,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         ]);
     })->name('/');
 
-    /* Change Lang */
-    Route::get('lang/{locale}', function ($locale) {
-
-        // Available languages
-        $availableLangs = [
-            'en' => 'en',
-            'bg' => 'bg',
-            'de' => 'de',
-            'fr' => 'fr',
-            'ru' => 'ru',
-            'tr' => 'tr',
-            'zh' => 'zh',
-        ];
-
-        if (array_key_exists($locale, $availableLangs)) {
-            session()->put('locale', $locale);
-        }
-        return redirect()->back();
-    })->name('lang');
 
     /*They are the required pages for the system, don't delete it*/
     Route::prefix('settings')->group(function () {
