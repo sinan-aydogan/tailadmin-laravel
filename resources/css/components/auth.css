@@ -6,7 +6,7 @@
 
 /*Auth Header*/
 .auth-header {
-    @apply flex flex-col w-full justify-center items-center
+    @apply flex flex-col w-full justify-center items-center backdrop-filter backdrop-blur
 }
 
 /*Auth Logo*/
