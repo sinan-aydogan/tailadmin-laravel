@@ -6,6 +6,15 @@ const authLangRu = {
     login: "Входить",
     logout: "Выйти",
     register: "Pегистр",
+    validationMessage: {
+        email: {
+            required: "Поле электронной почты обязательно",
+            email: "Электронная почта должна быть действительным адресом электронной почты"
+        },
+        password: {
+            required: "Поле пароля обязательно"
+        }
+    }
 };
 
 export default authLangRu;

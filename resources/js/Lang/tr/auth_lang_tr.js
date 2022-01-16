@@ -6,6 +6,15 @@ const authLangTr = {
     login: "Giriş",
     logout: "Çıkış",
     register: "Kayıt",
+    validationMessage: {
+        email: {
+            required: "Email adresi gereklidir",
+            email: "Email adresi geçerli değil"
+        },
+        password: {
+            required: "Şifre gereklidir"
+        }
+    }
 };
 
 export default authLangTr;
