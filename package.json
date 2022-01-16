@@ -45,7 +45,6 @@
         "@fortawesome/free-regular-svg-icons": "^5.15.3",
         "@fortawesome/free-solid-svg-icons": "^5.15.3",
         "@fortawesome/vue-fontawesome": "^3.0.0-4",
-        "@popperjs/core": "^2.10.1",
         "@vuelidate/core": "^2.0.0-alpha.33",
         "@vuelidate/validators": "^2.0.0-alpha.26",
         "@vueuse/core": "^6.9.2",
