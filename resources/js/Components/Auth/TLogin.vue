@@ -11,11 +11,11 @@
             'auth-container'
             ]">
                 <!--Header-->
-                <div class="backdrop-filter backdrop-blur" :class="[
-                'auth-header',
+                <div
+                    class="auth-header"
+                    :class="[
                 activeDesign.header,
                 deviceType !== 'phone' && `radius-t-${activeDesign.radius ? activeDesign.radius : appConf.radius}`,
-                authScreenConf.transparent && 'bg-opacity-50'
                 ]">
                     <!--Logo-->
                     <div class="auth-logo">
@@ -49,7 +49,7 @@
                     class="auth-form"
                     :class="[
                         deviceType !== 'phone' && `radius-b-${activeDesign.radius ? activeDesign.radius : appConf.radius}`,
-                        authScreenConf.transparent ? 'bg-opacity-50' : 'bg-opacity-100'
+                        activeDesign.body,
                         ]"
                 >
                     <form @submit.prevent="submit">
@@ -164,7 +164,7 @@
                 v-if="authScreenConf.showLanguageSelector"
                 position="top"
                 :border="false"
-                custom-style
+                :custom-style="true"
             >
                 <!--Selected Language-->
                 <div
@@ -176,7 +176,9 @@
                         class="flex flex-shrink-0 w-14 aspect-auto drop-shadow transform hover:scale-110 active:scale-90 hover:-rotate-12 transition-all duration-300"
                         :alt="languages.find(i=>i.id === locale).name"
                     />
-                    <span class="absolute text-sm -top-2 -right-2 bg-slate-100/10 dark:bg-slate-800/50 backdrop-filter backdrop-blur text-slate-100 px-1 rounded" v-text="languages.find(i=>i.id === locale).id"></span>
+                    <span
+                        class="absolute text-sm -top-2 -right-2 bg-slate-100/10 dark:bg-slate-800/50 backdrop-filter backdrop-blur text-slate-100 px-1 rounded"
+                        v-text="languages.find(i=>i.id === locale).id"></span>
                 </div>
                 <template #boxContent>
                     <!--Language Lists-->
@@ -279,6 +281,7 @@ import {languages, flags, authTranslates} from "@/Lang/languages";
 /*Fontawesome icons*/
 import {library} from "@fortawesome/fontawesome-svg-core";
 import {faSun, faMoon, faPalette, faRedo, faKey, faBell} from "@fortawesome/free-solid-svg-icons";
+
 library.add(faSun, faMoon, faPalette, faRedo, faKey, faBell)
 
 export default defineComponent({
@@ -327,11 +330,11 @@ export default defineComponent({
         /* Client-side Validation */
         const rules = ref({
             email: {
-                required: helpers.withMessage(tm('validationMessage.email.required'),required),
-                email: helpers.withMessage(tm('validationMessage.email.email'),email)
+                required: helpers.withMessage(tm('validationMessage.email.required'), required),
+                email: helpers.withMessage(tm('validationMessage.email.email'), email)
             },
             password: {
-                required: helpers.withMessage(tm('validationMessage.password.required'),required)
+                required: helpers.withMessage(tm('validationMessage.password.required'), required)
             },
         });
         const v = useVuelidate(rules, form, {$lazy: true});
