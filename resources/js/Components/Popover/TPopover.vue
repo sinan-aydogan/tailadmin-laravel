@@ -1,7 +1,7 @@
 <template>
     <!--Main Content-->
     <div class="popover">
-        <div :class="tStyle['container']" ref="popoverItem" @click="updateStatus">
+        <div :class="tStyle['container']" ref="popoverItem" @click="showPopover = !showPopover">
             <slot/>
             <!--Second Content Container-->
             <div
@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import {computed, defineComponent, reactive, ref, toRefs} from "vue";
+import {computed, defineComponent, reactive, ref, toRefs, watch} from "vue";
 import {onClickOutside} from "@vueuse/core";
 
 export default defineComponent({
@@ -65,18 +65,31 @@ export default defineComponent({
         const updateStatus = () => {
             let popoverPosition = box.value.getBoundingClientRect();
             let windowInnerWidth = window.innerWidth;
-            showPopover.value = !showPopover.value;
 
-            /*If it's outside of the left*/
-            if (popoverPosition.width > popoverPosition.left && position.value === 'left') {
-                activePosition.value = "right";
-            }
+            if(position.value !== 'top' && position.value !== 'bottom'){
+                /*If it's outside of the left*/
+                if (popoverPosition.width > popoverPosition.left && position.value === 'left') {
+                    activePosition.value = "right";
+                }
 
-            /*If it's outside of the right*/
-            if (popoverPosition.right > windowInnerWidth) {
-                activePosition.value = "left";
+                /*If it's outside of the right*/
+                if (popoverPosition.right > windowInnerWidth) {
+                    activePosition.value = "left";
+                }
+            }else{
+
+                /*If it's outside of the right*/
+                if (popoverPosition.right > windowInnerWidth && windowInnerWidth > popoverPosition.left) {
+                    Object.assign(box.value.style, {
+                        position: 'absolute',
+                        left: `-${Number(popoverPosition.right)-Number(windowInnerWidth)+20}px`
+                    })
+                }
             }
         };
+        watch(showPopover, ()=>{
+            updateStatus()
+        })
         onClickOutside(popoverItem, () => showPopover.value = false);
 
         /*Generating Style Classes*/
