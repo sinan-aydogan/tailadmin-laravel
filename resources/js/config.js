@@ -13,12 +13,13 @@ const authScreenConf = {
     appName: null,
     darkLogo: null,
     lightLogo: null,
-    transparent: true,
+    transparent: false,
     logoAreaClasses: ['flex', 'flex-col', 'justify-center', 'items-center', 'space-x-4'],
     appNameClasses: ['text-5xl', 'font-semibold'],
     logoClasses: ['w-12', 'text-white', 'h-auto'],
-    color: null,
-    radius: null,
+    showDesignChanger: false,
+    showDarkModeSelector: false,
+    showLanguageSelector: false,
 }
 
 const leftMenuConf = {
