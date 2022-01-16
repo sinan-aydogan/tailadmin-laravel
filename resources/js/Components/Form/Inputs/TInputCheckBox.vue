@@ -1,14 +1,14 @@
 <template>
-  <!--TODO:Styles will be separated-->
+    <!--TODO:Styles will be separated-->
     <div class="flex flex-row" @click="!disabled && updateField()">
         <div
             :class="[
                 'flex flex-shrink-0 justify-center items-center w-5 h-5 border mr-1',
-                isChecked() && 'bg-'+color+'-100',
+                isChecked && 'bg-'+color+'-100',
                 checkboxStyle(),
                 radiusStyle
                 ]">
-            <div v-if="isChecked()" :class="'text-'+color+'-500'">
+            <div v-if="isChecked" :class="'text-'+color+'-500'">
 
                 <slot v-if="$slots.icon" name="icon"/>
                 <div v-else :class="['flex w-3 h-3',defaultSelectorStyle(),radiusStyle]"></div>
@@ -21,15 +21,19 @@
 <script>
 import {radiusSizeMixin} from "@/Mixins/radiusSizeMixin";
 import TCheckIcon from "@/Components/Icon/TCheckIcon";
-import {defineComponent, ref, toRefs} from "vue";
+import {computed, defineComponent, ref, toRefs} from "vue";
 
 export default defineComponent({
     name: 'TInputCheckBox',
     components: {TCheckIcon},
     mixins: [radiusSizeMixin],
     props: {
-        modelValue: Array,
+        modelValue: [Array, Boolean],
         inputValue: String,
+        multipleOption: {
+            type: Boolean,
+            default: false
+        },
         label: String,
         color: {
             type: String,
@@ -38,12 +42,13 @@ export default defineComponent({
         id: String,
         disabled: Boolean
     },
-    setup(props,{emit}){
+    emits: ['update:modelValue'],
+    setup(props, {emit}) {
         /*Definitions*/
-        const {checked, color, inputValue,modelValue} = toRefs(props)
+        const {multipleOption, color, inputValue, modelValue} = toRefs(props)
 
         /*Generating Style Classes*/
-        const checkboxStyle = ()=>{
+        const checkboxStyle = () => {
             let style;
             if (color.value === 'white') {
                 style = 'bg-white hover:bg-blue-100 checked:bg-indigo-200 border-gray-300 text-gray-600'
@@ -55,7 +60,7 @@ export default defineComponent({
             return style
         }
 
-        const defaultSelectorStyle = ()=>{
+        const defaultSelectorStyle = () => {
             let style;
             if (color.value === 'white') {
                 style = 'bg-gray-500'
@@ -68,19 +73,26 @@ export default defineComponent({
         }
 
         /*Default Value Control*/
-        const isChecked = ()=>{
-            return modelValue.value.includes(inputValue.value)
-        }
+        const isChecked = computed(() => {
+            if (multipleOption.value) {
+                return modelValue.value.includes(inputValue.value)
+            }
+            return !!modelValue.value
+        })
 
         /*Update Action*/
-        const updateField = ()=>{
-            isChecked.value= !isChecked.value
-            if (!modelValue.value.includes(inputValue.value)) {
-                modelValue.value.push(inputValue.value);
+        const updateField = () => {
+            let newValue = modelValue.value
+            if (multipleOption.value) {
+                if (!modelValue.value.includes(inputValue.value)) {
+                    newValue.push(inputValue.value);
+                } else {
+                    newValue.splice(modelValue.value.indexOf(inputValue.value), 1);
+                }
             } else {
-                modelValue.value.splice(modelValue.value.indexOf(inputValue.value), 1);
+                newValue = !newValue
             }
-            emit('input', modelValue.value);
+            emit('update:modelValue', newValue);
         }
 
         return {isChecked, checkboxStyle, defaultSelectorStyle, updateField}
