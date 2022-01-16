@@ -24,13 +24,20 @@
         </label>
         <!--Input Content-->
         <slot></slot>
-        <!--Error-->
-        <div v-show="errors">
+        <!--Front End Error-->
+        <div v-if="errors.length>0">
             <template v-for="error in errors" :key="error.$uid">
                 <p class="text-sm text-red-600 mt-2 whitespace-nowrap">
                     {{ error.$message }}
                 </p>
             </template>
+        </div>
+
+        <!--Backend Error-->
+        <div v-else>
+                <p class="text-sm text-red-600 mt-2 whitespace-nowrap">
+                    {{ $page.props.errors[labelFor] }}
+                </p>
         </div>
     </div>
 </template>
