@@ -1,31 +1,32 @@
 <template>
-  <div class="full-screen-card">
-    <div :class="[
+    <div class="full-screen-card">
+        <div :class="[
         'full-screen-card-container',
-        calculatedFullscreenCardStyle
+        bgColor
         ]"
-         :style="[bgImage && {backgroundImage: 'url('+bgImage+')'}]"
-    >
-
+             :style="[bgImageUrl && {backgroundImage: 'url('+bgImageUrl+')'}]"
+        >
+        </div>
+        <div class="full-screen-card-content">
+            <slot></slot>
+        </div>
     </div>
-    <div class="full-screen-card-content">
-      <slot></slot>
-    </div>
-  </div>
 </template>
 
 <script>
-import { defineComponent } from 'vue'
-import {fullScreenCardStyleMixin} from "@/Mixins/Styles/fullScreenCardStyleMixin";
+import {defineComponent} from "vue";
 
 export default defineComponent({
-  name: "FullScreenLayout",
-  props: {
-    bgImage: {
-      type: String,
-      default: null
+    name: "TFullScreenLayout",
+    props: {
+        bgImageUrl: {
+            type: String,
+            default: null
+        },
+        bgColor: {
+            type: Array,
+            default: null
+        }
     }
-  },
-  mixins: [fullScreenCardStyleMixin],
 })
 </script>
