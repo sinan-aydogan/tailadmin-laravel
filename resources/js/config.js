@@ -1,11 +1,10 @@
 const appConf = {
     appName: 'Anemon',
-    darkLogo: 'img/dark-logo.svg',
-    lightLogo: 'img/light-logo.svg',
+    darkLogo: '/img/dark-logo.svg',
+    lightLogo: '/img/light-logo.svg',
     logoAreaClasses: null,
     appNameClasses: null,
     logoClasses: null,
-    color: 'violet',
     radius: 3,
 }
 
@@ -21,15 +20,32 @@ const authScreenConf = {
     showLanguageSelector: true,
 }
 
-const leftMenuConf = {
+const mainMenuConf = {
+    /*Logo Area*/
     appName: null,
-    darkLogo: null,
-    lightLogo: null,
-    logoAreaClasses: ['flex', 'flex-col', 'justify-center', 'items-center', 'space-x-4'],
-    appNameClasses: ['text-5xl', 'font-semibold'],
-    logoClasses: ['w-12', 'text-white', 'h-auto'],
-    color: null,
-    radius: null,
+    darkLogo: '/img/dark-logo.svg',
+    lightLogo: '/img/dark-logo.svg',
+    logoAreaRadius: null,
+    logoAreaClasses: ['flex', 'flex-col', 'justify-center', 'items-center', 'space-x-6', 'bg-violet-500'],
+    appNameClasses: ['text-6xl', 'font-semibold', 'text-white'],
+    logoClasses: ['w-10', 'text-white', 'h-auto'],
+    /*Menu*/
+    menuRadius: 5,
+    rootLinkClasses: {
+        activeBg: ['border', 'bg-slate-500/20', 'border-slate-500/50', 'rounded'],
+        normal: ['hover:bg-violet-200', 'hover:text-violet-800'],
+        active: ['text-white', 'bg-violet-500', 'hover:bg-violet-600', 'rounded-2xl'],
+    },
+    secondLinkClasses: {
+        activeBg: [],
+        normal: ['hover:bg-emerald-200', 'hover:text-emerald-800'],
+        active: ['text-white', 'bg-emerald-500', 'hover:bg-emerald-600', 'rounded'],
+    },
+    thirdLinkClasses: {
+        activeBg: ['border', 'bg-emerald-500/20', 'border-slate-500/50', 'rounded'],
+        normal: ['hover:bg-emerald-200', 'hover:text-emerald-800'],
+        active: ['text-white', 'bg-emerald-500', 'hover:bg-emerald-600', 'rounded'],
+    },
 }
 
 const topBarConf = {
@@ -58,5 +74,5 @@ const footerConf = {
         "            </a>"
 }
 
-export {appConf,authScreenConf,leftMenuConf,topBarConf,footerConf}
+export {appConf,authScreenConf,mainMenuConf,topBarConf,footerConf}
 

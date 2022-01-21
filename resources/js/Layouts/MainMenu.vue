@@ -1,33 +1,39 @@
 <template>
     <aside
-        class="left-menu">
+        class="main-menu">
         <!--Logo-->
         <div
             class="header"
             :class="[
-        leftMenuConf.logoAreaClasses ? leftMenuConf.logoAreaClasses : appConf.logoAreaClasses,
-        `radius-${leftMenuConf.radius ? leftMenuConf.radius : appConf.radius}`
+        mainMenuConf.logoAreaClasses ? mainMenuConf.logoAreaClasses : appConf.logoAreaClasses,
+        `radius-${mainMenuConf.logoAreaRadius ? mainMenuConf.logoAreaRadius : appConf.radius}`
         ]"
         >
             <Link
                 :href="route('/')"
                 class="logo-out-container"
             >
-                <div class="logo-inside-container">
+                <div
+                    class="logo-inside-container"
+                    :class="foldMainMenu && 'ml-1'"
+                >
                     <!--TODO: Title and Logo will come from DB-->
                     <!--Logo-->
                     <img
                         :src="[
-                        appearingMode === 'dark' ? leftMenuConf.darkLogo ? leftMenuConf.darkLogo : appConf.darkLogo :
-                        leftMenuConf.lightLogo ? leftMenuConf.lightLogo : appConf.lightLogo
+                        appearingMode === 'dark' ? mainMenuConf.darkLogo ? mainMenuConf.darkLogo : appConf.darkLogo :
+                        mainMenuConf.lightLogo ? mainMenuConf.lightLogo : appConf.lightLogo
                     ]"
-                        :class="leftMenuConf.logoClasses"
+                        :class="mainMenuConf.logoClasses"
                     />
                     <!--Title-->
                     <div
                         id="logo-title"
-                        :class="[!foldLeftMenu ? 'left-menu-title-show' : 'left-menu-title-hide']"
-                        v-html="leftMenuConf.appName ? leftMenuConf.appName : appConf.appName"
+                        v-html="mainMenuConf.appName ? mainMenuConf.appName : appConf.appName"
+                        :class="[
+                            !foldMainMenu ? 'main-menu-title-show' : 'main-menu-title-hide',
+                            mainMenuConf.appNameClasses
+                            ]"
                     />
                 </div>
             </Link>
@@ -41,47 +47,47 @@
             <transition name="fade" mode="out-in">
                 <!--Settings-->
                 <div
-                    key="leftMenuFooterLinks"
+                    key="mainMenuFooterLinks"
                     id="footer-links-wrapper"
-                    v-if="sideMenuFooterLinks.length>0 && !foldLeftMenu"
+                    v-if="mainMenuFooterLinks.length>0 && !foldMainMenu"
                     :class="[
-            sideMenuFooterLinks.length>1 ? 'grid-cols-2' : '',
-            `radius-${leftMenuConf.radius ? leftMenuConf.radius : appConf.radius}`
+            mainMenuFooterLinks.length>1 ? 'grid-cols-2' : '',
+            `radius-${mainMenuConf.radius ? mainMenuConf.radius : appConf.radius}`
             ]"
                 >
                     <!--Footer Links-->
-                    <template v-for="link in sideMenuFooterLinks">
+                    <template v-for="link in mainMenuFooterLinks">
                         <!--Internal Route Link-->
                         <Link
                             v-if="link.linkType === 'route'"
                             id="footer-link"
-                            :class="sideMenuFooterLinks.length>2 ? 'justify-start' : 'justify-center'"
+                            :class="mainMenuFooterLinks.length>2 ? 'justify-start' : 'justify-center'"
                             :href="route(link.link)"
                         >
                             <icon v-if="link.icon" :icon="link.icon"/>
-                            <span v-text="tm(link.label ? link.label : link.label)"/>
+                            <span v-text="link.label ? link.label : link.label"/>
                         </Link>
                         <!--External Link-->
                         <a
                             v-else
                             id="footer-link"
-                            :class="sideMenuFooterLinks.length>2 ? 'justify-start' : 'justify-center'"
+                            :class="mainMenuFooterLinks.length>2 ? 'justify-start' : 'justify-center'"
                             :href="link.link"
                             target="_blank"
                         >
                             <icon v-if="link.icon" :icon="link.icon"/>
-                            <span v-text="tm(link.label ? link.label : link.label)"/>
+                            <span v-text="link.label ? link.label : link.label"/>
                         </a>
                     </template>
                 </div>
                 <!--Open Menu Arrow-->
                 <div
-                    key="leftMenuOpenArrow"
+                    key="mainMenuOpenArrow"
                     v-else
                     id="footer-trigger"
-                    @click="$emit('foldLeftMenu', true)"
+                    @click="$emit('updateMainMenuStatus', true)"
                 >
-                    <svg xmlns="http://www.w3.org/2000/svg" class="left-menu-trigger-icon" fill="none"
+                    <svg xmlns="http://www.w3.org/2000/svg" class="main-menu-trigger-icon" fill="none"
                          viewBox="0 0 24 24"
                          stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -99,41 +105,33 @@ import {defineComponent, inject, provide} from "vue";
 import {Link} from "@inertiajs/inertia-vue3";
 
 /*Sources*/
-import {sideMenuFooterLinks} from "@/Sources/sideMenuLinks";
-import {appConf, leftMenuConf} from "@/config";
+import MainMenuLinks from "@/Sources/mainMenuLinks";
+import {appConf, mainMenuConf} from "@/config";
 
 /*Multi Language*/
-import {useI18n} from "vue-i18n";
-import {sideMenuTranslates} from "@/Lang/languages";
+import {Inertia} from "@inertiajs/inertia";
 
 export default defineComponent({
-    name: "LeftMenu",
+    name: "MainMenu",
     components: {
         Link
     },
-    emits: ["foldLeftMenu"],
+    emits: ["updateMainMenuStatus"],
     setup() {
+        /*Menu*/
+        const {mainMenuFooterLinks} = MainMenuLinks(Inertia.page.props)
 
-        /*Multi Language*/
-        const {tm} = useI18n({
-            inheritLocale: true,
-            messages: sideMenuTranslates,
-        });
-
-        /*Provider*/
-        provide('tm', tm);
 
         /*Injection*/
-        const foldLeftMenu = inject("foldLeftMenu");
+        const foldMainMenu = inject("foldMainMenu");
         const appearingMode = inject("appearingMode");
 
         return {
             appConf,
             appearingMode,
-            leftMenuConf,
-            foldLeftMenu,
-            sideMenuFooterLinks,
-            tm
+            mainMenuConf,
+            foldMainMenu,
+            mainMenuFooterLinks,
         };
     }
 });

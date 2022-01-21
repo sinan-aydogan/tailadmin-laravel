@@ -49,21 +49,21 @@ const authTranslates = {
 };
 
 /*Side Menu Translates*/
-import sideMenuLangBg from "@/Lang/bg/side_menu_lang_bg";
-import sideMenuLangDe from "@/Lang/de/side_menu_lang_de";
-import sideMenuLangEn from "@/Lang/en/side_menu_lang_en";
-import sideMenuLangFr from "@/Lang/fr/side_menu_lang_fr";
-import sideMenuLangRu from "@/Lang/ru/side_menu_lang_ru";
-import sideMenuLangTr from "@/Lang/tr/side_menu_lang_tr";
-import sideMenuLangZh from "@/Lang/zh/side_menu_lang_zh";
-const sideMenuTranslates = {
-    bg: sideMenuLangBg,
-    de: sideMenuLangDe,
-    en: sideMenuLangEn,
-    fr: sideMenuLangFr,
-    ru: sideMenuLangRu,
-    tr: sideMenuLangTr,
-    zh: sideMenuLangZh,
+import mainMenuLangBg from "@/Lang/bg/main_menu_lang_bg";
+import mainMenuLangDe from "@/Lang/de/main_menu_lang_de";
+import mainMenuLangEn from "@/Lang/en/main_menu_lang_en";
+import mainMenuLangFr from "@/Lang/fr/main_menu_lang_fr";
+import mainMenuLangRu from "@/Lang/ru/main_menu_lang_ru";
+import mainMenuLangTr from "@/Lang/tr/main_menu_lang_tr";
+import mainMenuLangZh from "@/Lang/zh/main_menu_lang_zh";
+const mainMenuTranslates = {
+    bg: mainMenuLangBg,
+    de: mainMenuLangDe,
+    en: mainMenuLangEn,
+    fr: mainMenuLangFr,
+    ru: mainMenuLangRu,
+    tr: mainMenuLangTr,
+    zh: mainMenuLangZh,
 };
 
 /*User Menu Translates*/
@@ -88,6 +88,6 @@ export {
     languages,
     flags,
     authTranslates,
-    sideMenuTranslates,
+    mainMenuTranslates,
     userMenuTranslates
 };
