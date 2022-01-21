@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Inertia\Inertia;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -15,10 +16,11 @@ class UserController extends Controller
      *
      * @return \Inertia\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         return Inertia::render('Settings/User',[
-            'users'=> User::all(['id','name'])
+            'role' => Role::all(['id','name']),
+            'users'=> User::tableSearch($request->input('searchObj'))
         ]);
     }
 
