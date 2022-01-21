@@ -158,9 +158,13 @@
                     design="outline"
                 >
                     <template #icon>
-                        <svg class="w-10 h-10 dark:text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                        <svg class="w-10 h-10 dark:text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                        </svg>
                     </template>
-                    <div v-html="t(error.errorText)" />
+                    <div v-html="t(error.errorText)"/>
                 </t-alert>
 
             </template>
@@ -243,7 +247,10 @@
                     </th>
                     <!--Actions Header Cell-->
                     <td v-if="actions.length>0" class="table-header-cell">
-                        {{ actionsHeaderText }}
+                        <span
+                            class="text-right w-full"
+                            v-text="actionsHeaderText"
+                        ></span>
                     </td>
                 </tr>
                 </thead>
@@ -261,30 +268,32 @@
                         ]"
                 >
                     <!--Cells of The Content Row-->
-                    <td
-                        v-for="(cell,cellKey,cellIndex) in item"
-                        :key="cellKey"
-                        class="table-content-cell"
-                        :class="contentCellStyle(itemIndex+1,cellIndex+1)"
-                    >
-                        <div
-                            :class="[
+                    <template v-for="(cell,cellKey,cellIndex) in item">
+                        <td
+                            :key="cellKey"
+                            v-if="cellKey !== uniqueId"
+                            class="table-content-cell"
+                            :class="contentCellStyle(itemIndex+1,cellIndex+1)"
+                        >
+                            <div
+                                :class="[
                                 'flex',
                                 regeneratedHeader.find(h=>h.key === cellKey).align === 'right' ? 'justify-end' :
                                 regeneratedHeader.find(h=>h.key === cellKey).align === 'center' ? 'justify-center' :
                                 'justify-start'
                                 ]"
-                        >
-                            <!--Raw Content-->
-                            <span v-if="!hasSlot(cellKey)" v-text="cell"/>
-                            <!--SlotScope Content-->
-                            <slot
-                                v-else
-                                :name="cellKey"
-                                :props="item"
-                            />
-                        </div>
-                    </td>
+                            >
+                                <!--Raw Content-->
+                                <span v-if="!hasSlot(cellKey)" v-text="cell"/>
+                                <!--SlotScope Content-->
+                                <slot
+                                    v-else
+                                    :name="cellKey"
+                                    :props="item"
+                                />
+                            </div>
+                        </td>
+                    </template>
                     <!--Actions Cell-->
                     <td
                         v-if="actions.length>0"
@@ -320,7 +329,7 @@
                                                       stroke-width="2"
                                                       d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
                                             </svg>
-                                            {{t('actionDelete')}}
+                                            {{ t('actionDelete') }}
                                         </div>
                                     </div>
                                     <div
@@ -335,7 +344,7 @@
                                                       stroke-width="2"
                                                       d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
                                             </svg>
-                                            {{t('actionEdit')}}
+                                            {{ t('actionEdit') }}
                                         </div>
                                     </div>
                                     <div
@@ -353,7 +362,7 @@
                                                       stroke-width="2"
                                                       d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
                                             </svg>
-                                            {{t('actionView')}}
+                                            {{ t('actionView') }}
                                         </div>
                                     </div>
                                 </div>
@@ -486,6 +495,7 @@
                             </svg>
                             <t-input-check-box
                                 v-model="activeHeaders"
+                                :multiple-option="true"
                                 :input-value="item.key"
                                 class="inline-block select-none"
                             />
@@ -567,7 +577,10 @@ export default defineComponent({
         design: {
             type: String,
             default: "elegant"
-            ,
+        },
+        uniqueId: {
+            type: String,
+            default: "id"
         },
         rowBorder: {
             type: Boolean,
@@ -646,7 +659,7 @@ export default defineComponent({
             }
         }
     },
-emits: ['selectedItem'],
+    emits: ['selectedItem'],
     setup(props, {slots, emit}) {
         /*Props*/
         const {
@@ -656,7 +669,8 @@ emits: ['selectedItem'],
             radius,
             searchRoute,
             contentKey,
-            actions
+            actions,
+            uniqueId
         } = toRefs(props);
 
 
@@ -673,27 +687,27 @@ emits: ['selectedItem'],
         const contentCellStyle = (itemIndex, cellIndex) => {
             let style = [];
 
-            if(regeneratedContent.value.length>1){
-                if(itemIndex === 1 && cellIndex === 1){
+            if (regeneratedContent.value.length > 1) {
+                if (itemIndex === 1 && cellIndex === 1) {
                     /*Top Left*/
-                    style.push('radius-tl-'+radius.value)
-                }else if(itemIndex === 1 && cellIndex === regeneratedHeader.value.length && actions.value.length===0){
+                    style.push('radius-tl-' + radius.value)
+                } else if (itemIndex === 1 && cellIndex === regeneratedHeader.value.length && actions.value.length === 0) {
                     /*Top Right*/
-                    style.push('radius-tr-'+radius.value)
-                }else if(itemIndex===regeneratedContent.value.length && cellIndex===1){
+                    style.push('radius-tr-' + radius.value)
+                } else if (itemIndex === regeneratedContent.value.length && cellIndex === 1) {
                     /*Bottom Left*/
-                    style.push('radius-bl-'+radius.value)
-                }else if(itemIndex===regeneratedContent.value.length && cellIndex === regeneratedHeader.value.length && actions.value.length===0){
+                    style.push('radius-bl-' + radius.value)
+                } else if (itemIndex === regeneratedContent.value.length && cellIndex === regeneratedHeader.value.length && actions.value.length === 0) {
                     /*Bottom Right*/
-                    style.push('radius-br-'+radius.value)
+                    style.push('radius-br-' + radius.value)
                 }
-            }else{
-                if(cellIndex===1){
+            } else {
+                if (cellIndex === 1) {
                     /*Left*/
-                    style.push('radius-l-'+radius.value)
-                }else if(cellIndex === regeneratedHeader.value.length && actions.value.length===0){
+                    style.push('radius-l-' + radius.value)
+                } else if (cellIndex === regeneratedHeader.value.length && actions.value.length === 0) {
                     /*Right*/
-                    style.push('radius-r-'+radius.value)
+                    style.push('radius-r-' + radius.value)
                 }
 
 
@@ -704,13 +718,13 @@ emits: ['selectedItem'],
 
         const actionsCellStyle = (itemIndex) => {
             let style = [];
-            if(regeneratedContent.value.length>1){
-                if(itemIndex === 1){
+            if (regeneratedContent.value.length > 1) {
+                if (itemIndex === 1) {
                     style.push("radius-tr-" + radius.value)
-                }else if(itemIndex === regeneratedContent.value.length){
+                } else if (itemIndex === regeneratedContent.value.length) {
                     style.push("radius-br-" + radius.value)
                 }
-            }else{
+            } else {
                 style.push("radius-r-" + radius.value);
             }
 
@@ -756,6 +770,7 @@ emits: ['selectedItem'],
                 activeHeaders.forEach(key => {
                     row[key] = item[key];
                 });
+                row[uniqueId.value] = item[uniqueId.value];
                 return row;
             });
         });
@@ -865,10 +880,11 @@ emits: ['selectedItem'],
                     {
                         only: [contentKey.value],
                         onBefore: visit => {
-                            dataLoading.value = true
+                            dataLoading.value = true;
                         },
                         onFinish: visit => {
-                            dataLoading.value = false
+                            dataLoading.value = false;
+
                         },
                     });
             },
@@ -883,17 +899,14 @@ emits: ['selectedItem'],
 
         /*Content Delete Confirm Modal Function*/
         const selectedItem = ref(null);
-        const selectItem = ($event,item,type) => {
-            selectedItem.value = item;
-            emit('selectedItem', selectedItem.value, type);
+        const selectItem = ($event, item, type) => {
+            emit('selectedItem', {data: content.value.data.find(i => i[uniqueId.value] === item[uniqueId.value]), action: type});
         }
 
-
-
         /*Error Management*/
-        const tableErrors = computed(()=>{
+        const tableErrors = computed(() => {
             let contentStatus = !Object.keys(content.value);
-            let headerStatus = header.value.length===0;
+            let headerStatus = header.value.length === 0;
             let contentKeyStatus = !contentKey.value;
             let searchRouteStatus = !searchRoute.value;
 
