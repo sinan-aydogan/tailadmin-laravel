@@ -5,7 +5,7 @@
     >
         <!--Left Menu Trigger-->
         <div
-            @click="$emit('foldLeftMenu', $event)"
+            @click="$emit('updateMainMenuStatus', $event)"
             class="trigger"
             :class="`radius-${topBarConf.radius ? topBarConf.radius : appConf.radius}`"
         >
@@ -13,7 +13,7 @@
             <svg
                 class="trigger-icon"
                 :class="[
-                (showLeftMenu && !foldLeftMenu) || ((deviceType === 'phone' || deviceType==='tablet')&&showLeftMenu) ?
+                (showMainMenu && !foldMainMenu) || ((deviceType === 'phone' || deviceType==='tablet')&&showMainMenu) ?
                 'trigger-icon-show' : 'trigger-icon-hide'
                 ]"
                 xmlns="http://www.w3.org/2000/svg"
@@ -27,7 +27,7 @@
             <svg
                 class="trigger-icon"
                 :class="[
-                (showLeftMenu && foldLeftMenu) || !showLeftMenu ?
+                (showMainMenu && foldMainMenu) || !showMainMenu ?
                 'trigger-icon-show' : 'trigger-icon-hide'
                 ]"
                 xmlns="http://www.w3.org/2000/svg"
@@ -64,7 +64,7 @@
                 :title="$page.props.user.current_team.name"
                 class="active-team-wrapper">
                 <svg
-                    class="left-menu-icon"
+                    class="main-menu-icon"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -116,20 +116,20 @@ import {appConf, topBarConf} from "@/config";
 export default defineComponent({
     name: "TopMenu",
     components: {TopMenuLanguageSelector, TopMenuThemeSelector, TLoading, TopMenuUserMenu, TopMenuNotification},
-    emits: ["foldLeftMenu"],
+    emits: ["updateMainMenuStatus"],
     setup() {
         /*Definitions*/
         const searchBar = ref(false);
         /*Injections*/
         const deviceType = inject("deviceType");
-        const foldLeftMenu = inject("foldLeftMenu");
-        const showLeftMenu = inject("showLeftMenu");
+        const foldMainMenu = inject("foldMainMenu");
+        const showMainMenu = inject("showMainMenu");
 
         /*Provider*/
         provide('appConf', appConf);
         provide('topBarConf', topBarConf);
 
-        return {appConf, topBarConf, deviceType, foldLeftMenu, showLeftMenu, searchBar};
+        return {appConf, topBarConf, deviceType, foldMainMenu, showMainMenu, searchBar};
     }
 });
 </script>

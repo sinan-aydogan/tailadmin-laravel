@@ -5,22 +5,26 @@
     <jet-banner />
     <!--Main Container-->
     <div class="main-container">
-        <!--Left Menu -->
-        <left-menu
-            @foldLeftMenu="leftMenuTrigger"
+        <!--Main Menu -->
+        <main-menu
+            @updateMainMenuStatus="mainMenuTrigger"
             :class="[
-                showLeftMenu ? 'left-menu-show' : 'left-menu-hide',
-                foldLeftMenu ? 'left-menu-fold' : 'left-menu-expand'
+                showMainMenu ? 'main-menu-show' : 'main-menu-hide',
+                foldMainMenu ? 'main-menu-fold' : 'main-menu-expand'
             ]"
         >
-            <template v-for="(item, index) in sideMenuLinksGn" :key="index">
-                <left-menu-item :item="item" @foldLeftMenu="leftMenuTrigger"></left-menu-item>
+            <template v-for="item in mainMenuLinks" :key="item">
+                <main-menu-item
+                    :item="item"
+                    @updateMainMenuStatus="mainMenuTrigger"
+                    @selected="selectedLink = $event"
+                ></main-menu-item>
             </template>
-        </left-menu>
+        </main-menu>
         <!--Content Container-->
         <div class="content-wrapper">
             <!--Top Menu-->
-            <top-menu @foldLeftMenu="leftMenuTrigger" />
+            <top-menu @updateMainMenuStatus="mainMenuTrigger" />
             <!--TODO: Sync with Popup Menu-->
             <!--Content-->
             <div class="content-container">
@@ -80,34 +84,34 @@
 
 <script>
 /*Main Functions*/
+import {Inertia} from "@inertiajs/inertia";
 import { defineComponent, provide, ref, watch } from "vue";
 import { Head } from "@inertiajs/inertia-vue3";
 
 /*Components*/
 import JetBanner from "@/Jetstream/Banner.vue";
-import LeftMenu from "@/Layouts/LeftMenu";
-import LeftMenuItem from "@/Layouts/LeftMenuItem";
+import MainMenu from "@/Layouts/MainMenu";
+import MainMenuItem from "@/Layouts/MainMenuItem";
 import TAlert from "@/Components/Alert/TAlert";
 import TToastr from "@/Components/Toastr/TToastr";
 import TopMenu from "@/Layouts/TopMenu/TopMenu";
 
 /*Sources*/
 import {footerConf} from "@/config";
-import { sideMenuLinks } from "@/Sources/sideMenuLinks";
+import MainMenuLinks from "@/Sources/mainMenuLinks";
 import DarkMode from "@/Functions/darkMode";
 import windowSizeCalculator from "@/Functions/windowSizeCalculator";
 
 /*Multi Language*/
 import { useI18n } from "vue-i18n";
 
-
 export default defineComponent({
     components: {
         TopMenu,
         Head,
         TToastr,
-        LeftMenuItem,
-        LeftMenu,
+        MainMenu,
+        MainMenuItem,
         JetBanner,
         TAlert
     },
@@ -133,63 +137,66 @@ export default defineComponent({
         const { t } = useI18n();
 
         /*Side Menu*/
-        const sideMenuLinksGn = sideMenuLinks;
-        const showLeftMenu = ref(Boolean(localStorage.showLeftMenu));
-        const foldLeftMenu = ref(Boolean(localStorage.foldLeftMenu));
-        /*Left Menu: Check Local Variables*/
+        const {mainMenuLinks} = MainMenuLinks(Inertia.page.props)
+        const selectedLink = ref([]);
+        provide('selectedLink', ref(selectedLink));
+        const showMainMenu = ref(Boolean(localStorage.showMainMenu));
+        const foldMainMenu = ref(Boolean(localStorage.foldMainMenu));
+        /*Main Menu: Check Local Variables*/
 
         /*Default Menu Position*/
-        if (!localStorage.foldLeftMenu || !localStorage.showLeftMenu) {
+        if (!localStorage.foldMainMenu || !localStorage.showMainMenu) {
             if (deviceType.value === "tablet" || deviceType.value === "phone") {
-                foldLeftMenu.value = false;
-                showLeftMenu.value = false;
+                foldMainMenu.value = false;
+                showMainMenu.value = false;
             } else {
-                showLeftMenu.value = true;
-                foldLeftMenu.value = false;
+                showMainMenu.value = true;
+                foldMainMenu.value = false;
 
             }
         }
 
 
-        /*Left Menu Local Storage Variables Set*/
-        const leftMenuStorage = () => {
-            localStorage.setItem("showLeftMenu", showLeftMenu.value.toString());
-            localStorage.setItem("foldLeftMenu", foldLeftMenu.value.toString());
+        /*Main Menu Local Storage Variables Set*/
+        const mainMenuStorage = () => {
+            localStorage.setItem("showMainMenu", showMainMenu.value.toString());
+            localStorage.setItem("foldMainMenu", foldMainMenu.value.toString());
         };
-        /*Left Menu: Trigger Function*/
-        const leftMenuTrigger = () => {
+        /*Main Menu: Trigger Function*/
+        const mainMenuTrigger = () => {
             if (deviceType.value === "tablet" || deviceType.value === "phone") {
-                showLeftMenu.value = !showLeftMenu.value;
+                showMainMenu.value = !showMainMenu.value;
             } else {
-                foldLeftMenu.value = !foldLeftMenu.value;
+                foldMainMenu.value = !foldMainMenu.value;
             }
-            leftMenuStorage();
+            mainMenuStorage();
         };
 
-        leftMenuStorage();
+        mainMenuStorage();
         /*Profile Menu Trigger Function*/
         watch(deviceType,
             () => {
-                if (localStorage.showLeftMenu && localStorage.foldLeftMenu) {
+                if (localStorage.showMainMenu && localStorage.foldMainMenu) {
                     if (deviceType.value === "tablet" || deviceType.value === "phone") {
-                        foldLeftMenu.value = false;
-                        showLeftMenu.value = false;
+                        foldMainMenu.value = false;
+                        showMainMenu.value = false;
                     } else if (deviceType.value === "laptop") {
-                        foldLeftMenu.value = true;
-                        showLeftMenu.value = true;
+                        foldMainMenu.value = true;
+                        showMainMenu.value = true;
                     } else {
-                        foldLeftMenu.value = false;
-                        showLeftMenu.value = true;
+                        foldMainMenu.value = false;
+                        showMainMenu.value = true;
                     }
                 }
-                leftMenuStorage();
+                mainMenuStorage();
             });
 
 
         /*Providers*/
         provide("deviceType", ref(deviceType));
-        provide("foldLeftMenu", ref(foldLeftMenu));
-        provide("showLeftMenu", ref(showLeftMenu));
+        provide("foldMainMenu", ref(foldMainMenu));
+        provide("showMainMenu", ref(showMainMenu));
+        provide("appearingMode", ref(DarkMode().appearingMode));
         provide("appearingMode", ref(DarkMode().appearingMode));
 
 
@@ -198,14 +205,15 @@ export default defineComponent({
 
         return {
             footerConf,
-            showLeftMenu,
-            foldLeftMenu,
             deviceType,
             t,
-            sideMenuLinksGn,
-            leftMenuTrigger,
-            leftMenuStorage,
-            hasSlot
+            hasSlot,
+            /*Main Menu*/
+            mainMenuLinks,
+            foldMainMenu,
+            showMainMenu,
+            mainMenuTrigger,
+            selectedLink,
         };
     }
 });
