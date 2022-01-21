@@ -1,35 +1,19 @@
 <template>
-    <app-layout>
+    <app-layout title="Users">
         <template #header>Users</template>
         <template #subHeader>Management of Users</template>
-        <initial-vertical-menu :menu="menuList"/>
-        <t-table :content="users" :header="headers" class="mt-4" :searchable="['name']">
-            <template #id="{props}">
-                <t-dropdown align="right" size="fit" trigger-type="rich">
-                    <template #trigger>
-                        <t-dots-vertical-icon class="w-6 h-6 cursor-pointer"/>
-                    </template>
-                    <!--Delete User-->
-                    <t-list :radius="3">
-                        <t-list-item class="hover:bg-red-100 hover:text-red-500 cursor-pointer"
-                                     @click.native="showDeleteModal(selectedUser = props.id)">
-                            <div class="inline-flex items-center">
-                                <t-trash-icon class="w-5 h-5"/>
-                                Delete
-                            </div>
-                        </t-list-item>
-                        <t-list-item class="hover:bg-blue-100 hover:text-blue-500 cursor-pointer"
-                                     @click.native="editUser(selectedUser = props.id)">
-                            <div class="inline-flex items-center">
-                                <t-pencil-alt-icon class="w-5 h-5"/>
-                                Edit
-                            </div>
-                        </t-list-item>
-                    </t-list>
-                </t-dropdown>
-            </template>
-        </t-table>
-        <t-modal :show="showModal" @close="showModal = $event">
+        <initial-vertical-menu :menu="menuList" class="mb-10"/>
+        <t-back-end-table
+            @selectedItem="selectedUser = $event.data;$event.action === 'delete' && showDeleteModal($event.data)"
+            :content="users"
+            :header="header"
+            content-key="users"
+            unique-id="id"
+            search-route="settings-user.search"
+        >
+
+        </t-back-end-table>
+        <t-modal v-model="showModal">
             <template #header>
                 User Deleting
             </template>
@@ -40,7 +24,7 @@
                 <t-button
                     design="light"
                     color="green"
-                    @click.native="showModal = false"
+                    @click="showModal = false"
                 >
                     No, Nevermind
                 </t-button>
@@ -61,29 +45,32 @@
 </template>
 
 <script>
+/*Main functions*/
+import {settingsMenuMixin} from "@/Mixins/settingsMenuMixin";
+import {reactive, ref, toRefs, watch} from "vue";
+import {useForm} from "@inertiajs/inertia-vue3";
+
+/*Components*/
 import AppLayout from "@/Layouts/AppLayout";
 import InitialVerticalMenu from "@/Layouts/InitialVerticalMenu";
-import {settingsMenuMixin} from "@/Mixins/settingsMenuMixin";
 import TTable from "@/Components/Table/TTable";
 import TButton from "@/Components/Button/TButton";
 import TTrashIcon from "@/Components/Icon/TTrashIcon";
 import TPencilAltIcon from "@/Components/Icon/TPencilAltIcon";
 import TDropdown from "@/Components/Dropdown/TDropdown";
 import TDotsVerticalIcon from "@/Components/Icon/TDotsVerticalIcon";
-import GridSection from "@/Layouts/GridSection";
-import TDropdownItem from "@/Components/Dropdown/TDropdownItem";
 import TList from "@/Components/List/TList";
 import TListItem from "@/Components/List/TListItem";
 import TModal from "@/Components/Modal/TModal";
+import TBackEndTable from "@/Components/Table/TBackEndTable";
 
 export default {
     name: "SettingsUser",
     components: {
+        TBackEndTable,
         TModal,
         TListItem,
         TList,
-        TDropdownItem,
-        GridSection,
         TDotsVerticalIcon,
         TDropdown,
         TPencilAltIcon,
@@ -94,41 +81,76 @@ export default {
         AppLayout
     },
     mixins: [settingsMenuMixin],
-    props: ['users'],
-    data() {
-        return {
-            showModal: false,
-            modalContent: null,
-            selectedUser: null,
-            form: this.$inertia.form({
-                id: null
-            }),
-            headers: [
-                {key: 'name', label: 'Name', align: 'left'},
-                {key: 'id', label: 'Action', align: 'center'},
-            ]
+    props: {
+        users: {
+            type: Array,
+            default() {
+                return []
+            }
+        },
+        roles: {
+            type: Array,
+            default() {
+                return []
+            }
         }
     },
-    methods: {
-        showDeleteModal() {
-            let user;
-            this.users.forEach(item => {
-                if (item.id === this.selectedUser) {
-                    user = item
-                }
-            })
-            this.showModal = true
-            this.modalContent = 'You are going to delete <b>' + user.name + '</b>, Are you sure ?'
-        },
-        deleteUser() {
-            this.form.id = this.selectedUser;
-            this.form.delete(route('settings-user.destroy', this.selectedUser), {
-                preserveScroll: true,
-                onSuccess: () => this.showModal = false,
-            })
-        },
-        editUser(id) {
+    setup(props) {
+        const {users, roles} = toRefs(props);
+        const showModal = ref(false);
+        const modalContent = ref(null);
+        const selectedUser = ref(null);
+        const form = useForm({
+            id: null
+        })
 
+        watch(()=>selectedUser,()=>{
+
+        })
+
+        const showDeleteModal = (user)=> {
+            showModal.value = true
+            modalContent.value = `You are going to delete <b> ${user.name} </b>, Are you sure ?`
+        }
+
+        const deleteUser = ()=> {
+            form.id = selectedUser.value;
+            form.delete(route('settings-user.destroy', selectedUser.value), {
+                preserveScroll: true,
+                onSuccess: () => showModal.value = false,
+            })
+        }
+
+        const compareOperators = reactive([
+            {key: "contains", label: "contains"},
+            {key: "notContains", label: "not contains"},
+            {key: "starts", label: "starts"},
+            {key: "ends", label: "ends"}
+        ]);
+
+        const header = reactive([
+            {
+                label: "Name",
+                key: "name",
+                align: "left",
+                status: true,
+                sortable: true,
+                simpleSearchable: true,
+                advancedSearchable: true,
+                advancedSearchInputType: "text",
+                compareOperators: compareOperators
+            }
+        ])
+
+        return {
+            showModal,
+            showDeleteModal,
+            deleteUser,
+            modalContent,
+            selectedUser,
+            form,
+            header,
+            compareOperators,
         }
     }
 }

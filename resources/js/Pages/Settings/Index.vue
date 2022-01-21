@@ -83,6 +83,6 @@ export default {
         TStatisticWidget,
         TUserGroupIcon
     },
-    props: ['users_count', 'roles_count', 'permissions_count']
+    props: ['users_count', 'roles_count', 'permissions_count'],
 }
 </script>

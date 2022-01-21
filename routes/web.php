@@ -57,6 +57,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
             ]);
         })->name('settings');
         Route::resource('settings-user', \App\Http\Controllers\Settings\UserController::class);
+        Route::post('settings-user', [\App\Http\Controllers\Settings\UserController::class, 'index'])->name('settings-user.search');
         Route::get('role', function () {
             return Inertia::render('Settings/Role');
         })->name('settings-role');
