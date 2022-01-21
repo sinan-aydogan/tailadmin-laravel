@@ -1,4 +1,4 @@
-const sideMenuLangFr = {
+const mainMenuLangZh = {
     authPages: "Auth Pages",
     authLogin: "Login",
     authRegister: "Register",
@@ -21,6 +21,7 @@ const sideMenuLangFr = {
     componentProgressBar: "Progress Bar",
     componentStatisticWidget: "Statistic Widget",
     componentTab: "Tab",
+    componentTable: "Table",
     componentTableJson: "Table(JSON)",
     componentTableBackend: "Table(BackEnd)",
     componentTooltip: "Bilgi Balonu",
@@ -44,4 +45,4 @@ const sideMenuLangFr = {
     footerSettings: "Settings"
 };
 
-export default sideMenuLangFr;
+export default mainMenuLangZh;

@@ -1,4 +1,4 @@
-const sideMenuLangTr = {
+const mainMenuLangTr = {
     authPages: "Kullanıcı Sayfaları",
     authLogin: "Giriş",
     authRegister: "Kayıt",
@@ -21,6 +21,7 @@ const sideMenuLangTr = {
     componentProgressBar: "İlerleme Göstergesi",
     componentStatisticWidget: "İstatistik Kutusu",
     componentTab: "Sekme",
+    componentTable: "Tablo",
     componentTableJson: "Tablo(JSON)",
     componentTableBackend: "Tablo(BackEnd)",
     componentTooltip: "Bilgi Baloncuğu",
@@ -41,7 +42,7 @@ const sideMenuLangTr = {
     externalInertiaDocument: "Inertiajs Dökümanı",
     externalLaravelDocument: "Laravel Dökümanı",
     footerHelp: "Yardım",
-    footerSettings: "Ayarlar"
+    footerSettings: "Ayarlar",
 };
 
-export default sideMenuLangTr;
+export default mainMenuLangTr;
