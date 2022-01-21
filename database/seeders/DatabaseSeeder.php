@@ -14,7 +14,11 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         /*Admin Seeder*/
-        $this->call(UserSeeder::class);
+        $this->call([
+            PermissionSeeder::class,
+            RoleSeeder::class,
+            UserSeeder::class
+        ]);
         \App\Models\User::factory(50)->create();
         \App\Models\DemoContent::factory(100)->create();
     }
