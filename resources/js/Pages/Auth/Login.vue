@@ -33,6 +33,7 @@ export default defineComponent({
     },
     setup(){
         const {t,tm} = useI18n({
+            inheritLocale: true,
             messages: authTranslates
         })
 

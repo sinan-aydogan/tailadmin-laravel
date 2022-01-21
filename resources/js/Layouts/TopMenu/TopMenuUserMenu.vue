@@ -137,9 +137,6 @@ export default defineComponent({
     name: "TopMenuUserMenu",
     components: {TAvatar, TDropdown, Link},
     setup() {
-        /*Definitions*/
-        const conf = inject("conf");
-
         /*Multi Language*/
         const {tm} = useI18n({
             inheritLocale: true,
@@ -166,7 +163,6 @@ export default defineComponent({
         };
 
         return {
-            conf,
             logout,
             switchToTeam,
             showTeamSelector,
