@@ -91,6 +91,12 @@ const avatarConf = {
     radius: null,
 }
 
+const badgeConf = {
+    color: 'light',
+    design: 'filled',
+    radius: 5,
+}
+
 export {
     appConf,
     /*Layout*/
@@ -100,6 +106,7 @@ export {
     footerConf,
     /*Component*/
     alertConf,
-    avatarConf
+    avatarConf,
+    badgeConf
 }
 
