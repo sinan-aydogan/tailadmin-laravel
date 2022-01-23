@@ -49,6 +49,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     /*They are the required pages for the system, don't delete it*/
     Route::prefix('settings')->group(function () {
+
+        /*Settings Summary*/
         Route::get('/', function () {
             return Inertia::render('Settings/Index', [
                 'users_count' => count(\App\Models\User::all('id')),
@@ -56,17 +58,24 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
                 'permissions_count' => count(Permission::all())
             ]);
         })->name('settings');
-        Route::resource('settings-user', \App\Http\Controllers\Settings\UserController::class);
-        Route::post('settings-user', [\App\Http\Controllers\Settings\UserController::class, 'index'])->name('settings-user.search');
-        Route::get('role', function () {
-            return Inertia::render('Settings/Role');
-        })->name('settings-role');
-        Route::get('permission', function () {
-            return Inertia::render('Settings/Permission');
-        })->name('settings-permission');
+
+        /*Get Routes*/
         Route::get('system', function () {
             return Inertia::render('Settings/System');
         })->name('settings-system');
+
+        /*Resource Routes*/
+        Route::resources([
+            'settings-user'=> \App\Http\Controllers\Settings\UserController::class,
+            'settings-role' => \App\Http\Controllers\Settings\RoleController::class,
+            'settings-permission' => \App\Http\Controllers\Settings\PermissionController::class
+        ]);
+
+        /*Search Routes for Resource Routes*/
+        Route::post('settings-user', [\App\Http\Controllers\Settings\UserController::class, 'index'])->name('settings-user.search');
+        Route::post('settings-role', [\App\Http\Controllers\Settings\RoleController::class, 'index'])->name('settings-role.search');
+        Route::post('settings-permission', [\App\Http\Controllers\Settings\PermissionController::class, 'index'])->name('settings-permission.search');
+
     });
 
     /*This pages for example, you can delete when you design the your system*/

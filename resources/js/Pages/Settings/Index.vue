@@ -20,7 +20,7 @@
                 </t-content-card>
             </Link>
             <!--Roles-->
-            <Link :href="route('settings-role')">
+            <Link :href="route('settings-role.index')">
                 <t-content-card color="light-purple" class="hover:bg-white">
                     <template #title>Roles</template>
                     <template #icon>
@@ -32,7 +32,7 @@
                 </t-content-card>
             </Link>
             <!--Permissions-->
-            <Link :href="route('settings-permission')">
+            <Link :href="route('settings-permission.index')">
                 <t-content-card color="light-pink" class="hover:bg-white">
                     <template #title>Permissions</template>
                     <template #icon>

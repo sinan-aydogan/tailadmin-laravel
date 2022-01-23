@@ -9,14 +9,8 @@
                 ]"
         >
             <div class="ivm-container">
-                <div
-                    v-for="(item,index) in menu"
-                    :class="[
-                        'ivm-item',
-                        itemStyle,
-                        radiusStyle,
-                        ]"
-                >
+                <template v-for="(item,index) in menu">
+
                     <Link
                         v-if="item.link"
                         :href="
@@ -32,15 +26,20 @@
                           item.linkType === 'internal' ? URL().current(item.link) : '' : ''
                           "
                         :class="[
-                menu.length !== index+1 ? '' : item.activeColor ?
+                        'ivm-item',
+                        itemStyle,
+                        radiusStyle,
+                        menu.length !== index+1 ? '' : item.activeColor ?
                 '' :
                   'font-bold'
-        ]"
+                        ]"
                     >
+
                         <icon v-if="item.icon" :icon="item.icon" size="lg"/>
                         {{ item.label }}
                     </Link>
-                </div>
+
+                </template>
             </div>
             <div v-if="$slots.hasOwnProperty('subContent')" class="px-3 text-2xl text-gray-700">
                 <slot name="subContent"></slot>

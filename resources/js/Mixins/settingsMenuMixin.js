@@ -21,7 +21,7 @@ export const settingsMenuMixin = {
                 {
                     label: "Roles",
                     icon: "",
-                    link: "settings-role",
+                    link: "settings-role.index",
                     linkType: "route",
                     type: "standard",
                     activeKey: ["settings-role"],
@@ -29,7 +29,7 @@ export const settingsMenuMixin = {
                 {
                     label: "Permissions",
                     icon: "",
-                    link: "settings-permission",
+                    link: "settings-permission.index",
                     linkType: "route",
                     type: "standard",
                     activeKey: ["settings-permission"],
