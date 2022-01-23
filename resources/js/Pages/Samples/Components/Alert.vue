@@ -17,7 +17,7 @@
                             :radius="content.radius"
                             :title="content.title ? tm(content.title) : null"
                             :closeable="content.closeable"
-                            :timer="content.timer"
+                            :timer-status="content.timerStatus"
                             @destroy="revive(demoContents[content.design])"
                         >
                             <template #icon v-if="content.icon || content.media">
@@ -112,7 +112,8 @@ export default defineComponent({
                     docRadiusDesc: 'It shapes the corners of the alert.',
                     docTitleDesc: 'If you would like to display a title using the alert component, pass/set any value through this prop.',
                     docCloseableDesc: 'If you would like to make your alert component closeable, you can use this prop.',
-                    docTimerDesc: 'If you would like to make your alert component to close automatically, you can set this prop. Its unit is millisecond.',
+                    docTimerStatusDesc: 'If you would like to make your alert component to close automatically, you can set this prop.',
+                    docTimerDesc: 'If you set prop of the timer-status to true, You should set the timer by milliseconds',
                     docTypeDesc: 'If you don not want to deal with design and color, you can use this prop beacause it sets automatically design and color values to your choose.',
                 },
                 tr: {
@@ -139,7 +140,8 @@ export default defineComponent({
                     docRadiusDesc: 'Uyarı kutusunun köşelerinin ovalliğini kontrol etmenizi sağlar.',
                     docTitleDesc: 'Uyarı kutusu içinde istediğiniz başlığı gösterebilmenizi sağlar.',
                     docCloseableDesc: 'Uyarı kutusuna gizleme düğmesi eklemenizi sağlar.',
-                    docTimerDesc: 'Uyarı kutusunun belirlediğiniz zaman sonunda kapanmasını sağlar. Milisaniye cinsinden bir değer vermelisiniz.',
+                    docTimerStatusDesc: 'Uyarı kutusunun belirlediğiniz zaman sonunda kapanmasını sağlar.',
+                    docTimerDesc: 'Otomatik kapanma süresini belirlemenizi sağlar, timer-status probunun true olarak tanımlanmış olması gereklidir.',
                     docTypeDesc: 'Tasarım ve renk ile uğraşmadan direk başarılı(success-yeşil) veya dikkat(danger-kırmızı) hissiyatı yaratacak hazır tasarımları kullanmanızı sağlar. Type değerini verdiğinizde design ve color değeri girmeniz gerekmez. ',
                 },
             },
@@ -156,7 +158,7 @@ export default defineComponent({
                 radius: 1,
                 icon: "check-circle",
                 title: "filledTitle",
-                timer: null
+                timerStatus: false
             },
             "light": {
                 id: 1,
@@ -167,7 +169,7 @@ export default defineComponent({
                 icon: "trash",
                 title: "lightTitle",
                 closeable: true,
-                timer: null
+                timerStatus: false
             },
             "inline": {
                 id: 1,
@@ -176,7 +178,7 @@ export default defineComponent({
                 color: "warning",
                 radius: 3,
                 icon: "ban",
-                timer: null
+                timerStatus: false
             },
             "outline": {
                 id: 1,
@@ -185,7 +187,7 @@ export default defineComponent({
                 color: "info",
                 radius: 2,
                 icon: "retweet",
-                timer: null
+                timerStatus: false
             },
             "gradient": {
                 id: 1,
@@ -195,7 +197,7 @@ export default defineComponent({
                 radius: 3,
                 media: true,
                 closeable: true,
-                timer: null
+                timerStatus: false
             },
             "elegant": {
                 id: 1,
@@ -205,7 +207,7 @@ export default defineComponent({
                 radius: 8,
                 title: "elegantTitle",
                 closeable: true,
-                timer: null
+                timerStatus: false
             },
             "block": {
                 id: 1,
@@ -215,12 +217,12 @@ export default defineComponent({
                 radius: 1,
                 icon: "info",
                 closeable: true,
-                timer: null
+                timerStatus: false
             }
         });
         const activeShowcase = ref()
         const startTimer = () => {
-            demoContents[activeShowcase.value].timer = 4000
+            demoContents[activeShowcase.value].timerStatus = true
         }
         const reviveMessageStatus = ref({});
         const revive = (alert) => {
@@ -291,6 +293,12 @@ export default defineComponent({
                     options: ['true', 'false'],
                     default: 'false',
                     description: tm('docCloseableDesc')
+                },
+                {
+                    id: 'timer-status',
+                    prop: 'timer-status',
+                    type: 'Boolean',
+                    description: tm('docTimerStatusDesc')
                 },
                 {
                     id: 'timer',

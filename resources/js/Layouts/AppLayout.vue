@@ -97,7 +97,7 @@ import TToastr from "@/Components/Toastr/TToastr";
 import TopMenu from "@/Layouts/TopMenu/TopMenu";
 
 /*Sources*/
-import {footerConf} from "@/config";
+import {appConf, footerConf} from "@/config";
 import MainMenuLinks from "@/Sources/mainMenuLinks";
 import DarkMode from "@/Functions/darkMode";
 import windowSizeCalculator from "@/Functions/windowSizeCalculator";
@@ -198,6 +198,7 @@ export default defineComponent({
         provide("showMainMenu", ref(showMainMenu));
         provide("appearingMode", ref(DarkMode().appearingMode));
         provide("appearingMode", ref(DarkMode().appearingMode));
+        provide("appConf", ref(appConf));
 
 
         /*Slot Check*/

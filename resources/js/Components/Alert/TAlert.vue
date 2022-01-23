@@ -5,17 +5,17 @@
             v-if="showAlertBox"
             class="alert"
             :class="[
-                `alert-${design}`,
-                !type ? `alert-${design}-${color}` :
+                `alert-${temporaryDesign}`,
+                !type ? `alert-${temporaryDesign}-${temporaryColor}` :
                     [{ 'alert-success': type === 'success' },
                     { 'alert-warning': type === 'warning' },
                     { 'alert-danger': type === 'error' },
                     { 'alert-info': type === 'info' }],
-                `radius-${radius}`,
+                    `radius-${temporaryRadius}`,
             ]"
         >
             <!--Alert Line-->
-            <div v-if="design.includes('line')" class="alert-line" />
+            <div v-if="temporaryDesign.includes('line')" class="alert-line" />
 
             <!--Alert Icon-->
             <div v-if="hasSlot('icon')" class="alert-icon">
@@ -33,13 +33,13 @@
             </div>
 
             <!--Close Icon-->
-            <icon icon="times" v-if="closeable" @click="close" class="alert-close" />
+            <icon icon="times" v-if="temporaryCloseable" @click="close" class="alert-close" />
 
             <!--Countdown Line-->
-            <div v-if="timer" class="alert-countdown">
+            <div v-if="temporaryTimer" class="alert-countdown">
                 <div
                     class="alert-countdown-line"
-                    :class="`radius-${radius}`"
+                    :class="`radius-${temporaryRadius}`"
                     :style="{ width: countDownCounter + '%' }"
                 ></div>
             </div>
@@ -48,7 +48,10 @@
 </template>
 <script>
 /* Main Functions */
-import { defineComponent, ref, toRefs, watch } from "vue";
+import { defineComponent, inject, ref, toRefs, watch } from "vue";
+
+/*Sources*/
+import {alertConf} from "@/config";
 
 /*Import FontAwesomeIcon*/
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -68,10 +71,13 @@ export default defineComponent({
             type: Boolean,
             default: false
         },
+        timerStatus: {
+            type: Boolean,
+            default: false,
+        },
         timer: {
             type: Number,
             default: null,
-            required: false
         },
         title: {
             type: String,
@@ -83,7 +89,7 @@ export default defineComponent({
         },
         radius: {
             type: Number,
-            default: 3
+            default: null
         },
         design: {
             type: String,
@@ -98,8 +104,17 @@ export default defineComponent({
 
     setup(props, { slots, emit }) {
         /*Definitions*/
-        const { timer, id } = toRefs(props);
+        const { design, color, radius, closeable, timerStatus, timer, id } = toRefs(props);
         const showAlertBox = ref(true);
+        const appConf = inject('appConf');
+
+        /*Temporary Definations*/
+        const temporaryDesign = ref(design.value ? ref(design.value) : ref(alertConf.design))
+        const temporaryColor = ref(color.value ? ref(color.value) : ref(alertConf.color))
+        const temporaryRadius = ref(radius.value ? ref(radius.value) : ref(alertConf.radius))
+        const temporaryCloseable = ref(closeable.value ? ref(closeable.value) : ref(alertConf.closeable))
+        const temporaryTimer = ref(timer.value ? ref(timer.value) : ref(alertConf.timer))
+
 
         /*Close Function*/
         const close = () => {
@@ -111,18 +126,18 @@ export default defineComponent({
         const timerCounter = ref(0);
         const countDownCounter = ref(0);
 
-        watch(timer, (newValue, oldValue) => {
-            if (!oldValue && newValue > 0) {
+        watch(timerStatus, (newValue, oldValue) => {
+            if (timerStatus.value && !oldValue && newValue > 0) {
                 /*Timer Function*/
                 setTimeout(() => {
                     showAlertBox.value = false;
                     emit("destroy", id.value);
-                }, timer.value);
+                }, temporaryTimer.value);
 
                 /*Count Down Function*/
                 let countDownFn = setInterval(() => {
-                    if (timer.value >= timerCounter.value) {
-                        countDownCounter.value = 100 - (timerCounter.value / timer.value) * 100;
+                    if (temporaryTimer.value >= timerCounter.value) {
+                        countDownCounter.value = 100 - (timerCounter.value / temporaryTimer.value) * 100;
                         timerCounter.value += 4;
                     } else {
                         clearInterval(countDownFn);
@@ -135,6 +150,13 @@ export default defineComponent({
         const hasSlot = name => !!slots[name];
 
         return {
+            appConf,
+            alertConf,
+            temporaryDesign,
+            temporaryColor,
+            temporaryRadius,
+            temporaryCloseable,
+            temporaryTimer,
             showAlertBox,
             countDownCounter,
             timerCounter,

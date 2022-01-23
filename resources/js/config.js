@@ -1,3 +1,4 @@
+/*Default Settings*/
 const appConf = {
     appName: 'Anemon',
     darkLogo: '/img/dark-logo.svg',
@@ -8,6 +9,7 @@ const appConf = {
     radius: 3,
 }
 
+/*Layout Settings*/
 const authScreenConf = {
     appName: null,
     darkLogo: null,
@@ -74,5 +76,14 @@ const footerConf = {
         "            </a>"
 }
 
-export {appConf,authScreenConf,mainMenuConf,topBarConf,footerConf}
+/*Module Settings*/
+const alertConf = {
+    design: 'filled',
+    color: 'light',
+    radius: null,
+    closeable: false,
+    timer: 4000
+}
+
+export {appConf,authScreenConf,mainMenuConf,topBarConf,footerConf, alertConf}
 
