@@ -20,10 +20,10 @@
 
 /*<editor-fold desc="Filled Style">*/
 /*General Definitions*/
-.badge-filled-base {
+.badge-filled {
     @apply text-white font-semibold border
 }
-.badge-filled-base .badge-value {
+.badge-filled .badge-value {
     @apply border-gray-100 border-opacity-50 border-l font-semibold
 }
 
@@ -78,10 +78,10 @@
 
 /*<editor-fold desc="Light Style">*/
 /*General Definitions*/
-.badge-light-base {
+.badge-light {
     @apply border font-semibold
 }
-.badge-light-base .badge-value {
+.badge-light .badge-value {
     @apply border-l font-semibold
 }
 
@@ -160,7 +160,7 @@
 
 /*<editor-fold desc="Inline Style">*/
 /*General Definitions*/
-.badge-inline-base {
+.badge-inline {
     @apply text-gray-700 bg-white bg-opacity-50 font-semibold overflow-hidden;
     box-shadow: rgba(0, 0, 0, 0.24) 0px .01rem .1rem;
 }
@@ -246,7 +246,7 @@
 /*</editor-fold>*/
 
 /*<editor-fold desc="Outline Style">*/
-.badge-outline-base {
+.badge-outline {
     @apply text-gray-700 font-semibold overflow-hidden
 }
 .badge-outline-line {
@@ -260,10 +260,10 @@
     content: '&nbsp';
     visibility: hidden;
 }
-.badge-outline-base .badge-icon {
+.badge-outline .badge-icon {
     @apply ml-2
 }
-.badge-outline-base .badge-increase-button, .badge-decrease-button {
+.badge-outline .badge-increase-button, .badge-decrease-button {
     @apply w-5 h-5
 }
 
@@ -342,10 +342,10 @@
 
 /*<editor-fold desc="Elegant Style">*/
 /*General Definitions*/
-.badge-elegant-base {
+.badge-elegant {
     @apply bg-white bg-opacity-50 border font-semibold overflow-hidden
 }
-.badge-elegant-base .badge-value{
+.badge-elegant .badge-value{
     @apply border-0 font-semibold my-0.5 rounded-full;
     margin-right: .160rem;
 }
@@ -425,13 +425,13 @@
 
 /*<editor-fold desc="Block Style">*/
 /*General Definitions*/
-.badge-block-base {
+.badge-block {
     @apply bg-white shadow-inner border border-gray-300 bg-opacity-50 font-semibold overflow-hidden
 }
-.badge-block-base .badge-icon {
+.badge-block .badge-icon {
     @apply h-full
 }
-.badge-block-base .badge-value {
+.badge-block .badge-value {
     @apply font-bold
 }
 
@@ -510,13 +510,13 @@
 
 /*<editor-fold desc="Gradient Style">*/
 /*General Definitions*/
-.badge-gradient-base {
+.badge-gradient {
     @apply  font-semibold
 }
-.badge-gradient-base .badge-icon {
+.badge-gradient .badge-icon {
     @apply ml-2
 }
-.badge-gradient-base .badge-increase-button, .badge-decrease-button {
+.badge-gradient .badge-increase-button, .badge-decrease-button {
     @apply w-5 h-5
 }
 

@@ -1,102 +1,96 @@
 <template>
-  <!--TODO: The link, the avatar group hover zoom and new color options features will add to documentation-->
-  <div :class="[
+    <div :class="[
         'avatar-container',
-        isAvatarGroup && 'avatar-container-group',
-        tStyle['size']
+        {'avatar-container-group' : isAvatarGroup},
+        `avatar-size-${temporarySize}`,
         ]">
-    <Link v-if="link" :href="link">
-      <img :class="[
-            tStyle['radius'],
-            tStyle['size'],
-            isAvatarGroup ? 'avatar-group-image' : ''
+
+        <!--Link-->
+        <Link v-if="link" :href="link">
+            <img :class="[
+            `radius-${temporaryRadius}`,
+            `avatar-size-${temporarySize}`,
+             {'avatar-group-image' : isAvatarGroup}
             ]"
-           alt="avatar"
-           :src="avatarURL"
-      />
-    </Link>
-    <img v-else
-         alt="avatar"
-         :class="[
-            tStyle['radius'],
-            tStyle['size'],
-            isAvatarGroup ? 'avatar-group-image' : ''
+                 alt="avatar"
+                 :src="temporarySrc"
+            />
+        </Link>
+
+        <!--Without Link-->
+        <img v-else
+             alt="avatar"
+             :class="[
+            `radius-${temporaryRadius}`,
+            `avatar-size-${temporarySize}`,
+            {'avatar-group-image' : isAvatarGroup}
             ]"
-         :src="avatarURL"
-    />
-    <div
-      v-if="indicator"
-      :class="tStyle['indicator']">
-      <div v-text="size>3 ? indicator.label : null" />
+             :src="temporarySrc"
+        />
+
+        <!--Indicator-->
+        <div
+            v-if="indicator"
+            class="avatar-indicator"
+            :class="[
+                temporarySize < 7 ? 'text-2xs' : 'text-normal',
+                `avatar-indicator-position-${indicator.position}`,
+                `avatar-indicator-${indicator.color}`
+            ]">
+            <div v-text="temporarySize>3 ? indicator.label : null"/>
+        </div>
     </div>
-  </div>
 </template>
 
 <script>
-import { computed, defineComponent, getCurrentInstance, reactive, ref, toRefs } from "vue";
-import { Link } from "@inertiajs/inertia-vue3";
+/*Main functions*/
+import {defineComponent, getCurrentInstance, inject, ref, toRefs} from "vue";
+import {Link} from "@inertiajs/inertia-vue3";
+
+/*Sources*/
+import {avatarConf} from "@/config";
 
 export default defineComponent({
-  name: "TAvatar",
-  props: {
-    src: {
-      type: String,
-      default: null,
-      require: false
+    name: "TAvatar",
+    props: {
+        src: {
+            type: String,
+            default: null,
+        },
+        link: {
+            type: String,
+            default: null,
+        },
+        size: {
+            type: Number,
+            default: null
+        },
+        radius: {
+            type: Number,
+            default: null
+        },
+        indicator: {
+            type: Object,
+            default: null,
+        }
     },
-    link: {
-      type: String,
-      default: null,
-      require: false
+    components: {
+        Link
     },
-    size: {
-      type: Number,
-      require: false,
-      default: 3
-    },
-    radius: {
-      type: Number,
-      default: 3
-    },
-    indicator: {
-      type: Object,
-      default: null,
-      require: false
+    setup(props) {
+        /*Definitions*/
+        const {size, src, radius} = toRefs(props);
+        const appConf = inject('appConf');
+
+        /*Temporary Definitions*/
+        const temporarySize = ref(size.value ? size.value : avatarConf.size ? avatarConf.size : appConf.size);
+        const temporaryRadius = ref(radius.value ? radius.value : avatarConf.radius ? avatarConf.radius : appConf.radius);
+        const temporarySrc = ref(src.value ? src.value : avatarConf.defaultPhotoSrc);
+
+        /*Is Avatar Group*/
+        const isAvatarGroup = getCurrentInstance().parent.type.name === "TAvatarGroup";
+
+        return {isAvatarGroup, temporarySize, temporaryRadius, temporarySrc};
     }
-  },
-  components: {
-    Link
-  },
-  setup(props) {
-    /*Definitions*/
-    const { size, indicator, src, radius } = toRefs(props);
-
-    /*Generating Style Classes*/
-    const tStyle = reactive({})
-    tStyle['size'] = computed(() => {
-      return "avatar-size-" + size.value;
-    });
-    tStyle['indicator'] = computed(() => {
-      return "avatar-indicator" + " " +
-        (size.value < 7 ? "text-2xs" : "text-normal") + " " +
-        (indicator.value ? (" avatar-indicator-position-" + indicator.value['position'] + " avatar-indicator-" + indicator.value['color']) : "");
-    });
-    tStyle['radius'] = computed(() => {
-      return "radius-" + radius.value;
-    });
-
-    /*Is Avatar Group*/
-    const isAvatarGroup = getCurrentInstance().parent.type.name === "TAvatarGroup";
-
-    /*Avatar Url Generator*/
-    const avatarURL = ref();
-    if (!src.value) {
-      avatarURL.value = "/img/samples/dummyAvatar.svg";
-    } else {
-      avatarURL.value = src.value;
-    }
-
-    return { isAvatarGroup, avatarURL, tStyle };
-  }
 });
 </script>

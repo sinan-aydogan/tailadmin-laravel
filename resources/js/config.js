@@ -85,5 +85,21 @@ const alertConf = {
     timer: 4000
 }
 
-export {appConf,authScreenConf,mainMenuConf,topBarConf,footerConf, alertConf}
+const avatarConf = {
+    defaultPhotoSrc: '/img/samples/dummyAvatar.svg',
+    size: 3,
+    radius: null,
+}
+
+export {
+    appConf,
+    /*Layout*/
+    authScreenConf,
+    mainMenuConf,
+    topBarConf,
+    footerConf,
+    /*Component*/
+    alertConf,
+    avatarConf
+}
 

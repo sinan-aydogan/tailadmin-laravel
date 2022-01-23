@@ -57,34 +57,25 @@
 /*</editor-fold>*/
 
 /*<editor-fold desc="Indicator Styles">*/
-.avatar-indicator-black {
-    @apply bg-black text-gray-100
+.avatar-indicator-info {
+    @apply bg-sky-500 text-gray-100
 }
-.avatar-indicator-blue {
-    @apply bg-blue-500 text-gray-100
+.avatar-indicator-danger {
+    @apply bg-rose-500 text-gray-100
 }
-.avatar-indicator-gray {
-    @apply bg-gray-500 text-gray-100
+.avatar-indicator-success {
+    @apply bg-emerald-500 text-gray-100
 }
-.avatar-indicator-green {
-    @apply bg-green-500 text-gray-100
-}
-.avatar-indicator-indigo {
-    @apply bg-indigo-500 text-gray-100
-}
-.avatar-indicator-pink {
-    @apply bg-pink-500 text-gray-100
+.avatar-indicator-warning {
+    @apply bg-amber-500 text-gray-100
 }
 .avatar-indicator-purple {
     @apply bg-purple-500 text-gray-100
 }
-.avatar-indicator-red {
-    @apply bg-red-500 text-gray-100
+.avatar-indicator-pink {
+    @apply bg-pink-500 text-gray-100
 }
-.avatar-indicator-white {
-    @apply bg-gray-100 border border-gray-600 text-gray-600
-}
-.avatar-indicator-yellow {
-    @apply bg-yellow-500 text-gray-100
+.avatar-indicator-light {
+    @apply bg-gray-500 text-gray-100
 }
 /*</editor-fold>*/
