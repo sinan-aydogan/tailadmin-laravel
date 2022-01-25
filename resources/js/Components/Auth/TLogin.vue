@@ -160,7 +160,7 @@
         <!--Selectors-->
         <div class="fixed bottom-0 flex z-50 w-full justify-center sm:justify-end space-x-6 p-6">
             <!--Language Selector-->
-            <t-popover
+            <t-tooltip
                 v-if="authScreenConf.showLanguageSelector"
                 position="top"
                 :border="false"
@@ -195,7 +195,7 @@
                         </template>
                     </div>
                 </template>
-            </t-popover>
+            </t-tooltip>
             <!--Dark Mode-->
             <div
                 v-if="authScreenConf.showDarkModeSelector"
@@ -266,7 +266,7 @@ import FullScreenLayout from "@/Layouts/FullScreenLayout";
 import TInputGroup from "@/Components/Form/TInputGroup";
 import TInputText from "@/Components/Form/Inputs/TInputText";
 import TDropdown from "@/Components/Dropdown/TDropdown";
-import TPopover from "@/Components/Popover/TPopover";
+import TTooltip from "@/Components/Tooltip/TTooltip";
 import TInputCheckBox from "@/Components/Form/Inputs/TInputCheckBox";
 
 /*Sources*/
@@ -288,7 +288,7 @@ export default defineComponent({
     name: "TLogin",
     components: {
         TInputCheckBox,
-        TPopover,
+        TTooltip,
         TAlert,
         TBellIcon,
         TButton,

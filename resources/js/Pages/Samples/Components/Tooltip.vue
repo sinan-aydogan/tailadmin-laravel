@@ -8,22 +8,22 @@
                     <template #title>Simple</template>
                     <template #subTitle>Left, Top, Right and Bottom Positions</template>
                     <template #content>
-                        <div class="flex flex-wrap space-x-8">
+                        <div class="flex flex-wrap space-x-8 dark:text-slate-100 mt-8">
                             <t-tooltip position="top">
-                                <template #mainContent>Hover me!</template>
-                                <template #secondContent>Hello, I'm at the top</template>
+                                Click me - Top
+                                <template #boxContent>Hello, I'm at the top</template>
                             </t-tooltip>
-                            <t-tooltip position="bottom">
-                                <template #mainContent>Hover me!</template>
-                                <template #secondContent>Hello, I'm at the bottom</template>
+                            <t-tooltip position="bottom" :border="false">
+                                Click me - Bottom
+                                <template #boxContent>Hello, I'm at the bottom</template>
                             </t-tooltip>
                             <t-tooltip position="left">
-                                <template #mainContent>Hover me!</template>
-                                <template #secondContent>Hello, I'm at the left</template>
+                                Click me - Left
+                                <template #boxContent>Hello, I'm at the left</template>
                             </t-tooltip>
-                            <t-tooltip position="right">
-                                <template #mainContent>Hover me!</template>
-                                <template #secondContent>Hello, I'm at the right</template>
+                            <t-tooltip position="right" :border="false">
+                                Click me - Right
+                                <template #boxContent>Hello, I'm at the right</template>
                             </t-tooltip>
                         </div>
                     </template>
