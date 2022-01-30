@@ -6,6 +6,13 @@ const generalLangRu = {
     auto: "Автоматический",
     /* Error */
     somethingWentWrong: "Упс! Что-то пошло не так",
+    /* Simple Terms */
+    save: 'Сохранять',
+    reset: 'Перезагрузить',
+    cancel: 'Отмена',
+    delete: 'Удалить',
+    edit: 'Редактировать',
+    view: 'Вид'
 };
 
 export default generalLangRu;
