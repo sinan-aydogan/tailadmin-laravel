@@ -24,7 +24,7 @@ const mainMenuLangEn = {
     componentTable: "Table",
     componentTableJson: "Table(JSON)",
     componentTableBackend: "Table(BackEnd)",
-    componentTooltip: "Bilgi Balonu",
+    componentTooltip: "Tooltip",
     layoutElements: "Layout Elements",
     layoutStructure: "Layout Structure",
     layoutGrid: "Grid",
