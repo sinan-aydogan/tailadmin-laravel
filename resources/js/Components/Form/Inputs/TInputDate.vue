@@ -1,71 +1,110 @@
 <template>
-    <date-picker v-model="date" :is24hr="is24hr" :isRange="isRange" :masks="{input:masks}" :mode="mode">
-        <template v-slot="{ inputValue, togglePopover }">
+    <date-picker
+        v-model="date"
+        :is24hr="is24hr"
+        :isRange="isRange"
+        :masks="{ type: 'string', mask: masks }"
+        :mode="mode"
+    >
+        <template v-slot="{ inputValue, inputEvents, togglePopover }">
             <div class="relative flex items-center">
-                <input
+                <t-input-text
                     v-if="!isRange"
-                    v-model="inertnalDate"
-                    :class="['form-input h-10',radiusStyle]"
-                    :placeholder="masks.input"
+                    :modelValue="inputValue"
+                    v-on="inputEvents"
+                    :placeholder="masks"
                     @click="togglePopover()"
-                />
+                    :radius="temporaryRadius"
+                >
+                    <template #append>
+                        <div class="flex px-1 overflow-hidden">
+                            <!-- Clear Icon -->
+                            <icon
+                                icon="times-circle"
+                                v-if="!isRange && date && clearButton"
+                                class="cursor-pointer hover:text-red-500 mr-2"
+                                @click="date = null"
+                            />
+
+                            <!-- Icon -->
+                            <icon
+                                :icon="mode.toLowerCase().includes('time') && !mode.toLowerCase().includes('date') ? 'clock' : mode.toLowerCase().includes('date') && !mode.toLowerCase().includes('time') ? 'calendar' : 'calendar-minus'"
+                                v-if="mode"
+                                @click="togglePopover()"
+                            />
+                        </div>
+                    </template>
+                </t-input-text>
                 <div
                     v-if="isRange"
-                    :class="['form-input flex-col justify-center gap-1 h-16 select-none cursor-pointer',radiusStyle]"
+                    class="input flex-wrap sm:justify-between items-center pl-2 cursor-pointer w-full overflow-hidden"
+                    :class="`radius-${temporaryRadius}`"
                     @click="togglePopover()"
                 >
-                    <div v-if="date" class="inline-flex">
-                        <span class="text-center mr-1"><b>Start:</b></span>
+                    <div v-if="date">
+                        <span class="text-center mr-1 py-1 whitespace-nowrap">
+                            <b>Start:</b>
+                        </span>
                         {{ inputValue.start }}
                     </div>
-                    <div v-if="date" class="inline-flex">
-                        <span class="text-center mr-3"><b>End:</b></span>
+                    <div v-if="date">
+                        <span class="text-center mr-3 py-1 whitespace-nowrap">
+                            <b>End:</b>
+                        </span>
                         {{ inputValue.end }}
                     </div>
-                    <div v-if="isRange && !date">
-                        Please click for select
+                    <div v-if="isRange && !date">Please click for select</div>
+                    <div class="flex min-w-[2.5rem] justify-center text-input-append">
+                        <!-- Clear Icon -->
+                        <icon
+                            icon="times-circle"
+                            v-if="isRange && date"
+                            class="cursor-pointer hover:text-red-500 mr-2"
+                            @click="date = null"
+                        />
+
+                        <!-- Icon -->
+                        <icon
+                            :icon="mode.toLowerCase().includes('time') && !mode.toLowerCase().includes('date') ? 'clock' : mode.toLowerCase().includes('date') && !mode.toLowerCase().includes('time') ? 'calendar' : 'calendar-minus'"
+                            v-if="mode"
+                            @click="togglePopover()"
+                        />
                     </div>
-                </div>
-                <div class="absolute flex right-3">
-                    <t-x-circle-icon
-                        v-if="isRange && date"
-                        class="w-5 h-5 text-gray-500 mr-2 cursor-pointer hover:text-red-500"
-                        @click.native="date = null"
-                    />
-                    <t-clock-icon
-                        v-if="mode.toLowerCase().includes('time')"
-                        class="w-5 h-5 text-gray-500 cursor-pointer"
-                        @click.native="togglePopover()"
-                    />
-                    <t-calendar-icon
-                        v-if="mode.toLowerCase().includes('date')"
-                        class="w-5 h-5 text-gray-500 cursor-pointer"
-                        @click.native="togglePopover()"
-                    />
                 </div>
             </div>
         </template>
-
     </date-picker>
 </template>
 
 <script>
+/* Main function */
+import { defineComponent, toRefs, ref, watch, inject } from 'vue';
 import { DatePicker } from 'v-calendar';
-import TCalendarIcon from "@/Components/Icon/TCalendarIcon";
-import {radiusSizeMixin} from "@/Mixins/radiusSizeMixin";
-import TClockIcon from "@/Components/Icon/TClockIcon";
-import TXCircleIcon from "@/Components/Icon/TXCircleIcon";
 
+/* Components */
+import TInputText from '@/Components/Form/Inputs/TInputText';
 
-export default {
+/*Sources*/
+import { inputDateConf } from "@/config";
+
+/*Fontawesome icons*/
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faClock, faCalendar, faCalendarMinus, faTimesCircle } from "@fortawesome/free-solid-svg-icons";
+
+library.add(faClock, faCalendar, faCalendarMinus, faTimesCircle)
+
+export default defineComponent({
     props: {
-        value: {
-            required: true
+        modelValue: {
+            type: [String, Array, Object],
+            default: null
         },
         mode: {
+            type: String,
             default: 'date'
         },
         masks: {
+            type: String,
             default: 'DD-MM-YYYY'
         },
         is24hr: {
@@ -75,30 +114,45 @@ export default {
         isRange: {
             type: Boolean,
             default: false
-        }
+        },
+        radius: {
+            type: Number,
+            default: null
+        },
+        clearButton: {
+            type: Boolean,
+            default: true
+        },
     },
-    mixins: [radiusSizeMixin],
     components: {
-        TXCircleIcon,
-        TClockIcon,
-        TCalendarIcon,
+        TInputText,
         DatePicker,
     },
-    data() {
+    emits: ['update:modelValue'],
+    setup(props, { emit }) {
+        const { modelValue, radius } = toRefs(props);
+        const date = ref(modelValue.value ? modelValue.value : new Date())
+        const inertnalDate = ref(null)
+        const appConf = inject('appConf');
+
+        /*Temporary Definations*/
+        const temporaryRadius = ref(radius.value ? radius.value : inputDateConf.radius ? inputDateConf.radius : appConf.value.radius)
+
+        watch(modelValue, () => {
+            date.value = modelValue.value
+        })
+
+        watch(date, () => {
+            emit('update:modelValue', date.value)
+        })
+
         return {
-            inertnalDate: null,
-            date: this.value
-        }
-    },
-    watch: {
-        date() {
-            this.$emit('input', this.date);
-        },
-        value() {
-            this.date = this.value
+            temporaryRadius,
+            inertnalDate,
+            date
         }
     }
-}
+})
 </script>
 
 <style scoped>
