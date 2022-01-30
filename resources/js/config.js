@@ -7,7 +7,7 @@ const appConf = {
     appNameClasses: null,
     logoClasses: null,
     radius: 3,
-}
+};
 
 /*Layout Settings*/
 const authScreenConf = {
@@ -20,7 +20,7 @@ const authScreenConf = {
     showDesignChanger: true,
     showDarkModeSelector: true,
     showLanguageSelector: true,
-}
+};
 
 const mainMenuConf = {
     /*Logo Area*/
@@ -48,14 +48,14 @@ const mainMenuConf = {
         normal: ['hover:bg-emerald-200', 'hover:text-emerald-800'],
         active: ['text-white', 'bg-emerald-500', 'hover:bg-emerald-600', 'rounded'],
     },
-}
+};
 
 const topBarConf = {
     radius: null,
     languageSelector: true,
     darkModeSelector: true,
     searchPlaceHolderText: 'type and search'
-}
+};
 
 const footerConf = {
     visible: true,
@@ -74,7 +74,7 @@ const footerConf = {
         "            >\n" +
         "              Sinan AYDOĞAN\n" +
         "            </a>"
-}
+};
 
 /*Module Settings*/
 const alertConf = {
@@ -83,19 +83,27 @@ const alertConf = {
     radius: null,
     closeable: false,
     timer: 4000
-}
+};
 
 const avatarConf = {
     defaultPhotoSrc: '/img/samples/dummyAvatar.svg',
     size: 3,
     radius: null,
-}
+};
 
 const badgeConf = {
     color: 'light',
     design: 'filled',
     radius: 5,
-}
+};
+
+const formContentConf = {
+    radius: null
+};
+
+const inputDateConf = {
+    radius: null
+};
 
 export {
     appConf,
@@ -107,6 +115,8 @@ export {
     /*Component*/
     alertConf,
     avatarConf,
-    badgeConf
+    badgeConf,
+    formContentConf,
+    inputDateConf
 }
 
