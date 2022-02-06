@@ -30,19 +30,36 @@ Anemon Inertia
 </a>
 </p>
 
+<p align="center">
+<a href="https://discord.gg/TnjA2GqYmw">
+    <img src="public/img/demo/discord.svg" height="40">
+</a>
+</p>
+
+
+Requirements
+------
+1. PHP min v.8
+2. DB server (Recommended:MySQL)
+3. [composer min v.2](https://getcomposer.org/)
+4. [nodejs min v.14](https://nodejs.org/)
+5. Please check other requirements of  [Laravel](https://laravel.com/) and [Inertia](https://inertiajs.com/)
+
+
 Setup Directions
 ------
 
 1. ```npm install```
 2. ```composer install```
-3. Change ENV file name from .env.example to .env
-4. Set database infos in the .env
-5. ```php artisan migrate:fresh --seed```
-6. ```php artisan storage:link```
-7. ```php artisan key:generate```
-8. ```php artisan serve```
+3. Please clone .env.example and copied file name change from .env.example to .env
+4. Create a clean db table
+5. Set database infos in the .env
+6. ```php artisan migrate --seed```
+7. ```php artisan storage:link```
+8. ```php artisan key:generate```
 9. ```npm run hot```
-10. ```Goto: http://localhost:8000 or your APP_URL (in the .ENV)```
+10. ```php artisan serve```
+11. ```Goto: http://localhost:8000```
 
 Admin Login Infos / Demo Account
 ------
@@ -51,9 +68,15 @@ Admin Login Infos / Demo Account
 - **Email:** *admin@tailadmin.dev*
 - **Password:** *admin*
 
-<a href="https://www.youtube.com/watch?v=B_8os9zoLZw" target="_blank">
-<img src="https://tailadmin.dev/img/misc/tailadmin-youtube-main-demo.png" alt="TailAdmin Demo"/>
+<a href="https://www.youtube.com/playlist?list=PLbdS49WKsrOXTo_X_Ja6P3zll1yyhoIYN" target="_blank">
+<img src="https://core.tailadmin.dev/img/misc/tailadmin-youtube-main-demo.png" alt="TailAdmin Demo"/>
 </a>
+
+## Help
+
+If you need to help more than this documentation: 
+ - You can join our [Discord Channel](https://discord.gg/TnjA2GqYmw) then ask your questions
+ - Access to our [Tabbs page](https://tailadmin.tabbs.co/anemon) for how to make links (Install in Linux, solution of the npm errors etc.)
 
 ## Featured :
 
