@@ -19,12 +19,12 @@ class RoleSeeder extends Seeder
             ['name' => 'Super Admin']
         );
 
-        /*Super Admin*/
+        /*Editor*/
         $editor = Role::create(
             ['name' => 'Editor'],
         );
 
-        /*Super Admin*/
+        /*Simple User*/
         $simpleUser = Role::create(
             ['name' => 'Simple User'],
         );
