@@ -11,7 +11,7 @@
         <div
             v-if="item.type === 'dropdown' && item.visibleFor !== false"
             @click="select([item.id]); foldMainMenu && $emit('updateMainMenuStatus', true)"
-            class="flex justify-between items-center px-3 rounded cursor-pointer w-full overflow-hidden transition-color duration-300"
+            class="flex justify-between items-center px-2 rounded cursor-pointer overflow-hidden transition-color duration-300 w-full"
             :class="[
                 (selectedLink.includes(item.id) && !foldMainMenu) || activeMenus.root === item.id ?
                 [mainMenuConf.rootLinkClasses.active, generatedRadius.rootLinkClasses.active] :
@@ -21,8 +21,8 @@
         >
 
             <div
-                class="flex items-center"
-                :class="!foldMainMenu && 'space-x-2'"
+                class="flex justify-between items-center w-full"
+                :class="{'space-x-2' : !foldMainMenu}"
             >
                 <!--Icon-->
                 <div class="flex justify-center items-center w-8 h-8">
@@ -30,19 +30,21 @@
                 </div>
                 <!--Label-->
                 <span v-text="item.label"
-                      class="whitespace-nowrap transition-size-medium"
+                      class="flex whitespace-nowrap transition-size-medium"
                       :class="[
                               !foldMainMenu ? 'w-show' : 'w-hide',
                               'transition-size-medium'
                               ]"
                 ></span>
             </div>
-            <icon
-                v-if="!foldMainMenu"
-                icon="chevron-down" size="sm"
-                :class="[!foldMainMenu ? 'w-show' : 'w-hide']"
-                class="transition-size-medium"
-            />
+            <div>
+                <icon
+                    v-if="!foldMainMenu"
+                    icon="chevron-down" size="sm"
+                    :class="[selectedLink.includes(item.id) ? 'rotate-90' : 'rotate-0']"
+                    class="mr-1 transition-size-medium"
+                />
+            </div>
         </div>
         <!--Root Item: Route-->
         <Link
@@ -128,7 +130,12 @@
                             <icon v-if="subItem['icon']" :icon="subItem.icon"/>
                             <span v-text="subItem.label"></span>
                         </div>
-                        <icon icon="chevron-down" size="sm"/>
+                        <icon
+                            icon="chevron-down"
+                            size="sm"
+                            :class="[selectedLink.includes(subItem.id) ? 'rotate-90' : 'rotate-0']"
+                            class="mr-1 transition-size-medium"
+                        />
                     </div>
 
                     <!--Secondly Item: Route-->
