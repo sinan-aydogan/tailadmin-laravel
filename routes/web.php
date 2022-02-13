@@ -199,6 +199,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     })->name('table');
     Route::match(['get', 'post'], 'back-end-table', [\App\Http\Controllers\DemoContentController::class, 'index'])->name('back-end-table');
 
+    Route::resource('product', \App\Http\Controllers\DemoContentController::class);
+    Route::post('product', [\App\Http\Controllers\DemoContentController::class, 'index'])->name('product.search');
+
     /*TODO: Toastr Feature
     Route::get('toastr',function (){return Inertia::render('Samples/Components/Toastr');})->name('toastr');*/
     Route::get('tooltip', function () {
