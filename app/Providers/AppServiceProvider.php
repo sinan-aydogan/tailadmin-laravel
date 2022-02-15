@@ -181,5 +181,15 @@ class AppServiceProvider extends ServiceProvider
 
             return $searchQuery->paginate($perPage);
         });
+
+        /*Get Related Data*/
+        Builder::macro('getRelatedData', function ($key, $table) {
+            return $this->whereIn('id', function ($query) use ($key, $table) {
+                $query->select($key)
+                    ->from($table)
+                    ->distinct();
+            });
+        }
+        );
     }
 }
