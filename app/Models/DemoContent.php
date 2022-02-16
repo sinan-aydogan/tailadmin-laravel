@@ -24,4 +24,12 @@ class DemoContent extends Model
     protected $casts = [
         'production_date' => 'datetime',
     ];
+
+    /**
+     * Get the main demo content associated with the demo content.
+     */
+    public function mainProduct(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(DemoContent::class);
+    }
 }

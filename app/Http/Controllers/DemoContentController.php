@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\DemoContentResource;
 use App\Models\DemoContent;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -15,10 +16,11 @@ class DemoContentController extends Controller
      */
     public function index(Request $request)
     {
-        $demoContent = DemoContent::tableSearch($request->input('searchObj'));
+        $demoContent = DemoContentResource::collection(DemoContent::tableSearch($request->input('searchObj')));
 
         return Inertia::render('Samples/Components/BackEndTable', [
-            'demoContent' => $demoContent
+            'demoContent' => $demoContent,
+            'searchDataMainProducts' => DemoContent::getRelatedData('main_product_id', 'demo_contents')->get()
         ]);
     }
 

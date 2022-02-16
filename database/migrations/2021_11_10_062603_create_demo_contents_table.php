@@ -18,6 +18,7 @@ class CreateDemoContentsTable extends Migration
             $table->string('name');
             $table->string('type');
             $table->double('price');
+            $table->foreignId('main_product_id')->nullable();
             $table->date('production_date');
             $table->boolean('status')->default(true);
             $table->timestamps();
