@@ -10,37 +10,47 @@
         </template>
         <!--Content-->
         <template #default>
-            <t-back-end-table
-                :content="demoContent"
-                :header="header"
-                content-key="demoContent"
-                search-route="back-end-table"
+            <t-code-showcase
+                :tabs="showcaseTabs"
             >
-                <template #top-right>
-                    <t-button color="green" design="light" border>+ Add New</t-button>
-                </template>
-                <template #type="{props}">
-                    {{ filterType.find(t => t.key === Number(props.type)).label }}
-                </template>
-                <template #status="{props}">
-                    <t-badge :color="filterStatus.find(t=>t.key === props.status).color">
-                        {{ filterStatus.find(t => t.key === props.status).label }}
-                    </t-badge>
-                </template>
-            </t-back-end-table>
+                <t-back-end-table
+                    :content="demoContent"
+                    :header="header"
+                    content-key="demoContent"
+                    search-route="back-end-table"
+                >
+                    <template #top-right>
+                        <t-button color="green" design="light" border>+ Add New</t-button>
+                    </template>
+                    <template #type="{props}">
+                        {{ filterType.find(t => t.key === Number(props.type)).label }}
+                    </template>
+                    <template #status="{props}">
+                        <t-badge :color="filterStatus.find(t=>t.key === props.status).color">
+                            {{ filterStatus.find(t => t.key === props.status).label }}
+                        </t-badge>
+                    </template>
+                </t-back-end-table>
+                <template #controller>{{ docSamples.controller }}</template>
+                <template #route>{{ docSamples.route }}</template>
+                <template #js>{{ docSamples.js }}</template>
+                <template #template>{{ docSamples.template }}</template>
+            </t-code-showcase>
         </template>
     </app-layout>
 </template>
 
 <script>
 /*Main Functions*/
-import {reactive, defineComponent, computed} from "vue";
+import {reactive, defineComponent, computed, ref} from "vue";
 
 /*Components*/
 import AppLayout from "@/Layouts/AppLayout";
 import TBackEndTable from "@/Components/Table/TBackEndTable";
 import TBadge from "@/Components/Badge/TBadge";
 import TButton from "@/Components/Button/TButton";
+import TCodeShowcase from "@/Components/Code/TCodeShowcase";
+import {useI18n} from "vue-i18n";
 
 export default defineComponent({
     name: "Table",
@@ -48,7 +58,8 @@ export default defineComponent({
         TButton,
         TBadge,
         TBackEndTable,
-        AppLayout
+        AppLayout,
+        TCodeShowcase
     },
     props: {
         demoContent: {
@@ -56,9 +67,15 @@ export default defineComponent({
             default() {
                 return {};
             }
+        },
+        searchDataMainProducts: {
+            type: Array,
+            default() {
+                return [];
+            }
         }
     },
-    setup() {
+    setup(props) {
         const filterStatus = reactive([
             {key: 1, label: "Active", color: "green"},
             {key: 0, label: "Passive", color: "red"}
@@ -126,6 +143,20 @@ export default defineComponent({
                 compareOperators: compareOperators
             },
             {
+                label: "Main Product",
+                key: "main_product_name",
+                align: "left",
+                status: true,
+                simpleSearchable: true,
+                advancedSearchable: true,
+                advancedSearchKey: 'main_product_id',
+                advancedSearchSelectInputSource: props.searchDataMainProducts,
+                advancedSearchSelectLabelKey: 'name',
+                advancedSearchSelectValueKey: 'id',
+                advancedSearchInputType: "select",
+                advancedSearchSelectSearch: true
+            },
+            {
                 label: "Type",
                 key: "type",
                 align: "left",
@@ -189,7 +220,333 @@ export default defineComponent({
             };
         });
 
-        return {selectData, selectedData, header, features, filterType, filterStatus};
+        /* Multi-language */
+        const {t, tm} = useI18n({
+            inheritLocale: true,
+            messages: {
+                en: {
+                    pageTitle: 'Alerts',
+                    pageSubTitle: 'Closeable and timeable elite alert boxes',
+                    filledTitle: 'Success',
+                    filledContent: 'The post added successfully (filled)',
+                    lightTitle: 'Danger',
+                    lightContent: 'The user deleted successfully (light)',
+                    inlineContent: 'Your account was blocked, please connect with IT (inline)',
+                    outlineContent: 'You entered a new configuration, the settings will refresh 24hr after (outline)',
+                    gradientContent: 'The new user is successfully added. \n User: Hamdi KAYA (gradient)',
+                    elegantTitle: 'Attention',
+                    elegantContent: 'The all of changes overwrite to themself (elegant)',
+                    blockContent: 'Please, check your task list (block)',
+                    activateTimer: 'Start timer',
+                    reviveMessage: 'Don\'t worry, it\'ll come back in 4 seconds',
+                    docDefault: 'Default Value',
+                    docDescription: 'Description',
+                    docType: 'Value Type',
+                    docIdDesc: 'It is unique id for your alert. You set it to different value for each alert.',
+                    docDesignDesc: 'The theme of the alert component.',
+                    docColorDesc: 'The color of the alert component. Important: If you use the gradient design, you can not default color options. If you use the gradient design, your color options are rose, sky, fuchsia, violet, cloud, turquoise, caterpillar, dream and biscuit',
+                    docRadiusDesc: 'It shapes the corners of the alert.',
+                    docTitleDesc: 'If you would like to display a title using the alert component, pass/set any value through this prop.',
+                    docCloseableDesc: 'If you would like to make your alert component closeable, you can use this prop.',
+                    docTimerStatusDesc: 'If you would like to make your alert component to close automatically, you can set this prop.',
+                    docTimerDesc: 'If you set prop of the timer-status to true, You should set the timer by milliseconds',
+                    docTypeDesc: 'If you don not want to deal with design and color, you can use this prop beacause it sets automatically design and color values to your choose.',
+                },
+                tr: {
+                    pageTitle: 'Uyarı Kutusu',
+                    pageSubTitle: 'Gizlenebilir ve zamanlanabilir şık uyarı kutuları',
+                    filledTitle: 'İşlem Başarılı',
+                    filledContent: 'Gönderiniz başarıyla yayınlandı (filled)',
+                    lightTitle: 'Dikkat',
+                    lightContent: 'Kullanıcı silindi (light)',
+                    inlineContent: 'Hesabınız bloke oldu, lütfen IT ile iletişime geçiniz (inline)',
+                    outlineContent: 'Yeni girdiğiniz ayarlar 24 saat içinde aktif olacaktır (outline)',
+                    gradientContent: 'Yeni kullanıcı eklendi. \n Kullanıcı: Hamdi KAYA (gradient)',
+                    elegantTitle: 'Uyarı',
+                    elegantContent: 'Yapıtığınız değişiklikler, var olan kayıtların üzerine yazılacak (elegant)',
+                    blockContent: 'Lütfen görev listenizi kontrol ediniz (block)',
+                    activateTimer: 'Zamanlayıcıyı Çalıştır',
+                    reviveMessage: 'Endişelenme 4 saniye sonra geri gelecek',
+                    docDefault: 'Varsayılan Değer',
+                    docDescription: 'Detay',
+                    docType: 'Değer Türü',
+                    docIdDesc: 'Her uyarı kutusu için benzersiz olması gereken değer. Her uyarı için benzersiz olacak şekilde ayarlamalısın.',
+                    docDesignDesc: 'Uyarı kutusunun genel görünümünü belirler.',
+                    docColorDesc: 'Uyarı kutusunun rengini belirlemenize yarar. Eğer gradient tasarımı kullanıyorsanız lütfen default renkler yerine bu renklerden birini kullanınız: rose, sky, fuchsia, violet, cloud, turquoise, caterpillar, dream ve biscuit',
+                    docRadiusDesc: 'Uyarı kutusunun köşelerinin ovalliğini kontrol etmenizi sağlar.',
+                    docTitleDesc: 'Uyarı kutusu içinde istediğiniz başlığı gösterebilmenizi sağlar.',
+                    docCloseableDesc: 'Uyarı kutusuna gizleme düğmesi eklemenizi sağlar.',
+                    docTimerStatusDesc: 'Uyarı kutusunun belirlediğiniz zaman sonunda kapanmasını sağlar.',
+                    docTimerDesc: 'Otomatik kapanma süresini belirlemenizi sağlar, timer-status probunun true olarak tanımlanmış olması gereklidir.',
+                    docTypeDesc: 'Tasarım ve renk ile uğraşmadan direk başarılı(success-yeşil) veya dikkat(danger-kırmızı) hissiyatı yaratacak hazır tasarımları kullanmanızı sağlar. Type değerini verdiğinizde design ve color değeri girmeniz gerekmez. ',
+                },
+            },
+        });
+
+        /* Documentation */
+        /* Props Definitions */
+
+        const docProps = {
+            headers: [
+                {id: 'prop', label: 'Prop'},
+                {id: 'type', label: tm('docType')},
+                {id: 'options', label: 'Options', colorfulBg: true},
+                {id: 'default', label: tm('docDefault')},
+                {id: 'description', label: tm('docDescription')},
+
+            ],
+            content: [
+                {
+                    id: 'content',
+                    prop: 'content',
+                    type: 'Object',
+                    description: tm('docContentDesc'),
+                },
+                {
+                    id: 'header',
+                    prop: 'header',
+                    type: 'Array',
+                    description: tm('docHeaderDesc')
+                },
+                {
+                    id: 'header[x].key',
+                    prop: 'header[x].key',
+                    type: 'String',
+                    description: tm('docHeaderKeyDesc')
+                },
+                {
+                    id: 'header[x].label',
+                    prop: 'header[x].label',
+                    type: 'String',
+                    description: tm('docHeaderLabelDesc')
+                },
+                {
+                    id: 'header[x].align',
+                    prop: 'header[x].align',
+                    type: 'String',
+                    options: ['left', 'center', 'right'],
+                    description: tm('docHeaderAlignDesc')
+                },
+                {
+                    id: 'header[x].status',
+                    prop: 'header[x].status',
+                    type: 'Boolean',
+                    options: ['true', 'false'],
+                    default: 'true',
+                    description: tm('docHeaderStatusDesc')
+                },
+                {
+                    id: 'header[x].sortable',
+                    prop: 'header[x].sortable',
+                    type: 'Boolean',
+                    options: ['true', 'false'],
+                    default: 'false',
+                    description: tm('docHeaderSortableDesc')
+                },
+                {
+                    id: 'header[x].simpleSearchable',
+                    prop: 'header[x].simpleSearchable',
+                    type: 'Boolean',
+                    options: ['true', 'false'],
+                    default: 'false',
+                    description: tm('docHeaderSimpleSearchableDesc')
+                },
+                {
+                    id: 'header[x].advancedSearchable',
+                    prop: 'header[x].advancedSearchable',
+                    type: 'Boolean',
+                    options: ['true', 'false'],
+                    default: 'false',
+                    description: tm('docHeaderAdvancedSearchableDesc')
+                },
+                {
+                    id: 'header[x].advancedSearchKey',
+                    prop: 'header[x].advancedSearchKey',
+                    type: 'String',
+                    description: tm('docHeaderAdvancedSearchKeyDesc')
+                },
+                {
+                    id: 'header[x].advancedSearchInputType',
+                    prop: 'header[x].advancedSearchInputType',
+                    type: 'String',
+                    options: ['text', 'select', 'between'],
+                    description: tm('docHeaderAdvancedSearchInputTypeDesc')
+                },
+                {
+                    id: 'header[x].advancedSearchSelectInputSource',
+                    prop: 'header[x].advancedSearchSelectInputSource',
+                    type: 'Object',
+                    description: tm('docHeaderAdvancedSearchInputSourceDesc')
+                },
+                {
+                    id: 'header[x].advancedSearchSelectLabelKey',
+                    prop: 'header[x].advancedSearchSelectLabelKey',
+                    type: 'String',
+                    description: tm('docHeaderAdvancedSearchLabelDesc')
+                },
+                {
+                    id: 'header[x].advancedSearchSelectValueKey',
+                    prop: 'header[x].advancedSearchSelectValueKey',
+                    type: 'String',
+                    description: tm('docHeaderAdvancedSearchValueDesc')
+                },
+                {
+                    id: 'header[x].compareOperators',
+                    prop: 'header[x].compareOperators',
+                    type: 'Array',
+                    description: tm('docHeaderCompareOperatorsDesc')
+                },
+            ]
+        };
+        /* Sample Codes */
+        const docSamples = {
+            controller: '<?php\n\n' +
+                'namespace App\\Http\\Controllers;\n' +
+                '\n' +
+                'use App\\Models\\Product;\n' +
+                'use Illuminate\\Http\\Request;\n' +
+                'use Inertia\\Inertia;\n' +
+                '\n' +
+                'class ProductController extends Controller\n' +
+                '{\n' +
+                '    /**\n' +
+                '    * Display a listing of the resource.\n' +
+                '    *\n' +
+                '    * @return \\Inertia\\Response\n' +
+                '    */\n' +
+                '    public function index(Request $request)\n' +
+                '    {\n\n' +
+                '        //Please define vue file directory accordance your file structure\n' +
+                '        return Inertia::render(\'Module/Product/Index\', [\n' +
+                '            //You should to use tableSearch macro for dynamic query builder with $request->searchObj\n' +
+                '            \'products\' => Product::tableSearch($request->input(\'searchObj\')),\n' +
+                '            //You can send only related data for search data. For example the managers list only related to the departments\n' +
+                '            // main_product_id = column name, products = table name\n' +
+                '            \'searchDataMainProducts\' => Product::getRelatedData(\'main_product_id\', \'products\')->get()\n' +
+                '        ]);\n' +
+                '    }',
+            route: '//You can have routes like below (get or resource)' +
+                'Route::get(\'product\', [Product::class, \'index\'])->name(\'product.index\')\n' +
+                '// or \n' +
+                'Route::resource(\'product\', Product::class)\n' +
+                '// You should add post route for search requests after get index or resource route\n' +
+                'Route::post(\'product\', [Product::class, \'index\'])->name(\'product.search\')//\n',
+            js: 'import TBackEndTable from \'@/Components/Table/TBackEndTable.vue\'\n\n' +
+                'export default {\n\n' +
+                '   components: { TBackEndTable },\n\n' +
+                '   props: {\n' +
+                '       productData: {\n' +
+                '           type: Object,\n' +
+                '           default() {\n' +
+                '               return {};\n' +
+                '           }\n' +
+                '        },\n' +
+                '        searchDataMainProducts: {\n' +
+                '           type: Array,\n' +
+                '           default() {\n' +
+                '               return [];\n' +
+                '           }\n' +
+                '        }\n' +
+                '    },\n\n' +
+                '    setup(\n\n' +
+                '       // You can use custom data set for advanced search options list.\n' +
+                '       // It linked to status column in this case\n' +
+                '       const filterStatus = reactive([\n' +
+                '            {key: 1, label: "Active", color: "green"},\n' +
+                '            {key: 0, label: "Passive", color: "red"}\n' +
+                '        ]);\n' +
+                '       //Compare definitions for fields, You can use them what if you want\n' +
+                '       const compareOperators = reactive([\n' +
+                '            {key: "contains", label: "contains"},\n' +
+                '            {key: "notContains", label: "not contains"},\n' +
+                '            {key: "starts", label: "starts"},\n' +
+                '            {key: "ends", label: "ends"}\n' +
+                '            {key: "=", label: "="},\n' +
+                '            {key: ">", label: ">"},\n' +
+                '            {key: ">=", label: ">="},\n' +
+                '            {key: "<", label: "<"},\n' +
+                '            {key: "<=", label: "<="}\n' +
+                '        ]);\n\n' +
+                '       const productDataHeaders = reactive([\n' +
+                '            {\n' +
+                '                label: "Name",\n' +
+                '                key: "name",\n' +
+                '                align: "left",\n' +
+                '                status: true,\n' +
+                '                sortable: true,\n' +
+                '                simpleSearchable: true,\n' +
+                '                advancedSearchable: true,\n' +
+                '                advancedSearchInputType: "text",\n' +
+                '                compareOperators: compareOperators\n' +
+                '            },\n' +
+                '            {\n' +
+                '                label: "Main Product",\n' +
+                '                key: "main_product_name",\n' +
+                '                align: "left",\n' +
+                '                status: true,\n' +
+                '                simpleSearchable: true,\n' +
+                '                advancedSearchable: true,\n' +
+                '                advancedSearchKey: \'main_product_id\', //Search in different column\n' +
+                '                advancedSearchSelectInputSource: props.searchDataMainProducts, //Select options data source\n' +
+                '                advancedSearchSelectLabelKey: \'name\', //Showing label in the select input\n' +
+                '                advancedSearchSelectValueKey: \'id\', //Select input real value when it selected\n' +
+                '                advancedSearchInputType: "select",\n' +
+                '                advancedSearchSelectSearch: true\n' +
+                '            },\n' +
+                '            {\n' +
+                '                label: "Status",\n' +
+                '                key: "status",\n' +
+                '                align: "center",\n' +
+                '                status: true,\n' +
+                '                sortable: true,\n' +
+                '                simpleSearchable: true,\n' +
+                '                advancedSearchable: true,\n' +
+                '                advancedSearchSelectInputSource: filterStatus,\n' +
+                '                advancedSearchInputType: "select",\n' +
+                '            }\n' +
+                '        ]);\n' +
+                '   )\n' +
+                '}',
+            template: '<t-back-end-table\n' +
+                '    :content="productData"\n' +
+                '    :header="productDataHeaders"\n' +
+                '    content-key="productData"\n' +
+                '    search-route="product.search" \n' +
+                '>\n\n' +
+                '    // You can add rich elements from this area to top right area of the table\n' +
+                '    <template #top-right>\n' +
+                '        <t-button color="green" design="light" border>+ Add New</t-button>\n' +
+                '    </template>\n\n' +
+                '    // If you want to add rich features to data showing, \n' +
+                '    you can use scopeSlot. #status is your column key. This is only exaple:\n' +
+                '    <template #status="{props}">\n' +
+                '        <t-badge :color="filterStatus.find(t=>t.key === props.status).color">\n' +
+                '            {{ filterStatus.find(t => t.key === props.status).label }}\n' +
+                '        </t-badge>\n' +
+                '    </template>\n\n' +
+                '</t-back-end-table>',
+        };
+        const showcaseTabs = [
+            {id: 'controller', label: 'Controller', type: 'code', codeLang: 'php'},
+            {id: 'js', label: 'JS', type: 'code', codeLang: 'javascript'},
+            {id: 'template', label: 'Template', type: 'code', codeLang: 'html'},
+            {id: 'route', label: 'Web.php', type: 'code', codeLang: 'php'},
+            {id: 'props', label: 'Props', type: 'table', table: docProps},
+        ];
+
+        return {
+            selectData,
+            selectedData,
+            header,
+            features,
+            filterType,
+            filterStatus,
+            docProps,
+            docSamples,
+            showcaseTabs,
+            t,
+            tm
+        };
     }
 });
 </script>
