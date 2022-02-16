@@ -153,7 +153,6 @@ class AppServiceProvider extends ServiceProvider
                     }
 
                     /*Advanced Search*/
-
                     foreach ($searchValue as $key => $value) {
 
                         $field = compareCondition($value['condition'], $value['value']);
@@ -175,9 +174,24 @@ class AppServiceProvider extends ServiceProvider
                     }
 
                 }
+
+                /*Order Function*/
+                if($request->sortDirection){
+                    $sortDirection = 'desc';
+                }else{
+                    $sortDirection = 'asc';
+                }
+
+                if($request->sortKey){
+                    $searchQuery->orderBy($request->sortKey, $sortDirection);
+                }
+
             } else {
                 $searchQuery = $this;
             }
+
+
+
 
             return $searchQuery->paginate($perPage);
         });

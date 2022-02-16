@@ -117,8 +117,8 @@
                                 <!--Text-->
                                 <t-input-text
                                     v-if="field.advancedSearchInputType==='text'"
-                                    v-model="searchObj.advancedSearchFields[field.key].value"
-                                    v-model:selectValue="searchObj.advancedSearchFields[field.key].condition"
+                                    v-model="searchObj.advancedSearchFields[field.searchKey].value"
+                                    v-model:selectValue="searchObj.advancedSearchFields[field.searchKey].condition"
                                     :options="field.compareOperators"
                                     :options-label-key="field.advancedSearchSelectLabelKey"
                                     :options-value-key="field.advancedSearchSelectValueKey"
@@ -128,15 +128,18 @@
                                 <!--Select-->
                                 <t-input-select
                                     v-if="field.advancedSearchInputType==='select'"
-                                    v-model.lazy="searchObj.advancedSearchFields[field.key].value"
+                                    v-model.lazy="searchObj.advancedSearchFields[field.searchKey].value"
                                     :options="field.advancedSearchSelectInputSource"
                                     :options-label-key="field.advancedSearchSelectLabelKey"
                                     :options-value-key="field.advancedSearchSelectValueKey"
+                                    :search="field.advancedSearchSelectSearch"
+                                    :search-place-holder="field['advancedSearchSelectSearchPlaceHolder'] !== null ? field['advancedSearchSelectSearchPlaceHolder'] : null"
+                                    :place-holder="field['advancedSearchSelectPlaceHolder'] !== null ? field['advancedSearchSelectPlaceHolder'] : null"
                                 />
                                 <!--Between-->
                                 <t-input-between
                                     v-if="field.advancedSearchInputType==='between'"
-                                    v-model="searchObj.advancedSearchFields[field.key].value"
+                                    v-model="searchObj.advancedSearchFields[field.searchKey].value"
                                 />
                             </t-input-group>
                         </div>
@@ -847,14 +850,17 @@ export default defineComponent({
             /*Generate Advanced Searchable Key Array*/
             header.value.forEach(item => {
                 if (item.advancedSearchable) {
-                    advancedSearchableFields.push(item);
+                    advancedSearchableFields.push({
+                        ...item,
+                        searchKey: item.advancedSearchKey ? item.advancedSearchKey : item.key
+                    });
                 }
             });
             /*Generate Advanced Search Query*/
             advancedSearchableFields.forEach(item => {
-                searchObj.advancedSearchFields[item.key] = {
+                searchObj.advancedSearchFields[item.searchKey] = {
                     value: item.advancedSearchInputType === 'between' ? {from: null, to: null} : null,
-                    condition: null
+                    condition: item['compareOperators'] ? item['compareOperators'].length>0 ? item['compareOperators'][0].key : null : null
                 }
             })
         });
