@@ -2,11 +2,11 @@
     <app-layout title="Backend Table">
         <!--Header-->
         <template #header>
-            Table with backend data
+            {{tm('pageTitle')}}
         </template>
         <!--Subheader-->
         <template #subHeader>
-            Tables with Backend Data and Dynamic options
+            {{tm('pageSubTitle')}}
         </template>
         <!--Content-->
         <template #default>
@@ -18,6 +18,7 @@
                     :header="header"
                     content-key="demoContent"
                     search-route="back-end-table"
+                    request-search-key="demoSearch"
                 >
                     <template #top-right>
                         <t-button color="green" design="light" border>+ Add New</t-button>
@@ -147,7 +148,7 @@ export default defineComponent({
                 key: "main_product_name",
                 align: "left",
                 status: true,
-                simpleSearchable: true,
+                simpleSearchable: false,
                 advancedSearchable: true,
                 advancedSearchKey: 'main_product_id',
                 advancedSearchSelectInputSource: props.searchDataMainProducts,
@@ -161,7 +162,7 @@ export default defineComponent({
                 key: "type",
                 align: "left",
                 status: true,
-                simpleSearchable: true,
+                simpleSearchable: false,
                 advancedSearchable: true,
                 advancedSearchSelectInputSource: filterType,
                 advancedSearchInputType: "select"
@@ -182,7 +183,7 @@ export default defineComponent({
                 align: "center",
                 status: true,
                 sortable: true,
-                simpleSearchable: true,
+                simpleSearchable: false,
                 advancedSearchable: true,
                 advancedSearchSelectInputSource: filterStatus,
                 advancedSearchInputType: "select",
@@ -225,25 +226,17 @@ export default defineComponent({
             inheritLocale: true,
             messages: {
                 en: {
-                    pageTitle: 'Alerts',
-                    pageSubTitle: 'Closeable and timeable elite alert boxes',
-                    filledTitle: 'Success',
-                    filledContent: 'The post added successfully (filled)',
-                    lightTitle: 'Danger',
-                    lightContent: 'The user deleted successfully (light)',
-                    inlineContent: 'Your account was blocked, please connect with IT (inline)',
-                    outlineContent: 'You entered a new configuration, the settings will refresh 24hr after (outline)',
-                    gradientContent: 'The new user is successfully added. \n User: Hamdi KAYA (gradient)',
-                    elegantTitle: 'Attention',
-                    elegantContent: 'The all of changes overwrite to themself (elegant)',
-                    blockContent: 'Please, check your task list (block)',
-                    activateTimer: 'Start timer',
-                    reviveMessage: 'Don\'t worry, it\'ll come back in 4 seconds',
+                    pageTitle: 'Table with backend data',
+                    pageSubTitle: 'Tables with Backend Data and Dynamic options',
                     docDefault: 'Default Value',
                     docDescription: 'Description',
                     docType: 'Value Type',
                     docContentDesc: '',
                     docHeaderDesc: '',
+                    docRequestSearchKeyDesc: '',
+                    docPerPageDesc: '',
+                    docUniqueIdDesc: '',
+                    docRadiusDesc: 'It shapes the corners of the table.',
                     docHeaderKeyDesc: '',
                     docHeaderLabelDesc: '',
                     docHeaderAlignDesc: '',
@@ -260,25 +253,17 @@ export default defineComponent({
 
                 },
                 tr: {
-                    pageTitle: 'Uyarı Kutusu',
-                    pageSubTitle: 'Gizlenebilir ve zamanlanabilir şık uyarı kutuları',
-                    filledTitle: 'İşlem Başarılı',
-                    filledContent: 'Gönderiniz başarıyla yayınlandı (filled)',
-                    lightTitle: 'Dikkat',
-                    lightContent: 'Kullanıcı silindi (light)',
-                    inlineContent: 'Hesabınız bloke oldu, lütfen IT ile iletişime geçiniz (inline)',
-                    outlineContent: 'Yeni girdiğiniz ayarlar 24 saat içinde aktif olacaktır (outline)',
-                    gradientContent: 'Yeni kullanıcı eklendi. \n Kullanıcı: Hamdi KAYA (gradient)',
-                    elegantTitle: 'Uyarı',
-                    elegantContent: 'Yapıtığınız değişiklikler, var olan kayıtların üzerine yazılacak (elegant)',
-                    blockContent: 'Lütfen görev listenizi kontrol ediniz (block)',
-                    activateTimer: 'Zamanlayıcıyı Çalıştır',
-                    reviveMessage: 'Endişelenme 4 saniye sonra geri gelecek',
+                    pageTitle: 'Tablo (Server Side)',
+                    pageSubTitle: 'Sunucu Tarafında Çalışan Tablo Komponenti',
                     docDefault: 'Varsayılan Değer',
                     docDescription: 'Detay',
                     docType: 'Değer Türü',
                     docContentDesc: '',
                     docHeaderDesc: '',
+                    docRequestSearchKeyDesc: '',
+                    docPerPageDesc: '',
+                    docUniqueIdDesc: '',
+                    docRadiusDesc: 'Tablonun köşelerinin ovalliğini kontrol etmenizi sağlar.',
                     docHeaderKeyDesc: '',
                     docHeaderLabelDesc: '',
                     docHeaderAlignDesc: '',
@@ -320,6 +305,121 @@ export default defineComponent({
                     prop: 'header',
                     type: 'Array',
                     description: tm('docHeaderDesc')
+                },
+                {
+                    id: 'request-search-key',
+                    prop: 'request-search-key',
+                    type: 'String',
+                    default: 'searchObj',
+                    description: tm('docRequestSearchKeyDesc')
+                },
+                {
+                    id: 'per-page',
+                    prop: 'per-page',
+                    type: 'Number',
+                    default: '5',
+                    description: tm('docPerPageDesc')
+                },
+                {
+                    id: 'unique-id',
+                    prop: 'unique-id',
+                    type: 'String',
+                    default: 'id',
+                    description: tm('docUniqueIdDesc')
+                },
+                {
+                    id: 'row-border',
+                    prop: 'row-border',
+                    type: 'Boolean',
+                    default: 'true',
+                },
+                {
+                    id: 'row-zebra',
+                    prop: 'row-zebra',
+                    type: 'Boolean',
+                    default: 'true',
+                },
+                {
+                    id: 'row-hover',
+                    prop: 'row-hover',
+                    type: 'Boolean',
+                    default: 'true',
+                },
+                {
+                    id: 'radius',
+                    prop: 'radius',
+                    type: 'Number',
+                    default: '3',
+                    options: ['0', '1', '2', '3', '4', '5', '6', '7', '8'],
+                    description: tm('docRadiusDesc')
+                },
+                {
+                    id: 'show-pagination',
+                    prop: 'show-pagination',
+                    type: 'Boolean',
+                    default: 'true',
+                },
+                {
+                    id: 'pagination-detail',
+                    prop: 'pagination-detail',
+                    type: 'Boolean',
+                    default: 'false',
+                },
+                {
+                    id: 'pagination-detail-text',
+                    prop: 'pagination-detail-text',
+                    type: 'String',
+                    default: '{totalPage} pages - {totalRecord} records',
+                },
+                {
+                    id: 'pagination-range',
+                    prop: 'pagination-range',
+                    type: 'Number',
+                    default: '5',
+                },
+                {
+                    id: 'pagination-jump',
+                    prop: 'pagination-jump',
+                    type: 'Boolean',
+                    default: 'true',
+                },
+                {
+                    id: 'pagination-show-arrow-text',
+                    prop: 'pagination-show-arrow-text',
+                    type: 'Boolean',
+                    default: 'true',
+                },
+                {
+                    id: 'pagination-show-previous-text',
+                    prop: 'pagination-show-previous-text',
+                    type: 'String',
+                    default: 'previous',
+                },
+                {
+                    id: 'pagination-show-next-text',
+                    prop: 'pagination-show-next-text',
+                    type: 'String',
+                    default: 'next',
+                },
+                {
+                    id: 'actions',
+                    prop: 'actions',
+                    type: 'Array',
+                    default: '[\'view\']',
+                    options: ['view', 'delete', 'edit']
+                },
+                {
+                    id: 'actions-modal',
+                    prop: 'actions-modal',
+                    type: 'Array',
+                    default: '[\'delete\']',
+                    options: ['view', 'delete', 'edit']
+                },
+                {
+                    id: 'actions-header-text',
+                    prop: 'actions-header-text',
+                    type: 'String',
+                    default: 'actions',
                 },
                 {
                     id: 'header[x].key',

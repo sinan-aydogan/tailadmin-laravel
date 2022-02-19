@@ -16,7 +16,7 @@ class DemoContentController extends Controller
      */
     public function index(Request $request)
     {
-        $demoContent = DemoContentResource::collection(DemoContent::tableSearch($request->input('searchObj')));
+        $demoContent = DemoContentResource::collection(DemoContent::tableSearch($request->input('demoSearch')));
 
         return Inertia::render('Samples/Components/BackEndTable', [
             'demoContent' => $demoContent,

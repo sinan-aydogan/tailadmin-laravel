@@ -581,6 +581,10 @@ export default defineComponent({
             type: String,
             default: "elegant"
         },
+        requestSearchKey: {
+            type: String,
+            default: 'searchObj'
+        },
         uniqueId: {
             type: String,
             default: "id"
@@ -673,7 +677,8 @@ export default defineComponent({
             searchRoute,
             contentKey,
             actions,
-            uniqueId
+            uniqueId,
+            requestSearchKey
         } = toRefs(props);
 
 
@@ -860,7 +865,7 @@ export default defineComponent({
             advancedSearchableFields.forEach(item => {
                 searchObj.advancedSearchFields[item.searchKey] = {
                     value: item.advancedSearchInputType === 'between' ? {from: null, to: null} : null,
-                    condition: item['compareOperators'] ? item['compareOperators'].length>0 ? item['compareOperators'][0].key : null : null
+                    condition: item['compareOperators'] ? item['compareOperators'].length > 0 ? item['compareOperators'][0].key : null : null
                 }
             })
         });
@@ -869,7 +874,7 @@ export default defineComponent({
         debouncedWatch(() => _.cloneDeep(searchObj), () => {
                 Inertia.post(route(searchRoute.value),
                     {
-                        searchObj: {
+                        [requestSearchKey.value]: {
                             perPage: Number(searchObj.perPage),
                             sortKey: searchObj.sortKey,
                             sortDirection: searchObj.sortDirection,
@@ -906,7 +911,10 @@ export default defineComponent({
         /*Content Delete Confirm Modal Function*/
         const selectedItem = ref(null);
         const selectItem = ($event, item, type) => {
-            emit('selectedItem', {data: content.value.data.find(i => i[uniqueId.value] === item[uniqueId.value]), action: type});
+            emit('selectedItem', {
+                data: content.value.data.find(i => i[uniqueId.value] === item[uniqueId.value]),
+                action: type
+            });
         }
 
         /*Error Management*/
