@@ -20,6 +20,11 @@
                     <jet-section-border />
                 </div>
 
+                <t-alert :closeable="true" class="mb-8" radius="1" color="warning">
+                    <t-information-icon class="w-8 h-8" slot="icon"/>
+                    Two Factor Authentication disabled at the demo, you can activate in the <code><pre class="bg-gray-500 rounded px-2 max-w-min inline-block bg-opacity-75">config/fortify.php</pre></code>
+                </t-alert>
+
                 <div v-if="$page.props.jetstream.canManageTwoFactorAuthentication">
                     <two-factor-authentication-form class="mt-10 sm:mt-0" />
 
@@ -47,6 +52,7 @@
     import TwoFactorAuthenticationForm from '@/Pages/Profile/Partials/TwoFactorAuthenticationForm.vue'
     import UpdatePasswordForm from '@/Pages/Profile/Partials/UpdatePasswordForm.vue'
     import UpdateProfileInformationForm from '@/Pages/Profile/Partials/UpdateProfileInformationForm.vue'
+    import TAlert from "@/Components/Alert/TAlert";
 
     export default defineComponent({
         props: ['sessions'],
@@ -59,6 +65,7 @@
             TwoFactorAuthenticationForm,
             UpdatePasswordForm,
             UpdateProfileInformationForm,
+            TAlert
         },
     })
 </script>

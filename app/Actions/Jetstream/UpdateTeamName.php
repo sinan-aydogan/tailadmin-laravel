@@ -25,7 +25,7 @@ class UpdateTeamName implements UpdatesTeamNames
         ])->validateWithBag('updateTeamName');
 
         $team->forceFill([
-            'name' => $input['name'],
+            'name' => $team->name,
         ])->save();
     }
 }
