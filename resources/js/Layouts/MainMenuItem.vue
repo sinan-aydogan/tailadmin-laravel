@@ -25,7 +25,7 @@
                 :class="{'space-x-2' : !foldMainMenu}"
             >
                 <!--Icon-->
-                <div class="flex justify-center items-center w-8 h-8">
+                <div class="flex justify-center items-center w-8 h-8 ml-1">
                     <icon v-if="item['icon']" :icon="item.icon"/>
                 </div>
                 <!--Label-->
