@@ -73,7 +73,7 @@
     @apply md:col-span-12
 }
 
-/*Large : Desktop*/
+/*Large : Laptop*/
 .grid-lg-1 {
     @apply lg:col-span-1
 }
@@ -109,4 +109,43 @@
 }
 .grid-lg-12,.grid-full {
     @apply lg:col-span-12
+}
+
+
+/*XL : Desktop*/
+.grid-xl-1 {
+    @apply xl:col-span-1
+}
+.grid-xl-2 {
+    @apply xl:col-span-2
+}
+.grid-xl-3 {
+    @apply xl:col-span-3
+}
+.grid-xl-4 {
+    @apply xl:col-span-4
+}
+.grid-xl-5 {
+    @apply xl:col-span-5
+}
+.grid-xl-6 {
+    @apply xl:col-span-6
+}
+.grid-xl-7 {
+    @apply xl:col-span-7
+}
+.grid-xl-8 {
+    @apply xl:col-span-8
+}
+.grid-xl-9 {
+    @apply xl:col-span-9
+}
+.grid-xl-10 {
+    @apply xl:col-span-10
+}
+.grid-xl-11 {
+    @apply xl:col-span-11
+}
+.grid-xl-12,.grid-full {
+    @apply xl:col-span-12
 }
