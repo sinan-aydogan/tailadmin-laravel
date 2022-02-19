@@ -1,12 +1,12 @@
 const authDesigns = [
     {
         id: 'violetDream',
-        bgColor: ['bg-pink-200', 'dark:bg-violet-800'],
+        bgColor: ['bg-gradient-to-tl', 'from-violet-300','via-pink-400' , 'to-amber-300' ,'dark:bg-violet-400'],
         bgImage: {
-            dark: 'https://unsplash.com/photos/e3OSaoc7EuE/download?force=true&w=1920',
-            light: 'https://unsplash.com/photos/NjT4O7WYmwk/download?force=true&w=1920'
+            dark: 'https://unsplash.com/photos/BKAaLmT0tIs/download?force=true&w=1920',
+            light: null
         },
-        header: ['bg-pink-500/50', 'dark:bg-violet-800/75', 'text-white', 'dark:text-violet-100'],
+        header: ['bg-white/75', 'border-b-2', 'border-purple-800/50', 'dark:bg-violet-800/75', 'text-violet-800', 'dark:text-violet-100'],
         body: ['bg-white/50','dark:bg-slate-800/50'],
         radius: 3,
         loginButton: {
@@ -16,7 +16,7 @@ const authDesigns = [
             },
             light: {
                 design: 'light',
-                color: 'pink'
+                color: 'purple'
             }
         },
         registerButton: {
@@ -26,7 +26,7 @@ const authDesigns = [
             },
             light: {
                 design: 'link',
-                color: 'pink'
+                color: 'purple'
             }
         },
     },
