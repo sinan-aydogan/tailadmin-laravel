@@ -19,13 +19,13 @@ const flags = {
 
 /* Languages */
 const languages = [
-    {id: "en", name: "English", flag: "flagEn"},
-    {id: "tr", name: "Türkçe", flag: "flagTr"},
-    {id: "bg", name: "български", flag: "flagBg"},
-    {id: "de", name: "Deutsch", flag: "flagDe"},
-    {id: "fr", name: "Français", flag: "flagFr"},
-    {id: "ru", name: "Pусский", flag: "flagRu"},
-    {id: "zh", name: "自从", flag: "flagZh"},
+    { id: "en", name: "English", flag: "flagEn" },
+    { id: "tr", name: "Türkçe", flag: "flagTr" },
+    { id: "bg", name: "български", flag: "flagBg" },
+    { id: "de", name: "Deutsch", flag: "flagDe" },
+    { id: "fr", name: "Français", flag: "flagFr" },
+    { id: "ru", name: "Pусский", flag: "flagRu" },
+    { id: "zh", name: "自从", flag: "flagZh" },
 ];
 
 /* Translates */
@@ -84,10 +84,29 @@ const userMenuTranslates = {
     zh: userMenuLangZh,
 };
 
+/*Notification Translates*/
+import notificationLangBg from "@/Lang/bg/notification_lang_bg";
+import notificationLangDe from "@/Lang/de/notification_lang_de";
+import notificationLangEn from "@/Lang/en/notification_lang_en";
+import notificationLangFr from "@/Lang/fr/notification_lang_fr";
+import notificationLangRu from "@/Lang/ru/notification_lang_ru";
+import notificationLangTr from "@/Lang/tr/notification_lang_tr";
+import notificationLangZh from "@/Lang/zh/notification_lang_zh";
+const notificationTranslates = {
+    bg: notificationLangBg,
+    de: notificationLangDe,
+    en: notificationLangEn,
+    fr: notificationLangFr,
+    ru: notificationLangRu,
+    tr: notificationLangTr,
+    zh: notificationLangZh,
+};
+
 export {
     languages,
     flags,
     authTranslates,
     mainMenuTranslates,
-    userMenuTranslates
+    userMenuTranslates,
+    notificationTranslates
 };
