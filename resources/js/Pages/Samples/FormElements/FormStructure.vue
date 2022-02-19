@@ -1,51 +1,48 @@
 <template>
     <app-layout :actionButtons="true">
-        <template #header>
-            Form Structure
-        </template>
+        <template #header>Form Structure</template>
         <template #action-buttons>
             <t-button :radius="3" color="yellow">
-                <icon icon="angle-left"/>
-                Back to Home
+                <icon icon="angle-left" />Back to Home
             </t-button>
             <t-button :radius="3" color="green">
-                <icon icon="plus-circle"/>
-                Add New
+                <icon icon="plus-circle" />Add New
             </t-button>
         </template>
         <template #default>
-            <t-form-content :reset-button="false" :submit-button="false" @reset="reset" @submitted="save">
+            <!-- Native -->
+            <t-form-content
+                :reset-button="false"
+                :submit-button="false"
+                @reset="reset"
+                @submitted="save"
+            >
                 <!--Form Content Area Indicator-->
-                <div class="p-2">
-                    <t-badge color="green">Form Content Area</t-badge>
-                </div>
+                <t-badge color="success">Form Content Area</t-badge>
 
                 <t-form-section
                     description="This information is subject to personal data protection law. - (Description)"
-                    title="Personal Infos - (Title)">
+                    title="Personal Infos - (Title)"
+                >
                     <!--Form Section Area Indicator-->
                     <div class="col-span-full">
-                        <t-badge color="blue">Form Section Area</t-badge>
+                        <t-badge color="info">Form Section Area</t-badge>
                     </div>
 
                     <!-- Name -->
-                    <t-input-group
-                        class="col-span-12 md:col-span-6"
-                        label="Name"
-                        labelFor="name"
-                    >
-                        <t-input-text id="name" v-model="form.name" placeholder="Business mail address"/>
+                    <t-input-group label="Name" labelFor="name">
+                        <t-input-text
+                            id="name"
+                            v-model="form.name"
+                            placeholder="Business mail address"
+                        />
                     </t-input-group>
                     <!-- Tax ID -->
-                    <t-input-group
-                        class="col-span-12 md:col-span-6"
-                        label="Tax ID"
-                        labelFor="tax_id"
-                    >
-                        <t-input-text id="tax_id" v-model="form.tax_id"/>
+                    <t-input-group label="Tax ID" labelFor="tax_id">
+                        <t-input-text id="tax_id" v-model="form.tax_id" />
                     </t-input-group>
                     <!-- Address -->
-                    <t-input-group class="col-span-12" label="Address" labelFor="address">
+                    <t-input-group :laptop-width="12" label="Address" labelFor="address">
                         <t-input-text-area
                             id="address"
                             v-model="form.address"
@@ -58,17 +55,88 @@
                 </t-form-section>
                 <!--Status Area Indicator-->
                 <template #button-area>
-                    <div class="flex flex-wrap col-span-12 justify-center md:justify-end space-x-2 mr-4 py-4">
+                    <div
+                        class="flex flex-wrap col-span-12 justify-center md:justify-end space-x-2 mr-4 py-4"
+                    >
                         <t-badge color="pink">Form Extra Button Area</t-badge>
                     </div>
                     <div class="border p-2 gap-2 inline-flex items-center">
                         <div class="flex flex-wrap gap-1 justify-center md:justify-end">
-                            <t-badge color="gray">Form Status Area</t-badge>
-                            or
-                            <t-badge color="indigo">Default Form Buttons Area</t-badge>
+                            <t-badge color="light">Form Status Area</t-badge>or
+                            <t-badge color="purple">Default Form Buttons Area</t-badge>
                         </div>
                     </div>
                 </template>
+            </t-form-content>
+
+            <!-- Smart -->
+            <t-form-content
+                :reset-button="true"
+                :submit-button="true"
+                sectionLayout="smart"
+                @reset="reset"
+                @submitted="save"
+                class="mt-4"
+            >
+                <t-form-section
+                    description="This information is subject to personal data protection law. - (Description)"
+                    title="Personal Infos - (Title)"
+                >
+                    <!-- Name -->
+                    <t-input-group label="Name" labelFor="name">
+                        <t-input-text
+                            id="name"
+                            v-model="form.name"
+                            placeholder="Business mail address"
+                        />
+                    </t-input-group>
+                    <!-- Tax ID -->
+                    <t-input-group label="Tax ID" labelFor="tax_id">
+                        <t-input-text id="tax_id" v-model="form.tax_id" />
+                    </t-input-group>
+                    <!-- Address -->
+                    <t-input-group :desktop-width="12" label="Address" labelFor="address">
+                        <t-input-text-area
+                            id="address"
+                            v-model="form.address"
+                            :clear-button="true"
+                            :counter="true"
+                            :rows="3"
+                            placeholder="Full address"
+                        />
+                    </t-input-group>
+                </t-form-section>
+
+                <t-form-section
+                    description="This information is subject to personal data protection law. - (Description)"
+                    title="Personal Infos - (Title)"
+                >
+                    <!-- Name -->
+                    <t-input-group label="Name" labelFor="name">
+                        <t-input-text
+                            id="name"
+                            v-model="form.name"
+                            placeholder="Business mail address"
+                        />
+                    </t-input-group>
+                    <!-- Tax ID -->
+                    <t-input-group label="Tax ID" labelFor="tax_id">
+                        <t-input-text id="tax_id" v-model="form.tax_id" />
+                    </t-input-group>
+                    <!-- Address -->
+                    <t-input-group :desktop-width="12" label="Address" labelFor="address">
+                        <t-input-text-area
+                            id="address"
+                            v-model="form.address"
+                            :clear-button="true"
+                            :counter="true"
+                            :rows="3"
+                            placeholder="Full address"
+                        />
+                    </t-input-group>
+                </t-form-section>
+
+                <template #actions>Saved</template>
             </t-form-content>
         </template>
     </app-layout>
@@ -109,8 +177,8 @@ export default {
                 address: null,
             }),
             status: [
-                {name: 'Passive', value: 0, icon: 'XIcon', class: 'w-5 h-5 text-red-500 mr-2'},
-                {name: 'Active', value: 1, icon: 'Checked', class: 'w-5 h-5 text-green-500 mr-2'}
+                { name: 'Passive', value: 0, icon: 'XIcon', class: 'w-5 h-5 text-red-500 mr-2' },
+                { name: 'Active', value: 1, icon: 'Checked', class: 'w-5 h-5 text-green-500 mr-2' }
             ],
         };
     },
@@ -135,7 +203,6 @@ export default {
 </script>
 
 <style scoped>
-
 </style>
 
 
