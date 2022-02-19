@@ -11,7 +11,7 @@
                     { 'alert-warning': type === 'warning' },
                     { 'alert-danger': type === 'error' },
                     { 'alert-info': type === 'info' }],
-                    `radius-${temporaryRadius}`,
+                `radius-${temporaryRadius}`,
             ]"
         >
             <!--Alert Line-->
@@ -51,7 +51,7 @@
 import { defineComponent, inject, ref, toRefs, watch } from "vue";
 
 /*Sources*/
-import {alertConf} from "@/config";
+import { alertConf } from "@/config";
 
 /*Import FontAwesomeIcon*/
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -103,18 +103,18 @@ export default defineComponent({
     emits: ["destroy"],
 
     setup(props, { slots, emit }) {
+
         /*Definitions*/
         const { design, color, radius, closeable, timerStatus, timer, id } = toRefs(props);
         const showAlertBox = ref(true);
         const appConf = inject('appConf');
 
         /*Temporary Definations*/
-        const temporaryDesign = ref(design.value ? ref(design.value) : ref(alertConf.design))
-        const temporaryColor = ref(color.value ? ref(color.value) : ref(alertConf.color))
-        const temporaryRadius = ref(radius.value ? ref(radius.value) : ref(alertConf.radius))
-        const temporaryCloseable = ref(closeable.value ? ref(closeable.value) : ref(alertConf.closeable))
-        const temporaryTimer = ref(timer.value ? ref(timer.value) : ref(alertConf.timer))
-
+        const temporaryDesign = ref(design.value ? design.value : alertConf.design ? alertConf.design : appConf.value.design)
+        const temporaryColor = ref(color.value ? color.value : alertConf.color ? alertConf.color : appConf.value.color)
+        const temporaryRadius = ref(radius.value ? radius.value : alertConf.radius ? alertConf.radius : appConf.value.radius)
+        const temporaryCloseable = ref(closeable.value ? closeable.value : alertConf.closeable ? alertConf.closeable : appConf.value.closeable)
+        const temporaryTimer = ref(timer.value ? timer.value : alertConf.timer ? alertConf.timer : appConf.value.timer)
 
         /*Close Function*/
         const close = () => {
