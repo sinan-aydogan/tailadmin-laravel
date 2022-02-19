@@ -2,9 +2,10 @@
     <div
         class="flex flex-col"
         :class="[
-            `grid-${phoneWidth}`,
-            `grid-md-${tabletWidth}`,
-            `grid-lg-${desktopWidth}`
+            phoneWidth ? `grid-${phoneWidth}` : '',
+            tabletWidth ? `grid-md-${tabletWidth}` : '',
+            laptopWidth ? `grid-lg-${laptopWidth}` : '',
+            desktopWidth ? `grid-xl-${desktopWidth}` : '',
         ]"
     >
         <!--Label-->
@@ -77,11 +78,15 @@ export default defineComponent({
         },
         tabletWidth: {
             type: Number,
+            default: null
+        },
+        laptopWidth: {
+            type: Number,
             default: 6
         },
         desktopWidth: {
             type: Number,
-            default: 6
+            default: null
         }
     },
     mixins: [inputGroupStyleMixin],
