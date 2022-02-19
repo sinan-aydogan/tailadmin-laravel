@@ -3,13 +3,17 @@
         <form :enctype="enctype" @submit.prevent="$emit('submitted')">
             <!--Form Body-->
             <t-content-card :radius="temporaryRadius">
-                <div class="flex flex-col w-full">
+                <div class="flex flex-col w-full space-y-4">
                     <slot></slot>
                     <!--Form Buttons Container-->
                     <transition duration="500" name="status">
                         <div
                             v-if="submitButton || resetButton || $slots.status || $slots.button + '-area'"
-                            class="flex flex-wrap col-span-12 justify-center md:justify-end space-x-2 mr-4 py-4"
+                            class="flex flex-wrap col-span-12 justify-center md:justify-end space-x-2"
+                            :class="[
+                                { 'mr-2 py-2': sectionLayout === 'native' },
+                                { 'border-t pt-2 mt-2 -mb-2': sectionLayout === 'smart' }
+                            ]"
                         >
                             <!--Extra Form Buttons Area-->
                             <slot name="button-area" />
@@ -42,13 +46,6 @@
                             </div>
                         </div>
                     </transition>
-
-                    <div
-                        v-if="hasSlot('hasActions')"
-                        class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6"
-                    >
-                        <slot name="actions"></slot>
-                    </div>
                 </div>
             </t-content-card>
         </form>
@@ -57,7 +54,7 @@
 
 <script>
 /* Main functions */
-import { defineComponent, inject, toRefs, ref } from "vue";
+import { defineComponent, inject, toRefs, ref, provide } from "vue";
 
 /* Components */
 import TButton from "@/Components/Button/TButton";
@@ -70,8 +67,12 @@ import { formContentConf } from "@/config";
 import { useI18n } from "vue-i18n";
 
 export default defineComponent({
+    name: "TForm",
     props: {
-        enctype: String,
+        enctype: {
+            type: String,
+            default: 'application/x-www-form-urlencoded'
+        },
         disabled: Boolean,
         radius: {
             type: Number,
@@ -84,7 +85,11 @@ export default defineComponent({
         submitButton: {
             type: Boolean,
             default: true
-        }
+        },
+        sectionLayout: {
+            type: String,
+            default: 'native'
+        },
     },
     components: {
         TContentCard,
@@ -94,11 +99,13 @@ export default defineComponent({
 
     setup(props, { emit, slots }) {
         /*Definitions*/
-        const { radius } = toRefs(props)
+        const { radius, sectionLayout } = toRefs(props)
         const appConf = inject("appConf");
+        provide('formContentConf', (formContentConf));
+        provide('sectionLayout', (sectionLayout));
 
         /*Temporary Definations*/
-        const temporaryRadius = ref(radius.value ? radius.value : formContentConf.radius ? formContentConf.radius : appConf.radius)
+        const temporaryRadius = ref(radius.value ? radius.value : formContentConf.radius ? formContentConf.radius : appConf.value.radius)
 
         /* Multi-language */
         const { tm } = useI18n({
