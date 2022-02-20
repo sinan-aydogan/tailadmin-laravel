@@ -1,14 +1,14 @@
-Anemon Inertia
+TailAdmin Inertia
 ======
 <p align="center">
-  <img src="https://anemon.tailadmin.dev/img/misc/anemon_main.jpg" alt="Anemon"/>
+  <img src="https://v2.tailadmin.dev/img/misc/tailadmin_main.jpg" alt="TailAdmin"/>
 </p>
 <p align="center">
-  It's a dashboard theme/UI-Starter Kit with Laravel8, Inertia and Vue3 (JetStream).
+  It's a dashboard theme/UI-Starter Kit with Laravel9, TailwindCSS3, Inertia and Vue3 (JetStream).
 </p>
 
 <p align="center">
-  :wave: If you looking for Vue2 version, You can use <a href="https://github.com/sinan-aydogan/tailadmin-laravel">TailAdmin Core</a> :wave:
+  :wave: If you looking for Vue2 version, You can use download <a href="https://github.com/sinan-aydogan/tailadmin-laravel/releases/tag/v.1.0.0"> TailAdmin v1 TailAdmin</a> :wave:
 </p>
 
 <p align="center">
@@ -64,7 +64,7 @@ Setup Directions
 Admin Login Infos / Demo Account
 ------
 
-- **Demo:** *[https://anemon.tailadmin.dev](https://anemon.tailadmin.dev)*
+- **Demo:** *[https://v2.tailadmin.dev](https://v2.tailadmin.dev)*
 - **Email:** *admin@tailadmin.dev*
 - **Password:** *admin*
 
@@ -76,7 +76,7 @@ Admin Login Infos / Demo Account
 
 If you need to help more than this documentation: 
  - You can join our [Discord Channel](https://discord.gg/TnjA2GqYmw) then ask your questions
- - Access to our [Tabbs page](https://tailadmin.tabbs.co/anemon) for how to make links (Install in Linux, solution of the npm errors etc.)
+ - Access to our [Tabbs page](https://tailadmin.tabbs.co/) for how to make links (Install in Linux, solution of the npm errors etc.)
 
 ## Featured :
 
