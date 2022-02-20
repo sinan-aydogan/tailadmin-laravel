@@ -1,6 +1,6 @@
 /*Default Settings*/
 const appConf = {
-    appName: 'Anemon',
+    appName: 'TailAdmin',
     darkLogo: '/img/dark-logo.svg',
     lightLogo: '/img/light-logo.svg',
     logoAreaClasses: null,
@@ -61,10 +61,10 @@ const footerConf = {
     visible: true,
     content: "<a\n" +
         "              class=\"text-blue-600 hover:underline\"\n" +
-        "              href=\"https://anemon.tailadmin.dev/\"\n" +
+        "              href=\"https://tailadmin.dev/\"\n" +
         "              target=\"_blank\"\n" +
         "            >\n" +
-        "              Anemon v.0.0.1\n" +
+        "              TailAdmin v2\n" +
         "              </a>\n" +
         "            <span>by</span>\n" +
         "            <a\n" +

@@ -3,10 +3,10 @@ const authDesigns = [
         id: 'violetDream',
         bgColor: ['bg-gradient-to-tl', 'from-violet-300','via-pink-400' , 'to-amber-300' ,'dark:bg-violet-400'],
         bgImage: {
-            dark: 'https://unsplash.com/photos/BKAaLmT0tIs/download?force=true&w=1920',
-            light: null
+            dark: 'https://unsplash.com/photos/nY14Fs8pxT8/download?force=true&w=1920',
+            light: 'https://unsplash.com/photos/nY14Fs8pxT8/download?force=true&w=1920',
         },
-        header: ['bg-white/75', 'border-b-2', 'border-purple-800/50', 'dark:bg-violet-800/75', 'text-violet-800', 'dark:text-violet-100'],
+        header: ['bg-gradient-to-r', 'from-violet-500','to-pink-600' , 'border-b-2', 'border-purple-800/50', 'dark:bg-violet-800/75', 'text-slate-100', 'dark:text-violet-100'],
         body: ['bg-white/50','dark:bg-slate-800/50'],
         radius: 3,
         loginButton: {
