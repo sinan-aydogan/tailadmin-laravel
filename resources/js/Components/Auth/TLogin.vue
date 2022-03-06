@@ -3,158 +3,155 @@
         :bg-image-url="activeDesign.bgImage[appearingMode]"
         :bg-color="activeDesign.bgColor"
     >
-        <div
-            :class="[
-                'relative',
-                deviceType === 'phone' && 'w-full'
-            ]"
-        >
-            <!--Container-->
-            <div :class="[
-                'auth-container'
+
+        <!--Container-->
+        <div :class="[
+                'auth-container',
+                {'w-full' : deviceType === 'phone'},
             ]">
-                <!--Header-->
-                <div
-                    class="auth-header"
-                    :class="[
+            <!--Header-->
+            <div
+                class="auth-header"
+                :class="[
                         activeDesign.header,
                         deviceType !== 'phone' && `radius-t-${activeDesign.radius ? activeDesign.radius : appConf.radius}`,
                     ]"
-                >
-                    <!--Logo-->
-                    <div class="auth-logo">
-                        <slot v-if="$slots.logo" name="logo" />
-                        <div v-else :class="authScreenConf.logoAreaClasses">
-                            <img
-                                :src="[
-                                    appearingMode === 'dark' ? authScreenConf.darkLogo ? authScreenConf.darkLogo : appConf.darkLogo :
-                                        authScreenConf.lightLogo ? authScreenConf.lightLogo : appConf.lightLogo
-                                ]"
-                                :class="authScreenConf.logoClasses"
-                            />
-                            <span
-                                v-text="authScreenConf.appName ? authScreenConf.appName : appConf.appName"
-                                :class="authScreenConf.appNameClasses"
-                            ></span>
-                        </div>
-                    </div>
-                    <!--Greeting-->
-                    <div class="auth-greeting" v-if="status || $slots.greeting">
-                        <div class="text-sm">
-                            <!--Status-->
-                            <div v-if="status" class="auth-status">{{ status }}</div>
-                            <slot v-else name="greeting" />
-                        </div>
+            >
+                <!--Logo-->
+                <div class="auth-logo">
+                    <slot v-if="$slots.logo" name="logo"/>
+                    <div v-else :class="authScreenConf.logoAreaClasses">
+                        <img
+                            :src="temporaryLogo"
+                            :class="authScreenConf.logoClasses"
+                        />
+                        <span
+                            v-text="authScreenConf.appName ? authScreenConf.appName : appConf.appName"
+                            :class="authScreenConf.appNameClasses"
+                        ></span>
                     </div>
                 </div>
+                <!--Greeting-->
+                <div class="auth-greeting" v-if="status || $slots.greeting">
+                    <div class="text-sm">
+                        <!--Status-->
+                        <div v-if="status" class="auth-status">{{ status }}</div>
+                        <slot v-else name="greeting"/>
+                    </div>
+                </div>
+            </div>
 
-                <!--Form-->
-                <div
-                    class="auth-form"
-                    :class="[
+            <!--Form-->
+            <div
+                class="auth-form"
+                :class="[
                         deviceType !== 'phone' && `radius-b-${activeDesign.radius ? activeDesign.radius : appConf.radius}`,
                         activeDesign.body,
                     ]"
-                >
-                    <form @submit.prevent="submit">
-                        <!--Email-->
-                        <div>
-                            <t-input-group
-                                :label="t('email')"
-                                label-for="email"
-                                :errors="v.email.$errors"
-                            >
-                                <t-input-text
-                                    id="email"
-                                    v-model="form.email"
-                                    @blur="v.email.$touch"
-                                    :radius="3"
-                                    autofocus
-                                    autocomplete="username"
-                                    required
-                                    type="email"
-                                />
-                            </t-input-group>
-                        </div>
-                        <!--Password-->
-                        <div class="mt-4">
-                            <t-input-group
-                                :label="t('password')"
-                                label-for="password"
-                                :errors="v.password.$errors"
-                            >
-                                <t-input-text
-                                    id="password"
-                                    v-model="form.password"
-                                    @blur="v.password.$touch"
-                                    :radius="3"
-                                    autocomplete="current-password"
-                                    required
-                                    type="password"
-                                />
-                            </t-input-group>
-                        </div>
-
-                        <div class="auth-remember">
-                            <!--Remember Me-->
-                            <label class="flex items-center">
-                                <t-input-check-box
-                                    id="remember"
-                                    v-model="form.remember"
-                                    :label="t('rememberMe')"
-                                >
-                                    <template #icon>
-                                        <icon icon="key" size="sm" />
-                                    </template>
-                                </t-input-check-box>
-                            </label>
-                            <!--Forgot Password-->
-                            <Link
-                                v-if="canResetPassword"
-                                :href="route('password.request')"
-                                class="auth-forgot-password"
-                            >{{ t('forgotPassword') }}</Link>
-                        </div>
-                        <!--Submit Area-->
-                        <div class="auth-submit-area">
-                            <!--Register Button-->
-                            <t-button
-                                :class="{ 'opacity-25': form.processing }"
-                                :design="activeDesign.registerButton[appearingMode].design"
-                                :color="activeDesign.registerButton[appearingMode].color"
-                                :link="route('register')"
+            >
+                <form @submit.prevent="submit">
+                    <!--Email-->
+                    <div>
+                        <t-input-group
+                            :label="t('email')"
+                            label-for="email"
+                            :errors="v.email.$errors"
+                        >
+                            <t-input-text
+                                id="email"
+                                v-model="form.email"
+                                @blur="v.email.$touch"
                                 :radius="3"
-                                type="link"
-                            >{{ t('register') }}</t-button>
-
-                            <!--Submit Button-->
-                            <t-button
-                                :class="{ 'opacity-25': form.processing }"
-                                :color="activeDesign.loginButton[appearingMode].color"
-                                :design="activeDesign.loginButton[appearingMode].design"
-                                :disabled="form.processing"
+                                autofocus
+                                autocomplete="username"
+                                required
+                                type="email"
+                            />
+                        </t-input-group>
+                    </div>
+                    <!--Password-->
+                    <div class="mt-4">
+                        <t-input-group
+                            :label="t('password')"
+                            label-for="password"
+                            :errors="v.password.$errors"
+                        >
+                            <t-input-text
+                                id="password"
+                                v-model="form.password"
+                                @blur="v.password.$touch"
                                 :radius="3"
-                                class="ml-4"
-                            >{{ t('login') }}</t-button>
-                        </div>
-                    </form>
-                </div>
-            </div>
+                                autocomplete="current-password"
+                                required
+                                type="password"
+                            />
+                        </t-input-group>
+                    </div>
 
-            <!--Errors-->
-            <div class="auth-error">
-                <transition @before-enter="beforeStyle" @after-enter="enterStyle">
-                    <t-alert v-if="hasErrors" :radius="deviceType !== 'phone' && 5" color="danger">
-                        <template #icon>
-                            <icon icon="bell" size="lg" />
-                        </template>
-                        <ul class="list-inside text-sm">
-                            <li v-for="(error, key) in errors" :key="key">{{ error }}</li>
-                        </ul>
-                    </t-alert>
-                </transition>
+                    <div class="auth-remember">
+                        <!--Remember Me-->
+                        <label class="flex items-center">
+                            <t-input-check-box
+                                id="remember"
+                                v-model="form.remember"
+                                :label="t('rememberMe')"
+                            >
+                                <template #icon>
+                                    <icon icon="key" size="sm"/>
+                                </template>
+                            </t-input-check-box>
+                        </label>
+
+                        <!--Forgot Password-->
+                        <Link
+                            v-if="canResetPassword"
+                            :href="route('password.request')"
+                            class="auth-forgot-password"
+                        >{{ t('forgotPassword') }}
+                        </Link>
+                    </div>
+                    <!--Submit Area-->
+                    <div class="auth-submit-area">
+                        <!--Register Button-->
+                        <t-button
+                            :class="{ 'opacity-25': form.processing }"
+                            :design="activeDesign.registerButton[appearingMode].design"
+                            :color="activeDesign.registerButton[appearingMode].color"
+                            :link="route('register')"
+                            :radius="3"
+                            type="link"
+                        >{{ t('register') }}
+                        </t-button>
+
+                        <!--Submit Button-->
+                        <t-button
+                            :class="{ 'opacity-25': form.processing }"
+                            :color="activeDesign.loginButton[appearingMode].color"
+                            :design="activeDesign.loginButton[appearingMode].design"
+                            :disabled="form.processing"
+                            :radius="3"
+                            class="ml-4"
+                        >{{ t('login') }}
+                        </t-button>
+                    </div>
+                </form>
             </div>
         </div>
+
+        <!--Errors-->
+        <div class="auth-error">
+            <transition @before-enter="beforeStyle" @after-enter="enterStyle">
+                <t-alert v-if="hasErrors" :radius="deviceType !== 'phone' && 5" color="danger">
+                    <template #icon>
+                        <icon icon="bell" size="lg"/>
+                    </template>
+                    <ul class="list-inside text-sm">
+                        <li v-for="(error, key) in errors" :key="key">{{ error }}</li>
+                    </ul>
+                </t-alert>
+            </transition>
+        </div>
+
 
         <!--Selectors-->
         <div class="fixed bottom-0 flex z-50 w-full justify-center sm:justify-end space-x-6 p-6">
@@ -188,7 +185,7 @@
                                 @click="changeLang(lang.id)"
                                 class="top-menu-dropdown-item-transparent"
                             >
-                                <component :is="lang.flag" class="w-6 aspect-auto drop-shadow" />
+                                <component :is="lang.flag" class="w-6 aspect-auto drop-shadow"/>
                                 <span v-text="lang.name"></span>
                             </div>
                         </template>
@@ -250,13 +247,13 @@
 
 <script>
 /*Main functions*/
-import { defineComponent, computed, ref } from "vue";
-import { loginStyleMixin } from "@/Mixins/Styles/loginStyleMixin";
-import { Link, useForm } from "@inertiajs/inertia-vue3";
+import {defineComponent, computed, ref} from "vue";
+import {loginStyleMixin} from "@/Mixins/Styles/loginStyleMixin";
+import {Link, useForm} from "@inertiajs/inertia-vue3";
 import windowSizeCalculator from "@/Functions/windowSizeCalculator";
 import darkModeFn from "@/Functions/darkMode";
 import useVuelidate from "@vuelidate/core";
-import { email, helpers, required } from "@vuelidate/validators";
+import {email, helpers, required} from "@vuelidate/validators";
 
 /*Components*/
 import TAlert from "@/Components/Alert/TAlert";
@@ -270,17 +267,17 @@ import TTooltip from "@/Components/Tooltip/TTooltip";
 import TInputCheckBox from "@/Components/Form/Inputs/TInputCheckBox";
 
 /*Sources*/
-import { appConf, authScreenConf } from "@/config";
-import { authDesigns } from "@/Sources/authScreenDesigns";
+import {appConf, authScreenConf, badgeConf} from "@/config";
+import {authDesigns} from "@/Sources/authScreenDesigns";
 
 /* Multi language */
-import { useI18n } from "vue-i18n";
+import {useI18n} from "vue-i18n";
 import langChooserFn from "@/Functions/langChooser"
-import { languages, flags, authTranslates } from "@/Lang/languages";
+import {languages, flags, authTranslates} from "@/Lang/languages";
 
 /*Fontawesome icons*/
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { faSun, faMoon, faPalette, faRedo, faKey, faBell } from "@fortawesome/free-solid-svg-icons";
+import {library} from "@fortawesome/fontawesome-svg-core";
+import {faSun, faMoon, faPalette, faRedo, faKey, faBell} from "@fortawesome/free-solid-svg-icons";
 
 library.add(faSun, faMoon, faPalette, faRedo, faKey, faBell)
 
@@ -306,15 +303,15 @@ export default defineComponent({
     },
     setup(props) {
         /*Device type*/
-        const { deviceType } = windowSizeCalculator();
+        const {deviceType} = windowSizeCalculator();
 
         /* Dark Mode */
-        const { darkMode, appearingMode, changeTheme } = darkModeFn();
+        const {darkMode, appearingMode, changeTheme} = darkModeFn();
 
         /* Multi-language */
-        const { changeLang, locale } = langChooserFn();
+        const {changeLang, locale} = langChooserFn();
 
-        const { t, tm } = useI18n({
+        const {t, tm} = useI18n({
             inheritLocale: true,
             messages: authTranslates,
         });
@@ -337,8 +334,9 @@ export default defineComponent({
                 required: helpers.withMessage(tm('validationMessage.password.required'), required)
             },
         });
-        const v = useVuelidate(rules, form, { $lazy: true });
+        const v = useVuelidate(rules, form, {$lazy: true});
 
+        /*Submit*/
         const submit = async () => {
             if (!(await v.value.$validate())) {
                 return;
@@ -353,6 +351,34 @@ export default defineComponent({
                 });
         };
 
+        /*Logo SRC*/
+        /*Temporary Definitions*/
+        const temporaryLogo = computed(()=>{
+            let logo;
+
+
+            if(appearingMode.value === 'dark'){
+                if(activeDesign.value.logo.dark){
+                    logo = activeDesign.value.logo.dark
+                }else if(authScreenConf.logo.dark) {
+                    logo = authScreenConf.darkLogo
+                }else{
+                    logo = appConf.logo.dark
+                }
+            } else {
+                if(activeDesign.value.logo.light){
+                    logo = activeDesign.value.logo.light
+                }else if(authScreenConf.logo.light) {
+                    logo = authScreenConf.logo.light
+                }else{
+                    logo = appConf.logo.light
+                }
+            }
+
+            return logo;
+        });
+
+        /*Design Template Changer*/
         const activeDesignIndex = ref(0)
         const changeBg = () => {
             if (authDesigns.length - 1 > activeDesignIndex.value) {
@@ -380,6 +406,7 @@ export default defineComponent({
             deviceType,
             appConf,
             authScreenConf,
+            temporaryLogo,
             t,
             tm,
             v

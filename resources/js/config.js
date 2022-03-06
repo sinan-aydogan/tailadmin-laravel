@@ -1,8 +1,10 @@
 /*Default Settings*/
 const appConf = {
     appName: 'TailAdmin',
-    darkLogo: '/img/dark-logo.svg',
-    lightLogo: '/img/light-logo.svg',
+    logo: {
+      dark: '/img/dark-logo.svg',
+      light: '/img/light-logo.svg'
+    },
     logoAreaClasses: null,
     appNameClasses: null,
     logoClasses: null,
@@ -12,10 +14,12 @@ const appConf = {
 /*Layout Settings*/
 const authScreenConf = {
     appName: null,
-    darkLogo: null,
-    lightLogo: null,
-    logoAreaClasses: ['flex', 'flex-col', 'justify-center', 'items-center', 'space-x-2'],
-    appNameClasses: ['text-5xl', 'font-semibold'],
+    logo: {
+        dark: null,
+        light: null,
+    },
+    logoAreaClasses: ['flex', 'flex-col', 'justify-center', 'items-center', 'space-x-2', 'min-w-[25rem]'],
+    appNameClasses: ['text-3xl', 'font-semibold'],
     logoClasses: ['w-12', 'text-white', 'h-auto'],
     showDesignChanger: true,
     showDarkModeSelector: true,
@@ -25,8 +29,10 @@ const authScreenConf = {
 const mainMenuConf = {
     /*Logo Area*/
     appName: null,
-    darkLogo: '/img/dark-logo.svg',
-    lightLogo: '/img/dark-logo.svg',
+    logo: {
+        dark: '/img/dark-logo.svg',
+        light: '/img/dark-logo.svg',
+    },
     logoAreaRadius: null,
     logoAreaClasses: ['flex', 'flex-col', 'justify-center', 'items-center', 'space-x-6', 'bg-violet-500'],
     appNameClasses: ['text-6xl', 'font-semibold', 'text-white'],

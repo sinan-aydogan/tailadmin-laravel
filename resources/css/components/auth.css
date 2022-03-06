@@ -11,7 +11,7 @@
 
 /*Auth Logo*/
 .auth-logo {
-    @apply inline-flex px-32 py-4
+    @apply inline-flex py-4
 }
 
 /*Auth Greeting*/
@@ -26,17 +26,17 @@
 
 /*Auth Form*/
 .auth-form {
-    @apply flex flex-col gap-4 bg-white dark:text-slate-100 dark:bg-slate-800 backdrop-filter backdrop-blur p-8 w-full
+    @apply flex flex-col gap-4 bg-white dark:text-slate-100 dark:bg-slate-800 backdrop-filter backdrop-blur p-6 w-full
 }
 
 /*Auth Remember: Login*/
 .auth-remember {
-    @apply flex justify-between mt-4
+    @apply flex justify-between items-center mt-4 space-x-4
 }
 
 /*Auth Remember Text: Login*/
 .auth-remember-text {
-    @apply ml-2 text-sm
+    @apply text-sm
 }
 
 /*Auth Forgot Password: Login*/
