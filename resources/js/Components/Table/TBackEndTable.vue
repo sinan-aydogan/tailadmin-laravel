@@ -378,7 +378,7 @@
                     <td
                         :colspan="regeneratedHeader.length+(actions.length>0 ? 1 : 0)"
                     >
-                        <div
+                        <div0
                             class="table-no-content"
                             :class="`radius-${radius}`"
                         >
@@ -388,7 +388,7 @@
                                       d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                             </svg>
                             <span v-t="'anyContentMessage'"/>
-                        </div>
+                        </div0>
                     </td>
                 </tr>
                 </tbody>

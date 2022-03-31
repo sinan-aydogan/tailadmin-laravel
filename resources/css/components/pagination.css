@@ -1,0 +1,596 @@
+/*Pagination*/
+/*Pagination Container*/
+.pagination-container {
+    @apply flex flex-col-reverse my-2 md:flex-row md:mt-0 justify-center md:justify-between flex-shrink-0 w-full items-center ease-in-out duration-200 transition-all
+}
+/*Pagination Detail Text*/
+.pagination-detail-container{
+    @apply flex flex-row flex-shrink-0 mt-2 md:mt-0 items-center space-x-2 select-none
+}
+.pagination-detail-text{
+    @apply flex flex-row flex-shrink-0
+}
+.pagination-detail-jump-container{
+    @apply relative flex items-center
+}
+.pagination-detail-jump-input{
+    @apply flex rounded-l-md h-6 ml-2 px-0 text-gray-700 text-center focus:ring-0
+}
+.pagination-detail-jump-button{
+    @apply flex text-sm items-center px-0.5 cursor-pointer h-6 rounded-r-md
+}
+.pagination-counters {
+    @apply inline-flex flex-shrink-0 justify-end items-center overflow-hidden ease-in-out duration-200 transition-all
+}
+/*Pagination Item*/
+.pagination-item {
+    @apply flex items-center justify-center h-8 px-2 cursor-pointer font-semibold select-none flex-shrink-0 ease-in-out duration-200 transition-all
+}
+.pagination-active-item {
+    @apply flex items-center justify-center h-8 px-2 cursor-pointer font-semibold select-none flex-shrink-0 ease-in-out duration-200 transition-all
+}
+/*Left Right Navigation Arrows*/
+.pagination-arrow, .pagination-passive-arrow  {
+    @apply flex flex-shrink-0 items-center justify-center h-8 px-2 cursor-pointer font-semibold select-none
+}
+.pagination-passive-arrow{
+    filter: blur(.03rem) opacity(.9);
+}
+.pagination-arrow-text{
+    @apply hidden md:block
+}
+
+/*<editor-fold desc="Filled Style">*/
+/*General Definitions*/
+.pagination-filled-base .pagination-detail-jump-input{
+    @apply border-none
+}
+
+.pagination-filled-base .pagination-counters {
+    @apply text-white
+}
+
+/*Colors: black, blue, gray, green, indigo, pink, purple, white and yellow*/
+/*Black*/
+.pagination-filled-black  .pagination-item,.pagination-filled-black .pagination-arrow{
+    @apply bg-gray-800 hover:bg-gray-300 hover:text-gray-700
+}
+.pagination-filled-black  .pagination-active-item{
+    @apply bg-gray-600
+}
+.pagination-filled-black .pagination-passive-arrow{
+    @apply  bg-gray-100 text-gray-500 cursor-not-allowed
+}
+.pagination-filled-black .pagination-detail-jump-input{
+    @apply bg-gray-200 text-gray-700
+}
+.pagination-filled-black .pagination-detail-jump-button{
+    @apply text-white bg-gray-800
+}
+
+/*Blue*/
+.pagination-filled-blue  .pagination-item,.pagination-filled-blue .pagination-arrow{
+    @apply bg-blue-500 hover:bg-blue-100 hover:text-blue-500
+}
+.pagination-filled-blue  .pagination-active-item{
+    @apply bg-blue-700
+}
+.pagination-filled-blue .pagination-passive-arrow{
+    @apply  bg-blue-100 text-blue-300 cursor-not-allowed
+}
+.pagination-filled-blue .pagination-detail-jump-input{
+    @apply bg-blue-200 text-blue-500
+}
+.pagination-filled-blue .pagination-detail-jump-button{
+    @apply text-white bg-blue-500
+}
+
+/*Gray*/
+.pagination-filled-gray  .pagination-item,.pagination-filled-gray .pagination-arrow{
+    @apply bg-gray-300 text-gray-700 hover:bg-gray-500 hover:text-white
+}
+.pagination-filled-gray  .pagination-active-item{
+    @apply bg-gray-700
+}
+.pagination-filled-gray .pagination-passive-arrow{
+    @apply  bg-gray-100 text-gray-300 cursor-not-allowed
+}
+.pagination-filled-gray .pagination-detail-jump-input{
+    @apply bg-gray-200 text-gray-700
+}
+.pagination-filled-gray .pagination-detail-jump-button{
+    @apply text-white bg-gray-500
+}
+
+/*Green*/
+.pagination-filled-green  .pagination-item,.pagination-filled-green .pagination-arrow{
+    @apply bg-green-500 hover:bg-green-100 hover:text-green-500
+}
+.pagination-filled-green  .pagination-active-item{
+    @apply bg-green-700
+}
+.pagination-filled-green .pagination-passive-arrow{
+    @apply  bg-green-100 text-green-300 cursor-not-allowed
+}
+.pagination-filled-green .pagination-detail-jump-input{
+    @apply bg-green-200 text-green-500
+}
+.pagination-filled-green .pagination-detail-jump-button{
+    @apply text-white bg-green-500
+}
+
+/*Indigo*/
+.pagination-filled-indigo  .pagination-item,.pagination-filled-indigo .pagination-arrow{
+    @apply bg-indigo-500 hover:bg-indigo-100 hover:text-indigo-500
+}
+.pagination-filled-indigo  .pagination-active-item{
+    @apply bg-indigo-700
+}
+.pagination-filled-indigo .pagination-passive-arrow{
+    @apply  bg-indigo-100 text-indigo-300 cursor-not-allowed
+}
+.pagination-filled-indigo .pagination-detail-jump-input{
+    @apply bg-indigo-200 text-indigo-500
+}
+.pagination-filled-indigo .pagination-detail-jump-button{
+    @apply text-white bg-indigo-500
+}
+
+/*Pink*/
+.pagination-filled-pink  .pagination-item,.pagination-filled-pink .pagination-arrow{
+    @apply bg-pink-500 hover:bg-pink-100 hover:text-pink-500
+}
+.pagination-filled-pink  .pagination-active-item{
+    @apply bg-pink-700
+}
+.pagination-filled-pink .pagination-passive-arrow{
+    @apply  bg-pink-100 text-pink-300 cursor-not-allowed
+}
+.pagination-filled-pink .pagination-detail-jump-input{
+    @apply bg-pink-200 text-pink-500
+}
+.pagination-filled-pink .pagination-detail-jump-button{
+    @apply text-white bg-pink-500
+}
+
+/*Purple*/
+.pagination-filled-purple  .pagination-item,.pagination-filled-purple .pagination-arrow{
+    @apply bg-purple-500 hover:bg-purple-100 hover:text-purple-500
+}
+.pagination-filled-purple  .pagination-active-item{
+    @apply bg-purple-700
+}
+.pagination-filled-purple .pagination-passive-arrow{
+    @apply  bg-purple-100 text-purple-300 cursor-not-allowed
+}
+.pagination-filled-purple .pagination-detail-jump-input{
+    @apply bg-purple-200 text-purple-500
+}
+.pagination-filled-purple .pagination-detail-jump-button{
+    @apply text-white bg-purple-500
+}
+
+/*Red*/
+.pagination-filled-red  .pagination-item,.pagination-filled-red .pagination-arrow{
+    @apply bg-red-500 hover:bg-red-100 hover:text-red-500
+}
+.pagination-filled-red  .pagination-active-item{
+    @apply bg-red-700
+}
+.pagination-filled-red .pagination-passive-arrow{
+    @apply  bg-red-100 text-red-300 cursor-not-allowed
+}
+.pagination-filled-red .pagination-detail-jump-input{
+    @apply bg-red-200 text-red-500
+}
+.pagination-filled-red .pagination-detail-jump-button{
+    @apply text-white bg-red-500
+}
+
+/*White*/
+.pagination-filled-white  .pagination-item,.pagination-filled-white .pagination-arrow{
+    @apply bg-white text-gray-700 hover:bg-gray-200 hover:text-gray-700
+}
+.pagination-filled-white  .pagination-active-item{
+    @apply bg-gray-600
+}
+.pagination-filled-white .pagination-passive-arrow{
+    @apply  text-gray-300 cursor-not-allowed
+}
+.pagination-filled-white .pagination-detail-jump-input{
+    @apply bg-gray-200 border text-gray-500
+}
+.pagination-filled-white .pagination-detail-jump-button{
+    @apply text-gray-500 border border-gray-500
+}
+
+/*Yellow*/
+.pagination-filled-yellow  .pagination-item,.pagination-filled-yellow .pagination-arrow{
+    @apply bg-yellow-500 hover:bg-yellow-100 hover:text-yellow-500
+}
+.pagination-filled-yellow  .pagination-active-item{
+    @apply bg-yellow-700
+}
+.pagination-filled-yellow .pagination-passive-arrow{
+    @apply  bg-yellow-100 text-yellow-300 cursor-not-allowed
+}
+.pagination-filled-yellow .pagination-detail-jump-input{
+    @apply bg-yellow-200 text-yellow-500
+}
+.pagination-filled-yellow .pagination-detail-jump-button{
+    @apply text-white bg-yellow-500
+}
+
+/*</editor-fold>*/
+
+/*<editor-fold desc="Light Style">*/
+/*General Definitions*/
+.pagination-light-base {
+    @apply hover:text-gray-50 py-1 px-2 font-semibold
+}
+
+.pagination-light-base .pagination-icon {
+    @apply ml-2
+}
+
+/*Colors: black, blue, gray, green, indigo, pink, purple, white and yellow*/
+/*Black*/
+.pagination-light-black {
+    @apply bg-gray-500 hover:bg-gray-800 text-gray-50 border-gray-800
+}
+.pagination-light-black .loading-black {
+    @apply bg-gray-100
+}
+
+/*Blue*/
+.pagination-light-blue {
+    @apply bg-blue-200 hover:bg-blue-500 text-blue-700 border-blue-500
+}
+.pagination-light-blue .loading-blue {
+    @apply bg-blue-500
+}
+
+/*Gray*/
+.pagination-light-gray {
+    @apply bg-gray-300 hover:bg-gray-500 text-gray-700 border-gray-500
+}
+.pagination-light-gray .loading-gray {
+    @apply bg-gray-500
+}
+
+/*Green*/
+.pagination-light-green {
+    @apply bg-green-200 hover:bg-green-500 text-green-700 border-green-500
+}
+.pagination-light-green .loading-green {
+    @apply bg-green-500
+}
+
+/*Indigo*/
+.pagination-light-indigo {
+    @apply bg-indigo-200 hover:bg-indigo-500 text-indigo-700 border-indigo-500
+}
+.pagination-light-indigo .loading-indigo {
+    @apply bg-indigo-500
+}
+
+/*Pink*/
+.pagination-light-pink {
+    @apply bg-pink-200 hover:bg-pink-500 text-pink-700 border-pink-500
+}
+.pagination-light-pink .loading-pink {
+    @apply bg-pink-500
+}
+
+/*Purple*/
+.pagination-light-purple {
+    @apply bg-purple-200 hover:bg-purple-500 text-purple-700 border-purple-500
+}
+.pagination-light-purple .loading-purple {
+    @apply bg-purple-500
+}
+
+/*Red*/
+.pagination-light-red {
+    @apply bg-red-200 hover:bg-red-500 text-red-700 border-red-500
+}
+.pagination-light-red .loading-red {
+    @apply bg-red-500
+}
+
+/*White*/
+.pagination-light-white {
+    @apply bg-gray-100 hover:bg-gray-500 text-gray-700 border-gray-300
+}
+.pagination-light-white .loading-white {
+    @apply bg-gray-500
+}
+
+/*Yellow*/
+.pagination-light-yellow {
+    @apply bg-yellow-200 hover:bg-yellow-500 text-yellow-700 border-yellow-500
+}
+.pagination-light-yellow .loading-yellow {
+    @apply bg-yellow-500
+}
+
+/*</editor-fold>*/
+
+/*<editor-fold desc="Outline Style">*/
+/*General Definitions*/
+.pagination-outline-base {
+    @apply border hover:text-gray-50 py-1 px-2 font-semibold
+}
+
+.pagination-outline-base .pagination-icon {
+    @apply ml-2
+}
+
+/*Colors: black, blue, gray, green, indigo, pink, purple, white and yellow*/
+/*Black*/
+.pagination-outline-black {
+    @apply hover:bg-gray-800 text-gray-800 border-gray-800
+}
+.pagination-outline-black .loading-black {
+    @apply bg-gray-800
+}
+
+/*Blue*/
+.pagination-outline-blue {
+    @apply hover:bg-blue-500 text-blue-700 border-blue-500
+}
+.pagination-outline-blue .loading-blue {
+    @apply bg-blue-500
+}
+
+/*Gray*/
+.pagination-outline-gray {
+    @apply hover:bg-gray-500 text-gray-700 border-gray-500
+}
+.pagination-outline-gray .loading-gray {
+    @apply bg-gray-500
+}
+
+/*Green*/
+.pagination-outline-green {
+    @apply hover:bg-green-500 text-green-700 border-green-500
+}
+.pagination-outline-green .loading-green {
+    @apply bg-green-500
+}
+
+/*Indigo*/
+.pagination-outline-indigo {
+    @apply hover:bg-indigo-500 text-indigo-700 border-indigo-500
+}
+.pagination-outline-indigo .loading-indigo {
+    @apply bg-indigo-500
+}
+
+/*Pink*/
+.pagination-outline-pink {
+    @apply hover:bg-pink-500 text-pink-700 border-pink-500
+}
+.pagination-outline-pink .loading-pink {
+    @apply bg-pink-500
+}
+
+/*Purple*/
+.pagination-outline-purple {
+    @apply hover:bg-purple-500 text-purple-700 border-purple-500
+}
+.pagination-outline-purple .loading-purple {
+    @apply bg-purple-500
+}
+
+/*Red*/
+.pagination-outline-red {
+    @apply hover:bg-red-500 text-red-700 border-red-500
+}
+.pagination-outline-red .loading-red {
+    @apply bg-red-500
+}
+
+/*White*/
+.pagination-outline-white {
+    @apply hover:bg-gray-200 text-gray-700 border-gray-300 hover:text-gray-700
+}
+.pagination-outline-white .loading-white {
+    @apply bg-gray-300
+}
+
+/*Yellow*/
+.pagination-outline-yellow {
+    @apply hover:bg-yellow-500 text-yellow-700 border-yellow-500
+}
+.pagination-outline-yellow .loading-yellow {
+    @apply bg-yellow-500
+}
+
+/*</editor-fold>*/
+
+/*<editor-fold desc="Link Style">*/
+/*General Definitions*/
+.pagination-link-base {
+    @apply font-semibold hover:font-bold hover:underline py-1 px-2
+}
+
+.pagination-link-base .pagination-icon {
+    @apply ml-2
+}
+
+/*Colors: black, blue, gray, green, indigo, pink, purple, white and yellow*/
+/*Black*/
+.pagination-link-black {
+    @apply text-gray-800
+}
+.pagination-link-black .loading-black {
+    @apply bg-gray-800
+}
+
+/*Blue*/
+.pagination-link-blue {
+    @apply text-blue-700
+}
+.pagination-link-blue .loading-blue {
+    @apply bg-blue-500
+}
+
+/*Gray*/
+.pagination-link-gray {
+    @apply text-gray-700
+}
+.pagination-link-gray .loading-gray {
+    @apply bg-gray-500
+}
+
+/*Green*/
+.pagination-link-green {
+    @apply text-green-700
+}
+.pagination-link-green .loading-green {
+    @apply bg-green-500
+}
+
+/*Indigo*/
+.pagination-link-indigo {
+    @apply text-indigo-700
+}
+.pagination-link-indigo .loading-indigo {
+    @apply bg-indigo-500
+}
+
+/*Pink*/
+.pagination-link-pink {
+    @apply text-pink-700
+}
+.pagination-link-pink .loading-pink {
+    @apply bg-pink-500
+}
+
+/*Purple*/
+.pagination-link-purple {
+    @apply text-purple-700
+}
+.pagination-link-purple .loading-purple {
+    @apply bg-purple-500
+}
+
+/*Red*/
+.pagination-link-red {
+    @apply text-red-700
+}
+.pagination-link-red .loading-red {
+    @apply bg-red-500
+}
+
+/*White*/
+.pagination-link-white {
+    @apply text-gray-700
+}
+.pagination-link-white .loading-white {
+    @apply bg-gray-300
+}
+
+/*Yellow*/
+.pagination-link-yellow {
+    @apply text-yellow-700
+}
+.pagination-link-yellow .loading-yellow {
+    @apply bg-yellow-500
+}
+
+/*</editor-fold>*/
+
+/*<editor-fold desc="Link Plus Style">*/
+/*General Definitions*/
+.pagination-link-plus-base {
+    @apply font-semibold hover:text-gray-50 hover:underline py-1 px-2
+}
+
+.pagination-link-plus-base .pagination-icon {
+    @apply ml-2
+}
+
+/*Colors: black, blue, gray, green, indigo, pink, purple, white and yellow*/
+/*Black*/
+.pagination-link-plus-black {
+    @apply text-gray-800 hover:bg-gray-800
+}
+.pagination-link-plus-black .loading-black {
+    @apply bg-gray-800
+}
+
+/*Blue*/
+.pagination-link-plus-blue {
+    @apply text-blue-700 hover:bg-blue-500
+}
+.pagination-link-plus-blue .loading-blue {
+    @apply bg-blue-500
+}
+
+/*Gray*/
+.pagination-link-plus-gray {
+    @apply text-gray-700 hover:bg-gray-500
+}
+.pagination-link-plus-gray .loading-gray {
+    @apply bg-gray-500
+}
+
+/*Green*/
+.pagination-link-plus-green {
+    @apply text-green-700 hover:bg-green-500
+}
+.pagination-link-plus-green .loading-green {
+    @apply bg-green-500
+}
+
+/*Indigo*/
+.pagination-link-plus-indigo {
+    @apply text-indigo-700 hover:bg-indigo-500
+}
+.pagination-link-plus-indigo .loading-indigo {
+    @apply bg-indigo-500
+}
+
+/*Pink*/
+.pagination-link-plus-pink {
+    @apply text-pink-700 hover:bg-pink-500
+}
+.pagination-link-plus-pink .loading-pink {
+    @apply bg-pink-500
+}
+
+/*Purple*/
+.pagination-link-plus-purple {
+    @apply text-purple-700 hover:bg-purple-500
+}
+.pagination-link-plus-purple .loading-purple {
+    @apply bg-purple-500
+}
+
+/*Red*/
+.pagination-link-plus-red {
+    @apply text-red-700 hover:bg-red-500
+}
+.pagination-link-plus-red .loading-red {
+    @apply bg-red-500
+}
+
+/*White*/
+.pagination-link-plus-white {
+    @apply text-gray-700 hover:bg-gray-300 hover:text-gray-700
+}
+.pagination-link-plus-white .loading-white {
+    @apply bg-gray-300
+}
+
+/*Yellow*/
+.pagination-link-plus-yellow {
+    @apply text-yellow-700 hover:bg-yellow-500
+}
+.pagination-link-plus-yellow .loading-yellow {
+    @apply bg-yellow-500
+}
+
+/*</editor-fold>*/
