@@ -22,6 +22,10 @@
                 key="auto"
                 :alt="t('auto')"
                 class="transform hover:scale-110 active:scale-90 transition-all duration-300"
+                :class="{
+                    'text-slate -500' : appearingMode === 'light',
+                    'text-slate-50' : appearingMode === 'dark',
+                }"
             />
             <!-- Dark -->
             <icon
@@ -58,12 +62,12 @@ export default defineComponent({
         const topBarConf = inject("topBarConf");
 
         /* Dark Mode */
-        const {darkMode, changeTheme} = darkModeFn();
+        const {darkMode, appearingMode, changeTheme} = darkModeFn();
 
         /*Multi Language*/
         const {t} = useI18n();
 
-        return {appConf, topBarConf, darkMode, changeTheme, t}
+        return {appConf, topBarConf, darkMode, changeTheme, t ,appearingMode}
     }
 })
 </script>
