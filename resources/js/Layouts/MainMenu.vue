@@ -21,8 +21,8 @@
                     <!--Logo-->
                     <img
                         :src="[
-                        appearingMode === 'dark' ? mainMenuConf.darkLogo ? mainMenuConf.darkLogo : appConf.darkLogo :
-                        mainMenuConf.lightLogo ? mainMenuConf.lightLogo : appConf.lightLogo
+                        appearingMode === 'dark' ? mainMenuConf.logo.dark ? mainMenuConf.logo.dark : appConf.logo.dark :
+                        mainMenuConf.logo.light ? mainMenuConf.logo.light : appConf.logo.light
                     ]"
                         :class="mainMenuConf.logoClasses"
                     />
@@ -63,6 +63,7 @@
                             id="footer-link"
                             :class="mainMenuFooterLinks.length>2 ? 'justify-start' : 'justify-center'"
                             :href="route(link.link)"
+                            :key="link.id"
                         >
                             <icon v-if="link.icon" :icon="link.icon"/>
                             <span v-text="link.label ? link.label : link.label"/>
@@ -74,6 +75,7 @@
                             :class="mainMenuFooterLinks.length>2 ? 'justify-start' : 'justify-center'"
                             :href="link.link"
                             target="_blank"
+                            :key="link.id"
                         >
                             <icon v-if="link.icon" :icon="link.icon"/>
                             <span v-text="link.label ? link.label : link.label"/>
