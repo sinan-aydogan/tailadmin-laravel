@@ -6,6 +6,7 @@ import { InertiaProgress } from "@inertiajs/progress";
 
 /* FontAwesome */
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import "@/Sources/icons";
 
 /* Multi-language */
 import { createI18n } from "vue-i18n";

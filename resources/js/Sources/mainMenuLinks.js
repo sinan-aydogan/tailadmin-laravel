@@ -1,25 +1,3 @@
-/*Import FontAwesomeIcon*/
-import {library} from "@fortawesome/fontawesome-svg-core";
-import {
-    faTv,
-    faPlug,
-    faWindowRestore,
-    faChartBar,
-    faTable,
-    faWindowMaximize,
-    faLayerGroup,
-    faGripHorizontal,
-    faEdit,
-    faRetweet,
-    faClock,
-    faCode,
-    faQuestion,
-    faCog,
-    faStar
-} from "@fortawesome/free-solid-svg-icons";
-
-library.add(faTv, faPlug, faWindowRestore, faChartBar, faTable, faWindowMaximize, faLayerGroup, faGripHorizontal, faEdit, faRetweet, faClock, faCode, faQuestion, faCog, faStar)
-
 /* Multi-language */
 import {useI18n} from "vue-i18n";
 import {mainMenuTranslates} from "@/Lang/languages";
