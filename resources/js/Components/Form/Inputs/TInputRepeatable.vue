@@ -1,10 +1,10 @@
 <template>
-  <div v-click-outside="outside" class="relative select-none">
+  <div ref="target" class="relative select-none">
     <!--Adding Form-->
-    <div :class="['form-input h-10 items-center cursor-pointer hover:border-blue-500 relative', radiusStyle]"
+    <div :class="['input border pl-2 h-10 items-center cursor-pointer hover:border-blue-500 relative', radiusStyle]"
          @click="showPanel=!showPanel">
       <!--Placeholder-->
-      {{ value.length === 0 ? 'No items found' : value.length + ' items' }}
+      {{ modelValue.length === 0 ? 'No items found' : modelValue.length + ' items' }}
       <!--Items and Add Form Showing Button-->
       <t-chevron-down-icon
           :class="[
@@ -30,7 +30,7 @@
                type="text"/>
         <!--Add Button-->
         <div class="flex items-center justify-center ml-1 h-10">
-          <t-button color="green" type="button" @click.native="addItem">
+          <t-button color="green" type="button" @click="addItem">
             <t-plus-circle-icon class="w-6 h-6 md:w-5 md:h-5"/>
             <span class="hidden md:block pr-2">Add</span>
           </t-button>
@@ -38,7 +38,7 @@
       </div>
       <div v-if="emptyMessage != null" class="text-red-500 text-sm">{{ emptyMessage }}</div>
       <!--Header-->
-      <div v-if="value.length >0"
+      <div v-if="modelValue.length >0"
            class="grid grid-cols-12 w-full border-b border-gray-300 items-center space-x-2 px-2 py-1 font-bold ">
         <span class="col-span-1"></span>
         <span class="col-span-5">{{ value1name }}</span>
@@ -46,7 +46,7 @@
         <span class="col-span-1"></span>
       </div>
       <!--Items-->
-      <div v-for="(item,index) in value" :key="index"
+      <div v-for="(item,index) in modelValue" :key="index"
            class="grid grid-cols-12 bg-gray-50 border rounded-md items-center space-x-2 px-2 py-1">
         <!--Counter-->
         <span class="col-span-1">{{ index + 1 }}.</span>
@@ -59,7 +59,7 @@
                 </span>
       </div>
       <!--Close Button-->
-      <t-button color="white" size="sm" type="button" @click.native="showPanel=false">
+      <t-button color="white" size="sm" type="button" @click="showPanel=false">
         Close
       </t-button>
     </div>
@@ -67,98 +67,104 @@
 </template>
 
 <script>
+/*Main Functions*/
+import {ref, toRefs} from "vue";
+import { onClickOutside } from "@vueuse/core";
+import {radiusSizeMixin} from "@/Mixins/radiusSizeMixin";
+
+/*Components*/
 import TPlusCircleIcon from "@/Components/Icon/TPlusCircleIcon";
 import TTrashIcon from "@/Components/Icon/TTrashIcon";
-import {radiusSizeMixin} from "@/Mixins/radiusSizeMixin";
 import TButton from "@/Components/Button/TButton";
 import TChevronDownIcon from "@/Components/Icon/TChevronDownIcon";
 
 export default {
-  props: ['value1name', 'value2name', 'value'],
+  props: {
+      value1name : {
+          type: String,
+          default: null
+      },
+      value2name: {
+      type: String,
+      default: null
+  },
+      modelValue: {
+          type: [Object, Array],
+          default: null
+      }
+
+},
   components: {
     TChevronDownIcon,
-    TButton,
+      TButton,
     TTrashIcon,
     TPlusCircleIcon,
   },
+
   mixins: [radiusSizeMixin],
-  data() {
-    return {
-      value1: null,
-      value2: null,
-      showPanel: false,
-      emptyMessage: null,
-    }
-  },
-  directives: {
-    'click-outside': {
-      bind: function (el, binding, vNode) {
-        // Provided expression must evaluate to a function.
-        if (typeof binding.value !== 'function') {
-          const compName = vNode.context.name
-          let warn = `[Vue-click-outside:] provided expression '${binding.expression}' is not a function, but has to be`
-          if (compName) {
-            warn += `Found in component '${compName}'`
-          }
 
-          console.warn(warn)
+    emits: ['update:modelValue'],
+
+    setup(props, {emit}){
+      const { value2name, modelValue} = toRefs(props)
+      const value1 = ref();
+      const value2 = ref();
+      const showPanel = ref();
+      const emptyMessage = ref();
+
+      /*Show-hide Panel*/
+      const target = ref();
+        onClickOutside(target, () => showPanel.value = false);
+
+        /*Reset*/
+        const reset = ()=>{
+            value1.value = null;
+            value2.value = null;
+            emptyMessage.value = null;
         }
-        // Define Handler and cache it on the element
-        const bubble = binding.modifiers.bubble
-        const handler = (e) => {
-          if (bubble || (!el.contains(e.target) && el !== e.target)) {
-            binding.value(e)
-          }
+
+        const addItem = () => {
+            if (value2name.value != null) {
+                if (value1.value == null || value2.value == null) {
+                    emptyMessage.value = 'Please fill in the fields';
+                    window.setTimeout(() => {
+                        emptyMessage.value = null;
+                    }, 3000);
+                } else {
+                    let newValue = [...modelValue.value]
+                    newValue.push({value1: value1.value, value2: value2.value});
+                    emit('update:modelValue', newValue);
+                    reset();
+                }
+            } else {
+                if (value1.value == null) {
+                    emptyMessage.value = 'Please fill in the fields';
+                    window.setTimeout(() => {
+                        emptyMessage.value = null;
+                    }, 3000);
+                } else {
+                    let newValue = [...modelValue.value]
+                    newValue.push({value1: value1.value});
+                    emit('update:modelValue', newValue);
+                    reset();
+                }
+            }
         }
-        el.__vueClickOutside__ = handler
 
-        // add Event Listeners
-        document.addEventListener('click', handler)
-      },
+        const deleteItem = (index) => {
+          modelValue.value.splice(index,1)
+        }
 
-      unbind: function (el) {
-        // Remove Event Listeners
-        document.removeEventListener('click', el.__vueClickOutside__)
-        el.__vueClickOutside__ = null
-
-      }
-    }
-  },
-  methods: {
-    reset() {
-      this.value1 = null;
-      this.value2 = null;
-      this.emptyMessage = null;
+        return{
+            value1,
+            value2,
+            showPanel,
+            emptyMessage,
+            target,
+            addItem,
+            deleteItem,
+            reset
+        }
     },
-    addItem() {
-      if (this.value2name != null) {
-        if (this.value1 == null || this.value2 == null) {
-          this.emptyMessage = 'Please fill in the fields';
-          window.setTimeout(() => {
-            this.emptyMessage = null;
-          }, 3000);
-        } else {
-          this.value.push({value1: this.value1, value2: this.value2});
-          this.reset();
-        }
-      } else {
-        if (this.value1 == null) {
-          this.emptyMessage = 'Please fill in the fields';
-          window.setTimeout(() => {
-            this.emptyMessage = null;
-          }, 3000);
-        } else {
-          this.value.push({value1: this.value1});
-          this.reset();
-        }
-      }
-    },
-    deleteItem(index) {
-      this.value.splice(index, 1);
-    },
-    outside() {
-      this.showPanel = false
-    }
-  }
 }
 </script>
