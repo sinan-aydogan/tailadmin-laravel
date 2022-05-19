@@ -1,3 +1,28 @@
+<script setup>
+/*Functions*/
+import {defineComponent, inject, provide, ref} from "vue";
+import TopMenuNotification from "@/Layouts/TopMenu/TopMenuNotification";
+import TopMenuUserMenu from "@/Layouts/TopMenu/TopMenuUserMenu";
+import TLoading from "@/Components/Loading/TLoading";
+import TopMenuThemeSelector from "@/Layouts/TopMenu/TopMenuThemeSelector";
+import TopMenuLanguageSelector from "@/Layouts/TopMenu/TopMenuLanguageSelector";
+import {menuStatus, updateMenuStatus} from "@/Functions/menuTrigger"
+
+/*Sources*/
+import {appConf, topBarConf} from "@/config";
+
+
+/*Definitions*/
+const searchBar = ref(false);
+/*Injections*/
+const breakpoints = inject("breakpoints");
+const updateMainMenuStatus = updateMenuStatus;
+
+/*Provider*/
+provide('appConf', appConf);
+provide('topBarConf', topBarConf);
+</script>
+
 <template>
     <div
         class="top-menu"
@@ -5,7 +30,8 @@
     >
         <!--Left Menu Trigger-->
         <div
-            @click="$emit('updateMainMenuStatus', $event)"
+            v-if="appConf.mainMenuDesign === 'umay' || (breakpoints.smaller('md') && appConf.mainMenuDesign === 'abay')"
+            @click="updateMainMenuStatus"
             class="trigger"
             :class="`radius-${topBarConf.radius ? topBarConf.radius : appConf.radius}`"
         >
@@ -13,8 +39,7 @@
             <svg
                 class="trigger-icon"
                 :class="[
-                (showMainMenu && !foldMainMenu) || ((deviceType === 'phone' || deviceType==='tablet')&&showMainMenu) ?
-                'trigger-icon-show' : 'trigger-icon-hide'
+                    (breakpoints.smaller('md') && menuStatus === 'hidden') || menuStatus === 'closed' ? 'trigger-icon-show' : 'trigger-icon-hide'
                 ]"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -27,8 +52,7 @@
             <svg
                 class="trigger-icon"
                 :class="[
-                (showMainMenu && foldMainMenu) || !showMainMenu ?
-                'trigger-icon-show' : 'trigger-icon-hide'
+                    menuStatus === 'opened' ? 'trigger-icon-show' : 'trigger-icon-hide'
                 ]"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -64,7 +88,7 @@
                 :title="$page.props.user.current_team.name"
                 class="active-team-wrapper">
                 <svg
-                    class="main-menu-icon"
+                    class="umay-main-menu-icon"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -100,40 +124,3 @@
         </t-loading>
     </teleport>
 </template>
-
-<script>
-/*Main functions*/
-import TopMenuNotification from "@/Layouts/TopMenu/TopMenuNotification";
-import TopMenuUserMenu from "@/Layouts/TopMenu/TopMenuUserMenu";
-import {defineComponent, inject, provide, ref} from "vue";
-import TLoading from "@/Components/Loading/TLoading";
-import TopMenuThemeSelector from "@/Layouts/TopMenu/TopMenuThemeSelector";
-import TopMenuLanguageSelector from "@/Layouts/TopMenu/TopMenuLanguageSelector";
-
-/*Sources*/
-import {appConf, topBarConf} from "@/config";
-
-export default defineComponent({
-    name: "TopMenu",
-    components: {TopMenuLanguageSelector, TopMenuThemeSelector, TLoading, TopMenuUserMenu, TopMenuNotification},
-    emits: ["updateMainMenuStatus"],
-    setup() {
-        /*Definitions*/
-        const searchBar = ref(false);
-        /*Injections*/
-        const deviceType = inject("deviceType");
-        const foldMainMenu = inject("foldMainMenu");
-        const showMainMenu = inject("showMainMenu");
-
-        /*Provider*/
-        provide('appConf', appConf);
-        provide('topBarConf', topBarConf);
-
-        return {appConf, topBarConf, deviceType, foldMainMenu, showMainMenu, searchBar};
-    }
-});
-</script>
-
-<style scoped>
-
-</style>

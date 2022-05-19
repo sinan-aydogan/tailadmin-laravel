@@ -28,7 +28,7 @@ export default function ({roles,permissions}) {
                 icon: "tv",
                 link: null,
                 type: "dropdown",
-                items: [
+                links: [
                     {
                         id:"authLogin",
                         label:  tm("authLogin"),
@@ -72,7 +72,7 @@ export default function ({roles,permissions}) {
                 icon: "plug",
                 link: null,
                 type: "dropdown",
-                items: [
+                links: [
                     {
                         id: "componentAlert",
                         label:  tm("componentAlert"),
@@ -170,7 +170,7 @@ export default function ({roles,permissions}) {
                         icon: "table",
                         link: null,
                         type: "dropdown",
-                        items: [
+                        links: [
                             {
                                 id: "componentTableJson",
                                 label:  tm("componentTableJson"),
@@ -207,7 +207,7 @@ export default function ({roles,permissions}) {
                         icon: "window-maximize",
                         link: null,
                         type: "dropdown",
-                        items: [
+                        links: [
                             {
                                 id: "layoutStructure",
                                 label:  tm("layoutStructure"),
@@ -239,7 +239,7 @@ export default function ({roles,permissions}) {
                 icon: "edit",
                 link: null,
                 type: "dropdown",
-                items: [
+                links: [
                     {
                         id: "formStructure",
                         label:  tm("formStructure"),
@@ -289,7 +289,7 @@ export default function ({roles,permissions}) {
                 label:  tm("externalSources"),
                 icon: "code",
                 type: "dropdown",
-                items: [
+                links: [
                     {
                         id: "externalLaravelDocument",
                         label:  tm("externalLaravelDocument"),
@@ -335,7 +335,8 @@ export default function ({roles,permissions}) {
                 label:  tm("footerHelp"),
                 linkType: "simple-link",
                 link: "https://github.com/sinan-aydogan",
-                icon: "question"
+                icon: "question",
+                target: "_blank"
             },
             {
                 id: "footerSettings",

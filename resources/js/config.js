@@ -1,6 +1,7 @@
 /*Default Settings*/
 const appConf = {
     appName: 'TailAdmin',
+    catchPhrase: 'Peace at Home, Peace in the World',
     logo: {
       dark: '/img/dark-logo.svg',
       light: '/img/light-logo.svg'
@@ -9,6 +10,7 @@ const appConf = {
     appNameClasses: null,
     logoClasses: null,
     radius: 3,
+    mainMenuDesign: 'abay'
 };
 
 /*Layout Settings*/
@@ -29,31 +31,61 @@ const authScreenConf = {
 const mainMenuConf = {
     /*Logo Area*/
     appName: null,
-    logo: {
-        dark: '/img/dark-logo.svg',
-        light: '/img/dark-logo.svg',
+    catchPhrase: null,
+    umay: {
+        logo: {
+            dark: '/img/dark-logo.svg',
+            light: '/img/dark-logo.svg',
+        },
+        logoAreaRadius: null,
+        logoAreaClasses: ['flex', 'flex-col', 'justify-center', 'items-center', 'space-x-6', 'bg-blue-500'],
+        appNameClasses: ['text-6xl', 'font-semibold', 'text-white'],
+        logoClasses: ['w-10', 'text-white', 'h-auto'],
+        /*Menu*/
+        menuRadius: 3,
+        rootLinkClasses: {
+            activeBg: ['border', 'border-slate-400/30'],
+            normal: ['hover:bg-sky-200', 'hover:text-sky-800'],
+            active: ['text-white', 'bg-sky-500/75', 'hover:bg-sky-400', 'hover:text-sky-800'],
+        },
+        secondLinkClasses: {
+            activeBg: [],
+            normal: ['hover:bg-sky-200/10', 'hover:text-sky-400','hover:text-slate-800'],
+            active: ['bg-slate-600', 'hover:bg-sky-500/20'],
+        },
+        thirdLinkClasses: {
+            activeBg: ['border', 'bg-emerald-500/20', 'border-slate-500/50'],
+            normal: ['hover:bg-emerald-200', 'hover:text-emerald-800'],
+            active: ['text-white', 'bg-emerald-500', 'hover:bg-emerald-600'],
+        },
     },
-    logoAreaRadius: null,
-    logoAreaClasses: ['flex', 'flex-col', 'justify-center', 'items-center', 'space-x-6', 'bg-violet-500'],
-    appNameClasses: ['text-6xl', 'font-semibold', 'text-white'],
-    logoClasses: ['w-10', 'text-white', 'h-auto'],
-    /*Menu*/
-    menuRadius: 5,
-    rootLinkClasses: {
-        activeBg: ['border', 'bg-slate-500/20', 'border-slate-500/50', 'rounded'],
-        normal: ['hover:bg-violet-200', 'hover:text-violet-800'],
-        active: ['text-white', 'bg-violet-500', 'hover:bg-violet-600', 'rounded-2xl'],
-    },
-    secondLinkClasses: {
-        activeBg: [],
-        normal: ['hover:bg-emerald-200', 'hover:text-emerald-800'],
-        active: ['text-white', 'bg-emerald-500', 'hover:bg-emerald-600', 'rounded'],
-    },
-    thirdLinkClasses: {
-        activeBg: ['border', 'bg-emerald-500/20', 'border-slate-500/50', 'rounded'],
-        normal: ['hover:bg-emerald-200', 'hover:text-emerald-800'],
-        active: ['text-white', 'bg-emerald-500', 'hover:bg-emerald-600', 'rounded'],
-    },
+    abay: {
+        logo: {
+            dark: '/img/rose-logo.svg',
+            light: '/img/rose-logo.svg',
+        },
+        logoAreaRadius: null,
+        logoAreaClasses: ['flex', 'flex-col', 'justify-center', 'items-center', 'space-x-6', 'bg-blue-500'],
+        appNameClasses: ['text-6xl', 'font-semibold', 'text-white'],
+        logoClasses: ['w-10', 'text-white', 'h-auto'],
+        /*Menu*/
+        menuRadius: 3,
+        rootLinkClasses: {
+            activeBg: ['border', 'border-slate-400/30'],
+            normal: ['hover:bg-sky-200', 'hover:text-sky-800'],
+            active: ['text-white', 'bg-sky-500/75', 'hover:bg-sky-400', 'hover:text-sky-800'],
+        },
+        secondLinkClasses: {
+            activeBg: [],
+            normal: ['hover:bg-sky-200/10', 'hover:text-sky-400','hover:text-slate-800'],
+            active: ['text-sky-400', 'bg-slate-600', 'hover:bg-sky-500/20'],
+        },
+        thirdLinkClasses: {
+            activeBg: ['border', 'bg-emerald-500/20', 'border-slate-500/50'],
+            normal: ['hover:bg-emerald-200', 'hover:text-emerald-800'],
+            active: ['text-white', 'bg-emerald-500', 'hover:bg-emerald-600'],
+        },
+    }
 };
 
 const topBarConf = {
