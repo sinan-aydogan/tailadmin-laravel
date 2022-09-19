@@ -1,7 +1,7 @@
 /*Auth*/
 /*Auth Container*/
 .auth-container {
-    @apply flex flex-col border items-center justify-center shadow border-none max-w-min min-w-[27rem]
+    @apply flex flex-col border items-center justify-center shadow border-none max-w-min md:min-w-[27rem]
 }
 
 /*Auth Header*/
