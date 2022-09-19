@@ -1,7 +1,7 @@
 /*Auth*/
 /*Auth Container*/
 .auth-container {
-    @apply flex flex-col border items-center justify-center shadow border-none
+    @apply flex flex-col border items-center justify-center shadow border-none max-w-min min-w-[27rem]
 }
 
 /*Auth Header*/
@@ -11,12 +11,12 @@
 
 /*Auth Logo*/
 .auth-logo {
-    @apply inline-flex py-4
+    @apply flex mx-auto py-4
 }
 
 /*Auth Greeting*/
 .auth-greeting {
-    @apply inline-flex justify-center w-full bg-gray-200 py-1 bg-opacity-20 w-full
+    @apply inline-flex justify-center bg-gray-200 py-1 px-4 bg-opacity-20 w-full
 }
 
 /*Auth Status*/

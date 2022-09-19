@@ -25,6 +25,7 @@ const mainMenuLangDe = {
     componentTableJson: "Tabelle(JSON)",
     componentTableBackend: "Tabelle(BackEnd)",
     componentTooltip: "Kurzinfo",
+    changeMenuStyle: "Menü ändern - {menu}",
     layoutElements: "Layout-Elemente",
     layoutStructure: "Layoutstruktur",
     layoutGrid: "Netz",

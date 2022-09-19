@@ -25,6 +25,7 @@ const mainMenuLangZh = {
     componentTableJson: "表(JSON)",
     componentTableBackend: "表(BackEnd)",
     componentTooltip: "工具提示",
+    changeMenuStyle: "更改菜单 - {menu}",
     layoutElements: "布局元素",
     layoutStructure: "布局结构",
     layoutGrid: "网格",

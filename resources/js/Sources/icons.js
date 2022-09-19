@@ -17,7 +17,7 @@ import {
     faCog,
     faStar,
     faChevronDown,
-    faEllipsisVertical
+    faEllipsisVertical, faRefresh
 } from "@fortawesome/free-solid-svg-icons";
 
 
@@ -38,5 +38,6 @@ library.add(
     faCog,
     faStar,
     faChevronDown,
-    faEllipsisVertical
+    faEllipsisVertical,
+    faRefresh
 )

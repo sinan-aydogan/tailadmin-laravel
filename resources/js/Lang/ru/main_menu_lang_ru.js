@@ -25,6 +25,7 @@ const mainMenuLangRu = {
     componentTableJson: "Таблица(JSON)",
     componentTableBackend: "Таблица(BackEnd)",
     componentTooltip: "Подсказка",
+    changeMenuStyle: "Изменить меню - {menu}",
     layoutElements: "Элементы макета",
     layoutStructure: "Структура макета",
     layoutGrid: "Сетка",

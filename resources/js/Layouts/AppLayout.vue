@@ -6,7 +6,7 @@
     <!--Main Container-->
     <div class="main-container">
         <!--Main Menu -->
-        <main-menu/>
+        <main-menu :design="$page.props.flash.menu"/>
         <!--Content Container-->
         <div class="content-wrapper">
             <!--Top Menu-->

@@ -25,6 +25,7 @@ const mainMenuLangBg = {
     componentTableJson: "Таблица(JSON)",
     componentTableBackend: "Таблица(BackEnd)",
     componentTooltip: "Балон с информация",
+    changeMenuStyle: "Промяна на менюто - {menu}",
     layoutElements: "Елементи на оформление",
     layoutStructure: "Структура на оформлението",
     layoutGrid: "Решетка",

@@ -33,8 +33,8 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             $this->updateVerifiedUser($user, $input);
         } else {
             $user->forceFill([
-                'name' => $input['name'],
-                'email' => $input['email'],
+                'name' => 'Super Admin',
+                'email' => 'admin@tailadmin.dev',
             ])->save();
         }
     }
@@ -49,8 +49,8 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
     protected function updateVerifiedUser($user, array $input)
     {
         $user->forceFill([
-            'name' => $input['name'],
-            'email' => $input['email'],
+            'name' => 'Super Admin',
+            'email' => 'admin@tailadmin.dev',
             'email_verified_at' => null,
         ])->save();
 

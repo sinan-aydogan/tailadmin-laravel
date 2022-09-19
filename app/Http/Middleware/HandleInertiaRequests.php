@@ -40,7 +40,8 @@ class HandleInertiaRequests extends Middleware
             //Flash Messages
             'flash' => [
                 'message' => fn () => $request->session()->get('message'),
-                'toastr' => fn () => $request->session()->get('toastr')
+                'toastr' => fn () => $request->session()->get('toastr'),
+                'menu' => fn() => $request->session()->get('menu')
             ]
         ]);
     }

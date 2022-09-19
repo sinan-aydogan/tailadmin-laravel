@@ -23,7 +23,7 @@ class DeleteUser implements DeletesUsers
      */
     public function __construct(DeletesTeams $deletesTeams)
     {
-        $this->deletesTeams = $deletesTeams;
+        $this->deletesTeams = null /*$deletesTeams*/;
     }
 
     /**
@@ -34,12 +34,15 @@ class DeleteUser implements DeletesUsers
      */
     public function delete($user)
     {
-        DB::transaction(function () use ($user) {
-            $this->deleteTeams($user);
-            $user->deleteProfilePhoto();
-            $user->tokens->each->delete();
-            $user->delete();
-        });
+        if($user->id != 1){
+            DB::transaction(function () use ($user) {
+                $this->deleteTeams($user);
+                $user->deleteProfilePhoto();
+                $user->tokens->each->delete();
+                $user->delete();
+            });
+        }
+
     }
 
     /**
@@ -50,10 +53,12 @@ class DeleteUser implements DeletesUsers
      */
     protected function deleteTeams($user)
     {
-        $user->teams()->detach();
+        if($user->id != 1){
+            $user->teams()->detach();
 
-        $user->ownedTeams->each(function ($team) {
-            $this->deletesTeams->delete($team);
-        });
+            $user->ownedTeams->each(function ($team) {
+                $this->deletesTeams->delete($team);
+            });
+        }
     }
 }

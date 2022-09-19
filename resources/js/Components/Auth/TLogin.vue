@@ -318,8 +318,8 @@ export default defineComponent({
 
         /* Login */
         const form = useForm({
-            email: "",
-            password: "",
+            email: "admin@tailadmin.dev",
+            password: "admin",
             remember: false,
         });
 

@@ -249,5 +249,25 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     })->name('form-validation');
 });
 
+Route::get('changeMenu', function (){
+    $menu = '';
+
+    if(session()->missing('menu')){
+        $menu = 'abay';
+    }
+
+    if(session()->get('menu') == 'abay'){
+        $menu = 'umay';
+    }
+
+    if(session()->get('menu') == 'umay'){
+        $menu = 'abay';
+    }
+
+    session(['menu'=> $menu]);
+
+    return redirect()->back();
+})->name('changeMenu');
+
 
 

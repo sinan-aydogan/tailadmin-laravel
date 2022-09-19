@@ -188,7 +188,7 @@ watch(() => cloneDeep(breakpoints), (newValue) => {
     <!-- Sub Links -->
 
     <div
-        v-if="activeMainLink[0]"
+        v-if="activeMainLink[0] && mainMenuLinks.find(l=>l.id === activeMainLink[0])['links']"
         class="absolute z-10 flex h-full flex-col px-4 -mb-4 w-56 bg-gradient-to-tl from-slate-700/90 to-slate-800  text-gray-50"
         :class="[
             showSubMenu ? 'left-28' : '-left-56',

@@ -25,6 +25,7 @@ const mainMenuLangFr = {
     componentTableJson: "Tableau(JSON)",
     componentTableBackend: "Tableau(BackEnd)",
     componentTooltip: "Info-bulle",
+    changeMenuStyle: "Changer de menu - {menu}",
     layoutElements: "Éléments de mise en page",
     layoutStructure: "Structure de mise en page",
     layoutGrid: "Grille",

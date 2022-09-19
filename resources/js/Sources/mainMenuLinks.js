@@ -2,10 +2,11 @@
 import {useI18n} from "vue-i18n";
 import {mainMenuTranslates} from "@/Lang/languages";
 import {computed} from "vue";
+import {usePage} from "@inertiajs/inertia-vue3";
 
 export default function ({roles,permissions}) {
 
-    const {tm} = useI18n({
+    const {t,tm} = useI18n({
         inheritLocale: true,
         messages: mainMenuTranslates
     })
@@ -21,6 +22,13 @@ export default function ({roles,permissions}) {
                 type: "simple-link",
                 target: "_blank",
                 visibleFor: roles.includes('Super Admin'),
+            },
+            {
+                id: "changeMenuStyle",
+                label:  t("changeMenuStyle", {menu:usePage().props.value.flash.menu}),
+                icon: "refresh",
+                link: "changeMenu",
+                type: "route",
             },
             {
                 id: "authPages",
