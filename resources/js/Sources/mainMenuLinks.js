@@ -2,11 +2,10 @@
 import {useI18n} from "vue-i18n";
 import {mainMenuTranslates} from "@/Lang/languages";
 import {computed} from "vue";
-import {usePage} from "@inertiajs/inertia-vue3";
 
 export default function ({roles,permissions}) {
 
-    const {t,tm} = useI18n({
+    const {tm} = useI18n({
         inheritLocale: true,
         messages: mainMenuTranslates
     })
@@ -25,8 +24,8 @@ export default function ({roles,permissions}) {
             },
             {
                 id: "changeMenuStyle",
-                label:  t("changeMenuStyle", {menu:usePage().props.value.flash.menu}),
-                icon: "refresh",
+                label:  tm("changeMenuStyle"),
+                icon: "rotate",
                 link: "changeMenu",
                 type: "route",
             },

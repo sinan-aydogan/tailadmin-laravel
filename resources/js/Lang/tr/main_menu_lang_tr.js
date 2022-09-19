@@ -25,7 +25,7 @@ const mainMenuLangTr = {
     componentTableJson: "Tablo(JSON)",
     componentTableBackend: "Tablo(BackEnd)",
     componentTooltip: "Bilgi Baloncuğu",
-    changeMenuStyle: "Menüyü Değiştir - {menu}",
+    changeMenuStyle: "Menüyü Değiştir",
     layoutElements: "Yerleşim Bileşenleri",
     layoutStructure: "Yerleşim Yapısı",
     layoutGrid: "Izgara",
