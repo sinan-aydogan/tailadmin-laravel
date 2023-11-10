@@ -2,7 +2,7 @@ TailAdmin Inertia
 ======
 
 <p align="center">
-![10 Kasım - Yaşa Mustafa Kemal Paşa](https://media.licdn.com/dms/image/C4D22AQGOVnUS8wpBnw/feedshare-shrink_2048_1536/0/1668058647785?e=1702512000&v=beta&t=UMtnU6qCBi3ArBTKN4trPaFuWJNlEQhkLFJB4EXrQNw)
+    <img src="[https://tailadmin.dev/img/tailadmin_v2.jpg](https://media.licdn.com/dms/image/C4D22AQGOVnUS8wpBnw/feedshare-shrink_2048_1536/0/1668058647785?e=1702512000&v=beta&t=UMtnU6qCBi3ArBTKN4trPaFuWJNlEQhkLFJB4EXrQNw)" alt="10 Kasım - Yaşa Mustafa Kemal Paşa"/>
 </p>
 
 <p align="center">
