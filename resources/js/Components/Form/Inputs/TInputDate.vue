@@ -80,7 +80,7 @@
 /* Main function */
 import { defineComponent, toRefs, ref, watch, inject } from 'vue';
 import { DatePicker } from 'v-calendar';
-
+import 'v-calendar/style.css';
 /* Components */
 import TInputText from '@/Components/Form/Inputs/TInputText';
 
