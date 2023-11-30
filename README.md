@@ -2,10 +2,6 @@ TailAdmin Inertia
 ======
 
 <p align="center">
-    <img src="[https://tailadmin.dev/img/tailadmin_v2.jpg](https://media.licdn.com/dms/image/C4D22AQGOVnUS8wpBnw/feedshare-shrink_2048_1536/0/1668058647785?e=1702512000&v=beta&t=UMtnU6qCBi3ArBTKN4trPaFuWJNlEQhkLFJB4EXrQNw)" alt="10 Kasım - Yaşa Mustafa Kemal Paşa"/>
-</p>
-
-<p align="center">
   <img src="https://tailadmin.dev/img/tailadmin_v2.jpg" alt="TailAdmin"/>
 </p>
 <p align="center">
@@ -74,7 +70,7 @@ Admin Login Infos / Demo Account
 - **Password:** *admin*
 
 <a href="https://www.youtube.com/playlist?list=PLbdS49WKsrOXTo_X_Ja6P3zll1yyhoIYN" target="_blank">
-<img src="https://core.tailadmin.dev/img/misc/tailadmin-youtube-main-demo.png" alt="TailAdmin Demo"/>
+<img src="https://tailadmin.dev/img/tailadmin-youtube.jpg" alt="TailAdmin Demo" width='480'/>
 </a>
 
 ## Help
@@ -143,12 +139,6 @@ If you need to help more than this documentation:
 ---
 
 ### Partners and Sponsors
-
-
-> <a href="https://cleavr.io/" target="_blank"><img src="https://core.tailadmin.dev/img/misc/cleavr_io_07092021_07092022.jpg" style="width: 200px" alt="Cleavr"/><br>
-  Cleavr is your all-in-one server and deployment management platform for your PHP and NodeJS apps. Provision,
-deploy, monitor, backup, & more.
-</a>
 
 > :metal: If you want to support us, you can send a mail to us via [admin@tailadmin.dev](mailto:admin@tailadmin.dev)
 
