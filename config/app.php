@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Translation\TranslationServiceProvider as BaseTranslationServiceProvider;
+use LaravelLang\JsonFallbackHotfix\TranslationServiceProvider as JsonTranslationServiceProvider;
 
 return [
 
@@ -42,7 +44,7 @@ return [
     |
     */
 
-    'debug' => (bool) env('APP_DEBUG', false),
+    'debug' => (bool)env('APP_DEBUG', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -170,7 +172,11 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\FortifyServiceProvider::class,
         App\Providers\JetstreamServiceProvider::class,
-    ])->toArray(),
+    ])
+        ->replace([
+            BaseTranslationServiceProvider::class => JsonTranslationServiceProvider::class
+                ])
+        ->toArray(),
 
     /*
     |--------------------------------------------------------------------------
