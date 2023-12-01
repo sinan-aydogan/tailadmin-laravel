@@ -33,3 +33,7 @@ Route::middleware([
         return Inertia::render('Dashboard');
     })->name('dashboard');
 });
+
+
+@include(base_path('routes/web_routes/profile.php'));
+@include(base_path('routes/web_routes/locale.php'));

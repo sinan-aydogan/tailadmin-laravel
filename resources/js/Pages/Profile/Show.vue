@@ -6,6 +6,7 @@ import SectionBorder from '@/Components/SectionBorder.vue';
 import TwoFactorAuthenticationForm from '@/Pages/Profile/Partials/TwoFactorAuthenticationForm.vue';
 import UpdatePasswordForm from '@/Pages/Profile/Partials/UpdatePasswordForm.vue';
 import UpdateProfileInformationForm from '@/Pages/Profile/Partials/UpdateProfileInformationForm.vue';
+import SetLocaleForm from '@/Pages/Profile/Partials/SetLocaleForm.vue'
 
 defineProps({
     confirmsTwoFactorAuthentication: Boolean,
@@ -44,11 +45,20 @@ defineProps({
                     <SectionBorder />
                 </div>
 
-                <LogoutOtherBrowserSessionsForm :sessions="sessions" class="mt-10 sm:mt-0" />
+                <div>
+                    <LogoutOtherBrowserSessionsForm :sessions="sessions" class="mt-10 sm:mt-0" />
+
+                    <SectionBorder />
+                </div>
+
+
+                <div>
+                    <SetLocaleForm class="mt-10 sm:mt-0"/>
+
+                    <SectionBorder />
+                </div>
 
                 <template v-if="$page.props.jetstream.hasAccountDeletionFeatures">
-                    <SectionBorder />
-
                     <DeleteUserForm class="mt-10 sm:mt-0" />
                 </template>
             </div>
