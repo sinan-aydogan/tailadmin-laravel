@@ -137,7 +137,7 @@
                             ''"
                         >
                             <!--Label-->
-                            <span v-text="item.label"/>
+                            <span v-text="item.label ?? item.key"/>
                             <!--Sort Icon-->
                             <span v-show="sortableFields.includes(item.key)">
                                 <transition name="fade" mode="out-in">
@@ -272,7 +272,7 @@
         >
             <template #content>
                 <div class="flex flex-col text-left">
-                    <h4 class="font-bold text-lg" v-text="optionsModalColumnOrder"/>
+                    <h4 class="font-bold text-sm" v-t="'optionsModalColumnOrder'"/>
                     <div class="flex flex-col max-w-min mt-4">
                         <div
                             v-for="(item, itemIndex) in header"
@@ -342,12 +342,14 @@
                                         rx="0"/>
                                 </g>
                             </svg>
+
                             <t-input-check-box
                                 v-model="activeHeaders"
                                 :input-value="item.key"
                                 class="inline-block select-none"
+                                :label="item.label ?? item.key"
+                                multipleOption
                             />
-                            <span class="pointer-events-none select-none" v-text="item.label"/>
                         </div>
                     </div>
                 </div>

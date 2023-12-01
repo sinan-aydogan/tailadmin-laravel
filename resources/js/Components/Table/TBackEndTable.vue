@@ -113,7 +113,7 @@
                             :key="field.key"
                         >
 
-                            <t-input-group :label="field.label">
+                            <t-input-group :label="field.label ?? field.key">
                                 <!--Text-->
                                 <t-input-text
                                     v-if="field.advancedSearchInputType==='text'"
@@ -204,7 +204,7 @@
                             ''"
                         >
                             <!--Label-->
-                            <span v-text="item.label"/>
+                            <span v-text="item.label ?? item.key"/>
                             <!--Sort Icon-->
                             <span v-show="sortableFields.includes(item.key)">
                                 <transition name="fade" mode="out-in">
@@ -378,7 +378,7 @@
                     <td
                         :colspan="regeneratedHeader.length+(actions.length>0 ? 1 : 0)"
                     >
-                        <div0
+                        <div
                             class="table-no-content"
                             :class="`radius-${radius}`"
                         >
@@ -388,7 +388,7 @@
                                       d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                             </svg>
                             <span v-t="'anyContentMessage'"/>
-                        </div0>
+                        </div>
                     </td>
                 </tr>
                 </tbody>
@@ -426,7 +426,7 @@
         >
             <template #content>
                 <div class="flex flex-col text-left">
-                    <h4 class="font-bold text-lg" v-t="'optionsModalColumnOrder'"/>
+                    <h4 class="font-bold text-sm" v-t="'optionsModalColumnOrder'"/>
                     <div class="flex flex-col max-w-min mt-4">
                         <div
                             v-for="(item, itemIndex) in header"
@@ -440,7 +440,7 @@
                             :draggable="true"
                             class="relative inline-flex items-center space-x-1 px-2 py-1"
                         >
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 cursor-move" fill="none"
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 shrink-0 cursor-move" fill="none"
                                  viewBox="0 0 24 24"
                                  stroke="currentColor">
                                 <g
@@ -498,11 +498,11 @@
                             </svg>
                             <t-input-check-box
                                 v-model="activeHeaders"
-                                :multiple-option="true"
                                 :input-value="item.key"
                                 class="inline-block select-none"
+                                :label="item.label ?? item.key"
+                                multipleOption
                             />
-                            <span class="pointer-events-none select-none" v-text="item.label"/>
                         </div>
                     </div>
                 </div>

@@ -1,6 +1,6 @@
 <template>
     <!--TODO:Styles will be separated-->
-    <div class="flex flex-row" @click="!disabled && updateField()">
+    <div class="flex flex-row items-center" @click="!disabled && updateField()">
         <div
             :class="[
                 'flex flex-shrink-0 justify-center items-center w-5 h-5 border mr-1',
@@ -14,13 +14,15 @@
                 <div v-else :class="['flex w-3 h-3',defaultSelectorStyle(),radiusStyle]"></div>
             </div>
         </div>
-        {{ label }}
+
+        <!--Label-->
+        <span v-if="label" v-text="label" class="whitespace-nowrap"></span>
     </div>
 </template>
 
 <script>
 import {radiusSizeMixin} from "@/Mixins/radiusSizeMixin";
-import TCheckIcon from "@/Components/Icon/TCheckIcon";
+import TCheckIcon from "@/Components/Icon/TCheckIcon";  
 import {computed, defineComponent, ref, toRefs} from "vue";
 
 export default defineComponent({
