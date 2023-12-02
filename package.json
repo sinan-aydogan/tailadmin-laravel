@@ -8,6 +8,8 @@
         "format": "prettier .  --write"
     },
     "devDependencies": {
+        "@iconify-icons/tabler": "^1.2.95",
+        "@iconify/vue": "^4.1.1",
         "@inertiajs/vue3": "^1.0.0",
         "@tailwindcss/forms": "^0.5.2",
         "@tailwindcss/typography": "^0.5.2",
