@@ -1,66 +1,198 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+TailAdmin Inertia
+======
 
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+  <img src="https://tailadmin.dev/img/tailadmin_v2.jpg" alt="TailAdmin"/>
+</p>
+<p align="center">
+  It's a dashboard theme/UI-Starter Kit with Laravel9, TailwindCSS3, Inertia and Vue3 (JetStream).
 </p>
 
-## About Laravel
+<p align="center">
+  :wave: If you looking for Vue2 version, You can use download <a href="https://github.com/sinan-aydogan/tailadmin-laravel/releases/tag/v.1.0.0"> TailAdmin v1 TailAdmin</a> :wave:
+</p>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+<p align="center">
+  <img src="https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white" />
+  <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" />
+  <img src="https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D" />
+</p>
+<p align="center">
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+<a href="https://ko-fi.com/sinanaydogan" target="_blank">
+    <img src="https://ko-fi.com/img/githubbutton_sm.svg">
+</a>
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+</p>
 
-## Learning Laravel
+<p align="center">
+<a href="https://www.buymeacoffee.com/sinanaydogan">
+    <img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=sinanaydogan&button_colour=FFDD00&font_colour=000000&font_family=Lato&outline_colour=000000&coffee_colour=ffffff">
+</a>
+</p>
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+<p align="center">
+<a href="https://discord.gg/TnjA2GqYmw">
+    <img src="public/img/demo/discord.svg" height="40">
+</a>
+</p>
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Requirements
+------
+1. PHP min v.8.2
+2. DB server (Recommended:MySQL)
+3. [composer min v.2](https://getcomposer.org/)
+4. [nodejs min v.14](https://nodejs.org/)
+5. Please check other requirements of  [Laravel](https://laravel.com/) and [Inertia](https://inertiajs.com/)
 
-## Laravel Sponsors
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Setup Directions
+------
 
+1. ```npm install```
+2. ```composer install```
+3. Please clone .env.example and copied file name change from .env.example to .env
+4. Create a clean db table
+5. Set database infos in the .env
+6. ```php artisan migrate --seed```
+7. ```php artisan storage:link```
+8. ```php artisan key:generate```
+9. ```npm run hot```
+10. ```php artisan serve```
+11. ```Goto: http://localhost:8000```
+
+Admin Login Infos / Demo Account
+------
+
+- **Demo:** *[https://v2.tailadmin.dev](https://v2.tailadmin.dev)*
+- **Email:** *admin@tailadmin.dev*
+- **Password:** *admin*
+
+<a href="https://www.youtube.com/playlist?list=PLbdS49WKsrOXTo_X_Ja6P3zll1yyhoIYN" target="_blank">
+<img src="https://tailadmin.dev/img/tailadmin-youtube.jpg" alt="TailAdmin Demo" width='480'/>
+</a>
+
+## Help
+
+If you need to help more than this documentation:
+- You can join our [Discord Channel](https://discord.gg/TnjA2GqYmw) then ask your questions
+- Access to our [Tabbs page](https://tailadmin.tabbs.co/) for how to make links (Install in Linux, solution of the npm errors etc.)
+
+## Featured :
+
+- TailwindCSS
+- Vue.js 3 Laravel 8 - JetStream Inertia
+- Every component are well documented
+- Easy usability
+- Simple and short code blocks
+- A lot of customization options for every component
+- Responsive, you can use with all devices
+- Custom Auth Pages: Login, Register, Profile, Lock
+- Unique Form Inputs: Repeatable Fields, Select(Rich Content) and Date
+- Completely UI Kit
+- Statistic Widgets for Summary or Small Data Windows
+- It works with FontAwesome
+- ### Content Components :
+    - Alert
+    - Avatar / Avatar Group for Team Lists
+    - Badge
+    - Breadcrumb
+    - Buttons
+    - Content Card
+    - Collapsible Content
+    - Dropdowns
+    - Lists
+    - Modals
+    - Pagination
+    - Popovers
+    - Progress
+    - Statistic Widgets
+    - Tabs
+    - FrontEnd Table
+    - BackEnd Table
+        - With Dynamic Query Builder
+        - Auto generated advanced search fields
+        - Sort
+        - Show-hide columns
+    - Tooltips
+
+- ### Form Components :
+    - Form Content
+    - Form Section
+    - Input Group
+    - HTML Inputs
+    - Text Input
+    - Selectable Text Input (Combo)
+    - File Input
+    - Checkbox
+    - Radio
+    - Text Area
+    - Select
+    - Multi Select
+    - Repeatable Fields
+    - Date/Calendar Input
+    - Between Input
+
+> :rocket:  We are going to make the big updates about app because this theme is using in our projects therefore the updates will be continuous
+
+---
+
+### Icons
+We use to Iconify icons for our project.
+
+Default icon set is Tabler Icons: https://tablericons.com/ - https://icon-sets.iconify.design/tabler/. You have two options to use it:
+
+1. You can install icon sets from https://iconify.design/icon-sets/ and offline use them in your project
+2. You can use Iconify API to load icons from CDN: https://docs.iconify.design/api/
+
+#### First option: Offline Icon usage example:
+
+````shell
+npm install --save-dev @iconify/vue @iconify-icons/tabler
+````
+````js
+import squareChevronDown from '@iconify-icons/tabler/square-chevron-down';
+````
+```html
+<icon :icon="squareChevronDown"></icon>
+```
+
+#### Second option: Online dynamic import usage example:
+```html
+<icon icon="tabler:square-chevron-down" />
+```
+------
 ### Premium Partners
+> :metal: If you want to support us, you can send a mail to us via [admin@tailadmin.dev](mailto:admin@tailadmin.dev)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+---
 
-## Contributing
+### Major External Sources
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- [Tailwind](https://tailwindcss.com/)
+- [Vue](https://vuejs.org/)
+- [Iconify](https://iconify.design)
 
-## Code of Conduct
+### Minor External Sources
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Please see package.json
 
-## Security Vulnerabilities
+------
+### License
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+The TailAdmin is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
-## License
+<p align="center">
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+<a href="https://ko-fi.com/sinanaydogan" target="_blank">
+    <img src="https://ko-fi.com/img/githubbutton_sm.svg">
+</a>
+
+</p>
+
+<p align="center">
+<a href="https://www.buymeacoffee.com/sinanaydogan">
+    <img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=sinanaydogan&button_colour=FFDD00&font_colour=000000&font_family=Lato&outline_colour=000000&coffee_colour=ffffff">
+</a>
+</p>
