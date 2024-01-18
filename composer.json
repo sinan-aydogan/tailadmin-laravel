@@ -1,8 +1,8 @@
 {
-    "name": "laravel/laravel",
+    "name": "sinan-aydogan/tailadmin-laravel",
     "type": "project",
-    "description": "The skeleton application for the Laravel framework.",
-    "keywords": ["laravel", "framework"],
+    "description": "It's a dashboard theme/UI-Starter Kit",
+    "keywords": ["tailadmin", "laravel", "framework",  "dashboard", "starter kit", "vue", "admin panel", "admin theme", "admin framework"],
     "license": "MIT",
     "require": {
         "php": "^8.1",
@@ -12,16 +12,19 @@
         "laravel/jetstream": "^4.2",
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
-        "tightenco/ziggy": "^1.0"
+        "tightenco/ziggy": "^1.0",
+        "spatie/laravel-permission": "^6.3.0"
     },
     "require-dev": {
+        "roave/security-advisories": "dev-latest",
         "fakerphp/faker": "^1.9.1",
         "laravel/pint": "^1.0",
         "laravel/sail": "^1.18",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^7.0",
         "phpunit/phpunit": "^10.1",
-        "spatie/laravel-ignition": "^2.0"
+        "spatie/laravel-ignition": "^2.0",
+        "barryvdh/laravel-debugbar": "^v3.9.2"
     },
     "autoload": {
         "psr-4": {
@@ -64,6 +67,6 @@
             "php-http/discovery": true
         }
     },
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "prefer-stable": true
 }
