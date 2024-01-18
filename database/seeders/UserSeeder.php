@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Team;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Actions\Fortify\CreateNewUser;
@@ -21,7 +22,11 @@ class UserSeeder extends Seeder
             'email' => 'admin@tailadmin.dev',
             'password' => bcrypt('admin'),
         ]), function (User $user) {
-            (new CreateNewUser())->createTeam($user);
+            Team::create([
+                'user_id' => $user->id,
+                'name' => $user->name.'\'s Team',
+                'personal_team' => true,
+            ]);
         });
 
         /*Editor*/
@@ -30,7 +35,11 @@ class UserSeeder extends Seeder
             'email' => 'editor@tailadmin.dev',
             'password' => bcrypt('editor'),
         ]), function (User $user) {
-            (new CreateNewUser())->createTeam($user);
+            Team::create([
+                'user_id' => $user->id,
+                'name' => $user->name.'\'s Team',
+                'personal_team' => true,
+            ]);
         });
 
         /*Simple User*/
@@ -39,7 +48,11 @@ class UserSeeder extends Seeder
             'email' => 'user@tailadmin.dev',
             'password' => bcrypt('user'),
         ]), function (User $user) {
-            (new CreateNewUser())->createTeam($user);
+            Team::create([
+                'user_id' => $user->id,
+                'name' => $user->name.'\'s Team',
+                'personal_team' => true,
+            ]);
         });
 
         /*Assign Role*/
