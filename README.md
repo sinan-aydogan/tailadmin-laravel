@@ -147,9 +147,13 @@ If you need to help more than this documentation:
 
 ### Major External Sources
 
+- [Laravel](https://laravel.com/)
+- [Inertia](https://inertiajs.com/)
+- [JetStream](https://jetstream.laravel.com/)
+- [Vitejs](https://vitejs.dev/)
 - [Tailwind](https://tailwindcss.com/)
 - [Vue](https://vuejs.org/)
-- [Fontawesome](https://fontawesome.com/)
+- [Tabler Icons](https://tabler.io/icons/)
 
 ### Minor External Sources
 
