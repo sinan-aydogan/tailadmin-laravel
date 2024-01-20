@@ -18,6 +18,9 @@ const i18n = createI18n({
     messages: languages.map(lang => ({[lang.id]: lang.translates})).reduce((a, b) => ({...a, ...b}), {}),
 });
 
+/* Highlighter */
+import VueHighlightJS from 'vue3-highlightjs'
+
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
 createInertiaApp({
@@ -28,6 +31,7 @@ createInertiaApp({
             .use(plugin)
             .use(ZiggyVue)
             .use(i18n)
+            .use(VueHighlightJS)
             .mount(el);
     },
     progress: {
