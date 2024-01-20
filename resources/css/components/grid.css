@@ -1,0 +1,151 @@
+.grid-1 {
+ @apply col-span-1
+}
+.grid-2 {
+    @apply col-span-2
+}
+.grid-3 {
+    @apply col-span-3
+}
+.grid-4 {
+    @apply col-span-4
+}
+.grid-5 {
+    @apply col-span-5
+}
+.grid-6 {
+    @apply col-span-6
+}
+.grid-7 {
+    @apply col-span-7
+}
+.grid-8 {
+    @apply col-span-8
+}
+.grid-9 {
+    @apply col-span-9
+}
+.grid-10 {
+    @apply col-span-10
+}
+.grid-11 {
+    @apply col-span-11
+}
+.grid-12,.grid-full {
+    @apply col-span-12
+}
+
+/*Medium : Tablets*/
+.grid-md-1 {
+    @apply md:col-span-1
+}
+.grid-md-2 {
+    @apply md:col-span-2
+}
+.grid-md-3 {
+    @apply md:col-span-3
+}
+.grid-md-4 {
+    @apply md:col-span-4
+}
+.grid-md-5 {
+    @apply md:col-span-5
+}
+.grid-md-6 {
+    @apply md:col-span-6
+}
+.grid-md-7 {
+    @apply md:col-span-7
+}
+.grid-md-8 {
+    @apply md:col-span-8
+}
+.grid-md-9 {
+    @apply md:col-span-9
+}
+.grid-md-10 {
+    @apply md:col-span-10
+}
+.grid-md-11 {
+    @apply md:col-span-11
+}
+.grid-md-12,.grid-full {
+    @apply md:col-span-12
+}
+
+/*Large : Laptop*/
+.grid-lg-1 {
+    @apply lg:col-span-1
+}
+.grid-lg-2 {
+    @apply lg:col-span-2
+}
+.grid-lg-3 {
+    @apply lg:col-span-3
+}
+.grid-lg-4 {
+    @apply lg:col-span-4
+}
+.grid-lg-5 {
+    @apply lg:col-span-5
+}
+.grid-lg-6 {
+    @apply lg:col-span-6
+}
+.grid-lg-7 {
+    @apply lg:col-span-7
+}
+.grid-lg-8 {
+    @apply lg:col-span-8
+}
+.grid-lg-9 {
+    @apply lg:col-span-9
+}
+.grid-lg-10 {
+    @apply lg:col-span-10
+}
+.grid-lg-11 {
+    @apply lg:col-span-11
+}
+.grid-lg-12,.grid-full {
+    @apply lg:col-span-12
+}
+
+
+/*XL : Desktop*/
+.grid-xl-1 {
+    @apply xl:col-span-1
+}
+.grid-xl-2 {
+    @apply xl:col-span-2
+}
+.grid-xl-3 {
+    @apply xl:col-span-3
+}
+.grid-xl-4 {
+    @apply xl:col-span-4
+}
+.grid-xl-5 {
+    @apply xl:col-span-5
+}
+.grid-xl-6 {
+    @apply xl:col-span-6
+}
+.grid-xl-7 {
+    @apply xl:col-span-7
+}
+.grid-xl-8 {
+    @apply xl:col-span-8
+}
+.grid-xl-9 {
+    @apply xl:col-span-9
+}
+.grid-xl-10 {
+    @apply xl:col-span-10
+}
+.grid-xl-11 {
+    @apply xl:col-span-11
+}
+.grid-xl-12,.grid-full {
+    @apply xl:col-span-12
+}

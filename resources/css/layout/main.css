@@ -1,0 +1,33 @@
+.main-container {
+    @apply flex justify-between bg-gray-100 h-screen dark:bg-gray-700 overflow-hidden
+}
+
+.content-wrapper {
+    @apply flex flex-col flex-shrink-0 sm:flex-shrink min-h-screen flex-grow p-4 space-y-6 overflow-y-auto  w-screen sm:w-full;
+}
+
+.content-container {
+    @apply relative flex flex-col flex-grow justify-between space-y-6 w-full;
+}
+
+/*Content Container -> Content Header*/
+.container-header {
+    @apply flex flex-col lg:justify-between items-center md:flex-row;
+}
+
+/*Content Header -> Page Header*/
+.container-header .page-header {
+    @apply flex flex-col flex-grow;
+}
+
+.page-header .page-title {
+    @apply mb-2 text-2xl lg:text-4xl font-semibold  dark:text-gray-200;
+}
+
+.page-header .page-subtitle {
+    @apply hidden md:block md:text-xl text-gray-600 ml-0.5 text-2xl font-semibold  dark:text-gray-400;
+}
+
+.container-header .page-action-buttons {
+    @apply flex flex-row items-center space-x-1;
+}

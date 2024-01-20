@@ -1,0 +1,590 @@
+.alert {
+    @apply flex flex-shrink-0 items-center justify-start relative w-full flex-grow-0
+}
+
+.alert-content {
+    @apply flex flex-col justify-center items-start flex-grow py-2 px-4 whitespace-pre-line
+}
+
+.alert-title {
+    @apply font-bold text-lg
+}
+
+.alert-close {
+    @apply hover:text-red-500 cursor-pointer mr-2
+}
+
+.alert-icon {
+    @apply flex flex-shrink-0 justify-center items-center
+}
+
+.alert-countdown {
+    @apply absolute justify-center items-center bottom-0 left-0 h-[.3rem] px-2 w-full
+}
+
+.alert-countdown-line {
+    @apply h-[.3rem] mx-auto
+}
+
+/*<editor-fold desc="Filled Style">*/
+/*General Definitions*/
+.alert-filled {
+    @apply text-white py-1 px-4
+}
+
+/*Colors: success, danger, warning, info, light, dark, violet*/
+/*Success*/
+.alert-filled-success{
+    @apply bg-emerald-500
+}
+
+.alert-filled-success .alert-countdown-line {
+    @apply bg-emerald-700
+}
+
+/*Danger*/
+.alert-filled-danger{
+    @apply bg-rose-500
+}
+
+.alert-filled-danger .alert-countdown-line {
+    @apply bg-rose-700
+}
+
+/*Warning*/
+.alert-filled-warning{
+    @apply bg-amber-500
+}
+
+.alert-filled-warning .alert-countdown-line {
+    @apply bg-amber-700
+}
+
+/*Info*/
+.alert-filled-info{
+    @apply bg-sky-500
+}
+
+.alert-filled-info .alert-countdown-line {
+    @apply bg-sky-700
+}
+
+/*Light*/
+.alert-filled-light{
+    @apply bg-slate-300 text-slate-600
+}
+
+.alert-filled-light .alert-countdown-line {
+    @apply bg-slate-500
+}
+
+/*Dark*/
+.alert-filled-dark{
+    @apply bg-slate-800
+}
+
+.alert-filled-dark .alert-countdown-line {
+    @apply bg-slate-500
+}
+
+/*Violet*/
+.alert-filled-violet{
+    @apply bg-violet-500
+}
+
+.alert-filled-violet .alert-countdown-line {
+    @apply bg-violet-700
+}
+
+/*</editor-fold>*/
+
+/*<editor-fold desc="Light Style">*/
+/*General Definitions*/
+.alert-light {
+    @apply border py-1 px-4
+}
+
+/*Colors: success, danger, warning, info, light, dark, violet*/
+/*Success*/
+.alert-light-success{
+    @apply bg-emerald-50 border-emerald-500 text-emerald-600 dark:bg-emerald-100/80
+}
+
+.alert-light-success .alert-countdown-line {
+    @apply bg-emerald-500
+}
+
+/*Danger*/
+.alert-light-danger{
+    @apply bg-rose-50 border-rose-500 text-rose-600 dark:bg-rose-700/10 dark:text-rose-100
+}
+
+.alert-light-danger .alert-countdown-line {
+    @apply bg-rose-500
+}
+
+/*Warning*/
+.alert-light-warning{
+    @apply bg-amber-50 border-amber-500 text-amber-600 dark:bg-amber-700/10 dark:text-amber-100
+}
+
+.alert-light-warning .alert-countdown-line {
+    @apply bg-amber-500
+}
+
+/*Info*/
+.alert-light-info{
+    @apply bg-sky-50 border-sky-500 text-sky-600 dark:bg-sky-700/10 dark:text-sky-100
+}
+
+.alert-light-info .alert-countdown-line {
+    @apply bg-sky-500
+}
+
+/*Light*/
+.alert-light-light{
+    @apply bg-slate-50 border-slate-500 text-slate-600 dark:bg-slate-700/10 dark:text-slate-100
+}
+
+.alert-light-light .alert-countdown-line {
+    @apply bg-slate-500
+}
+
+/*Dark*/
+.alert-light-dark{
+    @apply bg-slate-400 border-slate-600 text-slate-800 dark:border-slate-800 dark:bg-slate-700 dark:text-slate-100
+}
+
+.alert-light-dark .alert-countdown-line {
+    @apply bg-slate-600
+}
+
+/*Violet*/
+.alert-light-violet{
+    @apply bg-violet-50 border-violet-500 text-violet-600 dark:bg-violet-700/10 dark:text-violet-100
+}
+
+.alert-light-violet .alert-countdown-line {
+    @apply bg-violet-500
+}
+
+/*</editor-fold>*/
+
+/*<editor-fold desc="Inline Style">*/
+/*General Definitions*/
+.alert-inline {
+    @apply border py-1 pl-6 pr-4 text-white
+}
+
+.alert-inline .alert-icon{
+    @apply -mr-2
+}
+
+.alert-inline .alert-line {
+    @apply absolute h-[80%] w-1.5 left-2 rounded-full flex-shrink-0 after:content-['\00a0']
+}
+
+/*Colors: success, danger, warning, info, light, dark, violet*/
+/*Success*/
+.alert-inline-success{
+    @apply bg-emerald-500 border-emerald-500 dark:bg-emerald-500/30
+}
+
+.alert-inline-success .alert-line, .alert-inline-success .alert-countdown-line {
+    @apply bg-emerald-50
+}
+
+/*Danger*/
+.alert-inline-danger{
+    @apply bg-rose-500 border-rose-500 dark:bg-rose-500/30
+}
+
+.alert-inline-danger .alert-line, .alert-inline-danger .alert-countdown-line{
+    @apply bg-rose-50
+}
+
+/*Warning*/
+.alert-inline-warning{
+    @apply bg-amber-500 border-amber-500 dark:bg-amber-500/30
+}
+
+.alert-inline-warning .alert-line, .alert-inline-warning .alert-countdown-line {
+    @apply bg-amber-50
+}
+
+/*Info*/
+.alert-inline-info{
+    @apply bg-sky-500 border-sky-500 dark:bg-sky-500/30
+}
+
+.alert-inline-info .alert-line, .alert-inline-info .alert-countdown-line  {
+    @apply bg-sky-50
+}
+
+/*Light*/
+.alert-inline-light{
+    @apply bg-slate-200 text-slate-600 dark:text-slate-100 border-slate-500 dark:border-slate-100 dark:bg-slate-500/30
+}
+
+.alert-inline-light .alert-line, .alert-inline-light .alert-countdown-line {
+    @apply bg-slate-500 dark:bg-slate-100
+}
+
+/*Dark*/
+.alert-inline-dark{
+    @apply bg-slate-800 border-slate-800 dark:bg-slate-800/50
+}
+
+.alert-inline-dark .alert-line, .alert-inline-dark .alert-countdown-line {
+    @apply bg-slate-50
+}
+
+/*Violet*/
+.alert-inline-violet{
+    @apply bg-violet-500 border-violet-500 dark:bg-violet-500/30
+}
+
+.alert-inline-violet .alert-line, .alert-inline-violet .alert-countdown-line {
+    @apply bg-violet-50
+}
+
+/*</editor-fold>*/
+
+/*<editor-fold desc="Outline Style">*/
+.alert-outline {
+    @apply  flex shadow px-4 text-gray-700 bg-white dark:bg-slate-800 dark:text-white overflow-hidden
+}
+
+.alert-outline .alert-content{
+    @apply pl-2 pr-4 py-3
+}
+
+.alert-outline .alert-line {
+    @apply absolute w-1.5 h-full left-0 flex-shrink-0 mr-4 before:content-['\00a0']
+}
+
+/*Colors: success, danger, warning, info, light, dark, violet*/
+/*Success*/
+.alert-outline-success .alert-icon{
+    @apply text-emerald-500
+}
+
+.alert-outline-success .alert-line, .alert-outline-success .alert-countdown-line {
+    @apply bg-emerald-500
+}
+
+/*Danger*/
+.alert-outline-danger .alert-icon{
+    @apply text-rose-500
+}
+
+.alert-outline-danger .alert-line, .alert-outline-danger .alert-countdown-line{
+    @apply bg-rose-500
+}
+
+/*Warning*/
+.alert-outline-warning .alert-icon{
+    @apply text-amber-500
+}
+
+.alert-outline-warning .alert-line, .alert-outline-warning .alert-countdown-line {
+    @apply bg-amber-500
+}
+
+/*Info*/
+.alert-outline-info .alert-icon{
+    @apply text-sky-500
+}
+
+.alert-outline-info .alert-line, .alert-outline-info .alert-countdown-line  {
+    @apply bg-sky-500
+}
+
+/*Light*/
+.alert-outline-light .alert-icon{
+    @apply text-slate-500
+}
+
+.alert-outline-light .alert-line, .alert-outline-light .alert-countdown-line {
+    @apply bg-slate-500
+}
+
+/*Dark*/
+.alert-outline-dark .alert-icon{
+    @apply text-slate-800 dark:text-slate-900
+}
+
+.alert-outline-dark .alert-line, .alert-outline-dark .alert-countdown-line {
+    @apply bg-slate-900
+}
+
+/*Violet*/
+.alert-outline-violet .alert-icon{
+    @apply text-violet-500
+}
+
+.alert-outline-violet .alert-line, .alert-outline-violet .alert-countdown-line {
+    @apply bg-violet-500
+}
+
+/*</editor-fold>*/
+
+/*<editor-fold desc="Elegant Style">*/
+/*General Definitions*/
+.alert-elegant {
+    @apply flex flex-row justify-start items-center py-1 px-4 shadow text-gray-700 bg-white dark:bg-slate-800 dark:text-white overflow-hidden
+}
+
+.alert-elegant .alert-content{
+    @apply flex flex-row justify-start items-center
+}
+
+.alert-elegant .alert-title {
+    @apply rounded-full border -ml-4 mr-4 px-2 leading-5 text-2xs font-normal
+}
+
+/*Colors: success, danger, warning, info, light, dark, violet*/
+/*Success*/
+.alert-elegant-success .alert-title{
+    @apply text-emerald-600 bg-emerald-50 border-emerald-500 dark:bg-emerald-700/10 dark:text-emerald-100
+}
+.alert-elegant-success .alert-countdown-line {
+    @apply bg-emerald-500
+}
+
+/*Danger*/
+.alert-elegant-danger .alert-title{
+    @apply text-rose-500 bg-rose-50 border-rose-500 dark:bg-rose-700/10 dark:text-rose-100
+}
+.alert-elegant-danger .alert-countdown-line{
+    @apply bg-rose-500
+}
+
+/*Warning*/
+.alert-elegant-warning .alert-title{
+    @apply text-amber-500 bg-amber-50 border-amber-500 dark:bg-amber-700/10 dark:text-amber-100
+}
+.alert-elegant-warning .alert-countdown-line {
+    @apply bg-amber-500
+}
+
+/*Info*/
+.alert-elegant-info .alert-title{
+    @apply text-sky-500 bg-sky-50 border-sky-500 dark:bg-sky-700/10 dark:text-sky-100
+}
+.alert-elegant-info .alert-countdown-line  {
+    @apply bg-sky-500
+}
+
+/*Light*/
+.alert-elegant-light .alert-title{
+    @apply text-slate-500 bg-slate-50 border-slate-500 dark:bg-slate-700/10 dark:text-slate-100
+}
+.alert-elegant-light .alert-countdown-line {
+    @apply bg-slate-500
+}
+
+/*Dark*/
+.alert-elegant-dark .alert-title{
+    @apply text-slate-800 bg-slate-400 border-slate-500  dark:border-slate-900 dark:bg-slate-700/50 dark:text-slate-100
+}
+
+.alert-elegant-dark .alert-countdown-line {
+    @apply bg-slate-50
+}
+
+/*Violet*/
+.alert-elegant-violet .alert-title{
+    @apply text-violet-500 bg-violet-50 border-violet-500 dark:bg-violet-700/10 dark:text-violet-100
+}
+.alert-elegant-violet .alert-countdown-line {
+    @apply bg-violet-500
+}
+
+/*</editor-fold>*/
+
+/*<editor-fold desc="Block Style">*/
+/*General Definitions*/
+.alert-block {
+    @apply shadow pl-1 pr-4 text-gray-700 bg-white dark:bg-slate-800 dark:text-white overflow-hidden
+}
+
+.alert-block .alert-content{
+    @apply py-3 ml-12 pr-4
+}
+
+.alert-block .alert-icon {
+    @apply absolute h-full px-5 border-r-4 left-0
+}
+
+.alert-block-base #countdown {
+    @apply h-1 rounded-full mx-auto
+}
+
+/*Colors: success, danger, warning, info, light, dark, violet*/
+/*Success*/
+.alert-block-success .alert-icon{
+    @apply text-emerald-600 bg-emerald-200 border-emerald-500 dark:bg-emerald-500 dark:border-emerald-700 dark:text-emerald-50
+}
+.alert-block-success .alert-countdown-line {
+    @apply bg-emerald-500
+}
+
+/*Danger*/
+.alert-block-danger .alert-icon{
+    @apply text-rose-500 bg-rose-200 border-rose-500 dark:bg-rose-500 dark:border-rose-700 dark:text-rose-50
+}
+.alert-block-danger .alert-countdown-line{
+    @apply bg-rose-500
+}
+
+/*Warning*/
+.alert-block-warning .alert-icon{
+    @apply text-amber-500 bg-amber-200 border-amber-500 dark:bg-amber-500 dark:border-amber-700 dark:text-amber-50
+}
+.alert-block-warning .alert-countdown-line {
+    @apply bg-amber-500
+}
+
+/*Info*/
+.alert-block-info .alert-icon{
+    @apply text-sky-500 bg-sky-200 border-sky-500 dark:bg-sky-500 dark:border-sky-700 dark:text-sky-50
+}
+.alert-block-info .alert-countdown-line  {
+    @apply bg-sky-500
+}
+
+/*Light*/
+.alert-block-light .alert-icon{
+    @apply text-slate-500 bg-slate-200 border-slate-500 dark:bg-slate-500 dark:border-slate-700 dark:text-slate-50
+}
+.alert-block-light .alert-countdown-line {
+    @apply bg-slate-500
+}
+
+/*Dark*/
+.alert-block-dark .alert-icon{
+    @apply text-slate-100 bg-slate-500 border-slate-700  dark:bg-slate-900 dark:border-slate-700 dark:text-slate-50
+}
+
+.alert-block-dark .alert-countdown-line {
+    @apply bg-slate-50
+}
+
+/*Violet*/
+.alert-block-violet .alert-icon{
+    @apply text-violet-500 bg-violet-200 border-violet-500 dark:bg-violet-500 dark:border-violet-700 dark:text-violet-50
+}
+.alert-block-violet .alert-countdown-line {
+    @apply bg-violet-500
+}
+
+/*</editor-fold>*/
+
+/*<editor-fold desc="Gradient Style">*/
+/*General Definitions*/
+.alert-gradient {
+    @apply py-1 px-4
+}
+
+/*Colors: black, blue, gray, green, indigo, pink, purple, white and yellow*/
+/*Rose*/
+.alert-gradient-rose {
+    @apply text-gray-600;
+    text-shadow: #ffafbd .05rem .05rem;
+    background: linear-gradient(90deg, rgba(255, 175, 189, 1) 0%, rgba(255, 195, 160, 1) 100%);
+}
+
+.alert-gradient-rose .alert-countdown-line {
+    background-color: rgba(255, 235, 239, 1);
+}
+
+/*Sky*/
+.alert-gradient-sky {
+    @apply text-gray-100;
+    text-shadow: #2193b0 .05rem .05rem;
+    background: linear-gradient(90deg, rgba(33, 147, 176, 1) 0%, rgba(109, 213, 237, 1) 100%);
+}
+
+.alert-gradient-sky .alert-countdown-line {
+    background-color: rgba(183, 237, 250, 1);
+}
+
+/*Fuchsia*/
+.alert-gradient-fuchsia {
+    @apply text-gray-100;
+    text-shadow: #cc2b5e .05rem .05rem;
+    background: linear-gradient(90deg, rgba(204, 43, 94, 1) 0%, rgba(117, 58, 136, 1) 100%);
+}
+
+.alert-gradient-fuchsia .alert-countdown-line {
+    background-color: rgba(252, 156, 187, 1);
+}
+
+/*Violet*/
+.alert-gradient-violet {
+    @apply text-gray-100;
+    text-shadow: #42275a .05rem .05rem;
+    background: linear-gradient(90deg, rgba(66, 39, 90, 1) 0%, rgba(115, 75, 109, 1) 100%);
+}
+
+.alert-gradient-violet .alert-countdown-line {
+    background-color: rgba(207, 171, 240, 1);
+}
+
+/*Cloud*/
+.alert-gradient-cloud {
+    @apply text-gray-100;
+    text-shadow: #bdc3c7 .05rem .05rem;
+    background: linear-gradient(90deg, rgba(44, 62, 80, 1) 0%, rgba(189, 195, 199, 1) 100%);
+}
+
+.alert-gradient-cloud .alert-countdown-line {
+    background-color: rgba(179, 195, 210, 1);
+}
+
+/*Turquoise*/
+.alert-gradient-turquoise {
+    @apply text-gray-100;
+    text-shadow: #06beb6 .05rem .05rem;
+    background: linear-gradient(90deg, rgba(6, 190, 182, 1) 0%, rgba(72, 177, 191, 1) 100%);
+}
+
+.alert-gradient-turquoise .alert-countdown-line {
+    background-color: rgba(168, 247, 244, 1);
+}
+
+/*Caterpillar*/
+.alert-gradient-caterpillar {
+    @apply text-gray-100;
+    text-shadow: #2193b0 .05rem .05rem;
+    background: linear-gradient(90deg, rgba(86, 171, 47, 1) 0%, rgba(168, 224, 99, 1) 100%);
+}
+
+.alert-gradient-caterpillar .alert-countdown-line {
+    background-color: rgba(208, 245, 192, 1);
+}
+
+/*Biscuit*/
+.alert-gradient-biscuit {
+    @apply text-gray-100;
+    text-shadow: #d76d77 .05rem .05rem;
+    background: linear-gradient(90deg, rgba(58, 28, 113, 1) 0%, rgba(215, 109, 119, 1) 50%, rgba(255, 175, 123, 1) 100%);
+}
+
+.alert-gradient-biscuit .alert-countdown-line {
+    background-color: rgba(219, 205, 245, 1);
+}
+
+/*Dream*/
+.alert-gradient-dream {
+    @apply text-gray-100;
+    text-shadow: #d76d77 .05rem .05rem;
+    background: linear-gradient(90deg, rgba(105, 74, 101, 1) 0%, rgba(183, 121, 235, 1) 40%, rgba(125, 173, 249, 1) 80%, rgba(4, 189, 200, 1) 100%);
+}
+
+.alert-gradient-dream .alert-countdown-line {
+    background-color: rgba(219, 205, 245, 1);
+}
+
+/*</editor-fold>*/

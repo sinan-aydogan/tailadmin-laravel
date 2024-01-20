@@ -1,0 +1,58 @@
+.dropdown {
+    @apply relative max-w-min select-none
+}
+
+.dropdown-button-trigger {
+    @apply relative whitespace-nowrap space-x-2
+}
+
+.dropdown-button-trigger-content {
+    @apply flex flex-col whitespace-nowrap z-10 absolute border rounded-md mt-1 overflow-hidden bg-white
+}
+
+.dropdown-rich-trigger {
+    @apply cursor-pointer
+}
+
+.dropdown-rich-trigger-content {
+    @apply absolute flex flex-col whitespace-normal z-10
+}
+
+.dropdown-content-container {
+    @apply relative z-40
+}
+
+
+.dropdown-content-left {
+    @apply origin-top-left left-0
+}
+
+.dropdown-content-center {
+    @apply origin-top
+}
+
+.dropdown-content-right {
+    @apply origin-top-right right-0
+}
+
+.dropdown-content-wide {
+    @apply min-w-[2rem]
+}
+
+.dropdown-content-fit {
+    @apply min-w-min
+}
+
+.dropdown-trigger-icon {
+    @apply w-5 h-5 transform duration-300
+}
+
+.dropdown-item-container{
+    @apply justify-start p-2 hover:bg-gray-600 hover:text-white cursor-pointer
+}
+.dropdown-item{
+    @apply flex flex-row items-center justify-start
+}
+.dropdown-icon{
+    @apply flex justify-center items-center w-5 h-5 mr-1
+}

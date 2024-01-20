@@ -1,0 +1,133 @@
+.input {
+    @apply flex w-full min-h-[2.5rem] border-gray-300 focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-200 focus:ring-opacity-50 placeholder-gray-300 dark:placeholder-gray-400 bg-white dark:border-transparent dark:bg-gray-600 dark:text-white text-gray-500 leading-none
+}
+
+.input-clear-icon {
+    @apply h-5 w-5 hover:text-red-500 dark:hover:bg-gray-600 dark:hover:text-red-400 active:bg-gray-200 dark:active:bg-gray-700 active:scale-90 rounded-full transform hover:scale-110 transition-size-short transition-color-short
+}
+
+.input-disabled {
+    @apply bg-gray-200 dark:border-transparent dark:text-gray-500 cursor-not-allowed !important
+}
+
+
+/*<editor-fold desc="Select">*/
+.input-select {
+    @apply relative flex w-full select-none min-w-[1rem]
+}
+
+.select-container {
+    @apply relative flex flex-shrink-0 w-full justify-between items-center
+}
+
+.select-input-icon {
+    @apply flex min-h-[2.5rem] px-2 bg-gray-200 dark:bg-gray-500 dark:border-gray-500 dark:text-white items-center justify-center text-gray-500 border-gray-300 border-t border-b border-l
+}
+
+.select-trigger {
+    @apply flex min-h-[2.5rem] w-full justify-between items-center px-2 border border-gray-300 focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-200 focus:ring-opacity-50 placeholder-gray-300 dark:placeholder-gray-400 bg-white dark:border-transparent dark:bg-gray-600 dark:text-white text-gray-500 select-none
+}
+
+.select-trigger-text {
+    @apply inline-flex w-full
+}
+
+.select-trigger-placeholder {
+    @apply text-gray-300 dark:text-gray-400
+}
+
+.select-search-container{
+    @apply w-full px-2 pt-1 pb-2
+}
+
+.select-options-container {
+    @apply absolute flex flex-col z-50 top-10 mt-1 flex w-full top-11 py-2 pl-2 bg-white dark:bg-gray-500 min-w-max dark:text-gray-200 shadow overflow-hidden
+}
+
+.select-options-content {
+    @apply flex flex-col flex-shrink-0 w-full pr-2 my-2 overscroll-y-auto overflow-y-scroll scrollbar scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-white dark:scrollbar-thumb-gray-200 dark:scrollbar-track-gray-500
+}
+
+
+.select-option-item {
+    @apply flex flex-shrink-0 justify-between items-center  p-2 mx-2 text-gray-500 dark:text-white font-semibold text-left hover:bg-gray-200 active:bg-gray-300 dark:hover:bg-opacity-10 gap-2 cursor-pointer whitespace-nowrap transform active:scale-95 transition-size-short
+}
+.select-option-active-item{
+    @apply bg-gray-200 dark:bg-opacity-10 my-1 !important
+}
+
+.select-option-active-item-icon{
+    @apply w-5 h-5 text-green-500 dark:text-gray-200
+}
+
+.select-many-result{
+    @apply hidden md:block text-xs text-center text-blue-500 dark:text-gray-200
+}
+/*</editor-fold>*/
+
+/*<editor-fold desc="Multi Select">*/
+.multi-select-option-clear-icon{
+    @apply h-4 w-4 hover:text-red-500 dark:hover:bg-gray-600 dark:hover:text-red-400 active:bg-gray-200 dark:active:bg-gray-700 active:scale-90 rounded-full transform hover:scale-110 transition-size-short transition-color-short
+}
+.multi-select-selected-options-container{
+    @apply flex flex-wrap justify-start mt-2
+}
+.multi-select-selected-badge{
+    @apply mr-2 mb-2
+}
+/*</editor-fold>*/
+
+/*<editor-fold desc="Text">*/
+.text-input {
+    @apply flex flex-grow justify-start items-center
+}
+
+.text-input-outside-icon {
+    @apply flex min-h-[2.5rem] px-2 bg-gray-200 dark:bg-gray-500 dark:border-gray-500 dark:text-white items-center justify-center text-gray-500 border-gray-300 border-t border-b border-l
+}
+
+.text-input-inside-icon {
+    @apply absolute flex min-h-[2.5rem] px-2 items-center justify-center text-gray-300 dark:text-gray-400
+}
+
+.text-input-prepend {
+    @apply flex min-h-[2.5rem] items-center border-gray-300 bg-gray-200 text-gray-500 dark:bg-gray-500 dark:border-gray-500 dark:text-white font-semibold px-2 border-t border-b border-l h-full
+}
+
+.text-input-prepend-inline {
+    @apply flex items-center border-gray-300 px-2 border h-full
+}
+
+.text-input-append {
+    @apply flex min-h-[2.5rem] items-center border-gray-300 bg-gray-200 text-gray-500 dark:bg-gray-500 dark:border-gray-500 dark:text-white font-semibold px-2 border-t border-b border-r h-full
+}
+
+.text-input-append-inline {
+    @apply flex items-center border-gray-300 px-2 border h-full
+}
+
+.text-input-select-container {
+    @apply relative flex justify-center items-center h-full
+}
+
+.text-input-select-trigger {
+    @apply relative flex flex-shrink-0 min-h-[2.5rem] items-center space-x-1 text-gray-500 border-gray-300 bg-gray-200 dark:bg-gray-500 dark:border-gray-500 dark:text-white active:bg-gray-300 font-semibold px-2 border-t border-b select-none transition-size-short
+}
+
+.text-input-selected-indicator {
+    @apply absolute top-1 right-1 w-2 h-2 rounded-full transition-color-medium
+}
+
+.text-input-select-list-container {
+    @apply absolute z-50 top-10 mt-1 bg-white dark:bg-gray-500 dark:text-gray-200 shadow overflow-hidden
+}
+
+.text-input-select-list-item {
+    @apply flex justify-between items-center px-4 py-2 space-x-4 text-sm text-gray-500 dark:text-white font-semibold text-left hover:bg-gray-200 active:bg-gray-300 dark:hover:bg-opacity-10 w-full whitespace-nowrap cursor-pointer
+}
+
+.text-input-select-list-selected-icon {
+    @apply h-5 w-5 text-green-500
+}
+
+/*</editor-fold>*/

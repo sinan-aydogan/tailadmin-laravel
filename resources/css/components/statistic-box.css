@@ -1,0 +1,36 @@
+/*Statistic Widget*/
+.statistic-widget {
+    @apply flex justify-between h-full w-full
+}
+
+.statistic-widget-data {
+    @apply flex flex-col flex-grow
+}
+
+.statistic-widget-title {
+    @apply text-lg font-semibold
+}
+
+.statistic-widget-value {
+    @apply text-xl md:text-2xl xl:text-3xl font-bold py-2
+}
+
+.statistic-widget-diff-value {
+    @apply flex items-center gap-1 max-w-min text-sm
+}
+
+.statistic-widget-icon-container {
+    @apply flex flex-shrink-0 items-center overflow-hidden object-cover
+}
+
+.statistic-widget-icon {
+    @apply flex items-center justify-center p-4 border-2 w-20 h-20 rounded-full
+}
+
+.statistic-widget-picture-container {
+    @apply flex flex-shrink-0 items-center
+}
+
+.statistic-widget-picture {
+    @apply flex items-center justify-center border-2 w-20 rounded-full object-cover overflow-hidden
+}

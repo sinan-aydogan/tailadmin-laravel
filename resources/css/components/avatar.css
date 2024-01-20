@@ -1,0 +1,81 @@
+.avatar-container {
+    @apply relative z-0
+}
+.avatar-container-group {
+    @apply -ml-4  hover:z-10
+}
+.avatar-group-container {
+    @apply inline-flex flex-row-reverse ml-4
+}
+.avatar-group-image {
+    @apply border-2 border-white border-opacity-75 hover:scale-150 transform
+}
+.avatar-indicator {
+    @apply absolute flex flex-shrink-0 justify-center items-center w-1/3 h-1/3 rounded-full font-semibold
+}
+
+/*<editor-fold desc="Size Styles">*/
+.avatar-size-1 {
+    @apply w-5 h-5
+}
+.avatar-size-2 {
+    @apply w-8 h-8
+}
+.avatar-size-3 {
+    @apply w-10 h-10
+}
+.avatar-size-4 {
+    @apply w-12 h-12
+}
+.avatar-size-5 {
+    @apply w-16 h-16
+}
+.avatar-size-6 {
+    @apply w-20 h-20
+}
+.avatar-size-7 {
+    @apply w-24 h-24
+}
+.avatar-size-8 {
+    @apply w-36 h-36
+}
+/*</editor-fold>*/
+
+/*<editor-fold desc="Position Styles">*/
+.avatar-indicator-position-lb {
+    @apply -left-0.5 -bottom-0.5
+}
+.avatar-indicator-position-rb {
+    @apply -right-0.5 -bottom-0.5
+}
+.avatar-indicator-position-lt {
+    @apply -left-0.5 -top-0.5
+}
+.avatar-indicator-position-rt {
+    @apply -right-0.5 -top-0.5
+}
+/*</editor-fold>*/
+
+/*<editor-fold desc="Indicator Styles">*/
+.avatar-indicator-info {
+    @apply bg-sky-500 text-gray-100
+}
+.avatar-indicator-danger {
+    @apply bg-rose-500 text-gray-100
+}
+.avatar-indicator-success {
+    @apply bg-emerald-500 text-gray-100
+}
+.avatar-indicator-warning {
+    @apply bg-amber-500 text-gray-100
+}
+.avatar-indicator-purple {
+    @apply bg-purple-500 text-gray-100
+}
+.avatar-indicator-pink {
+    @apply bg-pink-500 text-gray-100
+}
+.avatar-indicator-light {
+    @apply bg-gray-500 text-gray-100
+}
+/*</editor-fold>*/

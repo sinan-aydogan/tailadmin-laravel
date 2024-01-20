@@ -1,0 +1,83 @@
+/*bet-pagination*/
+/*bet-pagination Container*/
+.bet-pagination-container {
+    @apply flex flex-col-reverse my-2 md:flex-row md:mt-0 justify-center md:justify-between flex-shrink-0 w-full items-center ease-in-out duration-200 transition-all
+}
+/*bet-pagination Detail Text*/
+.bet-pagination-detail-container{
+    @apply flex flex-row flex-shrink-0 mt-2 md:mt-0 items-center space-x-2 select-none
+}
+.bet-pagination-detail-text{
+    @apply flex flex-row flex-shrink-0
+}
+.bet-pagination-detail-jump-container{
+    @apply relative flex items-center
+}
+.bet-pagination-detail-jump-input{
+    @apply flex h-8 ml-2 px-0 text-center focus:ring-0
+}
+.bet-pagination-detail-jump-button{
+    @apply flex text-sm items-center px-0.5 cursor-pointer h-8
+}
+.bet-pagination-counters {
+    @apply inline-flex flex-shrink-0 justify-end items-center overflow-hidden ease-in-out duration-200 transition-all
+}
+/*bet-pagination Item*/
+.bet-pagination-item {
+    @apply flex items-center justify-center h-8 px-2 cursor-pointer font-semibold select-none flex-shrink-0 ease-in-out duration-200 transition-all
+}
+.bet-pagination-active-item {
+    @apply flex items-center justify-center h-8 px-2 cursor-pointer font-semibold select-none flex-shrink-0 ease-in-out duration-200 transition-all
+}
+/*Left Right Navigation Arrows*/
+.bet-pagination-arrow, .bet-pagination-passive-arrow  {
+    @apply flex flex-shrink-0 items-center justify-center h-8 px-2 cursor-pointer font-semibold select-none
+}
+.bet-pagination-passive-arrow{
+    @apply cursor-auto
+}
+.bet-pagination-arrow-text{
+    @apply hidden md:block
+}
+
+/*Light*/
+.bet-pagination-light .bet-pagination-item{
+    @apply bg-white text-gray-700
+}
+.bet-pagination-light .bet-pagination-active-item{
+    @apply bg-gray-700 text-white
+}
+.bet-pagination-light .bet-pagination-arrow{
+    @apply bg-white text-gray-700
+}
+.bet-pagination-light .bet-pagination-passive-arrow{
+    @apply bg-white text-gray-300
+}
+.bet-pagination-light .bet-pagination-detail-jump-button{
+    @apply bg-white text-gray-700 border
+}
+.bet-pagination-light .bet-pagination-detail-jump-input{
+    @apply bg-white text-gray-700 border border-r-0 border-gray-200
+}
+
+
+/*Dark*/
+.bet-pagination-dark .bet-pagination-item{
+    @apply bg-gray-700 text-white
+}
+.bet-pagination-dark .bet-pagination-active-item{
+    @apply bg-gray-300 text-gray-700
+}
+.bet-pagination-dark .bet-pagination-arrow{
+    @apply bg-gray-700 text-white
+}
+.bet-pagination-dark .bet-pagination-passive-arrow{
+    @apply bg-gray-300 text-gray-600
+}
+
+.bet-pagination-dark .bet-pagination-detail-jump-button{
+    @apply bg-gray-700 text-white
+}
+.bet-pagination-dark .bet-pagination-detail-jump-input{
+    @apply bg-white text-gray-700
+}

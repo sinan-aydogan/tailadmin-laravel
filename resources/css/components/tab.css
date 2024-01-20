@@ -1,0 +1,196 @@
+.tab {
+    @apply relative flex flex-col w-full
+}
+
+.tab-title-container {
+    @apply relative flex flex-row justify-center md:justify-start overflow-x-scroll z-10 scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-300
+}
+
+.tab-title {
+    @apply flex items-center justify-center whitespace-nowrap space-x-1 items-center cursor-pointer transition duration-200 select-none
+}
+
+.tab-title-active {
+    @apply flex items-center justify-center whitespace-nowrap space-x-1 items-center cursor-pointer transition duration-200 select-none font-semibold
+}
+
+.tab-content {
+    @apply flex p-2 border
+}
+
+.tab-light .tab-content {
+    @apply bg-gray-50 text-gray-700
+}
+
+.tab-dark .tab-content {
+    @apply bg-gray-700 text-white
+}
+
+/*<editor-fold desc="Filled Style">*/
+/*General Definitions*/
+.tab-filled-base.tab-light .tab-title {
+    @apply px-2 py-1 bg-gray-200 text-gray-400
+}
+
+.tab-filled-base.tab-dark .tab-title {
+    @apply px-2 py-1 bg-gray-500 text-gray-300
+}
+
+.tab-filled-base .tab-title-active {
+    @apply px-2 py-1 text-white
+}
+
+.tab-filled-base.tab-dark .tab-content{
+    @apply border-none
+}
+
+/*Colors: black, blue, gray, green, indigo, pink, purple, white and yellow*/
+/*Black*/
+.tab-filled-black .tab-title-active {
+    @apply bg-gray-700 border-black
+}
+
+/*Blue*/
+.tab-filled-blue .tab-title-active {
+    @apply bg-blue-500
+}
+
+/*Gray*/
+.tab-filled-gray .tab-title-active {
+    @apply bg-gray-500
+}
+
+.tab-dark.tab-filled-gray .tab-title-active {
+    @apply bg-gray-600
+}
+
+/*Green*/
+.tab-filled-green .tab-title-active {
+    @apply bg-green-500
+}
+
+/*Indigo*/
+.tab-filled-indigo .tab-title-active {
+    @apply bg-indigo-500
+}
+
+/*Pink*/
+.tab-filled-pink .tab-title-active {
+    @apply bg-pink-500
+}
+
+/*Purple*/
+.tab-filled-purple .tab-title-active {
+    @apply bg-purple-500
+}
+
+/*Red*/
+.tab-filled-red .tab-title-active {
+    @apply bg-red-500
+}
+
+/*White*/
+.tab-filled-white .tab-title-active {
+    @apply bg-white text-gray-700
+}
+
+/*Yellow*/
+.tab-filled-yellow .tab-title-active {
+    @apply bg-yellow-500
+}
+
+/*</editor-fold>*/
+
+/*<editor-fold desc="Underline Style">*/
+/*General Definitions*/
+.tab-underline-base .tab-title-container {
+    @apply -mb-1
+}
+.tab-underline-base.tab-dark .tab-title-container {
+    @apply mb-0
+}
+
+.tab-underline-base .tab-content {
+    @apply border-t-4
+}
+.tab-underline-base.tab-dark .tab-content {
+    @apply border-none
+}
+
+.tab-underline-base .tab-title {
+    @apply px-2 py-1 border-b-4 border-transparent
+}
+
+.tab-underline-base .tab-title-active {
+    @apply px-2 py-1 border-b-4
+}
+
+
+/*Colors: black, blue, gray, green, indigo, pink, purple, white and yellow*/
+/*Black*/
+.tab-underline-black .tab-title-active {
+    @apply border-gray-700
+}
+
+.tab-dark.tab-underline-black .tab-title-active {
+    @apply border-black
+}
+
+/*Blue*/
+.tab-underline-blue .tab-title-active {
+    @apply border-blue-600 text-blue-600
+}
+
+/*Gray*/
+.tab-underline-gray .tab-title-active {
+    @apply border-gray-500
+}
+
+.tab-dark.tab-underline-gray .tab-title-active {
+    @apply border-gray-400
+}
+
+/*Green*/
+.tab-underline-green .tab-title-active {
+    @apply border-green-600 text-green-600
+}
+
+/*Indigo*/
+.tab-underline-indigo .tab-title-active {
+    @apply border-indigo-600 text-indigo-600
+}
+
+/*Pink*/
+.tab-underline-pink .tab-title-active {
+    @apply border-pink-600 text-pink-600
+}
+
+/*Purple*/
+.tab-underline-purple .tab-title-active {
+    @apply border-purple-600 text-purple-600 !important
+}
+
+/*Red*/
+.tab-underline-red .tab-title-active {
+    @apply border-red-600 text-red-600
+}
+
+/*White*/
+.tab-underline-white .tab-title-active {
+    @apply border-gray-400
+}
+
+.tab-dark.tab-underline-white .tab-title-active {
+    @apply border-gray-300
+}
+
+/*Yellow*/
+.tab-underline-yellow .tab-title-active {
+    @apply border-yellow-600 text-yellow-600
+}
+
+.tab-underline-simple-text {
+    @apply text-gray-700 !important
+}
+
+/*</editor-fold>*/

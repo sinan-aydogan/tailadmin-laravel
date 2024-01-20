@@ -1,0 +1,98 @@
+.tooltip, .tooltip:after, .tooltip:before{
+    @apply inline-flex
+}
+.tooltip-container{
+    @apply relative whitespace-normal select-none cursor-pointer
+}
+
+.tooltip-box{
+    @apply absolute z-10 font-normal;
+    filter: drop-shadow(0px 0px 2px #4a5568);
+}
+
+.tooltip-box-content{
+    @apply bg-white dark:bg-slate-700 dark:text-slate-100 px-2 py-1 whitespace-nowrap z-50;
+}
+.tooltip-left-container{
+    @apply right-full -top-4 mr-2 mt-2
+}
+.tooltip-left-arrow{
+    @apply absolute border-slate-500 dark:border-slate-100 w-2 h-2 border-r-2 border-t-2 transform -right-1 top-4 rotate-45 z-10
+}
+.tooltip-right-container{
+    @apply left-full -top-4 ml-2 mt-2
+}
+.tooltip-right-arrow{
+    @apply absolute border-slate-500 dark:border-slate-100 w-2 h-2 border-l-2 border-b-2 transform -left-1 top-4 rotate-45 z-10
+}
+.tooltip-top-container{
+    @apply left-0 bottom-6 mb-2
+}
+.tooltip-top-arrow{
+    @apply absolute border-slate-500 dark:border-slate-100 w-2 h-2 bg-white border-b-2 border-r-2 transform left-4 -bottom-1 rotate-45 z-10
+}
+.tooltip-bottom-container{
+    @apply top-6 mt-2
+}
+.tooltip-bottom-arrow{
+    @apply absolute border-slate-500 dark:border-slate-100 w-2 h-2 border-l-2 border-t-2 transform left-4 -top-1 rotate-45 z-10
+}
+
+.tooltip-bold{
+    @apply font-bold
+}
+
+
+/*Colors: black, blue, gray, green, indigo, pink, purple, white and yellow*/
+/*Black*/
+.tooltip-black .tooltip-box-title,.tooltip-black .tooltip-arrow {
+    @apply bg-gray-800 border-transparent
+}
+
+/*Blue*/
+.tooltip-blue .tooltip-box-title,.tooltip-blue .tooltip-arrow {
+    @apply bg-blue-500 border-transparent
+}
+
+/*Gray*/
+.tooltip-gray .tooltip-box-title,.tooltip-gray .tooltip-arrow {
+    @apply bg-gray-500 border-transparent
+}
+
+/*Green*/
+.tooltip-green .tooltip-box-title,.tooltip-green .tooltip-arrow {
+    @apply bg-green-500 border-transparent
+}
+
+/*Indigo*/
+.tooltip-indigo .tooltip-box-title,.tooltip-indigo .tooltip-arrow {
+    @apply bg-indigo-500 border-transparent
+}
+
+/*Pink*/
+.tooltip-pink .tooltip-box-title,.tooltip-pink .tooltip-arrow {
+    @apply bg-pink-500 border-transparent
+}
+
+/*Purple*/
+.tooltip-purple .tooltip-box-title,.tooltip-purple .tooltip-arrow {
+    @apply bg-purple-500 border-transparent
+}
+
+/*Red*/
+.tooltip-red .tooltip-box-title,.tooltip-red .tooltip-arrow {
+    @apply bg-red-500 border-transparent
+}
+
+/*White*/
+.tooltip-white .tooltip-box-title {
+    @apply bg-gray-200 text-gray-700 border-b border-gray-500
+}
+.tooltip-white .tooltip-arrow{
+    @apply bg-white dark:bg-slate-700
+}
+
+/*Yellow*/
+.tooltip-yellow .tooltip-box-title,.tooltip-yellow .tooltip-arrow {
+    @apply bg-yellow-500
+}

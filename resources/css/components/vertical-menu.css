@@ -1,0 +1,12 @@
+/*Initial Vertical Menu*/
+.ivm {
+    @apply flex flex-col md:flex-row items-center max-h-min w-full px-2 py-2 overflow-hidden
+}
+
+.ivm-container {
+    @apply flex flex-col md:flex-row w-full gap-2
+}
+
+.ivm-item {
+    @apply bg-opacity-0 hover:bg-opacity-100 items-center justify-center px-3 py-2 gap-2 whitespace-nowrap h-full w-full md:max-w-min font-bold cursor-pointer transition duration-300 ease-in-out
+}

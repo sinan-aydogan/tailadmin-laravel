@@ -1,0 +1,58 @@
+.table-outside-container {
+    @apply w-full space-y-4
+}
+
+/*<editor-fold desc="Top Content">*/
+.table-top {
+    @apply flex justify-between
+}
+.table-top-left {
+    @apply flex justify-start items-center space-x-2
+}
+.table-advanced-search-container{
+    @apply flex flex-col p-4 space-y-4 border bg-white dark:border-transparent dark:bg-gray-800 dark:text-gray-200
+}
+.table-advanced-search-content-wrapper{
+    @apply grid grid-cols-1 md:grid-cols-2 gap-4
+}
+/*</editor-fold>*/
+.table-header-cell{
+    @apply flex items-center font-semibold space-x-1 select-none
+}
+.table-container{
+    @apply w-full ;
+}
+.table-content-cell{
+    @apply px-4 py-2
+}
+.table-no-content{
+    @apply flex justify-center items-center p-4 space-x-2
+}
+.table-paginator{
+    @apply mt-4
+}
+
+/*<editor-fold desc="Elegant Style">*/
+/*General Definitions*/
+.table-elegant .table-header-cell{
+    @apply px-4 py-2 text-sm dark:text-gray-200 uppercase leading-normal
+}
+.table-elegant .table-content-row{
+    @apply bg-white dark:bg-gray-600 dark:text-gray-200
+}
+.table-elegant .table-content-zebra-row{
+    @apply odd:bg-gray-300 dark:odd:bg-gray-500
+}
+.table-elegant .table-content-hover-row{
+    @apply hover:bg-gray-500 hover:text-white dark:hover:bg-gray-300 dark:hover:text-gray-700
+}
+.table-elegant .table-content-border-row{
+    @apply border-b last:border-b-0 dark:border-gray-500
+}
+.table-elegant .table-no-content{
+    @apply bg-gray-200 bg-opacity-50
+}
+.table-elegant .table-simple-search-input {
+    @apply bg-gray-700 text-white placeholder-gray-200
+}
+/*</editor-fold>*/

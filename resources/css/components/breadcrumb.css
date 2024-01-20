@@ -1,0 +1,152 @@
+.breadcrumb {
+    @apply hidden md:flex flex-wrap items-center justify-between w-full h-14
+}
+.breadcrumb-item-active{
+    @apply px-2 py-1 font-bold
+}
+.breadcrumb-sub-content{
+    @apply text-2xl
+}
+
+/*<editor-fold desc="Filled Style">*/
+/*General Definitions*/
+.breadcrumb-filled-base {
+    @apply  flex p-2 border rounded-md  text-gray-600 font-semibold
+}
+.breadcrumb-filled-base #breadcrumb-filled-container {
+    @apply  flex flex-wrap
+}
+.breadcrumb-filled-item {
+    @apply flex items-center justify-center space-x-1
+}
+
+/*Colors: black, blue, gray, green, indigo, pink, purple, white and yellow*/
+/*Black*/
+.breadcrumb-filled-black {
+    @apply bg-gray-800 border-black text-gray-100
+}
+.breadcrumb-filled-black .breadcrumb-item-active {
+    @apply text-white underline
+}
+/*Blue*/
+.breadcrumb-filled-blue {
+    @apply bg-blue-50 border-blue-300
+}
+.breadcrumb-filled-blue .breadcrumb-item-active {
+    @apply text-blue-600
+}
+/*Gray*/
+.breadcrumb-filled-gray {
+    @apply bg-gray-200 border-gray-400
+}
+.breadcrumb-filled-gray .breadcrumb-item-active{
+    @apply text-gray-600
+}
+/*Green*/
+.breadcrumb-filled-green {
+    @apply bg-green-50 border-green-300
+}
+.breadcrumb-filled-green .breadcrumb-item-active{
+    @apply text-green-600
+}
+/*Indigo*/
+.breadcrumb-filled-indigo {
+    @apply bg-indigo-50 border-indigo-300
+}
+.breadcrumb-filled-indigo .breadcrumb-item-active{
+    @apply text-indigo-600
+}
+/*Pink*/
+.breadcrumb-filled-pink {
+    @apply bg-pink-50 border-pink-300
+}
+.breadcrumb-filled-pink .breadcrumb-item-active{
+    @apply text-pink-600
+}
+/*Purple*/
+.breadcrumb-filled-purple {
+    @apply bg-purple-50 border-purple-300
+}
+.breadcrumb-filled-purple .breadcrumb-item-active{
+    @apply text-purple-600
+}
+/*Red*/
+.breadcrumb-filled-red {
+    @apply bg-red-50 border-red-300
+}
+.breadcrumb-filled-red .breadcrumb-item-active{
+    @apply text-red-600
+}
+/*White*/
+.breadcrumb-filled-white {
+    @apply bg-gray-50 border-gray-300
+}
+.breadcrumb-filled-white .breadcrumb-item-active{
+    @apply text-gray-800
+}
+/*Yellow*/
+.breadcrumb-filled-yellow {
+    @apply bg-yellow-50 border-yellow-300
+}
+.breadcrumb-filled-yellow .breadcrumb-item-active{
+    @apply text-yellow-600
+}
+/*</editor-fold>*/
+
+/*<editor-fold desc="Block Style">*/
+/*General Definitions*/
+.breadcrumb-block-base {
+    @apply hidden md:flex flex-wrap items-center justify-between space-x-1 border-b-4 border-gray-300
+}
+.breadcrumb-block-base #breadcrumb-block-container {
+    @apply  flex flex-wrap space-x-1 -mb-3
+}
+.breadcrumb-block-item {
+    @apply flex items-center justify-center p-2 border-b-4 -mb-1 bg-gray-300 border-gray-500 space-x-1
+}
+.breadcrumb-block-base .breadcrumb-item-active {
+    @apply text-gray-100
+}
+
+/*Colors: black, blue, gray, green, indigo, pink, purple, white and yellow*/
+/*Black*/
+.breadcrumb-block-black .breadcrumb-item-active {
+    @apply bg-gray-800 border-black
+}
+/*Blue*/
+.breadcrumb-block-blue .breadcrumb-item-active {
+    @apply bg-blue-500 border-blue-900
+}
+/*Gray*/
+.breadcrumb-block-gray .breadcrumb-item-active {
+    @apply bg-gray-500 border-gray-900
+}
+/*Green*/
+.breadcrumb-block-green .breadcrumb-item-active {
+    @apply bg-green-500 border-green-900
+}
+/*Indigo*/
+.breadcrumb-block-indigo .breadcrumb-item-active {
+    @apply bg-indigo-500 border-indigo-900
+}
+/*Pink*/
+.breadcrumb-block-pink .breadcrumb-item-active {
+    @apply bg-pink-500 border-pink-900
+}
+/*Purple*/
+.breadcrumb-block-purple .breadcrumb-item-active {
+    @apply bg-purple-500 border-purple-900
+}
+/*Red*/
+.breadcrumb-block-red .breadcrumb-item-active {
+    @apply bg-red-500 border-red-900
+}
+/*White*/
+.breadcrumb-block-white .breadcrumb-item-active {
+    @apply bg-white border-gray-600 text-gray-600
+}
+/*Yellow*/
+.breadcrumb-block-yellow .breadcrumb-item-active {
+    @apply bg-yellow-500 border-yellow-900
+}
+/*</editor-fold>*/

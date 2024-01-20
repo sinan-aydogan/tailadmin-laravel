@@ -1,0 +1,75 @@
+/*Auth*/
+/*Auth Container*/
+.auth-container {
+    @apply flex flex-col border items-center justify-center shadow border-none
+}
+
+/*Auth Header*/
+.auth-header {
+    @apply flex flex-col w-full justify-center items-center backdrop-filter backdrop-blur
+}
+
+/*Auth Logo*/
+.auth-logo {
+    @apply inline-flex py-4
+}
+
+/*Auth Greeting*/
+.auth-greeting {
+    @apply inline-flex justify-center w-full bg-gray-200 py-1 bg-opacity-20 w-full
+}
+
+/*Auth Status*/
+.auth-status {
+    @apply mb-4 font-medium text-sm text-green-600
+}
+
+/*Auth Form*/
+.auth-form {
+    @apply flex flex-col gap-4 bg-white dark:text-slate-100 dark:bg-slate-800 backdrop-filter backdrop-blur p-6 w-full
+}
+
+/*Auth Remember: Login*/
+.auth-remember {
+    @apply flex justify-between items-center mt-4 space-x-4
+}
+
+/*Auth Remember Text: Login*/
+.auth-remember-text {
+    @apply text-sm
+}
+
+/*Auth Forgot Password: Login*/
+.auth-forgot-password {
+    @apply underline text-sm
+}
+
+/*Auth Submit Area*/
+.auth-submit-area {
+    @apply flex items-center justify-between mt-4
+}
+
+/*Auth Error*/
+.auth-error {
+    @apply absolute w-full translate-y-1/2 mt-4 text-white
+}
+
+/*Auth Avatar Container: Lock*/
+.auth-avatar-container {
+    @apply absolute -mt-12 grid w-full justify-center
+}
+
+/*Auth Avatar Container: Lock*/
+.auth-avatar {
+    @apply border-4 rounded-full bg-gray-300 z-10
+}
+
+/*Auth Lock Form*/
+.auth-lock-form {
+    @apply flex flex-col gap-4 p-8 w-full
+}
+
+/*Auth Name*/
+.auth-name {
+    @apply text-xl text-center font-semibold pt-6 -mb-3
+}

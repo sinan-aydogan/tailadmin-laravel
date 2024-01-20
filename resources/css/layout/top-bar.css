@@ -1,0 +1,204 @@
+.top-menu {
+    @apply flex flex-shrink-0 flex-grow-0 justify-between items-center h-16 px-4 bg-white dark:bg-gray-800 shadow-md dark:text-gray-200;
+}
+
+.top-menu .dropdown-container {
+    @apply bg-white dark:bg-gray-800 dark:text-gray-200 dark:drop-shadow-md shadow mt-2 rounded-md overflow-hidden;
+}
+
+.top-menu .dropdown-header {
+    @apply block px-4 py-2 text-xs text-gray-400 dark:text-gray-200
+}
+
+.top-menu .dropdown-item {
+    @apply block px-4 py-2 text-sm text-gray-500 dark:text-white font-semibold text-left hover:bg-gray-200 dark:hover:bg-opacity-10 w-full
+}
+
+.top-menu .dropdown-item-separator {
+    @apply border-t border-gray-200 dark:border-gray-600
+}
+
+.top-menu .lang-selector-container {
+    @apply flex flex-wrap px-4 py-1 w-full justify-center items-center;
+}
+.top-menu .lang-selector-item {
+    @apply transform hover:scale-110 p-1 transition-size-short;
+}
+
+.top-menu .lang-icon {
+    @apply w-8 h-8 cursor-pointer;
+}
+
+.top-menu .theme-icon {
+    @apply w-6 h-6 cursor-pointer;
+}
+
+.top-menu .logout-button {
+    @apply flex justify-center w-full px-4 py-2 bg-white hover:bg-red-500 text-red-500 hover:text-white dark:bg-red-500 dark:hover:bg-red-500 dark:hover:bg-opacity-50  dark:hover:text-white dark:text-white inline-flex h-full space-x-1 items-center focus:outline-none font-semibold cursor-pointer;
+}
+
+/*<editor-fold desc="Top Menu Trigger">*/
+.top-menu .trigger {
+    @apply flex flex-shrink-0 p-2 justify-center items-center h-10 w-10 hover:bg-gray-200 dark:hover:bg-opacity-10 active:bg-gray-300 cursor-pointer overflow-hidden transition-color-short;
+}
+
+.top-menu .trigger-icon {
+    @apply flex-shrink-0 hover:scale-110 active:scale-90 transform transition-size-short;
+}
+
+.top-menu .trigger-icon-show {
+    @apply w-8 h-8 opacity-100 scale-100;
+}
+
+.top-menu .trigger-icon-hide {
+    @apply w-0 h-0 opacity-0 scale-0;
+}
+
+/*</editor-fold>*/
+
+/*<editor-fold desc="Top Menu Search Box">*/
+.top-menu .search-box {
+    @apply flex flex-grow md:flex-grow-0 justify-start mr-2;
+}
+.top-menu .search-box-wrapper {
+    @apply p-2 w-10 h-10 hover:bg-gray-200 dark:hover:bg-opacity-10 active:bg-gray-300 cursor-pointer transition-color-short;
+}
+
+.search-box .search-icon {
+    @apply h-6 w-6 transform hover:scale-110 active:scale-90 transition-size-short;
+}
+.search-modal{
+    @apply w-2/3 md:w-1/2 bg-white dark:bg-gray-800 shadow-lg p-4 bg-opacity-90
+}
+.search-modal #search{
+    @apply w-full dark:bg-gray-600 dark:text-gray-200 rounded-md text-xl text-center text-gray-600
+}
+
+
+/*</editor-fold>*/
+
+/*<editor-fold desc="Top Menu Active Team">*/
+.top-menu .active-team {
+    @apply hidden md:flex flex-grow justify-start items-center overflow-hidden
+}
+.top-menu .active-team-wrapper{
+    @apply flex justify-between items-center space-x-2 p-2 rounded-md border border-gray-300 dark:border-gray-600 text-gray-600 bg-opacity-50 dark:text-gray-400 overflow-hidden
+}
+.top-menu .active-team-label {
+    @apply flex whitespace-nowrap font-semibold overflow-hidden
+}
+/*</editor-fold>*/
+
+/*<editor-fold desc="Top Menu Notification">*/
+.top-menu .notification-box {
+    @apply relative flex justify-center items-center p-2 w-10 w-10 h-10 hover:bg-slate-500/10 dark:hover:bg-slate-500/50 active:bg-gray-300 cursor-pointer;
+}
+
+.top-menu .notification-icon {
+    @apply flex-shrink-0 w-6 h-6 hover:scale-110 active:scale-90 transform transition-size-short;
+}
+
+.top-menu .notification-ping {
+    @apply absolute top-0 right-0 w-2 h-2 mt-1 mr-2 bg-red-500 rounded-full
+}
+/*</editor-fold>*/
+
+/*<editor-fold desc="Top Menu User Menu">*/
+.top-menu .user-menu-trigger {
+    @apply inline-flex items-center md:space-x-2 px-2
+}
+
+.user-menu-trigger .staff-info {
+    @apply hidden md:flex md:flex-col items-center pt-1 leading-tight;
+}
+
+.user-menu-trigger .staff-name {
+    @apply flex justify-end w-full font-semibold whitespace-nowrap ;
+}
+
+.staff-info .staff-title {
+    @apply flex justify-end w-full text-sm text-gray-500 dark:text-gray-400 whitespace-nowrap ;
+}
+
+.staff-photo .trigger-button {
+    @apply flex text-sm transition duration-150 ease-in-out border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300;
+}
+
+.staff-photo img {
+    @apply object-cover w-full h-full rounded-full;
+}
+
+.user-menu .dropdown-list-container {
+    @apply bg-white dark:bg-gray-700 dark:text-white shadow mt-2 rounded-md overflow-hidden;
+}
+
+
+
+.top-menu .action-section {
+    @apply flex p-1 gap-2;
+}
+
+.action-section .trigger-button {
+    @apply relative p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-600 focus:bg-gray-100 rounded-full focus:text-gray-600 focus:border-gray-300 focus:outline-none;
+}
+
+
+
+.theme-changer-container {
+    @apply flex justify-center space-x-2 py-2 mx-auto items-center
+}
+
+.theme-changer-button {
+    @apply flex justify-around p-1 items-center space-x-1 rounded-full font-semibold rounded-full text-gray-600 dark:text-white text-sm cursor-pointer overflow-hidden
+}
+/*Auto*/
+.theme-changer-button-auto {
+    @apply text-blue-600 dark:text-blue-600
+}
+.theme-changer-button-auto-active {
+    @apply bg-blue-500 text-white
+}
+/*Dark*/
+.theme-changer-button-dark {
+    @apply text-gray-600
+}
+.theme-changer-button-dark-active {
+    @apply bg-gray-700 text-white
+}
+/*Light*/
+.theme-changer-button-light {
+    @apply text-yellow-600 dark:text-yellow-600;
+}
+.theme-changer-button-light-active {
+     @apply bg-yellow-500 shadow-sm text-white;
+ }
+.theme-changer-button-text {
+    @apply transition-size-long
+}
+
+/*</editor-fold>*/
+
+.top-menu-dropdown-trigger-transparent{
+    @apply flex justify-center items-center cursor-pointer w-10 h-10 hover:bg-slate-500/10 dark:hover:bg-slate-500/50
+}
+
+.top-menu-dropdown-content-wrapper-transparent{
+    @apply flex flex-col mt-3
+}
+
+.top-menu-dropdown-header-transparent{
+    @apply flex items-center text-sm font-semibold whitespace-nowrap space-x-2 px-2 py-1 bg-white text-slate-700 dark:text-slate-100 shadow-xl border-transparent dark:bg-gray-800/95 first:rounded-t active:scale-95 border-l border-b-0 border-r first:border-t dark:border-gray-500 cursor-pointer select-none transition duration-300
+}
+
+.top-menu-dropdown-item-transparent{
+    @apply flex items-center whitespace-nowrap space-x-2 px-2 py-1 bg-white text-slate-600 dark:text-slate-100 hover:bg-slate-200 shadow-xl border-slate-200/90 dark:bg-gray-800/95 dark:hover:bg-slate-600/90 first:rounded-t active:scale-95 last:rounded-b border-l border-b border-r first:border-t dark:border-gray-500 cursor-pointer select-none transition duration-300
+}
+
+.top-menu-dropdown-header{
+    @apply flex items-center text-sm font-semibold whitespace-nowrap space-x-2 px-2 py-1 bg-white text-slate-700 dark:text-slate-100 shadow-xl border-transparent dark:bg-gray-800/95 active:scale-95 border-l border-r dark:border-gray-500 cursor-pointer select-none transition duration-300
+}
+
+
+.top-menu-dropdown-item{
+    @apply flex items-center whitespace-nowrap space-x-2 px-2 py-1 bg-white text-slate-600 dark:text-slate-100 hover:bg-slate-200 shadow-xl border-transparent dark:bg-gray-800/95 dark:hover:bg-slate-600/90 active:scale-95 border-l border-r dark:border-gray-500 cursor-pointer select-none transition duration-300
+}

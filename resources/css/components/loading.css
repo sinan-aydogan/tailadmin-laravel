@@ -1,0 +1,138 @@
+.loading-screen {
+    @apply fixed flex h-screen w-screen top-0 justify-center items-center left-0;
+    z-index: 99999999;
+}
+.loading-screen-content {
+    @apply flex flex-col text-white justify-between items-center h-screen
+}
+.loading-screen-content #wrapper{
+    @apply flex flex-col h-full space-y-8 justify-center items-center
+}
+.loading-screen-content #title {
+    @apply flex text-4xl md:text-7xl filter drop-shadow-lg text-center
+}
+.loading-screen-content #message {
+    @apply flex text-xl md:text-4xl filter drop-shadow-lg text-center
+}
+.loading-screen-content #animation {
+    @apply flex justify-center items-center h-28 mb-8 -mt-28
+}
+.loading-screen #custom-content {
+    @apply flex text-white justify-center items-center h-screen w-full
+}
+.loading-screen-content + .loading-black , .loading-blue , .loading-gray , .loading-green , .loading-indigo , .loading-pink , .loading-red , .loading-purple, .loading-yellow {
+@apply bg-gray-50 text-gray-50
+}
+.loading-screen-close {
+    @apply fixed flex right-12 rounded-md top-12 bg-gray-50 border-4 border-gray-400 hover:border-red-500 hover:text-red-500 cursor-pointer transition-all duration-300 ease-in-out;
+}
+.loading-screen-countdown {
+    @apply absolute top-0 w-screen h-2 bg-gray-50 bg-opacity-90 transition-all
+}
+.loading-screen-countdown #countdown {
+    @apply h-2
+}
+
+/*Animations*/
+.loading-cogs-container{
+    @apply flex justify-center
+}
+.loading-cogs-second{
+    @apply mt-8 -ml-4
+}
+.loading-three-bars{
+    @apply relative flex flex-shrink-0 flex-grow-0 h-4 justify-between space-x-1
+}
+.loading-three-dots{
+    @apply relative flex flex-wrap flex-shrink-0 flex-grow-0 h-full justify-between items-center space-x-0.5;
+}
+
+/*<editor-fold desc="Loading Screen Color Styles">*/
+/*Colors: black, blue, gray, green, indigo, pink, purple, white and yellow*/
+/*Black*/
+.loading-screen-black {
+    @apply bg-gray-800 bg-opacity-90
+}
+.loading-screen-black #countdown {
+    @apply bg-gray-800
+}
+
+/*Blue*/
+.loading-screen-blue {
+    @apply bg-blue-500 bg-opacity-90
+}
+.loading-screen-blue #countdown {
+    @apply bg-blue-500
+}
+
+/*Gray*/
+.loading-screen-gray {
+    @apply bg-gray-500 bg-opacity-90
+}
+.loading-screen-gray #countdown {
+    @apply bg-gray-500
+}
+
+/*Green*/
+.loading-screen-green {
+    @apply bg-green-500 bg-opacity-90
+}
+.loading-screen-green #countdown {
+    @apply bg-green-500
+}
+
+/*Indigo*/
+.loading-screen-indigo {
+    @apply bg-indigo-500 bg-opacity-90
+}
+.loading-screen-indigo #countdown {
+    @apply bg-indigo-500
+}
+
+/*Pink*/
+.loading-screen-pink {
+    @apply bg-pink-500 bg-opacity-90
+}
+.loading-screen-pink #countdown {
+    @apply bg-pink-500
+}
+
+/*Purple*/
+.loading-screen-purple {
+    @apply bg-purple-500 bg-opacity-90
+}
+.loading-screen-purple #countdown {
+    @apply bg-purple-500
+}
+
+/*Red*/
+.loading-screen-red {
+    @apply bg-red-500 bg-opacity-90
+}
+.loading-screen-red #countdown {
+    @apply bg-red-500
+}
+
+/*White*/
+.loading-screen-white {
+    @apply bg-gray-100 bg-opacity-90 text-gray-600
+}
+.loading-screen-white #countdown {
+    @apply bg-gray-200
+}
+.loading-screen-white #title, .loading-screen-white #message{
+    @apply text-gray-600 !important
+}
+.loading-screen-white .loading-white {
+    @apply bg-gray-800 text-gray-600
+}
+
+/*Yellow*/
+.loading-screen-yellow {
+    @apply bg-yellow-500 bg-opacity-90
+}
+.loading-screen-yellow #countdown {
+    @apply bg-yellow-500
+}
+
+/*</editor-fold>*/

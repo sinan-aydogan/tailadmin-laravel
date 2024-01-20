@@ -1,0 +1,49 @@
+/*Animations*/
+/*Color*/
+.transition-color-long {
+    transition-property: background-color, color, border-color, text-shadow;
+    transition-duration: 1000ms;
+}
+
+.transition-color-medium {
+    transition-property: background-color, color, border-color, text-shadow;
+    transition-duration: 700ms;
+}
+
+.transition-color-short {
+    transition-property: background-color, color, border-color, text-shadow;
+    transition-duration: 300ms;
+}
+
+/*Fade*/
+.transition-size-long {
+    transition-property: max-height, max-width, height, width, opacity, padding, margin, border-radius, transform;
+    transition-duration: 1000ms;
+}
+
+.transition-size-medium {
+    transition-property: max-height, max-width, height, width, opacity, padding, margin, border-radius, transform;
+    transition-duration: 700ms;
+}
+
+.transition-size-short {
+    transition-property: max-height, max-width, height, width, opacity, padding, margin, border-radius, transform;
+    transition-duration: 300ms;
+}
+
+/*Show Hide Effects*/
+.w-show {
+    @apply w-full opacity-100
+}
+
+.w-hide {
+    @apply w-0 opacity-0
+}
+
+.h-show {
+    @apply h-full opacity-100
+}
+
+.h-hide {
+    @apply h-0 opacity-0
+}
