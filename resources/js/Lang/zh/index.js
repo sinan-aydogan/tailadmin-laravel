@@ -26,12 +26,12 @@ export default {
         /* Error */
         somethingWentWrong: "哎呀！出事了",
         /* Simple Terms */
-        save: '保存',
-        reset: '重启',
-        cancel: '取消',
-        delete: '删除',
-        edit: '编辑',
-        view: '看法'
+        save: "保存",
+        reset: "重启",
+        cancel: "取消",
+        delete: "删除",
+        edit: "编辑",
+        view: "看法"
     },
     mainMenu: {
         authPages: "认证页面",
@@ -71,7 +71,7 @@ export default {
         formDateTimeInput: "日期/时间输入",
         formSelectInput: "选择输入",
         externalSources: "外部来源",
-        externalGitHubRepo: 'Github 回购',
+        externalGitHubRepo: "Github 回购",
         externalTailwindcssDocument: "TailwindCSS 文档",
         externalVuejsDocument: "Vuejs 文档",
         externalInertiaDocument: "Inertiajs 文档",
@@ -95,9 +95,9 @@ export default {
         logout: "Logout"
     },
     notification: {
-        pendingWorks: '待定作品',
-        unfinishedTodos: '正在进行的待办事项',
-        unreadMessages: '未读消息'
+        pendingWorks: "待定作品",
+        unfinishedTodos: "正在进行的待办事项",
+        unreadMessages: "未读消息"
     },
     component: {
         table: {

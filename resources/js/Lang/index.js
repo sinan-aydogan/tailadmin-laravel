@@ -1,19 +1,19 @@
 /* Flags */
-import flagBg from "@/Lang/Flags/flagBg.vue";
-import flagDe from "@/Lang/Flags/flagDe.vue";
-import flagEn from "@/Lang/Flags/flagEn.vue";
-import flagFr from "@/Lang/Flags/flagFr.vue";
-import flagRu from "@/Lang/Flags/flagRu.vue";
-import flagTr from "@/Lang/Flags/flagTr.vue";
-import flagZh from "@/Lang/Flags/flagZh.vue";
+import flagBg from "./Flags/flagBg.vue";
+import flagDe from "./Flags/flagDe.vue";
+import flagEn from "./Flags/flagEn.vue";
+import flagFr from "./Flags/flagFr.vue";
+import flagRu from "./Flags/flagRu.vue";
+import flagTr from "./Flags/flagTr.vue";
+import flagZh from "./Flags/flagZh.vue";
 
-import TR from "@/Lang/tr";
-import EN from "@/Lang/en";
-import BG from "@/Lang/bg";
-import DE from "@/Lang/de";
-import FR from "@/Lang/fr";
-import RU from "@/Lang/ru";
-import ZH from "@/Lang/zh/index.js";
+import TR from "./tr";
+import EN from "./en";
+import BG from "./bg";
+import DE from "./de";
+import FR from "./fr";
+import RU from "./ru";
+import ZH from "./zh";
 
 
 const flags = {
@@ -23,21 +23,32 @@ const flags = {
     flagFr: flagFr,
     flagRu: flagRu,
     flagTr: flagTr,
-    flagZh: flagZh,
+    flagZh: flagZh
 };
 
 /* Languages */
 const languages = [
-    { id: "en", name: "English", flag: "flagEn" , translates: EN},
-    { id: "tr", name: "Türkçe", flag: "flagTr" , translates: TR},
-    { id: "bg", name: "български", flag: "flagBg" , translates: BG},
-    { id: "de", name: "Deutsch", flag: "flagDe" , translates: DE},
-    { id: "fr", name: "Français", flag: "flagFr" , translates: FR},
-    { id: "ru", name: "Pусский", flag: "flagRu" , translates: RU},
-    { id: "zh_CN", name: "自从", flag: "flagZh" , translates: ZH},
+    { id: "en", name: "English", flag: flagEn },
+    { id: "tr", name: "Türkçe", flag: flagTr },
+    { id: "bg", name: "български", flag: flagBg },
+    { id: "de", name: "Deutsch", flag: flagDe },
+    { id: "fr", name: "Français", flag: flagFr },
+    { id: "ru", name: "Pусский", flag: flagRu },
+    { id: "zh", name: "自从", flag: flagZh }
 ];
 
+const messages = {
+    en: EN,
+    tr: TR,
+    bg: BG,
+    de: DE,
+    fr: FR,
+    ru: RU,
+    zh: ZH
+};
+
 export {
+    messages,
     languages,
-    flags,
+    flags
 };
