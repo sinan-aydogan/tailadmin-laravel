@@ -34,17 +34,8 @@
 }
 
 /*Animations*/
-.loading-cogs-container{
-    @apply flex justify-center
-}
 .loading-cogs-second{
     @apply mt-8 -ml-4
-}
-.loading-three-bars{
-    @apply relative flex flex-shrink-0 flex-grow-0 h-4 justify-between space-x-1
-}
-.loading-three-dots{
-    @apply relative flex flex-wrap flex-shrink-0 flex-grow-0 h-full justify-between items-center space-x-0.5;
 }
 
 /*<editor-fold desc="Loading Screen Color Styles">*/

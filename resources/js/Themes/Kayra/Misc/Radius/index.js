@@ -1,6 +1,6 @@
 export default {
     default: "md",
-    radiusSize: {
+    radiusSizes: {
         "sm": "rounded-sm",
         "md": "rounded-md",
         "regular": "rounded",
@@ -10,7 +10,7 @@ export default {
         "3xl": "rounded-3xl",
         "full": "rounded-full"
     },
-    topRadiusSize: {
+    topRadiusSizes: {
         "sm": "rounded-t-sm",
         "md": "rounded-t-md",
         "regular": "rounded-t",
@@ -20,7 +20,7 @@ export default {
         "3xl": "rounded-t-3xl",
         "full": "rounded-t-full"
     },
-    bottomRadiusSize: {
+    bottomRadiusSizes: {
         "sm": "rounded-b-sm",
         "md": "rounded-b-md",
         "regular": "rounded-b",

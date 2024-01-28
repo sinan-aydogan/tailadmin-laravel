@@ -11,8 +11,8 @@ const appConf = {
     logoClasses: null,
     radius: 'regular',
     mainMenuDesign: 'abay',
-    defaultTheme: 'Abay', /*umay, abay*/
-    themes: ['Abay', 'Umay'],
+    defaultTheme: 'Kayra', /*Kayra, Umay*/
+    themes: ['Kayra', 'Umay'],
     darkMode: 'auto', /*dark, light, auto*/
 };
 

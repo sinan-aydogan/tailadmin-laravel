@@ -1,30 +1,64 @@
 <script setup>
-import { defineAsyncComponent, toRefs, ref, computed, reactive } from "vue";
+import { defineAsyncComponent, toRefs, ref, onBeforeMount, watch, computed } from "vue";
 import { Link } from "@inertiajs/vue3";
-import TLoadingAnimationThreeBars from "@/Components/Loading/Animations/TLoadingAnimationThreeBars.vue";
-import TLoadingAnimationThreeDots from "@/Components/Loading/Animations/TLoadingAnimationThreeDots.vue";
-import TLoadingAnimationCogs from "@/Components/Loading/Animations/TLoadingAnimationCogs.vue";
+
+/*Styles*/
+import { useTheme } from "@/Stores/useTheme.js";
+
+const themeStore = useTheme();
+const ButtonStyles = ref(null);
+const RadiusStyles = ref(null);
 
 const props = defineProps({
+    type: {
+        type: String,
+        default: "submit"
+    },
     size: {
         type: String,
         default: "normal"
     },
+    label: {
+        type: String,
+        default: ""
+    },
     design: {
         type: String,
-        default: "filled"
+        default: "solid"
     },
     color: {
         type: String,
-        default: "blue"
+        default: "primary"
+    },
+    icon: {
+        type: [Function, null],
+        default: null
+    },
+    iconRight: {
+        type: [Function, null],
+        default: null
+    },
+    layout: {
+        type: String,
+        default: "default",
+        validator: (value) => {
+            return ["default", "icon-only", "stacked"].includes(value);
+        }
     },
     radius: {
-        type: Number,
-        default: 3
+        type: String,
+        default: "regular"
     },
     link: {
         type: String,
         default: "#"
+    },
+    linkTarget: {
+        type: String,
+        default: "_self",
+        validator: (value) => {
+            return ["_self", "_blank", "_parent", "_top"].includes(value);
+        }
     },
     border: {
         type: Boolean,
@@ -38,94 +72,144 @@ const props = defineProps({
         type: Boolean,
         default: false
     },
+    loadingIconPosition: {
+        type: String,
+        default: "left",
+        validator: (value) => {
+            return ["left", "right", "over"].includes(value);
+        }
+    },
     loadingDesign: {
         type: String,
-        default: "three-bars"
-    },
-    loadingWithContent: {
-        type: Boolean,
-        default: false
-    },
-    loadingColor: {
-        type: String,
-        default: null
-    },
-    type: {
-        type: String,
-        default: "submit"
+        default: "bars",
+        validator: (value) => {
+            return ["bars", "cogs", "dots"].includes(value);
+        }
     }
 });
 
 
 /*Definitions*/
 const {
-    color,
-    design,
-    border,
-    radius,
-    disabled,
+    type,
     size,
+    label,
+    design,
+    color,
+    icon,
+    iconRight,
+    radius,
+    link,
+    linkTarget,
+    border,
+    disabled,
     loading,
-    loadingWithContent,
-    loadingDesign
+    loadingIconPosition,
+    loadingDesign,
+    loadingColor
 } = toRefs(props);
-
-/*Generating Style Classes*/
-const tStyle = reactive({});
-tStyle["container"] = computed(() => {
-    return "button" + " " +
-        "button-" + size.value + " " +
-        "button-" + design.value + "-base" + " " +
-        "button-" + design.value + "-" + color.value + " " +
-        "radius-" + radius.value + " " +
-        (disabled.value ? " button-disabled" : "") + " " +
-        (border.value ? "border" : "") + " " +
-        (loading.value || loadingWithContent.value ? "pointer-events-none" : "");
-});
-tStyle["content"] = computed(() => {
-    return "button-content" + " " +
-        (loading.value ? "invisible" : "");
-});
 
 
 /*Loading Component*/
-const activeLoadingComponent = ref();
-if (loadingDesign.value === "three-bars") {
-    activeLoadingComponent.value = "TLoadingAnimationThreeBars";
-} else if (loadingDesign.value === "cogs") {
-    activeLoadingComponent.value = "TLoadingAnimationCogs";
-} else {
-    activeLoadingComponent.value = "TLoadingAnimationThreeDots";
-}
+const loadingComponent = computed(() => {
+    switch (loadingDesign.value) {
+        case "bars":
+            return defineAsyncComponent(() => import("/resources/js/Components/Loading/Spinners/TBarsSpinner.vue"));
+        case "cogs":
+            return defineAsyncComponent(() => import("/resources/js/Components/Loading/Spinners/TCogsSpinner.vue"));
+        default:
+            return defineAsyncComponent(() => import("/resources/js/Components/Loading/Spinners/TDotsSpinner.vue"));
+    }
+});
 
-const loadingComponent = defineAsyncComponent(() => import(`@/Components/Loading/Animations/${activeLoadingComponent.value}.vue`));
+onBeforeMount(async () => {
+    ButtonStyles.value = await themeStore.currentTheme("Button");
+    RadiusStyles.value = await themeStore.currentTheme("Misc/Radius");
+});
 
+watch(() => themeStore.selectedTheme, async () => {
+    ButtonStyles.value = await themeStore.currentTheme("Button");
+    RadiusStyles.value = await themeStore.currentTheme("Misc/Radius");
+});
 </script>
 
 <template>
+    <!--Link-->
+    <Link v-if="type === 'link'" :href="link" :class="tStyle['container']" :target="linkTarget">
+        <slot></slot>
+    </Link>
+
+
+    <!--Button-->
     <button
-        v-if="type === 'submit' || type === 'button' || type === 'external-link'"
-        :class="tStyle['container']"
-        :onclick="(!disabled && type === 'external-link') ? 'window.location.href=\'' + link + '\'' : ''"
+        v-else
+        :disabled="disabled || loading"
+        :class="[
+            ButtonStyles?.buttonWrapper,
+            ButtonStyles?.designs[design]?.defaults?.wrapper,
+            ButtonStyles?.designs[design][color]?.wrapper,
+            border ?
+                ButtonStyles?.designs[design]?.defaults?.border + ' ' +
+                ButtonStyles?.designs[design][color]?.border
+                 : '',
+            disabled ? ButtonStyles?.disabled : '',
+            layout === 'icon-only' ? ButtonStyles?.iconOnly : '',
+            layout === 'stacked' ? ButtonStyles?.stacked : '',
+            RadiusStyles?.radiusSizes[radius],
+        ]"
         :type="type"
     >
+        <!--Left area-->
         <component
-            :is="loadingComponent"
-            v-if="loadingWithContent"
-            :color="loadingColor ? loadingColor : color"
+            :is="loading && loadingIconPosition === 'left' ? loadingComponent : icon"
+            v-if="(loading && loadingIconPosition === 'left') || icon"
+            :class="[
+                ButtonStyles?.icon,
+                ButtonStyles?.designs[design]?.defaults?.icon,
+                ButtonStyles?.designs[design][color]?.icon,
+                ]"
+            :ta="{
+                    icon: ButtonStyles?.designs[design][color]?.loading,
+                }"
         />
 
-        <span :class="tStyle['content']">
-            <slot />
-        </span>
+        <!--Button content-->
+        <div v-if="layout !== 'icon-only'" :class="ButtonStyles?.content">
+            <!--Slot content-->
+            <slot v-if="'default' in $slots" />
+
+            <!--Prop content-->
+            <span
+                v-else
+                :class="[
+                      ButtonStyles?.designs[design]?.defaults?.content,
+                      ButtonStyles?.designs[design][color].content,
+                ]"
+                v-text="label"></span>
+        </div>
+
+
+        <!--Right content-->
+        <component
+            :is="loading && loadingIconPosition === 'right' ? loadingComponent : iconRight"
+            v-if="((loading && loadingIconPosition === 'right') || iconRight) && layout !== 'icon-only'"
+            :class="[
+                ButtonStyles?.icon,
+                ButtonStyles?.designs[design]?.defaults?.icon,
+                ButtonStyles?.designs[design][color]?.icon
+                ]"
+            :ta="{
+                    icon: ButtonStyles?.designs[design][color]?.loading,
+                }"
+        />
+
+        <!--Over loading-->
         <component
             :is="loadingComponent"
-            v-if="loading"
+            v-if="loading && loadingIconPosition === 'over'"
             :color="loadingColor ? loadingColor : color"
             class="mx-auto absolute"
         />
     </button>
-    <Link v-else :href="link" :class="tStyle['container']">
-        <slot></slot>
-    </Link>
+
 </template>
