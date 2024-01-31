@@ -108,12 +108,12 @@ watch(()=>theme.selectedTheme, async ()=>{
                 InputCheckBoxStyles?.input,
                 isChecked && 'bg-'+color+'-100',
                 checkboxStyle(),
-                RadiusStyles?.radiusSize[radius ?? RadiusStyles?.default]
+                RadiusStyles?.radiusSizes[radius ?? RadiusStyles?.default]
                 ]">
             <div v-if="isChecked" :class="'text-'+color+'-500'">
 
                 <slot v-if="$slots.icon" name="icon" />
-                <div v-else :class="['flex w-3 h-3',defaultSelectorStyle(),RadiusStyles?.radiusSize[radius ?? RadiusStyles?.default]]"></div>
+                <div v-else :class="['flex w-3 h-3',defaultSelectorStyle(),RadiusStyles?.radiusSizes[radius ?? RadiusStyles?.default]]"></div>
             </div>
         </div>
 
