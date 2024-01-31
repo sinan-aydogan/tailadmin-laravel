@@ -1,10 +1,11 @@
 <script setup>
-import { computed, provide, reactive, ref, toRefs } from "vue";
-import { onClickOutside } from "@vueuse/core";
+import { onMounted, ref, toRefs, watchEffect } from "vue";
 import TButton from "@/Components/Button/TButton.vue";
+import { onClickOutside, useWindowSize } from "@vueuse/core";
 
 /*Icons*/
-import {IconChevronDown} from "@tabler/icons-vue";
+import { IconChevronDown } from "@tabler/icons-vue";
+import { computePosition, flip, shift, offset, limitShift } from "@floating-ui/dom";
 
 
 const props = defineProps({
@@ -24,118 +25,136 @@ const props = defineProps({
         type: String,
         default: "normal"
     },
+    icon: {
+        type: [Object, null],
+        default: null
+    },
     size: {
         type: String,
         default: "wide"
+    },
+    buttonLabel: {
+        type: String,
+        default: ""
+    },
+    buttonIcon: {
+        type: [Object, null],
+        default: null
     },
     triggerType: {
         type: String,
         default: "button"
     },
     radius: {
-        type: Number,
-        default: 3
+        type: String,
+        default: "regular"
     }
-})
+});
 
 /*Definitions*/
-const { align, size, radius, triggerType } = toRefs(props);
-const isVisible = ref(false);
+const { width, height } = useWindowSize();
+const { radius, triggerType } = toRefs(props);
 const refDropdown = ref(null);
+const refTrigger = ref(null);
+const refArrow = ref(null);
+const refWrapper = ref(null);
+const isVisible = ref(false);
 
-/*Provides*/
-provide("triggerType", ref(triggerType));
 
-/*Open-Close Actions*/
-const updateStatus = () => {
-    isVisible.value = !isVisible.value;
+const hideContent = () => {
+    refDropdown.value.style.display = "";
+    update();
 };
 
-onClickOutside(refDropdown.value, () => isVisible.value = false);
+const showContent = () => {
+    refDropdown.value.style.display = "block";
+    update();
+};
 
-/*Generating Style Classes*/
-const tStyle = reactive({})
-tStyle['buttonTrigger'] = computed(() => {
-    return "dropdown-button-trigger" + " " +
-        "radius-" + radius.value;
+
+const update = async () => {
+    await computePosition(refTrigger.value, refDropdown.value, {
+        placement: "bottom",
+        middleware: [flip(), shift({
+            crossAxis: true,
+            limiter: limitShift()
+        }), offset(8)]
+    }).then(({ x, y }) => {
+        Object.assign(refDropdown.value.style, {
+            left: `${x}px`,
+            top: `${y}px`
+        });
+    });
+};
+
+onClickOutside(refWrapper, () => hideContent());
+
+onMounted(async () => {
+    if (refTrigger.value) {
+        await update();
+    }
 });
-tStyle['content'] = computed(() => {
-    return "dropdown-content-" + align.value + " " +
-        "dropdown-content-" + size.value;
-});
-tStyle['buttonTriggerContent'] = computed(() => {
-    return "dropdown-button-trigger-content" + " " +
-        tStyle['content'];
-});
-tStyle['richTriggerContent'] = computed(() => {
-    return "dropdown-rich-trigger-content" + " " +
-        tStyle['content'];
-});
-tStyle['triggerIcon'] = computed(() => {
-    return "dropdown-trigger-icon " +
-        (isVisible.value ? "rotate-90" : "rotate-0");
+
+
+watchEffect(() => {
+    if (refTrigger.value && width.value && height.value) {
+        setTimeout(() => {
+            update();
+        }, 100);
+    }
 });
 </script>
 
 <template>
-  <div ref="refDropdown" class="dropdown">
-
     <!--Trigger as a Simple Trigger-->
-    <div
-      v-if="triggerType === 'button'"
-      :class="tStyle['buttonTrigger']"
-      @click="updateStatus"
-    >
-      <t-button type="button" :color="buttonColor" :design="buttonDesign" :size="buttonSize">
-        <slot name="trigger" />
-        <IconChevronDown :class="tStyle['triggerIcon']" />
-      </t-button>
+    <div v-if="triggerType === 'button'" ref="refWrapper" class="relative">
+        <!--Trigger-->
+        <div
+            ref="refTrigger"
+            @click="showContent"
+        >
+            <!--Trigger Content-->
+            <t-button
+                type="button" :label="buttonLabel" :color="buttonColor" :radius :design="buttonDesign"
+                :size="buttonSize" :icon>
+                <IconChevronDown />
+            </t-button>
+        </div>
 
+        <!--Dropdown Content-->
+        <div v-show="isVisible" ref="refDropdown"
+        >
+            <slot />
+            <div ref="refArrow"></div>
+        </div>
     </div>
 
     <!--Trigger as a Rich Item-->
-    <div
-      class="dropdown-rich-trigger"
-      v-if="triggerType === 'rich'"
-      @click="updateStatus"
+    <div v-else ref="refWrapper" class="relative"
     >
-      <slot name="trigger" />
+        <!--Trigger-->
+        <div
+            ref="refTrigger"
+            @click="showContent"
+        >
+            <slot name="trigger" />
+
+            <div ref="refArrow"></div>
+
+        </div>
+
+        <!--Content-->
+        <div
+            ref="refDropdown"
+            class="absolute hidden"
+        >
+            <slot />
+        </div>
     </div>
 
-    <!--Content-->
-    <transition name="dropDown">
-      <div v-if="isVisible" class="dropdown-content-container">
-        <!--Button Trigger Content-->
-        <div
-          v-if="triggerType === 'button'"
-          :class="tStyle['buttonTriggerContent']">
-          <slot />
-        </div>
-        <!--Rich Trigger Content-->
-        <div
-          v-if="triggerType === 'rich'"
-          :class="tStyle['richTriggerContent']"
-        >
-          <slot />
-        </div>
-      </div>
-    </transition>
-  </div>
+
 </template>
 
 <style scoped>
-.dropDown-enter-active, .dropDown-leave-active {
-  transition: all ease-in-out 300ms;
-  z-index: 9999;
-}
 
-.dropDown-enter-from, .dropDown-leave-to {
-  transform: scaleY(.75) scaleX(.75);
-  opacity: 0;
-}
-
-.dropDown-enter-to, .dropDown-leave-from {
-  transform: scaleY(1) scaleX(1);
-  opacity: 1;
-}
 </style>
