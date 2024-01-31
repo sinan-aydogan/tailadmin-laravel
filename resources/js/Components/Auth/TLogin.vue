@@ -11,7 +11,6 @@ import FullScreenLayout from "@/Layouts/FullScreenLayout.vue";
 import TInputGroup from "@/Components/Form/TInputGroup.vue";
 import TInputText from "@/Components/Form/Inputs/TInputText.vue";
 import TDropdown from "@/Components/Dropdown/TDropdown.vue";
-import TTooltip from "@/Components/Tooltip/TTooltip.vue";
 import TInputCheckBox from "@/Components/Form/Inputs/TInputCheckBox.vue";
 
 /*Validation*/
@@ -33,7 +32,7 @@ import { appConf, authScreenConf } from "@/config";
 import { useTheme } from "@/Stores/useTheme.js";
 
 /*Icons*/
-import { IconMoon, IconSun, IconPalette, IconReload, IconKey, IconBell } from "@tabler/icons-vue";
+import { IconMoon, IconSun, IconPalette, IconReload, IconBell } from "@tabler/icons-vue";
 import { storeToRefs } from "pinia";
 
 defineProps({
@@ -105,16 +104,16 @@ const temporaryLogo = computed(() => {
 
 
     if (appearingMode.value === "dark") {
-        if (LoginStyles.value?.logo.dark) {
-            logo = LoginStyles?.value.logo.dark;
+        if (LoginStyles.value?.logoSrc.dark) {
+            logo = LoginStyles?.value.logoSrc.dark;
         } else if (authScreenConf.logo.dark) {
             logo = authScreenConf.logo.dark;
         } else {
             logo = appConf.logo.dark;
         }
     } else {
-        if (LoginStyles.value?.logo.light) {
-            logo = LoginStyles?.value.logo.light;
+        if (LoginStyles.value?.logoSrc.light) {
+            logo = LoginStyles?.value.logoSrc.light;
         } else if (authScreenConf.logo.light) {
             logo = authScreenConf.logo.light;
         } else {
@@ -152,8 +151,8 @@ watch(selectedTheme, async () => {
     >
         <!--Container-->
         <div
-:class="[
-                'auth-container',
+            :class="[
+                'LoginStyles?.container',
                 {'w-full' : smallerThanLg},
             ]">
             <!--Header-->
@@ -161,16 +160,17 @@ watch(selectedTheme, async () => {
                 class="auth-header"
                 :class="[
                         LoginStyles?.header,
-                        smallerThanLg && RadiusStyles.topRadiusSize[LoginStyles?.radius ? LoginStyles?.radius : appConf.radius],
+                        smallerThanLg && RadiusStyles?.topRadiusSizes[LoginStyles?.radius ? LoginStyles?.radius : appConf.radius],
                     ]"
             >
                 <!--Logo-->
-                <div class="auth-logo">
+                <div :class="LoginStyles?.logo">
                     <slot v-if="$slots.logo" name="logo" />
                     <div v-else :class="authScreenConf.logoAreaClasses">
                         <img
                             :src="temporaryLogo"
                             :class="authScreenConf.logoClasses"
+                            alt="Logo"
                         />
                         <span
                             :class="authScreenConf.appNameClasses"
@@ -179,10 +179,10 @@ watch(selectedTheme, async () => {
                     </div>
                 </div>
                 <!--Greeting-->
-                <div v-if="status || $slots.greeting" class="auth-greeting">
-                    <div class="text-sm">
+                <div v-if="status || $slots.greeting" :class="LoginStyles?.greeting">
+                    <div>
                         <!--Status-->
-                        <div v-if="status" class="auth-status">{{ status }}</div>
+                        <div v-if="status" :class="LoginStyles?.status">{{ status }}</div>
                         <slot v-else name="greeting" />
                     </div>
                 </div>
@@ -190,10 +190,10 @@ watch(selectedTheme, async () => {
 
             <!--Form-->
             <div
-                class="auth-form"
                 :class="[
-                        smallerThanLg && `radius-b-${LoginStyles?.radius ? LoginStyles?.radius : appConf.radius}`,
-                        LoginStyles?.body,
+                    LoginStyles?.formWrapper,
+                    smallerThanLg && `radius-b-${LoginStyles?.radius ? LoginStyles?.radius : appConf.radius}`,
+                    LoginStyles?.body,
                     ]"
             >
                 <form @submit.prevent="submit">
@@ -216,6 +216,7 @@ watch(selectedTheme, async () => {
                             />
                         </t-input-group>
                     </div>
+
                     <!--Password-->
                     <div class="mt-4">
                         <t-input-group
@@ -235,50 +236,47 @@ watch(selectedTheme, async () => {
                         </t-input-group>
                     </div>
 
-                    <div class="auth-remember">
+                    <div :class="LoginStyles?.extraActionsWrapper">
                         <!--Remember Me-->
-                        <label class="flex items-center">
+                        <label :class="LoginStyles?.rememberMe">
                             <t-input-check-box
                                 id="remember"
                                 v-model="form.remember"
                                 :label="$t('auth.rememberMe')"
-                            >
-                                <template #icon>
-                                    <IconKey :size="24" />
-                                </template>
-                            </t-input-check-box>
+                            />
                         </label>
 
                         <!--Forgot Password-->
                         <Link
                             v-if="canResetPassword"
                             :href="route('password.request')"
-                            class="auth-forgot-password"
-                        >{{ $t("auth.forgotPassword") }}
+                            :class="LoginStyles?.forgotPassword"
+                        >
+                            {{ $t("auth.forgotPassword") }}
                         </Link>
                     </div>
                     <!--Submit Area-->
-                    <div class="auth-submit-area">
+                    <div :class="LoginStyles?.formFooter">
                         <!--Register Button-->
                         <t-button
-                            :class="{ 'opacity-25': form.processing }"
+                            :class="form.processing ? LoginStyles?.processing : ''"
                             :design="LoginStyles?.registerButton[appearingMode].design"
                             :color="LoginStyles?.registerButton[appearingMode].color"
                             :link="route('register')"
-                            :radius="3"
                             type="link"
-                        >{{ $t("auth.register") }}
+                        >
+                            {{ $t("auth.register") }}
                         </t-button>
 
                         <!--Submit Button-->
                         <t-button
-                            :class="{ 'opacity-25': form.processing }"
+                            :class="form.processing ? LoginStyles?.processing : ''"
                             :color="LoginStyles?.loginButton[appearingMode].color"
                             :design="LoginStyles?.loginButton[appearingMode].design"
                             :disabled="form.processing"
-                            :radius="3"
                             class="ml-4"
-                        >{{ $t("auth.login") }}
+                        >
+                            {{ $t("auth.login") }}
                         </t-button>
                     </div>
                 </form>
@@ -286,13 +284,13 @@ watch(selectedTheme, async () => {
         </div>
 
         <!--Errors-->
-        <div class="auth-error">
+        <div :class="LoginStyles?.errorsWrapper">
             <transition @before-enter="beforeStyle" @after-enter="enterStyle">
                 <t-alert v-if="form.hasErrors" :radius="smallerThanLg && 5" color="danger">
                     <template #icon>
                         <IconBell :size="24" />
                     </template>
-                    <ul class="list-inside text-sm">
+                    <ul :class="LoginStyles?.errorsListWrapper">
                         <li v-for="(error, key) in form.errors" :key="key">{{ error }}</li>
                     </ul>
                 </t-alert>
@@ -301,44 +299,41 @@ watch(selectedTheme, async () => {
 
 
         <!--Selectors-->
-        <div class="fixed bottom-0 flex z-50 w-full justify-center sm:justify-end space-x-6 p-6">
+        <div :class="LoginStyles?.selectorsWrapper">
             <!--Language Selector-->
-            <t-tooltip
+            <t-dropdown
                 v-if="authScreenConf.showLanguageSelector"
-                position="top"
-                :border="false"
-                :custom-style="true"
+                trigger-type="custom"
             >
                 <!--Selected Language-->
-                <div
-                    class="flex justify-center items-center group bg-slate-100/50 hover:bg-slate-800/50 dark:text-slate-100 dark:bg-slate-800/75 dark:hover:bg-slate-100/75 dark:hover:text-slate-700 hover:text-slate-100 p-4 w-10 h-10 cursor-pointer overflow-hidden bg-cover"
-                    :class="`radius-${authScreenConf.radius ? authScreenConf.radius : appConf.radius}`"
-                >
-                    <component
-                        :is="languages.find(i => i.id === locale).flag"
-                        class="flex flex-shrink-0 w-14 aspect-auto drop-shadow transform hover:scale-110 active:scale-90 hover:-rotate-12 transition-all duration-300"
-                        :alt="languages.find(i => i.id === locale).name"
-                    />
-                    <span
-                        class="absolute text-sm -top-2 -right-2 bg-slate-100/10 dark:bg-slate-800/50 backdrop-filter backdrop-blur text-slate-100 px-1 rounded"
-                        v-text="languages.find(i => i.id === locale).id"
-                    ></span>
-                </div>
-                <template #boxContent>
-                    <!--Language Lists-->
-                    <div class="top-menu-dropdown-content-wrapper-transparent mb-3">
-                        <template v-for="lang in languages" :key="lang.id">
-                            <div
-                                class="top-menu-dropdown-item-transparent"
-                                @click="changeLang(lang.id)"
-                            >
-                                <component :is="lang.flag" class="w-6 aspect-auto drop-shadow" />
-                                <span v-text="lang.name"></span>
-                            </div>
-                        </template>
+                <template #trigger>
+                    <div
+                        class="flex justify-center items-center group bg-slate-100/50 hover:bg-slate-800/50 dark:text-slate-100 dark:bg-slate-800/75 dark:hover:bg-slate-100/75 dark:hover:text-slate-700 hover:text-slate-100 p-4 w-10 h-10 cursor-pointer overflow-hidden bg-cover"
+                        :class="`radius-${authScreenConf.radius ? authScreenConf.radius : appConf.radius}`"
+                    >
+                        <component
+                            :is="languages.find(i => i.id === locale).flag"
+                            class="flex flex-shrink-0 w-14 aspect-auto drop-shadow transform hover:scale-110 active:scale-90 hover:-rotate-12 transition-all duration-300"
+                            :alt="languages.find(i => i.id === locale).name"
+                        />
+                        <span
+                            class="absolute text-sm -top-2 -right-2 bg-slate-100/10 dark:bg-slate-800/50 backdrop-filter backdrop-blur text-slate-100 px-1 rounded"
+                            v-text="languages.find(i => i.id === locale).id"
+                        ></span>
                     </div>
                 </template>
-            </t-tooltip>
+
+                <!--Language Lists-->
+                <template v-for="lang in languages" :key="lang.id">
+                    <div
+                        class="top-menu-dropdown-item-transparent"
+                        @click="changeLang(lang.id)"
+                    >
+                        <component :is="lang.flag" class="w-6 aspect-auto drop-shadow" />
+                        <span v-text="lang.name"></span>
+                    </div>
+                </template>
+            </t-dropdown>
 
             <!--Dark Mode-->
             <div
@@ -361,6 +356,7 @@ watch(selectedTheme, async () => {
                         v-else-if="darkMode === 'auto'"
                         :size="24"
                         :alt="$t('general.auto')"
+                        class="flex justify-center items-center bg-slate-100/50 hover:bg-slate-800/50 dark:text-slate-100 dark:bg-slate-800/75 dark:hover:bg-slate-100/75 dark:hover:text-slate-700 hover:text-slate-100 p-2 w-10 h-10 cursor-pointer overflow-hidden"
                         @click="changeMode('light'); $refs.refLangChanger.click()"
                     />
                     <!-- Dark -->
@@ -368,7 +364,7 @@ watch(selectedTheme, async () => {
                         v-else
                         :size="24"
                         :alt="$t('general.darkMode')"
-                        class="transform hover:scale-110 active:scale-90 transition-transform duration-300"
+                        class="flex justify-center items-center bg-slate-100/50 hover:bg-slate-800/50 dark:text-slate-100 dark:bg-slate-800/75 dark:hover:bg-slate-100/75 dark:hover:text-slate-700 hover:text-slate-100 p-2 w-10 h-10 cursor-pointer overflow-hidden"
                         @click="changeMode('auto'); $refs.refLangChanger.click()"
                     />
                 </transition>
@@ -378,7 +374,7 @@ watch(selectedTheme, async () => {
                 v-if="authScreenConf.showDesignChanger && themes.length > 1"
                 class="flex justify-center items-center group bg-slate-100/50 hover:bg-slate-800/50 dark:text-slate-100 dark:bg-slate-800/75 dark:hover:bg-slate-100/75 dark:hover:text-slate-700 hover:text-slate-100 p-2 w-10 h-10 cursor-pointer"
                 :class="`radius-${authScreenConf.radius ? authScreenConf.radius : appConf.radius}`"
-                @click="changeTheme({theme:selectedTheme === 'Umay' ? 'Abay' : 'Umay'})"
+                @click="changeTheme({theme:selectedTheme === 'Umay' ? 'Kayra' : 'Umay'})"
             >
                 <IconReload
                     :size="24"
