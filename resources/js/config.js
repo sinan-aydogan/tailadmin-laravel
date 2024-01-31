@@ -12,7 +12,7 @@ const appConf = {
     radius: 'regular',
     mainMenuDesign: 'abay',
     defaultTheme: 'Kayra', /*Kayra, Umay*/
-    themes: ['Kayra', 'Umay'],
+    themes: ['Kayra'],
     darkMode: 'auto', /*dark, light, auto*/
 };
 
