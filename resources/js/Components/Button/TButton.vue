@@ -135,7 +135,7 @@ watch(() => themeStore.selectedTheme, async () => {
 
 <template>
     <!--Link-->
-    <Link v-if="type === 'link'" :href="link" :class="tStyle['container']" :target="linkTarget">
+    <Link v-if="type === 'link'" :href="link" :target="linkTarget">
         <slot></slot>
     </Link>
 
