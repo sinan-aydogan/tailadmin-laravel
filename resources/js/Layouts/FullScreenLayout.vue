@@ -5,7 +5,7 @@ defineProps({
         default: null
     },
     bgColor: {
-        type: Array,
+        type: String,
         default: null
     }
 });
