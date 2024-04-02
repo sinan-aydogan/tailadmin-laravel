@@ -19,7 +19,9 @@
         "typescript": "^5.0.2",
         "vite": "^5.0",
         "vue": "^3.3.13",
-        "vue-tsc": "^1.8.27"
+        "vue-tsc": "^1.8.27",
+        "@iconify-icons/tabler": "^1.2.95",
+        "@iconify/vue": "^4.1.1"
     },
     "dependencies": {
         "pinia": "^2.1.7"
