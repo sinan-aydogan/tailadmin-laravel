@@ -2,11 +2,20 @@
     "name": "laravel/laravel",
     "type": "project",
     "description": "The skeleton application for the Laravel framework.",
-    "keywords": ["laravel", "framework"],
+    "keywords": [
+        "laravel",
+        "framework"
+    ],
     "license": "MIT",
     "require": {
         "php": "^8.2",
         "inertiajs/inertia-laravel": "^1.0",
+        "laravel-lang/json-fallback": "^2.1.0",
+        "laravel-lang/locale-list": "^1.3",
+        "laravel-lang/locales": "^2.6",
+        "laravel-lang/native-country-names": "^1.4",
+        "laravel-lang/native-currency-names": "^1.4",
+        "laravel-lang/native-locale-names": "^2.3",
         "laravel/framework": "^11.0",
         "laravel/jetstream": "^5.0",
         "laravel/sanctum": "^4.0",
@@ -14,7 +23,15 @@
         "tightenco/ziggy": "^2.0"
     },
     "require-dev": {
+        "roave/security-advisories": "dev-latest",
         "fakerphp/faker": "^1.23",
+        "forxer/generic-term-translations-for-laravel": "^1.6.0",
+        "laravel-lang/actions": "^1.7",
+        "laravel-lang/attributes": "^2.10",
+        "laravel-lang/common": "^6.2",
+        "laravel-lang/http-statuses": "^3.8.2",
+        "laravel-lang/lang": "^15.1",
+        "laravel-lang/publisher": "^16.3",
         "laravel/pint": "^1.13",
         "laravel/sail": "^1.26",
         "mockery/mockery": "^1.6",
@@ -40,7 +57,8 @@
             "@php artisan package:discover --ansi"
         ],
         "post-update-cmd": [
-            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
+            "@php artisan vendor:publish --tag=laravel-assets --ansi --force",
+            "@php artisan lang:update"
         ],
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""

@@ -1,14 +1,33 @@
 module.exports = {
-    env: {
-        node: true,
+    "env": {
+        "browser": true,
+        "es2023": true,
+        "node": true
     },
-    extends: [
-        'eslint:recommended',
-        'plugin:vue/vue3-recommended',
-        'prettier',
+    "extends": [
+        "standard-with-typescript",
+        "plugin:vue/vue3-essential",
+        "plugin:prettier/recommended"
     ],
-    rules: {
-        // override/add rules settings here, such as:
-        // 'vue/no-unused-vars': 'error'
+    "overrides": [
+        {
+            "env": {
+                "node": true
+            },
+            "files": [
+                ".eslintrc.{js,cjs}"
+            ],
+            "parserOptions": {
+                "sourceType": "script"
+            }
+        }
+    ],
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module"
     },
+    "plugins": [
+        "vue"
+    ],
+    "rules": {}
 }

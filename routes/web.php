@@ -22,3 +22,6 @@ Route::middleware([
         return Inertia::render('Dashboard');
     })->name('dashboard');
 });
+
+/*Web routes*/
+@include(base_path('routes/web_routes/locale_routes.php'));
