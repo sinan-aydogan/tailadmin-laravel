@@ -1,5 +1,31 @@
+<script setup>
+import { ref } from 'vue';
+import { useForm } from '@inertiajs/vue3';
+import ActionSection from '@/Components/ActionSection.vue';
+import ConfirmationModal from '@/Components/ConfirmationModal.vue';
+import DangerButton from '@/Components/DangerButton.vue';
+import SecondaryButton from '@/Components/SecondaryButton.vue';
+
+const props = defineProps({
+    team: Object,
+});
+
+const confirmingTeamDeletion = ref(false);
+const form = useForm({});
+
+const confirmTeamDeletion = () => {
+    confirmingTeamDeletion.value = true;
+};
+
+const deleteTeam = () => {
+    form.delete(route('teams.destroy', props.team), {
+        errorBag: 'deleteTeam',
+    });
+};
+</script>
+
 <template>
-    <jet-action-section>
+    <ActionSection>
         <template #title>
             Delete Team
         </template>
@@ -9,18 +35,18 @@
         </template>
 
         <template #content>
-            <div class="max-w-xl text-sm text-gray-600">
+            <div class="max-w-xl text-sm text-gray-600 dark:text-gray-400">
                 Once a team is deleted, all of its resources and data will be permanently deleted. Before deleting this team, please download any data or information regarding this team that you wish to retain.
             </div>
 
             <div class="mt-5">
-                <jet-danger-button @click="confirmTeamDeletion">
+                <DangerButton @click="confirmTeamDeletion">
                     Delete Team
-                </jet-danger-button>
+                </DangerButton>
             </div>
 
             <!-- Delete Team Confirmation Modal -->
-            <jet-confirmation-modal :show="confirmingTeamDeletion" @close="confirmingTeamDeletion = false">
+            <ConfirmationModal :show="confirmingTeamDeletion" @close="confirmingTeamDeletion = false">
                 <template #title>
                     Delete Team
                 </template>
@@ -30,55 +56,20 @@
                 </template>
 
                 <template #footer>
-                    <jet-secondary-button @click="confirmingTeamDeletion = false">
+                    <SecondaryButton @click="confirmingTeamDeletion = false">
                         Cancel
-                    </jet-secondary-button>
+                    </SecondaryButton>
 
-                    <jet-danger-button class="ml-3" @click="deleteTeam" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                    <DangerButton
+                        class="ms-3"
+                        :class="{ 'opacity-25': form.processing }"
+                        :disabled="form.processing"
+                        @click="deleteTeam"
+                    >
                         Delete Team
-                    </jet-danger-button>
+                    </DangerButton>
                 </template>
-            </jet-confirmation-modal>
+            </ConfirmationModal>
         </template>
-    </jet-action-section>
+    </ActionSection>
 </template>
-
-<script>
-    import { defineComponent } from 'vue'
-    import JetActionSection from '@/Jetstream/ActionSection.vue'
-    import JetConfirmationModal from '@/Jetstream/ConfirmationModal.vue'
-    import JetDangerButton from '@/Jetstream/DangerButton.vue'
-    import JetSecondaryButton from '@/Jetstream/SecondaryButton.vue'
-
-    export default defineComponent({
-        props: ['team'],
-
-        components: {
-            JetActionSection,
-            JetConfirmationModal,
-            JetDangerButton,
-            JetSecondaryButton,
-        },
-
-        data() {
-            return {
-                confirmingTeamDeletion: false,
-                deleting: false,
-
-                form: this.$inertia.form()
-            }
-        },
-
-        methods: {
-            confirmTeamDeletion() {
-                this.confirmingTeamDeletion = true
-            },
-
-            deleteTeam() {
-                this.form.delete(route('teams.destroy', this.team), {
-                    errorBag: 'deleteTeam'
-                });
-            },
-        },
-    })
-</script>
