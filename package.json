@@ -3,7 +3,7 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "vite build && vite build --ssr"
+        "build": "vue-tsc && vite build && vite build --ssr"
     },
     "devDependencies": {
         "@inertiajs/vue3": "^1.0.14",
@@ -16,7 +16,12 @@
         "laravel-vite-plugin": "^1.0",
         "postcss": "^8.4.32",
         "tailwindcss": "^3.4.0",
+        "typescript": "^5.0.2",
         "vite": "^5.0",
-        "vue": "^3.3.13"
+        "vue": "^3.3.13",
+        "vue-tsc": "^1.8.27"
+    },
+    "dependencies": {
+        "pinia": "^2.1.7"
     }
 }
