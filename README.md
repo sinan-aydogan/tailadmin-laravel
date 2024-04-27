@@ -5,11 +5,7 @@ TailAdmin Inertia
   <img src="https://tailadmin.dev/img/tailadmin_v2.jpg" alt="TailAdmin"/>
 </p>
 <p align="center">
-  It's a dashboard theme/UI-Starter Kit with Laravel9, TailwindCSS3, Inertia and Vue3 (JetStream).
-</p>
-
-<p align="center">
-  :wave: If you looking for Vue2 version, You can use download <a href="https://github.com/sinan-aydogan/tailadmin-laravel/releases/tag/v.1.0.0"> TailAdmin v1 TailAdmin</a> :wave:
+  It's a dashboard theme/UI-Starter Kit with Laravel11, TailwindCSS3, Inertia and Vue3.4 (JetStream).
 </p>
 
 <p align="center">
@@ -33,17 +29,17 @@ TailAdmin Inertia
 
 <p align="center">
 <a href="https://discord.gg/TnjA2GqYmw">
-    <img src="public/img/demo/discord.svg" height="40">
+    <img src="public/images/tailadmin/misc/discord.svg" height="40">
 </a>
 </p>
 
 
 Requirements
 ------
-1. PHP min v.8
+1. PHP min v.8.1
 2. DB server (Recommended:MySQL)
 3. [composer min v.2](https://getcomposer.org/)
-4. [nodejs min v.14](https://nodejs.org/)
+4. [nodejs min v.18](https://nodejs.org/)
 5. Please check other requirements of  [Laravel](https://laravel.com/) and [Inertia](https://inertiajs.com/)
 
 
@@ -65,7 +61,7 @@ Setup Directions
 Admin Login Infos / Demo Account
 ------
 
-- **Demo:** *[https://v2.tailadmin.dev](https://v2.tailadmin.dev)*
+- **Demo:** *[https://demo.tailadmin.dev](https://demo.tailadmin.dev)*
 - **Email:** *admin@tailadmin.dev*
 - **Password:** *admin*
 
@@ -82,7 +78,7 @@ If you need to help more than this documentation:
 ## Featured :
 
 - TailwindCSS
-- Vue.js 3 Laravel 8 - JetStream Inertia
+- Vue.js 3.4 Laravel 11 - JetStream Inertia
 - Every component are well documented
 - Easy usability
 - Simple and short code blocks
@@ -93,6 +89,7 @@ If you need to help more than this documentation:
 - Completely UI Kit
 - Statistic Widgets for Summary or Small Data Windows
 - It works with FontAwesome
+
 - ### Content Components :
     - Alert 
     - Avatar / Avatar Group for Team Lists 
@@ -138,6 +135,32 @@ If you need to help more than this documentation:
 
 ---
 
+### Icons
+We use to Iconify icons for our project.
+
+Default icon set is Tabler Icons: https://tablericons.com/ - https://icon-sets.iconify.design/tabler/. You have two options to use it:
+
+1. You can install icon sets from https://iconify.design/icon-sets/ and offline use them in your project
+2. You can use Iconify API to load icons from CDN: https://docs.iconify.design/api/
+
+#### First option: Offline Icon usage example:
+
+````shell
+npm install --save-dev @iconify/vue @iconify-icons/tabler
+````
+````js
+import squareChevronDown from '@iconify-icons/tabler/square-chevron-down';
+````
+```html
+<icon :icon="squareChevronDown"></icon>
+```
+
+#### Second option: Online dynamic import usage example:
+```html
+<icon icon="tabler:square-chevron-down" />
+```
+------
+
 ### Partners and Sponsors
 
 > :metal: If you want to support us, you can send a mail to us via [admin@tailadmin.dev](mailto:admin@tailadmin.dev)
@@ -148,7 +171,7 @@ If you need to help more than this documentation:
 
 - [Tailwind](https://tailwindcss.com/)
 - [Vue](https://vuejs.org/)
-- [Fontawesome](https://fontawesome.com/)
+- [Iconify](https://iconify.design)
 
 ### Minor External Sources
 

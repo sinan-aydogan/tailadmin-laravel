@@ -1,40 +1,29 @@
 <?php
 
-namespace Tests\Feature;
-
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
 
-class RemoveTeamMemberTest extends TestCase
-{
-    use RefreshDatabase;
+test('team members can be removed from teams', function () {
+    $this->actingAs($user = User::factory()->withPersonalTeam()->create());
 
-    public function test_team_members_can_be_removed_from_teams()
-    {
-        $this->actingAs($user = User::factory()->withPersonalTeam()->create());
+    $user->currentTeam->users()->attach(
+        $otherUser = User::factory()->create(), ['role' => 'admin']
+    );
 
-        $user->currentTeam->users()->attach(
-            $otherUser = User::factory()->create(), ['role' => 'admin']
-        );
+    $response = $this->delete('/teams/'.$user->currentTeam->id.'/members/'.$otherUser->id);
 
-        $response = $this->delete('/teams/'.$user->currentTeam->id.'/members/'.$otherUser->id);
+    expect($user->currentTeam->fresh()->users)->toHaveCount(0);
+});
 
-        $this->assertCount(0, $user->currentTeam->fresh()->users);
-    }
+test('only team owner can remove team members', function () {
+    $user = User::factory()->withPersonalTeam()->create();
 
-    public function test_only_team_owner_can_remove_team_members()
-    {
-        $user = User::factory()->withPersonalTeam()->create();
+    $user->currentTeam->users()->attach(
+        $otherUser = User::factory()->create(), ['role' => 'admin']
+    );
 
-        $user->currentTeam->users()->attach(
-            $otherUser = User::factory()->create(), ['role' => 'admin']
-        );
+    $this->actingAs($otherUser);
 
-        $this->actingAs($otherUser);
+    $response = $this->delete('/teams/'.$user->currentTeam->id.'/members/'.$user->id);
 
-        $response = $this->delete('/teams/'.$user->currentTeam->id.'/members/'.$user->id);
-
-        $response->assertStatus(403);
-    }
-}
+    $response->assertStatus(403);
+});

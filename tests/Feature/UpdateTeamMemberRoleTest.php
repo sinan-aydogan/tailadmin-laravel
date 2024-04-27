@@ -1,48 +1,37 @@
 <?php
 
-namespace Tests\Feature;
-
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
 
-class UpdateTeamMemberRoleTest extends TestCase
-{
-    use RefreshDatabase;
+test('team member roles can be updated', function () {
+    $this->actingAs($user = User::factory()->withPersonalTeam()->create());
 
-    public function test_team_member_roles_can_be_updated()
-    {
-        $this->actingAs($user = User::factory()->withPersonalTeam()->create());
+    $user->currentTeam->users()->attach(
+        $otherUser = User::factory()->create(), ['role' => 'admin']
+    );
 
-        $user->currentTeam->users()->attach(
-            $otherUser = User::factory()->create(), ['role' => 'admin']
-        );
+    $response = $this->put('/teams/'.$user->currentTeam->id.'/members/'.$otherUser->id, [
+        'role' => 'editor',
+    ]);
 
-        $response = $this->put('/teams/'.$user->currentTeam->id.'/members/'.$otherUser->id, [
-            'role' => 'editor',
-        ]);
+    expect($otherUser->fresh()->hasTeamRole(
+        $user->currentTeam->fresh(), 'editor'
+    ))->toBeTrue();
+});
 
-        $this->assertTrue($otherUser->fresh()->hasTeamRole(
-            $user->currentTeam->fresh(), 'editor'
-        ));
-    }
+test('only team owner can update team member roles', function () {
+    $user = User::factory()->withPersonalTeam()->create();
 
-    public function test_only_team_owner_can_update_team_member_roles()
-    {
-        $user = User::factory()->withPersonalTeam()->create();
+    $user->currentTeam->users()->attach(
+        $otherUser = User::factory()->create(), ['role' => 'admin']
+    );
 
-        $user->currentTeam->users()->attach(
-            $otherUser = User::factory()->create(), ['role' => 'admin']
-        );
+    $this->actingAs($otherUser);
 
-        $this->actingAs($otherUser);
+    $response = $this->put('/teams/'.$user->currentTeam->id.'/members/'.$otherUser->id, [
+        'role' => 'editor',
+    ]);
 
-        $response = $this->put('/teams/'.$user->currentTeam->id.'/members/'.$otherUser->id, [
-            'role' => 'editor',
-        ]);
-
-        $this->assertTrue($otherUser->fresh()->hasTeamRole(
-            $user->currentTeam->fresh(), 'admin'
-        ));
-    }
-}
+    expect($otherUser->fresh()->hasTeamRole(
+        $user->currentTeam->fresh(), 'admin'
+    ))->toBeTrue();
+});
