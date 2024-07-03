@@ -580,7 +580,7 @@
 <script>
 /* Main Functions */
 import { defineComponent, ref } from "vue";
-import { Head, Link } from "@inertiajs/inertia-vue3";
+import { Head, Link } from "@inertiajs/vue3";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import darkModeFn from "@/Function/darkMode";
 

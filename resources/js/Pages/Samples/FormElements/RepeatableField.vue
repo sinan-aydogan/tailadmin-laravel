@@ -31,7 +31,7 @@
 <script>
 /*Main Functions*/
 import AppLayout from "@/Layouts/AppLayout";
-import {useForm} from "@inertiajs/inertia-vue3";
+import {useForm} from "@inertiajs/vue3";
 
 /*Components*/
 import TFormContent from "@/Components/Form/TFormContent";

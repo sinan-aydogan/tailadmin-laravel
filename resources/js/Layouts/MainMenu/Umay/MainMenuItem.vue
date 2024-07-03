@@ -1,7 +1,7 @@
 <script setup>
 /*Functions*/
 import {inject, onBeforeMount, defineEmits, defineProps, computed, reactive} from "vue";
-import {Link} from '@inertiajs/inertia-vue3';
+import {Link} from '@inertiajs/vue3';
 import {menuStatus, updateMenuStatus} from "@/Functions/menuTrigger";
 
 

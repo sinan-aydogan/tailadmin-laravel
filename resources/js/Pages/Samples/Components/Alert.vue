@@ -56,7 +56,7 @@
 <script>
 /*Main Functions*/
 import { defineComponent, ref, reactive } from "vue";
-import { Head } from "@inertiajs/inertia-vue3";
+import { Head } from "@inertiajs/vue3";
 
 /*Component*/
 import AppLayout from "@/Layouts/AppLayout";

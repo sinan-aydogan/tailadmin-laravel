@@ -71,7 +71,7 @@
 <script>
 /*Main Functions*/
 import { defineComponent, provide, ref } from "vue";
-import { Head } from "@inertiajs/inertia-vue3";
+import {Head} from "@inertiajs/vue3";
 import {breakpointsTailwind, useBreakpoints} from '@vueuse/core'
 
 /*Components*/

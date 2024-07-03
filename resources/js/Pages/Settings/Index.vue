@@ -60,7 +60,7 @@
 </template>
 
 <script>
-import {Link} from "@inertiajs/inertia-vue3";
+import {Link} from "@inertiajs/vue3";
 import AppLayout from "@/Layouts/AppLayout";
 import GridSection from "@/Layouts/GridSection";
 import TContentCard from "@/Components/Card/TContentCard";

@@ -249,7 +249,7 @@
 /*Main functions*/
 import {defineComponent, computed, ref} from "vue";
 import {loginStyleMixin} from "@/Mixins/Styles/loginStyleMixin";
-import {Link, useForm} from "@inertiajs/inertia-vue3";
+import {Link, useForm} from "@inertiajs/vue3";
 import windowSizeCalculator from "@/Functions/windowSizeCalculator";
 import darkModeFn from "@/Functions/darkMode";
 import useVuelidate from "@vuelidate/core";

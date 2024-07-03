@@ -28,7 +28,7 @@
 
 <script>
 import { defineComponent, defineAsyncComponent, toRefs, ref, computed, reactive } from "vue";
-import { Link } from "@inertiajs/inertia-vue3";
+import { Link } from "@inertiajs/vue3";
 import TLoadingAnimationThreeBars from "@/Components/Loading/Animations/TLoadingAnimationThreeBars";
 import TLoadingAnimationThreeDots from "@/Components/Loading/Animations/TLoadingAnimationThreeDots";
 import TLoadingAnimationCogs from "@/Components/Loading/Animations/TLoadingAnimationCogs";

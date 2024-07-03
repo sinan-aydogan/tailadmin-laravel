@@ -168,7 +168,7 @@ import TButton from "@/Components/Button/TButton";
 import FullScreenLayout from "@/Layouts/FullScreenLayout";
 import TInputGroup from "@/Components/Form/TInputGroup";
 import TInputText from "@/Components/Form/Inputs/TInputText";
-import { Link } from "@inertiajs/inertia-vue3";
+import { Link } from "@inertiajs/vue3";
 import windowSizeCalculator from "@/Functions/windowSizeCalculator";
 
 export default defineComponent({

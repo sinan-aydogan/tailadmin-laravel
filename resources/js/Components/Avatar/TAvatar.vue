@@ -45,7 +45,7 @@
 <script>
 /*Main functions*/
 import {defineComponent, getCurrentInstance, inject, ref, toRefs} from "vue";
-import {Link} from "@inertiajs/inertia-vue3";
+import {Link} from "@inertiajs/vue3";
 
 /*Sources*/
 import {avatarConf} from "@/config";

@@ -48,7 +48,7 @@
 /*Main functions*/
 import {settingsMenuMixin} from "@/Mixins/settingsMenuMixin";
 import {reactive, ref, toRefs, watch} from "vue";
-import {useForm} from "@inertiajs/inertia-vue3";
+import {useForm} from "@inertiajs/vue3";
 
 /*Components*/
 import AppLayout from "@/Layouts/AppLayout";

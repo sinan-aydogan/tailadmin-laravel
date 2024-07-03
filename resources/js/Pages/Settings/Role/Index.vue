@@ -50,7 +50,7 @@ import AppLayout from "@/Layouts/AppLayout";
 import InitialVerticalMenu from "@/Layouts/InitialVerticalMenu";
 import {settingsMenuMixin} from "@/Mixins/settingsMenuMixin";
 import {reactive, ref} from "vue";
-import {useForm} from "@inertiajs/inertia-vue3";
+import {useForm} from "@inertiajs/vue3";
 import TBackEndTable from "@/Components/Table/TBackEndTable";
 import TModal from "@/Components/Modal/TModal";
 import TButton from "@/Components/Button/TButton";

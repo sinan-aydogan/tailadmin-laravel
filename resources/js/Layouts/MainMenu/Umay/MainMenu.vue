@@ -1,7 +1,7 @@
 <script setup>
 /*Functions*/
 import {inject, provide, ref, watch} from "vue";
-import {Link, usePage} from "@inertiajs/inertia-vue3";
+import {Link, usePage} from "@inertiajs/vue3";
 import {menuStatus, updateMenuStatus} from "@/Functions/menuTrigger";
 
 /*Sources*/

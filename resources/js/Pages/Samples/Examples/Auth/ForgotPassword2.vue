@@ -30,7 +30,7 @@
 <script>
 import TForgot from "@/Components/Auth/TForgot";
 import TLogo from "@/Components/Icon/TLogo";
-import {Link} from '@inertiajs/inertia-vue3';
+import {Link} from '@inertiajs/vue3';
 
 export default {
     components: {TLogo, TForgot, Link},
