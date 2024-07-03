@@ -22,7 +22,7 @@
 
 <script>
 import {radiusSizeMixin} from "@/Mixins/radiusSizeMixin";
-import TCheckIcon from "@/Components/Icon/TCheckIcon";  
+import TCheckIcon from "@/Components/Icon/TCheckIcon.vue";
 import {computed, defineComponent, ref, toRefs} from "vue";
 
 export default defineComponent({

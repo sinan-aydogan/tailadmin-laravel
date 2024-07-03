@@ -142,16 +142,16 @@
 
 <script>
 /*Layout*/
-import AppLayout from "@/Layouts/AppLayout";
+import AppLayout from "@/Layouts/AppLayout.vue";
 /*Component*/
-import GridSection from "@/Layouts/GridSection";
-import TDropdown from "@/Components/Dropdown/TDropdown";
-import TDropdownItem from "@/Components/Dropdown/TDropdownItem";
-import TContentCard from "@/Components/Card/TContentCard";
-import TList from "@/Components/List/TList";
-import TListItem from "@/Components/List/TListItem";
-import TAvatar from "@/Components/Avatar/TAvatar";
-import TLogOutIcon from "@/Components/Icon/TLogOutIcon";
+import GridSection from "@/Layouts/GridSection.vue";
+import TDropdown from "@/Components/Dropdown/TDropdown.vue";
+import TDropdownItem from "@/Components/Dropdown/TDropdownItem.vue";
+import TContentCard from "@/Components/Card/TContentCard.vue";
+import TList from "@/Components/List/TList.vue";
+import TListItem from "@/Components/List/TListItem.vue";
+import TAvatar from "@/Components/Avatar/TAvatar.vue";
+import TLogOutIcon from "@/Components/Icon/TLogOutIcon.vue";
 
 export default {
     name: "Dropdown",

@@ -56,14 +56,14 @@
 <script>
 /*Main Functions*/
 import { defineComponent, ref, reactive } from "vue";
-import { Head } from "@inertiajs/inertia-vue3";
+import { Head } from "@inertiajs/vue3";
 
 /*Component*/
-import AppLayout from "@/Layouts/AppLayout";
-import GridSection from "@/Layouts/GridSection";
-import TAlert from "@/Components/Alert/TAlert";
-import TAvatar from "@/Components/Avatar/TAvatar";
-import TCodeShowcase from '@/Components/Code/TCodeShowcase'
+import AppLayout from "@/Layouts/AppLayout.vue";
+import GridSection from "@/Layouts/GridSection.vue";
+import TAlert from "@/Components/Alert/TAlert.vue";
+import TAvatar from "@/Components/Avatar/TAvatar.vue";
+import TCodeShowcase from '@/Components/Code/TCodeShowcase.vue'
 
 /*Import FontAwesomeIcon*/
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -427,7 +427,7 @@ export default defineComponent({
                     'import TAlert from \'@/Components/Alert/TAlert.vue\'\n' +
                     '\n' +
                     '/* Avatar Component Import */\n' +
-                    'import TAvatar from "@/Components/Avatar/TAvatar";\n' +
+                    'import TAvatar from "@/Components/Avatar/TAvatar.vue";\n' +
                     '\n' +
                     'export default {\n' +
                     '    components: {\n' +

@@ -68,12 +68,12 @@
     import JetSecondaryButton from '@/Jetstream/SecondaryButton'
     import TFormContent from "@/Components/Form/TFormContent";
     import TButton from "@/Components/Button/TButton";
-    import TCheckIcon from "@/Components/Icon/TCheckIcon";
+    import TCheckIcon from "@/Components/Icon/TCheckIcon.vue";
     import TFormSection from "@/Components/Form/TFormSection";
     import TModal from "@/Components/Modal/TModal";
     import TTrashIcon from "@/Components/Icon/TTrashIcon";
     import TInputGroup from "@/Components/Form/TInputGroup";
-    import TInputText from "@/Components/Form/Inputs/TInputText";
+    import TInputText from "@/Components/Form/Inputs/TInputText.vue";
 
     export default {
         components: {

@@ -1,7 +1,7 @@
 <script setup>
 /*Functions*/
 import {ref, onBeforeMount, defineEmits, inject, watch} from "vue";
-import {Link, usePage} from "@inertiajs/inertia-vue3";
+import {Link, usePage} from "@inertiajs/vue3";
 import {onClickOutside} from '@vueuse/core'
 import {cloneDeep} from "lodash";
 
@@ -10,13 +10,13 @@ defineEmits(['updateMainMenuStatus'])
 
 /*Sources*/
 import MainMenuLinks from "@/Sources/mainMenuLinks";
-import UserMenu from "@/Layouts/MainMenu/Abay/UserMenu";
+import UserMenu from "@/Layouts/MainMenu/Abay/UserMenu.vue";
 import {appConf, mainMenuConf} from "@/config";
 import {menuStatus} from "@/Functions/menuTrigger";
 
 const {mainMenuLinks, mainMenuFooterLinks} = MainMenuLinks({
-    roles: usePage().props.value.roles,
-    permissions: usePage().props.value.permissions
+    roles: usePage().props.roles,
+    permissions: usePage().props.permissions
 });
 
 const activeMainLink = ref([null, null, null]);

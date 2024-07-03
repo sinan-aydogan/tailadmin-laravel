@@ -330,11 +330,11 @@
 
 <script>
 /*Layout*/
-import AppLayout from "@/Layouts/AppLayout";
+import AppLayout from "@/Layouts/AppLayout.vue";
 /*Component*/
-import GridSection from "@/Layouts/GridSection";
-import TButton from "@/Components/Button/TButton";
-import TContentCard from "@/Components/Card/TContentCard";
+import GridSection from "@/Layouts/GridSection.vue";
+import TButton from "@/Components/Button/TButton.vue";
+import TContentCard from "@/Components/Card/TContentCard.vue";
 
 export default {
     name: "Button",

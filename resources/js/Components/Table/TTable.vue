@@ -372,12 +372,12 @@
 
 <script>
 import {computed, defineComponent, onBeforeMount, reactive, ref, toRefs, watch, watchEffect} from "vue";
-import TPaginate from "@/Components/Paginate/TPaginate";
-import TButton from "@/Components/Button/TButton";
-import TModal from "@/Components/Modal/TModal";
-import TInputSelect from "@/Components/Form/Inputs/TInputSelect";
-import TInputCheckBox from "@/Components/Form/Inputs/TInputCheckBox";
-import TInputText from "@/Components/Form/Inputs/TInputText";
+import TPaginate from "@/Components/Paginate/TPaginate.vue";
+import TButton from "@/Components/Button/TButton.vue";
+import TModal from "@/Components/Modal/TModal.vue";
+import TInputSelect from "@/Components/Form/Inputs/TInputSelect.vue";
+import TInputCheckBox from "@/Components/Form/Inputs/TInputCheckBox.vue";
+import TInputText from "@/Components/Form/Inputs/TInputText.vue";
 import _ from "lodash";
 import {useI18n} from "vue-i18n";
 import table_en from "@/Lang/en/table_lang";

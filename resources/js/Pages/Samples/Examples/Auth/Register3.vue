@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import {Link} from '@inertiajs/inertia-vue3';
+import {Link} from '@inertiajs/vue3';
 import TLogo from "@/Components/Icon/TLogo";
 import TRegister from "@/Components/Auth/TRegister";
 

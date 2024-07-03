@@ -49,12 +49,12 @@
 
 <script>
 /*Layout*/
-import AppLayout from "@/Layouts/AppLayout";
+import AppLayout from "@/Layouts/AppLayout.vue";
 /*Component*/
-import GridSection from "@/Layouts/GridSection";
-import ContentCard from "@/Components/Card/TContentCard";
-import TPaginate from "@/Components/Paginate/TPaginate";
-import TComponentStyleSelector from "@/Components/Misc/TComponentStyleSelector";
+import GridSection from "@/Layouts/GridSection.vue";
+import ContentCard from "@/Components/Card/TContentCard.vue";
+import TPaginate from "@/Components/Paginate/TPaginate.vue";
+import TComponentStyleSelector from "@/Components/Misc/TComponentStyleSelector.vue";
 
 export default {
   name: "Paginate",

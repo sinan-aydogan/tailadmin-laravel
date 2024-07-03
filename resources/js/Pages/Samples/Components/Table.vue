@@ -42,17 +42,18 @@
 </template>
 
 <script>
-import AppLayout from "@/Layouts/AppLayout";
-import TTable from "@/Components/Table/TTable";
-import TAvatar from "@/Components/Avatar/TAvatar";
+import AppLayout from "@/Layouts/AppLayout.vue";
+import TTable from "@/Components/Table/TTable.vue";
+import TAvatar from "@/Components/Avatar/TAvatar.vue";
+import TInputGroup from "@/Components/Form/TInputGroup.vue";
+import TInputText from "@/Components/Form/Inputs/TInputText.vue";
+import GridSection from "@/Layouts/GridSection.vue";
+import TButton from "@/Components/Button/TButton.vue";
+import TUserCircleIcon from "@/Components/Icon/TUserCircleIcon.vue";
+import { reactive } from "vue";
+
 import SshPre from "simple-syntax-highlighter";
 import "simple-syntax-highlighter/dist/sshpre.css";
-import TInputGroup from "@/Components/Form/TInputGroup";
-import TInputText from "@/Components/Form/Inputs/TInputText";
-import GridSection from "@/Layouts/GridSection";
-import TButton from "@/Components/Button/TButton";
-import TUserCircleIcon from "@/Components/Icon/TUserCircleIcon";
-import { reactive } from "vue";
 
 export default {
   name: "Table",

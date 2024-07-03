@@ -29,7 +29,7 @@ const menuDesign = computed(()=>{
     return menuDesigns[appConf.mainMenuDesign];
 })
 
-const mainMenu = defineAsyncComponent(() => import("@/Layouts/MainMenu/"+menuDesign.value+"/MainMenu.vue"));
+const mainMenu = defineAsyncComponent(() => import("./MainMenu/"+menuDesign.value+"/MainMenu.vue"));
 
 </script>
 <template>

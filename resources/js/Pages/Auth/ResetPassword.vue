@@ -35,7 +35,7 @@
 
 <script>
     import { defineComponent } from 'vue';
-    import { Head } from '@inertiajs/inertia-vue3';
+    import { Head } from '@inertiajs/vue3';
     import JetAuthenticationCard from '@/Jetstream/AuthenticationCard.vue'
     import JetAuthenticationCardLogo from '@/Jetstream/AuthenticationCardLogo.vue'
     import JetButton from '@/Jetstream/Button.vue'

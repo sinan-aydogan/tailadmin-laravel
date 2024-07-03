@@ -68,9 +68,9 @@
 <script>
 import { defineComponent } from 'vue'
 import {statisticWidgetStyleMixin} from "@/Mixins/Styles/statisticWidgetStyleMixin";
-import TContentCard from "@/Components/Card/TContentCard";
-import TChevronUpIcon from "@/Components/Icon/TChevronUpIcon";
-import TChevronDownIcon from "@/Components/Icon/TChevronDownIcon";
+import TContentCard from "@/Components/Card/TContentCard.vue";
+import TChevronUpIcon from "@/Components/Icon/TChevronUpIcon.vue";
+import TChevronDownIcon from "@/Components/Icon/TChevronDownIcon.vue";
 
 export default defineComponent({
   name: "TStatisticWidget",

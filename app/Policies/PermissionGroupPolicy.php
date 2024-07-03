@@ -4,90 +4,62 @@ namespace App\Policies;
 
 use App\Models\PermissionGroup;
 use App\Models\User;
-use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Auth\Access\Response;
 
 class PermissionGroupPolicy
 {
-    use HandlesAuthorization;
-
     /**
      * Determine whether the user can view any models.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function viewAny(User $user)
+    public function viewAny(User $user): bool
     {
         //
     }
 
     /**
      * Determine whether the user can view the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\PermissionGroup  $permissionGroup
-     * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, PermissionGroup $permissionGroup)
+    public function view(User $user, PermissionGroup $permissionGroup): bool
     {
         //
     }
 
     /**
      * Determine whether the user can create models.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function create(User $user)
+    public function create(User $user): bool
     {
         //
     }
 
     /**
      * Determine whether the user can update the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\PermissionGroup  $permissionGroup
-     * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, PermissionGroup $permissionGroup)
+    public function update(User $user, PermissionGroup $permissionGroup): bool
     {
         //
     }
 
     /**
      * Determine whether the user can delete the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\PermissionGroup  $permissionGroup
-     * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, PermissionGroup $permissionGroup)
+    public function delete(User $user, PermissionGroup $permissionGroup): bool
     {
         //
     }
 
     /**
      * Determine whether the user can restore the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\PermissionGroup  $permissionGroup
-     * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, PermissionGroup $permissionGroup)
+    public function restore(User $user, PermissionGroup $permissionGroup): bool
     {
         //
     }
 
     /**
      * Determine whether the user can permanently delete the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\PermissionGroup  $permissionGroup
-     * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, PermissionGroup $permissionGroup)
+    public function forceDelete(User $user, PermissionGroup $permissionGroup): bool
     {
         //
     }

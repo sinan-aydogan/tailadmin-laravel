@@ -13,10 +13,10 @@
 
 /*Main functions*/
 import {defineComponent} from "vue";
-import { Head } from "@inertiajs/inertia-vue3";
+import { Head } from "@inertiajs/vue3";
 
 /*Components*/
-import TLogin from "@/Components/Auth/TLogin";
+import TLogin from "@/Components/Auth/TLogin.vue";
 
 /* Multi language */
 import {useI18n} from "vue-i18n";

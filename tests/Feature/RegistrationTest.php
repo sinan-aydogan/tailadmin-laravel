@@ -1,54 +1,35 @@
 <?php
 
-namespace Tests\Feature;
-
-use App\Providers\RouteServiceProvider;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Fortify\Features;
 use Laravel\Jetstream\Jetstream;
-use Tests\TestCase;
 
-class RegistrationTest extends TestCase
-{
-    use RefreshDatabase;
+test('registration screen can be rendered', function () {
+    $response = $this->get('/register');
 
-    public function test_registration_screen_can_be_rendered()
-    {
-        if (! Features::enabled(Features::registration())) {
-            return $this->markTestSkipped('Registration support is not enabled.');
-        }
+    $response->assertStatus(200);
+})->skip(function () {
+    return ! Features::enabled(Features::registration());
+}, 'Registration support is not enabled.');
 
-        $response = $this->get('/register');
+test('registration screen cannot be rendered if support is disabled', function () {
+    $response = $this->get('/register');
 
-        $response->assertStatus(200);
-    }
+    $response->assertStatus(404);
+})->skip(function () {
+    return Features::enabled(Features::registration());
+}, 'Registration support is enabled.');
 
-    public function test_registration_screen_cannot_be_rendered_if_support_is_disabled()
-    {
-        if (Features::enabled(Features::registration())) {
-            return $this->markTestSkipped('Registration support is enabled.');
-        }
+test('new users can register', function () {
+    $response = $this->post('/register', [
+        'name' => 'Test User',
+        'email' => 'test@example.com',
+        'password' => 'password',
+        'password_confirmation' => 'password',
+        'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature(),
+    ]);
 
-        $response = $this->get('/register');
-
-        $response->assertStatus(404);
-    }
-
-    public function test_new_users_can_register()
-    {
-        if (! Features::enabled(Features::registration())) {
-            return $this->markTestSkipped('Registration support is not enabled.');
-        }
-
-        $response = $this->post('/register', [
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-            'password' => 'password',
-            'password_confirmation' => 'password',
-            'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature(),
-        ]);
-
-        $this->assertAuthenticated();
-        $response->assertRedirect(RouteServiceProvider::HOME);
-    }
-}
+    $this->assertAuthenticated();
+    $response->assertRedirect(route('dashboard', absolute: false));
+})->skip(function () {
+    return ! Features::enabled(Features::registration());
+}, 'Registration support is not enabled.');

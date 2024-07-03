@@ -39,11 +39,11 @@
 import { defineComponent } from "vue";
 
 /*Component*/
-import AppLayout from "@/Layouts/AppLayout";
-import GridSection from "@/Layouts/GridSection";
-import TBreadcrumb from "@/Components/Breadcrumb/TBreadcrumb";
-import TButton from "@/Components/Button/TButton";
-import TAlert from "@/Components/Alert/TAlert";
+import AppLayout from "@/Layouts/AppLayout.vue";
+import GridSection from "@/Layouts/GridSection.vue";
+import TBreadcrumb from "@/Components/Breadcrumb/TBreadcrumb.vue";
+import TButton from "@/Components/Button/TButton.vue";
+import TAlert from "@/Components/Alert/TAlert.vue";
 
 /*Import FontAwesomeIcon*/
 import { library } from "@fortawesome/fontawesome-svg-core";

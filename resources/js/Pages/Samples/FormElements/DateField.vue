@@ -67,7 +67,7 @@ import AppLayout from "@/Layouts/AppLayout";
 import TFormContent from "@/Components/Form/TFormContent";
 import TFormSection from "@/Components/Form/TFormSection";
 import TInputGroup from "@/Components/Form/TInputGroup";
-import TInputText from "@/Components/Form/Inputs/TInputText";
+import TInputText from "@/Components/Form/Inputs/TInputText.vue";
 import TInputDate from "@/Components/Form/Inputs/TInputDate";
 
 export default {

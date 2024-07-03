@@ -1,7 +1,7 @@
 <script setup>
 /*Functions*/
 import {inject, provide, ref, watch} from "vue";
-import {Link, usePage} from "@inertiajs/inertia-vue3";
+import {Link, usePage} from "@inertiajs/vue3";
 import {menuStatus, updateMenuStatus} from "@/Functions/menuTrigger";
 
 /*Sources*/
@@ -11,8 +11,8 @@ import MainMenuItem from "@/Layouts/MainMenu/Umay/MainMenuItem";
 import {cloneDeep} from "lodash";
 
 const {mainMenuLinks, mainMenuFooterLinks} = MainMenuLinks({
-    roles: usePage().props.value.roles,
-    permissions: usePage().props.value.permissions
+    roles: usePage().props.roles,
+    permissions: usePage().props.permissions
 });
 
 /*Menu - Variables*/

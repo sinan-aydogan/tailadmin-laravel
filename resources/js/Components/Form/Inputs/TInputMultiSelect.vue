@@ -245,7 +245,7 @@
 </template>
 
 <script>
-import TInputText from "@/Components/Form/Inputs/TInputText";
+import TInputText from "@/Components/Form/Inputs/TInputText.vue";
 import TBadge from "@/Components/Badge/TBadge";
 import {onClickOutside} from "@vueuse/core";
 import {defineComponent, reactive, ref, toRefs, computed} from "vue";

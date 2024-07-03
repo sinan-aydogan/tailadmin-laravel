@@ -220,13 +220,13 @@
 <script>
 import {defineComponent, ref} from "vue";
 /*Layout*/
-import AppLayout from "@/Layouts/AppLayout";
+import AppLayout from "@/Layouts/AppLayout.vue";
 /*Component*/
-import GridSection from "@/Layouts/GridSection";
-import TCollapsible from "@/Components/Collapsible/TCollapsible";
-import TCollapsibleItem from "@/Components/Collapsible/TCollapsibleItem";
-import TContentCard from "@/Components/Card/TContentCard";
-import TLogo from "@/Components/Icon/TLogo";
+import GridSection from "@/Layouts/GridSection.vue";
+import TCollapsible from "@/Components/Collapsible/TCollapsible.vue";
+import TCollapsibleItem from "@/Components/Collapsible/TCollapsibleItem.vue";
+import TContentCard from "@/Components/Card/TContentCard.vue";
+import TLogo from "@/Components/Icon/TLogo.vue";
 
 export default defineComponent({
     name: "Collapsible",

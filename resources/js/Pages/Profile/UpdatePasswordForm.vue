@@ -58,10 +58,10 @@
     import JetLabel from '@/Jetstream/Label'
     import TFormContent from "@/Components/Form/TFormContent";
     import TButton from "@/Components/Button/TButton";
-    import TCheckIcon from "@/Components/Icon/TCheckIcon";
+    import TCheckIcon from "@/Components/Icon/TCheckIcon.vue";
     import TFormSection from "@/Components/Form/TFormSection";
     import TInputGroup from "@/Components/Form/TInputGroup";
-    import TInputText from "@/Components/Form/Inputs/TInputText";
+    import TInputText from "@/Components/Form/Inputs/TInputText.vue";
 
     export default {
         components: {

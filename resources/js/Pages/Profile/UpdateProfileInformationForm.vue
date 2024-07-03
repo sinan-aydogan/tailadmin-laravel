@@ -108,9 +108,9 @@ import TInputGroup from "@/Components/Form/TInputGroup";
 import TButton from "@/Components/Button/TButton";
 import TPlusIcon from "@/Components/Icon/TPlusIcon";
 import TXIcon from "@/Components/Icon/TXIcon";
-import TInputText from "@/Components/Form/Inputs/TInputText";
+import TInputText from "@/Components/Form/Inputs/TInputText.vue";
 import TBadge from "@/Components/Badge/TBadge";
-import TCheckIcon from "@/Components/Icon/TCheckIcon";
+import TCheckIcon from "@/Components/Icon/TCheckIcon.vue";
 
 export default {
     components: {

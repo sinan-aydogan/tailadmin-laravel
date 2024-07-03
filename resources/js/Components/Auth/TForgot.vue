@@ -76,12 +76,12 @@
 <script>
 import { defineComponent } from "vue";
 import { forgotPasswordStyleMixin } from "@/Mixins/Styles/forgotPasswordStyleMixin";
-import FullScreenLayout from "@/Layouts/FullScreenLayout";
-import TInputGroup from "@/Components/Form/TInputGroup";
-import TInputText from "@/Components/Form/Inputs/TInputText";
-import TButton from "@/Components/Button/TButton";
-import TAlert from "@/Components/Alert/TAlert";
-import TBellIcon from "@/Components/Icon/TBellIcon";
+import FullScreenLayout from "@/Layouts/FullScreenLayout.vue";
+import TInputGroup from "@/Components/Form/TInputGroup.vue";
+import TInputText from "@/Components/Form/Inputs/TInputText.vue";
+import TButton from "@/Components/Button/TButton.vue";
+import TAlert from "@/Components/Alert/TAlert.vue";
+import TBellIcon from "@/Components/Icon/TBellIcon.vue";
 import windowSizeCalculator from "@/Functions/windowSizeCalculator";
 
 export default defineComponent({

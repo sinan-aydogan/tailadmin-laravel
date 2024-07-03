@@ -21,7 +21,7 @@
 <script>
 import {defineComponent} from "vue";
 import {toastrStyleMixin} from "@/Mixins/Styles/toastrStyleMixin";
-import TXCircleIcon from "@/Components/Icon/TXCircleIcon";
+import TXCircleIcon from "@/Components/Icon/TXCircleIcon.vue";
 
 export default defineComponent({
   name: "TToastr",

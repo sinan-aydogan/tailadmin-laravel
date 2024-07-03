@@ -47,8 +47,8 @@
 <script>
 import { computed, defineComponent, provide, reactive, ref, toRefs } from "vue";
 import { onClickOutside } from "@vueuse/core";
-import TChevronDownIcon from "@/Components/Icon/TChevronDownIcon";
-import TButton from "@/Components/Button/TButton";
+import TChevronDownIcon from "@/Components/Icon/TChevronDownIcon.vue";
+import TButton from "@/Components/Button/TButton.vue";
 
 export default defineComponent({
   name: "TDropdown",

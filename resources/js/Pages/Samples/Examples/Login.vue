@@ -28,10 +28,10 @@
 
 <script>
 /*Layout*/
-import AppLayout from "@/Layouts/AppLayout";
+import AppLayout from "@/Layouts/AppLayout.vue";
 /*Component*/
-import GridSection from "@/Layouts/GridSection";
-import TButton from "@/Components/Button/TButton";
+import GridSection from "@/Layouts/GridSection.vue";
+import TButton from "@/Components/Button/TButton.vue";
 
 export default {
   name: "LoginApp",

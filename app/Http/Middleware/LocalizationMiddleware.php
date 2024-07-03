@@ -2,20 +2,21 @@
 
 namespace App\Http\Middleware;
 
+use Carbon\Carbon;
 use Closure;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\App;
+
 
 class LocalizationMiddleware
 {
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
-     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
+     * @param \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response) $next
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next): Response
     {
         // Available languages
         $availableLangs = [
@@ -31,9 +32,11 @@ class LocalizationMiddleware
         // Determinate the language of the session
         if ($request->session()->has('locale')) {
             // Apply the lang of the session to global
-            \Illuminate\Support\Facades\App::setLocale($request->session()->get('locale'));
-            \Carbon\Carbon::setLocale($request->session()->get('locale') . '_' . strtoupper($request->session()->get('locale')) . '.UTF-8');
+            App::setLocale($request->session()->get('locale'));
+            Carbon::setLocale($request->session()->get('locale') . '_' . strtoupper($request->session()->get('locale')) . '.UTF-8');
         }
+
         return $next($request);
     }
 }
+

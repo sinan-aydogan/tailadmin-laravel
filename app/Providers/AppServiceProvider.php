@@ -3,71 +3,33 @@
 namespace App\Providers;
 
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Env;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\ServiceProvider;
-use Inertia\Inertia;
 
 class AppServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
-     *
-     * @return void
      */
-    public function register()
+    public function register(): void
     {
         //
     }
 
     /**
      * Bootstrap any application services.
-     *
-     * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         //Max key length error fix
         Schema::defaultStringLength(191);
 
-        //Shared Variables
-        Inertia::share([
-            'errors' => function () {
-                return Session::get('errors')
-                    ? Session::get('errors')->getBag('default')->getMessages()
-                    : (object)[];
-            },
-            'lang' => function () {
-                return Session::get('locale');
-            },
-            'project_info' => function () {
-                return Env::get('APP_NAME');
-            },
-            'roles' => function () {
-                if (Auth::check()) {
-                    return Auth::user()->getRoleNames();
-                } else {
-                    return [];
-                }
-            },
-            'permissions' => function () {
-                if (Auth::check()) {
-                    return Auth::user()->getAllPermissions();
-                } else {
-                    return [];
-                }
-            }
-        ]);
-
-        Inertia::share('flash', function () {
-            return [
-                'message' => Session::get('message'),
-            ];
+        /*Super Admin*/
+        Gate::before(function ($user, $ability) {
+            return $user->hasRole('Super Admin') ? true : null;
         });
 
-        /*Search Macro for Backend Table Component*/
         Builder::macro('tableSearch', function ($request) {
             $request = (object)$request;
             $perPage = (isset($request->perPage)) ? $request->perPage : 5;
@@ -176,21 +138,19 @@ class AppServiceProvider extends ServiceProvider
                 }
 
                 /*Order Function*/
-                if($request->sortDirection){
+                if ($request->sortDirection) {
                     $sortDirection = 'desc';
-                }else{
+                } else {
                     $sortDirection = 'asc';
                 }
 
-                if($request->sortKey){
+                if ($request->sortKey) {
                     $searchQuery->orderBy($request->sortKey, $sortDirection);
                 }
 
             } else {
                 $searchQuery = $this;
             }
-
-
 
 
             return $searchQuery->paginate($perPage);

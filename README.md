@@ -5,7 +5,7 @@ TailAdmin Inertia
   <img src="https://tailadmin.dev/img/tailadmin_v2.jpg" alt="TailAdmin"/>
 </p>
 <p align="center">
-  It's a dashboard theme/UI-Starter Kit with Laravel9, TailwindCSS3, Inertia and Vue3 (JetStream).
+  It's a dashboard theme/UI-Starter Kit with Laravel 11, TailwindCSS3, Inertia and Vue3 (JetStream).
 </p>
 
 <p align="center">
@@ -40,10 +40,10 @@ TailAdmin Inertia
 
 Requirements
 ------
-1. PHP min v.8
+1. PHP min v.8.2
 2. DB server (Recommended:MySQL)
 3. [composer min v.2](https://getcomposer.org/)
-4. [nodejs min v.14](https://nodejs.org/)
+4. [nodejs min v.18](https://nodejs.org/)
 5. Please check other requirements of  [Laravel](https://laravel.com/) and [Inertia](https://inertiajs.com/)
 
 
@@ -58,14 +58,14 @@ Setup Directions
 6. ```php artisan migrate --seed```
 7. ```php artisan storage:link```
 8. ```php artisan key:generate```
-9. ```npm run hot```
+9. ```npm run dev```
 10. ```php artisan serve```
 11. ```Goto: http://localhost:8000```
 
 Admin Login Infos / Demo Account
 ------
 
-- **Demo:** *[https://v2.tailadmin.dev](https://v2.tailadmin.dev)*
+- **Demo:** *[https://tailadmin-demo.tailadmin.dev](https://tailadmin-demo.tailadmin.dev)*
 - **Email:** *admin@tailadmin.dev*
 - **Password:** *admin*
 
@@ -82,7 +82,7 @@ If you need to help more than this documentation:
 ## Featured :
 
 - TailwindCSS
-- Vue.js 3 Laravel 8 - JetStream Inertia
+- Vue.js 3 Laravel 11 - JetStream Inertia
 - Every component are well documented
 - Easy usability
 - Simple and short code blocks

@@ -192,14 +192,14 @@
 <script>
 /*Layout*/
 import {ref, reactive, defineComponent} from "vue";
-import AppLayout from "@/Layouts/AppLayout";
+import AppLayout from "@/Layouts/AppLayout.vue";
 /*Component*/
-import GridSection from "@/Layouts/GridSection";
-import TContentCard from "@/Components/Card/TContentCard";
-import TModal from "@/Components/Modal/TModal";
-import TButton from "@/Components/Button/TButton";
-import TInputGroup from "@/Components/Form/TInputGroup";
-import TInputSelect from "@/Components/Form/Inputs/TInputSelect";
+import GridSection from "@/Layouts/GridSection.vue";
+import TContentCard from "@/Components/Card/TContentCard.vue";
+import TModal from "@/Components/Modal/TModal.vue";
+import TButton from "@/Components/Button/TButton.vue";
+import TInputGroup from "@/Components/Form/TInputGroup.vue";
+import TInputSelect from "@/Components/Form/Inputs/TInputSelect.vue";
 
 export default defineComponent({
   name: "Modal",

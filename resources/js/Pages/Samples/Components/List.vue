@@ -177,18 +177,18 @@
 
 <script>
 /*Layout*/
-import AppLayout from "@/Layouts/AppLayout";
+import AppLayout from "@/Layouts/AppLayout.vue";
 /*Component*/
-import GridSection from "@/Layouts/GridSection";
-import TList from "@/Components/List/TList";
-import TListItem from "@/Components/List/TListItem";
-import TBadge from "@/Components/Badge/TBadge";
-import TButton from "@/Components/Button/TButton";
-import TAvatar from "@/Components/Avatar/TAvatar";
-import TComponentStyleSelector from "@/Components/Misc/TComponentStyleSelector";
-import TToastr from "@/Components/Toastr/TToastr";
-import TContentCard from "@/Components/Card/TContentCard";
-import TInputCheckBox from "@/Components/Form/Inputs/TInputCheckBox";
+import GridSection from "@/Layouts/GridSection.vue";
+import TList from "@/Components/List/TList.vue";
+import TListItem from "@/Components/List/TListItem.vue";
+import TBadge from "@/Components/Badge/TBadge.vue";
+import TButton from "@/Components/Button/TButton.vue";
+import TAvatar from "@/Components/Avatar/TAvatar.vue";
+import TComponentStyleSelector from "@/Components/Misc/TComponentStyleSelector.vue";
+import TToastr from "@/Components/Toastr/TToastr.vue";
+import TContentCard from "@/Components/Card/TContentCard.vue";
+import TInputCheckBox from "@/Components/Form/Inputs/TInputCheckBox.vue";
 import { defineComponent, reactive, ref } from "vue";
 
 export default defineComponent({

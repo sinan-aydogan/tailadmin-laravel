@@ -257,7 +257,7 @@
 <script>
 /* Main */
 import { defineComponent, ref } from "vue";
-import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
+import { Head, Link, useForm } from "@inertiajs/vue3";
 import darkModeFn from "@/Function/darkMode";
 import useVuelidate from "@vuelidate/core";
 import { required, email } from "@vuelidate/validators";

@@ -3,24 +3,22 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Inertia\Middleware;
+use Tighten\Ziggy\Ziggy;
 
 class HandleInertiaRequests extends Middleware
 {
     /**
-     * The root template that's loaded on the first page visit.
+     * The root template that is loaded on the first page visit.
      *
-     * @see https://inertiajs.com/server-side-setup#root-template
      * @var string
      */
     protected $rootView = 'app';
 
     /**
-     * Determines the current asset version.
-     *
-     * @see https://inertiajs.com/asset-versioning
-     * @param  \Illuminate\Http\Request  $request
-     * @return string|null
+     * Determine the current asset version.
      */
     public function version(Request $request): ?string
     {
@@ -28,20 +26,40 @@ class HandleInertiaRequests extends Middleware
     }
 
     /**
-     * Defines the props that are shared by default.
+     * Define the props that are shared by default.
      *
-     * @see https://inertiajs.com/shared-data
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
+     * @return array<string, mixed>
      */
     public function share(Request $request): array
     {
-        return array_merge(parent::share($request), [
+        return [
+            ...parent::share($request),
+            'ziggy' => fn () => [
+                ...(new Ziggy)->toArray(),
+                'location' => $request->url(),
+            ],
             //Flash Messages
             'flash' => [
-                'message' => fn () => $request->session()->get('message'),
-                'toastr' => fn () => $request->session()->get('toastr')
-            ]
-        ]);
+                'message' => fn () => Session::get('message'),
+                'toastr' => fn () => Session::get('toastr')
+            ],
+            'lang' => function () {
+                return Session::get('locale');
+            },
+            'roles' => function () {
+                if (Auth::check()) {
+                    return Auth::user()?->getRoleNames();
+                }
+
+                return [];
+            },
+            'permissions' => function () {
+                if (Auth::check()) {
+                    return Auth::user()?->getAllPermissions();
+                }
+
+                return [];
+            }
+        ];
     }
 }
