@@ -11,8 +11,8 @@ import MainMenuItem from "@/Layouts/MainMenu/Umay/MainMenuItem";
 import {cloneDeep} from "lodash";
 
 const {mainMenuLinks, mainMenuFooterLinks} = MainMenuLinks({
-    roles: usePage().props.value.roles,
-    permissions: usePage().props.value.permissions
+    roles: usePage().props.roles,
+    permissions: usePage().props.permissions
 });
 
 /*Menu - Variables*/

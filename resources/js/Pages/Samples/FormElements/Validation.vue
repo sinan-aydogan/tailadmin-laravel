@@ -27,7 +27,7 @@ export default {
             '</t-input-group>',
         js:
             'import TInputGroup from "@/Components/Form/TInputGroup";\n' +
-            'import TInputText from "@/Components/Form/Inputs/TInputText";\n' +
+            'import TInputText from "@/Components/Form/Inputs/TInputText.vue";\n' +
             '\n' +
             'export default {\n' +
             '  name: "InputGroup",\n' +

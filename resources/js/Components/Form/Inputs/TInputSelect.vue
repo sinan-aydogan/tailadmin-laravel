@@ -221,7 +221,7 @@
 </template>
 
 <script>
-import TInputText from "@/Components/Form/Inputs/TInputText";
+import TInputText from "@/Components/Form/Inputs/TInputText.vue";
 import {onClickOutside} from "@vueuse/core";
 import {ref, toRefs, computed, inject} from "vue";
 import {useI18n} from "vue-i18n";

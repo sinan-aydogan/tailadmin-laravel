@@ -37,7 +37,7 @@ import {useForm} from "@inertiajs/vue3";
 import TFormContent from "@/Components/Form/TFormContent";
 import TFormSection from "@/Components/Form/TFormSection";
 import TInputGroup from "@/Components/Form/TInputGroup";
-import TInputText from "@/Components/Form/Inputs/TInputText";
+import TInputText from "@/Components/Form/Inputs/TInputText.vue";
 import TInputRepeatable from "@/Components/Form/Inputs/TInputRepeatable";
 
 export default {

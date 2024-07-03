@@ -61,7 +61,7 @@
 import AppLayout from "@/Layouts/AppLayout";
 import ContentCard from "@/Components/Card/TContentCard";
 import TInputGroup from "@/Components/Form/TInputGroup";
-import TInputText from "@/Components/Form/Inputs/TInputText";
+import TInputText from "@/Components/Form/Inputs/TInputText.vue";
 import GridSection from "@/Layouts/GridSection";
 import TCashIcon from "@/Components/Icon/TCashIcon";
 

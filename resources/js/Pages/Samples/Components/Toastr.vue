@@ -31,7 +31,7 @@ import AppLayout from "@/Layouts/AppLayout";
 import TFormSection from "@/Components/Form/TFormSection";
 import TFormContent from "@/Components/Form/TFormContent";
 import TInputGroup from "@/Components/Form/TInputGroup";
-import TInputText from "@/Components/Form/Inputs/TInputText";
+import TInputText from "@/Components/Form/Inputs/TInputText.vue";
 import TInputSelect from "@/Components/Form/Inputs/TInputSelect";
 
 export default {

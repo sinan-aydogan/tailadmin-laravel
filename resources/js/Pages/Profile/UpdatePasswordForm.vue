@@ -61,7 +61,7 @@
     import TCheckIcon from "@/Components/Icon/TCheckIcon.vue";
     import TFormSection from "@/Components/Form/TFormSection";
     import TInputGroup from "@/Components/Form/TInputGroup";
-    import TInputText from "@/Components/Form/Inputs/TInputText";
+    import TInputText from "@/Components/Form/Inputs/TInputText.vue";
 
     export default {
         components: {

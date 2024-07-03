@@ -157,7 +157,7 @@ import AppLayout from "@/Layouts/AppLayout";
 import GridSection from "@/Layouts/GridSection";
 import TContentCard from "@/Components/Card/TContentCard";
 import TButton from "@/Components/Button/TButton";
-import TLoading from "@/Components/Loading/TLoading";
+import TLoading from "@/Components/Loading/TLoading.vue";
 import { defineComponent, ref } from "vue";
 
 export default defineComponent({

@@ -115,7 +115,7 @@ import TCheckIcon from "@/Components/Icon/TCheckIcon.vue";
 import TLogOutIcon from "@/Components/Icon/TLogOutIcon";
 import TModal from "@/Components/Modal/TModal";
 import TInputGroup from "@/Components/Form/TInputGroup";
-import TInputText from "@/Components/Form/Inputs/TInputText";
+import TInputText from "@/Components/Form/Inputs/TInputText.vue";
 
 export default {
     props: ['sessions'],

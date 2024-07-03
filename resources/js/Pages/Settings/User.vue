@@ -57,7 +57,7 @@ import TTable from "@/Components/Table/TTable";
 import TButton from "@/Components/Button/TButton";
 import TTrashIcon from "@/Components/Icon/TTrashIcon";
 import TPencilAltIcon from "@/Components/Icon/TPencilAltIcon";
-import TDropdown from "@/Components/Dropdown/TDropdown";
+import TDropdown from "@/Components/Dropdown/TDropdown.vue";
 import TDotsVerticalIcon from "@/Components/Icon/TDotsVerticalIcon";
 import TList from "@/Components/List/TList";
 import TListItem from "@/Components/List/TListItem";

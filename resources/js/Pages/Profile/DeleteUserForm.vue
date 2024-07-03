@@ -73,7 +73,7 @@
     import TModal from "@/Components/Modal/TModal";
     import TTrashIcon from "@/Components/Icon/TTrashIcon";
     import TInputGroup from "@/Components/Form/TInputGroup";
-    import TInputText from "@/Components/Form/Inputs/TInputText";
+    import TInputText from "@/Components/Form/Inputs/TInputText.vue";
 
     export default {
         components: {

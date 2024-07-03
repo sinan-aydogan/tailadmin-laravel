@@ -427,7 +427,7 @@ export default defineComponent({
                     'import TAlert from \'@/Components/Alert/TAlert.vue\'\n' +
                     '\n' +
                     '/* Avatar Component Import */\n' +
-                    'import TAvatar from "@/Components/Avatar/TAvatar";\n' +
+                    'import TAvatar from "@/Components/Avatar/TAvatar.vue";\n' +
                     '\n' +
                     'export default {\n' +
                     '    components: {\n' +

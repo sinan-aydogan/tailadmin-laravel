@@ -9,16 +9,16 @@
                 <!--User Info-->
                 <span class="staff-info">
                 <span class="staff-name">
-                  {{ $page.props.user.name }}
+                  {{ $page.props.auth.user.name }}
                 </span>
                 <span class="staff-title">
-                  {{ $page.props.user.title }}
+                  {{ $page.props.auth.user.title }}
                 </span>
               </span>
                 <!--User Photo-->
                 <t-avatar
                     v-if="$page.props.jetstream.managesProfilePhotos"
-                    :alt="$page.props.user.name"
+                    :alt="$page.props.auth.user.name"
                     :indicator="{
                           color:'green',
                           label : '',
@@ -26,7 +26,7 @@
                         }"
                     :radius="8"
                     :size="3"
-                    :src="$page.props.user.profile_photo_url"
+                    :src="$page.props.auth.user.profile_photo_url"
                 />
             </div>
         </template>
@@ -52,7 +52,7 @@
                     <div class="top-menu-dropdown-header" v-text="tm('manageTeam')"/>
 
                     <!-- Team Settings -->
-                    <Link :href="route('teams.show', $page.props.user.current_team)">
+                    <Link :href="route('teams.show', $page.props.auth.user.current_team)">
                         <div class="top-menu-dropdown-item" v-text="tm('teamSettings')"/>
                     </Link>
 
@@ -66,12 +66,12 @@
                     <div class="dropdown-item-separator"/>
                     <div class="top-menu-dropdown-header" v-text="tm('switchTeams')"/>
                     <div class="top-menu-dropdown-item">
-                        <template v-for="team in $page.props.user.all_teams" :key="team.id">
+                        <template v-for="team in $page.props.auth.user.all_teams" :key="team.id">
                             <form @submit.prevent="switchToTeam(team)">
                                 <button>
                           <span class="flex items-center">
                             <svg
-                                v-if="team.id === $page.props.user.current_team_id"
+                                v-if="team.id === $page.props.auth.user.current_team_id"
                                 class="mr-2 h-5 w-5 text-green-500"
                                 xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 20 20"
@@ -126,8 +126,8 @@ import {Link} from "@inertiajs/vue3";
 import { router } from '@inertiajs/vue3'
 
 /*Components*/
-import TDropdown from "@/Components/Dropdown/TDropdown";
-import TAvatar from "@/Components/Avatar/TAvatar";
+import TDropdown from "@/Components/Dropdown/TDropdown.vue";
+import TAvatar from "@/Components/Avatar/TAvatar.vue";
 
 /*Multi Language*/
 import {useI18n} from "vue-i18n";

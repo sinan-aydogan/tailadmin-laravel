@@ -1,11 +1,11 @@
 <script setup>
 /*Functions*/
 import {defineComponent, inject, provide, ref} from "vue";
-import TopMenuNotification from "@/Layouts/TopMenu/TopMenuNotification";
-import TopMenuUserMenu from "@/Layouts/TopMenu/TopMenuUserMenu";
-import TLoading from "@/Components/Loading/TLoading";
-import TopMenuThemeSelector from "@/Layouts/TopMenu/TopMenuThemeSelector";
-import TopMenuLanguageSelector from "@/Layouts/TopMenu/TopMenuLanguageSelector";
+import TopMenuNotification from "@/Layouts/TopMenu/TopMenuNotification.vue";
+import TopMenuUserMenu from "@/Layouts/TopMenu/TopMenuUserMenu.vue";
+import TLoading from "@/Components/Loading/TLoading.vue";
+import TopMenuThemeSelector from "@/Layouts/TopMenu/TopMenuThemeSelector.vue";
+import TopMenuLanguageSelector from "@/Layouts/TopMenu/TopMenuLanguageSelector.vue";
 import {menuStatus, updateMenuStatus} from "@/Functions/menuTrigger"
 
 /*Sources*/
@@ -85,7 +85,7 @@ provide('topBarConf', topBarConf);
         <div class="active-team">
             <div
                 v-if="$page.props.jetstream.hasTeamFeatures"
-                :title="$page.props.user.current_team.name"
+                :title="$page.props.auth.user.current_team.name"
                 class="active-team-wrapper">
                 <svg
                     class="umay-main-menu-icon"
@@ -99,7 +99,7 @@ provide('topBarConf', topBarConf);
                 </svg>
                 <span
                     class="active-team-label"
-                    v-text="$page.props.user.current_team.name"
+                    v-text="$page.props.auth.user.current_team.name"
                 />
             </div>
         </div>

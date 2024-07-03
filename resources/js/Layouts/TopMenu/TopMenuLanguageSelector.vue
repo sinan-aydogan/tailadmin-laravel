@@ -35,7 +35,7 @@
 import {defineComponent, inject} from "vue";
 
 /*Components*/
-import TDropdown from "@/Components/Dropdown/TDropdown";
+import TDropdown from "@/Components/Dropdown/TDropdown.vue";
 
 /*Multi language*/
 import langChooserFn from "@/Functions/langChooser"

@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import TInputText from "@/Components/Form/Inputs/TInputText";
+import TInputText from "@/Components/Form/Inputs/TInputText.vue";
 
 export default {
     name: "TInputBetween",

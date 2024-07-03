@@ -52,7 +52,7 @@
 import { defineComponent, inject } from "vue";
 
 /*Components*/
-import TDropdown from "@/Components/Dropdown/TDropdown";
+import TDropdown from "@/Components/Dropdown/TDropdown.vue";
 import TBadge from "@/Components/Badge/TBadge.vue";
 
 /* Multi-language */
