@@ -40,8 +40,8 @@
 <script>
 import {defineComponent} from "vue";
 
-import TInputSelect from "@/Components/Form/Inputs/TInputSelect";
-import TBadge from "@/Components/Badge/TBadge";
+import TInputSelect from "@/Components/Form/Inputs/TInputSelect.vue";
+import TBadge from "@/Components/Badge/TBadge.vue";
 export default defineComponent({
   name: "TComponentRadiusSelector",
   components: {TBadge, TInputSelect},

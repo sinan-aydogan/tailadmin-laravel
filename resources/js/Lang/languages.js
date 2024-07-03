@@ -1,11 +1,11 @@
 /* Flags */
-import flagBg from "@/Lang/Flags/flagBg";
-import flagDe from "@/Lang/Flags/flagDe";
-import flagEn from "@/Lang/Flags/flagEn";
-import flagFr from "@/Lang/Flags/flagFr";
-import flagRu from "@/Lang/Flags/flagRu";
-import flagTr from "@/Lang/Flags/flagTr";
-import flagZh from "@/Lang/Flags/flagZh";
+import flagBg from "@/Lang/Flags/flagBg.vue";
+import flagDe from "@/Lang/Flags/flagDe.vue";
+import flagEn from "@/Lang/Flags/flagEn.vue";
+import flagFr from "@/Lang/Flags/flagFr.vue";
+import flagRu from "@/Lang/Flags/flagRu.vue";
+import flagTr from "@/Lang/Flags/flagTr.vue";
+import flagZh from "@/Lang/Flags/flagZh.vue";
 
 const flags = {
     flagBg: flagBg,

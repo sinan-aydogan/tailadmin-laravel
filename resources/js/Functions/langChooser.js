@@ -1,6 +1,6 @@
 import { onBeforeMount, ref } from "vue";
 import { useI18n } from "vue-i18n";
-import { Inertia } from "@inertiajs/inertia";
+import { router } from '@inertiajs/vue3'
 
 export default function () {
     /*Language Selector*/
@@ -19,7 +19,7 @@ export default function () {
     const changeLang = (key) => {
         locale.value = key;
         localStorage.setItem("lang", key);
-        Inertia.visit(route("lang", key), {
+        router.visit(route("lang", key), {
             onStart: () => (loadingTranslations.value = true),
             onSuccess: () => (loadingTranslations.value = false),
             preserveScroll: true,

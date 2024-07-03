@@ -167,21 +167,21 @@ import {defineComponent, reactive} from "vue";
 
 /*Components*/
 import AppLayout from "@/Layouts/AppLayout.vue";
-import GridSection from "@/Layouts/GridSection";
-import TStatisticWidget from "@/Components/Card/TStatisticWidget";
-import TCashIcon from "@/Components/Icon/TCashIcon";
-import TShoppingBagIcon from "@/Components/Icon/TShoppingBagIcon";
-import TContentCard from "@/Components/Card/TContentCard";
-import TList from "@/Components/List/TList";
-import TListItem from "@/Components/List/TListItem";
-import TAvatar from "@/Components/Avatar/TAvatar";
-import TTable from "@/Components/Table/TTable";
-import TBreadcrumb from "@/Components/Breadcrumb/TBreadcrumb";
-import TProgress from "@/Components/Progress/TProgress";
-import TAlert from "@/Components/Alert/TAlert";
-import TInformationCircleIcon from "@/Components/Icon/TInformationCircleIcon";
-import TTrashIcon from "@/Components/Icon/TTrashIcon";
-import TCheckCircleIcon from "@/Components/Icon/TCheckCircleIcon";
+import GridSection from "@/Layouts/GridSection.vue";
+import TStatisticWidget from "@/Components/Card/TStatisticWidget.vue";
+import TCashIcon from "@/Components/Icon/TCashIcon.vue";
+import TShoppingBagIcon from "@/Components/Icon/TShoppingBagIcon.vue";
+import TContentCard from "@/Components/Card/TContentCard.vue";
+import TList from "@/Components/List/TList.vue";
+import TListItem from "@/Components/List/TListItem.vue";
+import TAvatar from "@/Components/Avatar/TAvatar.vue";
+import TTable from "@/Components/Table/TTable.vue";
+import TBreadcrumb from "@/Components/Breadcrumb/TBreadcrumb.vue";
+import TProgress from "@/Components/Progress/TProgress.vue";
+import TAlert from "@/Components/Alert/TAlert.vue";
+import TInformationCircleIcon from "@/Components/Icon/TInformationCircleIcon.vue";
+import TTrashIcon from "@/Components/Icon/TTrashIcon.vue";
+import TCheckCircleIcon from "@/Components/Icon/TCheckCircleIcon.vue";
 
 /*Multi language*/
 import {useI18n} from "vue-i18n";

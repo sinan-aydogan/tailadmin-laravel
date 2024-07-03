@@ -76,10 +76,10 @@ import {breakpointsTailwind, useBreakpoints} from '@vueuse/core'
 
 /*Components*/
 import JetBanner from "@/Jetstream/Banner.vue";
-import MainMenu from "@/Layouts/MainMenu";
-import TAlert from "@/Components/Alert/TAlert";
-import TToastr from "@/Components/Toastr/TToastr";
-import TopMenu from "@/Layouts/TopMenu/TopMenu";
+import MainMenu from "@/Layouts/MainMenu.vue";
+import TAlert from "@/Components/Alert/TAlert.vue";
+import TToastr from "@/Components/Toastr/TToastr.vue";
+import TopMenu from "@/Layouts/TopMenu/TopMenu.vue";
 
 /*Sources*/
 import {appConf, footerConf} from "@/config";

@@ -42,11 +42,11 @@
 
 <script>
 /*Layout*/
-import AppLayout from "@/Layouts/AppLayout";
+import AppLayout from "@/Layouts/AppLayout.vue";
 /*Component*/
-import GridSection from "@/Layouts/GridSection";
-import TTab from "@/Components/Tab/TTab";
-import TComponentStyleSelector from "@/Components/Misc/TComponentStyleSelector";
+import GridSection from "@/Layouts/GridSection.vue";
+import TTab from "@/Components/Tab/TTab.vue";
+import TComponentStyleSelector from "@/Components/Misc/TComponentStyleSelector.vue";
 
 export default {
   name: "Tab",

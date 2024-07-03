@@ -24,7 +24,7 @@
 
 <script>
 import { computed, defineComponent, reactive, ref, toRefs } from "vue";
-import TAlert from "@/Components/Alert/TAlert";
+import TAlert from "@/Components/Alert/TAlert.vue";
 
 export default defineComponent({
   name: "TTab",

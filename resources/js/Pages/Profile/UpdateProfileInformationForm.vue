@@ -110,7 +110,7 @@ import TPlusIcon from "@/Components/Icon/TPlusIcon";
 import TXIcon from "@/Components/Icon/TXIcon";
 import TInputText from "@/Components/Form/Inputs/TInputText";
 import TBadge from "@/Components/Badge/TBadge";
-import TCheckIcon from "@/Components/Icon/TCheckIcon";
+import TCheckIcon from "@/Components/Icon/TCheckIcon.vue";
 
 export default {
     components: {

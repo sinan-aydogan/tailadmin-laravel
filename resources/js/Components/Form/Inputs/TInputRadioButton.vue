@@ -17,7 +17,7 @@
 
 <script>
 import {radiusSizeMixin} from "@/Mixins/radiusSizeMixin";
-import TCheckIcon from "@/Components/Icon/TCheckIcon";
+import TCheckIcon from "@/Components/Icon/TCheckIcon.vue";
 
 export default {
     name: 'TInputRadioButton',

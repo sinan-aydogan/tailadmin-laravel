@@ -12,10 +12,10 @@
 
 <script>
 /*Layout*/
-import AppLayout from "@/Layouts/AppLayout";
+import AppLayout from "@/Layouts/AppLayout.vue";
 /*Component*/
-import GridSection from "@/Layouts/GridSection";
-import TContentCard from "@/Components/Card/TContentCard";
+import GridSection from "@/Layouts/GridSection.vue";
+import TContentCard from "@/Components/Card/TContentCard.vue";
 
 export default {
   name: "Chart",

@@ -25,10 +25,10 @@
 
 <script>
 import {defineComponent} from "vue";
-import TDotsVerticalIcon from "@/Components/Icon/TDotsVerticalIcon";
-import TEyeIcon from "@/Components/Icon/TEyeIcon";
-import TPencilAltIcon from "@/Components/Icon/TPencilAltIcon";
-import TTrashIcon from "@/Components/Icon/TTrashIcon";
+import TDotsVerticalIcon from "@/Components/Icon/TDotsVerticalIcon.vue";
+import TEyeIcon from "@/Components/Icon/TEyeIcon.vue";
+import TPencilAltIcon from "@/Components/Icon/TPencilAltIcon.vue";
+import TTrashIcon from "@/Components/Icon/TTrashIcon.vue";
 
 export default defineComponent({
     name: "TTableActionDropdown",

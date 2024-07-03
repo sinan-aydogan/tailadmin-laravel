@@ -70,14 +70,14 @@
 <script>
 import { defineComponent } from "vue";
 import { lockStyleMixin } from "@/Mixins/Styles/lockStyleMixin";
-import FullScreenLayout from "@/Layouts/FullScreenLayout";
-import TAlert from "@/Components/Alert/TAlert";
-import TBellIcon from "@/Components/Icon/TBellIcon";
-import TInputGroup from "@/Components/Form/TInputGroup";
-import TInputText from "@/Components/Form/Inputs/TInputText";
-import TUserCircleIcon from "@/Components/Icon/TUserCircleIcon";
-import TAvatar from "@/Components/Avatar/TAvatar";
-import TButton from "@/Components/Button/TButton";
+import FullScreenLayout from "@/Layouts/FullScreenLayout.vue";
+import TAlert from "@/Components/Alert/TAlert.vue";
+import TBellIcon from "@/Components/Icon/TBellIcon.vue";
+import TInputGroup from "@/Components/Form/TInputGroup.vue";
+import TInputText from "@/Components/Form/Inputs/TInputText.vue";
+import TUserCircleIcon from "@/Components/Icon/TUserCircleIcon.vue";
+import TAvatar from "@/Components/Avatar/TAvatar.vue";
+import TButton from "@/Components/Button/TButton.vue";
 import windowSizeCalculator from "@/Functions/windowSizeCalculator";
 
 export default defineComponent({

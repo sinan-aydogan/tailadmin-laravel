@@ -166,11 +166,11 @@
 import {defineComponent} from "vue";
 
 /*Component*/
-import AppLayout from "@/Layouts/AppLayout";
-import GridSection from "@/Layouts/GridSection";
-import TAvatar from "@/Components/Avatar/TAvatar";
-import TAvatarGroup from "@/Components/Avatar/TAvatarGroup";
-import TCodeShowcase from "@/Components/Code/TCodeShowcase";
+import AppLayout from "@/Layouts/AppLayout.vue";
+import GridSection from "@/Layouts/GridSection.vue";
+import TAvatar from "@/Components/Avatar/TAvatar.vue";
+import TAvatarGroup from "@/Components/Avatar/TAvatarGroup.vue";
+import TCodeShowcase from "@/Components/Code/TCodeShowcase.vue";
 import {useI18n} from "vue-i18n/dist/vue-i18n.esm-bundler";
 
 export default defineComponent({

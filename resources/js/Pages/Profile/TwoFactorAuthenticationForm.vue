@@ -102,7 +102,7 @@ import TFormContent from "@/Components/Form/TFormContent";
 import TButton from "@/Components/Button/TButton";
 import TFormSection from "@/Components/Form/TFormSection";
 import TAlert from "@/Components/Alert/TAlert";
-import TCheckIcon from "@/Components/Icon/TCheckIcon";
+import TCheckIcon from "@/Components/Icon/TCheckIcon.vue";
 import TInformationCircleIcon from "@/Components/Icon/TInformationCircleIcon";
 import TCheckCircleSolidIcon from "@/Components/Icon/TCheckCircleSolidIcon";
 import TRefreshIcon from "@/Components/Icon/TRefreshIcon";

@@ -205,10 +205,10 @@
 import {reactive} from "vue";
 
 /*Components*/
-import AppLayout from "@/Layouts/AppLayout";
-import GridSection from "@/Layouts/GridSection";
-import TContentCard from "@/Components/Card/TContentCard";
-import TBadge from "@/Components/Badge/TBadge";
+import AppLayout from "@/Layouts/AppLayout.vue";
+import GridSection from "@/Layouts/GridSection.vue";
+import TContentCard from "@/Components/Card/TContentCard.vue";
+import TBadge from "@/Components/Badge/TBadge.vue";
 
 /*Import FontAwesomeIcon*/
 import { library } from "@fortawesome/fontawesome-svg-core";

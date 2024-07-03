@@ -162,12 +162,12 @@
 
 import { defineComponent } from "vue";
 import { registerStyleMixin } from "@/Mixins/Styles/registerStyleMixin";
-import TAlert from "@/Components/Alert/TAlert";
-import TBellIcon from "@/Components/Icon/TBellIcon";
-import TButton from "@/Components/Button/TButton";
-import FullScreenLayout from "@/Layouts/FullScreenLayout";
-import TInputGroup from "@/Components/Form/TInputGroup";
-import TInputText from "@/Components/Form/Inputs/TInputText";
+import TAlert from "@/Components/Alert/TAlert.vue";
+import TBellIcon from "@/Components/Icon/TBellIcon.vue";
+import TButton from "@/Components/Button/TButton.vue";
+import FullScreenLayout from "@/Layouts/FullScreenLayout.vue";
+import TInputGroup from "@/Components/Form/TInputGroup.vue";
+import TInputText from "@/Components/Form/Inputs/TInputText.vue";
 import { Link } from "@inertiajs/vue3";
 import windowSizeCalculator from "@/Functions/windowSizeCalculator";
 

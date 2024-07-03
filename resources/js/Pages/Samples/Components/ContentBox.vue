@@ -93,11 +93,11 @@
 </template>
 
 <script>
-import AppLayout from "@/Layouts/AppLayout";
-import GridSection from "@/Layouts/GridSection";
-import TContentCard from "@/Components/Card/TContentCard";
-import TUserGroupIcon from "@/Components/Icon/TUserGroupIcon";
-import TAvatar from "@/Components/Avatar/TAvatar";
+import AppLayout from "@/Layouts/AppLayout.vue";
+import GridSection from "@/Layouts/GridSection.vue";
+import TContentCard from "@/Components/Card/TContentCard.vue";
+import TUserGroupIcon from "@/Components/Icon/TUserGroupIcon.vue";
+import TAvatar from "@/Components/Avatar/TAvatar.vue";
 
 export default {
   name: "ContentBox",

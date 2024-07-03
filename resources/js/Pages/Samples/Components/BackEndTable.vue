@@ -46,11 +46,11 @@
 import {reactive, defineComponent, computed, ref} from "vue";
 
 /*Components*/
-import AppLayout from "@/Layouts/AppLayout";
-import TBackEndTable from "@/Components/Table/TBackEndTable";
-import TBadge from "@/Components/Badge/TBadge";
-import TButton from "@/Components/Button/TButton";
-import TCodeShowcase from "@/Components/Code/TCodeShowcase";
+import AppLayout from "@/Layouts/AppLayout.vue";
+import TBackEndTable from "@/Components/Table/TBackEndTable.vue";
+import TBadge from "@/Components/Badge/TBadge.vue";
+import TButton from "@/Components/Button/TButton.vue";
+import TCodeShowcase from "@/Components/Code/TCodeShowcase.vue";
 import {useI18n} from "vue-i18n";
 
 export default defineComponent({

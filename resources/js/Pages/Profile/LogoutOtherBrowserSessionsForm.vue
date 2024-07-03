@@ -111,7 +111,7 @@ import JetSecondaryButton from '@/Jetstream/SecondaryButton'
 import TFormContent from "@/Components/Form/TFormContent";
 import TFormSection from "@/Components/Form/TFormSection";
 import TButton from "@/Components/Button/TButton";
-import TCheckIcon from "@/Components/Icon/TCheckIcon";
+import TCheckIcon from "@/Components/Icon/TCheckIcon.vue";
 import TLogOutIcon from "@/Components/Icon/TLogOutIcon";
 import TModal from "@/Components/Modal/TModal";
 import TInputGroup from "@/Components/Form/TInputGroup";

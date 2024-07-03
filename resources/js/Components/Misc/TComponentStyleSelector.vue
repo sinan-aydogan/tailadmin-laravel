@@ -41,8 +41,8 @@
 <script>
 import { defineComponent, reactive, ref, toRefs, watch } from "vue";
 
-import TCheckIcon from "@/Components/Icon/TCheckIcon";
-import TInputSelect from "@/Components/Form/Inputs/TInputSelect";
+import TCheckIcon from "@/Components/Icon/TCheckIcon.vue";
+import TInputSelect from "@/Components/Form/Inputs/TInputSelect.vue";
 
 export default defineComponent({
   name: "TComponentStyleSelector",

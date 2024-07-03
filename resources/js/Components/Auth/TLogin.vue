@@ -256,15 +256,15 @@ import useVuelidate from "@vuelidate/core";
 import {email, helpers, required} from "@vuelidate/validators";
 
 /*Components*/
-import TAlert from "@/Components/Alert/TAlert";
-import TBellIcon from "@/Components/Icon/TBellIcon";
-import TButton from "@/Components/Button/TButton";
-import FullScreenLayout from "@/Layouts/FullScreenLayout";
-import TInputGroup from "@/Components/Form/TInputGroup";
-import TInputText from "@/Components/Form/Inputs/TInputText";
-import TDropdown from "@/Components/Dropdown/TDropdown";
-import TTooltip from "@/Components/Tooltip/TTooltip";
-import TInputCheckBox from "@/Components/Form/Inputs/TInputCheckBox";
+import TAlert from "@/Components/Alert/TAlert.vue";
+import TBellIcon from "@/Components/Icon/TBellIcon.vue";
+import TButton from "@/Components/Button/TButton.vue";
+import FullScreenLayout from "@/Layouts/FullScreenLayout.vue";
+import TInputGroup from "@/Components/Form/TInputGroup.vue";
+import TInputText from "@/Components/Form/Inputs/TInputText.vue";
+import TDropdown from "@/Components/Dropdown/TDropdown.vue";
+import TTooltip from "@/Components/Tooltip/TTooltip.vue";
+import TInputCheckBox from "@/Components/Form/Inputs/TInputCheckBox.vue";
 
 /*Sources*/
 import {appConf, authScreenConf, badgeConf} from "@/config";

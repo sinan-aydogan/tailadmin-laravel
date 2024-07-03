@@ -91,12 +91,12 @@
 
 <script>
 /*Layout*/
-import AppLayout from "@/Layouts/AppLayout";
+import AppLayout from "@/Layouts/AppLayout.vue";
 /*Component*/
-import GridSection from "@/Layouts/GridSection";
-import TStatisticWidget from "@/Components/Card/TStatisticWidget";
-import TCashIcon from "@/Components/Icon/TCashIcon";
-import TShoppingBagIcon from "@/Components/Icon/TShoppingBagIcon";
+import GridSection from "@/Layouts/GridSection.vue";
+import TStatisticWidget from "@/Components/Card/TStatisticWidget.vue";
+import TCashIcon from "@/Components/Icon/TCashIcon.vue";
+import TShoppingBagIcon from "@/Components/Icon/TShoppingBagIcon.vue";
 
 export default {
   name: "StatisticWidget",

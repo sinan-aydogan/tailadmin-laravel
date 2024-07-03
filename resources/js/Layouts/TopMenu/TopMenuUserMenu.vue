@@ -123,7 +123,7 @@
 /*Main Functions*/
 import {defineComponent, inject, ref} from "vue";
 import {Link} from "@inertiajs/vue3";
-import {Inertia} from "@inertiajs/inertia";
+import { router } from '@inertiajs/vue3'
 
 /*Components*/
 import TDropdown from "@/Components/Dropdown/TDropdown";
@@ -146,7 +146,7 @@ export default defineComponent({
         /*Switch Team Action*/
         const showTeamSelector = ref(false);
         const switchToTeam = (team) => {
-            Inertia.put(
+            router.put(
                 route("current-team.update"),
                 {
                     "team_id": team.id
@@ -157,7 +157,7 @@ export default defineComponent({
 
         /*Logout Function*/
         const logout = () => {
-            Inertia.post(
+            router.post(
                 route("logout")
             );
         };

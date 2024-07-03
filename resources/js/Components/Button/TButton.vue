@@ -29,9 +29,9 @@
 <script>
 import { defineComponent, defineAsyncComponent, toRefs, ref, computed, reactive } from "vue";
 import { Link } from "@inertiajs/vue3";
-import TLoadingAnimationThreeBars from "@/Components/Loading/Animations/TLoadingAnimationThreeBars";
-import TLoadingAnimationThreeDots from "@/Components/Loading/Animations/TLoadingAnimationThreeDots";
-import TLoadingAnimationCogs from "@/Components/Loading/Animations/TLoadingAnimationCogs";
+import TLoadingAnimationThreeBars from "@/Components/Loading/Animations/TLoadingAnimationThreeBars.vue";
+import TLoadingAnimationThreeDots from "@/Components/Loading/Animations/TLoadingAnimationThreeDots.vue";
+import TLoadingAnimationCogs from "@/Components/Loading/Animations/TLoadingAnimationCogs.vue";
 
 export default defineComponent({
     name: "TButton",

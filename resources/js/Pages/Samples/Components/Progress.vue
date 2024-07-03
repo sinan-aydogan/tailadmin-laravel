@@ -33,14 +33,14 @@
 
 <script>
 /*Layout*/
-import AppLayout from "@/Layouts/AppLayout";
+import AppLayout from "@/Layouts/AppLayout.vue";
 import { defineComponent, ref, watch } from "vue";
 /*Component*/
-import GridSection from "@/Layouts/GridSection";
-import TContentCard from "@/Components/Card/TContentCard";
-import TProgress from "@/Components/Progress/TProgress";
-import TInputGroup from "@/Components/Form/TInputGroup";
-import TInputText from "@/Components/Form/Inputs/TInputText";
+import GridSection from "@/Layouts/GridSection.vue";
+import TContentCard from "@/Components/Card/TContentCard.vue";
+import TProgress from "@/Components/Progress/TProgress.vue";
+import TInputGroup from "@/Components/Form/TInputGroup.vue";
+import TInputText from "@/Components/Form/Inputs/TInputText.vue";
 
 export default defineComponent({
   name: "Progress",

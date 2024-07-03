@@ -342,7 +342,7 @@ import TInputFile from "@/Components/Form/Inputs/TInputFile";
 import TInputCheckBox from "@/Components/Form/Inputs/TInputCheckBox";
 import TInputRadioButton from "@/Components/Form/Inputs/TInputRadioButton";
 import TInputTextArea from "@/Components/Form/Inputs/TInputTextArea";
-import TCheckIcon from "@/Components/Icon/TCheckIcon";
+import TCheckIcon from "@/Components/Icon/TCheckIcon.vue";
 import TXIcon from "@/Components/Icon/TXIcon";
 import { ref, defineComponent } from "vue";
 
