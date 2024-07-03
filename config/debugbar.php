@@ -1,7 +1,5 @@
 <?php
 
-/*TODO:CHECK NEW VERSION*/
-
 return [
 
     /*
@@ -33,9 +31,14 @@ return [
      | By default, file storage (in the storage folder) is used. Redis and PDO
      | can also be used. For PDO, run the package migrations first.
      |
+     | Warning: Enabling storage.open will allow everyone to access previous
+     | request, do not enable open storage in publicly available environments!
+     | Specify a callback if you want to limit based on IP or authentication.
+     | Leaving it to null will allow localhost only.
      */
     'storage' => [
         'enabled'    => true,
+        'open'       => env('DEBUGBAR_OPEN_STORAGE'), // bool/callback.
         'driver'     => 'file', // redis, file, pdo, socket, custom
         'path'       => storage_path('debugbar'), // For file driver
         'connection' => null,   // Leave null for default connection (Redis/PDO)
@@ -45,6 +48,48 @@ return [
     ],
 
     /*
+    |--------------------------------------------------------------------------
+    | Editor
+    |--------------------------------------------------------------------------
+    |
+    | Choose your preferred editor to use when clicking file name.
+    |
+    | Supported: "phpstorm", "vscode", "vscode-insiders", "vscode-remote",
+    |            "vscode-insiders-remote", "vscodium", "textmate", "emacs",
+    |            "sublime", "atom", "nova", "macvim", "idea", "netbeans",
+    |            "xdebug", "espresso"
+    |
+    */
+
+    'editor' => env('DEBUGBAR_EDITOR') ?: env('IGNITION_EDITOR', 'phpstorm'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Remote Path Mapping
+    |--------------------------------------------------------------------------
+    |
+    | If you are using a remote dev server, like Laravel Homestead, Docker, or
+    | even a remote VPS, it will be necessary to specify your path mapping.
+    |
+    | Leaving one, or both of these, empty or null will not trigger the remote
+    | URL changes and Debugbar will treat your editor links as local files.
+    |
+    | "remote_sites_path" is an absolute base path for your sites or projects
+    | in Homestead, Vagrant, Docker, or another remote development server.
+    |
+    | Example value: "/home/vagrant/Code"
+    |
+    | "local_sites_path" is an absolute base path for your sites or projects
+    | on your local computer where your IDE or code editor is running on.
+    |
+    | Example values: "/Users/<name>/Code", "C:\Users\<name>\Documents\Code"
+    |
+    */
+
+    'remote_sites_path' => env('DEBUGBAR_REMOTE_SITES_PATH'),
+    'local_sites_path' => env('DEBUGBAR_LOCAL_SITES_PATH', env('IGNITION_LOCAL_SITES_PATH')),
+
+    /*
      |--------------------------------------------------------------------------
      | Vendors
      |--------------------------------------------------------------------------
@@ -52,7 +97,7 @@ return [
      | Vendor files are included by default, but can be set to false.
      | This can also be set to 'js' or 'css', to only include javascript or css vendor files.
      | Vendor files are for css: font-awesome (including fonts) and highlight.js (css files)
-     | and for js: jquery and and highlight.js
+     | and for js: jquery and highlight.js
      | So if you want syntax highlighting, set it to true.
      | jQuery is set to not conflict with existing jQuery scripts.
      |
@@ -72,10 +117,15 @@ return [
      |
      | Note for your request to be identified as ajax requests they must either send the header
      | X-Requested-With with the value XMLHttpRequest (most JS libraries send this), or have application/json as a Accept header.
+     |
+     | By default `ajax_handler_auto_show` is set to true allowing ajax requests to be shown automatically in the Debugbar.
+     | Changing `ajax_handler_auto_show` to false will prevent the Debugbar from reloading.
      */
 
     'capture_ajax' => true,
     'add_ajax_timing' => false,
+    'ajax_handler_auto_show' => true,
+    'ajax_handler_enable_tab' => true,
 
     /*
      |--------------------------------------------------------------------------
@@ -132,6 +182,7 @@ return [
         'cache'           => false, // Display cache events
         'models'          => true,  // Display models
         'livewire'        => true,  // Display Livewire (when available)
+        'jobs'            => true, // Display dispatched jobs
     ],
 
     /*
@@ -144,8 +195,20 @@ return [
      */
 
     'options' => [
+        'time' => [
+            'memory_usage' => false,  // Calculated by subtracting memory start and end, it may be inaccurate
+        ],
+        'messages' => [
+            'trace' => true,   // Trace the origin of the debug message
+        ],
+        'memory' => [
+            'reset_peak' => false,     // run memory_reset_peak_usage before collecting
+            'with_baseline' => false,  // Set boot memory usage as memory peak baseline
+            'precision' => 0,          // Memory rounding precision
+        ],
         'auth' => [
             'show_name' => true,   // Also show the users name/email in the debugbar
+            'show_guards' => true, // Show the guards that are used
         ],
         'db' => [
             'with_params'       => true,   // Render SQL with the parameters substituted
@@ -158,17 +221,35 @@ return [
                 'types' => ['SELECT'],     // Deprecated setting, is always only SELECT
             ],
             'hints'             => false,    // Show hints for common mistakes
-            'show_copy'         => false,    // Show copy button next to the query
+            'show_copy'         => false,    // Show copy button next to the query,
+            'slow_threshold'    => false,   // Only track queries that last longer than this time in ms
+            'memory_usage'      => false,   // Show queries memory usage
+            'soft_limit'       => 100,      // After the soft limit, no parameters/backtrace are captured
+            'hard_limit'       => 500,      // After the hard limit, queries are ignored
         ],
         'mail' => [
-            'full_log' => false,
+            'timeline' => false,  // Add mails to the timeline
+            'show_body' => true,
         ],
         'views' => [
-            'timeline' => false,  // Add the views to the timeline (Experimental)
-            'data' => false,    //Note: Can slow down the application, because the data can be quite large..
+            'timeline' => false,    // Add the views to the timeline (Experimental)
+            'data' => false,        //true for all data, 'keys' for only names, false for no parameters.
+            'group' => 50,          // Group duplicate views. Pass value to auto-group, or true/false to force
+            'exclude_paths' => [    // Add the paths which you don't want to appear in the views
+                'vendor/filament'   // Exclude Filament components by default
+            ],
         ],
         'route' => [
             'label' => true,  // show complete route on bar
+        ],
+        'session' => [
+            'hiddens' => [], // hides sensitive values using array paths
+        ],
+        'symfony_request' => [
+            'hiddens' => [], // hides sensitive values using array paths, example: request_request.password
+        ],
+        'events' => [
+            'data' => true, // collect events data, listeners
         ],
         'logs' => [
             'file' => null,
@@ -202,6 +283,15 @@ return [
      |
      */
     'route_prefix' => '_debugbar',
+
+    /*
+     |--------------------------------------------------------------------------
+     | DebugBar route middleware
+     |--------------------------------------------------------------------------
+     |
+     | Additional middleware to run on the Debugbar routes
+     */
+    'route_middleware' => [],
 
     /*
      |--------------------------------------------------------------------------
