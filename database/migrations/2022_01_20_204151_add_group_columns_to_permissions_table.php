@@ -11,7 +11,7 @@ class AddGroupColumnsToPermissionsTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::table('permissions', function (Blueprint $table) {
             $table->foreignIdFor(\App\Models\PermissionGroup::class)
@@ -29,10 +29,12 @@ class AddGroupColumnsToPermissionsTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::table('permissions', function (Blueprint $table) {
-            //
+            $table->dropForeign(['permission_group_id']);
+            $table->dropColumn('permission_group_id');
+            $table->dropColumn('description');
         });
     }
 }
