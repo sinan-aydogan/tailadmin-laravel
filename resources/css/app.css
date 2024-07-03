@@ -38,3 +38,7 @@
 /* Miscs */
 @import "./misc/effect.css";
 @import "./misc/highlighter.css";
+
+[x-cloak] {
+    display: none;
+}
