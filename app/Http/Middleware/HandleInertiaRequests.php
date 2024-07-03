@@ -3,6 +3,8 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Inertia\Middleware;
 use Tighten\Ziggy\Ziggy;
 
@@ -38,9 +40,26 @@ class HandleInertiaRequests extends Middleware
             ],
             //Flash Messages
             'flash' => [
-                'message' => fn () => $request->session()->get('message'),
-                'toastr' => fn () => $request->session()->get('toastr')
-            ]
+                'message' => fn () => Session::get('message'),
+                'toastr' => fn () => Session::get('toastr')
+            ],
+            'lang' => function () {
+                return Session::get('locale');
+            },
+            'roles' => function () {
+                if (Auth::check()) {
+                    return Auth::user()?->getRoleNames();
+                }
+
+                return [];
+            },
+            'permissions' => function () {
+                if (Auth::check()) {
+                    return Auth::user()?->getAllPermissions();
+                }
+
+                return [];
+            }
         ];
     }
 }
