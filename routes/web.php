@@ -6,17 +6,6 @@ use Inertia\Inertia;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 /* Change Lang */
 Route::get('lang/{locale}', function ($locale) {
     // Available languages
@@ -36,7 +25,11 @@ Route::get('lang/{locale}', function ($locale) {
 
 
 })->name('lang');
-Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
     Route::get('/', function () {
         return Inertia::render('Dashboard', [
             'canLogin' => Route::has('login'),
