@@ -10,37 +10,29 @@ class UserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
         /*Admin*/
-        $admin = tap(User::create([
+        $admin = User::factory()->withPersonalTeam()->create([
             'name' => 'Super Admin',
             'email' => 'admin@tailadmin.dev',
             'password' => bcrypt('admin'),
-        ]), function (User $user) {
-            (new CreateNewUser())->createTeam($user);
-        });
+        ]);
 
         /*Editor*/
-        $editor = tap(User::create([
+        $editor = User::factory()->withPersonalTeam()->create([
             'name' => 'Editor',
             'email' => 'editor@tailadmin.dev',
             'password' => bcrypt('editor'),
-        ]), function (User $user) {
-            (new CreateNewUser())->createTeam($user);
-        });
+        ]);
 
         /*Simple User*/
-        $simpleUser = tap(User::create([
+        $simpleUser = User::factory()->withPersonalTeam()->create([
             'name' => 'Super User',
             'email' => 'user@tailadmin.dev',
             'password' => bcrypt('user'),
-        ]), function (User $user) {
-            (new CreateNewUser())->createTeam($user);
-        });
+        ]);
 
         /*Assign Role*/
         $admin->assignRole('Super Admin');

@@ -9,10 +9,8 @@ class PermissionSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
         $permissions = ['create', 'edit-all', 'delete-all', 'view-all', 'edit-own', 'delete-own', 'view-own'];
 
