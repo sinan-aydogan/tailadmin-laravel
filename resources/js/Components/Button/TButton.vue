@@ -1,3 +1,105 @@
+<script setup>
+import { toRefs, ref, computed, defineAsyncComponent, reactive } from "vue";
+import { Link } from "@inertiajs/vue3";
+import TLoadingAnimationThreeBars from "@/Components/Loading/Animations/TLoadingAnimationThreeBars.vue";
+import TLoadingAnimationThreeDots from "@/Components/Loading/Animations/TLoadingAnimationThreeDots.vue";
+import TLoadingAnimationCogs from "@/Components/Loading/Animations/TLoadingAnimationCogs.vue";
+
+const props = defineProps({
+    size: {
+        type: String,
+        default: "normal"
+    },
+    design: {
+        type: String,
+        default: "filled"
+    },
+    color: {
+        type: String,
+        default: "blue"
+    },
+    radius: {
+        type: Number,
+        default: 3
+    },
+    link: {
+        type: String,
+        default: "#"
+    },
+    border: {
+        type: Boolean,
+        default: false
+    },
+    disabled: {
+        type: Boolean,
+        default: false
+    },
+    loading: {
+        type: Boolean,
+        default: false
+    },
+    loadingDesign: {
+        type: String,
+        default: "three-bars"
+    },
+    loadingWithContent: {
+        type: Boolean,
+        default: false
+    },
+    loadingColor: {
+        type: String,
+        default: null
+    },
+    type: {
+        type: String,
+        default: "submit"
+    }
+});
+
+/*Definitions*/
+const {
+    color,
+    design,
+    border,
+    radius,
+    disabled,
+    size,
+    loading,
+    loadingWithContent,
+    loadingDesign
+} = toRefs(props);
+
+/*Generating Style Classes*/
+const tStyle = reactive({});
+tStyle["container"] = computed(() => {
+    return "button" + " " +
+        "button-" + size.value + " " +
+        "button-" + design.value + "-base" + " " +
+        "button-" + design.value + "-" + color.value + " " +
+        "radius-" + radius.value + " " +
+        (disabled.value ? " button-disabled" : "") + " " +
+        (border.value ? "border" : "") + " " +
+        (loading.value || loadingWithContent.value ? "pointer-events-none" : "");
+});
+tStyle["content"] = computed(() => {
+    return "button-content" + " " +
+        (loading.value ? "invisible" : "");
+});
+
+
+/*Loading Component*/
+const activeLoadingComponent = ref();
+if (loadingDesign.value === "three-bars") {
+    activeLoadingComponent.value = "TLoadingAnimationThreeBars";
+} else if (loadingDesign.value === "cogs") {
+    activeLoadingComponent.value = "TLoadingAnimationCogs";
+} else {
+    activeLoadingComponent.value = "TLoadingAnimationThreeDots";
+}
+
+const loadingComponent = defineAsyncComponent(() => import(`../Loading/Animations/${activeLoadingComponent.value}.vue`));
+</script>
+
 <template>
     <button
         v-if="type === 'submit' || type === 'button' || type === 'external-link'"
@@ -25,117 +127,3 @@
         <slot></slot>
     </Link>
 </template>
-
-<script>
-import { defineComponent, defineAsyncComponent, toRefs, ref, computed, reactive } from "vue";
-import { Link } from "@inertiajs/vue3";
-import TLoadingAnimationThreeBars from "@/Components/Loading/Animations/TLoadingAnimationThreeBars.vue";
-import TLoadingAnimationThreeDots from "@/Components/Loading/Animations/TLoadingAnimationThreeDots.vue";
-import TLoadingAnimationCogs from "@/Components/Loading/Animations/TLoadingAnimationCogs.vue";
-
-export default defineComponent({
-    name: "TButton",
-    props: {
-        size: {
-            type: String,
-            default: "normal"
-        },
-        design: {
-            type: String,
-            default: "filled"
-        },
-        color: {
-            type: String,
-            default: "blue"
-        },
-        radius: {
-            type: Number,
-            default: 3
-        },
-        link: {
-            type: String,
-            default: "#"
-        },
-        border: {
-            type: Boolean,
-            default: false
-        },
-        disabled: {
-            type: Boolean,
-            default: false
-        },
-        loading: {
-            type: Boolean,
-            default: false
-        },
-        loadingDesign: {
-            type: String,
-            default: "three-bars"
-        },
-        loadingWithContent: {
-            type: Boolean,
-            default: false
-        },
-        loadingColor: {
-            type: String,
-            default: null
-        },
-        type: {
-            type: String,
-            default: "submit"
-        }
-    },
-    components: {
-        TLoadingAnimationThreeBars,
-        TLoadingAnimationThreeDots,
-        TLoadingAnimationCogs,
-        Link
-    },
-    setup(props) {
-        /*Definitions*/
-        const {
-            color,
-            design,
-            border,
-            radius,
-            disabled,
-            size,
-            loading,
-            loadingWithContent,
-            loadingDesign
-        } = toRefs(props);
-
-        /*Generating Style Classes*/
-        const tStyle = reactive({})
-        tStyle['container'] = computed(() => {
-            return "button" + " " +
-                "button-" + size.value + " " +
-                "button-" + design.value + "-base" + " " +
-                "button-" + design.value + "-" + color.value + " " +
-                "radius-" + radius.value + " " +
-                (disabled.value ? " button-disabled" : "") + " " +
-                (border.value ? "border" : "") + " " +
-                (loading.value || loadingWithContent.value ? "pointer-events-none" : "");
-        });
-        tStyle['content'] = computed(() => {
-            return "button-content" + " " +
-                (loading.value ? 'invisible' : '');
-        });
-
-
-        /*Loading Component*/
-        const activeLoadingComponent = ref();
-        if (loadingDesign.value === "three-bars") {
-            activeLoadingComponent.value = "TLoadingAnimationThreeBars";
-        } else if (loadingDesign.value === "cogs") {
-            activeLoadingComponent.value = "TLoadingAnimationCogs";
-        } else {
-            activeLoadingComponent.value = "TLoadingAnimationThreeDots";
-        }
-
-        const loadingComponent = defineAsyncComponent(() => import(`@/Components/Loading/Animations/${activeLoadingComponent.value}.vue`));
-
-        return { tStyle, loadingComponent };
-    }
-});
-</script>
