@@ -1,6 +1,6 @@
 <script setup>
 /*Functions*/
-import {computed, onMounted, defineProps, shallowRef} from "vue";
+import {computed, onMounted, shallowRef} from "vue";
 
 /*Sources*/
 import {appConf, mainMenuConf} from "@/config";
