@@ -69,14 +69,14 @@
 
 <script>
 import AppLayout from "@/Layouts/AppLayout.vue";
-import InitialVerticalMenu from "@/Layouts/InitialVerticalMenu";
+import InitialVerticalMenu from "@/Layouts/InitialVerticalMenu.vue";
 import {settingsMenuMixin} from "@/Mixins/settingsMenuMixin";
 import {reactive, ref} from "vue";
 import {useForm} from "@inertiajs/vue3";
-import TBackEndTable from "@/Components/Table/TBackEndTable";
-import TModal from "@/Components/Modal/TModal";
+import TBackEndTable from "@/Components/Table/TBackEndTable.vue";
+import TModal from "@/Components/Modal/TModal.vue";
 import TButton from "@/Components/Button/TButton.vue";
-import TAlert from "@/Components/Alert/TAlert";
+import TAlert from "@/Components/Alert/TAlert.vue";
 import {faPlusCircle} from "@fortawesome/free-solid-svg-icons/faPlusCircle"
 import {library} from "@fortawesome/fontawesome-svg-core";
 library.add(faPlusCircle)

@@ -52,17 +52,17 @@ import {useForm} from "@inertiajs/vue3";
 
 /*Components*/
 import AppLayout from "@/Layouts/AppLayout.vue";
-import InitialVerticalMenu from "@/Layouts/InitialVerticalMenu";
-import TTable from "@/Components/Table/TTable";
+import InitialVerticalMenu from "@/Layouts/InitialVerticalMenu.vue";
+import TTable from "@/Components/Table/TTable.vue";
 import TButton from "@/Components/Button/TButton.vue";
-import TTrashIcon from "@/Components/Icon/TTrashIcon";
-import TPencilAltIcon from "@/Components/Icon/TPencilAltIcon";
+import TTrashIcon from "@/Components/Icon/TTrashIcon.vue";
+import TPencilAltIcon from "@/Components/Icon/TPencilAltIcon.vue";
 import TDropdown from "@/Components/Dropdown/TDropdown.vue";
-import TDotsVerticalIcon from "@/Components/Icon/TDotsVerticalIcon";
-import TList from "@/Components/List/TList";
-import TListItem from "@/Components/List/TListItem";
-import TModal from "@/Components/Modal/TModal";
-import TBackEndTable from "@/Components/Table/TBackEndTable";
+import TDotsVerticalIcon from "@/Components/Icon/TDotsVerticalIcon.vue";
+import TList from "@/Components/List/TList.vue";
+import TListItem from "@/Components/List/TListItem.vue";
+import TModal from "@/Components/Modal/TModal.vue";
+import TBackEndTable from "@/Components/Table/TBackEndTable.vue";
 
 export default {
     name: "SettingsUser",

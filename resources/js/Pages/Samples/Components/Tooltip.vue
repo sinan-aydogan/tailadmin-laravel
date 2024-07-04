@@ -39,7 +39,7 @@ import AppLayout from "@/Layouts/AppLayout.vue";
 /*Component*/
 import GridSection from "@/Layouts/GridSection.vue";
 import TContentCard from "@/Components/Card/TContentCard.vue";
-import TTooltip from "@/Components/Tooltip/TTooltip";
+import TTooltip from "@/Components/Tooltip/TTooltip.vue";
 
 export default {
     name: "Tooltip",

@@ -101,12 +101,12 @@ import TButton from "@/Components/Button/TButton.vue";
 import {radiusSizeMixin} from "@/Mixins/radiusSizeMixin";
 import Button from "@/Pages/Samples/Components/Button.vue";
 import TXIcon from "@/Components/Icon/TXIcon.vue";
-import TTrashIcon from "@/Components/Icon/TTrashIcon";
+import TTrashIcon from "@/Components/Icon/TTrashIcon.vue";
 import TBadge from "@/Components/Badge/TBadge.vue";
-import TPaperClipIcon from "@/Components/Icon/TPaperClipIcon";
-import TAudioIcon from "@/Components/Icon/TAudioIcon";
-import TVideoIcon from "@/Components/Icon/TVideoIcon";
-import TDocumentIcon from "@/Components/Icon/TDocumentIcon";
+import TPaperClipIcon from "@/Components/Icon/TPaperClipIcon.vue";
+import TAudioIcon from "@/Components/Icon/TAudioIcon.vue";
+import TVideoIcon from "@/Components/Icon/TVideoIcon.vue";
+import TDocumentIcon from "@/Components/Icon/TDocumentIcon.vue";
 
 export default {
     name: "TInputFile",

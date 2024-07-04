@@ -87,8 +87,8 @@ import TFormSection from "@/Components/Form/TFormSection.vue";
 import TFormContent from "@/Components/Form/TFormContent.vue";
 import 'simple-syntax-highlighter/dist/sshpre.css'
 import TInputGroup from "@/Components/Form/TInputGroup.vue";
-import TInputSelect from "@/Components/Form/Inputs/TInputSelect";
-import TCheckCircleIcon from "@/Components/Icon/TCheckCircleIcon";
+import TInputSelect from "@/Components/Form/Inputs/TInputSelect.vue";
+import TCheckCircleIcon from "@/Components/Icon/TCheckCircleIcon.vue";
 import TXCircleIcon from "@/Components/Icon/TXCircleIcon.vue";
 
 export default {
