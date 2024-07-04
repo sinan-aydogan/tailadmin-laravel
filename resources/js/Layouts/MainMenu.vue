@@ -32,7 +32,8 @@ const menuDesign = computed(()=>{
 const mainMenu = shallowRef();
 
 onMounted(async ()=>{
-    await import("./MainMenu/"+menuDesign.value+"/MainMenu.vue")
+    /* @vite-ignore */
+    await import(`./MainMenu/${menuDesign.value}/MainMenu.vue`)
         .then((module)=>{
             mainMenu.value = module.default;
         })
