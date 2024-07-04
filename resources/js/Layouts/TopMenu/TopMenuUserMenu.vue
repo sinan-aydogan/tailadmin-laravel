@@ -33,40 +33,41 @@
         <template #default>
             <div class="top-menu-dropdown-content-wrapper-transparent min-w-[13rem]">
                 <!-- Account Management -->
-                <div class="top-menu-dropdown-header border-t rounded-t" v-text="tm('manageAccount')"/>
+                <div class="top-menu-dropdown-header border-t rounded-t" v-text="tm('manageAccount')" />
 
                 <!--Profile-->
                 <Link :href="route('profile.show')">
-                    <div class="top-menu-dropdown-item" v-text="tm('profile')"/>
+                    <div class="top-menu-dropdown-item" v-text="tm('profile')" />
                 </Link>
 
                 <!--API Tokens-->
                 <Link v-if="$page.props.jetstream.hasApiFeatures"
                       :href="route('api-tokens.index')">
-                    <div class="top-menu-dropdown-item" v-text="tm('api')"/>
+                    <div class="top-menu-dropdown-item" v-text="tm('api')" />
                 </Link>
 
                 <!-- Team Management -->
                 <template v-if="$page.props.jetstream.hasTeamFeatures">
-                    <div class="dropdown-item-separator"/>
-                    <div class="top-menu-dropdown-header" v-text="tm('manageTeam')"/>
+                    <div class="dropdown-item-separator" />
+                    <div class="top-menu-dropdown-header" v-text="tm('manageTeam')" />
 
                     <!-- Team Settings -->
                     <Link :href="route('teams.show', $page.props.auth.user.current_team)">
-                        <div class="top-menu-dropdown-item" v-text="tm('teamSettings')"/>
+                        <div class="top-menu-dropdown-item" v-text="tm('teamSettings')" />
                     </Link>
 
                     <!--Create New Team-->
                     <Link v-if="$page.props.jetstream.canCreateTeams"
                           :href="route('teams.create')">
-                        <div class="top-menu-dropdown-item" v-text="tm('createNewTeam')"/>
+                        <div class="top-menu-dropdown-item" v-text="tm('createNewTeam')" />
                     </Link>
 
                     <!-- Team Switcher -->
-                    <div class="dropdown-item-separator"/>
-                    <div class="top-menu-dropdown-header" v-text="tm('switchTeams')"/>
-                    <div class="top-menu-dropdown-item">
-                        <template v-for="team in $page.props.auth.user.all_teams" :key="team.id">
+                    <div class="dropdown-item-separator" />
+                    <div class="top-menu-dropdown-header" v-text="tm('switchTeams')" />
+
+                    <template v-for="team in $page.props.auth.user.all_teams" :key="team.id">
+                        <div class="top-menu-dropdown-item">
                             <form @submit.prevent="switchToTeam(team)">
                                 <button>
                           <span class="flex items-center">
@@ -88,16 +89,17 @@
 
                                 </button>
                             </form>
-                        </template>
-                    </div>
+                        </div>
+                    </template>
+
 
                 </template>
 
                 <!-- Authentication -->
-                <div class="dropdown-item-separator"/>
+                <div class="dropdown-item-separator" />
                 <span class="logout-button border-b rounded-b" @click="logout">
                         <!--Logout Text-->
-                        <span v-text="tm('logout')"/>
+                        <span v-text="tm('logout')" />
                     <!--Logout Icon-->
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -121,26 +123,26 @@
 
 <script>
 /*Main Functions*/
-import {defineComponent, inject, ref} from "vue";
-import {Link} from "@inertiajs/vue3";
-import { router } from '@inertiajs/vue3'
+import { defineComponent, inject, ref } from "vue";
+import { Link } from "@inertiajs/vue3";
+import { router } from "@inertiajs/vue3";
 
 /*Components*/
 import TDropdown from "@/Components/Dropdown/TDropdown.vue";
 import TAvatar from "@/Components/Avatar/TAvatar.vue";
 
 /*Multi Language*/
-import {useI18n} from "vue-i18n";
-import {userMenuTranslates} from "@/Lang/languages";
+import { useI18n } from "vue-i18n";
+import { userMenuTranslates } from "@/Lang/languages";
 
 export default defineComponent({
     name: "TopMenuUserMenu",
-    components: {TAvatar, TDropdown, Link},
+    components: { TAvatar, TDropdown, Link },
     setup() {
         /*Multi Language*/
-        const {tm} = useI18n({
+        const { tm } = useI18n({
             inheritLocale: true,
-            messages: userMenuTranslates,
+            messages: userMenuTranslates
         });
 
         /*Switch Team Action*/
@@ -166,7 +168,7 @@ export default defineComponent({
             logout,
             switchToTeam,
             showTeamSelector,
-            tm,
+            tm
         };
     }
 });
