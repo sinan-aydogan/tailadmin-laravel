@@ -1,6 +1,6 @@
 <script setup>
 /*Functions*/
-import {computed, defineAsyncComponent, defineProps, inject} from "vue";
+import {computed, onMounted, defineProps, shallowRef} from "vue";
 
 /*Sources*/
 import {appConf, mainMenuConf} from "@/config";
@@ -29,8 +29,17 @@ const menuDesign = computed(()=>{
     return menuDesigns[appConf.mainMenuDesign];
 })
 
-const mainMenu = defineAsyncComponent(() => import("./MainMenu/"+menuDesign.value+"/MainMenu.vue"));
+const mainMenu = shallowRef();
 
+onMounted(async ()=>{
+    await import("./MainMenu/"+menuDesign.value+"/MainMenu.vue")
+        .then((module)=>{
+            mainMenu.value = module.default;
+        })
+        .catch((e)=>{
+            console.error(e);
+        })
+})
 </script>
 <template>
     <component :is="mainMenu" />
