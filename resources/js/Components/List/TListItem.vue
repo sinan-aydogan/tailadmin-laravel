@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import { computed, defineComponent, inject, toRefs } from "vue";
+import { computed, defineComponent, inject, toRefs, useSlots } from "vue";
 
 export default defineComponent({
   name: "TListItem",
@@ -72,7 +72,7 @@ export default defineComponent({
     });
 
     /*Slot Check*/
-    const hasSlot = name => !!slots[name];
+    const hasSlot = name => !!useSlots()[name];
 
     return { hasSlot, tStyle };
   }

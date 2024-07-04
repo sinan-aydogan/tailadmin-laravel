@@ -258,7 +258,7 @@
 </template>
 
 <script>
-import {computed, defineComponent, inject, reactive, ref, toRefs} from "vue";
+import {computed, defineComponent, inject, useSlots, ref, toRefs} from "vue";
 import {onClickOutside} from "@vueuse/core";
 
 export default defineComponent({
@@ -392,7 +392,7 @@ export default defineComponent({
     });
 
     /*Slot Check*/
-    const hasSlot = name => !!slots[name];
+    const hasSlot = name => !!useSlots()[name];
 
     return {input, withSelectInput, inputStyle, showSelectList, errors, focus, hasSlot};
   }

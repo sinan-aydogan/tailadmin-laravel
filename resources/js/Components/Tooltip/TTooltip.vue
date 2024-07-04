@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import {computed, defineComponent, reactive, ref, toRefs, watch} from "vue";
+import {computed, defineComponent, useSlots, ref, toRefs, watch} from "vue";
 import {onClickOutside} from "@vueuse/core";
 
 export default defineComponent({
@@ -105,7 +105,7 @@ export default defineComponent({
         onClickOutside(tooltipItem, () => showPopover.value = false);
 
         /*Slot Check*/
-        const hasSlot = name => !!slots[name];
+        const hasSlot = name => !!useSlots()[name];
 
         return {
             tooltipItem,

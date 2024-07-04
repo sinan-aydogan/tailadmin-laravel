@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { defineComponent } from "vue";
+import { defineComponent, useSlots } from "vue";
 import { Link } from "@inertiajs/vue3";
 
 export default defineComponent({
@@ -35,7 +35,7 @@ export default defineComponent({
   setup(props,{slots}) {
 
     /*Slot Check*/
-    const hasSlot = name => !!slots[name];
+    const hasSlot = name => !!useSlots()[name];
 
     return { hasSlot };
   }

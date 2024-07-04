@@ -223,7 +223,7 @@
 <script>
 import TInputText from "@/Components/Form/Inputs/TInputText.vue";
 import {onClickOutside} from "@vueuse/core";
-import {ref, toRefs, computed, inject} from "vue";
+import {ref, toRefs, computed, inject, useSlots} from "vue";
 import {useI18n} from "vue-i18n";
 
 export default {
@@ -345,7 +345,7 @@ export default {
     })
 
     /*Slot Check*/
-    const hasSlot = name => !!slots[name];
+    const hasSlot = name => !!useSlots()[name];
 
     return {
       selectItem,

@@ -73,10 +73,10 @@ import { onClickOutside } from "@vueuse/core";
 import {radiusSizeMixin} from "@/Mixins/radiusSizeMixin";
 
 /*Components*/
-import TPlusCircleIcon from "@/Components/Icon/TPlusCircleIcon";
-import TTrashIcon from "@/Components/Icon/TTrashIcon";
-import TButton from "@/Components/Button/TButton";
-import TChevronDownIcon from "@/Components/Icon/TChevronDownIcon";
+import TPlusCircleIcon from "@/Components/Icon/TPlusCircleIcon.vue";
+import TTrashIcon from "@/Components/Icon/TTrashIcon.vue";
+import TButton from "@/Components/Button/TButton.vue";
+import TChevronDownIcon from "@/Components/Icon/TChevronDownIcon.vue";
 
 export default {
   props: {

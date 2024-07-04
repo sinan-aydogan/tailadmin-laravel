@@ -371,7 +371,7 @@
 </template>
 
 <script>
-import {computed, defineComponent, onBeforeMount, reactive, ref, toRefs, watch, watchEffect} from "vue";
+import {computed, defineComponent, onBeforeMount, reactive, ref, toRefs, watch, useSlots} from "vue";
 import TPaginate from "@/Components/Paginate/TPaginate.vue";
 import TButton from "@/Components/Button/TButton.vue";
 import TModal from "@/Components/Modal/TModal.vue";
@@ -593,7 +593,7 @@ export default defineComponent({
             deep: true
         })
 
-        const hasSlot = name => !!slots[name];
+        const hasSlot = name => !!useSlots()[name];
         return {
             hasSlot,
             onDrop,

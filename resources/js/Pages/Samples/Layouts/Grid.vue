@@ -14,8 +14,8 @@
 </template>
 
 <script>
-import AppLayout from "@/Layouts/AppLayout";
-import GridSection from "@/Layouts/GridSection";
+import AppLayout from "@/Layouts/AppLayout.vue";
+import GridSection from "@/Layouts/GridSection.vue";
 
 export default {
   name: "Grid",

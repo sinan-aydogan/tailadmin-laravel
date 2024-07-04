@@ -48,7 +48,7 @@
 </template>
 <script>
 /* Main Functions */
-import { defineComponent, inject, ref, toRefs, watch } from "vue";
+import { defineComponent, inject, ref, toRefs, watch, useSlots} from "vue";
 
 /*Sources*/
 import { alertConf } from "@/config";
@@ -147,7 +147,7 @@ export default defineComponent({
         })
 
         /*Slot Check*/
-        const hasSlot = name => !!slots[name];
+        const hasSlot = name => !!useSlots()[name];
 
         return {
             appConf,

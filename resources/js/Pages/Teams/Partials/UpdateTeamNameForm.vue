@@ -1,5 +1,31 @@
+<script setup>
+import { useForm } from '@inertiajs/vue3';
+import ActionMessage from '@/Jetstream/ActionMessage.vue';
+import FormSection from '@/Jetstream/FormSection.vue';
+import InputError from '@/Jetstream/InputError.vue';
+import InputLabel from '@/Jetstream/InputLabel.vue';
+import PrimaryButton from '@/Jetstream/PrimaryButton.vue';
+import TextInput from '@/Jetstream/TextInput.vue';
+
+const props = defineProps({
+    team: Object,
+    permissions: Object,
+});
+
+const form = useForm({
+    name: props.team.name,
+});
+
+const updateTeamName = () => {
+    form.put(route('teams.update', props.team), {
+        errorBag: 'updateTeamName',
+        preserveScroll: true,
+    });
+};
+</script>
+
 <template>
-    <jet-form-section @submitted="updateTeamName">
+    <FormSection @submitted="updateTeamName">
         <template #title>
             Team Name
         </template>
@@ -11,80 +37,44 @@
         <template #form>
             <!-- Team Owner Information -->
             <div class="col-span-6">
-                <jet-label value="Team Owner" />
+                <InputLabel value="Team Owner" />
 
                 <div class="flex items-center mt-2">
                     <img class="w-12 h-12 rounded-full object-cover" :src="team.owner.profile_photo_url" :alt="team.owner.name">
 
-                    <div class="ml-4 leading-tight">
-                        <div>{{ team.owner.name }}</div>
-                        <div class="text-gray-700 text-sm">{{ team.owner.email }}</div>
+                    <div class="ms-4 leading-tight">
+                        <div class="text-gray-900 dark:text-white">{{ team.owner.name }}</div>
+                        <div class="text-gray-700 dark:text-gray-300 text-sm">
+                            {{ team.owner.email }}
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- Team Name -->
             <div class="col-span-6 sm:col-span-4">
-                <jet-label for="name" value="Team Name" />
+                <InputLabel for="name" value="Team Name" />
 
-                <jet-input id="name"
-                            type="text"
-                            class="mt-1 block w-full"
-                            v-model="form.name"
-                            :disabled="! permissions.canUpdateTeam" />
+                <TextInput
+                    id="name"
+                    v-model="form.name"
+                    type="text"
+                    class="mt-1 block w-full"
+                    :disabled="! permissions.canUpdateTeam"
+                />
 
-                <jet-input-error :message="form.errors.name" class="mt-2" />
+                <InputError :message="form.errors.name" class="mt-2" />
             </div>
         </template>
 
-        <template #actions v-if="permissions.canUpdateTeam">
-            <jet-action-message :on="form.recentlySuccessful" class="mr-3">
+        <template v-if="permissions.canUpdateTeam" #actions>
+            <ActionMessage :on="form.recentlySuccessful" class="me-3">
                 Saved.
-            </jet-action-message>
+            </ActionMessage>
 
-            <jet-button :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+            <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                 Save
-            </jet-button>
+            </PrimaryButton>
         </template>
-    </jet-form-section>
+    </FormSection>
 </template>
-
-<script>
-    import { defineComponent } from 'vue'
-    import JetActionMessage from '@/Jetstream/ActionMessage'
-    import JetButton from '@/Jetstream/Button'
-    import JetFormSection from '@/Jetstream/FormSection'
-    import JetInput from '@/Jetstream/Input'
-    import JetInputError from '@/Jetstream/InputError'
-    import JetLabel from '@/Jetstream/Label'
-
-    export default defineComponent({
-        components: {
-            JetActionMessage,
-            JetButton,
-            JetFormSection,
-            JetInput,
-            JetInputError,
-            JetLabel,
-        },
-
-        props: ['team', 'permissions'],
-
-        data() {
-            return {
-                form: this.$inertia.form({
-                    name: this.team.name,
-                })
-            }
-        },
-
-        methods: {
-            updateTeamName() {
-                this.form.put(route('teams.update', this.team), {
-                    errorBag: 'updateTeamName',
-                    preserveScroll: true
-                });
-            },
-        },
-    })
-</script>

@@ -61,14 +61,14 @@
 
 <script>
 import {Link} from "@inertiajs/vue3";
-import AppLayout from "@/Layouts/AppLayout";
-import GridSection from "@/Layouts/GridSection";
-import TContentCard from "@/Components/Card/TContentCard";
-import TStatisticWidget from "@/Components/Card/TStatisticWidget";
-import TCogIcon from "@/Components/Icon/TCogIcon";
-import TAdjustmentsIcon from "@/Components/Icon/TAdjustmentsIcon";
-import TChevronDoubleDownIcon from "@/Components/Icon/TChevronDoubleDownIcon";
-import TUserGroupIcon from "@/Components/Icon/TUserGroupIcon";
+import AppLayout from "@/Layouts/AppLayout.vue";
+import GridSection from "@/Layouts/GridSection.vue";
+import TContentCard from "@/Components/Card/TContentCard.vue";
+import TStatisticWidget from "@/Components/Card/TStatisticWidget.vue";
+import TCogIcon from "@/Components/Icon/TCogIcon.vue";
+import TAdjustmentsIcon from "@/Components/Icon/TAdjustmentsIcon.vue";
+import TChevronDoubleDownIcon from "@/Components/Icon/TChevronDoubleDownIcon.vue";
+import TUserGroupIcon from "@/Components/Icon/TUserGroupIcon.vue";
 
 export default {
     name: "Index",

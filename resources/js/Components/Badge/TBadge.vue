@@ -82,7 +82,7 @@
 
 <script>
 /*Main functions*/
-import {computed, defineComponent, inject, reactive, ref, toRefs} from "vue";
+import {computed, defineComponent, inject, useSlots, ref, toRefs} from "vue";
 
 /*Sources*/
 import {avatarConf, badgeConf} from "@/config";
@@ -203,7 +203,7 @@ export default defineComponent({
         });
 
         /*Slot Check*/
-        const hasSlot = name => !!slots[name];
+        const hasSlot = name => !!useSlots()[name];
 
         return {
             hasSlot,

@@ -35,11 +35,11 @@
 
 <script>
 /*Layout*/
-import AppLayout from "@/Layouts/AppLayout";
+import AppLayout from "@/Layouts/AppLayout.vue";
 /*Component*/
-import GridSection from "@/Layouts/GridSection";
-import TContentCard from "@/Components/Card/TContentCard";
-import TTooltip from "@/Components/Tooltip/TTooltip";
+import GridSection from "@/Layouts/GridSection.vue";
+import TContentCard from "@/Components/Card/TContentCard.vue";
+import TTooltip from "@/Components/Tooltip/TTooltip.vue";
 
 export default {
     name: "Tooltip",

@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref, useSlots } from "vue";
 import {contentCardStyleMixin} from "@/Mixins/Styles/contentCardStyleMixin";
 
 export default defineComponent({
@@ -69,7 +69,7 @@ export default defineComponent({
     const showSecondContent = ref(false)
 
     /*Slot Check*/
-    const hasSlot = name => !!slots[name];
+    const hasSlot = name => !!useSlots()[name];
 
     return {hasSlot,showSecondContent}
   }

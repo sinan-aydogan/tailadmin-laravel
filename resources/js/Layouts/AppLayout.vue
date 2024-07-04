@@ -70,7 +70,7 @@
 
 <script>
 /*Main Functions*/
-import { defineComponent, provide, ref } from "vue";
+import { defineComponent, provide, ref, useSlots } from "vue";
 import {Head} from "@inertiajs/vue3";
 import {breakpointsTailwind, useBreakpoints} from '@vueuse/core'
 
@@ -126,7 +126,7 @@ export default defineComponent({
 
 
         /*Slot Check*/
-        const hasSlot = name => !!slots[name];
+        const hasSlot = name => !!useSlots()[name];
 
         return {
             footerConf,

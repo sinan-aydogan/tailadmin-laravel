@@ -87,7 +87,7 @@
 </template>
 
 <script>
-import { computed, defineComponent, reactive, toRefs, watch } from "vue";
+import { computed, defineComponent, reactive, toRefs, watch, useSlots } from "vue";
 import { ref } from "vue";
 import { useKeypress } from "vue3-keypress";
 import { onClickOutside } from "@vueuse/core";
@@ -318,7 +318,7 @@ export default defineComponent({
     /*Icon*/
 
     /*Slot Check*/
-    const hasSlot = name => !!slots[name];
+    const hasSlot = name => !!useSlots()[name];
 
     return { hasSlot, close, tStyle, iconList, countDownCounter, modalItem };
   }

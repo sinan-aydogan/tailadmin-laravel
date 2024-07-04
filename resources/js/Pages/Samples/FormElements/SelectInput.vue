@@ -81,15 +81,15 @@
 </template>
 
 <script>
-import AppLayout from "@/Layouts/AppLayout";
-import TButton from "@/Components/Button/TButton";
-import TFormSection from "@/Components/Form/TFormSection";
-import TFormContent from "@/Components/Form/TFormContent";
+import AppLayout from "@/Layouts/AppLayout.vue";
+import TButton from "@/Components/Button/TButton.vue";
+import TFormSection from "@/Components/Form/TFormSection.vue";
+import TFormContent from "@/Components/Form/TFormContent.vue";
 import 'simple-syntax-highlighter/dist/sshpre.css'
-import TInputGroup from "@/Components/Form/TInputGroup";
-import TInputSelect from "@/Components/Form/Inputs/TInputSelect";
-import TCheckCircleIcon from "@/Components/Icon/TCheckCircleIcon";
-import TXCircleIcon from "@/Components/Icon/TXCircleIcon";
+import TInputGroup from "@/Components/Form/TInputGroup.vue";
+import TInputSelect from "@/Components/Form/Inputs/TInputSelect.vue";
+import TCheckCircleIcon from "@/Components/Icon/TCheckCircleIcon.vue";
+import TXCircleIcon from "@/Components/Icon/TXCircleIcon.vue";
 
 export default {
     name: "SelectInput",

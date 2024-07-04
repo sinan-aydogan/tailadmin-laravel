@@ -143,14 +143,14 @@
 </template>
 
 <script>
-import AppLayout from "@/Layouts/AppLayout";
-import TButton from "@/Components/Button/TButton";
-import TFormSection from "@/Components/Form/TFormSection";
-import TFormContent from "@/Components/Form/TFormContent";
-import TInputGroup from "@/Components/Form/TInputGroup";
+import AppLayout from "@/Layouts/AppLayout.vue";
+import TButton from "@/Components/Button/TButton.vue";
+import TFormSection from "@/Components/Form/TFormSection.vue";
+import TFormContent from "@/Components/Form/TFormContent.vue";
+import TInputGroup from "@/Components/Form/TInputGroup.vue";
 import TInputText from "@/Components/Form/Inputs/TInputText.vue";
-import TInputTextArea from "@/Components/Form/Inputs/TInputTextArea";
-import TBadge from "@/Components/Badge/TBadge";
+import TInputTextArea from "@/Components/Form/Inputs/TInputTextArea.vue";
+import TBadge from "@/Components/Badge/TBadge.vue";
 
 export default {
     name: "FormStructure",

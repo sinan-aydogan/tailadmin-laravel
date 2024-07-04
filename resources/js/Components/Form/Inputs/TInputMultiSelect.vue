@@ -246,9 +246,9 @@
 
 <script>
 import TInputText from "@/Components/Form/Inputs/TInputText.vue";
-import TBadge from "@/Components/Badge/TBadge";
+import TBadge from "@/Components/Badge/TBadge.vue";
 import {onClickOutside} from "@vueuse/core";
-import {defineComponent, reactive, ref, toRefs, computed} from "vue";
+import {defineComponent, useSlots, ref, toRefs, computed} from "vue";
 import {useI18n} from "vue-i18n";
 
 export default defineComponent({
@@ -396,7 +396,7 @@ export default defineComponent({
         })
 
         /*Slot Check*/
-        const hasSlot = name => !!slots[name];
+        const hasSlot = name => !!useSlots()[name];
 
         return {
             showOptions,

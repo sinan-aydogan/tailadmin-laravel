@@ -8,8 +8,8 @@
 </template>
 
 <script>
-import AppLayout from "@/Layouts/AppLayout";
-import InitialVerticalMenu from "@/Layouts/InitialVerticalMenu";
+import AppLayout from "@/Layouts/AppLayout.vue";
+import InitialVerticalMenu from "@/Layouts/InitialVerticalMenu.vue";
 import {settingsMenuMixin} from "@/Mixins/settingsMenuMixin";
 
 export default {
