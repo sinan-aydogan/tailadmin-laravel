@@ -54,11 +54,11 @@
 
 <script>
 /* Main functions */
-import { defineComponent, inject, toRefs, ref, provide } from "vue";
+import { defineComponent, inject, toRefs, ref, provide, useSlots } from "vue";
 
 /* Components */
-import TButton from "@/Components/Button/TButton";
-import TContentCard from "@/Components/Card/TContentCard";
+import TButton from "@/Components/Button/TButton.vue";
+import TContentCard from "@/Components/Card/TContentCard.vue";
 
 /*Sources*/
 import { formContentConf } from "@/config";
@@ -118,7 +118,7 @@ export default defineComponent({
         };
 
         /*Slot Check*/
-        const hasSlot = name => !!slots[name];
+        const hasSlot = name => !!useSlots()[name];
         return {
             appConf,
             formContentConf,

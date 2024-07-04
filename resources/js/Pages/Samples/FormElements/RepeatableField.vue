@@ -30,13 +30,13 @@
 
 <script>
 /*Main Functions*/
-import AppLayout from "@/Layouts/AppLayout";
+import AppLayout from "@/Layouts/AppLayout.vue";
 import {useForm} from "@inertiajs/vue3";
 
 /*Components*/
-import TFormContent from "@/Components/Form/TFormContent";
-import TFormSection from "@/Components/Form/TFormSection";
-import TInputGroup from "@/Components/Form/TInputGroup";
+import TFormContent from "@/Components/Form/TFormContent.vue";
+import TFormSection from "@/Components/Form/TFormSection.vue";
+import TInputGroup from "@/Components/Form/TInputGroup.vue";
 import TInputText from "@/Components/Form/Inputs/TInputText.vue";
 import TInputRepeatable from "@/Components/Form/Inputs/TInputRepeatable";
 

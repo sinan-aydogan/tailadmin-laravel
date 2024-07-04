@@ -46,7 +46,7 @@
 <script>
 import TPlusCircleIcon from "@/Components/Icon/TPlusCircleIcon";
 import TTrashIcon from "@/Components/Icon/TTrashIcon";
-import TButton from "@/Components/Button/TButton";
+import TButton from "@/Components/Button/TButton.vue";
 export default {
     props:['placeHolderText','value'],
     components: {

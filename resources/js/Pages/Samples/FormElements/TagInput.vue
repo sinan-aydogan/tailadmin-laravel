@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import AppLayout from "@/Layouts/AppLayout";
+import AppLayout from "@/Layouts/AppLayout.vue";
 import SshPre from 'simple-syntax-highlighter'
 import 'simple-syntax-highlighter/dist/sshpre.css'
 
@@ -26,7 +26,7 @@ export default {
             '    <t-input-text id="name4" placeholder="I\'m a placeholder text" value="Hi, I\'m a prefilled text"/>\n' +
             '</t-input-group>',
         js:
-            'import TInputGroup from "@/Components/Form/TInputGroup";\n' +
+            'import TInputGroup from "@/Components/Form/TInputGroup.vue";\n' +
             'import TInputText from "@/Components/Form/Inputs/TInputText.vue";\n' +
             '\n' +
             'export default {\n' +

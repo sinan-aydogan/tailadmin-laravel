@@ -32,7 +32,7 @@
 
 <script>
 import {radiusSizeMixin} from "@/Mixins/radiusSizeMixin";
-import TXCircleIcon from "@/Components/Icon/TXCircleIcon";
+import TXCircleIcon from "@/Components/Icon/TXCircleIcon.vue";
 import {toRefs, watch, inject, ref} from "vue";
 
 export default {

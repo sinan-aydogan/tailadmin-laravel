@@ -524,7 +524,7 @@
 
 <script>
 import { router } from '@inertiajs/vue3'
-import {computed, defineComponent, reactive, toRefs, watch, ref, onBeforeMount} from "vue";
+import {computed, defineComponent, reactive, toRefs, watch, ref, onBeforeMount, useSlots} from "vue";
 import {debouncedWatch} from "@vueuse/core";
 import TButton from "@/Components/Button/TButton.vue";
 import TModal from "@/Components/Modal/TModal.vue";
@@ -934,7 +934,7 @@ export default defineComponent({
 
 
         /*Slot Check*/
-        const hasSlot = name => !!slots[name];
+        const hasSlot = name => !!useSlots()[name];
 
 
         return {

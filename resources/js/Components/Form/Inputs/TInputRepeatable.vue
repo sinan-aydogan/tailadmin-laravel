@@ -75,7 +75,7 @@ import {radiusSizeMixin} from "@/Mixins/radiusSizeMixin";
 /*Components*/
 import TPlusCircleIcon from "@/Components/Icon/TPlusCircleIcon";
 import TTrashIcon from "@/Components/Icon/TTrashIcon";
-import TButton from "@/Components/Button/TButton";
+import TButton from "@/Components/Button/TButton.vue";
 import TChevronDownIcon from "@/Components/Icon/TChevronDownIcon";
 
 export default {

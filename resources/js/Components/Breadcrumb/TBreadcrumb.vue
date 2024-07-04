@@ -52,7 +52,7 @@
 </template>
 
 <script>
-import { defineComponent, toRefs, computed, reactive } from "vue";
+import { defineComponent, toRefs, computed, reactive, useSlots } from "vue";
 
 export default defineComponent({
   name: "TBreadcrumb",
@@ -108,7 +108,7 @@ export default defineComponent({
     };
 
     /*Slot Check*/
-    const hasSlot = name => !!slots[name];
+    const hasSlot = name => !!useSlots()[name];
 
     return {
       hasSlot,

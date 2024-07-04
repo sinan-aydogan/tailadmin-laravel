@@ -26,11 +26,11 @@
 
 <script>
 /*Layout*/
-import AppLayout from "@/Layouts/AppLayout";
+import AppLayout from "@/Layouts/AppLayout.vue";
 /*Component*/
-import TFormSection from "@/Components/Form/TFormSection";
-import TFormContent from "@/Components/Form/TFormContent";
-import TInputGroup from "@/Components/Form/TInputGroup";
+import TFormSection from "@/Components/Form/TFormSection.vue";
+import TFormContent from "@/Components/Form/TFormContent.vue";
+import TInputGroup from "@/Components/Form/TInputGroup.vue";
 import TInputText from "@/Components/Form/Inputs/TInputText.vue";
 import TInputSelect from "@/Components/Form/Inputs/TInputSelect";
 

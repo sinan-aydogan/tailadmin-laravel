@@ -51,10 +51,10 @@ import {reactive, ref, toRefs, watch} from "vue";
 import {useForm} from "@inertiajs/vue3";
 
 /*Components*/
-import AppLayout from "@/Layouts/AppLayout";
+import AppLayout from "@/Layouts/AppLayout.vue";
 import InitialVerticalMenu from "@/Layouts/InitialVerticalMenu";
 import TTable from "@/Components/Table/TTable";
-import TButton from "@/Components/Button/TButton";
+import TButton from "@/Components/Button/TButton.vue";
 import TTrashIcon from "@/Components/Icon/TTrashIcon";
 import TPencilAltIcon from "@/Components/Icon/TPencilAltIcon";
 import TDropdown from "@/Components/Dropdown/TDropdown.vue";
