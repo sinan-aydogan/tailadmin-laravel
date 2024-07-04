@@ -1,6 +1,6 @@
 <script setup>
 /*Functions*/
-import {ref, onBeforeMount, defineEmits, inject, watch} from "vue";
+import {ref, onBeforeMount, inject, watch} from "vue";
 import {Link, usePage} from "@inertiajs/vue3";
 import {onClickOutside} from '@vueuse/core'
 import {cloneDeep} from "lodash";
