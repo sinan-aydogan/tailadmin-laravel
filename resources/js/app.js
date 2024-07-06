@@ -39,6 +39,9 @@ const i18n = createI18n({
 /* Highlighter */
 import VueHighlightJS from 'vue3-highlightjs'
 
+/* Pinia */
+import setupPinia from './Stores';
+
 const appName = import.meta.env.VITE_APP_NAME || 'TailAdmin';
 
 createInertiaApp({
@@ -48,6 +51,7 @@ createInertiaApp({
         return createApp({ render: () => h(App, props) })
             .use(plugin)
             .use(i18n)
+            .use(setupPinia())
             .use(VueHighlightJS)
             .component("icon", FontAwesomeIcon)
             .use(ZiggyVue)
