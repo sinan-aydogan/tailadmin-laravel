@@ -83,11 +83,12 @@ import TopMenu from "@/Layouts/TopMenu/TopMenu.vue";
 
 /*Sources*/
 import {appConf, footerConf} from "@/config";
-import DarkMode from "@/Functions/darkMode";
 import windowSizeCalculator from "@/Functions/windowSizeCalculator";
 
 /*Multi Language*/
 import { useI18n } from "vue-i18n";
+import { useDarkModeStore } from "@/Stores/darkMode";
+import { storeToRefs } from "pinia";
 
 export default defineComponent({
     components: {
@@ -116,12 +117,16 @@ export default defineComponent({
         /*Definitions*/
         const { deviceType } = windowSizeCalculator();
 
+        /*Dark Mode*/
+        const darkModeStore= useDarkModeStore();
+        const { changeThemeUser} = storeToRefs(darkModeStore);
+
         /*Multi Language*/
         const { t } = useI18n();
 
         /*Providers*/
         provide("breakpoints", ref(useBreakpoints(breakpointsTailwind)));
-        provide("appearingMode", ref(DarkMode().appearingMode));
+        provide("appearingMode", ref(darkModeStore.appearingMode));
         provide("appConf", ref(appConf));
 
 

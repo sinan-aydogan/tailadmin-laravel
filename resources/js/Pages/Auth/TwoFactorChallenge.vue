@@ -1,12 +1,51 @@
+<script setup>
+import { nextTick, ref } from 'vue';
+import { Head, useForm } from '@inertiajs/vue3';
+import AuthenticationCard from '@/Jetstream/AuthenticationCard.vue';
+import AuthenticationCardLogo from '@/Jetstream/AuthenticationCardLogo.vue';
+import InputError from '@/Jetstream/InputError.vue';
+import InputLabel from '@/Jetstream/InputLabel.vue';
+import PrimaryButton from '@/Jetstream/PrimaryButton.vue';
+import TextInput from '@/Jetstream/TextInput.vue';
+
+const recovery = ref(false);
+
+const form = useForm({
+    code: '',
+    recovery_code: '',
+});
+
+const recoveryCodeInput = ref(null);
+const codeInput = ref(null);
+
+const toggleRecovery = async () => {
+    recovery.value ^= true;
+
+    await nextTick();
+
+    if (recovery.value) {
+        recoveryCodeInput.value.focus();
+        form.code = '';
+    } else {
+        codeInput.value.focus();
+        form.recovery_code = '';
+    }
+};
+
+const submit = () => {
+    form.post(route('two-factor.login'));
+};
+</script>
+
 <template>
     <Head title="Two-factor Confirmation" />
 
-    <jet-authentication-card>
+    <AuthenticationCard>
         <template #logo>
-            <jet-authentication-card-logo />
+            <AuthenticationCardLogo />
         </template>
 
-        <div class="mb-4 text-sm text-gray-600">
+        <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
             <template v-if="! recovery">
                 Please confirm access to your account by entering the authentication code provided by your authenticator application.
             </template>
@@ -16,21 +55,37 @@
             </template>
         </div>
 
-        <jet-validation-errors class="mb-4" />
-
         <form @submit.prevent="submit">
             <div v-if="! recovery">
-                <jet-label for="code" value="Code" />
-                <jet-input ref="code" id="code" type="text" inputmode="numeric" class="mt-1 block w-full" v-model="form.code" autofocus autocomplete="one-time-code" />
+                <InputLabel for="code" value="Code" />
+                <TextInput
+                    id="code"
+                    ref="codeInput"
+                    v-model="form.code"
+                    type="text"
+                    inputmode="numeric"
+                    class="mt-1 block w-full"
+                    autofocus
+                    autocomplete="one-time-code"
+                />
+                <InputError class="mt-2" :message="form.errors.code" />
             </div>
 
             <div v-else>
-                <jet-label for="recovery_code" value="Recovery Code" />
-                <jet-input ref="recovery_code" id="recovery_code" type="text" class="mt-1 block w-full" v-model="form.recovery_code" autocomplete="one-time-code" />
+                <InputLabel for="recovery_code" value="Recovery Code" />
+                <TextInput
+                    id="recovery_code"
+                    ref="recoveryCodeInput"
+                    v-model="form.recovery_code"
+                    type="text"
+                    class="mt-1 block w-full"
+                    autocomplete="one-time-code"
+                />
+                <InputError class="mt-2" :message="form.errors.recovery_code" />
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                <button type="button" class="text-sm text-gray-600 hover:text-gray-900 underline cursor-pointer" @click.prevent="toggleRecovery">
+                <button type="button" class="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 underline cursor-pointer" @click.prevent="toggleRecovery">
                     <template v-if="! recovery">
                         Use a recovery code
                     </template>
@@ -40,63 +95,10 @@
                     </template>
                 </button>
 
-                <jet-button class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                <PrimaryButton class="ms-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                     Log in
-                </jet-button>
+                </PrimaryButton>
             </div>
         </form>
-    </jet-authentication-card>
+    </AuthenticationCard>
 </template>
-
-<script>
-    import { defineComponent } from 'vue';
-    import { Head } from '@inertiajs/vue3';
-    import JetAuthenticationCard from '@/Jetstream/AuthenticationCard.vue'
-    import JetAuthenticationCardLogo from '@/Jetstream/AuthenticationCardLogo.vue'
-    import JetButton from '@/Jetstream/Button.vue'
-    import JetInput from '@/Jetstream/Input.vue'
-    import JetLabel from '@/Jetstream/Label.vue'
-    import JetValidationErrors from '@/Jetstream/ValidationErrors.vue'
-
-    export default defineComponent({
-        components: {
-            Head,
-            JetAuthenticationCard,
-            JetAuthenticationCardLogo,
-            JetButton,
-            JetInput,
-            JetLabel,
-            JetValidationErrors,
-        },
-
-        data() {
-            return {
-                recovery: false,
-                form: this.$inertia.form({
-                    code: '',
-                    recovery_code: '',
-                })
-            }
-        },
-
-        methods: {
-            toggleRecovery() {
-                this.recovery ^= true
-
-                this.$nextTick(() => {
-                    if (this.recovery) {
-                        this.$refs.recovery_code.focus()
-                        this.form.code = '';
-                    } else {
-                        this.$refs.code.focus()
-                        this.form.recovery_code = ''
-                    }
-                })
-            },
-
-            submit() {
-                this.form.post(this.route('two-factor.login'))
-            }
-        }
-    })
-</script>

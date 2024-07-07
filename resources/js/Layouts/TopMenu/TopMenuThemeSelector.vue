@@ -2,7 +2,7 @@
     <div
         class="flex p-2 w-10 h-10 justify-center items-center cursor-pointer hover:bg-slate-500/10 dark:hover:bg-slate-500/50 overflow-hidden text-white  transform transition-all duration-300"
         :class="`radius-${topBarConf.radius ? topBarConf.radius : appConf.radius}`"
-        @click="changeTheme"
+        @click="updateDarkModePreference()"
     >
         <transition-group name="darkTransition">
             <!-- Light -->
@@ -40,36 +40,49 @@
     </div>
 </template>
 
-<script>
+<script setup>
 /* Main Functions */
-import {defineComponent, inject} from "vue";
-import {library} from "@fortawesome/fontawesome-svg-core";
-import darkModeFn from "@/Functions/darkMode";
+import { inject } from "vue";
+import { usePage } from "@inertiajs/vue3";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { useDarkModeStore } from "@/Stores/darkMode";
 
 /*Components*/
-import {faSun, faMoon, faPalette} from "@fortawesome/free-solid-svg-icons";
+import { faSun, faMoon, faPalette } from "@fortawesome/free-solid-svg-icons";
 
-library.add(faSun, faMoon, faPalette)
+library.add(faSun, faMoon, faPalette);
 
 /*Multi Language*/
-import {useI18n} from "vue-i18n";
+import { useI18n } from "vue-i18n";
+import { useForm } from "@inertiajs/vue3";
+import { storeToRefs } from "pinia";
 
-export default defineComponent({
-    name: "TopMenuThemeSelector",
-    setup() {
-        /*Injections*/
-        const appConf = inject("appConf");
-        const topBarConf = inject("topBarConf");
+/*Injections*/
+const appConf = inject("appConf");
+const topBarConf = inject("topBarConf");
 
-        /* Dark Mode */
-        const {darkMode, appearingMode, changeTheme} = darkModeFn();
+/* Dark Mode */
+const darkModeStore = useDarkModeStore();
+const { changeTheme } = darkModeStore;
+const { darkMode, appearingMode } = storeToRefs(darkModeStore);
 
-        /*Multi Language*/
-        const {t} = useI18n();
+/*Multi Language*/
+const { t } = useI18n();
 
-        return {appConf, topBarConf, darkMode, changeTheme, t ,appearingMode}
-    }
-})
+const form = useForm({
+    dark_mode: usePage().props?.auth?.user?.dark_mode ?? "auto"
+});
+
+const updateDarkModePreference = () => {
+    form.dark_mode = darkMode;
+    form.put(route("user.dark-mode-preference.update"), {
+        errorBag: "updateDarkModePreference",
+        preserveScroll: true,
+        onSuccess: () => {
+            changeTheme();
+        }
+    });
+};
 </script>
 
 <style scoped>

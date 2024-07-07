@@ -7,25 +7,15 @@ import flagRu from "@/Lang/Flags/flagRu.vue";
 import flagTr from "@/Lang/Flags/flagTr.vue";
 import flagZh from "@/Lang/Flags/flagZh.vue";
 
-const flags = {
-    flagBg: flagBg,
-    flagDe: flagDe,
-    flagEn: flagEn,
-    flagFr: flagFr,
-    flagRu: flagRu,
-    flagTr: flagTr,
-    flagZh: flagZh,
-};
-
 /* Languages */
 const languages = [
-    { id: "en", name: "English", flag: "flagEn" },
-    { id: "tr", name: "Türkçe", flag: "flagTr" },
-    { id: "bg", name: "български", flag: "flagBg" },
-    { id: "de", name: "Deutsch", flag: "flagDe" },
-    { id: "fr", name: "Français", flag: "flagFr" },
-    { id: "ru", name: "Pусский", flag: "flagRu" },
-    { id: "zh", name: "自从", flag: "flagZh" },
+    { id: "en", name: "English", flag: flagEn },
+    { id: "tr", name: "Türkçe", flag: flagTr },
+    { id: "bg", name: "български", flag: flagBg },
+    { id: "de", name: "Deutsch", flag: flagDe },
+    { id: "fr", name: "Français", flag: flagFr },
+    { id: "ru", name: "Pусский", flag: flagRu },
+    { id: "zh", name: "自从", flag: flagZh },
 ];
 
 /* Translates */
@@ -104,7 +94,6 @@ const notificationTranslates = {
 
 export {
     languages,
-    flags,
     authTranslates,
     mainMenuTranslates,
     userMenuTranslates,

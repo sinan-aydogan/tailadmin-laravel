@@ -1,16 +1,19 @@
+import { defineStore } from "pinia";
 import { onBeforeMount, ref } from "vue";
 import { useI18n } from "vue-i18n";
-import { router } from '@inertiajs/vue3'
+import { router } from "@inertiajs/vue3";
 
-export default function () {
+export const useDisplayLanguageStore = defineStore("displayLanguage", () => {
     /*Language Selector*/
     const loadingTranslations = ref(false);
+
     const { locale } = useI18n({
         useScope: "global",
         missingWarn: false,
         warnHtmlMessage: false,
-        fallbackWarn: false,
+        fallbackWarn: false
     });
+
     onBeforeMount(() => {
         if (localStorage.lang) {
             locale.value = localStorage.lang;
@@ -22,9 +25,9 @@ export default function () {
         router.visit(route("lang", key), {
             onStart: () => (loadingTranslations.value = true),
             onSuccess: () => (loadingTranslations.value = false),
-            preserveScroll: true,
+            preserveScroll: true
         });
     };
 
     return { locale, loadingTranslations, changeLang };
-}
+})

@@ -5,6 +5,8 @@ import scrollbar from "tailwind-scrollbar"
 
 /** @type {import('tailwindcss').Config} */
 export default {
+    darkMode: 'selector',
+
     content: [
         './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
         './vendor/laravel/jetstream/**/*.blade.php',
