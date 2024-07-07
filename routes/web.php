@@ -6,6 +6,12 @@ use Inertia\Inertia;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
+
+/**
+ * You can register your routes here.
+**/
+include base_path('routes/web_modules/index.php');
+
 /* Change Lang */
 Route::get('lang/{locale}', function ($locale) {
     // Available languages

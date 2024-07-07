@@ -6,6 +6,8 @@ import SectionBorder from '@/Jetstream/SectionBorder.vue';
 import TwoFactorAuthenticationForm from '@/Pages/Profile/Partials/TwoFactorAuthenticationForm.vue';
 import UpdatePasswordForm from '@/Pages/Profile/Partials/UpdatePasswordForm.vue';
 import UpdateProfileInformationForm from '@/Pages/Profile/Partials/UpdateProfileInformationForm.vue';
+import PreferredLanguageForm from "@/Pages/Profile/Partials/PreferredLanguageForm.vue";
+import DarkModePreferenceForm from "@/Pages/Profile/Partials/DarkModePreferenceForm.vue";
 
 defineProps({
     confirmsTwoFactorAuthentication: Boolean,
@@ -31,6 +33,18 @@ defineProps({
 
                 <div v-if="$page.props.jetstream.canUpdatePassword">
                     <UpdatePasswordForm class="mt-10 sm:mt-0" />
+
+                    <SectionBorder />
+                </div>
+
+                <div>
+                    <PreferredLanguageForm class="mt-10 sm:mt-0"  :user="$page.props.auth.user"/>
+
+                    <SectionBorder />
+                </div>
+
+                <div>
+                    <DarkModePreferenceForm class="mt-10 sm:mt-0"  :user="$page.props.auth.user"/>
 
                     <SectionBorder />
                 </div>
