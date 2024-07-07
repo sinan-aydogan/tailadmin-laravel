@@ -7,6 +7,7 @@ import PrimaryButton from "@/Jetstream/PrimaryButton.vue";
 import { faSun, faMoon, faPalette } from "@fortawesome/free-solid-svg-icons";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { watch } from "vue";
+import { useDarkModeStore } from "@/Stores/darkMode";
 
 library.add(faSun, faMoon, faPalette);
 
@@ -18,10 +19,17 @@ const form = useForm({
     dark_mode: props.user.dark_mode
 });
 
+/*Dark Mode*/
+const darkModeStore= useDarkModeStore();
+const { changeThemeUser} = darkModeStore;
+
 const updateDarkModePreference = () => {
     form.put(route("user.dark-mode-preference.update"), {
         errorBag: "updateDarkModePreference",
-        preserveScroll: true
+        preserveScroll: true,
+        onSuccess: () => {
+            changeThemeUser(form.dark_mode);
+        }
     });
 };
 

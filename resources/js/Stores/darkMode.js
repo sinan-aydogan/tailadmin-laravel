@@ -1,9 +1,10 @@
-import { watch, ref, onBeforeMount } from "vue";
+import { defineStore } from "pinia";
+import { onBeforeMount, ref, watch } from "vue";
 
-export default function () {
+export const useDarkModeStore = defineStore('darkMode',()=>{
     /*Dark Mode*/
     const darkMode = ref("auto");
-    const appearingMode = ref("auto")
+    const appearingMode = ref("auto");
 
     /*Dark Mode: Check Local Variables*/
     onBeforeMount(() => {
@@ -30,7 +31,7 @@ export default function () {
         document.documentElement.classList.add("light");
         document.documentElement.classList.remove("dark");
         document.documentElement.classList.remove("auto");
-        appearingMode.value = "light"
+        appearingMode.value = "light";
     };
 
     const makeAuto = () => {
@@ -41,7 +42,7 @@ export default function () {
                 appearingMode.value = "dark";
             } else {
                 makeLight();
-                appearingMode.value = "light"
+                appearingMode.value = "light";
             }
         };
         changeAutoTheme();
@@ -68,14 +69,18 @@ export default function () {
 
     /* Change Dark Mode */
     const changeTheme = () => {
-                if (darkMode .value=== 'light') {
-                  darkMode.value = 'dark';
-                } else if (darkMode.value === 'dark') {
-                  darkMode .value= 'auto';
-                } else {
-                  darkMode.value = 'light';
-                }
-              }
+        if (darkMode.value === "light") {
+            darkMode.value = "dark";
+        } else if (darkMode.value === "dark") {
+            darkMode.value = "auto";
+        } else {
+            darkMode.value = "light";
+        }
+    };
+    /*Change Dark Mode with user value*/
+    const changeThemeUser = (value) => {
+        darkMode.value = value;
+    };
 
-    return { darkMode, appearingMode, changeTheme };
-}
+    return { darkMode, appearingMode, changeTheme, changeThemeUser };
+})

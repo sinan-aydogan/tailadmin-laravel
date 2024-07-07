@@ -1,32 +1,35 @@
 <script setup>
 /*Main functions*/
-import {inject} from "vue";
-import {usePage} from "@inertiajs/vue3";
+import { inject } from "vue";
+import { usePage } from "@inertiajs/vue3";
 
 /*Components*/
 import TDropdown from "@/Components/Dropdown/TDropdown.vue";
 
 /*Multi language*/
-import langChooserFn from "@/Functions/langChooser"
-import {languages} from "@/Lang/languages";
+import { useDisplayLanguageStore } from "@/Stores/displayLanguage.js";
+import { languages } from "@/Lang/languages";
 import { useForm } from "@inertiajs/vue3";
+import { storeToRefs } from "pinia";
 
 /*Injections*/
 const appConf = inject("appConf");
 const topBarConf = inject("topBarConf");
 
 /*Multi language*/
-const {locale, changeLang} = langChooserFn()
+const displayLanguageStore = useDisplayLanguageStore();
+const { changeLang } = displayLanguageStore;
+const { locale } = storeToRefs(displayLanguageStore);
 
 const form = useForm({
-    language: usePage().props?.auth?.user?.language,
+    language: usePage().props?.auth?.user?.language
 });
 
 const updatePreferredLanguage = (langId) => {
     form.language = langId;
-    form.put(route('user.preferred-language.update'), {
-        errorBag: 'updatePreferredLanguage',
-        preserveScroll: true,
+    form.put(route("user.preferred-language.update"), {
+        errorBag: "updatePreferredLanguage",
+        preserveScroll: true
     });
 };
 </script>
@@ -50,7 +53,8 @@ const updatePreferredLanguage = (langId) => {
             <!--Language Lists-->
             <div class="top-menu-dropdown-content-wrapper-transparent">
                 <template v-for="lang in languages" :key="lang.id">
-                    <div @click="changeLang(lang.id); updatePreferredLanguage(lang.id)" class="top-menu-dropdown-item-transparent">
+                    <div @click="changeLang(lang.id); updatePreferredLanguage(lang.id)"
+                         class="top-menu-dropdown-item-transparent">
                         <component
                             :is="lang.flag"
                             class="w-6 aspect-auto drop-shadow"

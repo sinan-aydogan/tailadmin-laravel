@@ -7,6 +7,7 @@ import PrimaryButton from '@/Jetstream/PrimaryButton.vue';
 import {languages} from "@/Lang/languages";
 import TInputSelect from "@/Components/Form/Inputs/TInputSelect.vue";
 import { watch } from "vue";
+import { useDisplayLanguageStore } from "@/Stores/displayLanguage.js";
 
 const props = defineProps({
     user: Object
@@ -20,8 +21,15 @@ const updatePreferredLanguage = () => {
     form.put(route('user.preferred-language.update'), {
         errorBag: 'updatePreferredLanguage',
         preserveScroll: true,
+        onSuccess: () => {
+            changeLang(form.language);
+        },
     });
 };
+
+/*Multi language*/
+const displayLanguageStore = useDisplayLanguageStore();
+const { changeLang } = displayLanguageStore;
 
 watch(() => props.user, (value) => {
     form.language = value.language;
