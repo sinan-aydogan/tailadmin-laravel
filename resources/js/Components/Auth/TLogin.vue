@@ -273,7 +273,7 @@ import {authDesigns} from "@/Sources/authScreenDesigns";
 /* Multi language */
 import {useI18n} from "vue-i18n";
 import langChooserFn from "@/Functions/langChooser"
-import {languages, flags, authTranslates} from "@/Lang/languages";
+import {languages, authTranslates} from "@/Lang/languages";
 
 /*Fontawesome icons*/
 import {library} from "@fortawesome/fontawesome-svg-core";
@@ -293,8 +293,7 @@ export default defineComponent({
         FullScreenLayout,
         TInputGroup,
         TInputText,
-        Link,
-        ...flags,
+        Link
     },
     mixins: [loginStyleMixin],
     props: {
