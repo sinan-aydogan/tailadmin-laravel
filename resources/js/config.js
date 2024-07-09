@@ -10,7 +10,7 @@ const appConf = {
     appNameClasses: null,
     logoClasses: null,
     radius: 3,
-    mainMenuDesign: 'abay'
+    mainMenuDesign: 'umay'
 };
 
 /*Layout Settings*/

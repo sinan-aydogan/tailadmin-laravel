@@ -251,9 +251,9 @@ import {defineComponent, computed, ref} from "vue";
 import {loginStyleMixin} from "@/Mixins/Styles/loginStyleMixin";
 import {Link, useForm} from "@inertiajs/vue3";
 import windowSizeCalculator from "@/Functions/windowSizeCalculator";
-import darkModeFn from "@/Functions/darkMode";
 import useVuelidate from "@vuelidate/core";
 import {email, helpers, required} from "@vuelidate/validators";
+import {useDarkModeStore} from "@/Stores/darkMode.js";
 
 /*Components*/
 import TAlert from "@/Components/Alert/TAlert.vue";
@@ -272,12 +272,13 @@ import {authDesigns} from "@/Sources/authScreenDesigns";
 
 /* Multi language */
 import {useI18n} from "vue-i18n";
-import langChooserFn from "@/Functions/langChooser"
+import {useDisplayLanguageStore} from "@/Stores/displayLanguage.js";
 import {languages, authTranslates} from "@/Lang/languages";
 
 /*Fontawesome icons*/
 import {library} from "@fortawesome/fontawesome-svg-core";
 import {faSun, faMoon, faPalette, faRedo, faKey, faBell} from "@fortawesome/free-solid-svg-icons";
+import { storeToRefs } from "pinia";
 
 library.add(faSun, faMoon, faPalette, faRedo, faKey, faBell)
 
@@ -305,10 +306,14 @@ export default defineComponent({
         const {deviceType} = windowSizeCalculator();
 
         /* Dark Mode */
-        const {darkMode, appearingMode, changeTheme} = darkModeFn();
+        const darkModeStore = useDarkModeStore()
+        const {changeTheme} = darkModeStore;
+        const {darkMode, appearingMode} = storeToRefs(darkModeStore);
 
         /* Multi-language */
-        const {changeLang, locale} = langChooserFn();
+        const displayLanguageStore = useDisplayLanguageStore()
+        const {changeLang} = displayLanguageStore;
+        const {locale} = storeToRefs(displayLanguageStore);
 
         const {t, tm} = useI18n({
             inheritLocale: true,

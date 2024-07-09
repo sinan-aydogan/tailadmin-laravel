@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import TLock from "@/Components/Auth/TLock";
+import TLock from "@/Components/Auth/TLock.vue";
 
 export default {
     components: {TLock}

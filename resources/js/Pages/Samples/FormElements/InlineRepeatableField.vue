@@ -31,7 +31,7 @@ import TFormContent from "@/Components/Form/TFormContent.vue";
 import TFormSection from "@/Components/Form/TFormSection.vue";
 import TInputGroup from "@/Components/Form/TInputGroup.vue";
 import TInputText from "@/Components/Form/Inputs/TInputText.vue";
-import TInputInlineEditableRepeatable from "@/Components/Form/Inputs/TInputInlineEditableRepeatable";
+import TInputInlineEditableRepeatable from "@/Components/Form/Inputs/TInputInlineEditableRepeatable.vue";
 
 
 export default {
