@@ -10,6 +10,9 @@ import { ZiggyVue } from '../../vendor/tightenco/ziggy';
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import "@/Sources/icons";
 
+/*Iconify*/
+import { Icon } from '@iconify/vue';
+
 /* Multi-language */
 import { createI18n } from "vue-i18n";
 import generalLangBg from "@/Lang/bg/general_lang_bg";
@@ -53,7 +56,7 @@ createInertiaApp({
             .use(i18n)
             .use(setupPinia())
             .use(VueHighlightJS)
-            .component("icon", FontAwesomeIcon)
+            .component("iconify-icon", Icon)
             .use(ZiggyVue)
             .mount(el);
     },
