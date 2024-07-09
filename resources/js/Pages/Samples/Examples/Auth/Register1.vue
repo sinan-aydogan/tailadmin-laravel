@@ -28,8 +28,8 @@ x
 
 <script>
 import {Link} from "@inertiajs/vue3";
-import TLogo from "@/Components/Icon/TLogo";
-import TRegister from "@/Components/Auth/TRegister";
+import TLogo from "@/Components/Icon/TLogo.vue";
+import TRegister from "@/Components/Auth/TRegister.vue";
 
 export default {
     components: {

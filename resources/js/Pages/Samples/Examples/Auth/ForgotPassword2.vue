@@ -28,8 +28,8 @@
 </template>
 
 <script>
-import TForgot from "@/Components/Auth/TForgot";
-import TLogo from "@/Components/Icon/TLogo";
+import TForgot from "@/Components/Auth/TForgot.vue";
+import TLogo from "@/Components/Icon/TLogo.vue";
 import {Link} from '@inertiajs/vue3';
 
 export default {

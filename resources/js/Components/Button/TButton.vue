@@ -1,9 +1,6 @@
 <script setup>
 import { toRefs, ref, computed, defineAsyncComponent, reactive } from "vue";
 import { Link } from "@inertiajs/vue3";
-import TLoadingAnimationThreeBars from "@/Components/Loading/Animations/TLoadingAnimationThreeBars.vue";
-import TLoadingAnimationThreeDots from "@/Components/Loading/Animations/TLoadingAnimationThreeDots.vue";
-import TLoadingAnimationCogs from "@/Components/Loading/Animations/TLoadingAnimationCogs.vue";
 
 const props = defineProps({
     size: {

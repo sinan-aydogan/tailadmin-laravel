@@ -32,7 +32,7 @@ import TFormSection from "@/Components/Form/TFormSection.vue";
 import TFormContent from "@/Components/Form/TFormContent.vue";
 import TInputGroup from "@/Components/Form/TInputGroup.vue";
 import TInputText from "@/Components/Form/Inputs/TInputText.vue";
-import TInputSelect from "@/Components/Form/Inputs/TInputSelect";
+import TInputSelect from "@/Components/Form/Inputs/TInputSelect.vue";
 
 export default {
     name: "Toaster",

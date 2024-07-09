@@ -27,8 +27,8 @@
 
 <script>
 import {Link} from "@inertiajs/vue3";
-import TLogin from "@/Components/Auth/TLogin";
-import TLogo from "@/Components/Icon/TLogo";
+import TLogin from "@/Components/Auth/TLogin.vue";
+import TLogo from "@/Components/Icon/TLogo.vue";
 
 export default {
     components: {

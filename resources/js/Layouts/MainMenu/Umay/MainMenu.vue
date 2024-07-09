@@ -7,7 +7,7 @@ import {menuStatus, updateMenuStatus} from "@/Functions/menuTrigger";
 /*Sources*/
 import MainMenuLinks from "@/Sources/mainMenuLinks";
 import {appConf, mainMenuConf} from "@/config";
-import MainMenuItem from "@/Layouts/MainMenu/Umay/MainMenuItem";
+import MainMenuItem from "@/Layouts/MainMenu/Umay/MainMenuItem.vue";
 import {cloneDeep} from "lodash";
 
 const {mainMenuLinks, mainMenuFooterLinks} = MainMenuLinks({
