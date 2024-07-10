@@ -17,19 +17,20 @@
                     :radius="temporaryRadius"
                 >
                     <template #append>
-                        <div class="flex px-1 overflow-hidden">
-                            <!-- Clear Icon -->
-                            <icon
-                                icon="times-circle"
+                        <div class="flex space-x-2 overflow-hidden">
+                            <!--Clear Icon-->
+                            <iconify-icon
+                                icon="mingcute:close-circle-fill"
                                 v-if="!isRange && date && clearButton"
-                                class="cursor-pointer hover:text-red-500 mr-2"
+                                class="rounded-full w-6 h-6 hover:text-red-500 cursor-pointer ml-1"
                                 @click="date = null"
                             />
 
                             <!-- Icon -->
-                            <icon
-                                :icon="mode.toLowerCase().includes('time') && !mode.toLowerCase().includes('date') ? 'clock' : mode.toLowerCase().includes('date') && !mode.toLowerCase().includes('time') ? 'calendar' : 'calendar-minus'"
+                            <iconify-icon
+                                :icon="mode.toLowerCase().includes('time') && !mode.toLowerCase().includes('date') ? 'tabler:clock' : mode.toLowerCase().includes('date') && !mode.toLowerCase().includes('time') ? 'tabler:calendar' : 'tabler:calendar-time'"
                                 v-if="mode"
+                                class="w-6 h-6"
                                 @click="togglePopover()"
                             />
                         </div>
@@ -54,21 +55,24 @@
                         {{ inputValue.end }}
                     </div>
                     <div v-if="isRange && !date">Please click for select</div>
-                    <div class="flex min-w-[2.5rem] justify-center text-input-append">
+                    <div class="flex space-x-2 px-1 justify-center text-input-append">
                         <!-- Clear Icon -->
-                        <icon
-                            icon="times-circle"
-                            v-if="isRange && date"
-                            class="cursor-pointer hover:text-red-500 mr-2"
-                            @click="date = null"
-                        />
+                        <span v-if="isRange && date">
+                            <iconify-icon
+                                icon="mingcute:close-circle-fill"
+                                class="rounded-full w-6 h-6 hover:text-red-500 cursor-pointer ml-1"
+                                @click="date = null"
+                            />
+                        </span>
 
                         <!-- Icon -->
-                        <icon
-                            :icon="mode.toLowerCase().includes('time') && !mode.toLowerCase().includes('date') ? 'clock' : mode.toLowerCase().includes('date') && !mode.toLowerCase().includes('time') ? 'calendar' : 'calendar-minus'"
-                            v-if="mode"
-                            @click="togglePopover()"
-                        />
+                        <span v-if="mode">
+                            <iconify-icon
+                                :icon="mode.toLowerCase().includes('time') && !mode.toLowerCase().includes('date') ? 'tabler:clock' : mode.toLowerCase().includes('date') && !mode.toLowerCase().includes('time') ? 'tabler:calendar' : 'tabler:calendar-time'"
+                                class="w-6 h-6"
+                                @click="togglePopover()"
+                            />
+                        </span>
                     </div>
                 </div>
             </div>
@@ -78,20 +82,14 @@
 
 <script>
 /* Main function */
-import { defineComponent, toRefs, ref, watch, inject } from 'vue';
-import { DatePicker } from 'v-calendar';
-import 'v-calendar/style.css';
+import { defineComponent, toRefs, ref, watch, inject } from "vue";
+import { DatePicker } from "v-calendar";
+import "v-calendar/style.css";
 /* Components */
-import TInputText from '@/Components/Form/Inputs/TInputText.vue';
+import TInputText from "@/Components/Form/Inputs/TInputText.vue";
 
 /*Sources*/
 import { inputDateConf } from "@/config";
-
-/*Fontawesome icons*/
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { faClock, faCalendar, faCalendarMinus, faTimesCircle } from "@fortawesome/free-solid-svg-icons";
-
-library.add(faClock, faCalendar, faCalendarMinus, faTimesCircle)
 
 export default defineComponent({
     props: {
@@ -101,11 +99,11 @@ export default defineComponent({
         },
         mode: {
             type: String,
-            default: 'date'
+            default: "date"
         },
         masks: {
             type: String,
-            default: 'DD-MM-YYYY'
+            default: "DD-MM-YYYY"
         },
         is24hr: {
             type: Boolean,
@@ -122,37 +120,37 @@ export default defineComponent({
         clearButton: {
             type: Boolean,
             default: true
-        },
+        }
     },
     components: {
         TInputText,
-        DatePicker,
+        DatePicker
     },
-    emits: ['update:modelValue'],
+    emits: ["update:modelValue"],
     setup(props, { emit }) {
         const { modelValue, radius } = toRefs(props);
-        const date = ref(modelValue.value ? modelValue.value : new Date())
-        const inertnalDate = ref(null)
-        const appConf = inject('appConf');
+        const date = ref(modelValue.value ? modelValue.value : new Date());
+        const inertnalDate = ref(null);
+        const appConf = inject("appConf");
 
         /*Temporary Definations*/
-        const temporaryRadius = ref(radius.value ? radius.value : inputDateConf.radius ? inputDateConf.radius : appConf.value.radius)
+        const temporaryRadius = ref(radius.value ? radius.value : inputDateConf.radius ? inputDateConf.radius : appConf.value.radius);
 
         watch(modelValue, () => {
-            date.value = modelValue.value
-        })
+            date.value = modelValue.value;
+        });
 
         watch(date, () => {
-            emit('update:modelValue', date.value)
-        })
+            emit("update:modelValue", date.value);
+        });
 
         return {
             temporaryRadius,
             inertnalDate,
             date
-        }
+        };
     }
-})
+});
 </script>
 
 <style scoped>
