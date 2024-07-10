@@ -33,7 +33,7 @@
             </div>
 
             <!--Close Icon-->
-            <icon icon="times" v-if="temporaryCloseable" @click="close" class="alert-close" />
+            <iconify-icon icon="mingcute:close-circle-line" v-if="temporaryCloseable" @click="close" class="alert-close" />
 
             <!--Countdown Line-->
             <div v-if="temporaryTimer" class="alert-countdown">
@@ -52,11 +52,6 @@ import { defineComponent, inject, ref, toRefs, watch, useSlots} from "vue";
 
 /*Sources*/
 import { alertConf } from "@/config";
-
-/*Import FontAwesomeIcon*/
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
-library.add(faTimes)
 
 export default defineComponent({
     name: "TAlert",

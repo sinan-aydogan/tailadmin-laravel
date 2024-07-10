@@ -11,7 +11,7 @@
 }
 
 .alert-close {
-    @apply hover:text-red-500 cursor-pointer mr-2
+    @apply hover:text-red-500 cursor-pointer mr-2 w-6 h-6
 }
 
 .alert-icon {
