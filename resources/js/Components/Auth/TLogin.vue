@@ -19,7 +19,7 @@
             >
                 <!--Logo-->
                 <div class="auth-logo">
-                    <slot v-if="$slots.logo" name="logo"/>
+                    <slot v-if="$slots.logo" name="logo" />
                     <div v-else :class="authScreenConf.logoAreaClasses">
                         <img
                             :src="temporaryLogo"
@@ -36,7 +36,7 @@
                     <div class="text-sm">
                         <!--Status-->
                         <div v-if="status" class="auth-status">{{ status }}</div>
-                        <slot v-else name="greeting"/>
+                        <slot v-else name="greeting" />
                     </div>
                 </div>
             </div>
@@ -97,7 +97,7 @@
                                 :label="t('rememberMe')"
                             >
                                 <template #icon>
-                                    <icon icon="key" size="sm"/>
+                                    <iconify-icon icon="mdi:check-bold"></iconify-icon>
                                 </template>
                             </t-input-check-box>
                         </label>
@@ -107,7 +107,7 @@
                             v-if="canResetPassword"
                             :href="route('password.request')"
                             class="auth-forgot-password"
-                        >{{ t('forgotPassword') }}
+                        >{{ t("forgotPassword") }}
                         </Link>
                     </div>
                     <!--Submit Area-->
@@ -120,7 +120,7 @@
                             :link="route('register')"
                             :radius="3"
                             type="link"
-                        >{{ t('register') }}
+                        >{{ t("register") }}
                         </t-button>
 
                         <!--Submit Button-->
@@ -131,7 +131,7 @@
                             :disabled="form.processing"
                             :radius="3"
                             class="ml-4"
-                        >{{ t('login') }}
+                        >{{ t("login") }}
                         </t-button>
                     </div>
                 </form>
@@ -143,7 +143,7 @@
             <transition @before-enter="beforeStyle" @after-enter="enterStyle">
                 <t-alert v-if="hasErrors" :radius="deviceType !== 'phone' && 5" color="danger">
                     <template #icon>
-                        <icon icon="bell" size="lg"/>
+                        <iconify-icon icon="mingcute:bell-ringing-line" class="w-8 h-8"></iconify-icon>
                     </template>
                     <ul class="list-inside text-sm">
                         <li v-for="(error, key) in errors" :key="key">{{ error }}</li>
@@ -185,7 +185,7 @@
                                 @click="changeLang(lang.id)"
                                 class="top-menu-dropdown-item-transparent"
                             >
-                                <component :is="lang.flag" class="w-6 aspect-auto drop-shadow"/>
+                                <component :is="lang.flag" class="w-6 aspect-auto drop-shadow" />
                                 <span v-text="lang.name"></span>
                             </div>
                         </template>
@@ -201,32 +201,31 @@
             >
                 <transition mode="out-in" name="darkModeTransition">
                     <!-- Light -->
-                    <icon
-                        v-if="darkMode === 'light'"
-                        icon="sun"
-                        size="lg"
-                        key="light"
-                        :alt="tm('lightMode')"
-                        class="transform hover:scale-110 active:scale-90 transition-transform duration-300"
-                    />
+                    <div key="light" v-if="darkMode === 'light'">
+                        <iconify-icon
+                            icon="ph:sun-bold"
+                            :alt="tm('lightMode')"
+                            class="transform hover:scale-110 active:scale-90 transition-transform duration-300 w-6 h-6"
+                        />
+                    </div>
+
                     <!-- Auto -->
-                    <icon
-                        v-else-if="darkMode === 'auto'"
-                        icon="palette"
-                        size="lg"
-                        key="auto"
-                        :alt="tm('auto')"
-                        class="transform hover:scale-110 active:scale-90 transition-transform duration-300"
-                    />
+                    <div v-else-if="darkMode === 'auto'" key="auto">
+                        <iconify-icon
+                            icon="mingcute:drop-fill"
+                            :alt="tm('auto')"
+                            class="transform hover:scale-110 active:scale-90 transition-transform duration-300 w-6 h-6"
+                        />
+                    </div>
+
                     <!-- Dark -->
-                    <icon
-                        v-else
-                        icon="moon"
-                        size="lg"
-                        key="dark"
-                        :alt="tm('darkMode')"
-                        class="transform hover:scale-110 active:scale-90 transition-transform duration-300"
-                    />
+                    <div v-else key="dark">
+                        <iconify-icon
+                            icon="ph:moon-stars-bold"
+                            :alt="tm('darkMode')"
+                            class="transform hover:scale-110 active:scale-90 transition-transform duration-300 w-6 h-6"
+                        />
+                    </div>
                 </transition>
             </div>
             <!--Change Background-->
@@ -236,10 +235,10 @@
                 class="flex justify-center items-center group bg-slate-100/50 hover:bg-slate-800/50 dark:text-slate-100 dark:bg-slate-800/75 dark:hover:bg-slate-100/75 dark:hover:text-slate-700 hover:text-slate-100 p-4 w-10 h-10 cursor-pointer"
                 :class="`radius-${authScreenConf.radius ? authScreenConf.radius : appConf.radius}`"
             >
-                <icon
-                    icon="redo"
-                    class="transform group-hover:scale-110 group-active:scale-90 transition-transform duration-300"
-                />
+                <div>
+                    <iconify-icon icon="tabler:refresh"
+                                  class="transform group-hover:scale-110 group-active:scale-90 transition-transform duration-300 w-6 h-6" />
+                </div>
             </div>
         </div>
     </full-screen-layout>
@@ -247,17 +246,16 @@
 
 <script>
 /*Main functions*/
-import {defineComponent, computed, ref} from "vue";
-import {loginStyleMixin} from "@/Mixins/Styles/loginStyleMixin";
-import {Link, useForm} from "@inertiajs/vue3";
+import { defineComponent, computed, ref } from "vue";
+import { loginStyleMixin } from "@/Mixins/Styles/loginStyleMixin";
+import { Link, useForm } from "@inertiajs/vue3";
 import windowSizeCalculator from "@/Functions/windowSizeCalculator";
 import useVuelidate from "@vuelidate/core";
-import {email, helpers, required} from "@vuelidate/validators";
-import {useDarkModeStore} from "@/Stores/darkMode.js";
+import { email, helpers, required } from "@vuelidate/validators";
+import { useDarkModeStore } from "@/Stores/darkMode.js";
 
 /*Components*/
 import TAlert from "@/Components/Alert/TAlert.vue";
-import TBellIcon from "@/Components/Icon/TBellIcon.vue";
 import TButton from "@/Components/Button/TButton.vue";
 import FullScreenLayout from "@/Layouts/FullScreenLayout.vue";
 import TInputGroup from "@/Components/Form/TInputGroup.vue";
@@ -267,20 +265,14 @@ import TTooltip from "@/Components/Tooltip/TTooltip.vue";
 import TInputCheckBox from "@/Components/Form/Inputs/TInputCheckBox.vue";
 
 /*Sources*/
-import {appConf, authScreenConf, badgeConf} from "@/config";
-import {authDesigns} from "@/Sources/authScreenDesigns";
+import { appConf, authScreenConf, badgeConf } from "@/config";
+import { authDesigns } from "@/Sources/authScreenDesigns";
 
 /* Multi language */
-import {useI18n} from "vue-i18n";
-import {useDisplayLanguageStore} from "@/Stores/displayLanguage.js";
-import {languages, authTranslates} from "@/Lang/languages";
-
-/*Fontawesome icons*/
-import {library} from "@fortawesome/fontawesome-svg-core";
-import {faSun, faMoon, faPalette, faRedo, faKey, faBell} from "@fortawesome/free-solid-svg-icons";
+import { useI18n } from "vue-i18n";
+import { useDisplayLanguageStore } from "@/Stores/displayLanguage.js";
+import { languages, authTranslates } from "@/Lang/languages";
 import { storeToRefs } from "pinia";
-
-library.add(faSun, faMoon, faPalette, faRedo, faKey, faBell)
 
 export default defineComponent({
     name: "TLogin",
@@ -288,7 +280,6 @@ export default defineComponent({
         TInputCheckBox,
         TTooltip,
         TAlert,
-        TBellIcon,
         TButton,
         TDropdown,
         FullScreenLayout,
@@ -299,46 +290,46 @@ export default defineComponent({
     mixins: [loginStyleMixin],
     props: {
         canResetPassword: Boolean,
-        status: String,
+        status: String
     },
     setup(props) {
         /*Device type*/
-        const {deviceType} = windowSizeCalculator();
+        const { deviceType } = windowSizeCalculator();
 
         /* Dark Mode */
-        const darkModeStore = useDarkModeStore()
-        const {changeTheme} = darkModeStore;
-        const {darkMode, appearingMode} = storeToRefs(darkModeStore);
+        const darkModeStore = useDarkModeStore();
+        const { changeTheme } = darkModeStore;
+        const { darkMode, appearingMode } = storeToRefs(darkModeStore);
 
         /* Multi-language */
-        const displayLanguageStore = useDisplayLanguageStore()
-        const {changeLang} = displayLanguageStore;
-        const {locale} = storeToRefs(displayLanguageStore);
+        const displayLanguageStore = useDisplayLanguageStore();
+        const { changeLang } = displayLanguageStore;
+        const { locale } = storeToRefs(displayLanguageStore);
 
-        const {t, tm} = useI18n({
+        const { t, tm } = useI18n({
             inheritLocale: true,
-            messages: authTranslates,
+            messages: authTranslates
         });
 
         /* Login */
         const form = useForm({
             email: "",
             password: "",
-            remember: false,
+            remember: false
         });
 
 
         /* Client-side Validation */
         const rules = ref({
             email: {
-                required: helpers.withMessage(tm('validationMessage.email.required'), required),
-                email: helpers.withMessage(tm('validationMessage.email.email'), email)
+                required: helpers.withMessage(tm("validationMessage.email.required"), required),
+                email: helpers.withMessage(tm("validationMessage.email.email"), email)
             },
             password: {
-                required: helpers.withMessage(tm('validationMessage.password.required'), required)
-            },
+                required: helpers.withMessage(tm("validationMessage.password.required"), required)
+            }
         });
-        const v = useVuelidate(rules, form, {$lazy: true});
+        const v = useVuelidate(rules, form, { $lazy: true });
 
         /*Submit*/
         const submit = async () => {
@@ -348,34 +339,34 @@ export default defineComponent({
             form
                 .transform((data) => ({
                     ...data,
-                    remember: form.remember ? "on" : "",
+                    remember: form.remember ? "on" : ""
                 }))
                 .post(route("login"), {
-                    onFinish: () => form.reset("password"),
+                    onFinish: () => form.reset("password")
                 });
         };
 
         /*Logo SRC*/
         /*Temporary Definitions*/
-        const temporaryLogo = computed(()=>{
+        const temporaryLogo = computed(() => {
             let logo;
 
 
-            if(appearingMode.value === 'dark'){
-                if(activeDesign.value.logo.dark){
-                    logo = activeDesign.value.logo.dark
-                }else if(authScreenConf.logo.dark) {
-                    logo = authScreenConf.darkLogo
-                }else{
-                    logo = appConf.logo.dark
+            if (appearingMode.value === "dark") {
+                if (activeDesign.value.logo.dark) {
+                    logo = activeDesign.value.logo.dark;
+                } else if (authScreenConf.logo.dark) {
+                    logo = authScreenConf.darkLogo;
+                } else {
+                    logo = appConf.logo.dark;
                 }
             } else {
-                if(activeDesign.value.logo.light){
-                    logo = activeDesign.value.logo.light
-                }else if(authScreenConf.logo.light) {
-                    logo = authScreenConf.logo.light
-                }else{
-                    logo = appConf.logo.light
+                if (activeDesign.value.logo.light) {
+                    logo = activeDesign.value.logo.light;
+                } else if (authScreenConf.logo.light) {
+                    logo = authScreenConf.logo.light;
+                } else {
+                    logo = appConf.logo.light;
                 }
             }
 
@@ -383,17 +374,17 @@ export default defineComponent({
         });
 
         /*Design Template Changer*/
-        const activeDesignIndex = ref(0)
+        const activeDesignIndex = ref(0);
         const changeBg = () => {
             if (authDesigns.length - 1 > activeDesignIndex.value) {
-                activeDesignIndex.value++
+                activeDesignIndex.value++;
             } else {
-                activeDesignIndex.value = 0
+                activeDesignIndex.value = 0;
             }
         };
         const activeDesign = computed(() => {
-            return authDesigns[activeDesignIndex.value]
-        })
+            return authDesigns[activeDesignIndex.value];
+        });
 
         return {
             authDesigns,

@@ -145,7 +145,7 @@
         <transition @before-enter="beforeStyle" @after-enter="enterStyle">
           <t-alert v-if="hasErrors" :radius="deviceType !== 'phone' && 5" color="red">
             <template #icon>
-              <t-bell-icon class="w-8 h-8" />
+                <iconify-icon icon="mingcute:bell-ringing-line" class="w-8 h-8"></iconify-icon>
             </template>
             <ul class="list-inside text-sm">
               <li v-for="(error, key) in errors" :key="key">{{ error }}</li>
@@ -163,7 +163,6 @@
 import { defineComponent } from "vue";
 import { registerStyleMixin } from "@/Mixins/Styles/registerStyleMixin";
 import TAlert from "@/Components/Alert/TAlert.vue";
-import TBellIcon from "@/Components/Icon/TBellIcon.vue";
 import TButton from "@/Components/Button/TButton.vue";
 import FullScreenLayout from "@/Layouts/FullScreenLayout.vue";
 import TInputGroup from "@/Components/Form/TInputGroup.vue";
@@ -175,7 +174,6 @@ export default defineComponent({
   name: "TRegister",
   components: {
     TAlert,
-    TBellIcon,
     TButton,
     FullScreenLayout,
     TInputGroup,
