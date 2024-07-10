@@ -11,7 +11,7 @@
             <div v-if="isChecked" :class="'text-'+color+'-500'">
 
                 <slot v-if="$slots.icon" name="icon"/>
-                <div v-else :class="['flex w-3 h-3',defaultSelectorStyle(),radiusStyle]"></div>
+                <div v-else :class="['flex w-3 h-3',defaultSelectorStyle(), radiusStyle]"></div>
             </div>
         </div>
 
@@ -22,12 +22,10 @@
 
 <script>
 import {radiusSizeMixin} from "@/Mixins/radiusSizeMixin";
-import TCheckIcon from "@/Components/Icon/TCheckIcon.vue";
 import {computed, defineComponent, ref, toRefs} from "vue";
 
 export default defineComponent({
     name: 'TInputCheckBox',
-    components: {TCheckIcon},
     mixins: [radiusSizeMixin],
     props: {
         modelValue: [Array, Boolean],
@@ -94,6 +92,7 @@ export default defineComponent({
             } else {
                 newValue = !newValue
             }
+
             emit('update:modelValue', newValue);
         }
 
