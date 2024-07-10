@@ -33,8 +33,8 @@
                 v-text="diffDirection.includes('up') ? '+' :  '-'"
             ></span>
             {{ diffValue }}
-            <t-chevron-up-icon v-if="diffDirection.includes('up')" class="w-4 h-4"/>
-            <t-chevron-down-icon v-if="diffDirection.includes('down')" class="w-4 h-4"/>
+              <iconify-icon icon="ph:caret-up-fill" v-if="diffDirection.includes('up')" class="w-4 h-4"></iconify-icon>
+              <iconify-icon icon="ph:caret-down-fill" v-if="diffDirection.includes('down')" class="w-4 h-4"></iconify-icon>
           </div>
         </div>
         <!--Widget Chart Area-->
@@ -69,14 +69,10 @@
 import { defineComponent } from 'vue'
 import {statisticWidgetStyleMixin} from "@/Mixins/Styles/statisticWidgetStyleMixin";
 import TContentCard from "@/Components/Card/TContentCard.vue";
-import TChevronUpIcon from "@/Components/Icon/TChevronUpIcon.vue";
-import TChevronDownIcon from "@/Components/Icon/TChevronDownIcon.vue";
 
 export default defineComponent({
   name: "TStatisticWidget",
   components: {
-    TChevronDownIcon,
-    TChevronUpIcon,
     TContentCard,
     /*'bar-chart': () => import('@/Components/Chart/TBarChart'),
     'line-chart': () => import('@/Components/Chart/TLineChart'),
