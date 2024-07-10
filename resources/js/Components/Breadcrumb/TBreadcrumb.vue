@@ -16,10 +16,7 @@
             {{ item.label }}
           </div>
           <!--Separator Icon-->
-          <svg v-if="breadcrumbs.length !== index+1" class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none"
-               viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-          </svg>
+            <iconify-icon icon="mingcute:right-fill" v-if="breadcrumbs.length !== index+1" class="w-5 h-5"></iconify-icon>
         </div>
       </div>
       <div v-if="hasSlot('subContent')" class="breadcrumb-sub-content">
