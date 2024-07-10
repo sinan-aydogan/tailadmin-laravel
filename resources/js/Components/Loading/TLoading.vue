@@ -37,7 +37,7 @@ const props = defineProps({
     }
 })
 
-defineEmits(["update:modelValue"])
+const emit = defineEmits(["update:modelValue"])
 
 const { modelValue, timer, color, loadingDesign } = toRefs(props);
 
@@ -92,28 +92,6 @@ const loadingComponent = defineAsyncComponent(() => import(`./Animations/${activ
 const hasSlot = name => !!useSlots()[name];
 </script>
 
-<style scoped>
-/*Show Hide Menu Titles*/
-.fade-enter-active,
-.fade-leave-active {
-    transition: all 700ms ease-in-out;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-    transform: scaleX(1.1);
-    filter: blur(4px);
-    opacity: 0;
-}
-
-.fade-enter-to,
-.fade-leave-from {
-    transform: scaleX(1);
-    filter: blur(0);
-    opacity: 1;
-}
-</style>
-
 <template>
     <transition name="fade">
         <div :class="tStyle" v-if="modelValue">
@@ -162,3 +140,23 @@ const hasSlot = name => !!useSlots()[name];
         </div>
     </transition>
 </template>
+
+<style scoped>
+/*Show Hide Menu Titles*/
+.fade-enter-active,
+.fade-leave-active {
+    transition: all 700ms ease-in-out;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+    filter: blur(4px);
+    opacity: 0;
+}
+
+.fade-enter-to,
+.fade-leave-from {
+    filter: blur(0);
+    opacity: 1;
+}
+</style>
