@@ -50,6 +50,14 @@ const props = defineProps({
     type: {
         type: String,
         default: "submit"
+    },
+    target: {
+        type: String,
+        default: "_blank"
+    },
+    onClick: {
+        type: Function,
+        default: ()=>{}
     }
 });
 
@@ -98,11 +106,13 @@ const loadingComponent = defineAsyncComponent(() => import(`../Loading/Animation
 </script>
 
 <template>
-    <button
-        v-if="type === 'submit' || type === 'button' || type === 'external-link'"
-        :class="tStyle['container']"
-        :onclick="(!disabled && type === 'external-link') ? 'window.location.href=\'' + link + '\'' : ''"
-        :type="type"
+    <component :is="type === 'submit' || type === 'button' ? 'button' : 'a'"
+               v-if="type === 'submit' || type === 'button' || type === 'external-link'"
+               :class="tStyle['container']"
+               @click="!disabled ? onClick() : ''"
+               :href="link"
+               :target="target"
+               :type="type"
     >
         <component
             :is="loadingComponent"
@@ -119,7 +129,7 @@ const loadingComponent = defineAsyncComponent(() => import(`../Loading/Animation
             :color="loadingColor ? loadingColor : color"
             class="mx-auto absolute"
         />
-    </button>
+    </component>
     <Link v-else :href="link" :class="tStyle['container']">
         <slot></slot>
     </Link>
