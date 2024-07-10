@@ -17,15 +17,14 @@
 
 <script>
 import {radiusSizeMixin} from "@/Mixins/radiusSizeMixin";
-import TCheckIcon from "@/Components/Icon/TCheckIcon.vue";
+import { computed, ref, toRefs, watch } from "vue";
 
 export default {
     name: 'TInputRadioButton',
-    components: {TCheckIcon},
     mixins: [radiusSizeMixin],
     props: {
-        value: {},
-        inputValue: {},
+        modelValue: String|Number|Boolean|null,
+        inputValue: String|Number|Boolean|null,
         label: String,
         color: {
             type: String,
@@ -38,44 +37,48 @@ export default {
         checked: Boolean,
         disabled: Boolean
     },
-    data() {
-        return {
-            isChecked: this.checked
+    emits: ['update:modelValue'],
+    setup(props, {emit}) {
+        const isChecked = ref(props.checked);
+        const {modelValue, inputValue, color} = toRefs(props);
+
+        const updateField = ()=>{
+            emit('update:modelValue', inputValue.value);
         }
-    },
-    computed: {
-        checkboxStyle() {
+
+        const checkboxStyle = computed(() => {
             let style;
-            if (this.color === 'white') {
+            if (color.value === 'white') {
                 style = 'hover:bg-blue-100 checked:bg-indigo-200 border-gray-300 text-gray-600'
-            } else if (this.color === 'black') {
+            } else if (color.value === 'black') {
                 style = 'hover:bg-gray-500 checked:bg-indigo-200 border-black bg-gray-500 text-gray-100'
             } else {
-                style = 'hover:bg-' + this.color + '-200 active:bg-' + this.color + '-200 border-' + this.color + '-500'
+                style = 'hover:bg-' + color.value + '-200 active:bg-' + color.value + '-200 border-' + color.value + '-500'
             }
             return style
-        },
-        defaultSelectorStyle() {
+        })
+
+        const defaultSelectorStyle = computed(() => {
             let style;
-            if (this.color === 'white') {
+            if (color.value === 'white') {
                 style = 'bg-gray-500'
-            } else if (this.color === 'black') {
+            } else if (color.value === 'black') {
                 style = 'bg-gray-700'
             } else {
-                style = 'bg-' + this.color + '-500'
+                style = 'bg-' + color.value + '-500'
             }
             return style
-        }
-    },
-    methods: {
-        updateField() {
-            this.isChecked = !this.isChecked
-            this.$emit('input', this.inputValue);
-        }
-    },
-    watch: {
-        value() {
-            if (this.value !== this.inputValue) this.isChecked = false;
+        })
+
+        watch(modelValue, (value)=>{
+            isChecked.value = value === inputValue.value;
+        })
+
+        return {
+            isChecked,
+            checkboxStyle,
+            defaultSelectorStyle,
+            updateField
         }
     }
 }
