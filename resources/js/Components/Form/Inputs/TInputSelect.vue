@@ -64,44 +64,26 @@
         </div>
 
         <!--Icons-->
-        <div class="inline-flex">
+        <div class="inline-flex space-x-2">
 
-          <!--Clear Icon-->
-          <svg
-              v-if="clearButton && selectedOption && !readOnly && !disabled"
-              @click.stop="clear"
-              xmlns="http://www.w3.org/2000/svg"
-              class="input-clear-icon"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-          >
-            <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+            <!--Clear Icon-->
+            <iconify-icon
+                icon="mingcute:close-circle-fill"
+                v-if="clearButton && selectedOption && !readOnly && !disabled"
+                @click.stop="clear"
+                class="input-clear-icon"
             />
-          </svg>
 
           <!--Dropdown Icon-->
-          <svg
-              class="w-5 h-5 transform"
-              :class="[
+            <iconify-icon
+                icon="ph:caret-down-bold"
+                class="w-5 h-5 transform"
+                :class="[
                             showOptions ? 'rotate-90' : 'rotate-0',
                             'transition-size-short'
                             ]"
-              @click.stop="updateOptionsShowStatus"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg">
-            <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M19 9l-7 7-7-7">
-            </path>
-          </svg>
+                @click.stop="updateOptionsShowStatus"
+            />
 
         </div>
       </div>
