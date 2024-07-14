@@ -24,20 +24,7 @@
                 >
                     <template #icon>
                         <!--Search Icon-->
-                        <svg
-                            class="w-6 h-6"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                        >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                            />
-                        </svg>
+                        <iconify-icon icon="tabler:zoom" class="w-6 h-6" />
                     </template>
                 </t-input-text>
                 <!--Customize Showing Options-->
@@ -47,20 +34,7 @@
                     @click="showCustomizeModal = !showCustomizeModal"
                 >
                     <!--Options Icon-->
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="h-6 w-6"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                    >
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
-                        />
-                    </svg>
+                    <iconify-icon icon="tabler:adjustments" class="w-6 h-6" />
                 </t-button>
                 <!--Advanced Search Button-->
                 <t-button
@@ -70,23 +44,10 @@
                     @click="showAdvancedSearchPanel = !showAdvancedSearchPanel"
                 >
                     <!--Advanced Search Icon-->
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="h-6 w-6"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                    >
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"
-                        />
-                    </svg>
+                    <iconify-icon icon="tabler:filter" class="w-6 h-6" />
                 </t-button>
                 <!--Custom Top Left Content-->
-                <slot name="top-left"/>
+                <slot name="top-left" />
             </div>
             <!--Right-->
             <div
@@ -94,7 +55,7 @@
                 class="table-top-right"
             >
                 <!--Custom Top Right Content-->
-                <slot name="top-right"/>
+                <slot name="top-right" />
             </div>
         </div>
         <!--Advanced Filters Area-->
@@ -106,7 +67,7 @@
                     class="table-advanced-search-container"
                     :class="`radius-${radius}`"
                 >
-                    <span id="title" v-t="'advancedSearch'"/>
+                    <span id="title" v-t="'advancedSearch'" />
                     <div class="table-advanced-search-content-wrapper">
                         <div
                             v-for="field in advancedSearchableFields"
@@ -161,13 +122,9 @@
                     design="outline"
                 >
                     <template #icon>
-                        <svg class="w-10 h-10 dark:text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                             xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                  d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
-                        </svg>
+                        <iconify-icon icon="tabler:alert-triangle" class="w-10 h-10 dark:text-gray-700" />
                     </template>
-                    <div v-html="t(error.errorText)"/>
+                    <div v-html="t(error.errorText)" />
                 </t-alert>
 
             </template>
@@ -204,46 +161,23 @@
                             ''"
                         >
                             <!--Label-->
-                            <span v-text="item.label ?? item.key"/>
+                            <span v-text="item.label ?? item.key" />
                             <!--Sort Icon-->
                             <span v-show="sortableFields.includes(item.key)">
                                 <transition name="fade" mode="out-in">
-                  <!--Sort Direction Icon-->
-                  <svg
-                      v-if="searchObj.sortKey===item.key"
-                      class="h-5 w-5"
-                      :class="[
-                        'transform transition',
-                        searchObj.sortDirection ? 'rotate-180' : ''
-                        ]"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none" viewBox="0 0 24 24"
-                      stroke="currentColor"
-                  >
-                  <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M17 13l-5 5m0 0l-5-5m5 5V6"
-                  />
-                </svg>
+                                    <!--Sort Direction Icon-->
+                                    <iconify-icon
+                                        v-if="searchObj.sortKey===item.key"
+                                        icon="tabler:arrow-narrow-down"
+                                        class="h-5 w-5"
+                                        :class="[
+                                            'transform transition-all duration-300 ease-in-out',
+                                            searchObj.sortDirection ? 'rotate-180' : ''
+                                            ]"
+                                    />
                                     <!--Sort Placeholder Icon-->
-                  <svg
-                      v-else
-                      xmlns="http://www.w3.org/2000/svg"
-                      class="h-5 w-5 opacity-50"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                  >
-                    <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M8 9l4-4 4 4m0 6l-4 4-4-4"
-                    />
-                  </svg>
-                </transition>
+                                    <iconify-icon v-else icon="tabler:selector" class="h-5 w-5 opacity-50" />
+                                </transition>
                             </span>
                         </div>
 
@@ -287,7 +221,7 @@
                                 ]"
                             >
                                 <!--Raw Content-->
-                                <span v-if="!hasSlot(cellKey)" v-text="cell"/>
+                                <span v-if="!hasSlot(cellKey)" v-text="cell" />
                                 <!--SlotScope Content-->
                                 <slot
                                     v-else
@@ -307,12 +241,8 @@
                             <t-dropdown align="right" button-design="outline" trigger-type="rich" size="fit">
                                 <template #trigger>
                                     <div class="flex h-full items-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-                                             viewBox="0 0 24 24"
-                                             stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                  d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"/>
-                                        </svg>
+                                        <!--Actions Icon-->
+                                        <iconify-icon icon="tabler:dots" class="h-6 w-6" />
                                     </div>
                                 </template>
                                 <div
@@ -324,15 +254,11 @@
                                         :class="`radius-${radius}`"
                                         @click="selectItem($event, item, 'delete')"
                                     >
-                                        <div class="flex items-center h-6">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none"
-                                                 viewBox="0 0 24 24"
-                                                 stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                      stroke-width="2"
-                                                      d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
-                                            </svg>
-                                            {{ t('actionDelete') }}
+                                        <div class="flex justify-center items-center h-6 space-x-1">
+                                            <!--Delete Icon-->
+                                            <iconify-icon icon="tabler:trash" class="h-5 w-5"/>
+
+                                            <span v-text="t('actionDelete')"></span>
                                         </div>
                                     </div>
                                     <div
@@ -340,14 +266,11 @@
                                         :class="`radius-${radius}`"
                                         @click="selectItem($event, item, 'edit')"
                                     >
-                                        <div class="flex items-center h-6">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none"
-                                                 viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                      stroke-width="2"
-                                                      d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
-                                            </svg>
-                                            {{ t('actionEdit') }}
+                                        <div class="flex items-center h-6 space-x-1">
+                                            <!--Edit Icon-->
+                                            <iconify-icon icon="tabler:edit" class="h-5 w-5"/>
+
+                                            <span v-text="t('actionEdit')"></span>
                                         </div>
                                     </div>
                                     <div
@@ -355,17 +278,11 @@
                                         :class="`radius-${radius}`"
                                         @click="selectItem($event, item, 'view')"
                                     >
-                                        <div class="flex items-center h-6">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none"
-                                                 viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                      stroke-width="2"
-                                                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                      stroke-width="2"
-                                                      d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-                                            </svg>
-                                            {{ t('actionView') }}
+                                        <div class="flex items-center h-6 space-x-1">
+                                            <!--View Icon-->
+                                            <iconify-icon icon="tabler:eye" class="h-5 w-5"/>
+
+                                            <span v-text="t('actionView')"></span>
                                         </div>
                                     </div>
                                 </div>
@@ -382,12 +299,9 @@
                             class="table-no-content"
                             :class="`radius-${radius}`"
                         >
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                                 stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                      d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                            </svg>
-                            <span v-t="'anyContentMessage'"/>
+                            <iconify-icon icon="tabler:info-circle" class="h-6 w-6"/>
+
+                            <span v-text="t('anyContentMessage')" />
                         </div>
                     </td>
                 </tr>
@@ -426,7 +340,7 @@
         >
             <template #content>
                 <div class="flex flex-col text-left">
-                    <h4 class="font-bold text-sm" v-t="'optionsModalColumnOrder'"/>
+                    <h4 class="font-bold text-sm" v-t="'optionsModalColumnOrder'" />
                     <div class="flex flex-col max-w-min mt-4">
                         <div
                             v-for="(item, itemIndex) in header"
@@ -440,62 +354,8 @@
                             :draggable="true"
                             class="relative inline-flex items-center space-x-1 px-2 py-1"
                         >
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 shrink-0 cursor-move" fill="none"
-                                 viewBox="0 0 24 24"
-                                 stroke="currentColor">
-                                <g
-                                    id="g10617"
-                                    transform="translate(1.0812535,-0.72530103)">
-                                    <rect
-                                        style="fill:none;fill-opacity:0.694779;stroke-width:2.22226;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:8"
-                                        id="rect10347"
-                                        width="2"
-                                        height="2"
-                                        x="14.130877"
-                                        y="11.725301"
-                                        rx="0"/>
-                                    <rect
-                                        style="fill:none;fill-opacity:0.694779;stroke-width:2.22226;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:8"
-                                        id="rect10347-4"
-                                        width="2"
-                                        height="2"
-                                        x="5.7066164"
-                                        y="20.149561"
-                                        rx="0"/>
-                                    <rect
-                                        style="fill:none;fill-opacity:0.694779;stroke-width:2.22226;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:8"
-                                        id="rect10347-8"
-                                        width="2"
-                                        height="2"
-                                        x="5.7066164"
-                                        y="3.3010411"
-                                        rx="0"/>
-                                    <rect
-                                        style="fill:none;fill-opacity:0.694779;stroke-width:2.22226;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:8"
-                                        id="rect10347-1"
-                                        width="2"
-                                        height="2"
-                                        x="14.130877"
-                                        y="3.3010411"
-                                        rx="0"/>
-                                    <rect
-                                        style="fill:none;fill-opacity:0.694779;stroke-width:2.22226;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:8"
-                                        id="rect10347-4-4"
-                                        width="2"
-                                        height="2"
-                                        x="5.7066164"
-                                        y="11.725301"
-                                        rx="0"/>
-                                    <rect
-                                        style="fill:none;fill-opacity:0.694779;stroke-width:2.22226;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:8"
-                                        id="rect10347-8-0"
-                                        width="2"
-                                        height="2"
-                                        x="14.130877"
-                                        y="20.149561"
-                                        rx="0"/>
-                                </g>
-                            </svg>
+                            <iconify-icon icon="tabler:grip-vertical" class="h-5 w-5 shrink-0 cursor-move"/>
+
                             <t-input-check-box
                                 v-model="activeHeaders"
                                 :input-value="item.key"
@@ -509,7 +369,7 @@
             </template>
             <template #footer-left>
                 <div class="inline-flex whitespace-nowrap items-center space-x-2">
-                    <span v-t="'itemsCountPerPage'"/>
+                    <span v-t="'itemsCountPerPage'" />
                     <t-input-select
                         v-model.number="searchObj.perPage"
                         :options="dynamicPerPageRange"
@@ -523,9 +383,9 @@
 </template>
 
 <script>
-import { router } from '@inertiajs/vue3'
-import {computed, defineComponent, reactive, toRefs, watch, ref, onBeforeMount, useSlots} from "vue";
-import {debouncedWatch} from "@vueuse/core";
+import { router } from "@inertiajs/vue3";
+import { computed, defineComponent, reactive, toRefs, watch, ref, onBeforeMount, useSlots } from "vue";
+import { debouncedWatch } from "@vueuse/core";
 import TButton from "@/Components/Button/TButton.vue";
 import TModal from "@/Components/Modal/TModal.vue";
 import TInputCheckBox from "@/Components/Form/Inputs/TInputCheckBox.vue";
@@ -536,7 +396,7 @@ import TListItem from "@/Components/List/TListItem.vue";
 import TInputGroup from "@/Components/Form/TInputGroup.vue";
 import TInputText from "@/Components/Form/Inputs/TInputText.vue";
 
-import {useI18n} from "vue-i18n";
+import { useI18n } from "vue-i18n";
 import table_en from "@/Lang/en/table_lang";
 import table_tr from "@/Lang/tr/table_lang";
 import _ from "lodash";
@@ -558,7 +418,7 @@ export default defineComponent({
         TInputSelect,
         TInputCheckBox,
         TModal,
-        TButton,
+        TButton
     },
     props: {
         header: {
@@ -583,7 +443,7 @@ export default defineComponent({
         },
         requestSearchKey: {
             type: String,
-            default: 'searchObj'
+            default: "searchObj"
         },
         uniqueId: {
             type: String,
@@ -607,11 +467,11 @@ export default defineComponent({
         },
         searchRoute: {
             type: String,
-            default: ''
+            default: ""
         },
         contentKey: {
             type: String,
-            default: ''
+            default: ""
         },
         showPagination: {
             type: Boolean,
@@ -623,7 +483,7 @@ export default defineComponent({
         },
         paginationDetailText: {
             type: String,
-            default: 'detailText'
+            default: "detailText"
         },
         paginationRange: {
             type: Number,
@@ -639,11 +499,11 @@ export default defineComponent({
         },
         paginationPreviousText: {
             type: String,
-            default: 'previous'
+            default: "previous"
         },
         paginationNextText: {
             type: String,
-            default: 'next'
+            default: "next"
         },
         paginationDetailReverse: {
             type: Boolean,
@@ -652,22 +512,22 @@ export default defineComponent({
         actions: {
             type: Array,
             default() {
-                return ['view']
+                return ["view"];
             }
         },
         actionsHeaderText: {
             type: String,
-            default: 'actions'
+            default: "actions"
         },
         actionsModal: {
             type: Array,
             default() {
-                return ['delete']
+                return ["delete"];
             }
         }
     },
-    emits: ['selectedItem'],
-    setup(props, {slots, emit}) {
+    emits: ["selectedItem"],
+    setup(props, { slots, emit }) {
         /*Props*/
         const {
             header,
@@ -683,7 +543,7 @@ export default defineComponent({
 
 
         /*Multi-language Support*/
-        const {t} = useI18n({
+        const { t } = useI18n({
             messages: {
                 en: table_en,
                 tr: table_tr
@@ -698,24 +558,24 @@ export default defineComponent({
             if (regeneratedContent.value.length > 1) {
                 if (itemIndex === 1 && cellIndex === 1) {
                     /*Top Left*/
-                    style.push('radius-tl-' + radius.value)
+                    style.push("radius-tl-" + radius.value);
                 } else if (itemIndex === 1 && cellIndex === regeneratedHeader.value.length && actions.value.length === 0) {
                     /*Top Right*/
-                    style.push('radius-tr-' + radius.value)
+                    style.push("radius-tr-" + radius.value);
                 } else if (itemIndex === regeneratedContent.value.length && cellIndex === 1) {
                     /*Bottom Left*/
-                    style.push('radius-bl-' + radius.value)
+                    style.push("radius-bl-" + radius.value);
                 } else if (itemIndex === regeneratedContent.value.length && cellIndex === regeneratedHeader.value.length && actions.value.length === 0) {
                     /*Bottom Right*/
-                    style.push('radius-br-' + radius.value)
+                    style.push("radius-br-" + radius.value);
                 }
             } else {
                 if (cellIndex === 1) {
                     /*Left*/
-                    style.push('radius-l-' + radius.value)
+                    style.push("radius-l-" + radius.value);
                 } else if (cellIndex === regeneratedHeader.value.length && actions.value.length === 0) {
                     /*Right*/
-                    style.push('radius-r-' + radius.value)
+                    style.push("radius-r-" + radius.value);
                 }
 
 
@@ -728,9 +588,9 @@ export default defineComponent({
             let style = [];
             if (regeneratedContent.value.length > 1) {
                 if (itemIndex === 1) {
-                    style.push("radius-tr-" + radius.value)
+                    style.push("radius-tr-" + radius.value);
                 } else if (itemIndex === regeneratedContent.value.length) {
-                    style.push("radius-br-" + radius.value)
+                    style.push("radius-br-" + radius.value);
                 }
             } else {
                 style.push("radius-r-" + radius.value);
@@ -789,8 +649,8 @@ export default defineComponent({
             let rowCounts = [5, 15, 25, 50, 75, 100];
             let list = [];
             rowCounts.forEach(item => {
-                if (content.value['total'] ? content.value['total'] : content.value['meta'].total > item) {
-                    list.push({key: item, label: item});
+                if (content.value["total"] ? content.value["total"] : content.value["meta"].total > item) {
+                    list.push({ key: item, label: item });
                 }
             });
             return list;
@@ -864,10 +724,10 @@ export default defineComponent({
             /*Generate Advanced Search Query*/
             advancedSearchableFields.forEach(item => {
                 searchObj.advancedSearchFields[item.searchKey] = {
-                    value: item.advancedSearchInputType === 'between' ? {from: null, to: null} : null,
-                    condition: item['compareOperators'] ? item['compareOperators'].length > 0 ? item['compareOperators'][0].key : null : null
-                }
-            })
+                    value: item.advancedSearchInputType === "between" ? { from: null, to: null } : null,
+                    condition: item["compareOperators"] ? item["compareOperators"].length > 0 ? item["compareOperators"][0].key : null : null
+                };
+            });
         });
 
         /**Search Post Function**/
@@ -879,10 +739,10 @@ export default defineComponent({
                             sortKey: searchObj.sortKey,
                             sortDirection: searchObj.sortDirection,
                             searchType: searchObj.searchType,
-                            searchValue: searchObj.searchType === 'simple' ?
+                            searchValue: searchObj.searchType === "simple" ?
                                 {
                                     simpleSearchText: searchObj.simpleSearchText,
-                                    simpleSearchFields: simpleSearchableFields,
+                                    simpleSearchFields: simpleSearchableFields
                                 } :
                                 searchObj.advancedSearchFields
 
@@ -896,26 +756,26 @@ export default defineComponent({
                         onFinish: visit => {
                             dataLoading.value = false;
 
-                        },
+                        }
                     });
             },
-            {debounce: 500}
+            { debounce: 500 }
         );
 
         /**Watch Search Type**/
         watch(showAdvancedSearchPanel, () => {
-            showAdvancedSearchPanel.value ? searchObj.searchType = 'advanced' : searchObj.searchType = 'simple'
-        })
+            showAdvancedSearchPanel.value ? searchObj.searchType = "advanced" : searchObj.searchType = "simple";
+        });
 
 
         /*Content Delete Confirm Modal Function*/
         const selectedItem = ref(null);
         const selectItem = ($event, item, type) => {
-            emit('selectedItem', {
+            emit("selectedItem", {
                 data: content.value.data.find(i => i[uniqueId.value] === item[uniqueId.value]),
                 action: type
             });
-        }
+        };
 
         /*Error Management*/
         const tableErrors = computed(() => {
@@ -925,12 +785,12 @@ export default defineComponent({
             let searchRouteStatus = !searchRoute.value;
 
             return [
-                {status: contentStatus, title: 'Content', errorText: 'contentError'},
-                {status: headerStatus, title: 'Header', errorText: 'headerError'},
-                {status: contentKeyStatus, title: 'Content Key', errorText: 'contentKeyError'},
-                {status: searchRouteStatus, title: 'Search Route', errorText: 'searchRouteError'}
-            ]
-        })
+                { status: contentStatus, title: "Content", errorText: "contentError" },
+                { status: headerStatus, title: "Header", errorText: "headerError" },
+                { status: contentKeyStatus, title: "Content Key", errorText: "contentKeyError" },
+                { status: searchRouteStatus, title: "Search Route", errorText: "searchRouteError" }
+            ];
+        });
 
 
         /*Slot Check*/
