@@ -1,82 +1,82 @@
 <script setup>
 /*Functions*/
-import {inject, provide, ref, watch} from "vue";
-import {Link, usePage} from "@inertiajs/vue3";
-import {menuStatus, updateMenuStatus} from "@/Functions/menuTrigger";
+import { inject, provide, ref, watch } from "vue";
+import { Link, usePage } from "@inertiajs/vue3";
+import { menuStatus, updateMenuStatus } from "@/Functions/menuTrigger";
 
 /*Sources*/
 import MainMenuLinks from "@/Sources/mainMenuLinks";
-import {appConf, mainMenuConf} from "@/config";
+import { appConf, mainMenuConf } from "@/config";
 import MainMenuItem from "@/Layouts/MainMenu/Umay/MainMenuItem.vue";
-import {cloneDeep} from "lodash";
+import { cloneDeep } from "lodash";
 
-const {mainMenuLinks, mainMenuFooterLinks} = MainMenuLinks({
+const { mainMenuLinks, mainMenuFooterLinks } = MainMenuLinks({
     roles: usePage().props.roles,
     permissions: usePage().props.permissions
 });
 
 /*Menu - Variables*/
 const selectedLink = ref([]);
-provide('selectedLink', selectedLink);
+provide("selectedLink", selectedLink);
 const appearingMode = inject("appearingMode");
 
 /*Watch Window Size*/
-const breakpoints = inject('breakpoints');
+const breakpoints = inject("breakpoints");
 watch(() => cloneDeep(breakpoints), (newValue) => {
 
-    if (newValue.value.smaller('md').value) {
-        menuStatus.value = 'hidden'
+    if (newValue.value.smaller("md").value) {
+        menuStatus.value = "hidden";
     }
 
-    if (newValue.value.greater('md').value) {
-        menuStatus.value = 'opened'
+    if (newValue.value.greater("md").value) {
+        menuStatus.value = "opened";
     }
-})
+});
 
 </script>
 
 <template>
     <aside
-        class="umay-main-menu"
         :class="{
         'umay-main-menu-show' : menuStatus === 'opened',
         'umay-main-menu-hide' : menuStatus === 'hidden',
         'umay-main-menu-fold' : menuStatus === 'closed',
         }"
+        class="umay-main-menu"
     >
         <!--Logo-->
         <div
-            class="header"
             :class="[
         mainMenuConf.umay.logoAreaClasses ? mainMenuConf.umay.logoAreaClasses : appConf.logoAreaClasses,
         `radius-${mainMenuConf.umay.logoAreaRadius ? mainMenuConf.umay.logoAreaRadius : appConf.radius}`
         ]"
+            class="header"
         >
             <Link
                 :href="route('/')"
                 class="logo-out-container"
             >
                 <div
-                    class="logo-inside-container"
                     :class="menuStatus === 'closed' && 'ml-1'"
+                    class="logo-inside-container"
                 >
                     <!--TODO: Title and Logo will come from DB-->
                     <!--Logo-->
                     <img
+                        :class="mainMenuConf.umay.logoClasses"
                         :src="[
                         appearingMode === 'dark' ? mainMenuConf.umay.logo.dark ? mainMenuConf.umay.logo.dark : appConf.logo.dark :
                         mainMenuConf.umay.logo.light ? mainMenuConf.umay.logo.light : appConf.logo.light
                     ]"
-                        :class="mainMenuConf.umay.logoClasses"
                     />
                     <!--Title-->
                     <div
                         id="logo-title"
-                        v-html="mainMenuConf.appName ? mainMenuConf.appName : appConf.appName"
                         :class="[
                             menuStatus !== 'closed' ? 'umay-main-menu-title-show' : 'umay-main-menu-title-hide',
                             mainMenuConf.umay.appNameClasses
                             ]"
+                        v-html="mainMenuConf.appName ? mainMenuConf.appName : appConf.appName"
                     />
                 </div>
             </Link>
@@ -93,12 +93,12 @@ watch(() => cloneDeep(breakpoints), (newValue) => {
         </nav>
         <!--Menu Footer-->
         <div id="footer">
-            <transition name="fade" mode="out-in">
+            <transition mode="out-in" name="fade">
                 <!--Settings-->
                 <div
-                    key="mainMenuFooterLinks"
-                    id="footer-links-wrapper"
                     v-if="mainMenuFooterLinks.length>0 && menuStatus !== 'closed'"
+                    id="footer-links-wrapper"
+                    key="mainMenuFooterLinks"
                     :class="[
             mainMenuFooterLinks.length>1 ? 'grid-cols-2' : '',
             `radius-${mainMenuConf.umay.radius ? mainMenuConf.umay.radius : appConf.radius}`
@@ -110,40 +110,35 @@ watch(() => cloneDeep(breakpoints), (newValue) => {
                         <Link
                             v-if="link.linkType === 'route'"
                             id="footer-link"
+                            :key="link.id"
                             :class="mainMenuFooterLinks.length>2 ? 'justify-start' : 'justify-center'"
                             :href="route(link.link)"
-                            :key="link.id"
                         >
-                            <icon v-if="link.icon" :icon="link.icon"/>
-                            <span v-text="link.label ? link.label : link.label"/>
+                            <iconify-icon v-if="link.icon" :icon="link.icon" />
+                            <span v-text="link.label ? link.label : link.label" />
                         </Link>
                         <!--External Link-->
                         <a
                             v-else
                             id="footer-link"
+                            :key="link.id"
                             :class="mainMenuFooterLinks.length>2 ? 'justify-start' : 'justify-center'"
                             :href="link.link"
                             target="_blank"
-                            :key="link.id"
                         >
-                            <icon v-if="link.icon" :icon="link.icon"/>
-                            <span v-text="link.label ? link.label : link.label"/>
+                            <iconify-icon v-if="link.icon" :icon="link.icon" />
+                            <span v-text="link.label ? link.label : link.label" />
                         </a>
                     </template>
                 </div>
                 <!--Open Menu Arrow-->
                 <div
-                    key="mainMenuOpenArrow"
                     v-else
                     id="footer-trigger"
+                    key="mainMenuOpenArrow"
                     @click="updateMenuStatus"
                 >
-                    <svg xmlns="http://www.w3.org/2000/svg" class="umay-main-menu-trigger-icon" fill="none"
-                         viewBox="0 0 24 24"
-                         stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                              d="M13 5l7 7-7 7M5 5l7 7-7 7"/>
-                    </svg>
+                    <iconify-icon class="umay-main-menu-trigger-icon" icon="tabler:chevrons-right"></iconify-icon>
                 </div>
             </transition>
         </div>
