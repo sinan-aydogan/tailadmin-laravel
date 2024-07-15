@@ -1,41 +1,41 @@
 <template>
     <div
-        class="flex p-2 w-10 h-10 justify-center items-center cursor-pointer hover:bg-slate-500/10 dark:hover:bg-slate-500/50 overflow-hidden text-white  transform transition-all duration-300"
         :class="`radius-${topBarConf.radius ? topBarConf.radius : appConf.radius}`"
+        class="flex p-2 w-10 h-10 justify-center items-center cursor-pointer hover:bg-slate-500/10 dark:hover:bg-slate-500/50 overflow-hidden text-white  transform transition-all duration-300"
         @click="updateDarkModePreference()"
     >
         <transition-group name="darkTransition">
             <!-- Light -->
-            <icon
-                v-if="darkMode === 'light'"
-                icon="sun"
-                size="lg"
-                key="light"
-                :alt="t('lightMode')"
-                class="text-yellow-500 transform hover:scale-110 active:scale-90 transition-all duration-300"
-            />
+            <div v-if="darkMode === 'light'" key="light">
+                <iconify-icon
+                    :alt="t('lightMode')"
+                    class="w-6 h-6 text-yellow-500 transform hover:scale-110 active:scale-90 transition-all duration-300"
+                    icon="tabler:sun"
+                />
+            </div>
+
             <!-- Auto -->
-            <icon
-                v-if="darkMode === 'auto'"
-                icon="palette"
-                size="lg"
-                key="auto"
-                :alt="t('auto')"
-                class="transform hover:scale-110 active:scale-90 transition-all duration-300"
-                :class="{
+            <div v-if="darkMode === 'auto'" key="auto">
+                <iconify-icon
+                    :alt="t('auto')"
+                    :class="{
                     'text-gray-500' : appearingMode === 'light',
                     'text-slate-50' : appearingMode === 'dark',
                 }"
-            />
+                    class="w-6 h-6 transform hover:scale-110 active:scale-90 transition-all duration-300"
+                    icon="tabler:palette"
+                />
+            </div>
+
             <!-- Dark -->
-            <icon
-                v-if="darkMode === 'dark'"
-                icon="moon"
-                size="lg"
-                key="dark"
-                :alt="t('darkMode')"
-                class="transform hover:scale-110 active:scale-90 transition-all duration-300"
-            />
+            <div v-if="darkMode === 'dark'" key="dark">
+                <iconify-icon
+                    :alt="t('darkMode')"
+                    class="w-6 h-6 transform hover:scale-110 active:scale-90 transition-all duration-300"
+                    icon="tabler:moon-stars"
+                />
+            </div>
+
         </transition-group>
     </div>
 </template>
@@ -44,13 +44,7 @@
 /* Main Functions */
 import { inject } from "vue";
 import { usePage } from "@inertiajs/vue3";
-import { library } from "@fortawesome/fontawesome-svg-core";
 import { useDarkModeStore } from "@/Stores/darkMode";
-
-/*Components*/
-import { faSun, faMoon, faPalette } from "@fortawesome/free-solid-svg-icons";
-
-library.add(faSun, faMoon, faPalette);
 
 /*Multi Language*/
 import { useI18n } from "vue-i18n";
