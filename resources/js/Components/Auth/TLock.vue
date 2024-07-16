@@ -32,7 +32,7 @@
                         <t-input-group :radius="5" class="relative" label-for="password">
                             <t-input-text id="password" v-model="form.password" :radius="3" placeholder="Password">
                                 <template #icon>
-                                    <iconify-icon icon="mingcute:user-4-line" class="w-5 h-5"></iconify-icon>
+                                    <iconify-icon class="w-5 h-5" icon="tabler:user-circle"></iconify-icon>
                                 </template>
                             </t-input-text>
                         </t-input-group>
@@ -54,7 +54,7 @@
                 <transition @before-enter="beforeStyle" @after-enter="enterStyle">
                     <t-alert v-if="hasErrors" :radius="deviceType !== 'phone' && 5" color="red">
                         <template #icon>
-                            <iconify-icon icon="mingcute:bell-ringing-line" class="w-8 h-8"></iconify-icon>
+                            <iconify-icon class="w-8 h-8" icon="tabler:bell"></iconify-icon>
                         </template>
                         <ul class="list-inside text-sm">
                             <li v-for="(error, key) in errors" :key="key">{{ error }}</li>

@@ -36,19 +36,19 @@
                         <!--Email-->
                         <div class="mt-2">
                             <t-input-group label="Email" label-for="email">
-                                <t-input-text :radius="3" id="email" v-model="form.email" autofocus required
+                                <t-input-text id="email" v-model="form.email" :radius="3" autofocus required
                                               type="email" />
                             </t-input-group>
                         </div>
                         <!--Submit Button-->
                         <div class="auth-submit-area">
                             <t-button
-                                size="full"
-                                :design="buttonDesign"
                                 :class="{ 'opacity-25': form.processing }"
                                 :color="buttonColor"
+                                :design="buttonDesign"
                                 :disabled="form.processing"
                                 :radius="3"
+                                size="full"
                             >
                                 Email Password Reset Link
                             </t-button>
@@ -61,7 +61,7 @@
                 <transition @before-enter="beforeStyle" @after-enter="enterStyle">
                     <t-alert v-if="hasErrors" :radius="deviceType !== 'phone' && 5" color="red">
                         <template #icon>
-                            <iconify-icon icon="mingcute:bell-ringing-line" class="w-8 h-8"></iconify-icon>
+                            <iconify-icon class="w-8 h-8" icon="tabler:bell"></iconify-icon>
                         </template>
 
                         <ul class="list-inside text-sm">

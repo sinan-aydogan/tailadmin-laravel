@@ -1,7 +1,7 @@
 <template>
     <full-screen-layout
-        :bg-image-url="activeDesign.bgImage[appearingMode]"
         :bg-color="activeDesign.bgColor"
+        :bg-image-url="activeDesign.bgImage[appearingMode]"
     >
 
         <!--Container-->
@@ -11,28 +11,28 @@
             ]">
             <!--Header-->
             <div
-                class="auth-header"
                 :class="[
                         activeDesign.header,
                         deviceType !== 'phone' && `radius-t-${activeDesign.radius ? activeDesign.radius : appConf.radius}`,
                     ]"
+                class="auth-header"
             >
                 <!--Logo-->
                 <div class="auth-logo">
                     <slot v-if="$slots.logo" name="logo" />
                     <div v-else :class="authScreenConf.logoAreaClasses">
                         <img
-                            :src="temporaryLogo"
                             :class="authScreenConf.logoClasses"
+                            :src="temporaryLogo"
                         />
                         <span
-                            v-text="authScreenConf.appName ? authScreenConf.appName : appConf.appName"
                             :class="authScreenConf.appNameClasses"
+                            v-text="authScreenConf.appName ? authScreenConf.appName : appConf.appName"
                         ></span>
                     </div>
                 </div>
                 <!--Greeting-->
-                <div class="auth-greeting" v-if="status || $slots.greeting">
+                <div v-if="status || $slots.greeting" class="auth-greeting">
                     <div class="text-sm">
                         <!--Status-->
                         <div v-if="status" class="auth-status">{{ status }}</div>
@@ -43,47 +43,47 @@
 
             <!--Form-->
             <div
-                class="auth-form"
                 :class="[
                         deviceType !== 'phone' && `radius-b-${activeDesign.radius ? activeDesign.radius : appConf.radius}`,
                         activeDesign.body,
                     ]"
+                class="auth-form"
             >
                 <form @submit.prevent="submit">
                     <!--Email-->
                     <div>
                         <t-input-group
+                            :errors="v.email.$errors"
                             :label="t('email')"
                             label-for="email"
-                            :errors="v.email.$errors"
                         >
                             <t-input-text
                                 id="email"
                                 v-model="form.email"
-                                @blur="v.email.$touch"
                                 :radius="3"
-                                autofocus
                                 autocomplete="username"
+                                autofocus
                                 required
                                 type="email"
+                                @blur="v.email.$touch"
                             />
                         </t-input-group>
                     </div>
                     <!--Password-->
                     <div class="mt-4">
                         <t-input-group
+                            :errors="v.password.$errors"
                             :label="t('password')"
                             label-for="password"
-                            :errors="v.password.$errors"
                         >
                             <t-input-text
                                 id="password"
                                 v-model="form.password"
-                                @blur="v.password.$touch"
                                 :radius="3"
                                 autocomplete="current-password"
                                 required
                                 type="password"
+                                @blur="v.password.$touch"
                             />
                         </t-input-group>
                     </div>
@@ -97,7 +97,7 @@
                                 :label="t('rememberMe')"
                             >
                                 <template #icon>
-                                    <iconify-icon icon="mdi:check-bold"></iconify-icon>
+                                    <iconify-icon icon="tabler:check"></iconify-icon>
                                 </template>
                             </t-input-check-box>
                         </label>
@@ -115,8 +115,8 @@
                         <!--Register Button-->
                         <t-button
                             :class="{ 'opacity-25': form.processing }"
-                            :design="activeDesign.registerButton[appearingMode].design"
                             :color="activeDesign.registerButton[appearingMode].color"
+                            :design="activeDesign.registerButton[appearingMode].design"
                             :link="route('register')"
                             :radius="3"
                             type="link"
@@ -143,7 +143,7 @@
             <transition @before-enter="beforeStyle" @after-enter="enterStyle">
                 <t-alert v-if="hasErrors" :radius="deviceType !== 'phone' && 5" color="danger">
                     <template #icon>
-                        <iconify-icon icon="mingcute:bell-ringing-line" class="w-8 h-8"></iconify-icon>
+                        <iconify-icon class="w-8 h-8" icon="tabler:bell"></iconify-icon>
                     </template>
                     <ul class="list-inside text-sm">
                         <li v-for="(error, key) in errors" :key="key">{{ error }}</li>
@@ -158,19 +158,19 @@
             <!--Language Selector-->
             <t-tooltip
                 v-if="authScreenConf.showLanguageSelector"
-                position="top"
                 :border="false"
                 :custom-style="true"
+                position="top"
             >
                 <!--Selected Language-->
                 <div
-                    class="flex justify-center items-center group bg-slate-100/50 hover:bg-slate-800/50 dark:text-slate-100 dark:bg-slate-800/75 dark:hover:bg-slate-100/75 dark:hover:text-slate-700 hover:text-slate-100 p-4 w-10 h-10 cursor-pointer overflow-hidden bg-cover"
                     :class="`radius-${authScreenConf.radius ? authScreenConf.radius : appConf.radius}`"
+                    class="flex justify-center items-center group bg-slate-100/50 hover:bg-slate-800/50 dark:text-slate-100 dark:bg-slate-800/75 dark:hover:bg-slate-100/75 dark:hover:text-slate-700 hover:text-slate-100 p-4 w-10 h-10 cursor-pointer overflow-hidden bg-cover"
                 >
                     <component
                         :is="languages.find(i => i.id === locale).flag"
-                        class="flex flex-shrink-0 w-14 aspect-auto drop-shadow transform hover:scale-110 active:scale-90 hover:-rotate-12 transition-all duration-300"
                         :alt="languages.find(i => i.id === locale).name"
+                        class="flex flex-shrink-0 w-14 aspect-auto drop-shadow transform hover:scale-110 active:scale-90 hover:-rotate-12 transition-all duration-300"
                     />
                     <span
                         class="absolute text-sm -top-2 -right-2 bg-slate-100/10 dark:bg-slate-800/50 backdrop-filter backdrop-blur text-slate-100 px-1 rounded"
@@ -182,8 +182,8 @@
                     <div class="top-menu-dropdown-content-wrapper-transparent mb-3">
                         <template v-for="lang in languages" :key="lang.id">
                             <div
-                                @click="changeLang(lang.id)"
                                 class="top-menu-dropdown-item-transparent"
+                                @click="changeLang(lang.id)"
                             >
                                 <component :is="lang.flag" class="w-6 aspect-auto drop-shadow" />
                                 <span v-text="lang.name"></span>
@@ -195,35 +195,35 @@
             <!--Dark Mode-->
             <div
                 v-if="authScreenConf.showDarkModeSelector"
-                class="flex justify-center items-center bg-slate-100/50 hover:bg-slate-800/50 dark:text-slate-100 dark:bg-slate-800/75 dark:hover:bg-slate-100/75 dark:hover:text-slate-700 hover:text-slate-100 p-4 w-10 h-10 cursor-pointer overflow-hidden"
                 :class="`radius-${authScreenConf.radius ? authScreenConf.radius : appConf.radius}`"
+                class="flex justify-center items-center bg-slate-100/50 hover:bg-slate-800/50 dark:text-slate-100 dark:bg-slate-800/75 dark:hover:bg-slate-100/75 dark:hover:text-slate-700 hover:text-slate-100 p-4 w-10 h-10 cursor-pointer overflow-hidden"
                 @click="changeTheme"
             >
                 <transition mode="out-in" name="darkModeTransition">
                     <!-- Light -->
-                    <div key="light" v-if="darkMode === 'light'">
+                    <div v-if="darkMode === 'light'" key="light">
                         <iconify-icon
-                            icon="ph:sun-bold"
                             :alt="tm('lightMode')"
                             class="transform hover:scale-110 active:scale-90 transition-transform duration-300 w-6 h-6"
+                            icon="tabler:sun"
                         />
                     </div>
 
                     <!-- Auto -->
                     <div v-else-if="darkMode === 'auto'" key="auto">
                         <iconify-icon
-                            icon="mingcute:drop-fill"
                             :alt="tm('auto')"
                             class="transform hover:scale-110 active:scale-90 transition-transform duration-300 w-6 h-6"
+                            icon="tabler:palette"
                         />
                     </div>
 
                     <!-- Dark -->
                     <div v-else key="dark">
                         <iconify-icon
-                            icon="ph:moon-stars-bold"
                             :alt="tm('darkMode')"
                             class="transform hover:scale-110 active:scale-90 transition-transform duration-300 w-6 h-6"
+                            icon="tabler:moon-stars"
                         />
                     </div>
                 </transition>
@@ -231,13 +231,14 @@
             <!--Change Background-->
             <div
                 v-if="authScreenConf.showDesignChanger && authDesigns.length > 1"
-                @click="changeBg"
-                class="flex justify-center items-center group bg-slate-100/50 hover:bg-slate-800/50 dark:text-slate-100 dark:bg-slate-800/75 dark:hover:bg-slate-100/75 dark:hover:text-slate-700 hover:text-slate-100 p-4 w-10 h-10 cursor-pointer"
                 :class="`radius-${authScreenConf.radius ? authScreenConf.radius : appConf.radius}`"
+                class="flex justify-center items-center group bg-slate-100/50 hover:bg-slate-800/50 dark:text-slate-100 dark:bg-slate-800/75 dark:hover:bg-slate-100/75 dark:hover:text-slate-700 hover:text-slate-100 p-4 w-10 h-10 cursor-pointer"
+                @click="changeBg"
             >
                 <div>
-                    <iconify-icon icon="tabler:refresh"
-                                  class="transform group-hover:scale-110 group-active:scale-90 transition-transform duration-300 w-6 h-6" />
+                    <iconify-icon
+                        class="transform group-hover:scale-110 group-active:scale-90 transition-transform duration-300 w-6 h-6"
+                        icon="tabler:refresh" />
                 </div>
             </div>
         </div>
