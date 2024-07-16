@@ -19,12 +19,12 @@
                                 <h2 class="font-semibold mr-4">Filled</h2>
                                 <div
                                     class="flex flex-wrap justify-center md:justify-start items-center border rounded w-full p-2 space-x-2 space-y-2 dark:border-gray-700">
-                                    <t-badge design="filled" color="danger" :radius="0" class="mt-2">REJECTED</t-badge>
-                                    <t-badge design="filled" color="success">ACTIVE</t-badge>
-                                    <t-badge design="filled" color="light" badge-value="2.825,90 TRY">SALARY</t-badge>
-                                    <t-badge design="filled" color="warning" badge-value="8" :radius="8">
+                                    <t-badge :radius="0" class="mt-2" color="danger" design="filled">REJECTED</t-badge>
+                                    <t-badge color="success" design="filled">ACTIVE</t-badge>
+                                    <t-badge badge-value="2.825,90 TRY" color="light" design="filled">SALARY</t-badge>
+                                    <t-badge :radius="8" badge-value="8" color="warning" design="filled">
                                         <template #icon>
-                                            <icon icon="shield-alt" size="sm"/>
+                                            <iconify-icon icon="tabler:shield" />
                                         </template>
                                         Attacks
                                     </t-badge>
@@ -36,11 +36,11 @@
                                 <h2 class="font-semibold mr-4">Light</h2>
                                 <div
                                     class="flex flex-wrap justify-center md:justify-start items-center border rounded w-full p-2 space-x-2 space-y-2 dark:border-gray-700">
-                                    <t-badge design="light" color="info" :radius="0" class="mt-2">pending</t-badge>
-                                    <t-badge design="light" color="violet" badge-value="12">open tasks</t-badge>
-                                    <t-badge design="light" color="pink" badge-value="125" :radius="8">
+                                    <t-badge :radius="0" class="mt-2" color="info" design="light">pending</t-badge>
+                                    <t-badge badge-value="12" color="violet" design="light">open tasks</t-badge>
+                                    <t-badge :radius="8" badge-value="125" color="pink" design="light">
                                         <template #icon>
-                                            <icon icon="user-circle"/>
+                                            <iconify-icon icon="tabler:user-circle" />
                                         </template>
                                         Staff
                                     </t-badge>
@@ -52,14 +52,14 @@
                                 <h2 class="font-semibold mr-4">Inline</h2>
                                 <div
                                     class="flex flex-wrap justify-center md:justify-start items-center border rounded w-full p-2 space-x-2 space-y-2 dark:border-gray-700">
-                                    <t-badge design="inline" color="green" :radius="0" class="mt-2">#tailwindcss
+                                    <t-badge :radius="0" class="mt-2" color="green" design="inline">#tailwindcss
                                     </t-badge>
-                                    <t-badge design="inline" color="pink" badge-value="1 Hr. 25 Min." :radius="2">
+                                    <t-badge :radius="2" badge-value="1 Hr. 25 Min." color="pink" design="inline">
                                         London
                                     </t-badge>
-                                    <t-badge design="inline" color="warning" badge-value="2" :radius="2">
+                                    <t-badge :radius="2" badge-value="2" color="warning" design="inline">
                                         <template #icon>
-                                            <icon icon="star" size="sm"/>
+                                            <iconify-icon icon="tabler:star" />
                                         </template>
                                         Awards
                                     </t-badge>
@@ -71,11 +71,11 @@
                                 <h2 class="font-semibold mr-4">Outline</h2>
                                 <div
                                     class="flex flex-wrap justify-center md:justify-start items-center border rounded w-full p-2 space-x-2 space-y-2 dark:border-gray-700">
-                                    <t-badge design="outline" color="success" :radius="0" class="mt-2">Online</t-badge>
-                                    <t-badge design="outline" color="danger">Offline</t-badge>
-                                    <t-badge design="outline" color="warning" badge-value="12 minutes">Away</t-badge>
-                                    <t-badge design="outline" color="success" badge-value="+%2">BTC</t-badge>
-                                    <t-badge design="outline" color="danger" badge-value="-%1,8">ADA</t-badge>
+                                    <t-badge :radius="0" class="mt-2" color="success" design="outline">Online</t-badge>
+                                    <t-badge color="danger" design="outline">Offline</t-badge>
+                                    <t-badge badge-value="12 minutes" color="warning" design="outline">Away</t-badge>
+                                    <t-badge badge-value="+%2" color="success" design="outline">BTC</t-badge>
+                                    <t-badge badge-value="-%1,8" color="danger" design="outline">ADA</t-badge>
                                 </div>
                             </div>
 
@@ -84,11 +84,11 @@
                                 <h2 class="font-semibold mr-4">Elegant</h2>
                                 <div
                                     class="flex flex-wrap justify-center md:justify-start items-center border rounded w-full p-2 space-x-2 space-y-2 dark:border-gray-700">
-                                    <t-badge design="elegant" color="success" :radius="0" class="mt-2">Manager</t-badge>
-                                    <t-badge design="elegant" color="violet" badge-value="12">Engineer</t-badge>
-                                    <t-badge design="elegant" color="warning" badge-value="8" :radius="6">
+                                    <t-badge :radius="0" class="mt-2" color="success" design="elegant">Manager</t-badge>
+                                    <t-badge badge-value="12" color="violet" design="elegant">Engineer</t-badge>
+                                    <t-badge :radius="6" badge-value="8" color="warning" design="elegant">
                                         <template #icon>
-                                            <icon icon="cog" size="sm"/>
+                                            <iconify-icon icon="tabler:settings" />
                                         </template>
                                         Maintainer
                                     </t-badge>
@@ -100,11 +100,11 @@
                                 <h2 class="font-semibold mr-4">Block</h2>
                                 <div
                                     class="flex flex-wrap justify-center md:justify-start items-center border rounded w-full p-2 space-x-2 space-y-2 dark:border-gray-700">
-                                    <t-badge design="block" color="success" :radius="0" class="mt-2">PASSED</t-badge>
-                                    <t-badge design="block" color="light" badge-value="-3K TRY">Prompt Cash</t-badge>
-                                    <t-badge design="block" color="danger" badge-value="8" :radius="8">
+                                    <t-badge :radius="0" class="mt-2" color="success" design="block">PASSED</t-badge>
+                                    <t-badge badge-value="-3K TRY" color="light" design="block">Prompt Cash</t-badge>
+                                    <t-badge :radius="8" badge-value="8" color="danger" design="block">
                                         <template #icon>
-                                            <icon icon="trash" size="sm"/>
+                                            <iconify-icon icon="tabler:trash" size="sm" />
                                         </template>
                                         Trash
                                     </t-badge>
@@ -129,11 +129,11 @@
                                     <div class="flex flex-wrap border space-x-2 p-2 mb-2 w-full min-h-10">
                                         <t-badge
                                             v-for="(tag,key) in activeTagList"
+                                            :key="key"
+                                            class="my-2 cursor-pointer"
                                             color="success"
                                             design="filled"
-                                            class="my-2 cursor-pointer"
                                             @click="deleteTag(tag)"
-                                            :key="key"
                                         >
                                             {{ tag.label }}
                                         </t-badge>
@@ -141,11 +141,11 @@
                                     <div class="flex flex-wrap">
                                         <t-badge
                                             v-for="(tag,key) in passiveTagList"
+                                            :key="key"
+                                            class="mb-2 mr-2 cursor-pointer"
                                             color="light"
                                             design="filled"
-                                            class="mb-2 mr-2 cursor-pointer"
                                             @click="addTag(tag)"
-                                            :key="key"
                                         >
                                             {{ tag.label }}
                                         </t-badge>
@@ -157,14 +157,14 @@
                                 <h3 class="font-semibold dark:text-gray-100">Custom Selected:</h3>
                                 <div class="flex flex-wrap justify-start items-center mt-2">
                                     <t-badge v-for="(tag,key) in tagBadgeCustomColor"
+                                             :key="key"
+                                             v-model="tag.status"
                                              :model-value="tag.status"
                                              :select-active-style="{color: 'success', design: 'filled'}"
                                              :select-passive-style="{color: 'light', design: 'elegant'}"
                                              class="mb-2 mr-2"
-                                             v-model="tag.status"
-                                             selectable
                                              select-indicator
-                                             :key="key"
+                                             selectable
                                     >
                                         {{ tag.label }}
                                     </t-badge>
@@ -182,13 +182,13 @@
                         <div class="flex flex-wrap space-x-4">
                             <t-badge :collapsible="true" :radius="1" color="pink" design="filled">
                                 <template #icon>
-                                    <icon icon="shield-alt"/>
+                                    <iconify-icon icon="tabler:shield" />
                                 </template>
                                 Super Admin
                             </t-badge>
                             <t-badge :collapsible="true" :radius="8" color="danger" design="filled">
                                 <template #icon>
-                                    <icon icon="ban"/>
+                                    <iconify-icon icon="tabler:ban" />
                                 </template>
                                 Restricted Area
                             </t-badge>
@@ -202,7 +202,7 @@
 
 <script>
 /*Main Functions*/
-import {reactive} from "vue";
+import { reactive } from "vue";
 
 /*Components*/
 import AppLayout from "@/Layouts/AppLayout.vue";
@@ -210,50 +210,44 @@ import GridSection from "@/Layouts/GridSection.vue";
 import TContentCard from "@/Components/Card/TContentCard.vue";
 import TBadge from "@/Components/Badge/TBadge.vue";
 
-/*Import FontAwesomeIcon*/
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { faCheckCircle, faStar, faShieldAlt, faBan, faPlusCircle, faUserCircle, faUsers, faCog, faTrash} from "@fortawesome/free-solid-svg-icons";
-library.add( faCheckCircle, faStar, faShieldAlt, faBan, faPlusCircle, faUserCircle, faUsers, faCog, faTrash)
-
-
 export default {
     name: "Badge",
     components: {
         AppLayout,
         GridSection,
         TBadge,
-        TContentCard,
+        TContentCard
     },
     setup() {
         const tagBadge = reactive([
-            {id: 1, label: 'VueJS'},
-            {id: 2, label: 'Tailawindcss'},
-            {id: 3, label: 'Laravel'},
-            {id: 4, label: 'Javascript'},
-            {id: 5, label: 'CSS'}
-        ])
-        const activeTagList = reactive([])
-        const passiveTagList = reactive([...tagBadge])
+            { id: 1, label: "VueJS" },
+            { id: 2, label: "Tailawindcss" },
+            { id: 3, label: "Laravel" },
+            { id: 4, label: "Javascript" },
+            { id: 5, label: "CSS" }
+        ]);
+        const activeTagList = reactive([]);
+        const passiveTagList = reactive([...tagBadge]);
 
         const tagBadgeCustomColor = reactive([
-            {id: 1, label: 'Urgent', status: true},
-            {id: 2, label: 'Low', status: true},
-            {id: 3, label: 'High', status: true},
-            {id: 4, label: 'Modarete', status: false},
-            {id: 5, label: 'Insignificant', status: false}
-        ])
+            { id: 1, label: "Urgent", status: true },
+            { id: 2, label: "Low", status: true },
+            { id: 3, label: "High", status: true },
+            { id: 4, label: "Modarete", status: false },
+            { id: 5, label: "Insignificant", status: false }
+        ]);
 
         const addTag = (tag) => {
-            activeTagList.push(tag)
-            passiveTagList.splice(passiveTagList.findIndex(pt => pt.id === tag.id), 1)
-        }
+            activeTagList.push(tag);
+            passiveTagList.splice(passiveTagList.findIndex(pt => pt.id === tag.id), 1);
+        };
 
         const deleteTag = (tag) => {
-            passiveTagList.push(tag)
-            activeTagList.splice(activeTagList.findIndex(pt => pt.id === tag.id), 1)
-        }
+            passiveTagList.push(tag);
+            activeTagList.splice(activeTagList.findIndex(pt => pt.id === tag.id), 1);
+        };
 
-        return {tagBadge, tagBadgeCustomColor, activeTagList, addTag, deleteTag, passiveTagList}
+        return { tagBadge, tagBadgeCustomColor, activeTagList, addTag, deleteTag, passiveTagList };
     }
 };
 </script>

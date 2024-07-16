@@ -63,17 +63,11 @@
                     class="badge-select-icon"
                     @click="select"
                 >
-                    <svg v-if="modelValue" class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none"
-                         viewBox="0 0 24 24"
-                         stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                              d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                    </svg>
-                    <svg v-else class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                         stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                              d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
-                    </svg>
+                    <!--Close Icon-->
+                    <iconify-icon v-if="modelValue" class="w-5 h-5 text-slate-500 bg-slate-50 hover:text-white hover:bg-rose-500 rounded-full" icon="tabler:x"/>
+
+                    <!--Add Icon-->
+                    <iconify-icon v-else class="w-5 h-5 bg-slate-50 hover:bg-emerald-500 rounded-full"  icon="tabler:plus"></iconify-icon>
                 </div>
             </div>
         </transition>
