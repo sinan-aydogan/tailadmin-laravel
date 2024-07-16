@@ -3,7 +3,6 @@
         <!--Alert Container-->
         <div
             v-if="showAlertBox"
-            class="alert"
             :class="[
                 `alert-${temporaryDesign}`,
                 !type ? `alert-${temporaryDesign}-${temporaryColor}` :
@@ -13,13 +12,15 @@
                     { 'alert-info': type === 'info' }],
                 `radius-${temporaryRadius}`,
             ]"
+            class="alert"
         >
             <!--Alert Line-->
             <div v-if="temporaryDesign.includes('line')" class="alert-line" />
 
             <!--Alert Icon-->
-            <div v-if="hasSlot('icon')" class="alert-icon">
-                <slot name="icon"></slot>
+            <div v-if="hasSlot('icon') || icon" class="alert-icon">
+                <slot v-if="hasSlot('icon')" name="icon"></slot>
+                <iconify-icon v-if="!hasSlot('icon') && icon" :icon="icon" class="w-7 h-7" />
             </div>
 
             <!--Alert Content-->
@@ -27,20 +28,22 @@
                 <!--Title-->
                 <span v-if="title" class="alert-title" v-text="title"></span>
                 <!--Content-->
-                <span>
-                    <slot></slot>
+                <span v-if="hasSlot('default') || message">
+                    <slot v-if="hasSlot('default')"></slot>
+                    <span v-if="!hasSlot('default') && message" v-text="message"></span>
                 </span>
             </div>
 
             <!--Close Icon-->
-            <iconify-icon icon="mingcute:close-circle-line" v-if="temporaryCloseable" @click="close" class="alert-close" />
+            <iconify-icon v-if="temporaryCloseable" class="alert-close" icon="tabler:circle-x"
+                          @click="close" />
 
             <!--Countdown Line-->
             <div v-if="temporaryTimer" class="alert-countdown">
                 <div
-                    class="alert-countdown-line"
                     :class="`radius-${temporaryRadius}`"
                     :style="{ width: countDownCounter + '%' }"
+                    class="alert-countdown-line"
                 ></div>
             </div>
         </div>
@@ -48,7 +51,7 @@
 </template>
 <script>
 /* Main Functions */
-import { defineComponent, inject, ref, toRefs, watch, useSlots} from "vue";
+import { defineComponent, inject, ref, toRefs, watch, useSlots } from "vue";
 
 /*Sources*/
 import { alertConf } from "@/config";
@@ -58,7 +61,7 @@ export default defineComponent({
     props: {
         id: {
             type: [Number, String, Array, Object, Date, Boolean],
-            default: function () {
+            default: function() {
                 return "alert-" + Number(new Date());
             }
         },
@@ -68,13 +71,17 @@ export default defineComponent({
         },
         timerStatus: {
             type: Boolean,
-            default: false,
+            default: false
         },
         timer: {
             type: Number,
-            default: null,
+            default: null
         },
         title: {
+            type: String,
+            default: null
+        },
+        message: {
             type: String,
             default: null
         },
@@ -93,6 +100,10 @@ export default defineComponent({
         color: {
             type: String,
             default: "light"
+        },
+        icon: {
+            type: String,
+            default: null
         }
     },
     emits: ["destroy"],
@@ -102,14 +113,14 @@ export default defineComponent({
         /*Definitions*/
         const { design, color, radius, closeable, timerStatus, timer, id } = toRefs(props);
         const showAlertBox = ref(true);
-        const appConf = inject('appConf');
+        const appConf = inject("appConf");
 
         /*Temporary Definations*/
-        const temporaryDesign = ref(design.value ? design.value : alertConf.design ? alertConf.design : appConf.value.design)
-        const temporaryColor = ref(color.value ? color.value : alertConf.color ? alertConf.color : appConf.value.color)
-        const temporaryRadius = ref(radius.value ? radius.value : alertConf.radius ? alertConf.radius : appConf.value.radius)
-        const temporaryCloseable = ref(closeable.value ? closeable.value : alertConf.closeable ? alertConf.closeable : appConf.value.closeable)
-        const temporaryTimer = ref(timer.value ? timer.value : alertConf.timer ? alertConf.timer : appConf.value.timer)
+        const temporaryDesign = ref(design.value ? design.value : alertConf.design ? alertConf.design : appConf.value.design);
+        const temporaryColor = ref(color.value ? color.value : alertConf.color ? alertConf.color : appConf.value.color);
+        const temporaryRadius = ref(radius.value ? radius.value : alertConf.radius ? alertConf.radius : appConf.value.radius);
+        const temporaryCloseable = ref(closeable.value ? closeable.value : alertConf.closeable ? alertConf.closeable : appConf.value.closeable);
+        const temporaryTimer = ref(timer.value ? timer.value : alertConf.timer ? alertConf.timer : appConf.value.timer);
 
         /*Close Function*/
         const close = () => {
@@ -139,7 +150,7 @@ export default defineComponent({
                     }
                 }, 1);
             }
-        })
+        });
 
         /*Slot Check*/
         const hasSlot = name => !!useSlots()[name];
