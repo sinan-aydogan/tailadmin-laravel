@@ -62,6 +62,26 @@ Setup Directions
 10. ```php artisan serve```
 11. ```Goto: http://localhost:8000```
 
+Setup Directions with Docker - Linux
+
+1. Setup Docker with user permissions on pc
+2. clone this repo to any directory ```git clone sinan-aydogan/tailadmin-laravel```
+3. Enter project root directory by terminal for example ```cd tailadmin-laravel```
+4. Install composer packages by docker, because your host machine doesn't have php, mysql, nginx etc. Everything is in the docker containers
+   - ```docker run --rm \
+    -u "$(id -u):$(id -g)" \
+    -v "$(pwd):/var/www/html" \
+    -w /var/www/html \
+    laravelsail/php83-composer:latest \
+    composer install --ignore-platform-reqs```
+5. You should add an alias to your .bashrc file for shorcut to sail. ```sudo nano ~/.bashrc```
+6. Adds this lines end of the file ```alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'```
+7. Apply changes ```source ~/.bashrc```
+8. You can start the project with sail ```sail up -d```
+9. Don't forget add to domain to your host file ```sudo nano /etc/hosts```
+    - ```127.0.0.1 tailadmin-laravel.test```
+10. Go to ```http://tailadmin-laravel.test``` or your custom domain 
+
 Admin Login Infos / Demo Account
 ------
 
