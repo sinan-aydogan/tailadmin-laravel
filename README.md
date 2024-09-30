@@ -68,7 +68,7 @@ Setup Directions with Docker - Linux
 2. clone this repo to any directory ```git clone sinan-aydogan/tailadmin-laravel```
 3. Enter project root directory by terminal for example ```cd tailadmin-laravel```
 4. Install composer packages by docker, because your host machine doesn't have php, mysql, nginx etc. Everything is in the docker containers
-   - ```docker run --rm \
+   ```docker run --rm \
     -u "$(id -u):$(id -g)" \
     -v "$(pwd):/var/www/html" \
     -w /var/www/html \
