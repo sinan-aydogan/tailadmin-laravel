@@ -68,12 +68,7 @@ Setup Directions with Docker - Linux
 2. clone this repo to any directory ```git clone sinan-aydogan/tailadmin-laravel```
 3. Enter project root directory by terminal for example ```cd tailadmin-laravel```
 4. Install composer packages by docker, because your host machine doesn't have php, mysql, nginx etc. Everything is in the docker containers
-   ```docker run --rm \
-    -u "$(id -u):$(id -g)" \
-    -v "$(pwd):/var/www/html" \
-    -w /var/www/html \
-    laravelsail/php83-composer:latest \
-    composer install --ignore-platform-reqs```
+   ```docker run --rm \ -u "$(id -u):$(id -g)" \ -v "$(pwd):/var/www/html" \ -w /var/www/html \ laravelsail/php83-composer:latest \composer install --ignore-platform-reqs```
 5. You should add an alias to your .bashrc file for shorcut to sail. ```sudo nano ~/.bashrc```
 6. Adds this lines end of the file ```alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'```
 7. Apply changes ```source ~/.bashrc```
