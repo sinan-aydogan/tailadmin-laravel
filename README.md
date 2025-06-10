@@ -155,6 +155,9 @@ If you need to help more than this documentation:
 
 ### Partners and Sponsors
 
+## GitAds Sponsored
+[![Sponsored by GitAds](https://gitads.dev/v1/ad-serve?source=sinan-aydogan/tailadmin-laravel@github)](https://gitads.dev/v1/ad-track?source=sinan-aydogan/tailadmin-laravel@github)
+
 > :metal: If you want to support us, you can send a mail to us via [admin@tailadmin.dev](mailto:admin@tailadmin.dev)
 
 ---
