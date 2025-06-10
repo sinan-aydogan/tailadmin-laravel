@@ -37,6 +37,9 @@ TailAdmin Inertia
 </a>
 </p>
 
+## GitAds Sponsored
+[![Sponsored by GitAds](https://gitads.dev/v1/ad-serve?source=sinan-aydogan/tailadmin-laravel@github)](https://gitads.dev/v1/ad-track?source=sinan-aydogan/tailadmin-laravel@github)
+
 
 Requirements
 ------
