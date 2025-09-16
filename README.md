@@ -8,27 +8,28 @@ TailAdmin Inertia
   It's a dashboard theme/UI-Starter Kit with Laravel 11, TailwindCSS3, Inertia and Vue3 (JetStream).
 </p>
 
-<p align="center">
-  :wave: If you looking for Vue2 version, You can use download <a href="https://github.com/sinan-aydogan/tailadmin-laravel/releases/tag/v.1.0.0"> TailAdmin v1 TailAdmin</a> :wave:
-</p>
+<div align="center">
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white" />
-  <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" />
-  <img src="https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D" />
-</p>
-<p align="center">
+[![Notice - Update Incoming](https://img.shields.io/badge/Notice-Update%20Incoming-blue?style=flat-square)](https://github.com/sinan-aydogan/tailadmin-laravel/tree/laravel12)
+
+🚀 **Notice:** The project will be updated to **Laravel 12** very soon.<br>
+If you would like to review the ongoing Laravel 12 development, please visit the <a href="https://github.com/sinan-aydogan/tailadmin-laravel/tree/laravel12">laravel12 branch</a> on GitHub. 🛠️<br><br>
+
+:wave: If you looking for Vue2 version, You can use download <a href="https://github.com/sinan-aydogan/tailadmin-laravel/releases/tag/v.1.0.0"> TailAdmin v1 TailAdmin</a> :wave:<br><br>
+
+<img src="https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white" />
+<img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" />
+<img src="https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D" /><br><br>
 
 <a href="https://ko-fi.com/sinanaydogan" target="_blank">
     <img src="https://ko-fi.com/img/githubbutton_sm.svg">
-</a>
+</a><br>
 
-</p>
-
-<p align="center">
 <a href="https://www.buymeacoffee.com/sinanaydogan">
     <img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=sinanaydogan&button_colour=FFDD00&font_colour=000000&font_family=Lato&outline_colour=000000&coffee_colour=ffffff">
 </a>
+
+</div>
 </p>
 
 <p align="center">
