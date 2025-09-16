@@ -35,11 +35,11 @@
           <transition name="fade" mode="out-in">
 
             <!--Placeholder Text-->
-            <span
-                v-if="modelValue === null || modelValue === undefined"
-                v-t="placeHolder"
-                class="select-trigger-placeholder"
-            />
+      <span
+        v-if="modelValue === null || modelValue === undefined"
+        v-text="t(placeHolder)"
+        class="select-trigger-placeholder"
+      />
 
             <!--Selected Option-->
             <div v-else>
@@ -196,10 +196,10 @@
           </template>
 
           <!--Empty Source Message-->
-          <div
-              v-if="options.length === 0"
-              v-t="'component.input.select.addSource'"
-          />
+      <div
+        v-if="options.length === 0"
+        v-text="t('component.input.select.addSource')"
+      />
 
         </div>
 
@@ -207,14 +207,8 @@
         <div
             v-if="searchedList.length>showingMaxOptions && search"
             class="select-many-result"
-        >
-          {{
-            t('component.input.select.manyResults', {
-              showingMaxOptions: showingMaxOptions,
-              totalOptions: searchedList.length
-            })
-          }}
-        </div>
+            v-text="t('component.input.select.manyResults', { showingMaxOptions: showingMaxOptions, totalOptions: searchedList.length })"
+        ></div>
       </div>
     </transition>
   </div>

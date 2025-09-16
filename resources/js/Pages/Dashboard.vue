@@ -13,7 +13,7 @@
                     diff-value="15%"
                     widget-value="254">
                     <template #title>
-                        <span v-t="'incomes'"/>
+                        <span v-text="tm('incomes')"/>
                     </template>
                     <template #icon>
                         <t-cash-icon class="w-16 h-16"/>
@@ -27,7 +27,7 @@
                     diff-value="8"
                     widget-value="30">
                     <template #title>
-                        <span v-t="'dailyDoneCharts'"/>
+                        <span v-text="tm('dailyDoneCharts')"/>
                     </template>
                     <template #icon>
                         <t-shopping-bag-icon class="w-16 h-16"/>
@@ -41,7 +41,7 @@
                     diff-value="8%"
                     widget-value="12.254,05 TL">
                     <template #title>
-                        <span v-t="'refunds'"/>
+                        <span v-text="tm('refunds')"/>
                     </template>
                 </t-statistic-widget>
                 <!--With Picture, Down Direction-->
@@ -52,7 +52,7 @@
                     diff-value="15%"
                     widget-value="254 USD">
                     <template #title>
-                        <span v-t="'stationeryCost'"/>
+                        <span v-text="tm('stationeryCost')"/>
                     </template>
                     <template #picture>
                         <img :src="'/img/samples/imgMelBaylon-6WLcOFn4HKE-unsplash.jpg'">
@@ -64,7 +64,7 @@
                 <!--List-->
                 <t-content-card :width="1">
                     <template #title>
-                        <span v-t="'userList'"/>
+                        <span v-text="tm('userList')"/>
                     </template>
                     <template #content>
                         <t-list :radius="3" class="w-full" design="light" color="white" border>
@@ -97,7 +97,7 @@
                 </t-content-card>
                 <t-content-card :width="2">
                     <template #title>
-                        <span v-t="'activeProjects'"/>
+                        <span v-text="tm('activeProjects')"/>
                     </template>
                     <template #content>
                         <!--Table-->
@@ -122,21 +122,21 @@
                     <template #icon>
                         <t-trash-icon slot="icon" class="w-6 h-6"/>
                     </template>
-                    <span v-t="'alertDeleted'"/>
+                    <span v-text="tm('alertDeleted')"/>
                 </t-alert>
                 <!--Blue-Info-->
                 <t-alert design="inline" color="info">
                     <template #icon>
                         <t-information-circle-icon class="w-6 h-6"/>
                     </template>
-                    <span v-t="'alertOverwrite'"/>
+                    <span v-text="tm('alertOverwrite')"/>
                 </t-alert>
                 <!--Green Success-->
                 <t-alert design="outline" color="success">
                     <template #icon>
                         <t-check-circle-icon class="w-6 h-6"/>
                     </template>
-                    <span v-t="'alertSaved'"/>
+                    <span v-text="tm('alertSaved')"/>
                 </t-alert>
             </grid-section>
             <!--Rich Alerts-->

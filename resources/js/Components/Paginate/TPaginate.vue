@@ -49,7 +49,7 @@
                      fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
                 </svg>
-                <span v-if="arrowText" v-t="previousText" class="pagination-arrow-text"/>
+                <span v-if="arrowText" v-text="t(previousText)" class="pagination-arrow-text"/>
             </div>
             <!--Counter-->
             <template v-for="item in dynamicRange" :key="item">
@@ -64,7 +64,7 @@
                 :class="Math.ceil(modelValue / range) === Math.ceil(totalPage / range) ? 'pagination-passive-arrow' : 'pagination-arrow'"
                 @click="nextPage"
             >
-                <span v-if="arrowText" v-t="nextText" class="pagination-arrow-text"/>
+                <span v-if="arrowText" v-text="t(nextText)" class="pagination-arrow-text"/>
                 <svg xmlns="http://www.w3.org/2000/svg"
                      :class="['h-6 w-6', arrowText ? '-mx-1 md:-mr-2 md:-ml-1' : '']"
                      fill="none" viewBox="0 0 24 24" stroke="currentColor">

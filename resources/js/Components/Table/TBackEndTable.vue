@@ -106,7 +106,7 @@
                     class="table-advanced-search-container"
                     :class="`radius-${radius}`"
                 >
-                    <span id="title" v-t="'advancedSearch'"/>
+                    <span id="title" v-text="t('advancedSearch')"/>
                     <div class="table-advanced-search-content-wrapper">
                         <div
                             v-for="field in advancedSearchableFields"
@@ -387,7 +387,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                       d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                             </svg>
-                            <span v-t="'anyContentMessage'"/>
+                            <span v-text="t('anyContentMessage')"/>
                         </div>
                     </td>
                 </tr>
@@ -426,7 +426,7 @@
         >
             <template #content>
                 <div class="flex flex-col text-left">
-                    <h4 class="font-bold text-sm" v-t="'optionsModalColumnOrder'"/>
+                    <h4 class="font-bold text-sm" v-text="t('optionsModalColumnOrder')"/>
                     <div class="flex flex-col max-w-min mt-4">
                         <div
                             v-for="(item, itemIndex) in header"
@@ -509,7 +509,7 @@
             </template>
             <template #footer-left>
                 <div class="inline-flex whitespace-nowrap items-center space-x-2">
-                    <span v-t="'itemsCountPerPage'"/>
+                    <span v-text="t('itemsCountPerPage')"/>
                     <t-input-select
                         v-model.number="searchObj.perPage"
                         :options="dynamicPerPageRange"

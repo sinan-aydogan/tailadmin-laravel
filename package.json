@@ -44,7 +44,7 @@
         "simple-syntax-highlighter": "^3.0.2",
         "v-calendar": "^3.1.2",
         "vue-chartjs": "^5.3.1",
-        "vue-i18n": "^9.13.1",
+        "vue-i18n": "^11.1.12",
         "vue3-highlightjs": "^1.0.5",
         "vue3-keypress": "^4.0.1"
     }
