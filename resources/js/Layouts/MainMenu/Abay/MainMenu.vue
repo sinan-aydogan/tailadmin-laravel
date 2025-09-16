@@ -3,8 +3,6 @@
 import {ref, onBeforeMount, inject, watch} from "vue";
 import {Link, usePage} from "@inertiajs/vue3";
 import {onClickOutside} from '@vueuse/core'
-import {cloneDeep} from "lodash";
-
 
 defineEmits(['updateMainMenuStatus'])
 
@@ -66,13 +64,15 @@ onClickOutside(thirdMenu, (event) => activeMainLink.value[2] = null)
 
 /*Watch Window Size*/
 const breakpoints = inject('breakpoints');
-watch(() => cloneDeep(breakpoints), (newValue) => {
 
-    if (newValue.value.smaller('md').value) {
+watch(breakpoints.value, (newValue) => {
+
+    if (newValue.smaller('md').value) {
         menuStatus.value = 'hidden'
+        showSubMenu.value = false;
     }
 
-    if (newValue.value.greater('md').value) {
+    if (newValue.greater('md').value) {
         menuStatus.value = 'opened'
     }
 })
