@@ -28,11 +28,11 @@
         "vue-svg-loader": "^0.16.0"
     },
     "dependencies": {
-        "@fortawesome/fontawesome-svg-core": "^6.5.2",
-        "@fortawesome/free-brands-svg-icons": "^6.5.2",
-        "@fortawesome/free-regular-svg-icons": "^6.5.2",
-        "@fortawesome/free-solid-svg-icons": "^6.5.2",
-        "@fortawesome/vue-fontawesome": "^3.0.8",
+        "@fortawesome/fontawesome-svg-core": "^7.0.1",
+        "@fortawesome/free-brands-svg-icons": "^7.0.1",
+        "@fortawesome/free-regular-svg-icons": "^7.0.1",
+        "@fortawesome/free-solid-svg-icons": "^7.0.1",
+        "@fortawesome/vue-fontawesome": "^3.1.2",
         "@vuelidate/core": "^2.0.3",
         "@vuelidate/validators": "^2.0.4",
         "@vueuse/core": "^10.11.0",
