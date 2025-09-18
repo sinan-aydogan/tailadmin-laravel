@@ -39,7 +39,7 @@ provide('topBarConf', topBarConf);
             <svg
                 class="trigger-icon"
                 :class="[
-                    (breakpoints.smaller('md') && menuStatus === 'hidden') || menuStatus === 'closed' ? 'trigger-icon-show' : 'trigger-icon-hide'
+                    (breakpoints.smaller('md') && (menuStatus === 'hidden')) || menuStatus === 'closed' ? 'trigger-icon-show' : 'trigger-icon-hide'
                 ]"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -52,7 +52,7 @@ provide('topBarConf', topBarConf);
             <svg
                 class="trigger-icon"
                 :class="[
-                    menuStatus === 'opened' ? 'trigger-icon-show' : 'trigger-icon-hide'
+                    (menuStatus === 'opened'  || menuStatus === undefined) ? 'trigger-icon-show' : 'trigger-icon-hide'
                 ]"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
