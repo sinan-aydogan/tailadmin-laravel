@@ -43,10 +43,10 @@ TailAdmin Inertia
 
 Requirements
 ------
-1. PHP min v.8.2
+1. PHP min v.8.3
 2. DB server (Recommended:MySQL)
 3. [composer min v.2](https://getcomposer.org/)
-4. [nodejs min v.18](https://nodejs.org/)
+4. [nodejs min v.20](https://nodejs.org/)
 5. Please check other requirements of  [Laravel](https://laravel.com/) and [Inertia](https://inertiajs.com/)
 
 

@@ -6,14 +6,15 @@
         "build": "vite build && vite build --ssr"
     },
     "devDependencies": {
-        "@inertiajs/vue3": "^1.0.14",
+        "@inertiajs/vue3": "^2.0",
         "@tailwindcss/forms": "^0.5.7",
         "@tailwindcss/typography": "^0.5.10",
         "@types/eslint": "^8.56.10",
         "@vitejs/plugin-vue": "^6.0.0",
         "@vue/server-renderer": "^3.5.21",
         "autoprefixer": "^10.4.19",
-        "axios": "^1.6.4",
+        "axios": "^1.11.0",
+        "concurrently": "^9.0.1",
         "eslint": "^9.6.0",
         "eslint-config-prettier": "^9.1.0",
         "eslint-plugin-vue": "^9.27.0",
