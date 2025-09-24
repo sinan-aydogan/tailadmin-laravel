@@ -1,30 +1,47 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Actions\TailAdmin;
 
 use App\Models\User;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rules\In;
 
-class UpdateDarkModePreference
+final class UpdateDarkModePreference
 {
     /**
-     * Validate and update the given user's language information.
+     * Dark mode options available in the application.
+     */
+    private const DARK_MODE_OPTIONS = ['light', 'dark', 'auto'];
+
+    /**
+     * Validate and update the authenticated user's dark mode preference.
      *
-     * @param array<string, mixed> $input
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function update(Request $request): void
     {
         $validated = $request->validateWithBag('updateDarkModePreference', [
-            'dark_mode' => ['required', 'in:light,dark,auto'],
+            'dark_mode' => ['required', new In(self::DARK_MODE_OPTIONS)],
         ]);
 
-        $user = auth()->user();
+        /** @var User $user */
+        $user = Auth::user();
 
+        $user->update([
+            'dark_mode' => $validated['dark_mode'],
+        ]);
+    }
 
-        $user->dark_mode = $validated['dark_mode'];
-        $user->save();
+    /**
+     * Get available dark mode options.
+     *
+     * @return array<string>
+     */
+    public static function getAvailableOptions(): array
+    {
+        return self::DARK_MODE_OPTIONS;
     }
 }
