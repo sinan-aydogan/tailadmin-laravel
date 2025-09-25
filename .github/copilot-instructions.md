@@ -109,7 +109,7 @@ npm run build        # Builds both client and SSR bundles
 ### Extending Permissions
 1. Add permissions via database seeder or manual creation
 2. Group permissions using `PermissionGroup` model
-3. Use `@can` directive in Blade or `$page.props.user.permissions` in Vue
+3. Use `@can` directive in Blade or `$page.props.auth.user.permissions` in Vue
 4. Remember Super Admin has automatic access to everything
 
 ### Styling Guidelines

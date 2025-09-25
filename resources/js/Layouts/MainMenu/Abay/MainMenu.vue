@@ -13,8 +13,8 @@ import {appConf, mainMenuConf} from "@/config";
 import {menuStatus} from "@/Functions/menuTrigger";
 
 const {mainMenuLinks, mainMenuFooterLinks} = MainMenuLinks({
-    roles: usePage().props.roles,
-    permissions: usePage().props.permissions
+    roles: usePage().props.user_extra.roles,
+    permissions: usePage().props.user_extra.permissions
 });
 
 const activeMainLink = ref([null, null, null]);
