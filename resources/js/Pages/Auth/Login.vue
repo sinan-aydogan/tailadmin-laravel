@@ -1,8 +1,6 @@
 <template>
     <Head :title="tm('login')"/>
     <t-login
-        :bg-image="activeBg"
-        color="solid-purple"
         :status="status"
         :can-reset-password="canResetPassword"
     >
