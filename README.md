@@ -8,9 +8,7 @@ TailAdmin Inertia
   It's a dashboard theme/UI-Starter Kit with Laravel 12, TailwindCSS3, Inertia and Vue3 (JetStream).
 </p>
 
-<p align="center">
-  :wave: If you looking for Vue2 version, You can use download <a href="https://github.com/sinan-aydogan/tailadmin-laravel/releases/tag/v.1.0.0"> TailAdmin v1 TailAdmin</a> :wave:
-</p>
+<div align="center">
 
 <p align="center">
   <img src="https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white" />
