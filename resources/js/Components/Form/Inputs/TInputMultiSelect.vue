@@ -33,7 +33,7 @@
                         <!--Placeholder Text-->
                         <span
                             v-if="modelValue === [] || modelValue === null || modelValue.length === 0"
-                            v-t="placeHolder"
+                            v-text="t(placeHolder)"
                             class="select-trigger-placeholder"
                         />
 
@@ -223,7 +223,7 @@
                     <!--Empty Source Message-->
                     <div
                         v-if="options.length === 0"
-                        v-t="'component.input.select.addSource'"
+                        v-text="t('component.input.select.addSource')"
                     />
 
                 </div>

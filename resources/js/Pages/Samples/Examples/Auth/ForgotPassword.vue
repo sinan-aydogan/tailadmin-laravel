@@ -1,12 +1,5 @@
 <template>
-    <t-login
-        color="solid-blue"
-        :radius="5"
-        bg-color="light-gray"
-        login-button-color="blue"
-        register-button-color="white"
-        register-button-design="outline"
-        :canResetPassword="canResetPassword"
+    <t-forgot
         :status="status"
     >
         <!--Logo-->
@@ -20,26 +13,25 @@
         </template>
         <!--Greeting-->
         <template #greeting>
-            Sign in to your account
+            <b>{{ t('forgotPasswordGreeting') }}</b>
         </template>
-    </t-login>
+        <!--Greeting Sub-->
+        <template #subGreeting>
+            {{ t('forgotPasswordSubGreeting') }}
+        </template>
+    </t-forgot>
 </template>
 
-<script>
+<script setup>
 import {Link} from "@inertiajs/vue3";
-import TLogin from "@/Components/Auth/TLogin.vue";
+import TForgot from "@/Components/Auth/TForgot.vue";
 import TLogo from "@/Components/Icon/TLogo.vue";
 
-export default {
-    components: {
-        TLogo,
-        TLogin,
-        Link
-    },
-
-    props: {
-        canResetPassword: Boolean,
-        status: String
-    },
-}
+/* Multi-language */
+import { useI18n } from "vue-i18n";
+import {authTranslates} from "@/Lang/languages";
+const {t, tm} = useI18n({
+    inheritLocale: true,
+    messages: authTranslates,
+});
 </script>

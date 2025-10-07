@@ -8,11 +8,10 @@ import {menuStatus, updateMenuStatus} from "@/Functions/menuTrigger";
 import MainMenuLinks from "@/Sources/mainMenuLinks";
 import {appConf, mainMenuConf} from "@/config";
 import MainMenuItem from "@/Layouts/MainMenu/Umay/MainMenuItem.vue";
-import {cloneDeep} from "lodash";
 
 const {mainMenuLinks, mainMenuFooterLinks} = MainMenuLinks({
-    roles: usePage().props.roles,
-    permissions: usePage().props.permissions
+    roles: usePage().props.user_extra.roles,
+    permissions: usePage().props.user_extra.permissions
 });
 
 /*Menu - Variables*/
@@ -21,14 +20,15 @@ provide('selectedLink', selectedLink);
 const appearingMode = inject("appearingMode");
 
 /*Watch Window Size*/
-const breakpoints = inject('breakpoints');
-watch(() => cloneDeep(breakpoints), (newValue) => {
+const breakpoints =  inject('breakpoints');
 
-    if (newValue.value.smaller('md').value) {
+watch(breakpoints.value, (newValue) => {
+
+    if (newValue.smaller('md').value) {
         menuStatus.value = 'hidden'
     }
 
-    if (newValue.value.greater('md').value) {
+    if (newValue.greater('md').value) {
         menuStatus.value = 'opened'
     }
 })

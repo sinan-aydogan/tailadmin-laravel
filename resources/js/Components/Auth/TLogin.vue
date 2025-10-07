@@ -115,8 +115,8 @@
                         <!--Register Button-->
                         <t-button
                             :class="{ 'opacity-25': form.processing }"
-                            :design="activeDesign.registerButton[appearingMode].design"
-                            :color="activeDesign.registerButton[appearingMode].color"
+                            :design="activeDesign.login.registerButton[appearingMode].design"
+                            :color="activeDesign.login.registerButton[appearingMode].color"
                             :link="route('register')"
                             :radius="3"
                             type="link"
@@ -126,8 +126,8 @@
                         <!--Submit Button-->
                         <t-button
                             :class="{ 'opacity-25': form.processing }"
-                            :color="activeDesign.loginButton[appearingMode].color"
-                            :design="activeDesign.loginButton[appearingMode].design"
+                            :color="activeDesign.login.loginButton[appearingMode].color"
+                            :design="activeDesign.login.loginButton[appearingMode].design"
                             :disabled="form.processing"
                             :radius="3"
                             class="ml-4"

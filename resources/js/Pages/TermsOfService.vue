@@ -15,17 +15,25 @@
     </div>
 </template>
 
-<script>
-import { defineComponent } from 'vue'
+<script setup>
 import { Head } from '@inertiajs/vue3';
 import JetAuthenticationCardLogo from '@/Jetstream/AuthenticationCardLogo.vue'
 
-export default defineComponent({
-    props: ['terms'],
-
-    components: {
-        Head,
-        JetAuthenticationCardLogo,
-    },
-})
+const terms = `
+    <h1>Terms of Service</h1>
+    <p>Welcome to our application. By using our services, you agree to comply with and be bound by the following terms and conditions.</p>
+    <h2>Use of Services</h2>
+    <ul>
+        <li>You must follow any policies made available to you within the services.</li>
+        <li>You may not misuse our services, for example, by interfering with them or accessing them using a method other than the interface and the instructions that we provide.</li>
+    </ul>
+    <h2>Your Content</h2>
+    <p>You retain ownership of any intellectual property rights that you hold in your content. When you upload or otherwise submit content to our services, you give us (and those we work with) a worldwide license to use, host, store, reproduce, modify, create derivative works, communicate, publish, publicly perform, publicly display and distribute such content.</p>
+    <h2>Modifications to the Service</h2>
+    <p>We are constantly changing and improving our services. We may add or remove functionalities or features, and we may suspend or stop a service altogether.</p>
+    <h2>Termination</h2>
+    <p>We may terminate or suspend your access to the services immediately, without prior notice or liability, for any reason whatsoever, including without limitation if you breach the Terms.</p>
+    <h2>Contact</h2>
+    <p>If you have any questions about these Terms, please contact us.</p>
+`;
 </script>

@@ -2,34 +2,30 @@ TailAdmin Inertia
 ======
 
 <p align="center">
-  <img src="https://tailadmin.dev/img/tailadmin_v2.jpg" alt="TailAdmin"/>
+  <img src="https://cdn.tailadmin.dev/tailadmin-laravel/images/tailadmin_v2.jpg" alt="TailAdmin"/>
 </p>
 <p align="center">
-  It's a dashboard theme/UI-Starter Kit with Laravel 11, TailwindCSS3, Inertia and Vue3 (JetStream).
+  It's a dashboard theme/UI-Starter Kit with Laravel 12, TailwindCSS3, Inertia and Vue3 (JetStream).
 </p>
 
 <div align="center">
 
-[![Notice - Update Incoming](https://img.shields.io/badge/Notice-Update%20Incoming-blue?style=flat-square)](https://github.com/sinan-aydogan/tailadmin-laravel/tree/laravel12)
+<p align="center">
+  <img src="https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white" />
+  <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" />
+  <img src="https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D" />
+</p>
 
-🚀 **Notice:** The project will be updated to **Laravel 12** very soon.<br>
-If you would like to review the ongoing Laravel 12 development, please visit the <a href="https://github.com/sinan-aydogan/tailadmin-laravel/tree/laravel12">laravel12 branch</a> on GitHub. 🛠️<br><br>
+<p align="center">
+    <a href="https://ko-fi.com/sinanaydogan" target="_blank">
+        <img src="https://ko-fi.com/img/githubbutton_sm.svg">
+    </a>
+</p>
 
-:wave: If you looking for Vue2 version, You can use download <a href="https://github.com/sinan-aydogan/tailadmin-laravel/releases/tag/v.1.0.0"> TailAdmin v1 TailAdmin</a> :wave:<br><br>
-
-<img src="https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white" />
-<img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" />
-<img src="https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D" /><br><br>
-
-<a href="https://ko-fi.com/sinanaydogan" target="_blank">
-    <img src="https://ko-fi.com/img/githubbutton_sm.svg">
-</a><br>
-
-<a href="https://www.buymeacoffee.com/sinanaydogan">
-    <img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=sinanaydogan&button_colour=FFDD00&font_colour=000000&font_family=Lato&outline_colour=000000&coffee_colour=ffffff">
-</a>
-
-</div>
+<p align="center">
+    <a href="https://www.buymeacoffee.com/sinanaydogan">
+        <img src="https://cdn.tailadmin.dev/tailadmin-laravel/images/bmc-button.png" height="36">
+    </a>
 </p>
 
 <p align="center">
@@ -44,10 +40,10 @@ If you would like to review the ongoing Laravel 12 development, please visit the
 
 Requirements
 ------
-1. PHP min v.8.2
+1. PHP min v.8.3
 2. DB server (Recommended:MySQL)
 3. [composer min v.2](https://getcomposer.org/)
-4. [nodejs min v.18](https://nodejs.org/)
+4. [nodejs min v.20](https://nodejs.org/)
 5. Please check other requirements of  [Laravel](https://laravel.com/) and [Inertia](https://inertiajs.com/)
 
 
@@ -89,7 +85,7 @@ Admin Login Infos / Demo Account
 - **Password:** *admin*
 
 <a href="https://www.youtube.com/playlist?list=PLbdS49WKsrOXTo_X_Ja6P3zll1yyhoIYN" target="_blank">
-<img src="https://tailadmin.dev/img/tailadmin-youtube.jpg" alt="TailAdmin Demo" width='480'/>
+<img src="https://cdn.tailadmin.dev/tailadmin-laravel/images/youtube.jpg" alt="TailAdmin Demo" width='480'/>
 </a>
 
 ## Help
@@ -101,7 +97,7 @@ If you need to help more than this documentation:
 ## Featured :
 
 - TailwindCSS
-- Vue.js 3 Laravel 11 - JetStream Inertia
+- Vue.js 3 Laravel 12 - JetStream Inertia
 - Every component are well documented
 - Easy usability
 - Simple and short code blocks
@@ -182,17 +178,15 @@ License
 The TailAdmin is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
 <p align="center">
-
-<a href="https://ko-fi.com/sinanaydogan" target="_blank">
-    <img src="https://ko-fi.com/img/githubbutton_sm.svg">
-</a>
-
+    <a href="https://ko-fi.com/sinanaydogan" target="_blank">
+        <img src="https://ko-fi.com/img/githubbutton_sm.svg">
+    </a>
 </p>
 
 <p align="center">
-<a href="https://www.buymeacoffee.com/sinanaydogan">
-    <img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=sinanaydogan&button_colour=FFDD00&font_colour=000000&font_family=Lato&outline_colour=000000&coffee_colour=ffffff">
-</a>
+    <a href="https://www.buymeacoffee.com/sinanaydogan">
+        <img src="https://cdn.tailadmin.dev/tailadmin-laravel/images/bmc-button.png" height="36">
+    </a>
 </p>
 
 <!-- GitAds-Verify: XU4WES5HAT2HRC3LCB7K9L4CQZ4CIAN8 -->

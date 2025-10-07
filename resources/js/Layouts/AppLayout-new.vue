@@ -214,7 +214,7 @@
                           transition
                         "
                       >
-                        {{ $page.props.user.current_team.name }}
+                        {{ $page.props.auth.user.current_team.name }}
 
                         <svg
                           class="ml-2 -mr-0.5 h-4 w-4"
@@ -243,7 +243,7 @@
                         <!-- Team Settings -->
                         <jet-dropdown-link
                           :href="
-                            route('teams.show', $page.props.user.current_team)
+                            route('teams.show', $page.props.auth.user.current_team)
                           "
                         >
                           Team Settings
@@ -264,7 +264,7 @@
                         </div>
 
                         <template
-                          v-for="team in $page.props.user.all_teams"
+                          v-for="team in $page.props.auth.user.all_teams"
                           :key="team.id"
                         >
                           <form @submit.prevent="switchToTeam(team)">
@@ -272,7 +272,7 @@
                               <div class="flex items-center">
                                 <svg
                                   v-if="
-                                    team.id == $page.props.user.current_team_id
+                                    team.id == $page.props.auth.user.current_team_id
                                   "
                                   class="mr-2 h-5 w-5 text-green-400"
                                   fill="none"
@@ -314,8 +314,8 @@
                     >
                       <img
                         class="h-8 w-8 rounded-full object-cover"
-                        :src="$page.props.user.profile_photo_url"
-                        :alt="$page.props.user.name"
+                        :src="$page.props.auth.user.profile_photo_url"
+                        :alt="$page.props.auth.user.name"
                       />
                     </button>
 
@@ -339,7 +339,7 @@
                           transition
                         "
                       >
-                        {{ $page.props.user.name }}
+                        {{ $page.props.auth.user.name }}
 
                         <svg
                           class="ml-2 -mr-0.5 h-4 w-4"
@@ -461,17 +461,17 @@
               >
                 <img
                   class="h-10 w-10 rounded-full object-cover"
-                  :src="$page.props.user.profile_photo_url"
-                  :alt="$page.props.user.name"
+                  :src="$page.props.auth.user.profile_photo_url"
+                  :alt="$page.props.auth.user.name"
                 />
               </div>
 
               <div>
                 <div class="font-medium text-base text-gray-800">
-                  {{ $page.props.user.name }}
+                  {{ $page.props.auth.user.name }}
                 </div>
                 <div class="font-medium text-sm text-gray-500">
-                  {{ $page.props.user.email }}
+                  {{ $page.props.auth.user.email }}
                 </div>
               </div>
             </div>
@@ -509,7 +509,7 @@
 
                 <!-- Team Settings -->
                 <jet-responsive-nav-link
-                  :href="route('teams.show', $page.props.user.current_team)"
+                  :href="route('teams.show', $page.props.auth.user.current_team)"
                   :active="route().current('teams.show')"
                 >
                   Team Settings
@@ -531,14 +531,14 @@
                 </div>
 
                 <template
-                  v-for="team in $page.props.user.all_teams"
+                  v-for="team in $page.props.auth.user.all_teams"
                   :key="team.id"
                 >
                   <form @submit.prevent="switchToTeam(team)">
                     <jet-responsive-nav-link as="button">
                       <div class="flex items-center">
                         <svg
-                          v-if="team.id == $page.props.user.current_team_id"
+                          v-if="team.id == $page.props.auth.user.current_team_id"
                           class="mr-2 h-5 w-5 text-green-400"
                           fill="none"
                           stroke-linecap="round"

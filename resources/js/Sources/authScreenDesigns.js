@@ -13,26 +13,84 @@ const authDesigns = [
         header: ['bg-gradient-to-tl', 'from-violet-500','to-pink-600' , 'border-b-2', 'border-purple-800/50', 'dark:border-rose-700', 'dark:from-yellow-700/75', 'dark:via-rose-800/75', 'dark:to-violet-800/50', 'text-slate-100', 'dark:text-violet-100'],
         body: ['bg-white/50','dark:bg-slate-800/50'],
         radius: 3,
-        loginButton: {
-            dark: {
-                design: 'filled',
-                color: 'pink'
+        login: {
+            loginButton: {
+                dark: {
+                    design: 'filled',
+                    color: 'pink'
+                },
+                light: {
+                    design: 'light',
+                    color: 'pink'
+                }
             },
-            light: {
-                design: 'light',
-                color: 'pink'
-            }
-        },
-        registerButton: {
-            dark: {
-                design: 'link',
-                color: 'light'
+            registerButton: {
+                dark: {
+                    design: 'link',
+                    color: 'light'
+                },
+                light: {
+                    design: 'link',
+                    color: 'pink'
+                }
             },
-            light: {
-                design: 'link',
-                color: 'pink'
-            }
         },
+        register: {
+            loginButton: {
+                dark: {
+                    design: 'link',
+                    color: 'light'
+                },
+                light: {
+                    design: 'link',
+                    color: 'pink'
+                }
+            },
+            registerButton: {
+                dark: {
+                    design: 'filled',
+                    color: 'pink'
+                },
+                light: {
+                    design: 'light',
+                    color: 'pink'
+                }
+            },
+        },
+        forgotPassword: {
+            sendButton: {
+                dark: {
+                    design: 'filled',
+                    color: 'pink'
+                },
+                light: {
+                    design: 'light',
+                    color: 'pink'
+                }
+            },
+            backButton: {
+                dark: {
+                    design: 'link',
+                    color: 'light'
+                },
+                light: {
+                    design: 'link',
+                    color: 'pink'
+                }
+            },
+        },
+        lock: {
+            reLoginButton: {
+                dark: {
+                    design: 'filled',
+                    color: 'pink'
+                },
+                light: {
+                    design: 'light',
+                    color: 'pink'
+                }
+            },
+        }
     },
     {
         id: 'mountains',
@@ -48,26 +106,84 @@ const authDesigns = [
         header: ['bg-sky-100/75', 'dark:bg-red-800/20', 'text-yellow-800', 'dark:text-violet-100'],
         body: ['bg-slate-100/75','dark:bg-slate-800/50'],
         radius: 3,
-        loginButton: {
-            dark: {
-                design: 'filled',
-                color: 'red'
+        login: {
+            loginButton: {
+                dark: {
+                    design: 'filled',
+                    color: 'red'
+                },
+                light: {
+                    design: 'filled',
+                    color: 'yellow'
+                }
             },
-            light: {
-                design: 'filled',
-                color: 'yellow'
-            }
-        },
-        registerButton: {
-            dark: {
-                design: 'link',
-                color: 'light'
+            registerButton: {
+                dark: {
+                    design: 'link',
+                    color: 'light'
+                },
+                light: {
+                    design: 'link',
+                    color: 'yellow'
+                }
             },
-            light: {
-                design: 'link',
-                color: 'yellow'
-            }
         },
+        register: {
+            loginButton: {
+                dark: {
+                    design: 'link',
+                    color: 'light'
+                },
+                light: {
+                    design: 'link',
+                    color: 'yellow'
+                }
+            },
+            registerButton: {
+                dark: {
+                    design: 'filled',
+                    color: 'red'
+                },
+                light: {
+                    design: 'filled',
+                    color: 'yellow'
+                }
+            },
+        },
+        forgotPassword: {
+            sendButton: {
+                dark: {
+                    design: 'filled',
+                    color: 'red'
+                },
+                light: {
+                    design: 'filled',
+                    color: 'yellow'
+                }
+            },
+            backButton: {
+                dark: {
+                    design: 'link',
+                    color: 'light'
+                },
+                light: {
+                    design: 'link',
+                    color: 'yellow'
+                }
+            },
+        },
+        lock: {
+            reLoginButton: {
+                dark: {
+                    design: 'filled',
+                    color: 'red'
+                },
+                light: {
+                    design: 'filled',
+                    color: 'yellow'
+                }
+            },
+        }
     }
 ]
 

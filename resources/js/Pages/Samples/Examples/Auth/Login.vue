@@ -1,14 +1,7 @@
 <template>
-    <t-register
-        color="solid-gray"
-        :radius="5"
-        bg-color="gradient-gray-to"
-        button-design="light"
-        button-color="gray"
+    <t-login
+        :canResetPassword="canResetPassword"
         :status="status"
-        :privacyPolicyFeature="true"
-        termsLink="terms"
-        policyLink="privacy-policy"
     >
         <!--Logo-->
         <template #logo>
@@ -21,24 +14,26 @@
         </template>
         <!--Greeting-->
         <template #greeting>
-            Sign up for new account
+            {{ t('loginGreeting') }}
         </template>
-    </t-register>
+    </t-login>
 </template>
 
-<script>
+<script setup>
 import {Link} from "@inertiajs/vue3";
+import TLogin from "@/Components/Auth/TLogin.vue";
 import TLogo from "@/Components/Icon/TLogo.vue";
-import TRegister from "@/Components/Auth/TRegister.vue";
 
-export default {
-    components: {
-        TLogo,
-        TRegister,
-        Link
-    },
-    props: {
-        status: String
-    }
-}
+defineProps({
+    canResetPassword: Boolean,
+    status: String
+});
+
+/* Multi-language */
+import { useI18n } from "vue-i18n";
+import {authTranslates} from "@/Lang/languages";
+const { t } = useI18n({
+    inheritLocale: true,
+    messages: authTranslates,
+});
 </script>

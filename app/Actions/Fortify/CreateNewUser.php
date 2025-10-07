@@ -17,8 +17,7 @@ class CreateNewUser implements CreatesNewUsers
     /**
      * Create a newly registered user.
      *
-     * @param  array  $input
-     * @return User
+     * @param  array<string, string>  $input
      */
     public function create(array $input): User
     {
@@ -42,11 +41,8 @@ class CreateNewUser implements CreatesNewUsers
 
     /**
      * Create a personal team for the user.
-     *
-     * @param User $user
-     * @return void
      */
-    public function createTeam(User $user): void
+    protected function createTeam(User $user): void
     {
         $user->ownedTeams()->save(Team::forceCreate([
             'user_id' => $user->id,
