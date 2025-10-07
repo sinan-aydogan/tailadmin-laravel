@@ -87,7 +87,7 @@ Admin Login Infos / Demo Account
 - **Password:** *admin*
 
 <a href="https://www.youtube.com/playlist?list=PLbdS49WKsrOXTo_X_Ja6P3zll1yyhoIYN" target="_blank">
-<img src="https://tailadmin.dev/img/tailadmin-youtube.jpg" alt="TailAdmin Demo" width='480'/>
+<img src="https://cdn.tailadmin.dev/tailadmin-laravel/images/youtube.jpg" alt="TailAdmin Demo" width='480'/>
 </a>
 
 ## Help
