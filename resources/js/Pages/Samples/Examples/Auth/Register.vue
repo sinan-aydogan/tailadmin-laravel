@@ -1,10 +1,10 @@
+x
 <template>
-    <t-forgot
-        color="solid-blue"
-        bg-color="light-gray"
-        :radius="5"
-        button-color="blue"
+    <t-register
         :status="status"
+        :privacyPolicyFeature="true"
+        termsLink="terms"
+        policyLink="privacy-policy"
     >
         <!--Logo-->
         <template #logo>
@@ -17,24 +17,21 @@
         </template>
         <!--Greeting-->
         <template #greeting>
-            <b>Forgot your password? No problem.</b>
+            {{ t('registerGreeting') }}
         </template>
-        <!--Greeting Sub-->
-        <template #subGreeting>
-            Write your email address and we will email you a password reset link
-        </template>
-    </t-forgot>
+    </t-register>
 </template>
 
-<script>
+<script  setup>
 import {Link} from "@inertiajs/vue3";
-import TForgot from "@/Components/Auth/TForgot.vue";
 import TLogo from "@/Components/Icon/TLogo.vue";
+import TRegister from "@/Components/Auth/TRegister.vue";
 
-export default {
-    components: {TLogo, TForgot, Link},
-    props: {
-        status: String
-    }
-}
+/* Multi-language */
+import { useI18n } from "vue-i18n";
+import {authTranslates} from "@/Lang/languages";
+const { t } = useI18n({
+    inheritLocale: true,
+    messages: authTranslates,
+});
 </script>

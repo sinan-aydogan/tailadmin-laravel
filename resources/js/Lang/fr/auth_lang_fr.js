@@ -14,6 +14,13 @@ const authLangFr = {
     termsOfService: "Conditions d'utilisation",
     and: "et",
     privacyPolicy: "Politique de confidentialité",
+    emailPasswordResetLink: "Lien de réinitialisation du mot de passe par e-mail",
+    backToLogin: "Retour à la connexion",
+    forgotPasswordGreeting: "Mot de passe oublié? Pas de problème.",
+    forgotPasswordSubGreeting: "Entrez votre adresse e-mail et nous vous enverrons un lien pour réinitialiser votre mot de passe.",
+    registerGreeting: "Inscrivez-vous pour un nouveau compte",
+    loginGreeting: "Connectez-vous à votre compte",
+    reLogin: "Re-Login",
     validationMessage: {
         name: {
             required: "Le champ nom est obligatoire"

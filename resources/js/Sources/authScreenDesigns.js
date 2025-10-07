@@ -56,6 +56,40 @@ const authDesigns = [
                     color: 'pink'
                 }
             },
+        },
+        forgotPassword: {
+            sendButton: {
+                dark: {
+                    design: 'filled',
+                    color: 'pink'
+                },
+                light: {
+                    design: 'light',
+                    color: 'pink'
+                }
+            },
+            backButton: {
+                dark: {
+                    design: 'link',
+                    color: 'light'
+                },
+                light: {
+                    design: 'link',
+                    color: 'pink'
+                }
+            },
+        },
+        lock: {
+            reLoginButton: {
+                dark: {
+                    design: 'filled',
+                    color: 'pink'
+                },
+                light: {
+                    design: 'light',
+                    color: 'pink'
+                }
+            },
         }
     },
     {
@@ -106,6 +140,40 @@ const authDesigns = [
                 }
             },
             registerButton: {
+                dark: {
+                    design: 'filled',
+                    color: 'red'
+                },
+                light: {
+                    design: 'filled',
+                    color: 'yellow'
+                }
+            },
+        },
+        forgotPassword: {
+            sendButton: {
+                dark: {
+                    design: 'filled',
+                    color: 'red'
+                },
+                light: {
+                    design: 'filled',
+                    color: 'yellow'
+                }
+            },
+            backButton: {
+                dark: {
+                    design: 'link',
+                    color: 'light'
+                },
+                light: {
+                    design: 'link',
+                    color: 'yellow'
+                }
+            },
+        },
+        lock: {
+            reLoginButton: {
                 dark: {
                     design: 'filled',
                     color: 'red'

@@ -21,7 +21,7 @@ export const bgColorStyles = {
                 'solid-purple': 'bg-purple-500 border-purple-500',
                 'solid-gray': 'bg-gray-500 border-gray-500',
                 'solid-black': 'bg-black border-black',
-                'solid-white': 'bg-white border border-gray-300'
+                'solid-white': 'bg-white dark:bg-slate-800 border border-gray-300 dark:border-slate-600',
             },
             lightColors: {
                 'light-red': 'bg-red-200 border border-red-500',
@@ -77,7 +77,7 @@ export const bgColorStyles = {
                 'solid-purple': 'text-gray-100',
                 'solid-gray': 'text-gray-100',
                 'solid-black': 'text-gray-300',
-                'solid-white': 'text-gray-700'
+                'solid-white': 'text-gray-700 dark:text-gray-300'
             },
             lightTextColors: {
                 'light-red': 'text-red-700',

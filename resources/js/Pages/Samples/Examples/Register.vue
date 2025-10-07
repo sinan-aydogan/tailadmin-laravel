@@ -1,46 +1,70 @@
 <template>
-  <app-layout title="Register Screen">
-    <template #header>Register Screen</template>
-    <template #subHeader>You should make to changes in the Resources/Js/Pages/Auth/Register.vue</template>
-    <template #default>
-      <grid-section :col-tablet="3">
-        <!--Demo 1-->
-        <div class="flex flex-col gap-2">
-          <img :src="'/img/demo/register_1_gradient.jpg'" class="rounded-md" alt="Register Screen">
-          <t-button type="link" :link="route('register-app-1')" :radius="3" color="pink" size="full">See Demo
-            Register 1
-          </t-button>
-        </div>
-        <!--Demo 2-->
-        <div class="flex flex-col gap-2">
-          <img :src="'/img/demo/register_2_gray.jpg'" class="rounded-md" alt="Register Screen">
-          <t-button type="link" :link="route('register-app-2')" :radius="3" color="gray" size="full">See Demo Register 2
-          </t-button>
-        </div>
-        <!--Demo 3-->
-        <div class="flex flex-col gap-2">
-          <img :src="'/img/demo/register_3_blue.jpg'" class="rounded-md" alt="Register Screen">
-          <t-button type="link" :link="route('register-app-3')" :radius="3" color="blue" size="full">See Demo Register 3
-          </t-button>
-        </div>
-      </grid-section>
-    </template>
-  </app-layout>
+    <app-layout :title="t('pageTitle')">
+        <template #header>{{ t('pageTitle') }}</template>
+        <template #subHeader>{{ t('pageSubTitle') }}</template>
+        <template #default>
+        <grid-section :col-tablet="3">
+            <!--Demo-->
+            <div class="flex flex-col gap-2">
+                <img :src="'/img/demo/register_1_gradient.jpg'" class="rounded-md" alt="Register Screen">
+                <t-button type="link" :link="route('register-app-demo')" :radius="3" color="pink" size="full">
+                    {{ t('goToDemo') }}
+                </t-button>
+            </div>
+        </grid-section>
+        </template>
+    </app-layout>
 </template>
 
-<script>
+<script setup>
 /*Layout*/
 import AppLayout from "@/Layouts/AppLayout.vue";
 /*Component*/
 import GridSection from "@/Layouts/GridSection.vue";
 import TButton from "@/Components/Button/TButton.vue";
 
-export default {
-  name: "RegisterApp",
-  components: {TButton, GridSection, AppLayout},
-}
+/* Multi-language */
+import { useI18n } from "vue-i18n";
+
+/* Multi-language */
+const { t } = useI18n({
+    inheritLocale: true,
+    messages: {
+        bg: {
+            pageTitle: 'Екран за Регистрация',
+            pageSubTitle: 'Трябва да направите промени в Resources/Js/Pages/Auth/Register.vue',
+            goToDemo: 'Вижте Демо Регистрация',
+        },
+        de: {
+            pageTitle: 'Registrierungsbildschirm',
+            pageSubTitle: 'Sie sollten Änderungen an Resources/Js/Pages/Auth/Register.vue vornehmen',
+            goToDemo: 'Demo-Registrierung anzeigen',
+        },
+        en: {
+            pageTitle: 'Register Screen',
+            pageSubTitle: 'You should make to changes in the Resources/Js/Pages/Auth/Register.vue',
+            goToDemo: 'See Demo Register',
+        },
+        fr: {
+            pageTitle: "Écran d'inscription",
+            pageSubTitle: "Vous devez apporter des modifications dans Resources/Js/Pages/Auth/Register.vue",
+            goToDemo: "Voir la démo d'inscription",
+        },
+        ru: {
+            pageTitle: 'Экран Регистрации',
+            pageSubTitle: 'Вы должны внести изменения в Resources/Js/Pages/Auth/Register.vue',
+            goToDemo: 'Посмотреть демо Регистрация',
+        },
+        tr: {
+            pageTitle: 'Kayıt Ekranı',
+            pageSubTitle: 'Resources/Js/Pages/Auth/Register.vue dosyasında değişiklik yapmalısınız',
+            goToDemo: 'Demo Kayıt Ekranını Gör',
+        },
+        zh: {
+            pageTitle: '注册界面',
+            pageSubTitle: '您应该在 Resources/Js/Pages/Auth/Register.vue 中进行更改',
+            goToDemo: '查看演示注册',
+        },
+    },
+});
 </script>
-
-<style scoped>
-
-</style>

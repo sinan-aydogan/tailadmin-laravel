@@ -14,6 +14,13 @@ const authLangEn = {
     termsOfService: "Terms of Service",
     and: "and",
     privacyPolicy: "Privacy Policy",
+    emailPasswordResetLink: "Email Password Reset Link",
+    backToLogin: "Back to Login",
+    forgotPasswordGreeting: "Forgot your password? No problem.",
+    forgotPasswordSubGreeting: "Enter your email address and we will send you a link to reset your password.",
+    registerGreeting: "Register for a new account",
+    loginGreeting: "Login to your account",
+    reLogin: "Re-Login",
     validationMessage: {
         name: {
             required: "The name filed is required"

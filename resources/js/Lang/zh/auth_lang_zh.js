@@ -14,6 +14,13 @@ const authLangZh = {
     termsOfService: "服务条款",
     and: "和",
     privacyPolicy: "隐私政策",
+    emailPasswordResetLink: "电子邮件密码重置链接",
+    backToLogin: "返回登录",
+    forgotPasswordGreeting: "忘记密码？没问题。",
+    forgotPasswordSubGreeting: "输入您的电子邮件地址，我们将向您发送一个密码重置链接。",
+    registerGreeting: "注册新账户",
+    loginGreeting: "登录到您的账户",
+    reLogin: "重新登录",
     validationMessage: {
         name: {
             required: "名称字段是必需的"

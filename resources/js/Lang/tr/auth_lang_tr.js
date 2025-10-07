@@ -14,6 +14,13 @@ const authLangTr = {
     termsOfService: "Hizmet Şartlarını",
     and: "ve",
     privacyPolicy: "Gizlilik Politikasını",
+    emailPasswordResetLink: "E-posta Şifre Sıfırlama Bağlantısı",
+    backToLogin: "Girişe Geri Dön",
+    forgotPasswordGreeting: "Şifrenizi mi unuttunuz? Sorun değil.",
+    forgotPasswordSubGreeting: "E-posta adresinizi girin ve size bir şifre sıfırlama bağlantısı göndereceğiz.",
+    registerGreeting: "Yeni bir hesap için kaydolun",
+    loginGreeting: "Hesabınıza giriş yapın",
+    reLogin: "Tekrar Giriş Yap",
     validationMessage: {
         name: {
             required: "İsim gereklidir"

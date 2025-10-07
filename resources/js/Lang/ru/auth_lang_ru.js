@@ -13,6 +13,13 @@ const authLangRu = {
     termsOfService: "Условия использования",
     and: "и",
     privacyPolicy: "Политика конфиденциальности",
+    emailPasswordResetLink: "Ссылка для сброса пароля по электронной почте",
+    backToLogin: "Назад к входу",
+    forgotPasswordGreeting: "Забыли пароль? Никаких проблем.",
+    forgotPasswordSubGreeting: "Введите свой адрес электронной почты, и мы отправим вам ссылку для сброса пароля.",
+    registerGreeting: "Регистрирайте се за нов акаунт",
+    loginGreeting: "Влезте в акаунта си",
+    reLogin: "Войти снова",
     validationMessage: {
         email: {
             required: "Поле электронной почты обязательно",

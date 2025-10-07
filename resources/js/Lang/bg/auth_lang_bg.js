@@ -14,6 +14,13 @@ const authLangBg = {
     termsOfService: "Условия за ползване",
     and: "и",
     privacyPolicy: "Политика за поверителност",
+    emailPasswordResetLink: "Изпратете връзка за нулиране на паролата",
+    backToLogin: "Обратно към вход",
+    forgotPasswordGreeting: "Забравена парола?",
+    forgotPasswordSubGreeting: "Напишете вашия имейл адрес и ние ще ви изпратим връзка за нулиране на паролата",
+    registerGreeting: "Регистрирайте се за нов акаунт",
+    loginGreeting: "Влезте в акаунта си",
+    reLogin: "Влезте отново",
     validationMessage: {
         name: {
             required: "Полето за име е задължително"
