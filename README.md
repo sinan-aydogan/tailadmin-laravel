@@ -1,40 +1,19 @@
-TailAdmin Inertia
-======
 
-<p align="center">
-  <img src="https://cdn.tailadmin.dev/tailadmin-laravel/images/tailadmin_v2.jpg" alt="TailAdmin"/>
-</p>
-<p align="center">
-  It's a dashboard theme/UI-Starter Kit with Laravel 12, TailwindCSS3, Inertia and Vue3 (JetStream).
-</p>
+# TailAdmin Inertia
 
-<p align="center">
-  :wave: If you looking for Vue2 version, You can use download <a href="https://github.com/sinan-aydogan/tailadmin-laravel/releases/tag/v.1.0.0"> TailAdmin v1 TailAdmin</a> :wave:
-</p>
+![TailAdmin](public/img/demo/tailadmin_v2.jpg)
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white" />
-  <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" />
-  <img src="https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D" />
-</p>
+It's a dashboard theme/UI-Starter Kit with **Laravel 12**, **TailwindCSS 3**, **Inertia.js** and **Vue 3 (JetStream)**.
 
-<p align="center">
-    <a href="https://ko-fi.com/sinanaydogan" target="_blank">
-        <img src="https://ko-fi.com/img/githubbutton_sm.svg">
-    </a>
-</p>
+> :wave: If you are looking for the Vue2 version, download [TailAdmin v1](https://github.com/sinan-aydogan/tailadmin-laravel/releases/tag/v.1.0.0) :wave:
 
-<p align="center">
-    <a href="https://www.buymeacoffee.com/sinanaydogan">
-        <img src="https://cdn.tailadmin.dev/tailadmin-laravel/images/bmc-button.png" height="36">
-    </a>
-</p>
+![Laravel](https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
+![Tailwind_CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Vue.js](https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D)
 
-<p align="center">
-<a href="https://discord.gg/TnjA2GqYmw">
-    <img src="public/img/demo/discord.svg" height="40">
-</a>
-</p>
+[![Ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/sinanaydogan)
+[![BuyMeACoffee](public/img/demo/bmc-button.png)](https://www.buymeacoffee.com/sinanaydogan)
+[![Discord](public/img/demo/discord_2.svg)](https://discord.gg/TnjA2GqYmw)
 
 ## GitAds Sponsored
 [![Sponsored by GitAds](https://gitads.dev/v1/ad-serve?source=sinan-aydogan/tailadmin-laravel@github)](https://gitads.dev/v1/ad-track?source=sinan-aydogan/tailadmin-laravel@github)
@@ -86,9 +65,8 @@ Admin Login Infos / Demo Account
 - **Email:** *admin@tailadmin.dev*
 - **Password:** *admin*
 
-<a href="https://www.youtube.com/playlist?list=PLbdS49WKsrOXTo_X_Ja6P3zll1yyhoIYN" target="_blank">
-<img src="https://cdn.tailadmin.dev/tailadmin-laravel/images/youtube.jpg" alt="TailAdmin Demo" width='480'/>
-</a>
+
+[![TailAdmin Demo](public/img/demo/youtube.jpg)](https://www.youtube.com/playlist?list=PLbdS49WKsrOXTo_X_Ja6P3zll1yyhoIYN)
 
 ## Help
 
@@ -179,16 +157,8 @@ License
 ------
 The TailAdmin is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
-<p align="center">
-    <a href="https://ko-fi.com/sinanaydogan" target="_blank">
-        <img src="https://ko-fi.com/img/githubbutton_sm.svg">
-    </a>
-</p>
 
-<p align="center">
-    <a href="https://www.buymeacoffee.com/sinanaydogan">
-        <img src="https://cdn.tailadmin.dev/tailadmin-laravel/images/bmc-button.png" height="36">
-    </a>
-</p>
+[![Ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/sinanaydogan)
+[![BuyMeACoffee](public/img/demo/bmc-button.png)](https://www.buymeacoffee.com/sinanaydogan)
 
 <!-- GitAds-Verify: XU4WES5HAT2HRC3LCB7K9L4CQZ4CIAN8 -->
