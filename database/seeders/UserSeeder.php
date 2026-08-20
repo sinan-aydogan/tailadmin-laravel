@@ -14,25 +14,28 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         /*Admin*/
-        $admin = User::factory()->withPersonalTeam()->create([
-            'name' => 'Super Admin',
-            'email' => 'admin@tailadmin.dev',
-            'password' => bcrypt('admin'),
-        ]);
+        $admin = User::where('email', 'admin@tailadmin.dev')->first()
+            ?? User::factory()->withPersonalTeam()->create([
+                'name' => 'Super Admin',
+                'email' => 'admin@tailadmin.dev',
+                'password' => bcrypt('admin'),
+            ]);
 
         /*Editor*/
-        $editor = User::factory()->withPersonalTeam()->create([
-            'name' => 'Editor',
-            'email' => 'editor@tailadmin.dev',
-            'password' => bcrypt('editor'),
-        ]);
+        $editor = User::where('email', 'editor@tailadmin.dev')->first()
+            ?? User::factory()->withPersonalTeam()->create([
+                'name' => 'Editor',
+                'email' => 'editor@tailadmin.dev',
+                'password' => bcrypt('editor'),
+            ]);
 
         /*Simple User*/
-        $simpleUser = User::factory()->withPersonalTeam()->create([
-            'name' => 'Super User',
-            'email' => 'user@tailadmin.dev',
-            'password' => bcrypt('user'),
-        ]);
+        $simpleUser = User::where('email', 'user@tailadmin.dev')->first()
+            ?? User::factory()->withPersonalTeam()->create([
+                'name' => 'Super User',
+                'email' => 'user@tailadmin.dev',
+                'password' => bcrypt('user'),
+            ]);
 
         /*Assign Role*/
         $admin->assignRole('Super Admin');
