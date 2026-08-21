@@ -21,6 +21,7 @@ const authLangDe = {
     registerGreeting: "Registrieren Sie sich für ein neues Konto",
     loginGreeting: "Melden Sie sich bei Ihrem Konto an",
     reLogin: "Melden Sie sich erneut an",
+    demoAccounts: "Demo-Konten",
     validationMessage: {
         name: {
             required: "Das Namensfeld ist erforderlich"

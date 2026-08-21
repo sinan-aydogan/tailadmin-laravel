@@ -21,6 +21,7 @@ const authLangBg = {
     registerGreeting: "Регистрирайте се за нов акаунт",
     loginGreeting: "Влезте в акаунта си",
     reLogin: "Влезте отново",
+    demoAccounts: "Демо акаунти",
     validationMessage: {
         name: {
             required: "Полето за име е задължително"

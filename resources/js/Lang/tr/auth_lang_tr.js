@@ -21,6 +21,7 @@ const authLangTr = {
     registerGreeting: "Yeni bir hesap için kaydolun",
     loginGreeting: "Hesabınıza giriş yapın",
     reLogin: "Tekrar Giriş Yap",
+    demoAccounts: "Demo Hesaplar",
     validationMessage: {
         name: {
             required: "İsim gereklidir"

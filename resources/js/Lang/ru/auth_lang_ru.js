@@ -20,6 +20,7 @@ const authLangRu = {
     registerGreeting: "Регистрирайте се за нов акаунт",
     loginGreeting: "Влезте в акаунта си",
     reLogin: "Войти снова",
+    demoAccounts: "Демо-аккаунты",
     validationMessage: {
         email: {
             required: "Поле электронной почты обязательно",

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Middleware;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
@@ -43,9 +44,35 @@ final class HandleInertiaRequests extends Middleware
             'user_extra' => $this->getAuthenticatedUserData(),
             'ziggy' => $this->getZiggyData($request),
             'flash' => $this->getFlashMessages(),
+            'demo' => $this->getDemoData(),
         ];
 
         return $data;
+    }
+
+    /**
+     * Get demo mode state and the whitelisted demo users for one-click login.
+     *
+     * @return array<string, mixed>
+     */
+    private function getDemoData(): array
+    {
+        if (! config('app.demo_mode')) {
+            return ['enabled' => false];
+        }
+
+        return [
+            'enabled' => true,
+            'users' => fn () => User::query()
+                ->whereIn('email', config('app.demo_users', []))
+                ->get(['id', 'name', 'email'])
+                ->map(fn ($user) => [
+                    'name' => $user->name,
+                    'email' => $user->email,
+                    'role' => $user->getRoleNames()->first(),
+                ])
+                ->values(),
+        ];
     }
 
     /**

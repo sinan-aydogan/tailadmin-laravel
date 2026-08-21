@@ -21,6 +21,7 @@ const authLangEn = {
     registerGreeting: "Register for a new account",
     loginGreeting: "Login to your account",
     reLogin: "Re-Login",
+    demoAccounts: "Demo Accounts",
     validationMessage: {
         name: {
             required: "The name filed is required"

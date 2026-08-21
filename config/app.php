@@ -98,6 +98,22 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Demo Mode Users
+    |--------------------------------------------------------------------------
+    |
+    | Emails allowed to be shown/used for one-click demo login when demo mode
+    | is enabled. Must match the accounts seeded by database\seeders\UserSeeder.
+    |
+    */
+
+    'demo_users' => [
+        'admin@tailadmin.dev',
+        'editor@tailadmin.dev',
+        'user@tailadmin.dev',
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Encryption Key
     |--------------------------------------------------------------------------
     |

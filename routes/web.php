@@ -31,6 +31,12 @@ Route::get('lang/{locale}', function ($locale) {
 
 
 })->name('lang');
+
+/* Demo Mode one-click login */
+Route::post('demo-login', [\App\Http\Controllers\Auth\DemoLoginController::class, 'store'])
+    ->middleware('guest')
+    ->name('demo.login');
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),

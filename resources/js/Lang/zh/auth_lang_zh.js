@@ -21,6 +21,7 @@ const authLangZh = {
     registerGreeting: "注册新账户",
     loginGreeting: "登录到您的账户",
     reLogin: "重新登录",
+    demoAccounts: "演示账户",
     validationMessage: {
         name: {
             required: "名称字段是必需的"

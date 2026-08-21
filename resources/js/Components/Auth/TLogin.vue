@@ -135,6 +135,32 @@
                         </t-button>
                     </div>
                 </form>
+
+                <!--Demo Accounts-->
+                <div
+                    v-if="demo && demo.enabled && demo.users && demo.users.length"
+                    class="mt-6 pt-4 border-t border-slate-200 dark:border-slate-700"
+                >
+                    <div class="text-xs font-medium text-slate-400 dark:text-slate-500 uppercase tracking-wide mb-2">
+                        {{ t('demoAccounts') }}
+                    </div>
+                    <div class="space-y-2">
+                        <button
+                            v-for="demoUser in demo.users"
+                            :key="demoUser.email"
+                            type="button"
+                            :disabled="demoLoginProcessing"
+                            @click="loginAsDemo(demoUser.email)"
+                            class="w-full flex items-center justify-between px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors text-left disabled:opacity-50"
+                        >
+                            <span>
+                                <span class="block text-sm font-medium text-slate-700 dark:text-slate-200">{{ demoUser.name }}</span>
+                                <span class="block text-xs text-slate-400 dark:text-slate-500">{{ demoUser.role }}</span>
+                            </span>
+                            <icon icon="key" size="sm" class="text-slate-400"/>
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -249,7 +275,7 @@
 /*Main functions*/
 import {defineComponent, computed, ref} from "vue";
 import {loginStyleMixin} from "@/Mixins/Styles/loginStyleMixin";
-import {Link, useForm} from "@inertiajs/vue3";
+import {Link, useForm, router} from "@inertiajs/vue3";
 import windowSizeCalculator from "@/Functions/windowSizeCalculator";
 import useVuelidate from "@vuelidate/core";
 import {email, helpers, required} from "@vuelidate/validators";
@@ -382,6 +408,17 @@ export default defineComponent({
             return logo;
         });
 
+        /* Demo Mode one-click login */
+        const demoLoginProcessing = ref(false);
+        const loginAsDemo = (email) => {
+            demoLoginProcessing.value = true;
+            router.post(route("demo.login"), {email}, {
+                onFinish: () => {
+                    demoLoginProcessing.value = false;
+                },
+            });
+        };
+
         /*Design Template Changer*/
         const activeDesignIndex = ref(0)
         const changeBg = () => {
@@ -405,6 +442,8 @@ export default defineComponent({
             changeBg,
             activeDesign,
             submit,
+            demoLoginProcessing,
+            loginAsDemo,
             languages,
             locale,
             deviceType,
@@ -433,6 +472,10 @@ export default defineComponent({
 
         hasErrors() {
             return Object.keys(this.errors).length > 0;
+        },
+
+        demo() {
+            return this.$page.props.demo;
         }
     }
 });

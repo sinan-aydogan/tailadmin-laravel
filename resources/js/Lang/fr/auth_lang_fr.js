@@ -21,6 +21,7 @@ const authLangFr = {
     registerGreeting: "Inscrivez-vous pour un nouveau compte",
     loginGreeting: "Connectez-vous à votre compte",
     reLogin: "Re-Login",
+    demoAccounts: "Comptes de démonstration",
     validationMessage: {
         name: {
             required: "Le champ nom est obligatoire"
