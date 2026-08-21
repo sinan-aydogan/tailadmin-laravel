@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands\Demo;
+namespace App\Console\Commands\TailAdminCommands;
 
 use Illuminate\Console\Command;
 

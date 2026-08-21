@@ -68,6 +68,12 @@ Admin Login Infos / Demo Account
 
 [![TailAdmin Demo](public/img/demo/youtube.jpg)](https://www.youtube.com/playlist?list=PLbdS49WKsrOXTo_X_Ja6P3zll1yyhoIYN)
 
+## Console Commands
+
+- ```php artisan demo:reset``` — Resets the demo database (`migrate:fresh --seed`). Only runs when `DEMO_MODE=true` in `.env`.
+- ```php artisan production:check``` — Verifies that the environment is safely configured before/after deploying to production. Checks `APP_ENV`, `APP_DEBUG`, `DEBUGBAR_ENABLED`, `APP_KEY`, `APP_URL`, `LOG_LEVEL` and that `storage`/`bootstrap/cache` are writable. Exits with a non-zero status if any check fails, so it can be wired into a deploy script/CI step.
+- ```php artisan production:check --solve``` — Same checks, but automatically fixes what it safely can directly in `.env`: sets `APP_ENV=production`, `APP_DEBUG=false`, `DEBUGBAR_ENABLED=false`, `LOG_LEVEL=error`, runs `key:generate --force` if `APP_KEY` is empty, and clears the config cache afterwards. If `APP_URL` still points to localhost, it interactively asks for the real production domain and writes it to `.env`; file-permission issues that can't be safely fixed are still just reported.
+
 ## Help
 
 If you need to help more than this documentation: 
