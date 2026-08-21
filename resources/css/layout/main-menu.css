@@ -27,7 +27,7 @@
 /*</editor-fold>*/
 /*<editor-fold desc="Let Menu Links">*/
 .umay-main-menu #links-wrapper {
-    @apply h-full bg-gray-800 px-4 overflow-x-hidden overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-800 transition-size-long overflow-hidden
+    @apply h-full bg-gray-800 px-4 overflow-x-hidden overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-800 transition-size-long
 
 }
 
